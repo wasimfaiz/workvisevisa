@@ -429,7 +429,7 @@ export const faqs: FAQItem[] = [
 // ── Stats ────────────────────────────────────────────────────────
 
 export const stats: Stat[] = [
-  { value: 15, suffix: "+", label: "Years of Excellence", iconName: "CalendarDays" },
+  { value: 5, suffix: "+", label: "Years of Excellence", iconName: "CalendarDays" },
   { value: 5000, suffix: "+", label: "Successful Placements", iconName: "Users" },
   { value: 98, suffix: "%", label: "Visa Approval Rate", iconName: "TrendingUp" },
   { value: 12, suffix: "+", label: "Partner Nations", iconName: "Globe" },

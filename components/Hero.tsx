@@ -287,7 +287,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               {[
-                { Icon: FaCalendarDays, val: "15+", sub: "Years" },
+                { Icon: FaCalendarDays, val: "5+", sub: "Years" },
                 { Icon: FaUsers, val: "5,000+", sub: "Placements" },
                 { Icon: FaGlobe, val: "98%", sub: "Visa Rate" },
               ].map(({ Icon, val, sub }) => (

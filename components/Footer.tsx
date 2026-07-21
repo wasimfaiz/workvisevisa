@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs font-normal">
               Premium international job placement and visa consultancy. Helping
-              professionals build global careers since 2010.
+              professionals build global careers since 2020.
             </p>
             <div className="flex gap-3">
               {socials.map((s) => {
