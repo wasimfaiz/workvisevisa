@@ -9,6 +9,7 @@ import FeaturedJobs from "@/components/FeaturedJobs";
 import ConsultationForm from "@/components/ConsultationForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

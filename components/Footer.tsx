@@ -2,6 +2,7 @@ import {
   FaGlobe,
   FaEnvelope,
   FaPhone,
+  FaWhatsapp,
   FaLocationDot,
   FaLinkedin,
   FaInstagram,
@@ -36,16 +37,14 @@ export default function Footer() {
     <footer className="relative border-t border-slate-800 bg-slate-900 text-slate-300 pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* brand */}
+          {/* Logo Image: /workwise_logo.png */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-md shadow-emerald-500/20">
-                <FaGlobe className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-lg font-bold font-display tracking-tight">
-                <span className="text-white">WorkWise</span>
-                <span className="text-emerald-400">&nbsp;Visa</span>
-              </span>
+            <div className="mb-5">
+              <img
+                src="/workwise_logo.png"
+                alt="WorkWise Visa Logo"
+                className="h-12 sm:h-14 max-w-[260px] w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs font-normal">
               Premium international job placement and visa consultancy. Helping
@@ -113,8 +112,19 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-2.5">
                 <FaPhone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href="tel:+919876543210" className="text-sm text-slate-300 hover:text-white transition-colors">
-                  +91 98765 43210
+                <a href="tel:+918130161603" className="text-sm text-slate-300 hover:text-white transition-colors">
+                  +91 81301 61603
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <FaWhatsapp className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a
+                  href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-slate-300 hover:text-white transition-colors"
+                >
+                  WhatsApp: +91 81301 61603
                 </a>
               </li>
               <li className="flex items-center gap-2.5">

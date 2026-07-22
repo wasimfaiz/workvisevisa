@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     "visa processing",
     "job abroad",
   ],
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "WorkWise Visa — Your Career. Anywhere in the World.",
     description:
