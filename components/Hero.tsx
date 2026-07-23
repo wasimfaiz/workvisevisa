@@ -12,16 +12,146 @@ import {
   FaPlaneDeparture,
 } from "react-icons/fa6";
 
-const flags = [
-  { emoji: "🇦🇪", name: "UAE" },
-  { emoji: "🇸🇦", name: "Saudi Arabia" },
-  { emoji: "🇶🇦", name: "Qatar" },
-  { emoji: "🇩🇪", name: "Germany" },
-  { emoji: "🇫🇷", name: "France" },
-  { emoji: "🇨🇦", name: "Canada" },
-  { emoji: "🇺🇸", name: "United States" },
-  { emoji: "🇬🇧", name: "United Kingdom" },
-  { emoji: "🇷🇺", name: "Russia" },
+const hiringAlerts = [
+  {
+    code: "ae",
+    country: "Dubai, UAE",
+    role: "Retail Store Manager",
+    salary: "AED 8,500/mo Tax-Free",
+    visa: "Employment Visa",
+    urgent: true,
+  },
+  {
+    code: "sa",
+    country: "Saudi Arabia",
+    role: "Heavy Trailer Driver",
+    salary: "SAR 4,800/mo + Accom",
+    visa: "Work Permit Direct",
+    urgent: true,
+  },
+  {
+    code: "qa",
+    country: "Qatar (Doha)",
+    role: "Executive Head Chef",
+    salary: "QAR 9,500/mo + Food",
+    visa: "Hospitality Visa",
+    urgent: true,
+  },
+  {
+    code: "de",
+    country: "Germany",
+    role: "Senior Accountant",
+    salary: "€48K–€55K/yr",
+    visa: "EU Opportunity Card",
+    urgent: false,
+  },
+  {
+    code: "ae",
+    country: "Dubai, UAE",
+    role: "Hypermarket Cashier",
+    salary: "AED 4,500/mo + Accom",
+    visa: "2-Yr Work Visa",
+    urgent: true,
+  },
+  {
+    code: "ca",
+    country: "Canada (Toronto)",
+    role: "Warehouse Supervisor",
+    salary: "CAD $54,000/yr",
+    visa: "Work Permit / PNP",
+    urgent: true,
+  },
+  {
+    code: "gb",
+    country: "London, UK",
+    role: "Restaurant Captain / Waiter",
+    salary: "£26,000/yr + Tips",
+    visa: "Skilled Worker Visa",
+    urgent: false,
+  },
+  {
+    code: "sa",
+    country: "Riyadh, Saudi",
+    role: "Construction Site Supervisor",
+    salary: "SAR 6,200/mo + Accom",
+    visa: "Fast-Track Visa",
+    urgent: true,
+  },
+  {
+    code: "ae",
+    country: "Abu Dhabi, UAE",
+    role: "Shopkeeper / Sales Executive",
+    salary: "AED 5,200/mo",
+    visa: "Employment Visa",
+    urgent: false,
+  },
+  {
+    code: "qa",
+    country: "Qatar (Doha)",
+    role: "Logistics Helper / Packer",
+    salary: "QAR 3,200/mo + Accom",
+    visa: "Immediate Visa",
+    urgent: true,
+  },
+];
+
+const placementMilestones = [
+  {
+    name: "Amit P.",
+    role: "Heavy Vehicle Driver",
+    dest: "Riyadh, Saudi 🇸🇦",
+    time: "Visa Approved in 10 Days",
+    tag: "Verified Placement",
+  },
+  {
+    name: "Sunil K.",
+    role: "Store Manager",
+    dest: "Dubai, UAE 🇦🇪",
+    time: "Employment Visa Stamp",
+    tag: "Free Accommodation",
+  },
+  {
+    name: "Deepak M.",
+    role: "Executive Chef",
+    dest: "Doha, Qatar 🇶🇦",
+    time: "Work Permit Cleared",
+    tag: "Flight Provided",
+  },
+  {
+    name: "Ritu S.",
+    role: "Retail Cashier",
+    dest: "Abu Dhabi, UAE 🇦🇪",
+    time: "Visa Issued in 7 Days",
+    tag: "Joined Last Week",
+  },
+  {
+    name: "Manish G.",
+    role: "Site Supervisor",
+    dest: "Toronto, Canada 🇨🇦",
+    time: "Work Permit Approved",
+    tag: "Relocation Package",
+  },
+  {
+    name: "Rajesh V.",
+    role: "General Accountant",
+    dest: "Frankfurt, Germany 🇩🇪",
+    time: "Opportunity Card Granted",
+    tag: "Job Offer Direct",
+  },
+  {
+    name: "Suresh T.",
+    role: "Warehouse Helper",
+    dest: "Dubai, UAE 🇦🇪",
+    time: "Visa Stamped in 5 Days",
+    tag: "Company Transport",
+  },
+  {
+    name: "Vikas N.",
+    role: "Hospitality Waiter",
+    dest: "London, UK 🇬🇧",
+    time: "Tier 2 Sponsor Approved",
+    tag: "Work Visa",
+  },
 ];
 
 /* ── Photorealistic Satellite Motion World Map Component ─────── */
@@ -318,18 +448,83 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── country marquee ──────────────────────────────── */}
-      <div className="absolute bottom-0 inset-x-0 z-10 border-t border-slate-200 bg-white/90 backdrop-blur-md">
-        <div className="overflow-hidden py-3.5">
-          <div className="marquee-track">
-            {[...flags, ...flags].map((f, i) => (
+      {/* ── Bespoke Dual Counter-Scrolling Global Command Ticker ── */}
+      <div className="absolute bottom-0 inset-x-0 z-20 bg-slate-950/95 backdrop-blur-2xl border-t border-slate-800 shadow-2xl py-3 space-y-2.5 overflow-hidden">
+        {/* Animated Top Glow Laser Line */}
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
+
+        {/* Gradient Edge Fade Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+
+        {/* Ribbon 1 (Top Leftward Scroll): 🔥 Live Global Hiring Drives */}
+        <div className="overflow-hidden flex items-center">
+          <div className="marquee-track flex items-center gap-3">
+            {[...hiringAlerts, ...hiringAlerts].map((alert, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2.5 px-6 text-slate-700 shrink-0"
+                className="flex items-center gap-2.5 rounded-lg bg-slate-900/90 border border-slate-800/90 px-3.5 py-1.5 hover:border-emerald-500/70 hover:bg-slate-800 transition-all duration-300 shadow-sm shrink-0 group cursor-pointer"
               >
-                <span className="text-2xl">{f.emoji}</span>
-                <span className="text-sm font-semibold whitespace-nowrap">
-                  {f.name}
+                <div className="flex items-center gap-1.5">
+                  <span className="flex h-2 w-2 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <img
+                    src={`https://flagcdn.com/w80/${alert.code}.png`}
+                    alt={alert.country}
+                    className="w-4 h-3 object-cover rounded shadow-sm shrink-0"
+                  />
+                  <span className="text-[11px] font-black text-slate-200 group-hover:text-emerald-400 transition-colors">
+                    {alert.country}
+                  </span>
+                </div>
+
+                <span className="h-3 w-[1px] bg-slate-700/80" />
+
+                <span className="text-xs font-bold text-white whitespace-nowrap">
+                  {alert.role}
+                </span>
+
+                <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap hidden sm:inline-block">
+                  {alert.salary}
+                </span>
+
+                <span className="text-[10px] font-semibold text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">
+                  {alert.visa}
+                </span>
+
+                {alert.urgent && (
+                  <span className="text-[9px] font-black uppercase tracking-wider text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 animate-pulse">
+                    Urgent
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Ribbon 2 (Bottom Rightward Scroll): 🎉 Live Candidate Placements */}
+        <div className="overflow-hidden flex items-center">
+          <div className="marquee-track-reverse flex items-center gap-3">
+            {[...placementMilestones, ...placementMilestones].map((m, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-1.5 hover:border-emerald-500/60 hover:bg-emerald-950/60 transition-all duration-300 shadow-sm shrink-0 group cursor-pointer"
+              >
+                <span className="text-xs">🎉</span>
+                <span className="text-xs font-bold text-white whitespace-nowrap">
+                  {m.name}
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 whitespace-nowrap">
+                  ({m.role})
+                </span>
+                <span className="text-xs font-semibold text-emerald-300 whitespace-nowrap">
+                  ➔ {m.dest}
+                </span>
+                <span className="h-3 w-[1px] bg-emerald-800/60" />
+                <span className="text-[10px] font-extrabold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 whitespace-nowrap">
+                  {m.time}
                 </span>
               </div>
             ))}
