@@ -129,8 +129,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <FaEnvelope className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href="mailto:hello@workwisevisa.com" className="text-sm text-slate-300 hover:text-white transition-colors">
-                  hello@workwisevisa.com
+                <a href="mailto:workwisevisa@gmail.com" className="text-sm text-slate-300 hover:text-white transition-colors">
+                  workwisevisa@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
