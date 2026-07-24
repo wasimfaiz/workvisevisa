@@ -6,6 +6,7 @@ import {
   FaLocationDot,
   FaLinkedin,
   FaInstagram,
+  FaFacebook,
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
@@ -26,10 +27,10 @@ const offices = [
 ];
 
 const socials = [
+  { label: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/workwisevisa/" },
+  { label: "Facebook", icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61592057835525" },
+  { label: "WhatsApp", icon: FaWhatsapp, href: "https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!" },
   { label: "LinkedIn", icon: FaLinkedin, href: "#" },
-  { label: "Instagram", icon: FaInstagram, href: "#" },
-  { label: "Twitter", icon: FaXTwitter, href: "#" },
-  { label: "YouTube", icon: FaYoutube, href: "#" },
 ];
 
 export default function Footer() {
@@ -57,6 +58,8 @@ export default function Footer() {
                   <a
                     key={s.label}
                     href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all"
                     aria-label={s.label}
                   >
