@@ -58,6 +58,31 @@ export interface WhyUsPoint {
   iconName: string;
 }
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  excerpt: string;
+  image: string;
+  author: string;
+  tags: string[];
+}
+
+export interface Industry {
+  id: string;
+  title: string;
+  seoTagline: string;
+  description: string;
+  iconName: string;
+  demandLevel: "Very High" | "High" | "Urgent Shortage";
+  popularRoles: string[];
+  topDestinations: string[];
+  averageSalary: string;
+  keyBenefits: string[];
+}
+
 // ── Countries ────────────────────────────────────────────────────
 
 export const countries: Country[] = [
@@ -67,10 +92,10 @@ export const countries: Country[] = [
     flag: "🇦🇪",
     region: "Gulf",
     description:
-      "Dubai & Abu Dhabi offer tax-free salaries, world-class infrastructure, and fast-growing sectors in tech, finance, and construction.",
-    visaTypes: ["Employment Visa", "Golden Visa", "Green Visa"],
-    processingTime: "2–4 weeks",
-    popularRoles: ["Software Engineer", "Project Manager", "Financial Analyst"],
+      "Dubai & Abu Dhabi offer tax-free income, free company accommodation, and urgent vacancies for construction trades, heavy drivers, and facility helpers.",
+    visaTypes: ["Employment Visa", "Work Permit", "Partner Visa"],
+    processingTime: "2–3 weeks",
+    popularRoles: ["Structural Welder (6G)", "Heavy Trailer Driver", "Masons & Tile Fixers"],
   },
   {
     name: "Saudi Arabia",
@@ -78,10 +103,10 @@ export const countries: Country[] = [
     flag: "🇸🇦",
     region: "Gulf",
     description:
-      "Vision 2030 is driving massive investment across healthcare, tourism, and technology — creating thousands of international roles.",
-    visaTypes: ["Work Visa", "Premium Residency"],
-    processingTime: "3–6 weeks",
-    popularRoles: ["Healthcare Professional", "Civil Engineer", "IT Specialist"],
+      "NEOM and Vision 2030 megaprojects are recruiting thousands of heavy equipment operators, pipefitters, electricians, and site helpers.",
+    visaTypes: ["Work Visa", "Iqama Work Permit"],
+    processingTime: "3–4 weeks",
+    popularRoles: ["Heavy Equipment Operator", "Industrial Electrician", "Refinery Pipefitter"],
   },
   {
     name: "Qatar",
@@ -89,10 +114,10 @@ export const countries: Country[] = [
     flag: "🇶🇦",
     region: "Gulf",
     description:
-      "Post-World Cup infrastructure and the National Vision 2030 continue to fuel demand for skilled professionals across sectors.",
+      "Major commercial infrastructure, airport expansion, and energy projects drive ongoing demand for scaffolders, steel fixers, and stewards.",
     visaTypes: ["Work Visa", "Business Visa"],
-    processingTime: "2–4 weeks",
-    popularRoles: ["Mechanical Engineer", "Hospitality Manager", "Architect"],
+    processingTime: "2–3 weeks",
+    popularRoles: ["Scaffolder & Steel Fixer", "Kitchen Steward", "Facility Cleaner"],
   },
   {
     name: "Germany",
@@ -100,10 +125,10 @@ export const countries: Country[] = [
     flag: "🇩🇪",
     region: "Schengen",
     description:
-      "Europe's largest economy with critical talent shortages in engineering, IT, and healthcare. The Opportunity Card makes entry easier than ever.",
-    visaTypes: ["EU Blue Card", "Job Seeker Visa", "Opportunity Card"],
-    processingTime: "6–12 weeks",
-    popularRoles: ["Software Developer", "Mechanical Engineer", "Nurse"],
+      "Germany has streamlined trade visas for CNC machine operators, auto mechanics, caregivers, and factory assembly operators.",
+    visaTypes: ["Opportunity Card", "Skilled Work Visa", "Caregiver Permit"],
+    processingTime: "6–10 weeks",
+    popularRoles: ["CNC Machine Operator", "Auto Mechanic", "Factory Assembly Operator"],
   },
   {
     name: "France",
@@ -111,10 +136,10 @@ export const countries: Country[] = [
     flag: "🇫🇷",
     region: "Schengen",
     description:
-      "A thriving tech startup scene (La French Tech) combined with demand in luxury, aerospace, and engineering sectors.",
-    visaTypes: ["Talent Passport", "Salaried Employee Visa"],
+      "High demand across hospitality, food processing, logistics, and workshop maintenance with guaranteed accommodation options.",
+    visaTypes: ["Salaried Employee Visa", "Seasonal Work Visa"],
     processingTime: "4–8 weeks",
-    popularRoles: ["Data Scientist", "Aerospace Engineer", "Marketing Manager"],
+    popularRoles: ["Hotel Housekeeper", "Meat Packer & Cutter", "Workshop Technician"],
   },
   {
     name: "Canada",
@@ -122,10 +147,10 @@ export const countries: Country[] = [
     flag: "🇨🇦",
     region: "North America",
     description:
-      "Express Entry, Provincial Nominee Programs, and Global Talent Stream offer multiple pathways to both work and permanent residency.",
-    visaTypes: ["Express Entry", "PNP", "LMIA Work Permit", "Global Talent Stream"],
-    processingTime: "8–16 weeks",
-    popularRoles: ["Full Stack Developer", "Registered Nurse", "Accountant"],
+      "Long-haul truck drivers, caregivers, and skilled trade workers enjoy fast-track work permits and permanent residency options.",
+    visaTypes: ["LMIA Work Permit", "Caregiver Program", "Provincial Trade Visa"],
+    processingTime: "8–14 weeks",
+    popularRoles: ["Heavy Truck Driver", "Caregiver & Nursing Aide", "Warehouse Packer"],
   },
   {
     name: "United States",
@@ -133,10 +158,10 @@ export const countries: Country[] = [
     flag: "🇺🇸",
     region: "North America",
     description:
-      "H-1B, L-1, and O-1 visas for specialists. We navigate the complex lottery system and employer sponsorship for you.",
-    visaTypes: ["H-1B", "L-1", "O-1", "EB Categories"],
+      "H-2B and technical work visas for specialized industrial welders, equipment technicians, and maintenance mechanics.",
+    visaTypes: ["H-2B Visa", "EB-3 Unskilled/Skilled"],
     processingTime: "3–6 months",
-    popularRoles: ["Software Engineer", "Data Analyst", "Research Scientist"],
+    popularRoles: ["Industrial Welder", "Machine Operator", "Equipment Technician"],
   },
   {
     name: "United Kingdom",
@@ -144,10 +169,10 @@ export const countries: Country[] = [
     flag: "🇬🇧",
     region: "United Kingdom",
     description:
-      "Skilled Worker and Global Talent visas offer clear pathways for professionals in tech, healthcare, finance, and engineering.",
-    visaTypes: ["Skilled Worker Visa", "Global Talent Visa", "Health & Care Worker"],
-    processingTime: "3–8 weeks",
-    popularRoles: ["Registered Nurse", "Software Engineer", "Financial Analyst"],
+      "Urgent recruitment for care home assistants, nursing aides, security guards, and commercial plumbers with fast UK visa approval.",
+    visaTypes: ["Health & Care Worker Visa", "Skilled Worker Visa"],
+    processingTime: "3–6 weeks",
+    popularRoles: ["Caregiver & Nursing Aide", "Security Guard", "Commercial Plumber"],
   },
   {
     name: "Russia",
@@ -155,10 +180,10 @@ export const countries: Country[] = [
     flag: "🇷🇺",
     region: "Russia & CIS",
     description:
-      "Growing opportunities in energy, mining, construction, and technology with streamlined work permits for qualified professionals.",
-    visaTypes: ["Highly Qualified Specialist", "Standard Work Permit"],
-    processingTime: "4–8 weeks",
-    popularRoles: ["Mining Engineer", "IT Architect", "Project Director"],
+      "Direct work permits and multi-entry visas for heavy tractor operators, construction masons, and mining rig helpers.",
+    visaTypes: ["Standard Work Permit", "Multi-Entry Work Visa"],
+    processingTime: "3–6 weeks",
+    popularRoles: ["Mining Rig Helper", "Heavy Tractor Operator", "Construction Mason"],
   },
 ];
 
@@ -346,48 +371,48 @@ export const processSteps: ProcessStep[] = [
 export const testimonials: Testimonial[] = [
   {
     name: "Rajesh Sharma",
-    role: "Senior Software Engineer",
-    company: "Tech Solutions",
+    role: "Structural Welder (6G)",
+    company: "Al Habtoor Engineering",
     country: "UAE",
     flag: "🇦🇪",
     quote:
-      "WorkWise Visa secured my Dubai job offer and processed my Employment Visa in just 18 days. The team handled everything from degree attestation to airport pickup. Incredible service!",
+      "WorkWise Visa arranged my trade test in India and processed my Dubai Employment Visa in 18 days. Provided free company housing and food allowance. Genuine agency!",
   },
   {
     name: "Priya Nair",
-    role: "Registered Nurse",
-    company: "Helios Hospital",
-    country: "Germany",
-    flag: "🇩🇪",
-    quote:
-      "Getting an EU Blue Card felt intimidating until I found WorkWise. They guided me through document recognition, mock interviews, and visa stamping seamlessly. Highly recommended!",
-  },
-  {
-    name: "Vikram Patel",
-    role: "Civil Project Manager",
-    company: "Red Sea Development",
-    country: "Saudi Arabia",
-    flag: "🇸🇦",
-    quote:
-      "Transparent fees, zero false promises, and real-time updates throughout. Secured my Work Visa for Riyadh ahead of schedule. Truly professional consultancy.",
-  },
-  {
-    name: "Ananya Roy",
-    role: "Full Stack Developer",
-    company: "Shopify Partner",
-    country: "Canada",
-    flag: "🇨🇦",
-    quote:
-      "Their Express Entry and LMIA guidance was spot-on. Within 4 months, I landed in Toronto with a permanent work permit. Forever grateful to the WorkWise team!",
-  },
-  {
-    name: "Siddharth Verma",
-    role: "Financial Analyst",
-    company: "Barclays UK",
+    role: "Caregiver & Elderly Care Aide",
+    company: "Standard Care Network",
     country: "United Kingdom",
     flag: "🇬🇧",
     quote:
-      "The Skilled Worker Visa process was stress-free thanks to my dedicated case manager. Every document was checked twice. Approved on the first attempt!",
+      "Secured my Health & Care Worker Visa for Manchester smoothly. WorkWise handled embassy documentation, police clearance, and airport pickup seamlessly.",
+  },
+  {
+    name: "Vikram Patel",
+    role: "Heavy Trailer Driver (GCC)",
+    company: "Riyadh Logistics Corp",
+    country: "Saudi Arabia",
+    flag: "🇸🇦",
+    quote:
+      "Transparent fees and zero false promises. My GCC license transfer and Iqama work permit for Riyadh were completed ahead of schedule.",
+  },
+  {
+    name: "Ananya Roy",
+    role: "CNC Machine Operator",
+    company: "Precision Auto Components",
+    country: "Germany",
+    flag: "🇩🇪",
+    quote:
+      "Landed in Munich with a guaranteed factory contract, trade work permit, and accommodation. Forever grateful to the WorkWise Visa team!",
+  },
+  {
+    name: "Siddharth Verma",
+    role: "Industrial Electrician",
+    company: "Ras Laffan Energy Plant",
+    country: "Qatar",
+    flag: "🇶🇦",
+    quote:
+      "Their document verification and medical clearance audit helped me get my Qatar Work Permit on the first attempt without any embassy delays.",
   },
 ];
 
@@ -433,4 +458,166 @@ export const stats: Stat[] = [
   { value: 5000, suffix: "+", label: "Successful Placements", iconName: "Users" },
   { value: 98, suffix: "%", label: "Visa Approval Rate", iconName: "TrendingUp" },
   { value: 12, suffix: "+", label: "Partner Nations", iconName: "Globe" },
+];
+
+// ── Industries We Serve ──────────────────────────────────────────
+
+export const industries: Industry[] = [
+  {
+    id: "construction-trades",
+    title: "Construction & Civil Trades",
+    seoTagline: "High-demand trade jobs & work permits for Gulf & Europe megaprojects",
+    description:
+      "Deploying certified masons, welders, electricians, plumbers, scaffolders, and heavy equipment operators for large-scale infrastructure and smart city developments.",
+    iconName: "HelmetSafety",
+    demandLevel: "Urgent Shortage",
+    popularRoles: ["Masons & Tile Fixers", "Structural Welders (6G/3G)", "Electricians & Plumbers", "Heavy Equipment Operators", "Scaffolders & Steel Fixers"],
+    topDestinations: ["Saudi Arabia 🇸🇦", "UAE 🇦🇪", "Qatar 🇶🇦", "Russia 🇷🇺", "Germany 🇩🇪"],
+    averageSalary: "$1,200 – $3,500 / mo",
+    keyBenefits: ["Free company accommodation", "Free transport & food allowance", "Overtime pay & return flight tickets"],
+  },
+  {
+    id: "transport-driving",
+    title: "Heavy Transport & Drivers",
+    seoTagline: "Work visas for heavy bus/trailer drivers & logistics handlers",
+    description:
+      "Recruiting licensed heavy truck drivers, trailer operators, bus drivers, delivery riders, and warehouse material handlers for international transport hubs.",
+    iconName: "Truck",
+    demandLevel: "Urgent Shortage",
+    popularRoles: ["Heavy Trailer Drivers (GCC license)", "Heavy Bus & Truck Drivers", "Forklift Operators", "Delivery Riders", "Warehouse Packers"],
+    topDestinations: ["UAE 🇦🇪", "Saudi Arabia 🇸🇦", "Qatar 🇶🇦", "Germany 🇩🇪", "Canada 🇨🇦"],
+    averageSalary: "$1,400 – $4,000 / mo",
+    keyBenefits: ["GCC license transfer support", "Trip bonuses & overtime", "Free accommodation & medical cover"],
+  },
+  {
+    id: "oil-gas-industrial",
+    title: "Oil, Gas & Plant Maintenance",
+    seoTagline: "Certified rig workers, pipefitters & industrial technicians",
+    description:
+      "Placing experienced pipefitters, industrial electricians, 6G argon welders, mechanical fitters, and safety attendants in refineries, power plants, and offshore rigs.",
+    iconName: "Wrench",
+    demandLevel: "Very High",
+    popularRoles: ["TIG/MIG/Argon Welders", "Pipefitters & Fabricators", "Industrial Electricians", "Mechanical Fitters", "Safety Helpers & Riggers"],
+    topDestinations: ["Saudi Arabia 🇸🇦", "UAE 🇦🇪", "Qatar 🇶🇦", "Russia 🇷🇺", "Kuwait 🇰🇼"],
+    averageSalary: "$1,500 – $4,500 / mo",
+    keyBenefits: ["Offshore & site hazard allowance", "Rotational flight tickets", "Free lodging & food"],
+  },
+  {
+    id: "factory-manufacturing",
+    title: "Factory & Manufacturing Workers",
+    seoTagline: "Work permits for factory assembly, packing & machine operators",
+    description:
+      "Supplying reliable assembly line workers, packing staff, CNC machine operators, and quality checkers for manufacturing plants across Europe and the Middle East.",
+    iconName: "Industry",
+    demandLevel: "Very High",
+    popularRoles: ["Assembly Line Operators", "Packing & Sorting Workers", "CNC Machine Operators", "Plastic & Metal Machine Helpers", "Quality Checkers"],
+    topDestinations: ["Germany 🇩🇪", "Russia 🇷🇺", "UAE 🇦🇪", "Saudi Arabia 🇸🇦", "Poland 🇵🇱"],
+    averageSalary: "$1,100 – $3,200 / mo",
+    keyBenefits: ["Shift allowance & overtime", "Standardized work hours", "Full visa & work permit sponsorship"],
+  },
+  {
+    id: "hospitality-cleaning",
+    title: "Hospitality & Facility Cleaning",
+    seoTagline: "Recruitment for hotel stewards, housekeepers & facility helpers",
+    description:
+      "Sponsoring stewards, housekeepers, facility cleaners, security guards, and kitchen helpers for 5-star hotel groups, commercial complexes, and international airports.",
+    iconName: "Broom",
+    demandLevel: "High",
+    popularRoles: ["Kitchen Helpers & Stewards", "Housekeeping Room Attendants", "Facility Cleaners", "Security Guards", "Laundry Technicians"],
+    topDestinations: ["UAE 🇦🇪", "Qatar 🇶🇦", "Saudi Arabia 🇸🇦", "UK 🇬🇧", "Oman 🇴🇲"],
+    averageSalary: "$1,000 – $2,800 / mo",
+    keyBenefits: ["Duty meals provided", "Company accommodation & uniforms", "Tips & service charge shares"],
+  },
+  {
+    id: "automotive-mechanics",
+    title: "Automotive & Workshop Technicians",
+    seoTagline: "Work visas for auto mechanics, auto electricians & body painters",
+    description:
+      "Deploying skilled auto mechanics, diesel technicians, auto electricians, denters, and spray painters to commercial fleet workshops and service centers.",
+    iconName: "ScrewdriverWrench",
+    demandLevel: "Very High",
+    popularRoles: ["Auto Mechanics (Diesel & Petrol)", "Auto Electricians", "Denters & Panel Beaters", "Automotive Spray Painters", "Tyre & AC Technicians"],
+    topDestinations: ["UAE 🇦🇪", "Saudi Arabia 🇸🇦", "Qatar 🇶🇦", "Germany 🇩🇪", "Kuwait 🇰🇼"],
+    averageSalary: "$1,300 – $3,800 / mo",
+    keyBenefits: ["Trade test center support", "Work order bonuses", "Free medical & accommodation"],
+  },
+  {
+    id: "caregiver-nursing-support",
+    title: "Caregivers & Hospital Helpers",
+    seoTagline: "Relocation support for nursing aides, caregivers & hospital staff",
+    description:
+      "Facilitating work visas for certified nursing aides, elderly caregivers, home health attendants, and hospital orderlies for care homes and medical centers.",
+    iconName: "HandHoldingHeart",
+    demandLevel: "Urgent Shortage",
+    popularRoles: ["Caregivers & Elderly Care Aides", "Nursing Assistants", "Hospital Orderlies & Helpers", "Patient Care Technicians"],
+    topDestinations: ["UK 🇬🇧", "Germany 🇩🇪", "Canada 🇨🇦", "UAE 🇦🇪", "Israel 🇮🇱"],
+    averageSalary: "$1,500 – $4,200 / mo",
+    keyBenefits: ["Fast-track Care Worker visas", "Overtime benefits", "PR & settlement pathways"],
+  },
+  {
+    id: "agriculture-food-processing",
+    title: "Agriculture & Food Processing",
+    seoTagline: "Work permits for farm hands, greenhouse workers & food packers",
+    description:
+      "Placing agricultural workers, greenhouse technicians, livestock handlers, and food processing plant workers in seasonal and long-term overseas roles.",
+    iconName: "Tractor",
+    demandLevel: "High",
+    popularRoles: ["Farm Workers & Harvesters", "Greenhouse Technicians", "Meat Cutters & Packers", "Agricultural Machine Helpers"],
+    topDestinations: ["Russia 🇷🇺", "Germany 🇩🇪", "Canada 🇨🇦", "UK 🇬🇧", "UAE 🇦🇪"],
+    averageSalary: "$1,200 – $3,200 / mo",
+    keyBenefits: ["Seasonal & multi-year visas", "Provided farm housing", "Flight & transport allowance"],
+  },
+];
+
+// ── Blog Posts ───────────────────────────────────────────────────
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "blog-1",
+    title: "Complete Guide to UAE & Saudi Arabia Blue-Collar Work Permits in 2026",
+    category: "Gulf Visas",
+    date: "Sep 10, 2026",
+    readTime: "5 min read",
+    excerpt:
+      "Everything you need to know about GAMCA medical tests, trade center testing, Iqama rules, and employer accommodation allowances for overseas workers.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+    author: "WorkWise Visa Team",
+    tags: ["Gulf Visas", "Work Permits", "GAMCA Medical"],
+  },
+  {
+    id: "blog-2",
+    title: "Germany Opportunity Card: How Trade Workers & Technicians Can Apply",
+    category: "Schengen Visa",
+    date: "Sep 05, 2026",
+    readTime: "6 min read",
+    excerpt:
+      "Detailed breakdown of eligibility points, trade skill recognition, and fast-track German work permit processing for mechanics, welders, and factory operators.",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+    author: "Immigration Desk",
+    tags: ["Germany", "Opportunity Card", "Skilled Trades"],
+  },
+  {
+    id: "blog-3",
+    title: "UK Health & Care Worker Visa: Essential Requirements for Caregivers",
+    category: "UK Immigration",
+    date: "Aug 28, 2026",
+    readTime: "4 min read",
+    excerpt:
+      "Understanding English language requirements, police clearance certificates, care home sponsorship, and settlement pathways in the United Kingdom.",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+    author: "UK Relocation Team",
+    tags: ["UK Visa", "Caregiver Jobs", "Healthcare"],
+  },
+  {
+    id: "blog-4",
+    title: "GCC Heavy Vehicle License Transfer & Driving Jobs in Dubai & Riyadh",
+    category: "Driver Recruitment",
+    date: "Aug 20, 2026",
+    readTime: "5 min read",
+    excerpt:
+      "Step-by-step guide for heavy bus and trailer drivers to convert licenses, pass driving tests, and land high-paying international transport contracts.",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
+    author: "Logistics Desk",
+    tags: ["Heavy Driver", "GCC License", "Dubai Jobs"],
+  },
 ];

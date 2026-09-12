@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import {
   motion,
   AnimatePresence,
@@ -10,16 +11,18 @@ import {
 import { FaBars, FaXmark } from "react-icons/fa6";
 
 const navLinks = [
-  { label: "Countries", href: "#countries" },
-  { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Countries", href: "/#countries" },
+  { label: "Services", href: "/#services" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Why Us", href: "/#why-us" },
+  { label: "Process", href: "/#process" },
+  { label: "Blogs", href: "/blogs" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 50));
@@ -30,23 +33,31 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    } else if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      const hash = href.replace("/", "");
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
+  const isSolidNav = scrolled || pathname !== "/";
 
   return (
     <>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled
+          isSolidNav
             ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3 shadow-md"
             : "bg-transparent py-4"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo Image: /workwise_logo.png */}
-          <a href="#hero" onClick={(e) => scrollTo(e, "#hero")} className="flex items-center group">
+          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group">
             <img
               src="/workwise_logo.png"
               alt="WorkWise Visa Logo"

@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CountriesGrid from "@/components/CountriesGrid";
 import Services from "@/components/Services";
+import Industries from "@/components/Industries";
 import WhyUs from "@/components/WhyUs";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import Testimonials from "@/components/Testimonials";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <CountriesGrid />
         <Services />
+        <Industries />
         <WhyUs />
         <ProcessTimeline />
         <Testimonials />
