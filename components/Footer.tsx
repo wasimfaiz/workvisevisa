@@ -21,7 +21,7 @@ const quickLinks = [
 ];
 
 const offices = [
-  { city: "Mumbai", address: "14th Floor, Platina, BKC, Mumbai 400051" },
+  { city: "Noida", address: "Urbtech trade centre, D-701 C, Sector 132, Noida, Uttar Pradesh 201304" },
   { city: "Dubai", address: "Office 1204, Jumeirah Bay X2, JLT, Dubai" },
   { city: "London", address: "71-75 Shelton Street, Covent Garden, WC2H 9JQ" },
 ];
@@ -30,7 +30,7 @@ const socials = [
   { label: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/workwisevisa/" },
   { label: "Facebook", icon: FaFacebook, href: "https://www.facebook.com/workwisevisa/" },
   { label: "WhatsApp", icon: FaWhatsapp, href: "https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!" },
-  { label: "LinkedIn", icon: FaLinkedin, href: "#" },
+  { label: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/company/workwisevisa/" },
 ];
 
 export default function Footer() {
