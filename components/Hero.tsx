@@ -353,21 +353,21 @@ export default function Hero() {
         <div className="absolute inset-0 dot-grid opacity-40" />
       </div>
 
-      {/* ── Top Ticker (Live Job Demand Drives - Right after Navbar) ── */}
-      <div className="relative z-20 w-full bg-slate-950/95 backdrop-blur-2xl border-b border-slate-800 shadow-md py-2.5 pt-20 sm:pt-22 overflow-hidden">
+      {/* ── Top Ticker (Live Job Demand Drives - Clean High-Contrast Glassmorphism) ── */}
+      <div className="relative z-20 w-full bg-emerald-50/90 backdrop-blur-md border-b border-emerald-200/80 shadow-xs py-2.5 pt-20 sm:pt-22 overflow-hidden">
         {/* Animated Bottom Glow Laser Line */}
-        <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent pointer-events-none" />
 
         {/* Gradient Edge Fade Masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-emerald-50 via-emerald-50/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-emerald-50 via-emerald-50/90 to-transparent z-30 pointer-events-none" />
 
         <div className="overflow-hidden flex items-center">
           <div className="marquee-track flex items-center gap-3">
             {[...hiringAlerts, ...hiringAlerts].map((alert, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2.5 rounded-lg bg-slate-900/90 border border-slate-800/90 px-3.5 py-1.5 hover:border-emerald-500/70 hover:bg-slate-800 transition-all duration-300 shadow-sm shrink-0 group cursor-pointer"
+                className="flex items-center gap-2.5 rounded-full bg-white border border-slate-200/90 px-4 py-1.5 hover:border-emerald-500 hover:shadow-md transition-all duration-200 shadow-2xs shrink-0 group cursor-pointer"
               >
                 <div className="flex items-center gap-1.5">
                   <span className="flex h-2 w-2 relative">
@@ -377,29 +377,29 @@ export default function Hero() {
                   <img
                     src={`https://flagcdn.com/w80/${alert.code}.png`}
                     alt={alert.country}
-                    className="w-4 h-3 object-cover rounded shadow-sm shrink-0"
+                    className="w-4 h-3 object-cover rounded shadow-2xs shrink-0 border border-slate-200"
                   />
-                  <span className="text-[11px] font-black text-slate-200 group-hover:text-emerald-400 transition-colors">
+                  <span className="text-xs font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     {alert.country}
                   </span>
                 </div>
 
-                <span className="h-3 w-[1px] bg-slate-700/80" />
+                <span className="h-3.5 w-[1px] bg-slate-300" />
 
-                <span className="text-xs font-bold text-white whitespace-nowrap">
+                <span className="text-xs font-extrabold text-emerald-900 whitespace-nowrap">
                   {alert.role}
                 </span>
 
-                <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap hidden sm:inline-block">
+                <span className="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-full border border-amber-300/60 whitespace-nowrap hidden sm:inline-block">
                   {alert.salary}
                 </span>
 
-                <span className="text-[10px] font-semibold text-slate-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">
+                <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200 whitespace-nowrap">
                   {alert.visa}
                 </span>
 
                 {alert.urgent && (
-                  <span className="text-[9px] font-black uppercase tracking-wider text-rose-400 bg-rose-500/10 px-1.5 py-0.5 rounded border border-rose-500/20 animate-pulse">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-700 bg-rose-100/90 px-2.5 py-0.5 rounded-full border border-rose-300 animate-pulse">
                     Urgent
                   </span>
                 )}
@@ -506,34 +506,34 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom Ticker (Live Candidate Placements) ── */}
-      <div className="relative z-20 w-full bg-slate-950/95 backdrop-blur-2xl border-t border-slate-800 shadow-2xl py-2.5 overflow-hidden">
+      {/* ── Bottom Ticker (Live Candidate Placements - Clean High-Contrast Light Glass) ── */}
+      <div className="relative z-20 w-full bg-slate-100/90 backdrop-blur-md border-t border-slate-200/90 shadow-2xs py-2.5 overflow-hidden">
         {/* Animated Top Glow Laser Line */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent pointer-events-none" />
 
         {/* Gradient Edge Fade Masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-100 via-slate-100/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-100 via-slate-100/90 to-transparent z-30 pointer-events-none" />
 
         <div className="overflow-hidden flex items-center">
           <div className="marquee-track-reverse flex items-center gap-3">
             {[...placementMilestones, ...placementMilestones].map((m, i) => (
               <div
                 key={i}
-                className="flex items-center gap-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 px-3.5 py-1.5 hover:border-emerald-500/60 hover:bg-emerald-950/60 transition-all duration-300 shadow-sm shrink-0 group cursor-pointer"
+                className="flex items-center gap-2.5 rounded-full bg-white border border-slate-200/90 px-4 py-1.5 hover:border-emerald-500 hover:shadow-md transition-all duration-200 shadow-2xs shrink-0 group cursor-pointer"
               >
                 <span className="text-xs">🎉</span>
-                <span className="text-xs font-bold text-white whitespace-nowrap">
+                <span className="text-xs font-extrabold text-slate-900 whitespace-nowrap">
                   {m.name}
                 </span>
-                <span className="text-[11px] font-medium text-slate-400 whitespace-nowrap">
+                <span className="text-xs font-medium text-slate-600 whitespace-nowrap">
                   ({m.role})
                 </span>
-                <span className="text-xs font-semibold text-emerald-300 whitespace-nowrap">
+                <span className="text-xs font-extrabold text-emerald-800 whitespace-nowrap">
                   ➔ {m.dest}
                 </span>
-                <span className="h-3 w-[1px] bg-emerald-800/60" />
-                <span className="text-[10px] font-extrabold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 whitespace-nowrap">
+                <span className="h-3.5 w-[1px] bg-slate-300" />
+                <span className="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-full border border-amber-300/60 whitespace-nowrap">
                   {m.time}
                 </span>
               </div>

@@ -78,7 +78,7 @@ body {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee 60s linear infinite;
+  animation: marquee 115s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 
@@ -86,7 +86,7 @@ body {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee-reverse 70s linear infinite;
+  animation: marquee-reverse 125s linear infinite;
 }
 .marquee-track-reverse:hover { animation-play-state: paused; }
 
