@@ -16,9 +16,9 @@ const quickLinks = [
   { label: "Services", href: "/#services" },
   { label: "Industries", href: "/#industries" },
   { label: "Why Us", href: "/#why-us" },
-  { label: "Process", href: "/#process" },
+  { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
-  { label: "Book Consultation", href: "/#consultation" },
+  { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
 ];
 
 const offices = [

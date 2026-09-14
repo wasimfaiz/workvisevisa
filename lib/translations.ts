@@ -9,7 +9,7 @@ export interface Translations {
     services: string;
     industries: string;
     whyUs: string;
-    process: string;
+    aboutUs: string;
     blogs: string;
     dropCv: string;
   };
@@ -42,7 +42,7 @@ export const translations: Record<string, Translations> = {
       services: "Services",
       industries: "Industries",
       whyUs: "Why Us",
-      process: "Process",
+      aboutUs: "About Us",
       blogs: "Blogs",
       dropCv: "Drop CV",
     },
@@ -74,7 +74,7 @@ export const translations: Record<string, Translations> = {
       services: "सेवाएं",
       industries: "उद्योग",
       whyUs: "हम क्यों",
-      process: "प्रक्रिया",
+      aboutUs: "हमारे बारे में",
       blogs: "ब्लॉग",
       dropCv: "सीवी भेजें (Drop CV)",
     },

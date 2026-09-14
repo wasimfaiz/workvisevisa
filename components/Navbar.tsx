@@ -27,7 +27,7 @@ export default function Navbar() {
     { label: t.services, href: "/#services" },
     { label: t.industries, href: "/#industries" },
     { label: t.whyUs, href: "/#why-us" },
-    { label: t.process, href: "/#process" },
+    { label: t.aboutUs, href: "/about" },
     { label: t.blogs, href: "/blogs" },
   ];
 
