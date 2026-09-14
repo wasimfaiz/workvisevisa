@@ -9,21 +9,27 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-
-const navLinks = [
-  { label: "Countries", href: "/#countries" },
-  { label: "Services", href: "/#services" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Why Us", href: "/#why-us" },
-  { label: "Process", href: "/#process" },
-  { label: "Blogs", href: "/blogs" },
-];
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { currentLang } = useLanguage();
   const { scrollY } = useScroll();
+
+  const t = translations[currentLang]?.nav || translations.en.nav;
+
+  const navLinks = [
+    { label: t.countries, href: "/#countries" },
+    { label: t.services, href: "/#services" },
+    { label: t.industries, href: "/#industries" },
+    { label: t.whyUs, href: "/#why-us" },
+    { label: t.process, href: "/#process" },
+    { label: t.blogs, href: "/blogs" },
+  ];
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 50));
 
@@ -52,12 +58,12 @@ export default function Navbar() {
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           isSolidNav
             ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3 shadow-md"
-            : "bg-transparent py-4"
+            : "bg-white/90 backdrop-blur-md border-b border-slate-200/60 py-3.5 shadow-sm"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo Image: /workwise_logo.png */}
-          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group">
+          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group notranslate" translate="no">
             <img
               src="/workwise_logo.png"
               alt="WorkWise Visa Logo"
@@ -66,13 +72,13 @@ export default function Navbar() {
           </a>
 
           {/* desktop links */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={(e) => scrollTo(e, l.href)}
-                className="relative text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors duration-200 group"
+                className="relative text-sm font-bold text-slate-800 hover:text-emerald-600 transition-colors duration-200 group whitespace-nowrap"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-emerald-600 group-hover:w-full transition-all duration-200" />
@@ -80,24 +86,34 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* desktop CTA */}
-          <a
-            href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-          >
-            Book Consultation
-          </a>
+          {/* desktop CTA & Language Switcher */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="notranslate" translate="no">
+              <LanguageSwitcher />
+            </div>
+            <a
+              href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
+            >
+              {t.bookConsultation}
+            </a>
+          </div>
 
-          {/* mobile toggle */}
-          <button
-            className="md:hidden p-2 text-slate-800"
-            onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Toggle navigation menu"
-          >
-            {mobileOpen ? <FaXmark className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
-          </button>
+          {/* mobile toggle & Language Switcher */}
+          <div className="flex items-center gap-3 md:hidden">
+            <div className="notranslate" translate="no">
+              <LanguageSwitcher />
+            </div>
+            <button
+              className="p-2 text-slate-800"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileOpen ? <FaXmark className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -105,11 +121,14 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-white/98 text-slate-900 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-white/98 text-slate-900 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            <div className="mb-2 notranslate" translate="no">
+              <LanguageSwitcher />
+            </div>
             {navLinks.map((l) => (
               <a
                 key={l.href}
@@ -124,9 +143,9 @@ export default function Navbar() {
               href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-3.5 text-lg font-bold text-white shadow-lg shadow-amber-500/25"
+              className="mt-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-3.5 text-lg font-bold text-white shadow-lg shadow-amber-500/25"
             >
-              Book Consultation
+              {t.bookConsultation}
             </a>
           </motion.div>
         )}

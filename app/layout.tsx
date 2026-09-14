@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import Script from "next/script";
+import { LanguageProvider } from "@/context/LanguageContext";
+import GoogleTranslateScript from "@/components/GoogleTranslateScript";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -89,7 +91,10 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-        {children}
+        <LanguageProvider>
+          <GoogleTranslateScript />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

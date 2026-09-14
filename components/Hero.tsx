@@ -11,6 +11,8 @@ import {
   FaWandMagicSparkles,
   FaPlaneDeparture,
 } from "react-icons/fa6";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const hiringAlerts = [
   {
@@ -335,10 +337,13 @@ function PhotorealisticWorldMap() {
 
 /* ── Hero Section ─────────────────────────────────────────────── */
 export default function Hero() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.hero || translations.en.hero;
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-slate-50"
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-slate-50"
     >
       {/* ── background layers ────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none">
@@ -348,116 +353,15 @@ export default function Hero() {
         <div className="absolute inset-0 dot-grid opacity-40" />
       </div>
 
-      {/* ── content ──────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-32 pb-28">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* left text */}
-          <div className="text-center lg:text-left">
-            <motion.div
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 mb-8 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <FaWandMagicSparkles className="w-4 h-4 text-amber-600" />
-              <span className="text-sm text-emerald-800 font-semibold">
-                Trusted by 5,000+ professionals worldwide
-              </span>
-            </motion.div>
-
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold leading-[1.07] tracking-tight text-slate-900 mb-6"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Your Career.{" "}
-              <span className="gradient-text">Anywhere</span>
-              <br className="hidden sm:block" /> in the&nbsp;World.
-            </motion.h1>
-
-            <motion.p
-              className="max-w-xl text-lg sm:text-xl leading-relaxed text-slate-600 mb-10 mx-auto lg:mx-0 font-medium"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              We connect skilled professionals with verified employers in{" "}
-              <span className="text-slate-900 font-bold">12+ countries</span> —
-              handling every step from job matching to visa approval to landing
-              support.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <a
-                href="#consultation"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              >
-                Book Free Consultation
-                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-lg font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
-              >
-                Explore Services
-              </a>
-            </motion.div>
-
-            {/* stats row */}
-            <motion.div
-              className="flex flex-wrap gap-8 justify-center lg:justify-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {[
-                { Icon: FaCalendarDays, val: "5+", sub: "Years" },
-                { Icon: FaUsers, val: "5,000+", sub: "Placements" },
-                { Icon: FaGlobe, val: "98%", sub: "Visa Rate" },
-              ].map(({ Icon, val, sub }) => (
-                <div key={val} className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100/80 border border-emerald-200 text-emerald-700">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-lg font-bold text-slate-900 font-display leading-tight">
-                      {val}
-                    </p>
-                    <p className="text-xs text-slate-500 font-medium">{sub}</p>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* right - Photorealistic Satellite Motion World Map Component */}
-          <motion.div
-            className="relative flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <PhotorealisticWorldMap />
-          </motion.div>
-        </div>
-      </div>
-
-      {/* ── Bespoke Dual Counter-Scrolling Global Command Ticker ── */}
-      <div className="absolute bottom-0 inset-x-0 z-20 bg-slate-950/95 backdrop-blur-2xl border-t border-slate-800 shadow-2xl py-3 space-y-2.5 overflow-hidden">
-        {/* Animated Top Glow Laser Line */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
+      {/* ── Top Ticker (Live Job Demand Drives - Right after Navbar) ── */}
+      <div className="relative z-20 w-full bg-slate-950/95 backdrop-blur-2xl border-b border-slate-800 shadow-md py-2.5 pt-20 sm:pt-22 overflow-hidden">
+        {/* Animated Bottom Glow Laser Line */}
+        <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
 
         {/* Gradient Edge Fade Masks */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
 
-        {/* Ribbon 1 (Top Leftward Scroll): 🔥 Live Global Hiring Drives */}
         <div className="overflow-hidden flex items-center">
           <div className="marquee-track flex items-center gap-3">
             {[...hiringAlerts, ...hiringAlerts].map((alert, i) => (
@@ -503,8 +407,114 @@ export default function Hero() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Ribbon 2 (Bottom Rightward Scroll): 🎉 Live Candidate Placements */}
+      {/* ── main content ──────────────────────────────────── */}
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-16 sm:pb-20 flex-1 flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
+          {/* left text */}
+          <div className="text-center lg:text-left">
+            <motion.div
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 mb-8 shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <FaWandMagicSparkles className="w-4 h-4 text-amber-600" />
+              <span className="text-sm text-emerald-800 font-semibold">
+                {t.badge}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold leading-[1.07] tracking-tight text-slate-900 mb-6"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {t.titleLine1}{" "}
+              <span className="gradient-text">{t.titleLine2}</span>
+              <br className="hidden sm:block" /> {t.titleHighlight}
+            </motion.h1>
+
+            <motion.p
+              className="max-w-xl text-lg sm:text-xl leading-relaxed text-slate-600 mb-10 mx-auto lg:mx-0 font-medium"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {t.description}
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <a
+                href="#consultation"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              >
+                {t.ctaConsultation}
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-lg font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
+              >
+                {t.ctaExploreServices}
+              </a>
+            </motion.div>
+
+            {/* stats row */}
+            <motion.div
+              className="flex flex-wrap gap-8 justify-center lg:justify-start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {[
+                { Icon: FaCalendarDays, val: "5+", sub: t.yearsLabel },
+                { Icon: FaUsers, val: "5,000+", sub: t.placementsLabel },
+                { Icon: FaGlobe, val: "98%", sub: t.approvalRateLabel },
+              ].map(({ Icon, val, sub }) => (
+                <div key={val} className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100/80 border border-emerald-200 text-emerald-700">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-slate-900 font-display leading-tight">
+                      {val}
+                    </p>
+                    <p className="text-xs text-slate-500 font-medium">{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* right - Photorealistic Satellite Motion World Map Component */}
+          <motion.div
+            className="relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <PhotorealisticWorldMap />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── Bottom Ticker (Live Candidate Placements) ── */}
+      <div className="relative z-20 w-full bg-slate-950/95 backdrop-blur-2xl border-t border-slate-800 shadow-2xl py-2.5 overflow-hidden">
+        {/* Animated Top Glow Laser Line */}
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/80 to-transparent pointer-events-none" />
+
+        {/* Gradient Edge Fade Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-40 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-30 pointer-events-none" />
+
         <div className="overflow-hidden flex items-center">
           <div className="marquee-track-reverse flex items-center gap-3">
             {[...placementMilestones, ...placementMilestones].map((m, i) => (

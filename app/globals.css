@@ -105,3 +105,65 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Google Translate Banner & Top-Bar Suppression ───────────── */
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+.goog-te-banner,
+#goog-te-banner-frame,
+.goog-te-balloon-frame,
+.VIpgJd-Z44pHd-OJuFvd,
+.VIpgJd-Z44pHd-OJuFvd-ibnAvb,
+.VIpgJd-Z44pHd-OJuFvd-OWXEXe-font,
+.VIpgJd-y6fd-b5914ccf,
+iframe[id*=":1.container"],
+iframe[id*=":2.container"],
+iframe[id*="goog"],
+iframe[src*="translate.google"],
+iframe[src*="translate.googleapis"],
+iframe.skiptranslate,
+body > .skiptranslate,
+#goog-gt-tt,
+.goog-te-gadget,
+.goog-te-spinner-pos {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+html, body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+body {
+  top: 0px !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+/* Hide Google Translate hover tooltips and text highlights */
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
