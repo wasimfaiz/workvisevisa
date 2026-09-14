@@ -8,7 +8,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { FaBars, FaXmark, FaEnvelope } from "react-icons/fa6";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -92,12 +92,11 @@ export default function Navbar() {
               <LanguageSwitcher />
             </div>
             <a
-              href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
+              href="mailto:workwisevisa@gmail.com?subject=CV%20Submission%20-%20WorkWise%20Visa&body=Hi%20WorkWise%20Visa%20Team,%0A%0AI%20am%20interested%20in%20job%20opportunities%20abroad.%20Please%20find%20my%20attached%20CV.%0A%0AName:%0APhone:%0APreferred%20Country:"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-600/20 hover:shadow-lg hover:shadow-emerald-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
             >
-              {t.bookConsultation}
+              <FaEnvelope className="w-4 h-4" />
+              {t.dropCv}
             </a>
           </div>
 
@@ -140,12 +139,11 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-3.5 text-lg font-bold text-white shadow-lg shadow-amber-500/25"
+              href="mailto:workwisevisa@gmail.com?subject=CV%20Submission%20-%20WorkWise%20Visa&body=Hi%20WorkWise%20Visa%20Team,%0A%0AI%20am%20interested%20in%20job%20opportunities%20abroad.%20Please%20find%20my%20attached%20CV.%0A%0AName:%0APhone:%0APreferred%20Country:"
+              className="mt-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-3.5 text-lg font-bold text-white shadow-lg shadow-emerald-600/25"
             >
-              {t.bookConsultation}
+              <FaEnvelope className="w-5 h-5" />
+              {t.dropCv}
             </a>
           </motion.div>
         )}

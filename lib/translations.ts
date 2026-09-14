@@ -11,7 +11,7 @@ export interface Translations {
     whyUs: string;
     process: string;
     blogs: string;
-    bookConsultation: string;
+    dropCv: string;
   };
   hero: {
     badge: string;
@@ -44,7 +44,7 @@ export const translations: Record<string, Translations> = {
       whyUs: "Why Us",
       process: "Process",
       blogs: "Blogs",
-      bookConsultation: "Book Consultation",
+      dropCv: "Drop CV",
     },
     hero: {
       badge: "Trusted by 5,000+ Professionals Worldwide",
@@ -76,7 +76,7 @@ export const translations: Record<string, Translations> = {
       whyUs: "हम क्यों",
       process: "प्रक्रिया",
       blogs: "ब्लॉग",
-      bookConsultation: "परामर्श बुक करें",
+      dropCv: "सीवी भेजें (Drop CV)",
     },
     hero: {
       badge: "दुनिया भर में 5,000+ से अधिक पेशेवरों का भरोसा",
