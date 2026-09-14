@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 
 const quickLinks = [
-  { label: "Countries", href: "/#countries" },
+  { label: "Countries", href: "/countries" },
   { label: "Services", href: "/#services" },
   { label: "Industries", href: "/#industries" },
   { label: "Why Us", href: "/#why-us" },

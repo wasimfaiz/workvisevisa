@@ -23,7 +23,7 @@ export default function Navbar() {
   const t = translations[currentLang]?.nav || translations.en.nav;
 
   const navLinks = [
-    { label: t.countries, href: "/#countries" },
+    { label: t.countries, href: "/countries" },
     { label: t.services, href: "/#services" },
     { label: t.industries, href: "/#industries" },
     { label: t.whyUs, href: "/#why-us" },
