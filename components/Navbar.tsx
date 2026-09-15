@@ -55,19 +55,19 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 h-16 sm:h-20 flex items-center transition-all duration-300 ${
           isSolidNav
-            ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3 shadow-md"
-            : "bg-white/90 backdrop-blur-md border-b border-slate-200/60 py-3.5 shadow-sm"
+            ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md"
+            : "bg-white/90 backdrop-blur-md border-b border-slate-200/60 shadow-sm"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo Image: /workwise_logo.png */}
-          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group notranslate" translate="no">
+          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group notranslate shrink-0" translate="no">
             <img
               src="/workwise_logo.png"
               alt="WorkWise Visa Logo"
-              className="h-10 sm:h-12 max-w-[220px] sm:max-w-[280px] w-auto object-contain group-hover:scale-105 transition-transform"
+              className="h-12 sm:h-16 max-w-[280px] sm:max-w-[340px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
             />
           </a>
 

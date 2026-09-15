@@ -41,11 +41,11 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo Image: /workwise_logo.png */}
           <div className="lg:col-span-1">
-            <div className="mb-5">
+            <div className="mb-5 inline-block">
               <img
                 src="/workwise_logo.png"
                 alt="WorkWise Visa Logo"
-                className="h-12 sm:h-14 max-w-[260px] w-auto object-contain"
+                className="h-16 sm:h-20 max-w-[320px] sm:max-w-[360px] w-auto object-contain hover:scale-105 transition-transform duration-200"
               />
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
