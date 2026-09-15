@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FaGlobe,
   FaEnvelope,
@@ -10,15 +12,17 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const quickLinks = [
-  { label: "Countries", href: "/countries" },
-  { label: "Services", href: "/#services" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Why Us", href: "/#why-us" },
-  { label: "About Us", href: "/about" },
-  { label: "Blogs", href: "/blogs" },
-  { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
+  { labelKey: "countries", defaultLabel: "Countries", href: "/countries" },
+  { labelKey: "services", defaultLabel: "Services", href: "/#services" },
+  { labelKey: "industries", defaultLabel: "Industries", href: "/#industries" },
+  { labelKey: "whyUs", defaultLabel: "Why Us", href: "/#why-us" },
+  { labelKey: "aboutUs", defaultLabel: "About Us", href: "/about" },
+  { labelKey: "blogs", defaultLabel: "Blogs", href: "/blogs" },
+  { labelKey: "dropCv", defaultLabel: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
 ];
 
 const offices = [
@@ -35,6 +39,10 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { currentLang } = useLanguage();
+  const tFooter = translations[currentLang]?.footer || translations.en.footer;
+  const tNav = translations[currentLang]?.nav || translations.en.nav;
+
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50 text-slate-700 pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -49,8 +57,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
-              Premium international job placement and visa consultancy. Helping
-              professionals build global careers since 2020.
+              {tFooter.desc}
             </p>
             <div className="flex gap-3">
               {socials.map((s) => {
@@ -74,16 +81,16 @@ export default function Footer() {
           {/* quick links */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              Quick Links
+              {tFooter.quickLinksHeading}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((l) => (
-                <li key={l.label}>
+                <li key={l.labelKey}>
                   <a
                     href={l.href}
                     className="text-sm text-slate-600 hover:text-emerald-600 transition-colors font-medium"
                   >
-                    {l.label}
+                    {tNav[l.labelKey as keyof typeof tNav] || l.defaultLabel}
                   </a>
                 </li>
               ))}
@@ -111,7 +118,7 @@ export default function Footer() {
           {/* contact */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              Contact Us
+              {tFooter.contactHeading}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-center gap-2.5">

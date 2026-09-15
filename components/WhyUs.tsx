@@ -11,6 +11,8 @@ import {
   FaCheckDouble,
 } from "react-icons/fa6";
 import { whyUsPoints } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   ShieldCheck: FaShieldHalved,
@@ -22,6 +24,9 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function WhyUs() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.whyUs || translations.en.whyUs;
+
   return (
     <section
       id="why-us"
@@ -39,13 +44,13 @@ export default function WhyUs() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaCheckDouble className="w-3.5 h-3.5" /> Proven Advantage
+            <FaCheckDouble className="w-3.5 h-3.5" /> {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Why Professionals Choose WorkWise
+            {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            Built from the ground up for total transparency, speed, and uncompromised visa approval success rates.
+            {t.subtitle}
           </p>
         </motion.div>
 

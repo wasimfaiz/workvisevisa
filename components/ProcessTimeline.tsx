@@ -11,6 +11,8 @@ import {
   FaClock,
 } from "react-icons/fa6";
 import { processSteps } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   MessageCircle: FaComments,
@@ -22,6 +24,9 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function ProcessTimeline() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.timeline || translations.en.timeline;
+
   return (
     <section
       id="process"
@@ -37,13 +42,13 @@ export default function ProcessTimeline() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaClock className="w-3.5 h-3.5" /> Structured Milestone Roadmap
+            <FaClock className="w-3.5 h-3.5" /> {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            From Initial Call to Airport Arrival
+            {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            A 6-stage roadmap engineered for speed and precision — track your progress in real-time.
+            {t.subtitle}
           </p>
         </motion.div>
 

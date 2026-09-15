@@ -44,14 +44,19 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     setCurrentLang(langCode);
     localStorage.setItem("user_lang", langCode);
 
-    // Set Google Translate cookie
-    const cookieDomain = window.location.hostname;
+    // Set Google Translate cookie cleanly across all domains & paths
+    const host = window.location.hostname;
+    
     if (langCode === "en") {
-      document.cookie = `googtrans=/en/en; path=/; domain=${cookieDomain}`;
-      document.cookie = `googtrans=/en/en; path=/;`;
+      // Clear cookies for English reset
+      document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${host};`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${host};`;
+      document.cookie = "googtrans=/en/en; path=/;";
     } else {
-      document.cookie = `googtrans=/en/${langCode}; path=/; domain=${cookieDomain}`;
       document.cookie = `googtrans=/en/${langCode}; path=/;`;
+      document.cookie = `googtrans=/en/${langCode}; path=/; domain=${host};`;
+      document.cookie = `googtrans=/en/${langCode}; path=/; domain=.${host};`;
     }
 
     // Trigger select element change if Google Translate widget exists
@@ -59,9 +64,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     if (selectEl) {
       selectEl.value = langCode;
       selectEl.dispatchEvent(new Event("change"));
-    } else {
-      window.location.reload();
     }
+
+    // Smooth reload to enforce full page translation across all static & dynamic nodes
+    window.location.reload();
   };
 
   return (

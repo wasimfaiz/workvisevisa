@@ -12,6 +12,8 @@ import {
   FaPhoneVolume,
 } from "react-icons/fa6";
 import { targetCountryOptions } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 interface FormData {
   name: string;
@@ -27,6 +29,8 @@ interface FormErrors {
 }
 
 export default function ConsultationForm() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.consultation || translations.en.consultation;
   const [data, setData] = useState<FormData>({
     name: "",
     phone: "",
@@ -170,7 +174,7 @@ export default function ConsultationForm() {
               <div className="space-y-5">
                 <div>
                   <label htmlFor="form-name" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                    Full Name
+                    {t.nameLabel}
                   </label>
                   <input
                     id="form-name"
@@ -190,7 +194,7 @@ export default function ConsultationForm() {
 
                 <div>
                   <label htmlFor="form-phone" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                    Phone / WhatsApp Number
+                    {t.phoneLabel}
                   </label>
                   <input
                     id="form-phone"
@@ -210,7 +214,7 @@ export default function ConsultationForm() {
 
                 <div>
                   <label htmlFor="form-country" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                    Target Destination
+                    {t.destinationLabel}
                   </label>
                   <select
                     id="form-country"
@@ -265,7 +269,7 @@ export default function ConsultationForm() {
                 className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <FaPaperPlane className="w-4 h-4" />
-                Reserve Free Consultation Slot
+                {t.submitBtn}
               </button>
             </form>
           </motion.div>
