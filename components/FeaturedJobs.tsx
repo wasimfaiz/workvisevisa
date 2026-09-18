@@ -124,7 +124,12 @@ const jobOpenings: JobOpening[] = [
   },
 ];
 
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
+
 export default function FeaturedJobs() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.featuredJobs || translations.en.featuredJobs;
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredJobs =
@@ -151,13 +156,13 @@ export default function FeaturedJobs() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaFire className="w-3.5 h-3.5 text-amber-500 animate-pulse" /> Live Employer Openings
+            <FaFire className="w-3.5 h-3.5 text-amber-500 animate-pulse" /> {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Verified International Job Opportunities
+            {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            Browse active hiring mandates with pre-arranged visa sponsorship and employer relocation support.
+            {t.subtitle}
           </p>
         </motion.div>
 

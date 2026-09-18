@@ -10,6 +10,8 @@ import {
   FaCompass,
 } from "react-icons/fa6";
 import { countries, type Country } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const regions = [
   "All",
@@ -21,6 +23,8 @@ const regions = [
 ];
 
 export default function CountriesGrid() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.countries || translations.en.countries;
   const [active, setActive] = useState("All");
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -47,13 +51,13 @@ export default function CountriesGrid() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
             <FaCompass className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "12s" }} />
-            Global Horizons
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Explore Destinations We Serve
+            {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg">
-            From tax-free salaries in the Gulf to tech innovation hubs across Schengen & America — match your career with top destinations.
+            {t.subtitle}
           </p>
         </motion.div>
 

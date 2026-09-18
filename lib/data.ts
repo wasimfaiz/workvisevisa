@@ -441,7 +441,7 @@ export const faqs: FAQItem[] = [
   {
     question: "How much does WorkWise Visa's service cost?",
     answer:
-      "Our fees vary by destination country and service package. A standard job placement + visa processing package ranges from ₹75,000 to ₹2,500,000 depending on complexity. We provide a detailed fee breakdown during your free consultation — no hidden charges, ever. Payment plans are available.",
+      "Our service charges vary depending on the destination country, trade demand, and visa category. We provide a complete and transparent fee breakdown after evaluating your specific job role during your free consultation — 100% ethical recruitment with zero hidden charges.",
   },
   {
     question: "How long does the entire process take?",

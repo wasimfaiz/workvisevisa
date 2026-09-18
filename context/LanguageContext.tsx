@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-export type LanguageCode = "en" | "hi" | "ar" | "bn" | "ne";
+export type LanguageCode = "en" | "hi";
 
 export interface LanguageOption {
   code: LanguageCode;
@@ -14,9 +14,6 @@ export interface LanguageOption {
 export const supportedLanguages: LanguageOption[] = [
   { code: "en", label: "English", nativeName: "English", flag: "🇬🇧" },
   { code: "hi", label: "Hindi", nativeName: "हिंदी", flag: "🇮🇳" },
-  { code: "ar", label: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
-  { code: "bn", label: "Bengali", nativeName: "বাংলা", flag: "🇧🇩" },
-  { code: "ne", label: "Nepali", nativeName: "नेपाली", flag: "🇳🇵" },
 ];
 
 interface LanguageContextType {
@@ -29,15 +26,33 @@ const LanguageContext = createContext<LanguageContextType>({
   changeLanguage: () => {},
 });
 
-export const setTranslateCookies = (langCode: LanguageCode) => {
+export const purgeAllTranslateCookies = () => {
   if (typeof window === "undefined") return;
   const hostname = window.location.hostname;
-  const val = `/en/${langCode}`;
-  
-  document.cookie = `googtrans=${val}; path=/;`;
-  document.cookie = `googtrans=${val}; path=/; domain=${hostname};`;
-  if (hostname.includes(".")) {
-    document.cookie = `googtrans=${val}; path=/; domain=.${hostname};`;
+  const paths = ["/", ""];
+  const domains = ["", hostname, `.${hostname}`];
+
+  domains.forEach((domain) => {
+    paths.forEach((path) => {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path};${
+        domain ? ` domain=${domain};` : ""
+      }`;
+    });
+  });
+};
+
+export const applyTranslateCookie = (langCode: LanguageCode) => {
+  if (typeof window === "undefined") return;
+  purgeAllTranslateCookies();
+
+  if (langCode === "hi") {
+    const hostname = window.location.hostname;
+    const val = "/en/hi";
+    document.cookie = `googtrans=${val}; path=/;`;
+    document.cookie = `googtrans=${val}; path=/; domain=${hostname};`;
+    if (hostname.includes(".")) {
+      document.cookie = `googtrans=${val}; path=/; domain=.${hostname};`;
+    }
   }
 };
 
@@ -46,24 +61,27 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     const savedLang = localStorage.getItem("user_lang") as LanguageCode;
-    if (savedLang && supportedLanguages.some((l) => l.code === savedLang)) {
-      setCurrentLang(savedLang);
-      setTranslateCookies(savedLang);
+    if (savedLang === "hi") {
+      setCurrentLang("hi");
+    } else {
+      setCurrentLang("en");
+      purgeAllTranslateCookies();
+      localStorage.setItem("user_lang", "en");
     }
   }, []);
 
   const changeLanguage = (langCode: LanguageCode) => {
-    setCurrentLang(langCode);
-    localStorage.setItem("user_lang", langCode);
-    setTranslateCookies(langCode);
+    if (langCode === currentLang) return;
 
-    // Trigger select element change if Google Translate widget exists
-    const selectEl = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
-    if (selectEl) {
-      selectEl.value = langCode;
-      selectEl.dispatchEvent(new Event("change"));
-      selectEl.dispatchEvent(new Event("input"));
+    if (langCode === "hi") {
+      localStorage.setItem("user_lang", "hi");
+      applyTranslateCookie("hi");
+      setCurrentLang("hi");
+      window.location.reload();
     } else {
+      localStorage.setItem("user_lang", "en");
+      purgeAllTranslateCookies();
+      setCurrentLang("en");
       window.location.reload();
     }
   };

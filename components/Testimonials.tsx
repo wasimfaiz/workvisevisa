@@ -10,8 +10,12 @@ import {
   FaAward,
 } from "react-icons/fa6";
 import { testimonials } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Testimonials() {
+  const { currentLang } = useLanguage();
+  const tNav = translations[currentLang]?.testimonials || translations.en.testimonials;
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -62,13 +66,13 @@ export default function Testimonials() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaAward className="w-3.5 h-3.5" /> Verified Placements
+            <FaAward className="w-3.5 h-3.5" /> {tNav.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Loved by Candidate Professionals Worldwide
+            {tNav.title}
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            Hear directly from engineers, healthcare workers, and analysts who secured work visas with us.
+            {tNav.subtitle}
           </p>
         </motion.div>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FaGlobe,
   FaEnvelope,
@@ -33,7 +35,13 @@ const socials = [
   { label: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/company/workwisevisa/" },
 ];
 
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
+
 export default function Footer() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.footer || translations.en.footer;
+
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50 text-slate-700 pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -48,8 +56,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
-              Premium international job placement and visa consultancy. Helping
-              professionals build global careers since 2020.
+              {t.desc}
             </p>
             <div className="flex gap-3">
               {socials.map((s) => {
@@ -73,7 +80,7 @@ export default function Footer() {
           {/* quick links */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              Quick Links
+              {t.quickLinksHeading}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((l) => (
@@ -92,7 +99,7 @@ export default function Footer() {
           {/* offices */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              Our Offices
+              {t.servicesHeading}
             </h4>
             <ul className="space-y-4">
               {offices.map((o) => (
