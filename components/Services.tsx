@@ -12,8 +12,6 @@ import {
   FaWandMagicSparkles,
 } from "react-icons/fa6";
 import { services } from "@/lib/data";
-import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   Briefcase: FaBriefcase,
@@ -25,9 +23,6 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function Services() {
-  const { currentLang } = useLanguage();
-  const t = translations[currentLang]?.services || translations.en.services;
-
   return (
     <section
       id="services"
@@ -43,13 +38,13 @@ export default function Services() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaWandMagicSparkles className="w-3.5 h-3.5 text-amber-600" /> {t.badge}
+            <FaWandMagicSparkles className="w-3.5 h-3.5 text-amber-600" /> Complete Ecosystem
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            {t.title}
+            End-to-End Immigration & Career Services
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            {t.subtitle}
+            From targeted global job matches to landing support in your dream city — we manage every milestone.
           </p>
         </motion.div>
 

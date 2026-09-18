@@ -23,8 +23,8 @@ export default function Navbar() {
   const t = translations[currentLang]?.nav || translations.en.nav;
 
   const navLinks = [
+    { label: t.jobs || "Jobs", href: "/jobs" },
     { label: t.countries, href: "/countries" },
-    { label: t.services, href: "/#services" },
     { label: t.industries, href: "/#industries" },
     { label: t.whyUs, href: "/#why-us" },
     { label: t.aboutUs, href: "/about" },
@@ -67,7 +67,7 @@ export default function Navbar() {
             <img
               src="/workwise_logo.png"
               alt="WorkWise Visa Logo"
-              className="h-12 sm:h-16 max-w-[280px] sm:max-w-[340px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
+              className="h-15 sm:h-[78px] max-w-[340px] sm:max-w-[440px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
             />
           </a>
 

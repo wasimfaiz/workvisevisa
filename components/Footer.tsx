@@ -1,5 +1,3 @@
-"use client";
-
 import {
   FaGlobe,
   FaEnvelope,
@@ -12,17 +10,15 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
-import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/lib/translations";
 
 const quickLinks = [
-  { labelKey: "countries", defaultLabel: "Countries", href: "/countries" },
-  { labelKey: "services", defaultLabel: "Services", href: "/#services" },
-  { labelKey: "industries", defaultLabel: "Industries", href: "/#industries" },
-  { labelKey: "whyUs", defaultLabel: "Why Us", href: "/#why-us" },
-  { labelKey: "aboutUs", defaultLabel: "About Us", href: "/about" },
-  { labelKey: "blogs", defaultLabel: "Blogs", href: "/blogs" },
-  { labelKey: "dropCv", defaultLabel: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
+  { label: "Countries", href: "/countries" },
+  { label: "Services", href: "/#services" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Why Us", href: "/#why-us" },
+  { label: "About Us", href: "/about" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
 ];
 
 const offices = [
@@ -39,25 +35,22 @@ const socials = [
 ];
 
 export default function Footer() {
-  const { currentLang } = useLanguage();
-  const tFooter = translations[currentLang]?.footer || translations.en.footer;
-  const tNav = translations[currentLang]?.nav || translations.en.nav;
-
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50 text-slate-700 pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo Image: /workwise_logo.png */}
           <div className="lg:col-span-1">
-            <div className="mb-5 inline-block">
+            <div className="mb-5">
               <img
                 src="/workwise_logo.png"
                 alt="WorkWise Visa Logo"
-                className="h-16 sm:h-20 max-w-[320px] sm:max-w-[360px] w-auto object-contain hover:scale-105 transition-transform duration-200"
+                className="h-24 sm:h-28 md:h-32 max-w-[400px] sm:max-w-[480px] w-auto object-contain hover:scale-105 transition-transform duration-200"
               />
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
-              {tFooter.desc}
+              Premium international job placement and visa consultancy. Helping
+              professionals build global careers since 2020.
             </p>
             <div className="flex gap-3">
               {socials.map((s) => {
@@ -81,16 +74,16 @@ export default function Footer() {
           {/* quick links */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              {tFooter.quickLinksHeading}
+              Quick Links
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((l) => (
-                <li key={l.labelKey}>
+                <li key={l.label}>
                   <a
                     href={l.href}
                     className="text-sm text-slate-600 hover:text-emerald-600 transition-colors font-medium"
                   >
-                    {tNav[l.labelKey as keyof typeof tNav] || l.defaultLabel}
+                    {l.label}
                   </a>
                 </li>
               ))}
@@ -118,7 +111,7 @@ export default function Footer() {
           {/* contact */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              {tFooter.contactHeading}
+              Contact Us
             </h4>
             <ul className="space-y-4">
               <li className="flex items-center gap-2.5">

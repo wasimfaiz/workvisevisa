@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { FaPlus, FaMinus, FaCircleQuestion, FaGlobe } from "react-icons/fa6";
 import { faqs } from "@/lib/data";
-import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/lib/translations";
 
 /* ── Orbital Globe (Adjusted for Light Theme) ───────────────── */
 function OrbitalGlobe() {
@@ -120,8 +118,6 @@ function OrbitalGlobe() {
 /* ── FAQ Section ─────────────────────────────────────────────── */
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const { currentLang } = useLanguage();
-  const t = translations[currentLang]?.faq || translations.en.faq;
 
   const toggle = (i: number) =>
     setOpenIndex((prev) => (prev === i ? null : i));
@@ -144,13 +140,13 @@ export default function FAQ() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-              <FaCircleQuestion className="w-3.5 h-3.5" /> {t.badge}
+              <FaCircleQuestion className="w-3.5 h-3.5" /> Clear Answers
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
-              {t.title}
+              Frequently Asked Questions
             </h2>
             <p className="mt-4 text-slate-600 text-base leading-relaxed max-w-lg mx-auto lg:mx-0 font-medium">
-              {t.subtitle}
+              Got questions about visa processing, costs, and timeline guarantees? We have straightforward answers.
             </p>
 
             {/* Orbital Globe Motion Graphic on Left Bottom */}

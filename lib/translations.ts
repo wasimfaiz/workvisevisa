@@ -5,6 +5,7 @@
 
 export interface Translations {
   nav: {
+    jobs: string;
     countries: string;
     services: string;
     industries: string;
@@ -75,6 +76,22 @@ export interface Translations {
     destinationLabel: string;
     submitBtn: string;
   };
+  jobsPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    filterAll: string;
+    applyWhatsApp: string;
+    interviewDateLabel: string;
+    dutyLabel: string;
+    openingsLabel: string;
+    perksLabel: string;
+    requirementsLabel: string;
+    employerCtaTitle: string;
+    employerCtaSub: string;
+    employerCtaBtn: string;
+  };
   footer: {
     desc: string;
     quickLinksHeading: string;
@@ -87,6 +104,7 @@ export interface Translations {
 export const translations: Record<string, Translations> = {
   en: {
     nav: {
+      jobs: "Jobs & Demands",
       countries: "Countries",
       services: "Services",
       industries: "Industries",
@@ -158,6 +176,22 @@ export const translations: Record<string, Translations> = {
       destinationLabel: "Target Country",
       submitBtn: "Claim Your Free Consultation",
     },
+    jobsPage: {
+      badge: "Live Verified Overseas Demands",
+      title: "Current Job Demands & Openings Abroad",
+      subtitle: "Direct company demands with guaranteed work visa quotas, free accommodation, and GAMCA medical test support.",
+      searchPlaceholder: "Search trade (e.g. Mason, Welder, Driver, Electrician)...",
+      filterAll: "All Trade Demands",
+      applyWhatsApp: "Apply via WhatsApp Now",
+      interviewDateLabel: "Selection / Interview",
+      dutyLabel: "Duty Hours",
+      openingsLabel: "Vacancies Available",
+      perksLabel: "Free Allowance & Perks",
+      requirementsLabel: "Key Requirements",
+      employerCtaTitle: "Need Bulk Skilled Workforce for Overseas Projects?",
+      employerCtaSub: "We organize trade testing, embassy attestation, bulk GAMCA medicals, and flight deployment within 30 days.",
+      employerCtaBtn: "Post Employer Demand Now",
+    },
     footer: {
       desc: "Licensed government recruitment agency empowering Indian professionals and skilled workers with direct overseas work permits and visa solutions.",
       quickLinksHeading: "Quick Navigation",
@@ -168,6 +202,7 @@ export const translations: Record<string, Translations> = {
   },
   hi: {
     nav: {
+      jobs: "नौकरियां (Jobs)",
       countries: "देश",
       services: "सेवाएं",
       industries: "उद्योग",
@@ -238,6 +273,22 @@ export const translations: Record<string, Translations> = {
       phoneLabel: "व्हाट्सएप फोन नंबर",
       destinationLabel: "लक्ष्य देश",
       submitBtn: "निःशुल्क परामर्श प्राप्त करें",
+    },
+    jobsPage: {
+      badge: "लाइव सत्यापित विदेशी डिमांडे",
+      title: "विदेश में वर्तमान नौकरियां एवं डिमांड्स",
+      subtitle: "गारंटीकृत वर्क वीज़ा कोटा, मुफ़्त आवास और GAMCA मेडिकल टेस्ट सहायता के साथ सीधी कंपनी डिमांडे।",
+      searchPlaceholder: "ट्रेड खोजें (उदा. राजमिस्त्री, वेल्डर, भारी ड्राइवर, इलेक्ट्रिशियन)...",
+      filterAll: "सभी ट्रेड डिमांड्स",
+      applyWhatsApp: "व्हाट्सएप से आवेदन करें",
+      interviewDateLabel: "चयन / इंटरव्यू तिथि",
+      dutyLabel: "ड्यूटी घंटे",
+      openingsLabel: "उपलब्ध पद",
+      perksLabel: "मुफ़्त सुविधाएं व भत्ते",
+      requirementsLabel: "मुख्य आवश्यकताएं",
+      employerCtaTitle: "क्या आपको विदेशी प्रोजेक्ट्स के लिए बल्क मैनपावर चाहिए?",
+      employerCtaSub: "हम 30 दिनों के भीतर ट्रेड टेस्टिंग, दूतावास अटेस्टेशन, GAMCA मेडिकल और फ्लाइट टिकट सेवाएं प्रदान करते हैं।",
+      employerCtaBtn: "अपनी डिमांड पोस्ट करें",
     },
     footer: {
       desc: "भारतीय पेशेवरों और कुशल श्रमिकों को सीधे विदेशी वर्क परमिट और वीज़ा समाधान प्रदान करने वाली लाइसेंस प्राप्त सरकारी भर्ती एजेंसी।",

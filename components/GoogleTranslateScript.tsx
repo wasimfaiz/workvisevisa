@@ -4,51 +4,8 @@ import { useEffect } from "react";
 
 export default function GoogleTranslateScript() {
   useEffect(() => {
-    // Inject global CSS rule to hide Google Translate top banner without destroying its DOM elements
-    const styleId = "google-translate-custom-style";
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement("style");
-      style.id = styleId;
-      style.innerHTML = `
-        /* Hide top Google Translate banner frame */
-        .goog-te-banner-frame,
-        iframe.goog-te-banner-frame,
-        .VIpgJd-Z44pHd-OJuFvd,
-        #goog-gt-tt,
-        .goog-te-balloon-frame {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          height: 0 !important;
-          width: 0 !important;
-          pointer-events: none !important;
-          position: absolute !important;
-          top: -9999px !important;
-          left: -9999px !important;
-        }
-
-        /* Prevent Google Translate from shifting document body top */
-        body {
-          top: 0px !important;
-          margin-top: 0px !important;
-          position: static !important;
-        }
-
-        /* Hide Google Translate highlights and tooltips */
-        .goog-tooltip, .goog-tooltip:hover {
-          display: none !important;
-        }
-        .goog-text-highlight {
-          background-color: transparent !important;
-          border: none !important;
-          box-shadow: none !important;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-
-    // Function to enforce 0px body top
-    const fixBodyTop = () => {
+    // Function to enforce 0px body top & purge translate banners
+    const purgeTranslateBanner = () => {
       if (document.body) {
         if (document.body.style.top !== "0px" && document.body.style.top !== "") {
           document.body.style.setProperty("top", "0px", "important");
@@ -57,10 +14,50 @@ export default function GoogleTranslateScript() {
           document.body.style.setProperty("margin-top", "0px", "important");
         }
       }
+
+      // Query any injected translate banners or iframes
+      const selector = [
+        ".goog-te-banner-frame",
+        "iframe.goog-te-banner-frame",
+        "iframe.skiptranslate",
+        ".VIpgJd-Z44pHd-OJuFvd",
+        "iframe[id*=':1.container']",
+        "iframe[id*=':2.container']",
+        "iframe[src*='translate.google']",
+        "iframe[src*='translate.googleapis']",
+        "body > .skiptranslate",
+      ].join(", ");
+
+      const bannerEls = document.querySelectorAll(selector);
+      bannerEls.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        htmlEl.style.setProperty("display", "none", "important");
+        htmlEl.style.setProperty("visibility", "hidden", "important");
+        htmlEl.style.setProperty("height", "0px", "important");
+        htmlEl.style.setProperty("width", "0px", "important");
+        htmlEl.style.setProperty("opacity", "0", "important");
+        htmlEl.style.setProperty("pointer-events", "none", "important");
+        htmlEl.style.setProperty("position", "absolute", "important");
+        htmlEl.style.setProperty("top", "-9999px", "important");
+        // Remove from DOM if possible
+        if (htmlEl.parentNode) {
+          try {
+            htmlEl.parentNode.removeChild(htmlEl);
+          } catch {
+            // ignore if already detached
+          }
+        }
+      });
     };
 
     // Add Google Translate Script dynamically if not already added
     if (!document.getElementById("google-translate-script")) {
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+
       window.googleTranslateElementInit = () => {
         if (window.google?.translate?.TranslateElement) {
           new window.google.translate.TranslateElement(
@@ -73,17 +70,25 @@ export default function GoogleTranslateScript() {
           );
         }
       };
-
-      const script = document.createElement("script");
-      script.id = "google-translate-script";
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      document.body.appendChild(script);
     }
 
-    const intervalId = setInterval(fixBodyTop, 150);
+    // MutationObserver to catch any dynamic insertions or style shifts
+    const observer = new MutationObserver(() => {
+      purgeTranslateBanner();
+    });
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+
+    // Backup interval enforcer
+    const intervalId = setInterval(purgeTranslateBanner, 80);
 
     return () => {
+      observer.disconnect();
       clearInterval(intervalId);
     };
   }, []);

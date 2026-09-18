@@ -83,6 +83,25 @@ export interface Industry {
   keyBenefits: string[];
 }
 
+export interface JobDemand {
+  id: string;
+  title: string;
+  company: string;
+  country: string;
+  flag: string;
+  category: string;
+  salary: string;
+  totalOpenings: number;
+  visaType: string;
+  interviewDate: string;
+  venue: string;
+  dutyHours: string;
+  perks: string[];
+  requirements: string[];
+  postedDate: string;
+  urgent: boolean;
+}
+
 // ── Countries ────────────────────────────────────────────────────
 
 export const countries: Country[] = [
@@ -619,5 +638,58 @@ export const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
     author: "Logistics Desk",
     tags: ["Heavy Driver", "GCC License", "Dubai Jobs"],
+  },
+];
+
+// ── Job Demands ──────────────────────────────────────────────────
+
+export const jobDemands: JobDemand[] = [
+  {
+    id: "demand-dubai-mason-helper",
+    title: "Tile Mason & Helper",
+    company: "Dubai Project",
+    country: "Dubai, UAE",
+    flag: "🇦🇪",
+    category: "Construction & Civil",
+    salary: "1,200 – 1,800 AED",
+    totalOpenings: 10,
+    visaType: "Employment Visa",
+    interviewDate: "Direct Selection",
+    venue: "WorkWise Visa Office",
+    dutyHours: "Standard Duty + Overtime",
+    perks: [
+      "5 Tile Mason (Salary: 1,800 AED)",
+      "5 Helper (Salary: 1,200 AED)",
+    ],
+    requirements: [
+      "5 Tile Mason — Salary: 1,800 AED",
+      "5 Helper — Salary: 1,200 AED",
+    ],
+    postedDate: "Sep 17, 2026",
+    urgent: true,
+  },
+  {
+    id: "demand-dubai-cleaner-telugu",
+    title: "Cleaner",
+    company: "Dubai Project",
+    country: "Dubai, UAE",
+    flag: "🇦🇪",
+    category: "Cleaning & Support",
+    salary: "1,080 AED",
+    totalOpenings: 5,
+    visaType: "Employment Visa",
+    interviewDate: "Direct Selection",
+    venue: "WorkWise Visa Office",
+    dutyHours: "Standard Duty + Overtime",
+    perks: [
+      "5 Cleaner (Salary: 1,080 AED)",
+      "Only Telugu Speaking Candidates",
+    ],
+    requirements: [
+      "5 Cleaner — Salary: 1,080 AED",
+      "Only who can speak Telugu language",
+    ],
+    postedDate: "Sep 17, 2026",
+    urgent: true,
   },
 ];

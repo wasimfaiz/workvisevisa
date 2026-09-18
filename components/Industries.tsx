@@ -16,8 +16,6 @@ import {
   FaWhatsapp,
 } from "react-icons/fa6";
 import { industries, Industry } from "@/lib/data";
-import { useLanguage } from "@/context/LanguageContext";
-import { translations } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   HelmetSafety: FaHelmetSafety,
@@ -32,8 +30,6 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Industries() {
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
-  const { currentLang } = useLanguage();
-  const t = translations[currentLang]?.industries || translations.en.industries;
 
   const filteredIndustries =
     selectedIndustry === "all"
@@ -59,13 +55,13 @@ export default function Industries() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-4 shadow-xs">
             <FaHelmetSafety className="w-3.5 h-3.5 text-emerald-600" />
-            {t.badge}
+            Skilled Trade & Blue-Collar Recruitment
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            {t.title}
+            Blue-Collar & Technical Skilled Trades We Recruit For
           </h2>
           <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-lg font-medium leading-relaxed">
-            {t.subtitle}
+            We specialize in overseas deployment and work permit processing for masons, 6G welders, heavy drivers, factory technicians, oil & gas crews, and facility maintenance staff across the Gulf, Europe, and Russia.
           </p>
 
           {/* Quick industry tab filters */}
@@ -188,7 +184,7 @@ export default function Industries() {
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 hover:scale-[1.02] transition-all cursor-pointer"
               >
                 <FaWhatsapp className="w-5 h-5" />
-                <span>{t.applyBtn}</span>
+                <span>Apply for Blue-Collar Visas Now</span>
                 <FaArrowRight className="w-4 h-4" />
               </a>
             </div>
