@@ -26,7 +26,6 @@ export default function Navbar() {
     { label: t.jobs || "Jobs", href: "/jobs" },
     { label: t.countries, href: "/countries" },
     { label: t.industries, href: "/#industries" },
-    { label: t.whyUs, href: "/#why-us" },
     { label: t.aboutUs, href: "/about" },
     { label: t.blogs, href: "/blogs" },
   ];
