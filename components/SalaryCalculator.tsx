@@ -211,7 +211,7 @@ export default function SalaryCalculator() {
 
           {/* Right Column: Calculated Results Display Card (5 cols) */}
           <motion.div
-            className="lg:col-span-5 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-slate-900 to-slate-950 p-6 sm:p-8 text-white shadow-2xl flex flex-col justify-between relative overflow-hidden"
+            className="lg:col-span-5 rounded-3xl border border-emerald-400/30 bg-gradient-to-br from-emerald-800 via-teal-800 to-slate-900 p-6 sm:p-8 text-white shadow-2xl flex flex-col justify-between relative overflow-hidden"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

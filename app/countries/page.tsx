@@ -76,42 +76,38 @@ export default function CountriesPage() {
       <Navbar />
       <main className="pt-24 pb-20 bg-slate-50 min-h-screen">
         {/* Page Hero Header */}
-        <section className="relative py-16 md:py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
-          
-          {/* Ambient Glows */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-teal-500/10 blur-[100px] pointer-events-none" />
+        <section className="relative py-16 md:py-24 bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 text-slate-900 border-b border-slate-200/80 shadow-xs overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-5 backdrop-blur-md">
-              <FaGlobe className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-5 shadow-xs">
+              <FaGlobe className="w-3.5 h-3.5 text-emerald-600" />
               Global Destinations & Work Permits
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight">
               Work Visa Programs by Country
             </h1>
             
-            <p className="mt-4 mx-auto max-w-3xl text-slate-300 text-base sm:text-xl font-normal leading-relaxed">
+            <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
               Explore visa options, processing timelines, tax-free salary offers, and urgent trade role vacancies across 12+ top international destinations.
             </p>
 
             {/* Search Bar */}
             <div className="mt-8 max-w-2xl mx-auto relative">
               <div className="relative flex items-center">
-                <FaMagnifyingGlass className="absolute left-4 w-4 h-4 text-slate-400" />
+                <FaMagnifyingGlass className="absolute left-4 w-4 h-4 text-emerald-600" />
                 <input
                   type="text"
                   placeholder="Search by country, visa type (e.g. Work Permit), or role (e.g. Driver, Welder)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-2xl border border-slate-700 bg-slate-800/90 pl-11 pr-4 py-3.5 text-sm text-white placeholder-slate-400 shadow-lg focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all"
+                  className="w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 py-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-md shadow-slate-200/40 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all font-medium"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-4 text-slate-400 hover:text-white"
+                    className="absolute right-4 text-slate-400 hover:text-slate-700"
                   >
                     <FaXmark className="w-4 h-4" />
                   </button>

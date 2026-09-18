@@ -49,8 +49,8 @@ export default function JobsPage() {
       <Navbar />
       <main className="min-h-screen bg-slate-50 pt-24 md:pt-32 pb-24">
         {/* Page Hero Header */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-16 md:py-24 text-white shadow-xl">
-          <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 py-16 md:py-24 text-slate-900 border-b border-slate-200/80 shadow-xs">
+          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
           
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
@@ -58,32 +58,32 @@ export default function JobsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-6 backdrop-blur-sm">
-                <FaFire className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-6 shadow-xs">
+                <FaFire className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
                 {t.badge}
               </div>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-white max-w-4xl mx-auto">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto">
                 {t.title}
               </h1>
-              <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+              <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-medium leading-relaxed">
                 {t.subtitle}
               </p>
 
               {/* Search Bar */}
               <div className="mt-10 max-w-2xl mx-auto relative">
-                <div className="relative flex items-center rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-2 shadow-2xl focus-within:border-emerald-400 transition-all">
-                  <FaMagnifyingGlass className="w-5 h-5 text-slate-400 ml-4 shrink-0" />
+                <div className="relative flex items-center rounded-2xl bg-white border border-slate-200 p-2 shadow-lg shadow-slate-200/50 focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/10 transition-all">
+                  <FaMagnifyingGlass className="w-5 h-5 text-emerald-600 ml-4 shrink-0" />
                   <input
                     type="text"
                     placeholder={t.searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-transparent px-4 py-3 text-sm sm:text-base text-white placeholder-slate-400 outline-none"
+                    className="w-full bg-transparent px-4 py-3 text-sm sm:text-base text-slate-900 placeholder-slate-400 outline-none font-medium"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="p-2 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                      className="p-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
                     >
                       <FaXmark className="w-4 h-4" />
                     </button>
@@ -261,15 +261,15 @@ export default function JobsPage() {
 
         {/* Employer Demand Posting Banner */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-20">
-          <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 p-8 sm:p-12 text-white shadow-xl relative overflow-hidden text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 border border-amber-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-amber-300 mb-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 border border-white/30 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-white mb-3 backdrop-blur-sm">
                 <FaFileContract className="w-3.5 h-3.5" /> Client Recruitment Services
               </span>
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white">
                 {t.employerCtaTitle}
               </h3>
-              <p className="mt-3 text-slate-300 text-sm sm:text-base font-normal leading-relaxed">
+              <p className="mt-3 text-emerald-50 text-sm sm:text-base font-medium leading-relaxed">
                 {t.employerCtaSub}
               </p>
             </div>

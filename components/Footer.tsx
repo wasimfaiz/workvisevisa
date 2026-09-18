@@ -22,9 +22,8 @@ const quickLinks = [
 ];
 
 const offices = [
-  { city: "Noida", address: "Urbtech trade centre, D-701 C, Sector 132, Noida, Uttar Pradesh 201304" },
-  { city: "Dubai", address: "Office 1204, Jumeirah Bay X2, JLT, Dubai" },
-  { city: "London", address: "71-75 Shelton Street, Covent Garden, WC2H 9JQ" },
+  { city: "Noida (HQ)", address: "Urbtech trade centre, D-701 C, Sector 132, Noida, Uttar Pradesh 201304" },
+  { city: "Patna", address: "6th floor office no 606, Varma Centre, Boring Rd, crossing, Sri Krishna Puri, Patna, Bihar 800001" },
 ];
 
 const socials = [

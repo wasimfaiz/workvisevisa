@@ -61,16 +61,10 @@ const officeLocations = [
     tag: "Head Office & Candidate Center",
   },
   {
-    city: "Dubai, UAE",
-    address: "Office 1204, Jumeirah Bay X2, JLT, Dubai",
-    phone: "+971 4 000 0000",
-    tag: "Gulf Operations & Employer Relations",
-  },
-  {
-    city: "London, UK",
-    address: "71-75 Shelton Street, Covent Garden, WC2H 9JQ",
-    phone: "+44 20 0000 0000",
-    tag: "European & UK Caregiver Desk",
+    city: "Patna, Bihar",
+    address: "6th floor office no 606, Varma Centre, Boring Rd, crossing, Sri Krishna Puri, Patna, Bihar 800001",
+    phone: "+91 81301 61603",
+    tag: "Regional Branch Office",
   },
 ];
 
@@ -80,23 +74,20 @@ export default function AboutPage() {
       <Navbar />
       <main className="pt-24 pb-20 bg-slate-50 min-h-screen">
         {/* Page Hero Header */}
-        <section className="relative py-16 md:py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+        <section className="relative py-16 md:py-24 bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 text-slate-900 border-b border-slate-200/80 shadow-xs overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-teal-500/10 blur-[100px] pointer-events-none" />
-
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 mb-5 backdrop-blur-md">
-              <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-5 shadow-xs">
+              <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
               About WorkWise Visa
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight">
               Empowering Skilled Talent to Build Global Careers
             </h1>
             
-            <p className="mt-4 mx-auto max-w-3xl text-slate-300 text-base sm:text-xl font-normal leading-relaxed">
+            <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
               Since 2020, WorkWise Visa has been a trusted international placement and immigration consultancy — connecting over 5,000+ skilled trade workers, drivers, technicians, and caregivers with verified employers in 12+ nations.
             </p>
 
@@ -112,13 +103,13 @@ export default function AboutPage() {
                 return (
                   <div
                     key={s.label}
-                    className="rounded-2xl border border-slate-700/80 bg-slate-800/80 p-5 backdrop-blur-md text-center shadow-lg"
+                    className="rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-5 text-center shadow-md shadow-slate-200/40 hover:border-emerald-300 transition-all"
                   >
-                    <Icon className="w-5 h-5 text-emerald-400 mx-auto mb-2" />
-                    <p className="text-2xl sm:text-3xl font-extrabold font-display text-white">
+                    <Icon className="w-5 h-5 text-emerald-600 mx-auto mb-2" />
+                    <p className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">
                       {s.val}
                     </p>
-                    <p className="text-xs text-slate-400 font-semibold mt-0.5">
+                    <p className="text-xs sm:text-sm font-semibold text-slate-600 mt-1">
                       {s.label}
                     </p>
                   </div>
