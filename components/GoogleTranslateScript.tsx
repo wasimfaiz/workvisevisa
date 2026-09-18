@@ -30,18 +30,18 @@ export default function GoogleTranslateScript() {
       });
     };
 
-    // Load Google Translate script only when user_lang is "hi" or googtrans cookie exists
+    // Load Google Translate script when user_lang is "hi" or "ar" or googtrans cookie exists
     const userLang = localStorage.getItem("user_lang");
     const hasGoogtransCookie = document.cookie.includes("googtrans=");
 
-    if (userLang === "hi" || hasGoogtransCookie) {
+    if (userLang === "hi" || userLang === "ar" || hasGoogtransCookie) {
       if (!document.getElementById("google-translate-script")) {
         window.googleTranslateElementInit = () => {
           if (window.google?.translate?.TranslateElement) {
             new window.google.translate.TranslateElement(
               {
                 pageLanguage: "en",
-                includedLanguages: "en,hi",
+                includedLanguages: "en,hi,ar",
                 autoDisplay: false,
               },
               "google_translate_element"

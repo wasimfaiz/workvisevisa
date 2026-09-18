@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-export type LanguageCode = "en" | "hi";
+export type LanguageCode = "en" | "hi" | "ar";
 
 export interface LanguageOption {
   code: LanguageCode;
@@ -14,6 +14,7 @@ export interface LanguageOption {
 export const supportedLanguages: LanguageOption[] = [
   { code: "en", label: "English", nativeName: "English", flag: "🇬🇧" },
   { code: "hi", label: "Hindi", nativeName: "हिंदी", flag: "🇮🇳" },
+  { code: "ar", label: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
 ];
 
 interface LanguageContextType {
@@ -45,9 +46,9 @@ export const applyTranslateCookie = (langCode: LanguageCode) => {
   if (typeof window === "undefined") return;
   purgeAllTranslateCookies();
 
-  if (langCode === "hi") {
+  if (langCode !== "en") {
     const hostname = window.location.hostname;
-    const val = "/en/hi";
+    const val = `/en/${langCode}`;
     document.cookie = `googtrans=${val}; path=/;`;
     document.cookie = `googtrans=${val}; path=/; domain=${hostname};`;
     if (hostname.includes(".")) {
@@ -61,8 +62,8 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   useEffect(() => {
     const savedLang = localStorage.getItem("user_lang") as LanguageCode;
-    if (savedLang === "hi") {
-      setCurrentLang("hi");
+    if (savedLang === "hi" || savedLang === "ar") {
+      setCurrentLang(savedLang);
     } else {
       setCurrentLang("en");
       purgeAllTranslateCookies();
@@ -73,10 +74,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   const changeLanguage = (langCode: LanguageCode) => {
     if (langCode === currentLang) return;
 
-    if (langCode === "hi") {
-      localStorage.setItem("user_lang", "hi");
-      applyTranslateCookie("hi");
-      setCurrentLang("hi");
+    if (langCode === "hi" || langCode === "ar") {
+      localStorage.setItem("user_lang", langCode);
+      applyTranslateCookie(langCode);
+      setCurrentLang(langCode);
       window.location.reload();
     } else {
       localStorage.setItem("user_lang", "en");
