@@ -107,29 +107,25 @@ body {
 }
 
 /* ── Google Translate Banner & Top-Bar Suppression ───────────── */
+/* Hide Google Translate top banner bar completely */
 .goog-te-banner-frame,
 iframe.goog-te-banner-frame,
 .goog-te-banner,
 #goog-te-banner-frame,
-.goog-te-balloon-frame,
+body > .skiptranslate,
+iframe[id*=":1.container"],
+iframe[id*=":2.container"],
 .VIpgJd-Z44pHd-OJuFvd,
 .VIpgJd-Z44pHd-OJuFvd-ibnAvb,
 .VIpgJd-Z44pHd-OJuFvd-OWXEXe-font,
 .VIpgJd-y6fd-b5914ccf,
-iframe[id*=":1.container"],
-iframe[id*=":2.container"],
-iframe[id*="goog"],
-iframe[src*="translate.google"],
-iframe[src*="translate.googleapis"],
-iframe.skiptranslate,
-body > .skiptranslate,
 #goog-gt-tt,
-.goog-te-gadget,
-.goog-te-spinner-pos {
+.goog-te-spinner-pos,
+.goog-te-balloon-frame {
   display: none !important;
   visibility: hidden !important;
-  height: 0 !important;
-  width: 0 !important;
+  height: 0px !important;
+  width: 0px !important;
   opacity: 0 !important;
   pointer-events: none !important;
   position: absolute !important;

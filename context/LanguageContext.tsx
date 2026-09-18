@@ -29,36 +29,40 @@ const LanguageContext = createContext<LanguageContextType>({
   changeLanguage: () => {},
 });
 
+export const setTranslateCookies = (langCode: LanguageCode) => {
+  if (typeof window === "undefined") return;
+  const hostname = window.location.hostname;
+  const val = `/en/${langCode}`;
+  
+  document.cookie = `googtrans=${val}; path=/;`;
+  document.cookie = `googtrans=${val}; path=/; domain=${hostname};`;
+  if (hostname.includes(".")) {
+    document.cookie = `googtrans=${val}; path=/; domain=.${hostname};`;
+  }
+};
+
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentLang, setCurrentLang] = useState<LanguageCode>("en");
 
   useEffect(() => {
-    // Check saved language preference or googtrans cookie
     const savedLang = localStorage.getItem("user_lang") as LanguageCode;
     if (savedLang && supportedLanguages.some((l) => l.code === savedLang)) {
       setCurrentLang(savedLang);
+      setTranslateCookies(savedLang);
     }
   }, []);
 
   const changeLanguage = (langCode: LanguageCode) => {
     setCurrentLang(langCode);
     localStorage.setItem("user_lang", langCode);
-
-    // Set Google Translate cookie
-    const cookieDomain = window.location.hostname;
-    if (langCode === "en") {
-      document.cookie = `googtrans=/en/en; path=/; domain=${cookieDomain}`;
-      document.cookie = `googtrans=/en/en; path=/;`;
-    } else {
-      document.cookie = `googtrans=/en/${langCode}; path=/; domain=${cookieDomain}`;
-      document.cookie = `googtrans=/en/${langCode}; path=/;`;
-    }
+    setTranslateCookies(langCode);
 
     // Trigger select element change if Google Translate widget exists
     const selectEl = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
     if (selectEl) {
       selectEl.value = langCode;
       selectEl.dispatchEvent(new Event("change"));
+      selectEl.dispatchEvent(new Event("input"));
     } else {
       window.location.reload();
     }

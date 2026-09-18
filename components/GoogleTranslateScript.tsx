@@ -1,34 +1,27 @@
 "use client";
 
 import { useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function GoogleTranslateScript() {
+  const { currentLang } = useLanguage();
+
   useEffect(() => {
-    // Function to enforce 0px body top & purge translate banners
-    const purgeTranslateBanner = () => {
+    // 1. Function to enforce 0px body top & hide banner frames
+    const hideTranslateBanner = () => {
       if (document.body) {
-        if (document.body.style.top !== "0px" && document.body.style.top !== "") {
+        if (document.body.style.top !== "0px") {
           document.body.style.setProperty("top", "0px", "important");
         }
-        if (document.body.style.marginTop !== "0px" && document.body.style.marginTop !== "") {
+        if (document.body.style.marginTop !== "0px") {
           document.body.style.setProperty("margin-top", "0px", "important");
         }
       }
 
-      // Query any injected translate banners or iframes
-      const selector = [
-        ".goog-te-banner-frame",
-        "iframe.goog-te-banner-frame",
-        "iframe.skiptranslate",
-        ".VIpgJd-Z44pHd-OJuFvd",
-        "iframe[id*=':1.container']",
-        "iframe[id*=':2.container']",
-        "iframe[src*='translate.google']",
-        "iframe[src*='translate.googleapis']",
-        "body > .skiptranslate",
-      ].join(", ");
-
-      const bannerEls = document.querySelectorAll(selector);
+      // Hide top banner frames & skiptranslate header wrapper
+      const bannerEls = document.querySelectorAll(
+        ".goog-te-banner-frame, iframe.goog-te-banner-frame, body > .skiptranslate, iframe[id*=':1.container'], iframe[id*=':2.container'], .VIpgJd-Z44pHd-OJuFvd, #goog-gt-tt, .goog-te-spinner-pos"
+      );
       bannerEls.forEach((el) => {
         const htmlEl = el as HTMLElement;
         htmlEl.style.setProperty("display", "none", "important");
@@ -39,25 +32,21 @@ export default function GoogleTranslateScript() {
         htmlEl.style.setProperty("pointer-events", "none", "important");
         htmlEl.style.setProperty("position", "absolute", "important");
         htmlEl.style.setProperty("top", "-9999px", "important");
-        // Remove from DOM if possible
-        if (htmlEl.parentNode) {
-          try {
-            htmlEl.parentNode.removeChild(htmlEl);
-          } catch {
-            // ignore if already detached
-          }
-        }
       });
     };
 
-    // Add Google Translate Script dynamically if not already added
-    if (!document.getElementById("google-translate-script")) {
-      const script = document.createElement("script");
-      script.id = "google-translate-script";
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      document.body.appendChild(script);
+    // 2. Function to apply language selection to Google Translate combo element
+    const applyLanguage = (lang: string) => {
+      const selectEl = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+      if (selectEl && selectEl.value !== lang) {
+        selectEl.value = lang;
+        selectEl.dispatchEvent(new Event("change"));
+        selectEl.dispatchEvent(new Event("input"));
+      }
+    };
 
+    // 3. Inject Google Translate script if not present
+    if (!document.getElementById("google-translate-script")) {
       window.googleTranslateElementInit = () => {
         if (window.google?.translate?.TranslateElement) {
           new window.google.translate.TranslateElement(
@@ -68,33 +57,67 @@ export default function GoogleTranslateScript() {
             },
             "google_translate_element"
           );
+
+          // Retry applying current language after widget initializes
+          let attempts = 0;
+          const checkInterval = setInterval(() => {
+            attempts++;
+            const selectEl = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+            if (selectEl) {
+              const savedLang = localStorage.getItem("user_lang") || "en";
+              applyLanguage(savedLang);
+              clearInterval(checkInterval);
+            }
+            if (attempts > 30) clearInterval(checkInterval);
+          }, 150);
         }
       };
+
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+    } else {
+      applyLanguage(currentLang);
     }
 
-    // MutationObserver to catch any dynamic insertions or style shifts
-    const observer = new MutationObserver(() => {
-      purgeTranslateBanner();
-    });
-
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["style", "class"],
-    });
-
-    // Backup interval enforcer
-    const intervalId = setInterval(purgeTranslateBanner, 80);
+    const intervalId = setInterval(hideTranslateBanner, 200);
 
     return () => {
-      observer.disconnect();
       clearInterval(intervalId);
     };
-  }, []);
+  }, [currentLang]);
+
+  useEffect(() => {
+    const applyLang = () => {
+      const selectEl = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+      if (selectEl && selectEl.value !== currentLang) {
+        selectEl.value = currentLang;
+        selectEl.dispatchEvent(new Event("change"));
+        selectEl.dispatchEvent(new Event("input"));
+      }
+    };
+
+    applyLang();
+    const timer = setTimeout(applyLang, 300);
+    return () => clearTimeout(timer);
+  }, [currentLang]);
 
   return (
-    <div id="google_translate_element" className="hidden notranslate" translate="no" aria-hidden="true" />
+    <div
+      id="google_translate_element"
+      style={{
+        position: "fixed",
+        left: "-9999px",
+        top: "-9999px",
+        width: "1px",
+        height: "1px",
+        opacity: 0.001,
+        pointerEvents: "none",
+        zIndex: -9999,
+      }}
+    />
   );
 }
 

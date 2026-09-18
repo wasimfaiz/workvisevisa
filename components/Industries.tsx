@@ -16,6 +16,8 @@ import {
   FaWhatsapp,
 } from "react-icons/fa6";
 import { industries, Industry } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const iconMap: Record<string, React.ElementType> = {
   HelmetSafety: FaHelmetSafety,
@@ -29,6 +31,8 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function Industries() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.industries || translations.en.industries;
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
 
   const filteredIndustries =
@@ -39,13 +43,13 @@ export default function Industries() {
   return (
     <section
       id="industries"
-      className="relative py-24 md:py-32 bg-white overflow-hidden"
+      className="relative py-20 md:py-28 bg-white overflow-hidden"
     >
       {/* Decorative background grid pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Section Heading */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -55,13 +59,13 @@ export default function Industries() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-4 shadow-xs">
             <FaHelmetSafety className="w-3.5 h-3.5 text-emerald-600" />
-            Skilled Trade & Blue-Collar Recruitment
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Blue-Collar & Technical Skilled Trades We Recruit For
+            {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-lg font-medium leading-relaxed">
-            We specialize in overseas deployment and work permit processing for masons, 6G welders, heavy drivers, factory technicians, oil & gas crews, and facility maintenance staff across the Gulf, Europe, and Russia.
+            {t.subtitle}
           </p>
 
           {/* Quick industry tab filters */}

@@ -12,6 +12,8 @@ import {
   FaPhoneVolume,
 } from "react-icons/fa6";
 import { targetCountryOptions } from "@/lib/data";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 interface FormData {
   name: string;
@@ -27,6 +29,9 @@ interface FormErrors {
 }
 
 export default function ConsultationForm() {
+  const { currentLang } = useLanguage();
+  const t = translations[currentLang]?.consultation || translations.en.consultation;
+
   const [data, setData] = useState<FormData>({
     name: "",
     phone: "",
@@ -113,12 +118,10 @@ export default function ConsultationForm() {
               <FaWandMagicSparkles className="w-3.5 h-3.5 text-amber-600" /> Start Your Journey
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight tracking-tight">
-              Ready to Secure Your
-              <br />
-              <span className="gradient-text-gold">Overseas Work Visa?</span>
+              {t.title}
             </h2>
             <p className="mt-5 text-lg text-slate-600 leading-relaxed max-w-lg font-medium">
-              Book a free 30-minute 1-on-1 strategy call with our licensed experts. We&rsquo;ll evaluate your eligibility and map out a clear path forward.
+              {t.subtitle}
             </p>
 
             <div className="mt-8 space-y-4">
