@@ -61,12 +61,12 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo Image: /workwise_logo.png */}
+          {/* Logo Image: /images/workwise_logo.png */}
           <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group notranslate shrink-0" translate="no">
             <img
-              src="/workwise_logo.png"
+              src="/images/workwise_logo.png"
               alt="WorkWise Visa Logo"
-              className="h-15 sm:h-[78px] max-w-[340px] sm:max-w-[440px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
+              className="h-14 sm:h-[76px] max-w-[320px] sm:max-w-[420px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
             />
           </a>
 
