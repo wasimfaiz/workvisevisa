@@ -45,10 +45,10 @@ export default function Services() {
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
             <FaWandMagicSparkles className="w-3.5 h-3.5 text-emerald-600" /> {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
+          <p className="mt-3 mx-auto max-w-2xl text-slate-600 text-sm sm:text-base font-medium">
             {t.subtitle}
           </p>
         </motion.div>
@@ -62,28 +62,29 @@ export default function Services() {
             return (
               <motion.div
                 key={s.title}
-                className="group relative rounded-2xl border border-slate-200/90 bg-white p-8 transition-all duration-200 hover:border-emerald-500/50 hover:shadow-xl overflow-hidden shadow-sm"
-                initial={{ opacity: 0, y: 25 }}
+                className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:-translate-y-1"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                {/* Header with icon */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200 text-emerald-700">
-                    <Icon className="w-6 h-6" />
+                <div>
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200 text-emerald-700">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-3xl font-display font-black text-slate-200 group-hover:text-emerald-100 transition-colors duration-200 select-none">
+                      {num}
+                    </span>
                   </div>
-                  <span className="text-4xl font-display font-black text-slate-200 group-hover:text-emerald-100 transition-colors duration-200 select-none">
-                    {num}
-                  </span>
-                </div>
 
-                <h3 className="mb-3 text-xl font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
-                  {s.title}
-                </h3>
-                <p className="mb-6 text-sm text-slate-600 leading-relaxed font-normal">
-                  {s.description}
-                </p>
+                  <h3 className="mb-2 text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="mb-6 text-sm text-slate-600 leading-relaxed font-normal">
+                    {s.description}
+                  </p>
+                </div>
 
                 {/* Checklist with checkmarks */}
                 <ul className="space-y-3 pt-4 border-t border-slate-100">

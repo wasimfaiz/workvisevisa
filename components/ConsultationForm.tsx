@@ -117,10 +117,10 @@ export default function ConsultationForm() {
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
               <FaWandMagicSparkles className="w-3.5 h-3.5 text-emerald-600" /> Start Your Journey
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 leading-tight tracking-tight">
               {t.title}
             </h2>
-            <p className="mt-5 text-lg text-slate-600 leading-relaxed max-w-lg font-medium">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg font-medium">
               {t.subtitle}
             </p>
 

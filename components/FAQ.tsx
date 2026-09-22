@@ -163,10 +163,10 @@ export default function FAQ() {
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
               <FaCircleQuestion className="w-3.5 h-3.5" /> {t.badge}
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
               {t.title}
             </h2>
-            <p className="mt-4 text-slate-600 text-base leading-relaxed max-w-lg mx-auto lg:mx-0 font-medium">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-lg mx-auto lg:mx-0 font-medium">
               {t.subtitle}
             </p>
 

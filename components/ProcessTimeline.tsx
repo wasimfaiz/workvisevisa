@@ -44,10 +44,10 @@ export default function ProcessTimeline() {
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
             <FaClock className="w-3.5 h-3.5" /> {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
+          <p className="mt-3 mx-auto max-w-2xl text-slate-600 text-sm sm:text-base font-medium">
             {t.subtitle}
           </p>
         </motion.div>

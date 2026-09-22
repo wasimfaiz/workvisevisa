@@ -62,10 +62,10 @@ export default function JobsPage() {
                 <FaFire className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                 {t.badge}
               </div>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto">
                 {t.title}
               </h1>
-              <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+              <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">
                 {t.subtitle}
               </p>
 
@@ -246,9 +246,9 @@ export default function JobsPage() {
                         href={`https://wa.me/918130161603?text=${waMessage}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-emerald-600/20 hover:bg-emerald-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
                       >
-                        <FaWhatsapp className="w-4 h-4" />
+                        <FaWhatsapp className="w-3.5 h-3.5" />
                         <span>{t.applyWhatsApp}</span>
                       </a>
                     </div>
@@ -278,11 +278,11 @@ export default function JobsPage() {
                 href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20an%20employer/client%20and%20want%20to%20post%20a%20new%20job%20vacancy/demand."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-500 hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-emerald-800 hover:bg-emerald-50 px-5 py-2.5 text-xs sm:text-sm font-extrabold shadow-md hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
               >
-                <FaWhatsapp className="w-5 h-5" />
+                <FaWhatsapp className="w-4 h-4 text-emerald-600" />
                 <span>{t.employerCtaBtn}</span>
-                <FaArrowRight className="w-4 h-4" />
+                <FaArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>

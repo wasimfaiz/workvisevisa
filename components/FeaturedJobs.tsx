@@ -158,10 +158,10 @@ export default function FeaturedJobs() {
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
             <FaFire className="w-3.5 h-3.5 text-emerald-600 animate-pulse" /> {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
+          <p className="mt-3 mx-auto max-w-2xl text-slate-600 text-sm sm:text-base font-medium">
             {t.subtitle}
           </p>
         </motion.div>
@@ -264,7 +264,7 @@ export default function FeaturedJobs() {
                   onClick={scrollToConsultation}
                   className="group/btn flex items-center justify-center gap-2 w-full rounded-xl bg-slate-900 py-3 text-xs font-bold text-white shadow-sm hover:bg-emerald-600 transition-all duration-200 cursor-pointer"
                 >
-                  Apply & Claim Visa Sponsor
+                  Apply for Visa
                   <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                 </a>
               </motion.div>

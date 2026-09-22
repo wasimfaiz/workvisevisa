@@ -79,11 +79,11 @@ export default function AboutPage() {
               About WorkWise Visa
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
               Empowering Skilled Talent to Build Global Careers
             </h1>
             
-            <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
+            <p className="mt-3 mx-auto max-w-3xl text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
               Operating as a specialized brand entity of <strong>Europass Immigration Pvt. Ltd.</strong>, WorkWise Visa connects skilled trade workers, drivers, technicians, and caregivers with verified employers across 12+ nations.
             </p>
 

@@ -61,10 +61,10 @@ export default function Industries() {
             <FaHelmetSafety className="w-3.5 h-3.5 text-emerald-600" />
             {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-lg font-medium leading-relaxed">
+          <p className="mt-3 mx-auto max-w-3xl text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
             {t.subtitle}
           </p>
 
@@ -132,7 +132,7 @@ export default function Industries() {
                   </div>
 
                   {/* Industry Title + Tagline */}
-                  <h3 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                     {ind.title}
                   </h3>
                   <p className="mt-1 text-xs sm:text-sm font-semibold text-emerald-600">
@@ -187,9 +187,9 @@ export default function Industries() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 hover:scale-[1.02] transition-all cursor-pointer"
               >
-                <FaWhatsapp className="w-5 h-5" />
-                <span>Apply for Blue-Collar Visas Now</span>
-                <FaArrowRight className="w-4 h-4" />
+                <FaWhatsapp className="w-4 h-4" />
+                <span>Apply for Work Visa</span>
+                <FaArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>

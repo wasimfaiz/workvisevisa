@@ -47,10 +47,10 @@ export default function WhyUs() {
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
             <FaCheckDouble className="w-3.5 h-3.5" /> {t.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
+          <p className="mt-3 mx-auto max-w-2xl text-slate-600 text-sm sm:text-base font-medium">
             {t.subtitle}
           </p>
         </motion.div>
@@ -64,23 +64,23 @@ export default function WhyUs() {
             return (
               <motion.div
                 key={p.title}
-                className="group relative rounded-2xl border border-slate-200/90 bg-white p-8 transition-all duration-200 hover:border-emerald-500/50 hover:shadow-xl overflow-hidden shadow-sm"
+                className="group relative rounded-2xl border border-slate-200/90 bg-white p-7 transition-all duration-200 hover:border-emerald-500/50 hover:shadow-lg overflow-hidden shadow-xs"
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
                 <div className="flex items-start justify-between mb-5">
-                  <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
-                    <Icon className="w-6 h-6" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  <span className="text-4xl font-display font-black text-slate-200 group-hover:text-emerald-100 transition-colors select-none">
+                  <span className="text-3xl font-display font-black text-slate-200 group-hover:text-emerald-100 transition-colors select-none">
                     {num}
                   </span>
                 </div>
 
-                <h3 className="mb-2.5 text-xl font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                <h3 className="mb-2 text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                   {p.title}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed font-normal">

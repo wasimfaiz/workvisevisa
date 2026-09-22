@@ -427,7 +427,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              className="text-4xl sm:text-5xl   md:text-6xl lg:text-[4.25rem] font-display font-extrabold leading-[1.07] tracking-tight text-slate-900 mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight tracking-tight text-slate-900 mb-5"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -438,7 +438,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="max-w-xl text-lg sm:text-xl leading-relaxed text-slate-600 mb-10 mx-auto lg:mx-0 font-medium"
+              className="max-w-xl text-sm sm:text-base leading-relaxed text-slate-600 mb-8 mx-auto lg:mx-0 font-medium"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -447,21 +447,21 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <a
                 href="#consultation"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 {t.ctaConsultation}
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-lg font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
               >
                 {t.ctaExploreServices}
               </a>

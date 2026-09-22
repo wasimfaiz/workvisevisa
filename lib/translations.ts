@@ -114,7 +114,7 @@ export const translations: Record<string, Translations> = {
       dropCv: "Drop CV",
     },
     hero: {
-      badge: "Licensed Overseas Recruitment & Work Visa Agency",
+      badge: "Overseas Recruitment & Work Visa Agency",
       titleLine1: "Overseas Jobs &",
       titleLine2: "Work Visa",
       titleHighlight: "Consultancy.",
@@ -182,7 +182,7 @@ export const translations: Record<string, Translations> = {
       subtitle: "Direct company demands with guaranteed work visa quotas, free accommodation, and GAMCA medical test support.",
       searchPlaceholder: "Search trade (e.g. Driver, Welder, Electrician, CNC)...",
       filterAll: "All Trade Demands",
-      applyWhatsApp: "Apply via WhatsApp Now",
+      applyWhatsApp: "Apply on WhatsApp",
       interviewDateLabel: "Selection / Interview",
       dutyLabel: "Duty Hours",
       openingsLabel: "Vacancies Available",
@@ -190,7 +190,7 @@ export const translations: Record<string, Translations> = {
       requirementsLabel: "Key Requirements",
       employerCtaTitle: "Need Bulk Skilled Workforce for Overseas Projects?",
       employerCtaSub: "We organize trade testing, embassy attestation, bulk GAMCA medicals, and flight deployment within 30 days.",
-      employerCtaBtn: "Post Employer Demand Now",
+      employerCtaBtn: "Post Job Demand",
     },
     footer: {
       desc: "Licensed government-recognized overseas recruitment and work visa consultancy empowering skilled workers with direct international job placements and visa solutions.",
@@ -212,7 +212,7 @@ export const translations: Record<string, Translations> = {
       dropCv: "सीवी भेजें (Drop CV)",
     },
     hero: {
-      badge: "भारत की लाइसेंस प्राप्त ओवरसीज रिक्रूटमेंट एवं वर्क वीज़ा एजेंसी",
+      badge: "ओवरसीज रिक्रूटमेंट एवं वर्क वीज़ा एजेंसी",
       titleLine1: "ओवरसीज जॉब्स एवं",
       titleLine2: "वर्क वीज़ा",
       titleHighlight: "कंसल्टेंसी।",
@@ -280,7 +280,7 @@ export const translations: Record<string, Translations> = {
       subtitle: "गारंटीकृत वर्क वीज़ा कोटा, मुफ़्त आवास और GAMCA मेडिकल टेस्ट सहायता के साथ सीधी कंपनी डिमांडे।",
       searchPlaceholder: "ट्रेड खोजें (उदा. राजमिस्त्री, वेल्डर, भारी ड्राइवर, इलेक्ट्रिशियन)...",
       filterAll: "सभी ट्रेड डिमांड्स",
-      applyWhatsApp: "व्हाट्सएप से आवेदन करें",
+      applyWhatsApp: "WhatsApp पर अप्लाई करें",
       interviewDateLabel: "चयन / इंटरव्यू तिथि",
       dutyLabel: "ड्यूटी घंटे",
       openingsLabel: "उपलब्ध पद",
@@ -288,7 +288,7 @@ export const translations: Record<string, Translations> = {
       requirementsLabel: "मुख्य आवश्यकताएं",
       employerCtaTitle: "क्या आपको विदेशी प्रोजेक्ट्स के लिए बल्क मैनपावर चाहिए?",
       employerCtaSub: "हम 30 दिनों के भीतर ट्रेड टेस्टिंग, दूतावास अटेस्टेशन, GAMCA मेडिकल और फ्लाइट टिकट सेवाएं प्रदान करते हैं।",
-      employerCtaBtn: "अपनी डिमांड पोस्ट करें",
+      employerCtaBtn: "डिमांड पोस्ट करें",
     },
     footer: {
       desc: "भारतीय पेशेवरों और कुशल श्रमिकों को सीधे विदेशी वर्क परमिट और वीज़ा समाधान प्रदान करने वाली लाइसेंस प्राप्त सरकारी भर्ती एजेंसी।",
