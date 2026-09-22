@@ -167,24 +167,24 @@ function PhotorealisticWorldMap() {
 
   /* Destination pin coordinates calibrated onto photorealistic map overlay */
   const destinationPins = [
-    { id: "UAE", name: "Dubai, UAE", flag: "🇦🇪", x: "65%", y: "48%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
-    { id: "GER", name: "Berlin, Germany", flag: "🇩🇪", x: "51%", y: "32%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
-    { id: "UK", name: "London, UK", flag: "🇬🇧", x: "47%", y: "30%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
-    { id: "CAN", name: "Toronto, Canada", flag: "🇨🇦", x: "27%", y: "31%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
-    { id: "USA", name: "New York, USA", flag: "🇺🇸", x: "28%", y: "38%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
-    { id: "KSA", name: "Riyadh, Saudi", flag: "🇸🇦", x: "62%", y: "51%", jobs: "760+ Jobs", visa: "Work Visa" },
-    { id: "RUS", name: "Moscow, Russia", flag: "🇷🇺", x: "56%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
+    { id: "UAE", name: "Dubai, UAE", flag: "🇦🇪", x: "64%", y: "42%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
+    { id: "GER", name: "Berlin, Germany", flag: "🇩🇪", x: "51%", y: "30%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
+    { id: "UK", name: "London, UK", flag: "🇬🇧", x: "46%", y: "29%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
+    { id: "CAN", name: "Toronto, Canada", flag: "🇨🇦", x: "22%", y: "28%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
+    { id: "USA", name: "New York, USA", flag: "🇺🇸", x: "18%", y: "34%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
+    { id: "KSA", name: "Riyadh, Saudi", flag: "🇸🇦", x: "59%", y: "44%", jobs: "760+ Jobs", visa: "Work Visa" },
+    { id: "RUS", name: "Moscow, Russia", flag: "🇷🇺", x: "59%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
   ];
 
-  /* Arc paths starting from India origin (71%, 48%) */
+  /* Arc paths starting from India origin (76%, 46%) */
   const flightPaths = [
-    { id: "UAE", d: "M 71 48 Q 68 45, 65 48", color: "#10b981" },
-    { id: "GER", d: "M 71 48 Q 62 25, 51 32", color: "#06b6d4" },
-    { id: "UK", d: "M 71 48 Q 58 20, 47 30", color: "#3b82f6" },
-    { id: "CAN", d: "M 71 48 Q 48 10, 27 31", color: "#10b981" },
-    { id: "USA", d: "M 71 48 Q 49 18, 28 38", color: "#f59e0b" },
-    { id: "KSA", d: "M 71 48 Q 66 47, 62 51", color: "#10b981" },
-    { id: "RUS", d: "M 71 48 Q 63 20, 56 24", color: "#06b6d4" },
+    { id: "UAE", d: "M 76 46 Q 70 41, 64 42", color: "#10b981" },
+    { id: "GER", d: "M 76 46 Q 63 24, 51 30", color: "#06b6d4" },
+    { id: "UK", d: "M 76 46 Q 60 22, 46 29", color: "#3b82f6" },
+    { id: "CAN", d: "M 76 46 Q 48 10, 22 28", color: "#10b981" },
+    { id: "USA", d: "M 76 46 Q 46 16, 18 34", color: "#f59e0b" },
+    { id: "KSA", d: "M 76 46 Q 67 40, 59 44", color: "#10b981" },
+    { id: "RUS", d: "M 76 46 Q 67 22, 59 24", color: "#06b6d4" },
   ];
 
   return (
@@ -226,18 +226,18 @@ function PhotorealisticWorldMap() {
 
           {/* SVG Flight Path Lines Overlay */}
           <svg
-            viewBox="0 0 100 60"
+            viewBox="0 0 100 100"
             className="absolute inset-0 w-full h-full pointer-events-none"
             preserveAspectRatio="none"
           >
             {/* Latitude / Longitude Grid Lines */}
-            <g stroke="rgba(255, 255, 255, 0.1)" strokeWidth="0.15" strokeDasharray="1 1">
-              <line x1="0" y1="15" x2="100" y2="15" />
-              <line x1="0" y1="30" x2="100" y2="30" />
-              <line x1="0" y1="45" x2="100" y2="45" />
-              <line x1="25" y1="0" x2="25" y2="60" />
-              <line x1="50" y1="0" x2="50" y2="60" />
-              <line x1="75" y1="0" x2="75" y2="60" />
+            <g stroke="rgba(255, 255, 255, 0.1)" strokeWidth="0.2" strokeDasharray="1 1">
+              <line x1="0" y1="25" x2="100" y2="25" />
+              <line x1="0" y1="50" x2="100" y2="50" />
+              <line x1="0" y1="75" x2="100" y2="75" />
+              <line x1="25" y1="0" x2="25" y2="100" />
+              <line x1="50" y1="0" x2="50" y2="100" />
+              <line x1="75" y1="0" x2="75" y2="100" />
             </g>
 
             {/* Flight Path Arc Lines */}
@@ -257,9 +257,9 @@ function PhotorealisticWorldMap() {
               );
             })}
 
-            {/* Origin Placement Hub (India: 71, 48) */}
-            <circle cx="71" cy="48" r="1.4" fill="#10b981" />
-            <circle cx="71" cy="48" r="3" fill="none" stroke="#10b981" strokeWidth="0.4" className="animate-ping" />
+            {/* Origin Placement Hub (India: 76, 46) */}
+            <circle cx="76" cy="46" r="1.5" fill="#10b981" />
+            <circle cx="76" cy="46" r="3" fill="none" stroke="#10b981" strokeWidth="0.4" className="animate-ping" />
           </svg>
 
           {/* Destination Pins & Hotspots */}
