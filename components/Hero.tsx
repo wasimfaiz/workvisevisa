@@ -175,13 +175,13 @@ function PhotorealisticWorldMap() {
 
   /* Destination pin coordinates calibrated onto photorealistic map overlay */
   const destinationPins = [
-    { id: "UAE", name: "Dubai, UAE", short: "Dubai", flag: "🇦🇪", x: "64%", y: "42%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
-    { id: "GER", name: "Berlin, Germany", short: "Berlin", flag: "🇩🇪", x: "51%", y: "30%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
-    { id: "UK", name: "London, UK", short: "London", flag: "🇬🇧", x: "46%", y: "29%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
-    { id: "CAN", name: "Toronto, Canada", short: "Toronto", flag: "🇨🇦", x: "22%", y: "28%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
-    { id: "USA", name: "New York, USA", short: "New York", flag: "🇺🇸", x: "18%", y: "34%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
-    { id: "KSA", name: "Riyadh, Saudi", short: "Riyadh", flag: "🇸🇦", x: "59%", y: "44%", jobs: "760+ Jobs", visa: "Work Visa" },
-    { id: "RUS", name: "Moscow, Russia", short: "Moscow", flag: "🇷🇺", x: "59%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
+    { id: "UAE", name: "Dubai, UAE", short: "Dubai", code: "ae", x: "64%", y: "42%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
+    { id: "GER", name: "Berlin, Germany", short: "Berlin", code: "de", x: "51%", y: "30%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
+    { id: "UK", name: "London, UK", short: "London", code: "gb", x: "46%", y: "29%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
+    { id: "CAN", name: "Toronto, Canada", short: "Toronto", code: "ca", x: "22%", y: "28%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
+    { id: "USA", name: "New York, USA", short: "New York", code: "us", x: "18%", y: "34%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
+    { id: "KSA", name: "Riyadh, Saudi", short: "Riyadh", code: "sa", x: "59%", y: "44%", jobs: "760+ Jobs", visa: "Work Visa" },
+    { id: "RUS", name: "Moscow, Russia", short: "Moscow", code: "ru", x: "59%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
   ];
 
   /* Arc paths starting from India origin (76%, 46%) */
@@ -239,7 +239,11 @@ function PhotorealisticWorldMap() {
           {activePinData && (
             <div className="absolute top-3 left-3 right-3 sm:left-4 sm:right-auto z-30 flex items-center justify-between gap-3 px-3 py-2 rounded-xl border border-white/20 bg-slate-950/80 backdrop-blur-md text-white shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-2">
-                <span className="text-base">{activePinData.flag}</span>
+                <img
+                  src={`https://flagcdn.com/w80/${activePinData.code}.png`}
+                  alt={activePinData.name}
+                  className="w-5 h-3.5 object-cover rounded shadow-2xs shrink-0 border border-white/20"
+                />
                 <div>
                   <div className="flex items-center gap-1.5">
                     <span className="text-xs font-bold text-white tracking-wide">{activePinData.name}</span>
@@ -308,8 +312,13 @@ function PhotorealisticWorldMap() {
             className="absolute z-20 transform -translate-x-1/2 -translate-y-full mb-1 pointer-events-none"
             style={{ left: "76%", top: "45%" }}
           >
-            <div className="flex items-center gap-1 bg-emerald-950/85 border border-emerald-400/70 backdrop-blur-md px-1.5 py-0.5 rounded-md shadow-lg text-[9px] font-bold text-emerald-300">
-              <span>🇮🇳</span> India Hub
+            <div className="flex items-center gap-1.5 bg-emerald-950/90 border border-emerald-400/70 backdrop-blur-md px-2 py-0.5 rounded-md shadow-lg text-[9px] font-bold text-emerald-300">
+              <img
+                src="https://flagcdn.com/w80/in.png"
+                alt="India"
+                className="w-3.5 h-2.5 object-cover rounded shadow-2xs shrink-0"
+              />
+              <span>India Hub</span>
             </div>
           </div>
 
@@ -326,28 +335,31 @@ function PhotorealisticWorldMap() {
                 >
                   <div className="relative flex items-center justify-center">
                     {isSelected && (
-                      <span className="absolute flex h-7 w-7 rounded-full bg-amber-400/40 animate-ping pointer-events-none" />
+                      <span className="absolute flex h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-amber-400/40 animate-ping pointer-events-none" />
                     )}
                     <div
-                      className={`relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border shadow-xl transition-all duration-300 ${
+                      className={`relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border shadow-xl transition-all duration-300 overflow-hidden ${
                         isSelected
-                          ? "bg-gradient-to-br from-amber-500 to-emerald-600 border-white text-white scale-125 z-40 shadow-amber-500/50"
-                          : "bg-slate-950/80 border-white/20 text-white backdrop-blur-md group-hover:border-emerald-400 group-hover:scale-110"
+                          ? "bg-gradient-to-br from-amber-500 to-emerald-600 border-white scale-125 z-40 shadow-amber-500/50 p-1"
+                          : "bg-slate-950/80 border-white/30 backdrop-blur-md group-hover:border-emerald-400 group-hover:scale-110 p-1"
                       }`}
                     >
-                      <span className="text-xs sm:text-sm">{pin.flag}</span>
+                      <img
+                        src={`https://flagcdn.com/w80/${pin.code}.png`}
+                        alt={pin.name}
+                        className="w-full h-full object-cover rounded-full"
+                      />
                     </div>
                   </div>
 
-                  {/* Clean Pin Label Badge */}
+                  {/* Clean Pin Label Badge (Short Name Only - No Country Code Text) */}
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded-md text-[9px] font-semibold whitespace-nowrap transition-all duration-200 pointer-events-none flex items-center gap-1 ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded-md text-[9px] font-semibold whitespace-nowrap transition-all duration-200 pointer-events-none ${
                       isSelected
                         ? "bg-amber-500 text-slate-950 font-bold shadow-md"
                         : "bg-slate-900/90 text-slate-200 border border-white/10 opacity-85 group-hover:opacity-100 group-hover:bg-slate-900"
                     }`}
                   >
-                    <span>{pin.flag}</span>
                     <span>{pin.short}</span>
                   </div>
                 </div>
