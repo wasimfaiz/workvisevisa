@@ -168,7 +168,7 @@ export default function FeaturedJobs() {
 
         {/* Category Filters */}
         <motion.div
-          className="flex items-center justify-start sm:justify-center gap-2.5 mb-12 overflow-x-auto pb-2 sm:pb-0 no-scrollbar max-w-full flex-nowrap sm:flex-wrap"
+          className="flex flex-wrap justify-center gap-2.5 mb-12"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -264,7 +264,7 @@ export default function FeaturedJobs() {
                   onClick={scrollToConsultation}
                   className="group/btn flex items-center justify-center gap-2 w-full rounded-xl bg-slate-900 py-3 text-xs font-bold text-white shadow-sm hover:bg-emerald-600 transition-all duration-200 cursor-pointer"
                 >
-                  Apply for Visa
+                  Apply & Claim Visa Sponsor
                   <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                 </a>
               </motion.div>

@@ -94,7 +94,7 @@ export default function ConsultationForm() {
   }
 
   const fieldClass = (field: keyof FormErrors) =>
-    `w-full rounded-xl border bg-slate-50 px-4 py-3.5 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 ${
+    `w-full rounded-xl border bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 ${
       errors[field]
         ? "border-red-400 focus:border-red-500"
         : "border-slate-200"
@@ -156,7 +156,7 @@ export default function ConsultationForm() {
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="relative rounded-3xl border border-slate-200/90 bg-white shadow-xl overflow-hidden p-5 sm:p-8 md:p-10"
+              className="relative rounded-3xl border border-slate-200/90 bg-white shadow-xl overflow-hidden p-8 sm:p-10"
             >
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
                 <div>

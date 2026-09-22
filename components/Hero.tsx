@@ -156,7 +156,7 @@ const placementMilestones = [
   },
 ];
 
-/* ── Photorealistic World Map Component ──────────────────────── */
+/* ── Photorealistic Satellite Motion World Map Component ─────── */
 function PhotorealisticWorldMap() {
   const [mounted, setMounted] = useState(false);
   const [activePin, setActivePin] = useState<string>("UAE");
@@ -341,13 +341,14 @@ function PhotorealisticWorldMap() {
 
                   {/* Clean Pin Label Badge */}
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded-md text-[9px] font-semibold whitespace-nowrap transition-all duration-200 pointer-events-none ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded-md text-[9px] font-semibold whitespace-nowrap transition-all duration-200 pointer-events-none flex items-center gap-1 ${
                       isSelected
                         ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                        : "bg-slate-900/90 text-slate-200 border border-white/10 opacity-75 group-hover:opacity-100 group-hover:bg-slate-900"
+                        : "bg-slate-900/90 text-slate-200 border border-white/10 opacity-85 group-hover:opacity-100 group-hover:bg-slate-900"
                     }`}
                   >
-                    {pin.short}
+                    <span>{pin.flag}</span>
+                    <span>{pin.short}</span>
                   </div>
                 </div>
               );
@@ -484,7 +485,7 @@ export default function Hero() {
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-lg font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
               >
                 {t.ctaExploreServices}
               </a>

@@ -246,9 +246,9 @@ export default function JobsPage() {
                         href={`https://wa.me/918130161603?text=${waMessage}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-emerald-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
+                        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-emerald-600/20 hover:bg-emerald-500 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                       >
-                        <FaWhatsapp className="w-3.5 h-3.5" />
+                        <FaWhatsapp className="w-4 h-4" />
                         <span>{t.applyWhatsApp}</span>
                       </a>
                     </div>
@@ -278,11 +278,11 @@ export default function JobsPage() {
                 href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20an%20employer/client%20and%20want%20to%20post%20a%20new%20job%20vacancy/demand."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-emerald-800 hover:bg-emerald-50 px-5 py-2.5 text-xs sm:text-sm font-extrabold shadow-md hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-500 hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
               >
-                <FaWhatsapp className="w-4 h-4 text-emerald-600" />
+                <FaWhatsapp className="w-5 h-5" />
                 <span>{t.employerCtaBtn}</span>
-                <FaArrowRight className="w-3.5 h-3.5" />
+                <FaArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>

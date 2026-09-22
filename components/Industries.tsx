@@ -187,9 +187,9 @@ export default function Industries() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-500/25 hover:bg-emerald-400 hover:scale-[1.02] transition-all cursor-pointer"
               >
-                <FaWhatsapp className="w-4 h-4" />
-                <span>Apply for Work Visa</span>
-                <FaArrowRight className="w-3.5 h-3.5" />
+                <FaWhatsapp className="w-5 h-5" />
+                <span>Apply for Blue-Collar Visas Now</span>
+                <FaArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>
