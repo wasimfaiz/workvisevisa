@@ -191,7 +191,7 @@ export default function SalaryCalculator() {
                       onClick={() => setSelectedExp(idx)}
                       className={`p-3 rounded-xl text-xs font-bold text-center transition-all cursor-pointer ${
                         selectedExp === idx
-                          ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md"
+                          ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md"
                           : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80"
                       }`}
                     >
@@ -287,7 +287,7 @@ export default function SalaryCalculator() {
               <a
                 href="#consultation"
                 onClick={scrollToForm}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 py-4 text-sm font-extrabold text-white shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4 text-sm font-extrabold text-white shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 Claim This Route & Book Free Call
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

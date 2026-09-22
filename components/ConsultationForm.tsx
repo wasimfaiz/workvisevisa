@@ -115,7 +115,7 @@ export default function ConsultationForm() {
             transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-              <FaWandMagicSparkles className="w-3.5 h-3.5 text-amber-600" /> Start Your Journey
+              <FaWandMagicSparkles className="w-3.5 h-3.5 text-emerald-600" /> Start Your Journey
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight tracking-tight">
               {t.title}
@@ -265,7 +265,7 @@ export default function ConsultationForm() {
 
               <button
                 type="submit"
-                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <FaPaperPlane className="w-4 h-4" />
                 Reserve Free Consultation Slot

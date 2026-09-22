@@ -156,7 +156,7 @@ export default function FeaturedJobs() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaFire className="w-3.5 h-3.5 text-amber-500 animate-pulse" /> {t.badge}
+            <FaFire className="w-3.5 h-3.5 text-emerald-600 animate-pulse" /> {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}
@@ -215,8 +215,8 @@ export default function FeaturedJobs() {
                     </div>
 
                     {job.urgent ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 border border-amber-200 px-2.5 py-0.5 text-[11px] font-bold text-amber-800">
-                        <FaBolt className="w-3 h-3 text-amber-600" />
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800">
+                        <FaBolt className="w-3 h-3 text-emerald-600" />
                         Urgent · {job.openings} Openings
                       </span>
                     ) : (
@@ -262,7 +262,7 @@ export default function FeaturedJobs() {
                 <a
                   href="#consultation"
                   onClick={scrollToConsultation}
-                  className="group/btn flex items-center justify-center gap-2 w-full rounded-xl bg-slate-900 py-3 text-xs font-bold text-white shadow-sm hover:bg-gradient-to-r hover:from-amber-500 hover:to-amber-600 transition-all duration-200 cursor-pointer"
+                  className="group/btn flex items-center justify-center gap-2 w-full rounded-xl bg-slate-900 py-3 text-xs font-bold text-white shadow-sm hover:bg-emerald-600 transition-all duration-200 cursor-pointer"
                 >
                   Apply & Claim Visa Sponsor
                   <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />

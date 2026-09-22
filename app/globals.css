@@ -50,16 +50,16 @@ body {
   background-size: 32px 32px;
 }
 
-/* ── Gradient Text (Deep Emerald / Teal / Cyan for Light Theme) ── */
+/* ── Gradient Text (Brand Emerald / Teal / Dark Slate Navy) ── */
 .gradient-text {
-  background: linear-gradient(135deg, #059669, #0d9488, #2563eb);
+  background: linear-gradient(135deg, #059669, #0d9488, #0f172a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-gold {
-  background: linear-gradient(135deg, #d97706, #b45309);
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #059669, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

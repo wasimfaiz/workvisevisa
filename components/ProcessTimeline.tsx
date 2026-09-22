@@ -78,7 +78,7 @@ export default function ProcessTimeline() {
                   >
                     <Icon className="w-6 h-6" />
 
-                    <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-xs font-bold text-white shadow-sm">
+                    <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 text-xs font-bold text-white shadow-sm">
                       0{step.step}
                     </span>
                   </div>

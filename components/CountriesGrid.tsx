@@ -194,8 +194,8 @@ function CountryCard({
               className="overflow-hidden"
             >
               <div className="pt-4 mt-4 border-t border-slate-100">
-                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">
-                  <FaWandMagicSparkles className="w-3 h-3 text-amber-600" /> Visa Categories
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">
+                  <FaWandMagicSparkles className="w-3 h-3 text-emerald-600" /> Visa Categories
                 </div>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {country.visaTypes.map((v) => (

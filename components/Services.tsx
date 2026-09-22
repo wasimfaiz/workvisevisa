@@ -43,7 +43,7 @@ export default function Services() {
           transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaWandMagicSparkles className="w-3.5 h-3.5 text-amber-600" /> {t.badge}
+            <FaWandMagicSparkles className="w-3.5 h-3.5 text-emerald-600" /> {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
             {t.title}

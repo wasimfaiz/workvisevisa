@@ -132,7 +132,7 @@ export default function Testimonials() {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <FaStar
                         key={i}
-                        className="w-4 h-4 text-amber-500"
+                        className="w-4 h-4 text-emerald-500"
                       />
                     ))}
                   </div>

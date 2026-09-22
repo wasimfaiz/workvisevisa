@@ -16,8 +16,6 @@ import {
 const quickLinks = [
   { label: "Countries", href: "/countries" },
   { label: "Services", href: "/#services" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Why Us", href: "/#why-us" },
   { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
   { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
@@ -49,11 +47,13 @@ export default function Footer() {
           {/* Logo Image: /images/workwise_logo.png */}
           <div className="lg:col-span-1">
             <div className="mb-5">
-              <img
-                src="/images/workwise_logo.png"
-                alt="WorkWise Visa Logo"
-                className="h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[250px] w-auto object-contain hover:scale-105 transition-transform duration-200"
-              />
+              <a href="/" className="inline-block group">
+                <img
+                  src="/images/workwise_logo.png"
+                  alt="WorkWise Visa Logo"
+                  className="h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[250px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                />
+              </a>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
               {t.desc}

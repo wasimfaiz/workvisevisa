@@ -25,7 +25,6 @@ export default function Navbar() {
   const navLinks = [
     { label: t.jobs || "Jobs", href: "/jobs" },
     { label: t.countries, href: "/countries" },
-    { label: t.industries, href: "/#industries" },
     { label: t.aboutUs, href: "/about" },
     { label: t.blogs, href: "/blogs" },
   ];
@@ -62,7 +61,7 @@ export default function Navbar() {
       >
         <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo Image: /images/workwise_logo.png */}
-          <a href="/#hero" onClick={(e) => scrollTo(e, "/#hero")} className="flex items-center group notranslate shrink-0" translate="no">
+          <a href="/" className="flex items-center group notranslate shrink-0" translate="no">
             <img
               src="/images/workwise_logo.png"
               alt="WorkWise Visa Logo"

@@ -278,7 +278,7 @@ function PhotorealisticWorldMap() {
                     <div
                       className={`relative flex h-8 w-8 items-center justify-center rounded-full border shadow-xl transition-all duration-200 ${
                         isSelected
-                          ? "bg-gradient-to-br from-amber-500 to-amber-600 border-white text-white scale-125 z-40 shadow-amber-500/60"
+                          ? "bg-gradient-to-br from-emerald-600 to-teal-600 border-white text-white scale-125 z-40 shadow-emerald-600/60"
                           : "bg-slate-900/90 border-emerald-400 text-white group-hover:scale-110"
                       }`}
                     >
@@ -321,7 +321,7 @@ function PhotorealisticWorldMap() {
                 onClick={() => setActivePin(p.id)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   activePin === p.id
-                    ? "bg-amber-500 text-white shadow-sm"
+                    ? "bg-emerald-600 text-white shadow-sm"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
@@ -390,7 +390,7 @@ export default function Hero() {
                   {alert.role}
                 </span>
 
-                <span className="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-full border border-amber-300/60 whitespace-nowrap hidden sm:inline-block">
+                <span className="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300/60 whitespace-nowrap hidden sm:inline-block">
                   {alert.salary}
                 </span>
 
@@ -420,7 +420,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <FaWandMagicSparkles className="w-4 h-4 text-amber-600" />
+              <FaWandMagicSparkles className="w-4 h-4 text-emerald-600" />
               <span className="text-sm text-emerald-800 font-semibold">
                 {t.badge}
               </span>
@@ -454,7 +454,7 @@ export default function Hero() {
             >
               <a
                 href="#consultation"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 {t.ctaConsultation}
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -533,7 +533,7 @@ export default function Hero() {
                   ➔ {m.dest}
                 </span>
                 <span className="h-3.5 w-[1px] bg-slate-300" />
-                <span className="text-xs font-bold text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-full border border-amber-300/60 whitespace-nowrap">
+                <span className="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300/60 whitespace-nowrap">
                   {m.time}
                 </span>
               </div>

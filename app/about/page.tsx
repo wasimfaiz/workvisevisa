@@ -31,25 +31,21 @@ const companyValues = [
     title: "100% Ethical Recruitment",
     description: "Zero hidden charges or false job promises. We partner exclusively with pre-vetted international employers offering legally binding contracts.",
     icon: FaHandshake,
-    color: "emerald",
   },
   {
     title: "98% Visa Success Rate",
     description: "Every file undergoes a rigorous multi-tier audit before submission to eliminate embassy rejection risks.",
     icon: FaShield,
-    color: "amber",
   },
   {
     title: "Complete Landing Support",
     description: "Our support doesn't end at visa stamping. We assist with airport reception, temporary lodging, and local SIM/bank registration.",
     icon: FaPlaneArrival,
-    color: "teal",
   },
   {
     title: "Free Housing & Allowances",
     description: "We prioritize trade contracts that provide free employer accommodation, medical insurance, and transportation.",
     icon: FaFileContract,
-    color: "blue",
   },
 ];
 

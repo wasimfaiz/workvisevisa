@@ -106,7 +106,7 @@ export default function Industries() {
                 ? "bg-rose-50 text-rose-700 border-rose-200"
                 : ind.demandLevel === "Very High"
                 ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                : "bg-amber-50 text-amber-800 border-amber-200";
+                : "bg-teal-50 text-teal-800 border-teal-200";
 
             return (
               <motion.article

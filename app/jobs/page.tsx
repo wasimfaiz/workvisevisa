@@ -59,7 +59,7 @@ export default function JobsPage() {
               transition={{ duration: 0.5 }}
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-6 shadow-xs">
-                <FaFire className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
+                <FaFire className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                 {t.badge}
               </div>
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto">
@@ -191,14 +191,14 @@ export default function JobsPage() {
                       {/* Interview & Duty Details */}
                       <div className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
                         <div className="flex items-start gap-2">
-                          <FaCalendarDays className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                          <FaCalendarDays className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                           <div>
                             <span className="font-bold text-slate-900">{t.interviewDateLabel}: </span>
                             <span>{demand.interviewDate}</span>
                           </div>
                         </div>
                         <div className="flex items-start gap-2">
-                          <FaClock className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                          <FaClock className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                           <div>
                             <span className="font-bold text-slate-900">{t.dutyLabel}: </span>
                             <span>{demand.dutyHours}</span>
@@ -278,7 +278,7 @@ export default function JobsPage() {
                 href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20an%20employer/client%20and%20want%20to%20post%20a%20new%20job%20vacancy/demand."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-amber-500/25 hover:bg-amber-400 hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-500 hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 <span>{t.employerCtaBtn}</span>
