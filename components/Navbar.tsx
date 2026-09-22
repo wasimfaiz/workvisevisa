@@ -65,7 +65,7 @@ export default function Navbar() {
             <img
               src="/images/workwise_logo.png"
               alt="WorkWise Visa Logo"
-              className="h-14 sm:h-[76px] max-w-[320px] sm:max-w-[420px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
+              className="h-11 sm:h-[62px] max-w-[260px] sm:max-w-[340px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
             />
           </a>
 
