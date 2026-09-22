@@ -126,11 +126,28 @@ export default function FAQ() {
   const toggle = (i: number) =>
     setOpenIndex((prev) => (prev === i ? null : i));
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   return (
     <section
       id="faq"
-      className="relative py-24 md:py-32 overflow-hidden bg-slate-50"
+      className="relative border-t border-slate-200 bg-slate-50 py-16 sm:py-24 overflow-hidden"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="absolute inset-0 section-alt pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

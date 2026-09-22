@@ -19,40 +19,129 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WorkWise Visa | Your Career. Anywhere in the World.",
+  metadataBase: new URL("https://www.workwisevisa.com"),
+  title: "WorkWise Visa | Licensed Overseas Job Placement & Work Visa Consultancy",
   description:
-    "Premium international job placement and visa consultancy. We help professionals secure overseas employment and work visas across Gulf countries, Schengen/EU, Russia, Canada, USA, and the UK. 5,000+ successful placements. 98% visa approval rate.",
+    "Trusted international work visa consultancy and overseas recruitment agency. Secure verified jobs abroad for trade workers, drivers, CNC operators, welders & caregivers across Gulf, Schengen Europe, UK, Russia & Canada. 5,000+ successful placements.",
   keywords: [
     "work visa consultancy",
-    "international job placement",
-    "overseas employment",
-    "gulf jobs",
-    "canada immigration",
-    "uk work visa",
-    "eu blue card",
-    "schengen work visa",
-    "visa processing",
-    "job abroad",
+    "overseas job placement agency",
+    "licensed recruitment agency india",
+    "gulf work visa consultant",
+    "gulf job agency noida patna",
+    "schengen work permit consultant",
+    "croatia poland work visa",
+    "russia welder driver jobs",
+    "heavy driver jobs abroad",
+    "cnc operator jobs europe gulf",
+    "gamca medical visa process",
+    "embassy visa attestation support",
+    "blue collar overseas jobs",
+    "workwise visa europass immigration",
   ],
+  alternates: {
+    canonical: "https://www.workwisevisa.com",
+  },
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "WorkWise Visa — Your Career. Anywhere in the World.",
+    title: "WorkWise Visa — Licensed Overseas Job Placement & Work Visa Agency",
     description:
-      "Premium international job placement and visa consultancy. 5,000+ successful placements across 12+ countries with a 98% visa approval rate.",
-    type: "website",
+      "Premium international recruitment and work visa consultancy. Connecting skilled trade candidates with 100% verified overseas employers with guaranteed visa sponsorship.",
+    url: "https://www.workwisevisa.com",
     siteName: "WorkWise Visa",
+    images: [
+      {
+        url: "/images/workwise_logo.png",
+        width: 1200,
+        height: 630,
+        alt: "WorkWise Visa - Licensed Overseas Placement Agency",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WorkWise Visa — Your Career. Anywhere in the World.",
+    title: "WorkWise Visa — Licensed Overseas Job Placement & Work Visa Agency",
     description:
-      "Premium international job placement and visa consultancy. 5,000+ successful placements across 12+ countries.",
+      "Trusted international work visa consultancy. 5,000+ placements in Gulf, Europe, Russia & Canada with a 98% visa approval rate.",
+    images: ["/images/workwise_logo.png"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLdSchema = {
+  "@context": "https://schema.org",
+  "@type": "EmploymentAgency",
+  "name": "WorkWise Visa",
+  "legalName": "Europass Immigration Pvt Ltd",
+  "url": "https://www.workwisevisa.com",
+  "logo": "https://www.workwisevisa.com/images/workwise_logo.png",
+  "image": "https://www.workwisevisa.com/images/workwise_logo.png",
+  "description":
+    "Licensed international work visa consultancy and overseas job placement agency connecting skilled trade workers, drivers, technicians, and caregivers with verified employers in Gulf, Schengen Europe, UK, Russia, and Canada.",
+  "telephone": "+918130161603",
+  "email": "workwisevisa@gmail.com",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Urbtech Trade Centre, D-701 C, Sector 132",
+      "addressLocality": "Noida",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "201304",
+      "addressCountry": "IN",
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress":
+        "6th floor office no 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri",
+      "addressLocality": "Patna",
+      "addressRegion": "Bihar",
+      "postalCode": "800001",
+      "addressCountry": "IN",
+    },
+  ],
+  "sameAs": [
+    "https://www.instagram.com/workwisevisa/",
+    "https://www.facebook.com/workwisevisa/",
+    "https://www.linkedin.com/company/workwisevisa/",
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "5000",
+  },
+  "areaServed": [
+    "Gulf Countries",
+    "UAE",
+    "Saudi Arabia",
+    "Qatar",
+    "Kuwait",
+    "Oman",
+    "Bahrain",
+    "Schengen Area",
+    "Croatia",
+    "Poland",
+    "Romania",
+    "Russia",
+    "United Kingdom",
+    "Canada",
+  ],
+  "priceRange": "$$",
 };
 
 export default function RootLayout({
@@ -80,6 +169,11 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
+        <Script
+          id="json-ld-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
+        />
       </head>
       <body className="min-h-screen">
         <noscript>

@@ -376,7 +376,7 @@ export default function Hero() {
                   </span>
                   <img
                     src={`https://flagcdn.com/w80/${alert.code}.png`}
-                    alt={alert.country}
+                    alt={`${alert.country} work visa destination flag`}
                     className="w-4 h-3 object-cover rounded shadow-2xs shrink-0 border border-slate-200"
                   />
                   <span className="text-xs font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
