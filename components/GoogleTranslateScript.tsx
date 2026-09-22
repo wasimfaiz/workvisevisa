@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import { purgeAllTranslateCookies } from "@/context/LanguageContext";
+
 export default function GoogleTranslateScript() {
   useEffect(() => {
     // Keep body top 0px and hide top banner bar
@@ -30,11 +32,10 @@ export default function GoogleTranslateScript() {
       });
     };
 
-    // Load Google Translate script when user_lang is "hi" or "ar" or googtrans cookie exists
-    const userLang = localStorage.getItem("user_lang");
-    const hasGoogtransCookie = document.cookie.includes("googtrans=");
+    // Load Google Translate script ONLY when user_lang is explicitly "hi" or "ar"
+    const userLang = typeof window !== "undefined" ? localStorage.getItem("user_lang") : null;
 
-    if (userLang === "hi" || userLang === "ar" || hasGoogtransCookie) {
+    if (userLang === "hi" || userLang === "ar") {
       if (!document.getElementById("google-translate-script")) {
         window.googleTranslateElementInit = () => {
           if (window.google?.translate?.TranslateElement) {
@@ -55,6 +56,9 @@ export default function GoogleTranslateScript() {
         script.async = true;
         document.body.appendChild(script);
       }
+    } else {
+      // Strictly default to English: Purge any leftover google translation cookies
+      purgeAllTranslateCookies();
     }
 
     const intervalId = setInterval(suppressTranslateBanner, 150);

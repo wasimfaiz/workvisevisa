@@ -30,14 +30,25 @@ const LanguageContext = createContext<LanguageContextType>({
 export const purgeAllTranslateCookies = () => {
   if (typeof window === "undefined") return;
   const hostname = window.location.hostname;
-  const paths = ["/", ""];
+  const parts = hostname.split(".");
   const domains = ["", hostname, `.${hostname}`];
 
-  domains.forEach((domain) => {
-    paths.forEach((path) => {
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path};${
-        domain ? ` domain=${domain};` : ""
-      }`;
+  // Include parent domains for hosting subdomains (e.g. www.workwisevisa.com -> workwisevisa.com)
+  for (let i = 0; i < parts.length - 1; i++) {
+    const parentDomain = parts.slice(i).join(".");
+    domains.push(parentDomain, `.${parentDomain}`);
+  }
+
+  const paths = ["/", "", "/en", "/ar", "/hi"];
+  const cookieNames = ["googtrans", "googtrans_ext", "googtrans_default"];
+
+  cookieNames.forEach((name) => {
+    domains.forEach((domain) => {
+      paths.forEach((path) => {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path};${
+          domain ? ` domain=${domain};` : ""
+        }`;
+      });
     });
   });
 };
@@ -46,7 +57,7 @@ export const applyTranslateCookie = (langCode: LanguageCode) => {
   if (typeof window === "undefined") return;
   purgeAllTranslateCookies();
 
-  if (langCode !== "en") {
+  if (langCode === "hi" || langCode === "ar") {
     const hostname = window.location.hostname;
     const val = `/en/${langCode}`;
     document.cookie = `googtrans=${val}; path=/;`;
@@ -64,10 +75,11 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     const savedLang = localStorage.getItem("user_lang") as LanguageCode;
     if (savedLang === "hi" || savedLang === "ar") {
       setCurrentLang(savedLang);
+      applyTranslateCookie(savedLang);
     } else {
+      localStorage.setItem("user_lang", "en");
       setCurrentLang("en");
       purgeAllTranslateCookies();
-      localStorage.setItem("user_lang", "en");
     }
   }, []);
 
