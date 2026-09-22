@@ -156,24 +156,32 @@ const placementMilestones = [
   },
 ];
 
-/* ── Photorealistic Satellite Motion World Map Component ─────── */
+/* ── Photorealistic World Map Component ──────────────────────── */
 function PhotorealisticWorldMap() {
   const [mounted, setMounted] = useState(false);
   const [activePin, setActivePin] = useState<string>("UAE");
 
   useEffect(() => {
     setMounted(true);
+    const interval = setInterval(() => {
+      setActivePin((prev) => {
+        const ids = ["UAE", "GER", "UK", "CAN", "USA", "KSA", "RUS"];
+        const idx = ids.indexOf(prev);
+        return ids[(idx + 1) % ids.length];
+      });
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   /* Destination pin coordinates calibrated onto photorealistic map overlay */
   const destinationPins = [
-    { id: "UAE", name: "Dubai, UAE", flag: "🇦🇪", x: "64%", y: "42%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
-    { id: "GER", name: "Berlin, Germany", flag: "🇩🇪", x: "51%", y: "30%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
-    { id: "UK", name: "London, UK", flag: "🇬🇧", x: "46%", y: "29%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
-    { id: "CAN", name: "Toronto, Canada", flag: "🇨🇦", x: "22%", y: "28%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
-    { id: "USA", name: "New York, USA", flag: "🇺🇸", x: "18%", y: "34%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
-    { id: "KSA", name: "Riyadh, Saudi", flag: "🇸🇦", x: "59%", y: "44%", jobs: "760+ Jobs", visa: "Work Visa" },
-    { id: "RUS", name: "Moscow, Russia", flag: "🇷🇺", x: "59%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
+    { id: "UAE", name: "Dubai, UAE", short: "Dubai", flag: "🇦🇪", x: "64%", y: "42%", jobs: "1,400+ Jobs", visa: "Green / Golden Visa" },
+    { id: "GER", name: "Berlin, Germany", short: "Berlin", flag: "🇩🇪", x: "51%", y: "30%", jobs: "980+ Jobs", visa: "EU Blue Card / Opportunity Card" },
+    { id: "UK", name: "London, UK", short: "London", flag: "🇬🇧", x: "46%", y: "29%", jobs: "1,150+ Jobs", visa: "Skilled Worker Visa" },
+    { id: "CAN", name: "Toronto, Canada", short: "Toronto", flag: "🇨🇦", x: "22%", y: "28%", jobs: "850+ Jobs", visa: "Express Entry / PNP" },
+    { id: "USA", name: "New York, USA", short: "New York", flag: "🇺🇸", x: "18%", y: "34%", jobs: "1,200+ Jobs", visa: "H-1B / O-1 / L-1" },
+    { id: "KSA", name: "Riyadh, Saudi", short: "Riyadh", flag: "🇸🇦", x: "59%", y: "44%", jobs: "760+ Jobs", visa: "Work Visa" },
+    { id: "RUS", name: "Moscow, Russia", short: "Moscow", flag: "🇷🇺", x: "59%", y: "24%", jobs: "650+ Jobs", visa: "HQS Work Permit" },
   ];
 
   /* Arc paths starting from India origin (76%, 46%) */
@@ -187,8 +195,11 @@ function PhotorealisticWorldMap() {
     { id: "RUS", d: "M 76 46 Q 67 22, 59 24", color: "#06b6d4" },
   ];
 
+  const activePinData = destinationPins.find((p) => p.id === activePin);
+  const activePathObj = flightPaths.find((fp) => fp.id === activePin);
+
   return (
-    <div className="relative w-full max-w-[620px] h-[500px] sm:h-[540px] lg:h-[560px] flex items-center justify-center">
+    <div className="relative w-full max-w-[620px] h-[360px] sm:h-[480px] lg:h-[520px] flex items-center justify-center">
       {/* Ambient background glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-96 h-96 rounded-full bg-emerald-500/10 blur-[90px]" />
@@ -224,6 +235,24 @@ function PhotorealisticWorldMap() {
           {/* Map Overlay Gradients */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30 pointer-events-none" />
 
+          {/* Floating Glassmorphic Active HUD Banner */}
+          {activePinData && (
+            <div className="absolute top-3 left-3 right-3 sm:left-4 sm:right-auto z-30 flex items-center justify-between gap-3 px-3 py-2 rounded-xl border border-white/20 bg-slate-950/80 backdrop-blur-md text-white shadow-2xl transition-all duration-300">
+              <div className="flex items-center gap-2">
+                <span className="text-base">{activePinData.flag}</span>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-white tracking-wide">{activePinData.name}</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+                      {activePinData.jobs}
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-300 font-medium">{activePinData.visa}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* SVG Flight Path Lines Overlay */}
           <svg
             viewBox="0 0 100 100"
@@ -231,7 +260,7 @@ function PhotorealisticWorldMap() {
             preserveAspectRatio="none"
           >
             {/* Latitude / Longitude Grid Lines */}
-            <g stroke="rgba(255, 255, 255, 0.1)" strokeWidth="0.2" strokeDasharray="1 1">
+            <g stroke="rgba(255, 255, 255, 0.08)" strokeWidth="0.2" strokeDasharray="1 1">
               <line x1="0" y1="25" x2="100" y2="25" />
               <line x1="0" y1="50" x2="100" y2="50" />
               <line x1="0" y1="75" x2="100" y2="75" />
@@ -249,18 +278,40 @@ function PhotorealisticWorldMap() {
                     d={fp.d}
                     fill="none"
                     stroke={active ? "#f59e0b" : fp.color}
-                    strokeWidth={active ? "0.9" : "0.5"}
+                    strokeWidth={active ? "1" : "0.4"}
                     strokeDasharray={active ? "none" : "2 1"}
-                    opacity={active ? "1" : "0.75"}
+                    opacity={active ? "1" : "0.45"}
                   />
                 </g>
               );
             })}
 
+            {/* Active Flight Signal Pulse travelling along path */}
+            {activePathObj && (
+              <g>
+                <circle r="1.8" fill="#f59e0b">
+                  <animateMotion path={activePathObj.d} dur="2.4s" repeatCount="indefinite" />
+                </circle>
+                <circle r="3.5" fill="none" stroke="#f59e0b" strokeWidth="0.4" opacity="0.6">
+                  <animateMotion path={activePathObj.d} dur="2.4s" repeatCount="indefinite" />
+                </circle>
+              </g>
+            )}
+
             {/* Origin Placement Hub (India: 76, 46) */}
             <circle cx="76" cy="46" r="1.5" fill="#10b981" />
-            <circle cx="76" cy="46" r="3" fill="none" stroke="#10b981" strokeWidth="0.4" className="animate-ping" />
+            <circle cx="76" cy="46" r="3.5" fill="none" stroke="#10b981" strokeWidth="0.5" className="animate-ping" />
           </svg>
+
+          {/* India Origin Hub Label Badge */}
+          <div
+            className="absolute z-20 transform -translate-x-1/2 -translate-y-full mb-1 pointer-events-none"
+            style={{ left: "76%", top: "45%" }}
+          >
+            <div className="flex items-center gap-1 bg-emerald-950/85 border border-emerald-400/70 backdrop-blur-md px-1.5 py-0.5 rounded-md shadow-lg text-[9px] font-bold text-emerald-300">
+              <span>🇮🇳</span> India Hub
+            </div>
+          </div>
 
           {/* Destination Pins & Hotspots */}
           {mounted &&
@@ -274,61 +325,33 @@ function PhotorealisticWorldMap() {
                   onClick={() => setActivePin(pin.id)}
                 >
                   <div className="relative flex items-center justify-center">
-                    <span className="absolute flex h-7 w-7 rounded-full bg-emerald-400/50 animate-ping" />
+                    {isSelected && (
+                      <span className="absolute flex h-7 w-7 rounded-full bg-amber-400/40 animate-ping pointer-events-none" />
+                    )}
                     <div
-                      className={`relative flex h-8 w-8 items-center justify-center rounded-full border shadow-xl transition-all duration-200 ${
+                      className={`relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border shadow-xl transition-all duration-300 ${
                         isSelected
-                          ? "bg-gradient-to-br from-emerald-600 to-teal-600 border-white text-white scale-125 z-40 shadow-emerald-600/60"
-                          : "bg-slate-900/90 border-emerald-400 text-white group-hover:scale-110"
+                          ? "bg-gradient-to-br from-amber-500 to-emerald-600 border-white text-white scale-125 z-40 shadow-amber-500/50"
+                          : "bg-slate-950/80 border-white/20 text-white backdrop-blur-md group-hover:border-emerald-400 group-hover:scale-110"
                       }`}
                     >
-                      <span className="text-xs">{pin.flag}</span>
+                      <span className="text-xs sm:text-sm">{pin.flag}</span>
                     </div>
                   </div>
 
-                  {/* Active Tooltip Info Card */}
+                  {/* Clean Pin Label Badge */}
                   <div
-                    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-40 rounded-xl border border-white/20 bg-slate-900/95 p-2.5 text-center shadow-2xl transition-all duration-200 pointer-events-none ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 mt-1 px-1.5 py-0.5 rounded-md text-[9px] font-semibold whitespace-nowrap transition-all duration-200 pointer-events-none ${
                       isSelected
-                        ? "opacity-100 scale-100 translate-y-0"
-                        : "opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0"
+                        ? "bg-amber-500 text-slate-950 font-bold shadow-md"
+                        : "bg-slate-900/90 text-slate-200 border border-white/10 opacity-75 group-hover:opacity-100 group-hover:bg-slate-900"
                     }`}
                   >
-                    <p className="text-xs font-bold text-white flex items-center justify-center gap-1">
-                      <span>{pin.flag}</span> {pin.name}
-                    </p>
-                    <p className="text-[11px] font-bold text-emerald-400 mt-0.5">
-                      {pin.jobs}
-                    </p>
-                    <p className="text-[10px] text-slate-300">
-                      {pin.visa}
-                    </p>
+                    {pin.short}
                   </div>
                 </div>
               );
             })}
-        </div>
-
-        {/* Map Footer Route Selector */}
-        <div className="flex items-center justify-between px-3 pt-2.5 border-t border-slate-100 z-20">
-          <span className="text-xs font-semibold text-slate-600">
-            Select route destination:
-          </span>
-          <div className="flex gap-1.5 flex-wrap">
-            {destinationPins.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setActivePin(p.id)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  activePin === p.id
-                    ? "bg-emerald-600 text-white shadow-sm"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                {p.flag}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </div>

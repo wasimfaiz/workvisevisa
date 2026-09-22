@@ -168,7 +168,7 @@ export default function FeaturedJobs() {
 
         {/* Category Filters */}
         <motion.div
-          className="flex flex-wrap justify-center gap-2.5 mb-12"
+          className="flex items-center justify-start sm:justify-center gap-2.5 mb-12 overflow-x-auto pb-2 sm:pb-0 no-scrollbar max-w-full flex-nowrap sm:flex-wrap"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
