@@ -11,6 +11,7 @@ import {
   FaFacebook,
   FaXTwitter,
   FaYoutube,
+  FaBuildingColumns,
 } from "react-icons/fa6";
 
 const quickLinks = [
@@ -46,14 +47,18 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo Image: /images/workwise_logo.png */}
           <div className="lg:col-span-1">
-            <div className="mb-5">
+            <div className="mb-4">
               <a href="/" className="inline-block group">
                 <img
                   src="/images/workwise_logo.png"
                   alt="WorkWise Visa Logo"
-                  className="h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[250px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                  className="h-12 sm:h-14 md:h-16 max-w-[200px] sm:max-w-[230px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
                 />
               </a>
+              <div className="mt-2 text-xs font-medium text-slate-600 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shrink-0" />
+                <span>A Unit of <strong className="font-extrabold text-slate-900">Europass Immigration Pvt Ltd</strong></span>
+              </div>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
               {t.desc}
@@ -155,8 +160,8 @@ export default function Footer() {
 
         {/* bottom bar */}
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-8">
-          <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} WorkWise Visa. All rights reserved.
+          <p className="text-xs text-slate-500 text-center sm:text-left">
+            © {new Date().getFullYear()} WorkWise Visa — A Unit of <strong className="text-slate-700 font-bold">Europass Immigration Pvt. Ltd.</strong> All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-slate-500 font-medium">
             <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>

@@ -84,7 +84,7 @@ export default function AboutPage() {
             </h1>
             
             <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
-              Since 2020, WorkWise Visa has been a trusted international placement and immigration consultancy — connecting over 5,000+ skilled trade workers, drivers, technicians, and caregivers with verified employers in 12+ nations.
+              Operating as a specialized brand entity of <strong>Europass Immigration Pvt. Ltd.</strong>, WorkWise Visa connects skilled trade workers, drivers, technicians, and caregivers with verified employers across 12+ nations.
             </p>
 
             {/* Impact Stats Grid */}
