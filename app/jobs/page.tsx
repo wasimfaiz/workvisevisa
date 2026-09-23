@@ -47,9 +47,9 @@ export default function JobsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-slate-50 pt-24 md:pt-32 pb-24">
+      <main className="min-h-screen bg-slate-50 pt-16 sm:pt-20 pb-20">
         {/* Page Hero Header */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 py-16 md:py-24 text-slate-900 border-b border-slate-200/80 shadow-xs">
+        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 pt-8 sm:pt-12 pb-12 sm:pb-16 text-slate-900 border-b border-slate-200/80 shadow-xs">
           <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
           
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

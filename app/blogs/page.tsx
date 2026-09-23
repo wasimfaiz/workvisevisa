@@ -39,9 +39,9 @@ export default function BlogsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 bg-slate-50 min-h-screen">
+      <main className="pt-16 sm:pt-20 pb-20 bg-slate-50 min-h-screen">
         {/* Page Hero Header */}
-        <section className="relative py-16 md:py-20 bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 text-slate-900 border-b border-slate-200/80 shadow-xs overflow-hidden">
+        <section className="relative pt-8 sm:pt-12 pb-12 sm:pb-16 bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 text-slate-900 border-b border-slate-200/80 shadow-xs overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-4 shadow-xs">

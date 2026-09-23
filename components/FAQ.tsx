@@ -155,10 +155,10 @@ export default function FAQ() {
           {/* Left Column: Heading, Subheading & Orbital Globe Visual */}
           <motion.div
             className="lg:col-span-5 lg:sticky lg:top-28 text-center lg:text-left"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.3 }}
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
               <FaCircleQuestion className="w-3.5 h-3.5" /> {t.badge}

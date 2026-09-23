@@ -67,10 +67,10 @@ export default function ProcessTimeline() {
                 <motion.div
                   key={step.step}
                   className="group relative flex lg:flex-col items-start lg:items-center lg:text-center gap-5 lg:gap-0"
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.3 }}
                 >
                   {/* Step node icon */}
                   <div

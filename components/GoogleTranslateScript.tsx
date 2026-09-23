@@ -65,6 +65,12 @@ export default function GoogleTranslateScript() {
     return () => clearInterval(intervalId);
   }, []);
 
+  const userLang = typeof window !== "undefined" ? localStorage.getItem("user_lang") : null;
+
+  if (userLang !== "hi" && userLang !== "ar") {
+    return null;
+  }
+
   return (
     <div
       id="google_translate_element"

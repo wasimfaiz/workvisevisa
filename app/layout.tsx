@@ -152,9 +152,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      translate="no"
       className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}
     >
       <head>
+        <meta name="google" content="notranslate" />
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)

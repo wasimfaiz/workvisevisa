@@ -51,6 +51,8 @@ export const purgeAllTranslateCookies = () => {
       });
     });
   });
+
+  document.documentElement.setAttribute("translate", "no");
 };
 
 export const applyTranslateCookie = (langCode: LanguageCode) => {
@@ -58,6 +60,7 @@ export const applyTranslateCookie = (langCode: LanguageCode) => {
   purgeAllTranslateCookies();
 
   if (langCode === "hi" || langCode === "ar") {
+    document.documentElement.removeAttribute("translate");
     const hostname = window.location.hostname;
     const val = `/en/${langCode}`;
     document.cookie = `googtrans=${val}; path=/;`;
@@ -65,6 +68,8 @@ export const applyTranslateCookie = (langCode: LanguageCode) => {
     if (hostname.includes(".")) {
       document.cookie = `googtrans=${val}; path=/; domain=.${hostname};`;
     }
+  } else {
+    document.documentElement.setAttribute("translate", "no");
   }
 };
 

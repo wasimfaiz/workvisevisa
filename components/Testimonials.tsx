@@ -42,9 +42,9 @@ export default function Testimonials() {
   };
 
   const variants = {
-    enter: (d: number) => ({ x: d > 0 ? 150 : -150, opacity: 0 }),
+    enter: (d: number) => ({ x: d > 0 ? 20 : -20, opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit: (d: number) => ({ x: d > 0 ? -150 : 150, opacity: 0 }),
+    exit: (d: number) => ({ x: d > 0 ? -20 : 20, opacity: 0 }),
   };
 
   const t = testimonials[current];

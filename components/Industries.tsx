@@ -111,11 +111,11 @@ export default function Industries() {
             return (
               <motion.article
                 key={ind.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-emerald-500/60 hover:shadow-xl hover:-translate-y-1"
-                initial={{ opacity: 0, y: 25 }}
+                className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-emerald-500/60 hover:shadow-md"
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.3 }}
               >
                 <div>
                   {/* Top card bar: Icon + Demand Badge */}

@@ -64,11 +64,11 @@ export default function WhyUs() {
             return (
               <motion.div
                 key={p.title}
-                className="group relative rounded-2xl border border-slate-200/90 bg-white p-7 transition-all duration-200 hover:border-emerald-500/50 hover:shadow-lg overflow-hidden shadow-xs"
-                initial={{ opacity: 0, y: 25 }}
+                className="group relative rounded-2xl border border-slate-200/90 bg-white p-7 transition-all duration-200 hover:border-emerald-500/50 hover:shadow-md overflow-hidden shadow-xs"
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.3 }}
               >
                 <div className="flex items-start justify-between mb-5">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-200">
