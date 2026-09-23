@@ -642,54 +642,6 @@ export const blogPosts: BlogPost[] = [
 ];
 
 // ── Job Demands ──────────────────────────────────────────────────
+// Job postings are managed dynamically via MongoDB Atlas and Admin Panel (/admin).
+export const jobDemands: JobDemand[] = [];
 
-export const jobDemands: JobDemand[] = [
-  {
-    id: "demand-dubai-mason-helper",
-    title: "Tile Mason & Helper",
-    company: "Dubai Project",
-    country: "Dubai, UAE",
-    flag: "🇦🇪",
-    category: "Construction & Civil",
-    salary: "1,200 – 1,800 AED",
-    totalOpenings: 10,
-    visaType: "Employment Visa",
-    interviewDate: "Direct Selection",
-    venue: "WorkWise Visa Office",
-    dutyHours: "Standard Duty + Overtime",
-    perks: [
-      "5 Tile Mason (Salary: 1,800 AED)",
-      "5 Helper (Salary: 1,200 AED)",
-    ],
-    requirements: [
-      "5 Tile Mason — Salary: 1,800 AED",
-      "5 Helper — Salary: 1,200 AED",
-    ],
-    postedDate: "Sep 17, 2026",
-    urgent: true,
-  },
-  {
-    id: "demand-dubai-cleaner-telugu",
-    title: "Cleaner",
-    company: "Dubai Project",
-    country: "Dubai, UAE",
-    flag: "🇦🇪",
-    category: "Cleaning & Support",
-    salary: "1,080 AED",
-    totalOpenings: 5,
-    visaType: "Employment Visa",
-    interviewDate: "Direct Selection",
-    venue: "WorkWise Visa Office",
-    dutyHours: "Standard Duty + Overtime",
-    perks: [
-      "5 Cleaner (Salary: 1,080 AED)",
-      "Only Telugu Speaking Candidates",
-    ],
-    requirements: [
-      "5 Cleaner — Salary: 1,080 AED",
-      "Only who can speak Telugu language",
-    ],
-    postedDate: "Sep 17, 2026",
-    urgent: true,
-  },
-];

@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import { jobDemands, JobDemand } from "@/lib/data";
+import { JobDemand } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 import {
@@ -23,6 +23,7 @@ import {
   FaArrowRight,
   FaXmark,
   FaCircleInfo,
+  FaSpinner,
 } from "react-icons/fa6";
 
 export default function JobsPage() {
@@ -31,9 +32,31 @@ export default function JobsPage() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDemand, setSelectedDemand] = useState<JobDemand | null>(null);
+  const [liveJobs, setLiveJobs] = useState<JobDemand[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch live jobs from API
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const res = await fetch("/api/jobs");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data)) {
+            setLiveJobs(json.data as JobDemand[]);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load jobs from API:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchJobs();
+  }, []);
 
   // Filter demands based on search query
-  const filteredDemands = jobDemands.filter((item) => {
+  const filteredDemands = liveJobs.filter((item) => {
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
     return (
@@ -98,8 +121,9 @@ export default function JobsPage() {
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-slate-200 pb-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">
-                All Job Vacancies & Client Demands ({filteredDemands.length})
+              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 flex items-center gap-3">
+                All Job Vacancies &amp; Client Demands ({filteredDemands.length})
+                {isLoading && <FaSpinner className="w-5 h-5 text-emerald-500 animate-spin" />}
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">
                 Direct employer vacancies with guaranteed work visa quotas and trade test selection dates
@@ -107,19 +131,29 @@ export default function JobsPage() {
             </div>
           </div>
 
-          {filteredDemands.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center py-20 rounded-3xl border border-dashed border-slate-300 bg-white p-8">
+              <FaSpinner className="w-10 h-10 text-emerald-600 animate-spin mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-800">Loading Job Vacancies…</h3>
+              <p className="text-sm text-slate-500 mt-1">Fetching latest openings from database</p>
+            </div>
+          ) : filteredDemands.length === 0 ? (
             <div className="text-center py-20 rounded-3xl border border-dashed border-slate-300 bg-white p-8">
               <FaBriefcase className="w-12 h-12 text-slate-300 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-slate-800">No Job Vacancies Found</h3>
               <p className="text-sm text-slate-500 mt-1 max-w-md mx-auto">
-                No matching vacancy found for "{searchQuery}". Try searching for another trade or country.
+                {searchQuery
+                  ? `No matching vacancy found for "${searchQuery}". Try searching for another trade or country.`
+                  : "Currently no vacancies are posted. Please check back soon."}
               </p>
-              <button
-                onClick={() => setSearchQuery("")}
-                className="mt-4 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-xs font-bold text-white hover:bg-emerald-600 transition-colors cursor-pointer"
-              >
-                Clear Search
-              </button>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-xs font-bold text-white hover:bg-emerald-600 transition-colors cursor-pointer"
+                >
+                  Clear Search
+                </button>
+              )}
             </div>
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
