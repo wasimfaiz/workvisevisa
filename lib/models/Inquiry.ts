@@ -5,12 +5,23 @@
 
 import mongoose, { Schema, Document, Model } from "mongoose";
 
+export type InquiryStatus =
+  | "new"
+  | "interested"
+  | "contacted"
+  | "in_progress"
+  | "payment_mode"
+  | "converted"
+  | "dnp"
+  | "not_interested"
+  | "closed";
+
 export interface IInquiry extends Document {
   name: string;
   phone: string;
   country: string;
   occupation: string;
-  status: "new" | "contacted" | "in_progress" | "converted" | "closed";
+  status: InquiryStatus;
   notes?: string;
   source?: string;
   createdAt: Date;
@@ -25,7 +36,17 @@ const InquirySchema = new Schema<IInquiry>(
     occupation: { type: String, required: true, trim: true },
     status: {
       type: String,
-      enum: ["new", "contacted", "in_progress", "converted", "closed"],
+      enum: [
+        "new",
+        "interested",
+        "contacted",
+        "in_progress",
+        "payment_mode",
+        "converted",
+        "dnp",
+        "not_interested",
+        "closed",
+      ],
       default: "new",
     },
     notes: { type: String, default: "" },

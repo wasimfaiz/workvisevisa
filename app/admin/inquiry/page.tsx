@@ -47,7 +47,16 @@ export interface InquiryItem {
   phone: string;
   country: string;
   occupation: string;
-  status: "new" | "contacted" | "in_progress" | "converted" | "closed";
+  status:
+    | "new"
+    | "interested"
+    | "contacted"
+    | "in_progress"
+    | "payment_mode"
+    | "converted"
+    | "dnp"
+    | "not_interested"
+    | "closed";
   notes?: string;
   source: string;
   createdAt: string;
@@ -93,8 +102,7 @@ export default function AdminInquiryPage() {
     phone: "",
     country: "Poland",
     customCountry: "",
-    occupation: "Warehouse Worker",
-    customOccupation: "",
+    occupation: "",
     status: "new" as InquiryItem["status"],
     source: "Walk-in Office",
     customSource: "",
@@ -136,10 +144,7 @@ export default function AdminInquiryPage() {
           ? newLead.customCountry.trim() || "Other"
           : newLead.country;
 
-      const selectedOccupation =
-        newLead.occupation === "Other"
-          ? newLead.customOccupation.trim() || "General / Not Specified"
-          : newLead.occupation;
+      const selectedOccupation = newLead.occupation.trim() || "General / Not Specified";
 
       const selectedSource =
         newLead.source === "Other"
@@ -172,8 +177,7 @@ export default function AdminInquiryPage() {
         phone: "",
         country: "Poland",
         customCountry: "",
-        occupation: "Warehouse Worker",
-        customOccupation: "",
+        occupation: "",
         status: "new",
         source: "Walk-in Office",
         customSource: "",
@@ -391,9 +395,13 @@ export default function AdminInquiryPage() {
   const stats = useMemo(() => {
     const total = inquiries.length;
     const newCount = inquiries.filter((i) => i.status === "new").length;
+    const interested = inquiries.filter((i) => i.status === "interested").length;
+    const dnp = inquiries.filter((i) => i.status === "dnp").length;
     const contacted = inquiries.filter((i) => i.status === "contacted").length;
     const inProgress = inquiries.filter((i) => i.status === "in_progress").length;
+    const paymentMode = inquiries.filter((i) => i.status === "payment_mode").length;
     const converted = inquiries.filter((i) => i.status === "converted").length;
+    const notInterested = inquiries.filter((i) => i.status === "not_interested").length;
     const closed = inquiries.filter((i) => i.status === "closed").length;
 
     const today = new Date().toDateString();
@@ -401,7 +409,19 @@ export default function AdminInquiryPage() {
       (i) => new Date(i.createdAt).toDateString() === today
     ).length;
 
-    return { total, newCount, contacted, inProgress, converted, closed, todayCount };
+    return {
+      total,
+      newCount,
+      interested,
+      dnp,
+      contacted,
+      inProgress,
+      paymentMode,
+      converted,
+      notInterested,
+      closed,
+      todayCount,
+    };
   }, [inquiries]);
 
   const uniqueCountries = useMemo(() => {
@@ -448,6 +468,20 @@ export default function AdminInquiryPage() {
           border: "1.5px solid #a7f3d0",
           label: "✨ New Lead",
         };
+      case "interested":
+        return {
+          background: "#f0fdf4",
+          color: "#15803d",
+          border: "1.5px solid #86efac",
+          label: "👍 Interested",
+        };
+      case "dnp":
+        return {
+          background: "#fff1f2",
+          color: "#be123c",
+          border: "1.5px solid #fecdd3",
+          label: "📵 DNP (Did Not Pick)",
+        };
       case "contacted":
         return {
           background: "#fffbeb",
@@ -462,6 +496,13 @@ export default function AdminInquiryPage() {
           border: "1.5px solid #bfdbfe",
           label: "⏳ In Progress",
         };
+      case "payment_mode":
+        return {
+          background: "#fdf4ff",
+          color: "#a21caf",
+          border: "1.5px solid #f5d0fe",
+          label: "💳 Payment Mode",
+        };
       case "converted":
         return {
           background: "#f5f3ff",
@@ -469,12 +510,19 @@ export default function AdminInquiryPage() {
           border: "1.5px solid #ddd6fe",
           label: "🎉 Converted",
         };
+      case "not_interested":
+        return {
+          background: "#fef2f2",
+          color: "#b91c1c",
+          border: "1.5px solid #fecaca",
+          label: "❌ Not Interested",
+        };
       case "closed":
         return {
           background: "#f1f5f9",
           color: "#64748b",
           border: "1.5px solid #cbd5e1",
-          label: "Closed",
+          label: "📁 Closed / Lost",
         };
       default:
         return {
@@ -605,9 +653,12 @@ export default function AdminInquiryPage() {
           {[
             { label: "Total Leads", value: stats.total, color: "#6366f1" },
             { label: "New Leads", value: stats.newCount, color: "#10b981" },
-            { label: "Contacted / In Progress", value: stats.contacted + stats.inProgress, color: "#f59e0b" },
-            { label: "Converted Clients", value: stats.converted, color: "#8b5cf6" },
-            { label: "Received Today", value: stats.todayCount, color: "#06b6d4" },
+            { label: "Interested", value: stats.interested, color: "#059669" },
+            { label: "DNP (Did Not Pick)", value: stats.dnp, color: "#e11d48" },
+            { label: "Payment Mode", value: stats.paymentMode, color: "#c026d3" },
+            { label: "In Progress / Contacted", value: stats.inProgress + stats.contacted, color: "#2563eb" },
+            { label: "Converted Clients", value: stats.converted, color: "#7c3aed" },
+            { label: "Not Interested", value: stats.notInterested, color: "#dc2626" },
           ].map((stat) => (
             <div key={stat.label} style={s.statCard}>
               <div style={{ fontSize: "28px", fontWeight: 800, color: stat.color }}>
@@ -707,10 +758,14 @@ export default function AdminInquiryPage() {
               {[
                 { id: "all", label: `All (${inquiries.length})` },
                 { id: "new", label: `✨ New (${stats.newCount})` },
+                { id: "interested", label: `👍 Interested (${stats.interested})` },
+                { id: "dnp", label: `📵 DNP (${stats.dnp})` },
                 { id: "contacted", label: `📞 Contacted (${stats.contacted})` },
                 { id: "in_progress", label: `⏳ In Progress (${stats.inProgress})` },
+                { id: "payment_mode", label: `💳 Payment Mode (${stats.paymentMode})` },
                 { id: "converted", label: `🎉 Converted (${stats.converted})` },
-                { id: "closed", label: `Closed (${stats.closed})` },
+                { id: "not_interested", label: `❌ Not Interested (${stats.notInterested})` },
+                { id: "closed", label: `📁 Closed (${stats.closed})` },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -994,10 +1049,14 @@ export default function AdminInquiryPage() {
                             }}
                           >
                             <option value="new">✨ New Lead</option>
+                            <option value="interested">👍 Interested</option>
+                            <option value="dnp">📵 DNP (Did Not Pick)</option>
                             <option value="contacted">📞 Contacted</option>
                             <option value="in_progress">⏳ In Progress</option>
+                            <option value="payment_mode">💳 Payment Mode</option>
                             <option value="converted">🎉 Converted</option>
-                            <option value="closed">Closed / Lost</option>
+                            <option value="not_interested">❌ Not Interested</option>
+                            <option value="closed">📁 Closed / Lost</option>
                           </select>
                         </td>
 
@@ -1386,41 +1445,22 @@ export default function AdminInquiryPage() {
                   )}
                 </div>
 
-                {/* Occupation */}
+                {/* Occupation / Trade - Full Manual Input */}
                 <div>
                   <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Occupation / Trade
+                    Occupation / Trade <span style={{ color: "#ef4444" }}>*</span>
                   </label>
-                  <select
-                    value={newLead.occupation}
-                    onChange={(e) => setNewLead({ ...newLead, occupation: e.target.value })}
-                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
-                  >
-                    <option value="Warehouse Worker">Warehouse Worker / Packer</option>
-                    <option value="Heavy Vehicle Driver">Heavy Vehicle / Truck Driver</option>
-                    <option value="Light Vehicle Driver">Light Vehicle / Taxi Driver</option>
-                    <option value="Factory Worker">Factory &amp; Assembly Worker</option>
-                    <option value="Welder / Fabricator">Welder &amp; Metal Fabricator</option>
-                    <option value="Electrician">Electrician / Technician</option>
-                    <option value="Construction Worker">Construction &amp; Masonry</option>
-                    <option value="Hospitality & Kitchen">Hospitality, Chef &amp; Kitchen</option>
-                    <option value="Hotel Housekeeping">Hotel Housekeeping &amp; Cleaning</option>
-                    <option value="Caregiver & Healthcare">Caregiver &amp; Healthcare</option>
-                    <option value="Agriculture & Farm">Agriculture &amp; Farming</option>
-                    <option value="Software Engineer / IT">Software Engineer / IT</option>
-                    <option value="General / Not Specified">General / Not Specified</option>
-                    <option value="Other">✏️ Other Occupation...</option>
-                  </select>
-                  {newLead.occupation === "Other" && (
+                  <div style={{ position: "relative" }}>
+                    <Briefcase style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
                     <input
                       type="text"
-                      placeholder="Enter custom occupation..."
-                      value={newLead.customOccupation}
-                      onChange={(e) => setNewLead({ ...newLead, customOccupation: e.target.value })}
-                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
-                      autoFocus
+                      required
+                      placeholder="e.g. Heavy Driver, CNC Operator, Welder, Electrician..."
+                      value={newLead.occupation}
+                      onChange={(e) => setNewLead({ ...newLead, occupation: e.target.value })}
+                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
                     />
-                  )}
+                  </div>
                 </div>
 
                 {/* Lead Source */}
@@ -1464,9 +1504,14 @@ export default function AdminInquiryPage() {
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
                     <option value="new">✨ New Lead</option>
+                    <option value="interested">👍 Interested</option>
+                    <option value="dnp">📵 DNP (Did Not Pick)</option>
                     <option value="contacted">📞 Contacted</option>
                     <option value="in_progress">⏳ In Progress</option>
+                    <option value="payment_mode">💳 Payment Mode</option>
                     <option value="converted">🎉 Converted</option>
+                    <option value="not_interested">❌ Not Interested</option>
+                    <option value="closed">📁 Closed / Lost</option>
                   </select>
                 </div>
 

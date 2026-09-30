@@ -23,7 +23,18 @@ export async function PATCH(
     await connectDB();
 
     const allowedUpdates: Record<string, unknown> = {};
-    if (body.status && ["new", "contacted", "in_progress", "converted", "closed"].includes(body.status)) {
+    const validStatuses = [
+      "new",
+      "interested",
+      "contacted",
+      "in_progress",
+      "payment_mode",
+      "converted",
+      "dnp",
+      "not_interested",
+      "closed",
+    ];
+    if (body.status && validStatuses.includes(body.status)) {
       allowedUpdates.status = body.status;
     }
     if (typeof body.notes === "string") {

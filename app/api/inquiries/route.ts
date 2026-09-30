@@ -70,7 +70,17 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
-    const validStatuses = ["new", "contacted", "in_progress", "converted", "closed"] as const;
+    const validStatuses = [
+      "new",
+      "interested",
+      "contacted",
+      "in_progress",
+      "payment_mode",
+      "converted",
+      "dnp",
+      "not_interested",
+      "closed",
+    ] as const;
     type InquiryStatus = (typeof validStatuses)[number];
     const inquiryStatus: InquiryStatus =
       typeof status === "string" && (validStatuses as readonly string[]).includes(status)
