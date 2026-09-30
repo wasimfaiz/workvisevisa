@@ -75,6 +75,9 @@ async function resolveAssignee(assignedToInput: unknown) {
   };
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // GET /api/inquiries (Admin only)
 export async function GET(request: NextRequest) {
   try {
@@ -106,21 +109,40 @@ export async function GET(request: NextRequest) {
 
     const inquiries = await Inquiry.find(query).sort({ createdAt: -1 }).lean();
 
-    const transformed = inquiries.map((inq) => ({
-      ...inq,
-      id: (inq._id as unknown as { toString(): string }).toString(),
-      _id: undefined,
-      __v: undefined,
-    }));
+    const transformed = inquiries.map((inq: any) => {
+      let cleanAssigned = { id: null as string | null, name: "", email: "", role: "" };
+      if (inq.assignedTo && typeof inq.assignedTo === "object") {
+        cleanAssigned = {
+          id: inq.assignedTo.id || null,
+          name: inq.assignedTo.name || "",
+          email: inq.assignedTo.email || "",
+          role: inq.assignedTo.role || "",
+        };
+      }
+      return {
+        ...inq,
+        id: (inq._id as unknown as { toString(): string }).toString(),
+        assignedTo: cleanAssigned,
+        _id: undefined,
+        __v: undefined,
+      };
+    });
 
     const newCount = transformed.filter((i) => i.status === "new").length;
 
-    return Response.json({
-      success: true,
-      data: transformed,
-      total: transformed.length,
-      newCount,
-    });
+    return Response.json(
+      {
+        success: true,
+        data: transformed,
+        total: transformed.length,
+        newCount,
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching inquiries:", error);
     return Response.json(

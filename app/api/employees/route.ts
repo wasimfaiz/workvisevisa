@@ -10,6 +10,9 @@ import { connectDB } from "@/lib/mongodb";
 import AdminUser, { DEFAULT_PERMISSIONS, AdminRole } from "@/lib/models/AdminUser";
 import { requirePermission, hashPassword, getAuthUser } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // GET /api/employees — List all employees
 export async function GET(request: NextRequest) {
   try {

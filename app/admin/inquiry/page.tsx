@@ -541,7 +541,7 @@ export default function AdminInquiryPage() {
     const closed = inquiries.filter((i) => i.status === "closed").length;
 
     const unassignedCount = inquiries.filter(
-      (i) => !i.assignedTo || !i.assignedTo.id || !i.assignedTo.name
+      (i) => !i.assignedTo || (!i.assignedTo.id && !i.assignedTo.name)
     ).length;
     const assignedCount = total - unassignedCount;
 
@@ -583,8 +583,9 @@ export default function AdminInquiryPage() {
 
         // Assignee filter
         if (assignedFilter !== "all") {
+          const isItemAssigned = Boolean(item.assignedTo && (item.assignedTo.id || item.assignedTo.name));
           if (assignedFilter === "unassigned") {
-            if (item.assignedTo && item.assignedTo.id && item.assignedTo.name) return false;
+            if (isItemAssigned) return false;
           } else {
             if (
               item.assignedTo?.id !== assignedFilter &&
@@ -1265,39 +1266,70 @@ export default function AdminInquiryPage() {
 
                         {/* Assigned Counselor / Staff Column */}
                         <td style={s.td}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                            <select
-                              value={inq.assignedTo?.id || (inq.assignedTo?.name ? inq.assignedTo.name : "unassigned")}
-                              disabled={assigningId === inq.id}
-                              onChange={(e) => handleAssignChange(inq.id, e.target.value)}
-                              style={{
-                                padding: "5px 8px",
-                                borderRadius: "8px",
-                                fontSize: "12px",
-                                fontWeight: 600,
-                                cursor: "pointer",
-                                outline: "none",
-                                border: inq.assignedTo?.name ? "1.5px solid #c7d2fe" : "1.5px dashed #cbd5e1",
-                                background: inq.assignedTo?.name ? "#f5f3ff" : "#f8fafc",
-                                color: inq.assignedTo?.name ? "#4338ca" : "#64748b",
-                                maxWidth: "165px",
-                              }}
-                              title="Assign lead to a counselor or staff member"
-                            >
-                              <option value="unassigned">Unassigned</option>
-                              {employees.map((emp) => (
-                                <option key={emp.id} value={emp.id}>
-                                  {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
-                                </option>
-                              ))}
-                            </select>
-                            {assigningId === inq.id && (
-                              <RefreshCw
-                                className="animate-spin"
-                                style={{ width: "12px", height: "12px", color: "#6366f1", flexShrink: 0 }}
-                              />
-                            )}
-                          </div>
+                          {(() => {
+                            let selectedVal = "unassigned";
+                            if (inq.assignedTo) {
+                              if (inq.assignedTo.id && employees.some((e) => e.id === inq.assignedTo?.id)) {
+                                selectedVal = inq.assignedTo.id;
+                              } else if (inq.assignedTo.name) {
+                                const foundByName = employees.find(
+                                  (e) => e.name.trim().toLowerCase() === inq.assignedTo?.name?.trim().toLowerCase()
+                                );
+                                if (foundByName) {
+                                  selectedVal = foundByName.id;
+                                } else {
+                                  selectedVal = inq.assignedTo.id || inq.assignedTo.name;
+                                }
+                              } else if (inq.assignedTo.id) {
+                                selectedVal = inq.assignedTo.id;
+                              }
+                            }
+
+                            const hasAssignee =
+                              selectedVal !== "unassigned" &&
+                              Boolean(inq.assignedTo?.name || inq.assignedTo?.id);
+
+                            return (
+                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                <select
+                                  value={selectedVal}
+                                  disabled={assigningId === inq.id}
+                                  onChange={(e) => handleAssignChange(inq.id, e.target.value)}
+                                  style={{
+                                    padding: "5px 8px",
+                                    borderRadius: "8px",
+                                    fontSize: "12px",
+                                    fontWeight: 600,
+                                    cursor: "pointer",
+                                    outline: "none",
+                                    border: hasAssignee ? "1.5px solid #c7d2fe" : "1.5px dashed #cbd5e1",
+                                    background: hasAssignee ? "#f5f3ff" : "#f8fafc",
+                                    color: hasAssignee ? "#4338ca" : "#64748b",
+                                    maxWidth: "165px",
+                                  }}
+                                  title="Assign lead to a counselor or staff member"
+                                >
+                                  <option value="unassigned">Unassigned</option>
+                                  {hasAssignee && !employees.some((emp) => emp.id === selectedVal) && (
+                                    <option value={selectedVal}>
+                                      {inq.assignedTo?.name || "Assigned"} ({inq.assignedTo?.role ? inq.assignedTo.role.toUpperCase() : "STAFF"})
+                                    </option>
+                                  )}
+                                  {employees.map((emp) => (
+                                    <option key={emp.id} value={emp.id}>
+                                      {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                                    </option>
+                                  ))}
+                                </select>
+                                {assigningId === inq.id && (
+                                  <RefreshCw
+                                    className="animate-spin"
+                                    style={{ width: "12px", height: "12px", color: "#6366f1", flexShrink: 0 }}
+                                  />
+                                )}
+                              </div>
+                            );
+                          })()}
                         </td>
 
                         {/* Actions */}

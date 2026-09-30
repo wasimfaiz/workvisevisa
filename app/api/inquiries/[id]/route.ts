@@ -75,6 +75,9 @@ async function resolveAssignee(assignedToInput: unknown) {
   };
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // PATCH /api/inquiries/[id] (Admin only - update status, assignee, or notes)
 export async function PATCH(
   request: NextRequest,
@@ -119,8 +122,8 @@ export async function PATCH(
     const updated = await Inquiry.findByIdAndUpdate(
       id,
       { $set: allowedUpdates },
-      { new: true }
-    );
+      { returnDocument: "after", new: true }
+    ).lean();
 
     if (!updated) {
       return Response.json(
@@ -129,10 +132,17 @@ export async function PATCH(
       );
     }
 
+    const transformed = {
+      ...updated,
+      id: (updated._id as unknown as { toString(): string }).toString(),
+      _id: undefined,
+      __v: undefined,
+    };
+
     return Response.json({
       success: true,
       message: "Inquiry updated successfully.",
-      data: updated,
+      data: transformed,
     });
   } catch (error) {
     console.error("Error updating inquiry:", error);
