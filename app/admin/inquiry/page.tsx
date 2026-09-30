@@ -392,7 +392,7 @@ export default function AdminInquiryPage() {
     }
   };
 
-  if (authLoading) {
+  if (authLoading || !admin) {
     return (
       <div style={s.loadingContainer}>
         <div style={s.spinner} />
@@ -403,13 +403,13 @@ export default function AdminInquiryPage() {
     );
   }
 
-  const isSuper = admin.role === "superadmin" || admin.email === "wasim@yastudy.com";
-  const canViewJobs = isSuper || Boolean(admin.permissions?.jobs?.view !== false);
-  const canViewInvoices = isSuper || Boolean(admin.permissions?.invoices?.view);
-  const canViewEmployees = isSuper || Boolean(admin.permissions?.employees?.view);
-  const canExportCSV = isSuper || Boolean(admin.permissions?.inquiries?.export !== false);
-  const canDeleteInquiry = isSuper || Boolean(admin.permissions?.inquiries?.delete !== false);
-  const canEditInquiry = isSuper || Boolean(admin.permissions?.inquiries?.edit !== false);
+  const isSuper = admin?.role === "superadmin" || admin?.email === "wasim@yastudy.com";
+  const canViewJobs = isSuper || Boolean(admin?.permissions?.jobs?.view !== false);
+  const canViewInvoices = isSuper || Boolean(admin?.permissions?.invoices?.view);
+  const canViewEmployees = isSuper || Boolean(admin?.permissions?.employees?.view);
+  const canExportCSV = isSuper || Boolean(admin?.permissions?.inquiries?.export !== false);
+  const canDeleteInquiry = isSuper || Boolean(admin?.permissions?.inquiries?.delete !== false);
+  const canEditInquiry = isSuper || Boolean(admin?.permissions?.inquiries?.edit !== false);
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#f8fafc] font-sans">
