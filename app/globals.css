@@ -163,3 +163,14 @@ font {
   background-color: transparent !important;
   box-shadow: none !important;
 }
+
+/* ── Form Inputs Global Normalization ────────────────────────── */
+input[type="date"] {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
