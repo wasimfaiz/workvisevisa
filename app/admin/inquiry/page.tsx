@@ -32,6 +32,7 @@ import {
   Save,
   ArrowUpDown,
 } from "lucide-react";
+import AdminSidebar from "@/components/AdminSidebar";
 
 import { EmployeePermissions } from "@/lib/types/rbac";
 
@@ -411,7 +412,7 @@ export default function AdminInquiryPage() {
   const canEditInquiry = isSuper || Boolean(admin.permissions?.inquiries?.edit !== false);
 
   return (
-    <div style={s.layout}>
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#f8fafc] font-sans">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -442,115 +443,17 @@ export default function AdminInquiryPage() {
         </div>
       )}
 
-      {/* ── UNIFIED SIDEBAR (Exact theme as Dashboard & Invoice) ── */}
-      <aside style={s.sidebar}>
-        <div style={s.sidebarLogo}>
-          <div style={s.sidebarIconWrap}>
-            <Image
-              src="/icon.png"
-              alt="WorkWise Visa"
-              width={40}
-              height={40}
-              style={{ objectFit: "contain", width: "40px", height: "40px" }}
-              priority
-            />
-          </div>
-          <div>
-            <div style={{ fontSize: "15px", fontWeight: 700, color: "white" }}>WorkWise Visa</div>
-            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginTop: "2px" }}>
-              Admin Panel
-            </div>
-          </div>
-        </div>
-
-        <nav style={s.nav}>
-          {/* Job Listings */}
-          {canViewJobs && (
-            <Link
-              href="/admin/dashboard"
-              style={{ ...s.navItem, textDecoration: "none" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg>
-              Job Listings
-            </Link>
-          )}
-
-          {/* Inquiries / Leads (ACTIVE) */}
-          <Link
-            href="/admin/inquiry"
-            style={{ ...s.navItem, ...s.navItemActive, textDecoration: "none" }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-            Inquiries / Leads
-            {stats.newCount > 0 ? (
-              <span style={{ ...s.badge, background: "#10b981", color: "white", fontWeight: 700 }}>
-                {stats.newCount} New
-              </span>
-            ) : (
-              <span style={s.badge}>{inquiries.length}</span>
-            )}
-          </Link>
-
-          {/* Invoice Generator */}
-          {canViewInvoices && (
-            <Link
-              href="/admin/invoice"
-              style={{ ...s.navItem, textDecoration: "none" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
-              Invoice Generator
-            </Link>
-          )}
-
-          {/* Employees & Access */}
-          {canViewEmployees && (
-            <Link
-              href="/admin/employees"
-              style={{ ...s.navItem, textDecoration: "none" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Employees &amp; Access
-            </Link>
-          )}
-        </nav>
-
-        {/* Sidebar Footer */}
-        <div style={s.sidebarFooter}>
-          <div style={s.adminInfo}>
-            <div style={s.adminAvatar}>{admin.name[0].toUpperCase()}</div>
-            <div>
-              <div style={{ fontSize: "13px", fontWeight: 600, color: "white" }}>{admin.name}</div>
-              <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>{admin.role}</div>
-            </div>
-          </div>
-          <button onClick={handleLogout} style={s.logoutBtn}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
-            Sign Out
-          </button>
-        </div>
-      </aside>
+      {/* ── RESPONSIVE UNIFIED SIDEBAR ── */}
+      <AdminSidebar
+        currentUser={admin}
+        counts={{
+          inquiries: inquiries.length,
+          newInquiries: stats.newCount,
+        }}
+      />
 
       {/* ── MAIN CONTENT AREA ── */}
-      <main style={s.main}>
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
         {/* Header */}
         <div style={s.header}>
           <div>

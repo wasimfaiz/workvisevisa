@@ -36,6 +36,7 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import { EmployeePermissions, AdminRole, DEFAULT_PERMISSIONS } from "@/lib/types/rbac";
+import AdminSidebar from "@/components/AdminSidebar";
 
 interface Employee {
   id: string;
@@ -395,7 +396,7 @@ export default function AdminEmployeesPage() {
   if (!currentUser) return null;
 
   return (
-    <div style={s.layout}>
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#f8fafc] font-sans">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -426,78 +427,16 @@ export default function AdminEmployeesPage() {
         </div>
       )}
 
-      {/* ── UNIFIED SIDEBAR (Exact theme as Dashboard & Invoice) ── */}
-      <aside style={s.sidebar}>
-        <div style={s.sidebarLogo}>
-          <div style={s.sidebarIconWrap}>
-            <Image
-              src="/icon.png"
-              alt="WorkWise Visa"
-              width={40}
-              height={40}
-              style={{ objectFit: "contain", width: "40px", height: "40px" }}
-              priority
-            />
-          </div>
-          <div>
-            <div style={{ fontSize: "15px", fontWeight: 700, color: "white" }}>WorkWise Visa</div>
-            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginTop: "2px" }}>
-              Admin Panel
-            </div>
-          </div>
-        </div>
-
-        <nav style={s.nav}>
-          <Link href="/admin/dashboard" style={{ ...s.navItem, textDecoration: "none" }}>
-            <Briefcase style={{ width: "16px", height: "16px" }} />
-            Job Listings
-          </Link>
-
-          <Link href="/admin/inquiry" style={{ ...s.navItem, textDecoration: "none" }}>
-            <MessageSquare style={{ width: "16px", height: "16px" }} />
-            Inquiries / Leads
-          </Link>
-
-          <Link href="/admin/invoice" style={{ ...s.navItem, textDecoration: "none" }}>
-            <FileText style={{ width: "16px", height: "16px" }} />
-            Invoice Generator
-          </Link>
-
-          {/* Employees & Access (ACTIVE) */}
-          <Link
-            href="/admin/employees"
-            style={{ ...s.navItem, ...s.navItemActive, textDecoration: "none" }}
-          >
-            <Users style={{ width: "16px", height: "16px" }} />
-            Employees &amp; Access
-            <span style={{ ...s.badge, background: "#6366f1", color: "white", fontWeight: 700 }}>
-              {employees.length}
-            </span>
-          </Link>
-        </nav>
-
-        {/* Sidebar Footer */}
-        <div style={s.sidebarFooter}>
-          <div style={s.adminInfo}>
-            <div style={s.adminAvatar}>{currentUser.name[0].toUpperCase()}</div>
-            <div>
-              <div style={{ fontSize: "13px", fontWeight: 600, color: "white" }}>{currentUser.name}</div>
-              <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>{currentUser.role}</div>
-            </div>
-          </div>
-          <button onClick={handleLogout} style={s.logoutBtn}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
-            Sign Out
-          </button>
-        </div>
-      </aside>
+      {/* ── RESPONSIVE UNIFIED SIDEBAR ── */}
+      <AdminSidebar
+        currentUser={currentUser}
+        counts={{
+          employees: employees.length,
+        }}
+      />
 
       {/* ── MAIN CONTENT ── */}
-      <main style={s.main}>
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
         {/* Header */}
         <div style={s.header}>
           <div>
