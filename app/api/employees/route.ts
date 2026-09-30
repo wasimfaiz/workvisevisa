@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
 
     // If full view permission is granted, return everything (permissions, phone, etc.)
     // If not, return sanitized list (id, name, email, role, status) for lead assignment dropdowns
-    const query = AdminUser.find({ status: "active" });
+    const query = AdminUser.find({ status: { $ne: "inactive" } });
     if (!auth.allowed) {
       query.select("name email role status");
     } else {

@@ -176,7 +176,7 @@ export default function AdminInquiryPage() {
           : newLead.source;
 
       let assignedPayload = null;
-      if (newLead.assignedToId) {
+      if (newLead.assignedToId && newLead.assignedToId !== "unassigned") {
         const found = employees.find((emp) => emp.id === newLead.assignedToId);
         if (found) {
           assignedPayload = {
@@ -185,6 +185,8 @@ export default function AdminInquiryPage() {
             email: found.email,
             role: found.role,
           };
+        } else {
+          assignedPayload = { id: newLead.assignedToId };
         }
       }
 
@@ -323,6 +325,13 @@ export default function AdminInquiryPage() {
           email: found.email,
           role: found.role,
         };
+      } else {
+        targetAssignee = {
+          id: employeeIdOrValue,
+          name: employeeIdOrValue,
+          email: "",
+          role: "staff",
+        };
       }
     }
 
@@ -342,15 +351,30 @@ export default function AdminInquiryPage() {
       const res = await fetch(`/api/inquiries/${inquiryId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ assignedTo: targetAssignee }),
+        body: JSON.stringify({ assignedTo: targetAssignee || employeeIdOrValue }),
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
         throw new Error(data.message || "Failed to update assigned counselor");
       }
 
-      if (targetAssignee) {
-        showToast(`Lead assigned to ${targetAssignee.name} (${targetAssignee.role})`);
+      // Sync exact saved document from response
+      if (data.data) {
+        setInquiries((prev) =>
+          prev.map((item) =>
+            item.id === inquiryId
+              ? {
+                  ...item,
+                  assignedTo: data.data.assignedTo,
+                }
+              : item
+          )
+        );
+      }
+
+      const assignedName = data.data?.assignedTo?.name || targetAssignee?.name;
+      if (assignedName) {
+        showToast(`Lead assigned to ${assignedName}`);
       } else {
         showToast("Lead unassigned");
       }

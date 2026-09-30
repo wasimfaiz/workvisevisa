@@ -66,6 +66,7 @@ const InquirySchema = new Schema<IInquiry>(
   },
   {
     timestamps: true,
+    strict: false,
     toJSON: {
       transform: (_doc, ret: Record<string, unknown>) => {
         ret.id = (ret._id as { toString(): string }).toString();

@@ -1,9 +1,81 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Inquiry from "@/lib/models/Inquiry";
+import AdminUser from "@/lib/models/AdminUser";
 import { requirePermission } from "@/lib/auth";
 
-// PATCH /api/inquiries/[id] (Admin only - update status or notes)
+// Helper to resolve full assignee details from database or payload
+async function resolveAssignee(assignedToInput: unknown) {
+  if (!assignedToInput || assignedToInput === "unassigned") {
+    return { id: null, name: "", email: "", role: "" };
+  }
+
+  let empId: string | null = null;
+  let fallbackName = "";
+  let fallbackEmail = "";
+  let fallbackRole = "";
+
+  if (typeof assignedToInput === "string") {
+    empId = assignedToInput.trim();
+  } else if (typeof assignedToInput === "object" && assignedToInput !== null) {
+    const obj = assignedToInput as Record<string, unknown>;
+    empId = typeof obj.id === "string" && obj.id ? obj.id.trim() : null;
+    fallbackName = typeof obj.name === "string" ? obj.name.trim() : "";
+    fallbackEmail = typeof obj.email === "string" ? obj.email.trim() : "";
+    fallbackRole = typeof obj.role === "string" ? obj.role.trim() : "";
+  }
+
+  if (!empId || empId === "unassigned" || empId === "null") {
+    if (fallbackName) {
+      return {
+        id: null,
+        name: fallbackName,
+        email: fallbackEmail,
+        role: fallbackRole || "counselor",
+      };
+    }
+    return { id: null, name: "", email: "", role: "" };
+  }
+
+  // Look up employee in AdminUser collection
+  try {
+    const user = await AdminUser.findById(empId).select("name email role").lean();
+    if (user) {
+      return {
+        id: (user._id as unknown as { toString(): string }).toString(),
+        name: user.name || fallbackName || "Staff",
+        email: user.email || fallbackEmail || "",
+        role: user.role || fallbackRole || "staff",
+      };
+    }
+  } catch {
+    // If not a valid ObjectId or not found by ID, attempt lookup by name/email
+    try {
+      const user = await AdminUser.findOne({
+        $or: [{ name: empId }, { email: empId }],
+      }).select("name email role").lean();
+      if (user) {
+        return {
+          id: (user._id as unknown as { toString(): string }).toString(),
+          name: user.name,
+          email: user.email,
+          role: user.role || "staff",
+        };
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  return {
+    id: empId,
+    name: fallbackName || empId,
+    email: fallbackEmail,
+    role: fallbackRole || "staff",
+  };
+}
+
+// PATCH /api/inquiries/[id] (Admin only - update status, assignee, or notes)
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -41,21 +113,7 @@ export async function PATCH(
       allowedUpdates.notes = body.notes;
     }
     if (body.assignedTo !== undefined) {
-      if (body.assignedTo === null || body.assignedTo.id === null || body.assignedTo.id === "") {
-        allowedUpdates.assignedTo = {
-          id: null,
-          name: "",
-          email: "",
-          role: "",
-        };
-      } else if (typeof body.assignedTo === "object") {
-        allowedUpdates.assignedTo = {
-          id: body.assignedTo.id || null,
-          name: typeof body.assignedTo.name === "string" ? body.assignedTo.name.trim() : "",
-          email: typeof body.assignedTo.email === "string" ? body.assignedTo.email.trim() : "",
-          role: typeof body.assignedTo.role === "string" ? body.assignedTo.role.trim() : "",
-        };
-      }
+      allowedUpdates.assignedTo = await resolveAssignee(body.assignedTo);
     }
 
     const updated = await Inquiry.findByIdAndUpdate(
