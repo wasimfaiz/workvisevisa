@@ -237,7 +237,7 @@ export const services: Service[] = [
   {
     title: "Visa Processing",
     description:
-      "Comprehensive visa application management handled by licensed immigration attorneys to ensure maximum approval rates.",
+      "Comprehensive visa application management handled by expert immigration consultants to ensure maximum approval rates.",
     iconName: "FileCheck",
     features: [
       "Document auditing & preparation",
@@ -319,7 +319,7 @@ export const whyUsPoints: WhyUsPoint[] = [
     iconName: "Zap",
   },
   {
-    title: "Licensed & Recognized",
+    title: "Trusted & Recognized",
     description:
       "Fully accredited by government migration authorities across all operating jurisdictions.",
     iconName: "Award",
@@ -500,7 +500,7 @@ export const industries: Industry[] = [
     title: "Heavy Transport & Drivers",
     seoTagline: "Work visas for heavy bus/trailer drivers & logistics handlers",
     description:
-      "Recruiting licensed heavy truck drivers, trailer operators, bus drivers, delivery riders, and warehouse material handlers for international transport hubs.",
+      "Recruiting professional heavy truck drivers, trailer operators, bus drivers, delivery riders, and warehouse material handlers for international transport hubs.",
     iconName: "Truck",
     demandLevel: "Urgent Shortage",
     popularRoles: ["Heavy Trailer Drivers (GCC license)", "Heavy Bus & Truck Drivers", "Forklift Operators", "Delivery Riders", "Warehouse Packers"],

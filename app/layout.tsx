@@ -20,13 +20,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.workwisevisa.com"),
-  title: "WorkWise Visa | Licensed Overseas Job Placement & Work Visa Consultancy",
+  title: "WorkWise Visa | Overseas Job Placement & Work Visa Consultancy",
   description:
     "Trusted international work visa consultancy and overseas recruitment agency. Secure verified jobs abroad for trade workers, drivers, CNC operators, welders & caregivers across Gulf, Schengen Europe, UK, Russia & Canada. 5,000+ successful placements.",
   keywords: [
     "work visa consultancy",
     "overseas job placement agency",
-    "licensed recruitment agency india",
+    "overseas recruitment agency india",
     "gulf work visa consultant",
     "gulf job agency noida patna",
     "schengen work permit consultant",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "WorkWise Visa — Licensed Overseas Job Placement & Work Visa Agency",
+    title: "WorkWise Visa — Overseas Job Placement & Work Visa Agency",
     description:
       "Premium international recruitment and work visa consultancy. Connecting skilled trade candidates with 100% verified overseas employers with guaranteed visa sponsorship.",
     url: "https://www.workwisevisa.com",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: "/images/workwise_logo.png",
         width: 1200,
         height: 630,
-        alt: "WorkWise Visa - Licensed Overseas Placement Agency",
+        alt: "WorkWise Visa - Overseas Placement Agency",
       },
     ],
     locale: "en_US",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WorkWise Visa — Licensed Overseas Job Placement & Work Visa Agency",
+    title: "WorkWise Visa — Overseas Job Placement & Work Visa Agency",
     description:
       "Trusted international work visa consultancy. 5,000+ placements in Gulf, Europe, Russia & Canada with a 98% visa approval rate.",
     images: ["/images/workwise_logo.png"],
@@ -96,7 +96,7 @@ const jsonLdSchema = {
   "logo": "https://www.workwisevisa.com/images/workwise_logo.png",
   "image": "https://www.workwisevisa.com/images/workwise_logo.png",
   "description":
-    "Licensed international work visa consultancy and overseas job placement agency connecting skilled trade workers, drivers, technicians, and caregivers with verified employers in Gulf, Schengen Europe, UK, Russia, and Canada.",
+    "Trusted international work visa consultancy and overseas job placement agency connecting skilled trade workers, drivers, technicians, and caregivers with verified employers in Gulf, Schengen Europe, UK, Russia, and Canada.",
   "telephone": "+918130161603",
   "email": "workwisevisa@gmail.com",
   "address": [

@@ -56,7 +56,7 @@ const matrixData: Record<string, Record<string, Partial<CalculationResult>>> = {
     US: { salaryRange: "7,500 – 12,500", currency: "USD / month", visaRoute: "H-1B / O-1 Specialty Visa", processingTime: "2–4 months", perks: ["Highest Global Pay", "Stock Options (RSUs)", "Green Card Eligible"] },
   },
   "Healthcare & Nursing": {
-    UAE: { salaryRange: "14,000 – 24,000", currency: "AED / month", visaRoute: "DHA Licensed Medical Visa", processingTime: "3–4 weeks", perks: ["Tax-Free Salary", "DHA Licensing Support", "Hospital Housing"] },
+    UAE: { salaryRange: "14,000 – 24,000", currency: "AED / month", visaRoute: "DHA Medical Work Visa", processingTime: "3–4 weeks", perks: ["Tax-Free Salary", "DHA Credentialing Support", "Hospital Housing"] },
     DE: { salaryRange: "3,600 – 5,400", currency: "EUR / month", visaRoute: "Fast-Track Healthcare Visa", processingTime: "6–8 weeks", perks: ["Accelerated B2 German Path", "Permanent Contract", "State Pension"] },
     CAN: { salaryRange: "5,500 – 8,200", currency: "CAD / month", visaRoute: "Healthcare Express Entry", processingTime: "6–10 weeks", perks: ["Priority PR Draw", "Provincial Nomination", "Full Family Benefits"] },
     UK: { salaryRange: "3,200 – 4,800", currency: "GBP / month", visaRoute: "Health & Care Worker Visa", processingTime: "2–3 weeks", perks: ["Reduced Visa Fees", "Exempt from Health Surcharge", "Fast Approval"] },

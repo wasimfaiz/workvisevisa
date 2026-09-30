@@ -170,7 +170,7 @@ export const translations: Record<string, Translations> = {
     },
     consultation: {
       title: "Book a Free Overseas Work Visa & Placement Consultation",
-      subtitle: "Speak directly with licensed immigration and recruitment consultants at our Noida HQ & Patna branch offices.",
+      subtitle: "Speak directly with expert immigration and recruitment consultants at our Noida HQ & Patna branch offices.",
       nameLabel: "Your Full Name",
       phoneLabel: "WhatsApp Phone Number",
       destinationLabel: "Target Country / Region",
@@ -193,7 +193,7 @@ export const translations: Record<string, Translations> = {
       employerCtaBtn: "Post Employer Demand Now",
     },
     footer: {
-      desc: "Licensed government-recognized overseas recruitment and work visa consultancy empowering skilled workers with direct international job placements and visa solutions.",
+      desc: "Government-recognized overseas recruitment and work visa consultancy empowering skilled workers with direct international job placements and visa solutions.",
       quickLinksHeading: "Quick Navigation",
       servicesHeading: "Visa Services",
       contactHeading: "Contact Us",
@@ -291,7 +291,7 @@ export const translations: Record<string, Translations> = {
       employerCtaBtn: "अपनी डिमांड पोस्ट करें",
     },
     footer: {
-      desc: "भारतीय पेशेवरों और कुशल श्रमिकों को सीधे विदेशी वर्क परमिट और वीज़ा समाधान प्रदान करने वाली लाइसेंस प्राप्त सरकारी भर्ती एजेंसी।",
+      desc: "भारतीय पेशेवरों और कुशल श्रमिकों को सीधे विदेशी वर्क परमिट और वीज़ा समाधान प्रदान करने वाली विश्वसनीय भर्ती एजेंसी।",
       quickLinksHeading: "त्वरित लिंक",
       servicesHeading: "वीज़ा सेवाएं",
       contactHeading: "संपर्क करें",

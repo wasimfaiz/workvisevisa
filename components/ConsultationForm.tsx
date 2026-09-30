@@ -128,7 +128,7 @@ export default function ConsultationForm() {
               {[
                 { icon: FaShieldHalved, title: "100% Confidential & No Upfront Obligations", sub: "Your data is strictly protected." },
                 { icon: FaClock, title: "Fast 24-Hour Profile Assessment", sub: "Get direct feedback on your visa eligibility score." },
-                { icon: FaPhoneVolume, title: "Direct Call with Licensed Advisor", sub: "No sales agents — talk directly to case managers." },
+                { icon: FaPhoneVolume, title: "Direct Call with Expert Advisor", sub: "No sales agents — talk directly to case managers." },
               ].map(({ icon: Icon, title, sub }) => (
                 <div
                   key={title}
