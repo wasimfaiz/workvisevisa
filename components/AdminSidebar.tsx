@@ -14,6 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  LayoutDashboard,
   Briefcase,
   MessageSquare,
   FileText,
@@ -44,15 +45,11 @@ interface AdminSidebarProps {
     invoices?: number;
     employees?: number;
   };
-  onDashboardTabChange?: (tab: "jobs" | "new" | "inquiries") => void;
-  activeDashboardTab?: string;
 }
 
 export default function AdminSidebar({
   currentUser: initialUser,
   counts,
-  onDashboardTabChange,
-  activeDashboardTab,
 }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -120,23 +117,17 @@ export default function AdminSidebar({
   // Navigation items definition
   const navItems = [
     {
-      id: "jobs",
-      label: "Job Listings",
+      id: "dashboard",
+      label: "Dashboard",
       href: "/admin/dashboard",
-      icon: Briefcase,
-      visible: canViewJobs,
-      badge: counts?.jobs !== undefined ? counts.jobs : null,
-      badgeColor: "rgba(255,255,255,0.18)",
-      isActive: pathname === "/admin/dashboard" && activeDashboardTab !== "inquiries",
-      onClick: () => {
-        if (pathname === "/admin/dashboard" && onDashboardTabChange) {
-          onDashboardTabChange("jobs");
-        }
-      },
+      icon: LayoutDashboard,
+      visible: true,
+      badge: null,
+      isActive: pathname === "/admin/dashboard",
     },
     {
       id: "inquiries",
-      label: "Inquiries / Leads",
+      label: "Inquiries & Leads",
       href: "/admin/inquiry",
       icon: MessageSquare,
       visible: canViewInquiries,
@@ -148,7 +139,17 @@ export default function AdminSidebar({
           : null,
       badgeColor:
         counts?.newInquiries && counts.newInquiries > 0 ? "#10b981" : "rgba(255,255,255,0.18)",
-      isActive: pathname === "/admin/inquiry" || (pathname === "/admin/dashboard" && activeDashboardTab === "inquiries"),
+      isActive: pathname.startsWith("/admin/inquiry"),
+    },
+    {
+      id: "jobs",
+      label: "Job Demands",
+      href: "/admin/jobs",
+      icon: Briefcase,
+      visible: canViewJobs,
+      badge: counts?.jobs !== undefined ? counts.jobs : null,
+      badgeColor: "rgba(255,255,255,0.18)",
+      isActive: pathname.startsWith("/admin/jobs"),
     },
     {
       id: "invoices",
@@ -265,10 +266,7 @@ export default function AdminSidebar({
                     <Link
                       key={item.id}
                       href={item.href}
-                      onClick={() => {
-                        if (item.onClick) item.onClick();
-                        setMobileOpen(false);
-                      }}
+                      onClick={() => setMobileOpen(false)}
                       className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium transition ${
                         item.isActive
                           ? "bg-white/15 text-white font-semibold shadow-sm"
@@ -409,7 +407,6 @@ export default function AdminSidebar({
                 <Link
                   key={item.id}
                   href={item.href}
-                  onClick={item.onClick}
                   title={collapsed ? item.label : undefined}
                   className={`flex items-center gap-3 rounded-xl transition group relative ${
                     collapsed ? "justify-center p-3" : "px-3.5 py-2.5 text-sm font-medium"
