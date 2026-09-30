@@ -123,7 +123,7 @@ export default function AdminInquiryPage() {
   const [newLead, setNewLead] = useState({
     name: "",
     phone: "",
-    country: "Poland",
+    country: "United Arab Emirates (UAE / Dubai)",
     customCountry: "",
     occupation: "",
     status: "new" as InquiryItem["status"],
@@ -213,7 +213,7 @@ export default function AdminInquiryPage() {
       setNewLead({
         name: "",
         phone: "",
-        country: "Poland",
+        country: "United Arab Emirates (UAE / Dubai)",
         customCountry: "",
         occupation: "",
         status: "new",
@@ -1633,21 +1633,32 @@ export default function AdminInquiryPage() {
                     onChange={(e) => setNewLead({ ...newLead, country: e.target.value })}
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
-                    <option value="Poland">Poland</option>
-                    <option value="Romania">Romania</option>
-                    <option value="Croatia">Croatia</option>
-                    <option value="Hungary">Hungary</option>
-                    <option value="Malta">Malta</option>
-                    <option value="Czech Republic">Czech Republic</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Germany">Germany</option>
-                    <option value="UAE / Dubai">UAE / Dubai</option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="Qatar">Qatar</option>
-                    <option value="General Destination">General Destination</option>
-                    <option value="Other">Other Country...</option>
+                    <optgroup label="GCC &amp; Gulf Countries (High Demand)">
+                      <option value="United Arab Emirates (UAE / Dubai)">United Arab Emirates (UAE / Dubai)</option>
+                      <option value="Saudi Arabia">Saudi Arabia</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Kuwait">Kuwait</option>
+                      <option value="Bahrain">Bahrain</option>
+                    </optgroup>
+                    <optgroup label="Europe &amp; Schengen Area">
+                      <option value="Poland">Poland</option>
+                      <option value="Romania">Romania</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Hungary">Hungary</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Russia">Russia</option>
+                    </optgroup>
+                    <optgroup label="Other Global Destinations">
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="United States">United States</option>
+                      <option value="General Destination">General Destination</option>
+                      <option value="Other">Other Country...</option>
+                    </optgroup>
                   </select>
                   {newLead.country === "Other" && (
                     <input

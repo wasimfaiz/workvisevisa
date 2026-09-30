@@ -276,12 +276,33 @@ export default function ConsultationForm() {
                       backgroundSize: "20px",
                     }}
                   >
-                    <option value="" disabled>Select target country</option>
-                    {targetCountryOptions.map((c) => (
-                      <option key={c} value={c} className="bg-white text-slate-900">
-                        {c}
-                      </option>
-                    ))}
+                    <option value="" disabled>Select target destination</option>
+                    <optgroup label="GCC &amp; Gulf Countries (High Demand)">
+                      <option value="United Arab Emirates (UAE / Dubai)">United Arab Emirates (UAE / Dubai)</option>
+                      <option value="Saudi Arabia">Saudi Arabia</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Kuwait">Kuwait</option>
+                      <option value="Bahrain">Bahrain</option>
+                    </optgroup>
+                    <optgroup label="Europe &amp; Schengen Area">
+                      <option value="Poland">Poland</option>
+                      <option value="Romania">Romania</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Hungary">Hungary</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Russia">Russia</option>
+                    </optgroup>
+                    <optgroup label="Other Global Destinations">
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="United States">United States</option>
+                      <option value="General / All Destinations">General / All Destinations</option>
+                      <option value="Other Destination">Other Destination</option>
+                    </optgroup>
                   </select>
                   {errors.country && (
                     <p className="mt-1 flex items-center gap-1 text-xs text-red-500">

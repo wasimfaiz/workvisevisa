@@ -209,18 +209,28 @@ export const countries: Country[] = [
 // ── Target Country Options for Form ──────────────────────────────
 
 export const targetCountryOptions = [
-  "Croatia",
-  "Poland",
-  "Russia",
-  "Germany",
-  "United Arab Emirates",
+  // ── GCC & Gulf Countries (Top Priority) ──
+  "United Arab Emirates (UAE / Dubai)",
   "Saudi Arabia",
   "Qatar",
+  "Oman",
+  "Kuwait",
+  "Bahrain",
+  // ── Europe & Schengen ──
+  "Poland",
+  "Romania",
+  "Croatia",
+  "Hungary",
+  "Malta",
+  "Czech Republic",
+  "Germany",
+  "Russia",
+  // ── Global Destinations ──
   "United Kingdom",
   "Canada",
-  "Italy",
-  "Europe (Schengen)",
+  "Australia",
   "United States",
+  "General / All Destinations",
   "Other Destination",
 ];
 
