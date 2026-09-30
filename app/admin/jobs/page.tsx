@@ -149,12 +149,12 @@ function JobForm({
 
         {/* Flag */}
         <div style={s.field}>
-          <label style={s.label}>Flag Emoji</label>
+          <label style={s.label}>Country Code / Flag</label>
           <input
             style={s.input}
             value={form.flag}
             onChange={(e) => setForm((f) => ({ ...f, flag: e.target.value }))}
-            placeholder="🇵🇱"
+            placeholder="e.g. PL, RO, HR, UAE"
           />
         </div>
 

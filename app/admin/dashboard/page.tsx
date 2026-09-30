@@ -36,6 +36,7 @@ import {
   ChevronRight,
   Receipt,
   UserCheck,
+  MapPin,
 } from "lucide-react";
 
 import { EmployeePermissions } from "@/lib/types/rbac";
@@ -256,23 +257,23 @@ export default function AdminDashboardPage() {
   const getStatusBadge = (status: Inquiry["status"]) => {
     switch (status) {
       case "new":
-        return { bg: "#ecfdf5", text: "#047857", border: "#a7f3d0", label: "✨ New Lead" };
+        return { bg: "#ecfdf5", text: "#047857", border: "#a7f3d0", label: "New Lead" };
       case "interested":
-        return { bg: "#f0fdf4", text: "#15803d", border: "#86efac", label: "👍 Interested" };
+        return { bg: "#f0fdf4", text: "#15803d", border: "#86efac", label: "Interested" };
       case "dnp":
-        return { bg: "#fff1f2", text: "#be123c", border: "#fecdd3", label: "📵 DNP" };
+        return { bg: "#fff1f2", text: "#be123c", border: "#fecdd3", label: "DNP" };
       case "contacted":
-        return { bg: "#fffbeb", text: "#b45309", border: "#fde68a", label: "📞 Contacted" };
+        return { bg: "#fffbeb", text: "#b45309", border: "#fde68a", label: "Contacted" };
       case "in_progress":
-        return { bg: "#eff6ff", text: "#1d4ed8", border: "#bfdbfe", label: "⏳ In Progress" };
+        return { bg: "#eff6ff", text: "#1d4ed8", border: "#bfdbfe", label: "In Progress" };
       case "payment_mode":
-        return { bg: "#fdf4ff", text: "#a21caf", border: "#f5d0fe", label: "💳 Payment Mode" };
+        return { bg: "#fdf4ff", text: "#a21caf", border: "#f5d0fe", label: "Payment Mode" };
       case "converted":
-        return { bg: "#f5f3ff", text: "#6d28d9", border: "#ddd6fe", label: "🎉 Converted" };
+        return { bg: "#f5f3ff", text: "#6d28d9", border: "#ddd6fe", label: "Converted" };
       case "not_interested":
-        return { bg: "#fef2f2", text: "#b91c1c", border: "#fecaca", label: "❌ Not Interested" };
+        return { bg: "#fef2f2", text: "#b91c1c", border: "#fecaca", label: "Not Interested" };
       case "closed":
-        return { bg: "#f1f5f9", text: "#64748b", border: "#cbd5e1", label: "📁 Closed" };
+        return { bg: "#f1f5f9", text: "#64748b", border: "#cbd5e1", label: "Closed" };
       default:
         return { bg: "#f8fafc", text: "#475569", border: "#e2e8f0", label: status };
     }
@@ -432,16 +433,16 @@ export default function AdminDashboardPage() {
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
               <span style={{ fontSize: "11px", fontWeight: 700, background: "#dcfce7", color: "#166534", padding: "2px 8px", borderRadius: "6px" }}>
-                ✨ {metrics.newInquiries} New
+                {metrics.newInquiries} New
               </span>
               <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
-                👍 {metrics.interestedInquiries} Interested
+                {metrics.interestedInquiries} Interested
               </span>
               <span style={{ fontSize: "11px", fontWeight: 700, background: "#fdf4ff", color: "#a21caf", padding: "2px 8px", borderRadius: "6px" }}>
-                💳 {metrics.paymentModeInquiries} Payment
+                {metrics.paymentModeInquiries} Payment
               </span>
               <span style={{ fontSize: "11px", fontWeight: 700, background: "#f5f3ff", color: "#6d28d9", padding: "2px 8px", borderRadius: "6px" }}>
-                🎉 {metrics.convertedInquiries} Converted
+                {metrics.convertedInquiries} Converted
               </span>
             </div>
 
@@ -469,7 +470,7 @@ export default function AdminDashboardPage() {
                 {metrics.totalOpenings} Total Open Openings
               </div>
               {metrics.urgentJobs > 0 && (
-                <div style={{ fontWeight: 700, color: "#dc2626", display: "flex", alignItems: "center", gap: "2px" }}>
+                <div style={{ fontWeight: 700, color: "#dc2626", display: "flex", alignItems: "center", gap: "4px" }}>
                   <Flame style={{ width: "13px", height: "13px" }} /> {metrics.urgentJobs} Urgent Demands
                 </div>
               )}
@@ -564,12 +565,12 @@ export default function AdminDashboardPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
             {[
-              { label: "✨ New Leads", count: metrics.newInquiries, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
-              { label: "👍 Interested", count: metrics.interestedInquiries, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
-              { label: "⏳ In Progress", count: metrics.inProgressInquiries, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
-              { label: "💳 Payment Mode", count: metrics.paymentModeInquiries, bg: "#fdf4ff", border: "#f5d0fe", color: "#a21caf" },
-              { label: "🎉 Converted", count: metrics.convertedInquiries, bg: "#f5f3ff", border: "#ddd6fe", color: "#6d28d9" },
-              { label: "📵 DNP (Did Not Pick)", count: metrics.dnpInquiries, bg: "#fff1f2", border: "#fecdd3", color: "#be123c" },
+              { label: "New Leads", count: metrics.newInquiries, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
+              { label: "Interested", count: metrics.interestedInquiries, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
+              { label: "In Progress", count: metrics.inProgressInquiries, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
+              { label: "Payment Mode", count: metrics.paymentModeInquiries, bg: "#fdf4ff", border: "#f5d0fe", color: "#a21caf" },
+              { label: "Converted", count: metrics.convertedInquiries, bg: "#f5f3ff", border: "#ddd6fe", color: "#6d28d9" },
+              { label: "DNP (Did Not Pick)", count: metrics.dnpInquiries, bg: "#fff1f2", border: "#fecdd3", color: "#be123c" },
             ].map((st) => (
               <div
                 key={st.label}
@@ -663,21 +664,23 @@ export default function AdminDashboardPage() {
                           </span>
                         </div>
                         <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px", display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-                          <span>📍 {inq.country}</span>
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
+                            <MapPin style={{ width: "11px", height: "11px", color: "#94a3b8" }} /> {inq.country}
+                          </span>
                           <span>·</span>
-                          <span>💼 {inq.occupation || "General"}</span>
+                          <span>{inq.occupation || "General"}</span>
                           {inq.assignedTo?.name ? (
                             <>
                               <span>·</span>
                               <span style={{ background: "#ede9fe", color: "#6d28d9", padding: "1px 6px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                                👤 {inq.assignedTo.name}
+                                {inq.assignedTo.name}
                               </span>
                             </>
                           ) : (
                             <>
                               <span>·</span>
-                              <span style={{ color: "#94a3b8", fontSize: "11px", fontStyle: "italic" }}>
-                                ⚠️ Unassigned
+                              <span style={{ color: "#94a3b8", fontSize: "11px" }}>
+                                Unassigned
                               </span>
                             </>
                           )}

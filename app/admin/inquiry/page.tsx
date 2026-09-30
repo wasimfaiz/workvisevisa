@@ -36,6 +36,12 @@ import {
   MapPin,
   Tag,
   FileText,
+  Inbox,
+  Filter,
+  Users,
+  CheckCheck,
+  Building,
+  CreditCard,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
 
@@ -597,69 +603,79 @@ export default function AdminInquiryPage() {
           background: "#ecfdf5",
           color: "#047857",
           border: "1.5px solid #a7f3d0",
-          label: "✨ New Lead",
+          dotColor: "#10b981",
+          label: "New Lead",
         };
       case "interested":
         return {
           background: "#f0fdf4",
           color: "#15803d",
           border: "1.5px solid #86efac",
-          label: "👍 Interested",
+          dotColor: "#22c55e",
+          label: "Interested",
         };
       case "dnp":
         return {
           background: "#fff1f2",
           color: "#be123c",
           border: "1.5px solid #fecdd3",
-          label: "📵 DNP (Did Not Pick)",
+          dotColor: "#f43f5e",
+          label: "DNP (Did Not Pick)",
         };
       case "contacted":
         return {
           background: "#fffbeb",
           color: "#b45309",
           border: "1.5px solid #fde68a",
-          label: "📞 Contacted",
+          dotColor: "#f59e0b",
+          label: "Contacted",
         };
       case "in_progress":
         return {
           background: "#eff6ff",
           color: "#1d4ed8",
           border: "1.5px solid #bfdbfe",
-          label: "⏳ In Progress",
+          dotColor: "#3b82f6",
+          label: "In Progress",
         };
       case "payment_mode":
         return {
           background: "#fdf4ff",
           color: "#a21caf",
           border: "1.5px solid #f5d0fe",
-          label: "💳 Payment Mode",
+          dotColor: "#d946ef",
+          label: "Payment Mode",
         };
       case "converted":
         return {
           background: "#f5f3ff",
           color: "#6d28d9",
           border: "1.5px solid #ddd6fe",
-          label: "🎉 Converted",
+          dotColor: "#8b5cf6",
+          label: "Converted",
         };
       case "not_interested":
         return {
           background: "#fef2f2",
           color: "#b91c1c",
           border: "1.5px solid #fecaca",
-          label: "❌ Not Interested",
+          dotColor: "#ef4444",
+          label: "Not Interested",
         };
       case "closed":
         return {
           background: "#f1f5f9",
           color: "#64748b",
           border: "1.5px solid #cbd5e1",
-          label: "📁 Closed / Lost",
+          dotColor: "#94a3b8",
+          label: "Closed / Lost",
         };
       default:
         return {
           background: "#f8fafc",
           color: "#475569",
           border: "1.5px solid #e2e8f0",
+          dotColor: "#64748b",
           label: status,
         };
     }
@@ -887,15 +903,15 @@ export default function AdminInquiryPage() {
                 cursor: "pointer",
               }}
             >
-              <option value="all">👥 All Staff Leads ({inquiries.length})</option>
-              <option value="unassigned">⚠️ Unassigned Leads ({stats.unassignedCount})</option>
+              <option value="all">All Staff Leads ({inquiries.length})</option>
+              <option value="unassigned">Unassigned Leads ({stats.unassignedCount})</option>
               {employees.map((emp) => {
                 const empLeadCount = inquiries.filter(
                   (i) => i.assignedTo?.id === emp.id || i.assignedTo?.name === emp.name || i.assignedTo?.email === emp.email
                 ).length;
                 return (
                   <option key={emp.id} value={emp.id}>
-                    👤 {emp.name} ({empLeadCount})
+                    {emp.name} ({empLeadCount})
                   </option>
                 );
               })}
@@ -915,15 +931,15 @@ export default function AdminInquiryPage() {
             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
               {[
                 { id: "all", label: `All (${inquiries.length})` },
-                { id: "new", label: `✨ New (${stats.newCount})` },
-                { id: "interested", label: `👍 Interested (${stats.interested})` },
-                { id: "dnp", label: `📵 DNP (${stats.dnp})` },
-                { id: "contacted", label: `📞 Contacted (${stats.contacted})` },
-                { id: "in_progress", label: `⏳ In Progress (${stats.inProgress})` },
-                { id: "payment_mode", label: `💳 Payment Mode (${stats.paymentMode})` },
-                { id: "converted", label: `🎉 Converted (${stats.converted})` },
-                { id: "not_interested", label: `❌ Not Interested (${stats.notInterested})` },
-                { id: "closed", label: `📁 Closed (${stats.closed})` },
+                { id: "new", label: `New (${stats.newCount})` },
+                { id: "interested", label: `Interested (${stats.interested})` },
+                { id: "dnp", label: `DNP (${stats.dnp})` },
+                { id: "contacted", label: `Contacted (${stats.contacted})` },
+                { id: "in_progress", label: `In Progress (${stats.inProgress})` },
+                { id: "payment_mode", label: `Payment Mode (${stats.paymentMode})` },
+                { id: "converted", label: `Converted (${stats.converted})` },
+                { id: "not_interested", label: `Not Interested (${stats.notInterested})` },
+                { id: "closed", label: `Closed (${stats.closed})` },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -960,7 +976,7 @@ export default function AdminInquiryPage() {
             </div>
           ) : filteredInquiries.length === 0 ? (
             <div style={{ padding: "56px 20px", textAlign: "center" }}>
-              <div style={{ fontSize: "44px", marginBottom: "12px" }}>📬</div>
+              <Inbox style={{ width: "42px", height: "42px", color: "#cbd5e1", margin: "0 auto 12px" }} />
               <div style={{ color: "#374151", fontWeight: 700, fontSize: "16px" }}>
                 No Consultation Inquiries Found
               </div>
@@ -1174,10 +1190,13 @@ export default function AdminInquiryPage() {
                               padding: "4px 10px",
                               fontSize: "12px",
                               fontWeight: 700,
-                              display: "inline-block",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "4px",
                             }}
                           >
-                            📍 {inq.country || "General Destination"}
+                            <MapPin style={{ width: "12px", height: "12px", color: "#166534" }} />
+                            <span>{inq.country || "General Destination"}</span>
                           </span>
                         </td>
 
@@ -1208,15 +1227,15 @@ export default function AdminInquiryPage() {
                               outline: "none",
                             }}
                           >
-                            <option value="new">✨ New Lead</option>
-                            <option value="interested">👍 Interested</option>
-                            <option value="dnp">📵 DNP (Did Not Pick)</option>
-                            <option value="contacted">📞 Contacted</option>
-                            <option value="in_progress">⏳ In Progress</option>
-                            <option value="payment_mode">💳 Payment Mode</option>
-                            <option value="converted">🎉 Converted</option>
-                            <option value="not_interested">❌ Not Interested</option>
-                            <option value="closed">📁 Closed / Lost</option>
+                            <option value="new">New Lead</option>
+                            <option value="interested">Interested</option>
+                            <option value="dnp">DNP (Did Not Pick)</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="payment_mode">Payment Mode</option>
+                            <option value="converted">Converted</option>
+                            <option value="not_interested">Not Interested</option>
+                            <option value="closed">Closed / Lost</option>
                           </select>
                         </td>
 
@@ -1241,10 +1260,10 @@ export default function AdminInquiryPage() {
                               }}
                               title="Assign lead to a counselor or staff member"
                             >
-                              <option value="unassigned">⚠️ Unassigned</option>
+                              <option value="unassigned">Unassigned</option>
                               {employees.map((emp) => (
                                 <option key={emp.id} value={emp.id}>
-                                  👤 {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                                  {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
                                 </option>
                               ))}
                             </select>
@@ -1614,21 +1633,21 @@ export default function AdminInquiryPage() {
                     onChange={(e) => setNewLead({ ...newLead, country: e.target.value })}
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
-                    <option value="Poland">🇵🇱 Poland</option>
-                    <option value="Romania">🇷🇴 Romania</option>
-                    <option value="Croatia">🇭🇷 Croatia</option>
-                    <option value="Hungary">🇭🇺 Hungary</option>
-                    <option value="Malta">🇲🇹 Malta</option>
-                    <option value="Czech Republic">🇨🇿 Czech Republic</option>
-                    <option value="Canada">🇨🇦 Canada</option>
-                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                    <option value="Australia">🇦🇺 Australia</option>
-                    <option value="Germany">🇩🇪 Germany</option>
-                    <option value="UAE / Dubai">🇦🇪 UAE / Dubai</option>
-                    <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
-                    <option value="Qatar">🇶🇦 Qatar</option>
-                    <option value="General Destination">🌐 General Destination</option>
-                    <option value="Other">✏️ Other Country...</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Malta">Malta</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="UAE / Dubai">UAE / Dubai</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="General Destination">General Destination</option>
+                    <option value="Other">Other Country...</option>
                   </select>
                   {newLead.country === "Other" && (
                     <input
@@ -1670,13 +1689,13 @@ export default function AdminInquiryPage() {
                     onChange={(e) => setNewLead({ ...newLead, source: e.target.value })}
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
-                    <option value="Walk-in Office">🏢 Walk-in Office</option>
-                    <option value="Phone Call Inquiry">📞 Phone Call Inquiry</option>
-                    <option value="WhatsApp Direct">💬 WhatsApp Direct</option>
-                    <option value="Instagram / Facebook Ad">📱 Social Media Ad</option>
-                    <option value="Agent / Referral">🤝 Agent / Referral</option>
-                    <option value="Consultation Form - Homepage">🌐 Website Form</option>
-                    <option value="Other">📋 Other...</option>
+                    <option value="Walk-in Office">Walk-in Office</option>
+                    <option value="Phone Call Inquiry">Phone Call Inquiry</option>
+                    <option value="WhatsApp Direct">WhatsApp Direct</option>
+                    <option value="Instagram / Facebook Ad">Social Media Ad</option>
+                    <option value="Agent / Referral">Agent / Referral</option>
+                    <option value="Consultation Form - Homepage">Website Form</option>
+                    <option value="Other">Other Source...</option>
                   </select>
                   {newLead.source === "Other" && (
                     <input
@@ -1700,15 +1719,15 @@ export default function AdminInquiryPage() {
                     onChange={(e) => setNewLead({ ...newLead, status: e.target.value as InquiryItem["status"] })}
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
-                    <option value="new">✨ New Lead</option>
-                    <option value="interested">👍 Interested</option>
-                    <option value="dnp">📵 DNP (Did Not Pick)</option>
-                    <option value="contacted">📞 Contacted</option>
-                    <option value="in_progress">⏳ In Progress</option>
-                    <option value="payment_mode">💳 Payment Mode</option>
-                    <option value="converted">🎉 Converted</option>
-                    <option value="not_interested">❌ Not Interested</option>
-                    <option value="closed">📁 Closed / Lost</option>
+                    <option value="new">New Lead</option>
+                    <option value="interested">Interested</option>
+                    <option value="dnp">DNP (Did Not Pick)</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="payment_mode">Payment Mode</option>
+                    <option value="converted">Converted</option>
+                    <option value="not_interested">Not Interested</option>
+                    <option value="closed">Closed / Lost</option>
                   </select>
                 </div>
 
@@ -1722,10 +1741,10 @@ export default function AdminInquiryPage() {
                     onChange={(e) => setNewLead({ ...newLead, assignedToId: e.target.value })}
                     style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
                   >
-                    <option value="">⚠️ Unassigned (General Pool)</option>
+                    <option value="">Unassigned (General Pool)</option>
                     {employees.map((emp) => (
                       <option key={emp.id} value={emp.id}>
-                        👤 {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                        {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
                       </option>
                     ))}
                   </select>
