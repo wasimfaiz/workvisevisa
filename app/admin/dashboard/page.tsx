@@ -9,6 +9,23 @@ import { useState, useEffect, FormEvent, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Phone,
+  MessageCircle,
+  RefreshCw,
+  Download,
+  Trash2,
+  Search,
+  Calendar,
+  User,
+  Briefcase,
+  Globe,
+  CheckCircle2,
+  Clock,
+  Filter,
+} from "lucide-react";
+
+import { EmployeePermissions } from "@/lib/types/rbac";
 
 // ── Types ─────────────────────────────────────────────────────────
 
@@ -31,11 +48,25 @@ interface Job {
   urgent: boolean;
 }
 
+interface Inquiry {
+  id: string;
+  name: string;
+  phone: string;
+  country: string;
+  occupation: string;
+  status: "new" | "contacted" | "in_progress" | "converted" | "closed";
+  notes?: string;
+  source?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface AdminUser {
   id: string;
   email: string;
   name: string;
   role: string;
+  permissions?: EmployeePermissions;
 }
 
 const EMPTY_JOB: Omit<Job, "id"> = {
@@ -279,7 +310,15 @@ export default function AdminDashboardPage() {
   const [admin, setAdmin] = useState<AdminUser | null>(null);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"jobs" | "new">("jobs");
+  const [activeTab, setActiveTab] = useState<"jobs" | "new" | "inquiries">("jobs");
+
+  // Inquiries state
+  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [inquiriesLoading, setInquiriesLoading] = useState(false);
+  const [inquirySearch, setInquirySearch] = useState("");
+  const [inquiryFilter, setInquiryFilter] = useState<string>("all");
+  const [deleteInquiryId, setDeleteInquiryId] = useState<string | null>(null);
+  const [statusUpdatingId, setStatusUpdatingId] = useState<string | null>(null);
 
   // Modal state
   const [editingJob, setEditingJob] = useState<Job | null>(null);
@@ -291,6 +330,16 @@ export default function AdminDashboardPage() {
   const [requirementsInput, setRequirementsInput] = useState("");
   const [formLoading, setFormLoading] = useState(false);
   const [formMessage, setFormMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  // Check URL query for tab
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("tab") === "inquiries") {
+        setActiveTab("inquiries");
+      }
+    }
+  }, []);
 
   // ── Auth Check ──────────────────────────────────────────────────
 
@@ -307,7 +356,7 @@ export default function AdminDashboardPage() {
     checkAuth();
   }, [router]);
 
-  // ── Load Jobs ───────────────────────────────────────────────────
+  // ── Load Jobs & Inquiries ───────────────────────────────────────
 
   const loadJobs = useCallback(async () => {
     setLoading(true);
@@ -317,7 +366,83 @@ export default function AdminDashboardPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { loadJobs(); }, [loadJobs]);
+  const loadInquiries = useCallback(async () => {
+    setInquiriesLoading(true);
+    try {
+      const res = await fetch("/api/inquiries");
+      const data = await res.json();
+      if (data.success) setInquiries(data.data || []);
+    } catch (e) {
+      console.error("Failed to load inquiries", e);
+    } finally {
+      setInquiriesLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadJobs();
+    loadInquiries();
+  }, [loadJobs, loadInquiries]);
+
+  // ── Inquiry Handlers ────────────────────────────────────────────
+
+  async function handleStatusChange(id: string, newStatus: string) {
+    setStatusUpdatingId(id);
+    try {
+      const res = await fetch(`/api/inquiries/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setInquiries((prev) =>
+          prev.map((inq) =>
+            inq.id === id ? { ...inq, status: newStatus as Inquiry["status"] } : inq
+          )
+        );
+      }
+    } catch (e) {
+      console.error("Failed to update status", e);
+    } finally {
+      setStatusUpdatingId(null);
+    }
+  }
+
+  async function handleDeleteInquiry(id: string) {
+    try {
+      const res = await fetch(`/api/inquiries/${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (data.success) {
+        setInquiries((prev) => prev.filter((inq) => inq.id !== id));
+        setDeleteInquiryId(null);
+      }
+    } catch (e) {
+      console.error("Failed to delete inquiry", e);
+    }
+  }
+
+  function exportInquiriesCSV() {
+    if (inquiries.length === 0) return;
+    const headers = ["Name", "Phone", "Target Destination", "Occupation", "Status", "Date Submitted"];
+    const rows = filteredInquiries.map((i) => [
+      `"${i.name.replace(/"/g, '""')}"`,
+      `"${i.phone.replace(/"/g, '""')}"`,
+      `"${i.country.replace(/"/g, '""')}"`,
+      `"${i.occupation.replace(/"/g, '""')}"`,
+      `"${i.status}"`,
+      `"${new Date(i.createdAt).toLocaleString("en-IN")}"`,
+    ]);
+    const csvContent =
+      "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `workwise_consultation_inquiries_${new Date().toISOString().split("T")[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   // ── Logout ──────────────────────────────────────────────────────
 
@@ -433,6 +558,26 @@ export default function AdminDashboardPage() {
   const urgentCount = jobs.filter(j => j.urgent).length;
   const totalOpenings = jobs.reduce((sum, j) => sum + j.totalOpenings, 0);
 
+  const newInquiriesCount = inquiries.filter((i) => i.status === "new").length;
+  const contactedCount = inquiries.filter((i) => i.status === "contacted" || i.status === "in_progress").length;
+  const convertedCount = inquiries.filter((i) => i.status === "converted").length;
+  const todayInquiriesCount = inquiries.filter((i) => {
+    const today = new Date().toDateString();
+    return new Date(i.createdAt).toDateString() === today;
+  }).length;
+
+  const filteredInquiries = inquiries.filter((inq) => {
+    const matchesFilter = inquiryFilter === "all" || inq.status === inquiryFilter;
+    const q = inquirySearch.toLowerCase().trim();
+    const matchesSearch =
+      !q ||
+      inq.name.toLowerCase().includes(q) ||
+      inq.phone.toLowerCase().includes(q) ||
+      inq.country.toLowerCase().includes(q) ||
+      inq.occupation.toLowerCase().includes(q);
+    return matchesFilter && matchesSearch;
+  });
+
   // ── Render ──────────────────────────────────────────────────────
 
   if (!admin) {
@@ -442,6 +587,15 @@ export default function AdminDashboardPage() {
       </div>
     );
   }
+
+  const isSuper = admin.role === "superadmin" || admin.email === "wasim@yastudy.com";
+  const canViewJobs = isSuper || Boolean(admin.permissions?.jobs?.view !== false);
+  const canCreateJob = isSuper || Boolean(admin.permissions?.jobs?.create !== false);
+  const canEditJob = isSuper || Boolean(admin.permissions?.jobs?.edit !== false);
+  const canDeleteJob = isSuper || Boolean(admin.permissions?.jobs?.delete !== false);
+  const canViewInvoices = isSuper || Boolean(admin.permissions?.invoices?.view);
+  const canViewInquiries = isSuper || Boolean(admin.permissions?.inquiries?.view !== false);
+  const canViewEmployees = isSuper || Boolean(admin.permissions?.employees?.view);
 
   return (
     <div style={s.page}>
@@ -466,22 +620,53 @@ export default function AdminDashboardPage() {
         </div>
 
         <nav style={s.nav}>
-          <button
-            onClick={() => { setActiveTab("jobs"); setEditingJob(null); }}
-            style={{ ...s.navItem, ...(activeTab === "jobs" && !editingJob ? s.navItemActive : {}) }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Job Listings
-            <span style={s.badge}>{jobs.length}</span>
-          </button>
+          {canViewJobs && (
+            <button
+              onClick={() => { setActiveTab("jobs"); setEditingJob(null); }}
+              style={{ ...s.navItem, ...(activeTab === "jobs" && !editingJob ? s.navItemActive : {}) }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Job Listings
+              <span style={s.badge}>{jobs.length}</span>
+            </button>
+          )}
 
-          <Link
-            href="/admin/invoice"
-            style={{ ...s.navItem, textDecoration: "none", color: "rgba(255,255,255,0.7)" }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Invoice Generator
-          </Link>
+          {canViewInquiries && (
+            <Link
+              href="/admin/inquiry"
+              style={{ ...s.navItem, textDecoration: "none", color: "rgba(255,255,255,0.7)" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Inquiries / Leads
+              {newInquiriesCount > 0 ? (
+                <span style={{ ...s.badge, background: "#10b981", color: "white", fontWeight: 700 }}>
+                  {newInquiriesCount} New
+                </span>
+              ) : (
+                <span style={s.badge}>{inquiries.length}</span>
+              )}
+            </Link>
+          )}
+
+          {canViewInvoices && (
+            <Link
+              href="/admin/invoice"
+              style={{ ...s.navItem, textDecoration: "none", color: "rgba(255,255,255,0.7)" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Invoice Generator
+            </Link>
+          )}
+
+          {canViewEmployees && (
+            <Link
+              href="/admin/employees"
+              style={{ ...s.navItem, textDecoration: "none", color: "rgba(255,255,255,0.7)" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Employees &amp; Access
+            </Link>
+          )}
         </nav>
 
         <div style={s.sidebarFooter}>
@@ -505,16 +690,65 @@ export default function AdminDashboardPage() {
         <div style={s.header}>
           <div>
             <h1 style={s.pageTitle}>
-              {editingJob ? "Edit Job Posting" : activeTab === "new" ? "Post New Job" : "Job Listings"}
+              {editingJob
+                ? "Edit Job Posting"
+                : activeTab === "new"
+                ? "Post New Job"
+                : activeTab === "inquiries"
+                ? "Consultation Inquiries & Leads"
+                : "Job Listings"}
             </h1>
             <p style={s.pageSubtitle}>
-              {editingJob ? `Editing: ${editingJob.title}` : activeTab === "new" ? "Create a new job vacancy" : `${jobs.length} active postings`}
+              {editingJob
+                ? `Editing: ${editingJob.title}`
+                : activeTab === "new"
+                ? "Create a new job vacancy"
+                : activeTab === "inquiries"
+                ? `${inquiries.length} total consultation requests · ${newInquiriesCount} new leads pending review`
+                : `${jobs.length} active postings`}
             </p>
           </div>
-          {activeTab === "jobs" && !editingJob && (
+          {activeTab === "jobs" && !editingJob && canCreateJob && (
             <button onClick={openNewForm} style={s.btnPrimary}>
               + Post New Job
             </button>
+          )}
+          {activeTab === "inquiries" && (
+            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+              <button
+                onClick={loadInquiries}
+                disabled={inquiriesLoading}
+                style={{
+                  ...s.btnSecondary,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "13px",
+                  padding: "10px 16px",
+                }}
+                title="Refresh leads"
+              >
+                <RefreshCw style={{ width: "14px", height: "14px" }} />
+                Refresh
+              </button>
+              <button
+                onClick={exportInquiriesCSV}
+                disabled={inquiries.length === 0}
+                style={{
+                  ...s.btnPrimary,
+                  background: "linear-gradient(135deg, #10b981, #059669)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  fontSize: "13px",
+                  padding: "10px 18px",
+                  boxShadow: "0 4px 12px rgba(16,185,129,0.3)",
+                }}
+              >
+                <Download style={{ width: "14px", height: "14px" }} />
+                Export CSV
+              </button>
+            </div>
           )}
         </div>
 
@@ -616,8 +850,15 @@ export default function AdminDashboardPage() {
                         <td style={{ ...s.td, fontSize: "12px", color: "#9ca3af" }}>{job.postedDate}</td>
                         <td style={s.td}>
                           <div style={{ display: "flex", gap: "8px" }}>
-                            <button onClick={() => openEditModal(job)} style={s.editBtn}>Edit</button>
-                            <button onClick={() => setShowDeleteConfirm(job.id)} style={s.deleteBtn}>Delete</button>
+                            {canEditJob && (
+                              <button onClick={() => openEditModal(job)} style={s.editBtn}>Edit</button>
+                            )}
+                            {canDeleteJob && (
+                              <button onClick={() => setShowDeleteConfirm(job.id)} style={s.deleteBtn}>Delete</button>
+                            )}
+                            {!canEditJob && !canDeleteJob && (
+                              <span style={{ fontSize: "12px", color: "#9ca3af" }}>Read only</span>
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -628,9 +869,332 @@ export default function AdminDashboardPage() {
             )}
           </div>
         )}
+
+        {/* ══════════════════════════════════════════════════════════
+            INQUIRIES / LEADS TAB VIEW
+            ══════════════════════════════════════════════════════════ */}
+        {activeTab === "inquiries" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            {/* Stats Row */}
+            <div style={s.statsRow}>
+              {[
+                { label: "Total Leads", value: inquiries.length, color: "#6366f1" },
+                { label: "New Leads", value: newInquiriesCount, color: "#10b981" },
+                { label: "Contacted / In Progress", value: contactedCount, color: "#f59e0b" },
+                { label: "Converted Clients", value: convertedCount, color: "#8b5cf6" },
+                { label: "Received Today", value: todayInquiriesCount, color: "#06b6d4" },
+              ].map((stat) => (
+                <div key={stat.label} style={s.statCard}>
+                  <div style={{ fontSize: "28px", fontWeight: 800, color: stat.color }}>
+                    {stat.value}
+                  </div>
+                  <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px", fontWeight: 600 }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Search & Filter Bar */}
+            <div style={{ ...s.card, padding: "16px 20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "14px",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                {/* Search input */}
+                <div style={{ position: "relative", flex: 1, minWidth: "260px" }}>
+                  <Search
+                    style={{
+                      position: "absolute",
+                      left: "14px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      width: "16px",
+                      height: "16px",
+                      color: "#9ca3af",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <input
+                    type="text"
+                    value={inquirySearch}
+                    onChange={(e) => setInquirySearch(e.target.value)}
+                    placeholder="Search by candidate name, phone, country, occupation..."
+                    style={{ ...s.input, paddingLeft: "40px", fontSize: "13px", width: "100%" }}
+                  />
+                </div>
+
+                {/* Filter buttons */}
+                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
+                  {[
+                    { id: "all", label: `All (${inquiries.length})` },
+                    { id: "new", label: `✨ New (${newInquiriesCount})` },
+                    { id: "contacted", label: `📞 Contacted (${inquiries.filter((i) => i.status === "contacted").length})` },
+                    { id: "in_progress", label: `⏳ In Progress (${inquiries.filter((i) => i.status === "in_progress").length})` },
+                    { id: "converted", label: `🎉 Converted (${convertedCount})` },
+                    { id: "closed", label: `Closed (${inquiries.filter((i) => i.status === "closed").length})` },
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setInquiryFilter(tab.id)}
+                      style={{
+                        padding: "7px 14px",
+                        borderRadius: "8px",
+                        fontSize: "12px",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        border: "1px solid",
+                        transition: "all 0.15s",
+                        background: inquiryFilter === tab.id ? "#6366f1" : "#f8fafc",
+                        color: inquiryFilter === tab.id ? "white" : "#475569",
+                        borderColor: inquiryFilter === tab.id ? "#6366f1" : "#e2e8f0",
+                      }}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Inquiries Table Card */}
+            <div style={s.card}>
+              {inquiriesLoading ? (
+                <div style={{ padding: "48px", textAlign: "center", color: "#6b7280" }}>
+                  <RefreshCw className="animate-spin" style={{ width: "24px", height: "24px", margin: "0 auto 12px", color: "#6366f1" }} />
+                  Loading consultation inquiries…
+                </div>
+              ) : filteredInquiries.length === 0 ? (
+                <div style={{ padding: "56px 20px", textAlign: "center" }}>
+                  <div style={{ fontSize: "44px", marginBottom: "12px" }}>📬</div>
+                  <div style={{ color: "#374151", fontWeight: 700, fontSize: "16px" }}>
+                    No Consultation Inquiries Found
+                  </div>
+                  <p style={{ color: "#9ca3af", fontSize: "13px", marginTop: "4px", maxWidth: "460px", margin: "4px auto 0" }}>
+                    {inquirySearch || inquiryFilter !== "all"
+                      ? "No leads matched your search/filter criteria. Try clearing filters."
+                      : "When candidates fill the 'Book Free Consultation' form on the website, they will appear here in real time."}
+                  </p>
+                  {(inquirySearch || inquiryFilter !== "all") && (
+                    <button
+                      onClick={() => {
+                        setInquirySearch("");
+                        setInquiryFilter("all");
+                      }}
+                      style={{ ...s.btnSecondary, marginTop: "16px", fontSize: "12px", padding: "8px 16px" }}
+                    >
+                      Clear Search Filters
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div style={{ overflowX: "auto" }}>
+                  <table style={s.table}>
+                    <thead>
+                      <tr>
+                        <th style={{ ...s.th, width: "40px", textAlign: "center" }}>#</th>
+                        <th style={s.th}>Candidate &amp; Submission Date</th>
+                        <th style={s.th}>Phone &amp; Quick Connect</th>
+                        <th style={s.th}>Target Destination</th>
+                        <th style={s.th}>Current Occupation</th>
+                        <th style={s.th}>Status</th>
+                        <th style={{ ...s.th, textAlign: "right" }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredInquiries.map((inq, idx) => {
+                        const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
+                        const waPhone = cleanPhone.startsWith("+")
+                          ? cleanPhone.replace("+", "")
+                          : cleanPhone.length === 10
+                          ? `91${cleanPhone}`
+                          : cleanPhone;
+
+                        const formattedDate = new Date(inq.createdAt).toLocaleString("en-IN", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        });
+
+                        const waMessage = encodeURIComponent(
+                          `Hello ${inq.name}, greetings from WorkWise Visa! Thank you for requesting an overseas work visa consultation for ${inq.country}. We would love to assess your profile for ${inq.occupation}.`
+                        );
+
+                        return (
+                          <tr key={inq.id} style={{ background: idx % 2 === 0 ? "white" : "#f9fafb" }}>
+                            <td style={{ ...s.td, textAlign: "center", color: "#9ca3af", fontWeight: 700, fontSize: "12px" }}>
+                              {idx + 1}
+                            </td>
+                            <td style={s.td}>
+                              <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "14px" }}>
+                                {inq.name}
+                              </div>
+                              <div
+                                style={{
+                                  fontSize: "11px",
+                                  color: "#64748b",
+                                  marginTop: "3px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "4px",
+                                }}
+                              >
+                                <Clock style={{ width: "12px", height: "12px", color: "#94a3b8" }} />
+                                {formattedDate}
+                              </div>
+                            </td>
+                            <td style={s.td}>
+                              <div style={{ fontFamily: "monospace", fontWeight: 600, color: "#1e293b", fontSize: "13px" }}>
+                                {inq.phone}
+                              </div>
+                              <div style={{ display: "flex", gap: "8px", marginTop: "6px" }}>
+                                <a
+                                  href={`https://wa.me/${waPhone}?text=${waMessage}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "4px",
+                                    background: "#ecfdf5",
+                                    color: "#059669",
+                                    border: "1px solid #a7f3d0",
+                                    borderRadius: "6px",
+                                    padding: "3px 8px",
+                                    fontSize: "11px",
+                                    fontWeight: 700,
+                                    textDecoration: "none",
+                                  }}
+                                  title="Chat on WhatsApp"
+                                >
+                                  <MessageCircle style={{ width: "12px", height: "12px" }} />
+                                  WhatsApp
+                                </a>
+                                <a
+                                  href={`tel:${cleanPhone}`}
+                                  style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "4px",
+                                    background: "#eff6ff",
+                                    color: "#2563eb",
+                                    border: "1px solid #bfdbfe",
+                                    borderRadius: "6px",
+                                    padding: "3px 8px",
+                                    fontSize: "11px",
+                                    fontWeight: 700,
+                                    textDecoration: "none",
+                                  }}
+                                  title="Direct Call"
+                                >
+                                  <Phone style={{ width: "11px", height: "11px" }} />
+                                  Call
+                                </a>
+                              </div>
+                            </td>
+                            <td style={s.td}>
+                              <span
+                                style={{
+                                  background: "#f0fdf4",
+                                  color: "#166534",
+                                  border: "1px solid #bbf7d0",
+                                  borderRadius: "6px",
+                                  padding: "4px 10px",
+                                  fontSize: "12px",
+                                  fontWeight: 700,
+                                  display: "inline-block",
+                                }}
+                              >
+                                📍 {inq.country}
+                              </span>
+                            </td>
+                            <td style={s.td}>
+                              <div style={{ color: "#334155", fontSize: "13px", fontWeight: 600 }}>
+                                {inq.occupation}
+                              </div>
+                            </td>
+                            <td style={s.td}>
+                              <select
+                                value={inq.status}
+                                disabled={statusUpdatingId === inq.id}
+                                onChange={(e) => handleStatusChange(inq.id, e.target.value)}
+                                style={{
+                                  padding: "5px 10px",
+                                  borderRadius: "8px",
+                                  fontSize: "12px",
+                                  fontWeight: 700,
+                                  cursor: "pointer",
+                                  border: "1.5px solid",
+                                  outline: "none",
+                                  background:
+                                    inq.status === "new"
+                                      ? "#ecfdf5"
+                                      : inq.status === "contacted"
+                                      ? "#fef3c7"
+                                      : inq.status === "in_progress"
+                                      ? "#eff6ff"
+                                      : inq.status === "converted"
+                                      ? "#f3e8ff"
+                                      : "#f1f5f9",
+                                  color:
+                                    inq.status === "new"
+                                      ? "#047857"
+                                      : inq.status === "contacted"
+                                      ? "#b45309"
+                                      : inq.status === "in_progress"
+                                      ? "#1d4ed8"
+                                      : inq.status === "converted"
+                                      ? "#7e22ce"
+                                      : "#64748b",
+                                  borderColor:
+                                    inq.status === "new"
+                                      ? "#a7f3d0"
+                                      : inq.status === "contacted"
+                                      ? "#fde68a"
+                                      : inq.status === "in_progress"
+                                      ? "#bfdbfe"
+                                      : inq.status === "converted"
+                                      ? "#e9d5ff"
+                                      : "#cbd5e1",
+                                }}
+                              >
+                                <option value="new">✨ New Lead</option>
+                                <option value="contacted">📞 Contacted</option>
+                                <option value="in_progress">⏳ In Progress</option>
+                                <option value="converted">🎉 Converted</option>
+                                <option value="closed">Closed</option>
+                              </select>
+                            </td>
+                            <td style={{ ...s.td, textAlign: "right" }}>
+                              <button
+                                onClick={() => setDeleteInquiryId(inq.id)}
+                                style={{ ...s.deleteBtn, padding: "6px 12px" }}
+                                title="Delete inquiry"
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </main>
 
-      {/* Delete Confirm Modal */}
+      {/* Delete Job Confirm Modal */}
       {showDeleteConfirm && (
         <div style={s.overlay}>
           <div style={s.modal}>
@@ -642,6 +1206,29 @@ export default function AdminDashboardPage() {
             <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
               <button onClick={() => handleDelete(showDeleteConfirm)} style={s.btnDanger}>Yes, Delete</button>
               <button onClick={() => setShowDeleteConfirm(null)} style={s.btnSecondary}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Inquiry Confirm Modal */}
+      {deleteInquiryId && (
+        <div style={s.overlay}>
+          <div style={s.modal}>
+            <div style={{ fontSize: "36px", marginBottom: "16px" }}>🗑️</div>
+            <h3 style={{ margin: "0 0 8px", fontSize: "18px", fontWeight: 700, color: "#111827" }}>
+              Delete Consultation Lead?
+            </h3>
+            <p style={{ margin: "0 0 24px", color: "#6b7280", fontSize: "14px" }}>
+              Are you sure you want to delete this consultation inquiry? This action cannot be undone.
+            </p>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+              <button onClick={() => handleDeleteInquiry(deleteInquiryId)} style={s.btnDanger}>
+                Yes, Delete
+              </button>
+              <button onClick={() => setDeleteInquiryId(null)} style={s.btnSecondary}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>

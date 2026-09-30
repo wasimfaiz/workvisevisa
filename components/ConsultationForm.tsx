@@ -40,23 +40,61 @@ export default function ConsultationForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const validate = (): boolean => {
     const errs: FormErrors = {};
-    if (!data.name.trim() || data.name.trim().length < 2)
-      errs.name = "Please enter your full name.";
-    if (!data.phone.trim() || !/^[+]?[\d\s()-]{7,18}$/.test(data.phone.trim()))
-      errs.phone = "Please enter a valid phone number.";
-    if (!data.country) errs.country = "Please select a target country.";
-    if (!data.occupation.trim() || data.occupation.trim().length < 2)
-      errs.occupation = "Please enter your current occupation.";
+    if (!data.name.trim() || data.name.trim().length < 2) {
+      errs.name = "Please enter your full name (minimum 2 characters).";
+    }
+    const digitsOnly = data.phone.replace(/\D/g, "");
+    if (!data.phone.trim() || digitsOnly.length < 7) {
+      errs.phone = "Please enter a valid phone or WhatsApp number (at least 7 digits).";
+    }
+    if (!data.country) {
+      errs.country = "Please select your target country.";
+    }
     setErrors(errs);
-    return Object.keys(errs).length === 0;
+    if (Object.keys(errs).length > 0) {
+      setServerError("Please correct the highlighted fields before submitting.");
+      return false;
+    }
+    return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) setSubmitted(true);
+    if (!validate()) return;
+
+    setLoading(true);
+    setServerError("");
+
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name.trim(),
+          phone: data.phone.trim(),
+          country: data.country.trim() || "General Destination",
+          occupation: data.occupation.trim() || "General / Not Specified",
+          source: "Consultation Form - Homepage",
+        }),
+      });
+
+      const result = await res.json();
+      if (res.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setServerError(result.message || "Failed to submit consultation. Please try again.");
+      }
+    } catch (err) {
+      console.error("Consultation submit error:", err);
+      setServerError("Network error. Please try again or reach out directly on WhatsApp.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -66,6 +104,7 @@ export default function ConsultationForm() {
     setData((d) => ({ ...d, [name]: value }));
     if (errors[name as keyof FormErrors])
       setErrors((prev) => ({ ...prev, [name]: undefined }));
+    if (serverError) setServerError("");
   };
 
   if (submitted) {
@@ -87,6 +126,15 @@ export default function ConsultationForm() {
             <p className="text-slate-600 text-base leading-relaxed font-medium">
               Our lead immigration specialist will reach out to you on WhatsApp / Phone within <strong>24 hours</strong> to review your eligibility.
             </p>
+            <button
+              onClick={() => {
+                setData({ name: "", phone: "", country: "", occupation: "" });
+                setSubmitted(false);
+              }}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 text-xs font-bold transition cursor-pointer"
+            >
+              Book Another Consultation
+            </button>
           </motion.div>
         </div>
       </section>
@@ -263,12 +311,32 @@ export default function ConsultationForm() {
                 </div>
               </div>
 
+              {serverError && (
+                <div className="mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 flex items-center gap-2">
+                  <FaCircleExclamation className="w-4 h-4 shrink-0 text-rose-500" />
+                  <span>{serverError}</span>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                disabled={loading}
+                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
               >
-                <FaPaperPlane className="w-4 h-4" />
-                Reserve Free Consultation Slot
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Submitting Request...</span>
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane className="w-4 h-4" />
+                    <span>Reserve Free Consultation Slot</span>
+                  </>
+                )}
               </button>
             </form>
           </motion.div>

@@ -7,7 +7,7 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Job, { IJob } from "@/lib/models/Job";
-import { getAuthUser } from "@/lib/auth";
+import { requirePermission } from "@/lib/auth";
 
 // ── Types ─────────────────────────────────────────────────────────
 
@@ -15,19 +15,6 @@ export type JobInput = Omit<
   IJob,
   "_id" | "id" | "createdAt" | "updatedAt" | "__v"
 >;
-
-// ── Helpers ───────────────────────────────────────────────────────
-
-function requireAdmin(request: NextRequest): Response | null {
-  const user = getAuthUser(request);
-  if (!user) {
-    return Response.json(
-      { success: false, message: "Unauthorized. Please log in as admin." },
-      { status: 401 }
-    );
-  }
-  return null;
-}
 
 function todayDateString(): string {
   return new Date().toLocaleDateString("en-US", {
@@ -104,8 +91,10 @@ export async function getJobById(id: string): Promise<Response> {
  * Admin-only: Create a new job posting.
  */
 export async function createJob(request: NextRequest): Promise<Response> {
-  const authError = requireAdmin(request);
-  if (authError) return authError;
+  const auth = await requirePermission(request, "jobs", "create");
+  if (!auth.allowed) {
+    return Response.json({ success: false, message: auth.error }, { status: auth.status });
+  }
 
   try {
     await connectDB();
@@ -163,8 +152,10 @@ export async function updateJob(
   request: NextRequest,
   id: string
 ): Promise<Response> {
-  const authError = requireAdmin(request);
-  if (authError) return authError;
+  const auth = await requirePermission(request, "jobs", "edit");
+  if (!auth.allowed) {
+    return Response.json({ success: false, message: auth.error }, { status: auth.status });
+  }
 
   try {
     await connectDB();
@@ -208,8 +199,10 @@ export async function deleteJob(
   request: NextRequest,
   id: string
 ): Promise<Response> {
-  const authError = requireAdmin(request);
-  if (authError) return authError;
+  const auth = await requirePermission(request, "jobs", "delete");
+  if (!auth.allowed) {
+    return Response.json({ success: false, message: auth.error }, { status: auth.status });
+  }
 
   try {
     await connectDB();

@@ -51,11 +51,25 @@ export async function login(request: NextRequest): Promise<Response> {
       );
     }
 
+    // Update lastLoginAt
+    admin.lastLoginAt = new Date();
+    await admin.save();
+
+    const isSuper = admin.role === "superadmin" || admin.email === "wasim@yastudy.com";
+    const userPermissions = isSuper
+      ? {
+          invoices: { view: true, create: true, edit: true, delete: true, print: true },
+          inquiries: { view: true, edit: true, delete: true, export: true },
+          jobs: { view: true, create: true, edit: true, delete: true },
+          employees: { view: true, manage: true },
+        }
+      : admin.permissions;
+
     // Sign JWT and set cookie
     const token = signToken({
       id: admin._id.toString(),
       email: admin.email,
-      role: admin.role,
+      role: isSuper ? "superadmin" : admin.role,
     });
 
     const cookie = buildAuthCookie(token);
@@ -68,7 +82,9 @@ export async function login(request: NextRequest): Promise<Response> {
           id: admin._id.toString(),
           email: admin.email,
           name: admin.name,
-          role: admin.role,
+          role: isSuper ? "superadmin" : admin.role,
+          status: admin.status || "active",
+          permissions: userPermissions,
         },
       }),
       {
@@ -107,7 +123,7 @@ export async function logout(): Promise<Response> {
 
 /**
  * GET /api/auth/me
- * Returns the currently authenticated admin's info.
+ * Returns the currently authenticated admin's info and active permissions.
  */
 export async function getMe(request: NextRequest): Promise<Response> {
   try {
@@ -120,22 +136,34 @@ export async function getMe(request: NextRequest): Promise<Response> {
     }
 
     await connectDB();
-    const admin = await AdminUser.findById(payload.id).lean();
+    const admin = await AdminUser.findById(payload.id);
 
-    if (!admin) {
+    if (!admin || admin.status === "inactive") {
       return Response.json(
-        { success: false, message: "Admin user not found." },
-        { status: 404 }
+        { success: false, message: "Account not found or has been deactivated." },
+        { status: 403 }
       );
     }
+
+    const isSuper = admin.role === "superadmin" || admin.email === "wasim@yastudy.com";
+    const userPermissions = isSuper
+      ? {
+          invoices: { view: true, create: true, edit: true, delete: true, print: true },
+          inquiries: { view: true, edit: true, delete: true, export: true },
+          jobs: { view: true, create: true, edit: true, delete: true },
+          employees: { view: true, manage: true },
+        }
+      : admin.permissions;
 
     return Response.json({
       success: true,
       user: {
-        id: (admin._id as unknown as { toString(): string }).toString(),
+        id: admin._id.toString(),
         email: admin.email,
         name: admin.name,
-        role: admin.role,
+        role: isSuper ? "superadmin" : admin.role,
+        status: admin.status || "active",
+        permissions: userPermissions,
       },
     });
   } catch (error) {

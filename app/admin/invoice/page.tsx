@@ -30,6 +30,7 @@ import {
   X,
   Phone,
   Globe,
+  Lock,
 } from "lucide-react";
 
 interface InvoiceItem {
@@ -175,11 +176,21 @@ function formatDisplayDate(dateStr?: string): string {
   return dateStr;
 }
 
+import { EmployeePermissions } from "@/lib/types/rbac";
+
+interface AdminProfile {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  permissions?: EmployeePermissions;
+}
+
 export default function AdminInvoicePage() {
   const router = useRouter();
   const invoiceRef = useRef<HTMLDivElement>(null);
 
-  const [admin, setAdmin] = useState<{ name: string; role: string } | null>(null);
+  const [admin, setAdmin] = useState<AdminProfile | null>(null);
   const [invoices, setInvoices] = useState<InvoiceState[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -210,6 +221,11 @@ export default function AdminInvoicePage() {
         }
         const data = await res.json();
         setAdmin(data.user);
+        const isSuper = data.user.role === "superadmin" || data.user.email === "wasim@yastudy.com";
+        if (!isSuper && !data.user.permissions?.invoices?.view) {
+          router.replace("/admin/dashboard");
+          return;
+        }
       } catch {
         router.replace("/admin");
       }
@@ -483,6 +499,15 @@ export default function AdminInvoicePage() {
     }));
   };
 
+  const isSuper = admin?.role === "superadmin" || admin?.email === "wasim@yastudy.com";
+  const canViewJobs = isSuper || Boolean(admin?.permissions?.jobs?.view !== false);
+  const canViewInquiries = isSuper || Boolean(admin?.permissions?.inquiries?.view !== false);
+  const canViewEmployees = isSuper || Boolean(admin?.permissions?.employees?.view);
+  const canCreateInvoice = isSuper || Boolean(admin?.permissions?.invoices?.create !== false);
+  const canEditInvoice = isSuper || Boolean(admin?.permissions?.invoices?.edit !== false);
+  const canDeleteInvoice = isSuper || Boolean(admin?.permissions?.invoices?.delete !== false);
+  const canPrintInvoice = isSuper || Boolean(admin?.permissions?.invoices?.print !== false);
+
   return (
     <div className="min-h-screen bg-slate-100 flex font-sans">
       {/* ── SIDEBAR (Hidden in print) ────────────────────────────── */}
@@ -500,13 +525,25 @@ export default function AdminInvoicePage() {
 
         {/* Navigation Links */}
         <nav className="flex-1 px-3 py-2 flex flex-col gap-1.5">
-          <Link
-            href="/admin/dashboard"
-            className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Job Listings
-          </Link>
+          {canViewJobs && (
+            <Link
+              href="/admin/dashboard"
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Job Listings
+            </Link>
+          )}
+
+          {canViewInquiries && (
+            <Link
+              href="/admin/inquiry"
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Inquiries / Leads
+            </Link>
+          )}
 
           <button
             onClick={() => setViewMode("list")}
@@ -518,6 +555,16 @@ export default function AdminInvoicePage() {
               {invoices.length}
             </span>
           </button>
+
+          {canViewEmployees && (
+            <Link
+              href="/admin/employees"
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Employees &amp; Access
+            </Link>
+          )}
         </nav>
 
         {/* Footer with Admin User Info & Sign Out */}
@@ -573,13 +620,15 @@ export default function AdminInvoicePage() {
               </button>
             ) : null}
 
-            <button
-              onClick={handleAddNewInvoice}
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-bold bg-[#4338ca] hover:bg-[#3730a3] text-white px-4 py-2 rounded-xl shadow-md transition transform hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <Plus className="w-4 h-4" />
-              Add Invoice
-            </button>
+            {canCreateInvoice && (
+              <button
+                onClick={handleAddNewInvoice}
+                className="flex items-center gap-1.5 text-xs sm:text-sm font-bold bg-[#4338ca] hover:bg-[#3730a3] text-white px-4 py-2 rounded-xl shadow-md transition transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <Plus className="w-4 h-4" />
+                Add Invoice
+              </button>
+            )}
           </div>
         </header>
 
@@ -813,13 +862,15 @@ export default function AdminInvoicePage() {
                             </td>
                             <td className="py-3.5 px-4 text-center whitespace-nowrap">
                               <div className="flex items-center justify-center gap-1.5">
-                                <button
-                                  onClick={() => handleEditInvoice(inv)}
-                                  className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
-                                  title="Edit Invoice"
-                                >
-                                  <Edit3 className="w-4 h-4" />
-                                </button>
+                                {canEditInvoice && (
+                                  <button
+                                    onClick={() => handleEditInvoice(inv)}
+                                    className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
+                                    title="Edit Invoice"
+                                  >
+                                    <Edit3 className="w-4 h-4" />
+                                  </button>
+                                )}
                                 <button
                                   onClick={() => {
                                     setCurrentInvoice(inv);
@@ -831,7 +882,7 @@ export default function AdminInvoicePage() {
                                 >
                                   <Eye className="w-4 h-4" />
                                 </button>
-                                {(inv.id || inv._id) && (
+                                {canDeleteInvoice && (inv.id || inv._id) && (
                                   <button
                                     onClick={() => setDeleteConfirmId(inv.id || inv._id || null)}
                                     className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition"
@@ -893,33 +944,43 @@ export default function AdminInvoicePage() {
 
                 {/* Save & Action Buttons */}
                 <div className="flex gap-2">
-                  <button
-                    type="button"
-                    disabled={saveLoading}
-                    onClick={handleSaveInvoice}
-                    className="flex-1 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
-                  >
-                    <Save className="w-4 h-4" />
-                    {saveLoading ? "Saving..." : editingId ? "Save Changes" : "Save Invoice"}
-                  </button>
+                  {((editingId && canEditInvoice) || (!editingId && canCreateInvoice)) ? (
+                    <button
+                      type="button"
+                      disabled={saveLoading}
+                      onClick={handleSaveInvoice}
+                      className="flex-1 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
+                    >
+                      <Save className="w-4 h-4" />
+                      {saveLoading ? "Saving..." : editingId ? "Save Changes" : "Save Invoice"}
+                    </button>
+                  ) : (
+                    <div className="flex-1 py-2.5 px-3 bg-slate-100 text-slate-500 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200">
+                      <Lock className="w-3.5 h-3.5" /> Read-Only Mode
+                    </div>
+                  )}
 
-                  <button
-                    type="button"
-                    onClick={handlePrint}
-                    className="py-2.5 px-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
-                  >
-                    <Printer className="w-4 h-4" />
-                    Print / PDF
-                  </button>
+                  {canPrintInvoice && (
+                    <button
+                      type="button"
+                      onClick={handlePrint}
+                      className="py-2.5 px-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
+                    >
+                      <Printer className="w-4 h-4" />
+                      Print / PDF
+                    </button>
+                  )}
 
-                  <button
-                    type="button"
-                    onClick={handleAddNewInvoice}
-                    className="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold text-xs transition flex items-center gap-1"
-                    title="New Blank Invoice"
-                  >
-                    <Plus className="w-3.5 h-3.5" /> New
-                  </button>
+                  {canCreateInvoice && (
+                    <button
+                      type="button"
+                      onClick={handleAddNewInvoice}
+                      className="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold text-xs transition flex items-center gap-1"
+                      title="New Blank Invoice"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> New
+                    </button>
+                  )}
                 </div>
               </div>
 

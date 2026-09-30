@@ -1,15 +1,15 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Invoice from "@/lib/models/Invoice";
-import { getAuthUser } from "@/lib/auth";
+import { requirePermission } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
-    const user = getAuthUser(request);
-    if (!user) {
+    const auth = await requirePermission(request, "invoices", "view");
+    if (!auth.allowed) {
       return Response.json(
-        { success: false, message: "Unauthorized. Please log in as admin." },
-        { status: 401 }
+        { success: false, message: auth.error },
+        { status: auth.status }
       );
     }
 
@@ -35,11 +35,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const user = getAuthUser(request);
-    if (!user) {
+    const auth = await requirePermission(request, "invoices", "create");
+    if (!auth.allowed) {
       return Response.json(
-        { success: false, message: "Unauthorized. Please log in as admin." },
-        { status: 401 }
+        { success: false, message: auth.error },
+        { status: auth.status }
       );
     }
 

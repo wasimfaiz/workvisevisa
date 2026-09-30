@@ -1,11 +1,17 @@
 /* ================================================================
-   lib/auth.ts — Auth Utilities (JWT + bcrypt helpers)
-   Used by controllers and middleware.
+   lib/auth.ts — Auth Utilities (JWT + bcrypt + RBAC Permission helpers)
+   Used by controllers, API routes, and middleware.
    ================================================================ */
 
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextRequest } from "next/server";
+import { connectDB } from "@/lib/mongodb";
+import AdminUser, {
+  IAdminUser,
+  EmployeePermissions,
+  DEFAULT_PERMISSIONS,
+} from "@/lib/models/AdminUser";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 const JWT_EXPIRES_IN = "7d";
@@ -89,4 +95,68 @@ export function buildClearCookie(): string {
     `HttpOnly`,
     `SameSite=${COOKIE_CONFIG.sameSite}`,
   ].join("; ");
+}
+
+// ── RBAC Helpers ──────────────────────────────────────────────────
+
+/**
+ * Fetch the full AdminUser document from the DB using the JWT cookie.
+ * Ensures the account is active and loads up-to-date permissions.
+ */
+export async function getAuthAdmin(request: NextRequest): Promise<IAdminUser | null> {
+  const payload = getAuthUser(request);
+  if (!payload) return null;
+
+  await connectDB();
+  const admin = await AdminUser.findById(payload.id);
+  if (!admin || admin.status === "inactive") return null;
+
+  // Ensure superadmin has full permissions if missing or empty
+  if (
+    admin.role === "superadmin" ||
+    admin.email === "wasim@yastudy.com"
+  ) {
+    if (!admin.permissions || !admin.permissions.invoices?.view) {
+      admin.permissions = DEFAULT_PERMISSIONS.superadmin;
+      await admin.save();
+    }
+  }
+
+  return admin;
+}
+
+/**
+ * Check if the authenticated user has permission to perform `action` on `module`.
+ * Superadmin or primary email always has full access.
+ */
+export async function requirePermission(
+  request: NextRequest,
+  module: keyof EmployeePermissions,
+  action: string
+): Promise<{ allowed: boolean; user?: IAdminUser; error?: string; status: number }> {
+  const admin = await getAuthAdmin(request);
+  if (!admin) {
+    return {
+      allowed: false,
+      error: "Unauthorized. Please log in as admin.",
+      status: 401,
+    };
+  }
+
+  // Superadmin or main owner has unconditional access
+  if (admin.role === "superadmin" || admin.email === "wasim@yastudy.com") {
+    return { allowed: true, user: admin, status: 200 };
+  }
+
+  // Check specific permission
+  const modulePerms = admin.permissions?.[module] as Record<string, boolean> | undefined;
+  if (!modulePerms || !modulePerms[action]) {
+    return {
+      allowed: false,
+      error: `Access Denied: You do not have permission to ${action} ${module}.`,
+      status: 403,
+    };
+  }
+
+  return { allowed: true, user: admin, status: 200 };
 }
