@@ -61,6 +61,12 @@ interface Inquiry {
     | "closed";
   notes?: string;
   source?: string;
+  assignedTo?: {
+    id?: string | null;
+    name?: string;
+    email?: string;
+    role?: string;
+  };
   createdAt: string;
   updatedAt?: string;
 }
@@ -656,8 +662,25 @@ export default function AdminDashboardPage() {
                             {badge.label}
                           </span>
                         </div>
-                        <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px" }}>
-                          📍 {inq.country} · 💼 {inq.occupation || "General"}
+                        <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px", display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                          <span>📍 {inq.country}</span>
+                          <span>·</span>
+                          <span>💼 {inq.occupation || "General"}</span>
+                          {inq.assignedTo?.name ? (
+                            <>
+                              <span>·</span>
+                              <span style={{ background: "#ede9fe", color: "#6d28d9", padding: "1px 6px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                                👤 {inq.assignedTo.name}
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <span>·</span>
+                              <span style={{ color: "#94a3b8", fontSize: "11px", fontStyle: "italic" }}>
+                                ⚠️ Unassigned
+                              </span>
+                            </>
+                          )}
                         </div>
                       </div>
 

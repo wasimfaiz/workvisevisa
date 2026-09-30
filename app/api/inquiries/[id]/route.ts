@@ -40,6 +40,23 @@ export async function PATCH(
     if (typeof body.notes === "string") {
       allowedUpdates.notes = body.notes;
     }
+    if (body.assignedTo !== undefined) {
+      if (body.assignedTo === null || body.assignedTo.id === null || body.assignedTo.id === "") {
+        allowedUpdates.assignedTo = {
+          id: null,
+          name: "",
+          email: "",
+          role: "",
+        };
+      } else if (typeof body.assignedTo === "object") {
+        allowedUpdates.assignedTo = {
+          id: body.assignedTo.id || null,
+          name: typeof body.assignedTo.name === "string" ? body.assignedTo.name.trim() : "",
+          email: typeof body.assignedTo.email === "string" ? body.assignedTo.email.trim() : "",
+          role: typeof body.assignedTo.role === "string" ? body.assignedTo.role.trim() : "",
+        };
+      }
+    }
 
     const updated = await Inquiry.findByIdAndUpdate(
       id,

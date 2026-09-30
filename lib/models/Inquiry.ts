@@ -24,6 +24,12 @@ export interface IInquiry extends Document {
   status: InquiryStatus;
   notes?: string;
   source?: string;
+  assignedTo?: {
+    id?: string | null;
+    name?: string;
+    email?: string;
+    role?: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -51,6 +57,12 @@ const InquirySchema = new Schema<IInquiry>(
     },
     notes: { type: String, default: "" },
     source: { type: String, default: "Consultation Form - Homepage" },
+    assignedTo: {
+      id: { type: String, default: null },
+      name: { type: String, default: "" },
+      email: { type: String, default: "" },
+      role: { type: String, default: "" },
+    },
   },
   {
     timestamps: true,

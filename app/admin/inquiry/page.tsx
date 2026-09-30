@@ -59,8 +59,22 @@ export interface InquiryItem {
     | "closed";
   notes?: string;
   source: string;
+  assignedTo?: {
+    id?: string | null;
+    name?: string;
+    email?: string;
+    role?: string;
+  };
   createdAt: string;
   updatedAt?: string;
+}
+
+export interface EmployeeOption {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status?: string;
 }
 
 interface AdminUser {
@@ -80,14 +94,17 @@ export default function AdminInquiryPage() {
 
   // Data & Loading state
   const [inquiries, setInquiries] = useState<InquiryItem[]>([]);
+  const [employees, setEmployees] = useState<EmployeeOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [statusUpdatingId, setStatusUpdatingId] = useState<string | null>(null);
+  const [assigningId, setAssigningId] = useState<string | null>(null);
 
   // Filters & Search
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [countryFilter, setCountryFilter] = useState<string>("all");
+  const [assignedFilter, setAssignedFilter] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"newest" | "oldest">("newest");
 
   // Notes Modal state
@@ -107,6 +124,7 @@ export default function AdminInquiryPage() {
     source: "Walk-in Office",
     customSource: "",
     notes: "",
+    assignedToId: "",
   });
   const [addingLead, setAddingLead] = useState(false);
 
@@ -151,6 +169,19 @@ export default function AdminInquiryPage() {
           ? newLead.customSource.trim() || "Manual Entry"
           : newLead.source;
 
+      let assignedPayload = null;
+      if (newLead.assignedToId) {
+        const found = employees.find((emp) => emp.id === newLead.assignedToId);
+        if (found) {
+          assignedPayload = {
+            id: found.id,
+            name: found.name,
+            email: found.email,
+            role: found.role,
+          };
+        }
+      }
+
       const res = await fetch("/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,6 +193,7 @@ export default function AdminInquiryPage() {
           status: newLead.status,
           source: selectedSource,
           notes: newLead.notes.trim(),
+          assignedTo: assignedPayload,
         }),
       });
 
@@ -182,6 +214,7 @@ export default function AdminInquiryPage() {
         source: "Walk-in Office",
         customSource: "",
         notes: "",
+        assignedToId: "",
       });
       fetchInquiries();
     } catch (err) {
@@ -222,7 +255,21 @@ export default function AdminInquiryPage() {
     checkAuth();
   }, [router]);
 
-  // 2. Fetch Inquiries
+  // 2. Fetch Inquiries & Staff Assignees
+  const fetchEmployees = useCallback(async () => {
+    try {
+      const res = await fetch("/api/employees");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data)) {
+          setEmployees(data.data);
+        }
+      }
+    } catch (err) {
+      console.error("Error fetching employees list:", err);
+    }
+  }, []);
+
   const fetchInquiries = useCallback(async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
     else setLoading(true);
@@ -252,8 +299,63 @@ export default function AdminInquiryPage() {
   useEffect(() => {
     if (!authLoading && admin) {
       fetchInquiries();
+      fetchEmployees();
     }
-  }, [authLoading, admin, fetchInquiries]);
+  }, [authLoading, admin, fetchInquiries, fetchEmployees]);
+
+  // Handle Assigning Lead to an Employee / Counselor
+  const handleAssignChange = async (inquiryId: string, employeeIdOrValue: string) => {
+    setAssigningId(inquiryId);
+    let targetAssignee: { id: string | null; name: string; email: string; role: string } | null = null;
+
+    if (employeeIdOrValue && employeeIdOrValue !== "unassigned") {
+      const found = employees.find((e) => e.id === employeeIdOrValue || e.name === employeeIdOrValue);
+      if (found) {
+        targetAssignee = {
+          id: found.id,
+          name: found.name,
+          email: found.email,
+          role: found.role,
+        };
+      }
+    }
+
+    // Optimistic UI update
+    setInquiries((prev) =>
+      prev.map((item) =>
+        item.id === inquiryId
+          ? {
+              ...item,
+              assignedTo: targetAssignee || undefined,
+            }
+          : item
+      )
+    );
+
+    try {
+      const res = await fetch(`/api/inquiries/${inquiryId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ assignedTo: targetAssignee }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Failed to update assigned counselor");
+      }
+
+      if (targetAssignee) {
+        showToast(`Lead assigned to ${targetAssignee.name} (${targetAssignee.role})`);
+      } else {
+        showToast("Lead unassigned");
+      }
+    } catch (err) {
+      console.error("Assign update error:", err);
+      showToast("Failed to assign lead on server. Please try again.", "error");
+      fetchInquiries();
+    } finally {
+      setAssigningId(null);
+    }
+  };
 
   // 3. Handle Status Update
   const handleStatusChange = async (id: string, newStatus: InquiryItem["status"]) => {
@@ -359,6 +461,8 @@ export default function AdminInquiryPage() {
       "Target Country",
       "Occupation",
       "Status",
+      "Assigned Counselor",
+      "Counselor Email",
       "Source",
       "Created Date & Time",
       "Admin Notes",
@@ -371,6 +475,8 @@ export default function AdminInquiryPage() {
       `"${(item.country || "").replace(/"/g, '""')}"`,
       `"${(item.occupation || "").replace(/"/g, '""')}"`,
       `"${item.status}"`,
+      `"${(item.assignedTo?.name || "Unassigned").replace(/"/g, '""')}"`,
+      `"${(item.assignedTo?.email || "").replace(/"/g, '""')}"`,
       `"${(item.source || "").replace(/"/g, '""')}"`,
       `"${new Date(item.createdAt).toLocaleString("en-IN")}"`,
       `"${(item.notes || "").replace(/"/g, '""')}"`,
@@ -404,6 +510,11 @@ export default function AdminInquiryPage() {
     const notInterested = inquiries.filter((i) => i.status === "not_interested").length;
     const closed = inquiries.filter((i) => i.status === "closed").length;
 
+    const unassignedCount = inquiries.filter(
+      (i) => !i.assignedTo || !i.assignedTo.id || !i.assignedTo.name
+    ).length;
+    const assignedCount = total - unassignedCount;
+
     const today = new Date().toDateString();
     const todayCount = inquiries.filter(
       (i) => new Date(i.createdAt).toDateString() === today
@@ -420,6 +531,8 @@ export default function AdminInquiryPage() {
       converted,
       notInterested,
       closed,
+      unassignedCount,
+      assignedCount,
       todayCount,
     };
   }, [inquiries]);
@@ -438,6 +551,21 @@ export default function AdminInquiryPage() {
         if (statusFilter !== "all" && item.status !== statusFilter) return false;
         if (countryFilter !== "all" && item.country !== countryFilter) return false;
 
+        // Assignee filter
+        if (assignedFilter !== "all") {
+          if (assignedFilter === "unassigned") {
+            if (item.assignedTo && item.assignedTo.id && item.assignedTo.name) return false;
+          } else {
+            if (
+              item.assignedTo?.id !== assignedFilter &&
+              item.assignedTo?.name !== assignedFilter &&
+              item.assignedTo?.email !== assignedFilter
+            ) {
+              return false;
+            }
+          }
+        }
+
         if (search.trim()) {
           const q = search.toLowerCase();
           const matchName = item.name?.toLowerCase().includes(q);
@@ -445,7 +573,10 @@ export default function AdminInquiryPage() {
           const matchCountry = item.country?.toLowerCase().includes(q);
           const matchOcc = item.occupation?.toLowerCase().includes(q);
           const matchNotes = item.notes?.toLowerCase().includes(q);
-          if (!matchName && !matchPhone && !matchCountry && !matchOcc && !matchNotes) {
+          const matchAssignee =
+            item.assignedTo?.name?.toLowerCase().includes(q) ||
+            item.assignedTo?.role?.toLowerCase().includes(q);
+          if (!matchName && !matchPhone && !matchCountry && !matchOcc && !matchNotes && !matchAssignee) {
             return false;
           }
         }
@@ -456,7 +587,7 @@ export default function AdminInquiryPage() {
         const timeB = new Date(b.createdAt).getTime();
         return sortBy === "newest" ? timeB - timeA : timeA - timeB;
       });
-  }, [inquiries, statusFilter, countryFilter, search, sortBy]);
+  }, [inquiries, statusFilter, countryFilter, assignedFilter, search, sortBy]);
 
   // Status Style Helper
   const getStatusStyle = (status: InquiryItem["status"]) => {
@@ -729,7 +860,7 @@ export default function AdminInquiryPage() {
               style={{
                 ...s.input,
                 width: "auto",
-                minWidth: "170px",
+                minWidth: "165px",
                 fontSize: "13px",
                 fontWeight: 600,
                 cursor: "pointer",
@@ -741,6 +872,33 @@ export default function AdminInquiryPage() {
                   {c}
                 </option>
               ))}
+            </select>
+
+            {/* Assigned Staff Filter */}
+            <select
+              value={assignedFilter}
+              onChange={(e) => setAssignedFilter(e.target.value)}
+              style={{
+                ...s.input,
+                width: "auto",
+                minWidth: "190px",
+                fontSize: "13px",
+                fontWeight: 600,
+                cursor: "pointer",
+              }}
+            >
+              <option value="all">👥 All Staff Leads ({inquiries.length})</option>
+              <option value="unassigned">⚠️ Unassigned Leads ({stats.unassignedCount})</option>
+              {employees.map((emp) => {
+                const empLeadCount = inquiries.filter(
+                  (i) => i.assignedTo?.id === emp.id || i.assignedTo?.name === emp.name || i.assignedTo?.email === emp.email
+                ).length;
+                return (
+                  <option key={emp.id} value={emp.id}>
+                    👤 {emp.name} ({empLeadCount})
+                  </option>
+                );
+              })}
             </select>
 
             {/* Sort Order */}
@@ -815,16 +973,17 @@ export default function AdminInquiryPage() {
                   margin: "4px auto 0",
                 }}
               >
-                {search || statusFilter !== "all" || countryFilter !== "all"
+                {search || statusFilter !== "all" || countryFilter !== "all" || assignedFilter !== "all"
                   ? "No leads matched your search/filter criteria. Try clearing filters."
                   : "When candidates fill the 'Book Free Consultation' form on the website, they will appear here in real time."}
               </p>
-              {(search || statusFilter !== "all" || countryFilter !== "all") && (
+              {(search || statusFilter !== "all" || countryFilter !== "all" || assignedFilter !== "all") && (
                 <button
                   onClick={() => {
                     setSearch("");
                     setStatusFilter("all");
                     setCountryFilter("all");
+                    setAssignedFilter("all");
                   }}
                   style={{ ...s.btnSecondary, marginTop: "16px", fontSize: "12px", padding: "8px 16px" }}
                 >
@@ -843,6 +1002,7 @@ export default function AdminInquiryPage() {
                     <th style={s.th}>Target Destination</th>
                     <th style={s.th}>Current Occupation</th>
                     <th style={s.th}>Status</th>
+                    <th style={s.th}>Assigned Counselor / Staff</th>
                     <th style={{ ...s.th, textAlign: "right" }}>Actions</th>
                   </tr>
                 </thead>
@@ -1058,6 +1218,43 @@ export default function AdminInquiryPage() {
                             <option value="not_interested">❌ Not Interested</option>
                             <option value="closed">📁 Closed / Lost</option>
                           </select>
+                        </td>
+
+                        {/* Assigned Counselor / Staff Column */}
+                        <td style={s.td}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <select
+                              value={inq.assignedTo?.id || (inq.assignedTo?.name ? inq.assignedTo.name : "unassigned")}
+                              disabled={assigningId === inq.id}
+                              onChange={(e) => handleAssignChange(inq.id, e.target.value)}
+                              style={{
+                                padding: "5px 8px",
+                                borderRadius: "8px",
+                                fontSize: "12px",
+                                fontWeight: 600,
+                                cursor: "pointer",
+                                outline: "none",
+                                border: inq.assignedTo?.name ? "1.5px solid #c7d2fe" : "1.5px dashed #cbd5e1",
+                                background: inq.assignedTo?.name ? "#f5f3ff" : "#f8fafc",
+                                color: inq.assignedTo?.name ? "#4338ca" : "#64748b",
+                                maxWidth: "165px",
+                              }}
+                              title="Assign lead to a counselor or staff member"
+                            >
+                              <option value="unassigned">⚠️ Unassigned</option>
+                              {employees.map((emp) => (
+                                <option key={emp.id} value={emp.id}>
+                                  👤 {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                                </option>
+                              ))}
+                            </select>
+                            {assigningId === inq.id && (
+                              <RefreshCw
+                                className="animate-spin"
+                                style={{ width: "12px", height: "12px", color: "#6366f1", flexShrink: 0 }}
+                              />
+                            )}
+                          </div>
                         </td>
 
                         {/* Actions */}
@@ -1512,6 +1709,25 @@ export default function AdminInquiryPage() {
                     <option value="converted">🎉 Converted</option>
                     <option value="not_interested">❌ Not Interested</option>
                     <option value="closed">📁 Closed / Lost</option>
+                  </select>
+                </div>
+
+                {/* Assign To Staff / Counselor */}
+                <div>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Assign To Counselor / Staff
+                  </label>
+                  <select
+                    value={newLead.assignedToId}
+                    onChange={(e) => setNewLead({ ...newLead, assignedToId: e.target.value })}
+                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                  >
+                    <option value="">⚠️ Unassigned (General Pool)</option>
+                    {employees.map((emp) => (
+                      <option key={emp.id} value={emp.id}>
+                        👤 {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                      </option>
+                    ))}
                   </select>
                 </div>
 

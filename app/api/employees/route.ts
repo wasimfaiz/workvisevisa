@@ -8,24 +8,32 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import AdminUser, { DEFAULT_PERMISSIONS, AdminRole } from "@/lib/models/AdminUser";
-import { requirePermission, hashPassword } from "@/lib/auth";
+import { requirePermission, hashPassword, getAuthUser } from "@/lib/auth";
 
 // GET /api/employees — List all employees
 export async function GET(request: NextRequest) {
   try {
-    const auth = await requirePermission(request, "employees", "view");
-    if (!auth.allowed) {
+    const user = getAuthUser(request);
+    if (!user) {
       return Response.json(
-        { success: false, message: auth.error },
-        { status: auth.status }
+        { success: false, message: "Authentication required" },
+        { status: 401 }
       );
     }
 
     await connectDB();
-    const employees = await AdminUser.find({})
-      .select("-passwordHash")
-      .sort({ createdAt: -1 })
-      .lean();
+    const auth = await requirePermission(request, "employees", "view");
+
+    // If full view permission is granted, return everything (permissions, phone, etc.)
+    // If not, return sanitized list (id, name, email, role, status) for lead assignment dropdowns
+    const query = AdminUser.find({ status: "active" });
+    if (!auth.allowed) {
+      query.select("name email role status");
+    } else {
+      query.select("-passwordHash");
+    }
+
+    const employees = await query.sort({ name: 1 }).lean();
 
     const transformed = employees.map((emp) => ({
       ...emp,

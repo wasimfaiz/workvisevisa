@@ -15,7 +15,24 @@ export async function GET(request: NextRequest) {
     }
 
     await connectDB();
-    const inquiries = await Inquiry.find({}).sort({ createdAt: -1 }).lean();
+
+    const { searchParams } = new URL(request.url);
+    const assignedFilter = searchParams.get("assignedTo");
+
+    const query: Record<string, unknown> = {};
+    if (assignedFilter && assignedFilter !== "all") {
+      if (assignedFilter === "unassigned") {
+        query.$or = [
+          { "assignedTo.id": null },
+          { "assignedTo.id": "" },
+          { "assignedTo.id": { $exists: false } },
+        ];
+      } else {
+        query["assignedTo.id"] = assignedFilter;
+      }
+    }
+
+    const inquiries = await Inquiry.find(query).sort({ createdAt: -1 }).lean();
 
     const transformed = inquiries.map((inq) => ({
       ...inq,
@@ -46,7 +63,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { name, phone, country, occupation, source, status, notes } = body;
+    const { name, phone, country, occupation, source, status, notes, assignedTo } = body;
 
     const trimmedName = typeof name === "string" ? name.trim() : "";
     const trimmedPhone = typeof phone === "string" ? phone.trim() : "";
@@ -87,6 +104,17 @@ export async function POST(request: NextRequest) {
         ? (status as InquiryStatus)
         : "new";
 
+    // Clean assignedTo payload if provided
+    let cleanAssignedTo = { id: null as string | null, name: "", email: "", role: "" };
+    if (assignedTo && typeof assignedTo === "object") {
+      cleanAssignedTo = {
+        id: assignedTo.id || null,
+        name: typeof assignedTo.name === "string" ? assignedTo.name.trim() : "",
+        email: typeof assignedTo.email === "string" ? assignedTo.email.trim() : "",
+        role: typeof assignedTo.role === "string" ? assignedTo.role.trim() : "",
+      };
+    }
+
     const newInquiry = await Inquiry.create({
       name: trimmedName,
       phone: trimmedPhone,
@@ -95,6 +123,7 @@ export async function POST(request: NextRequest) {
       status: inquiryStatus,
       notes: typeof notes === "string" ? notes.trim() : "",
       source: (typeof source === "string" && source.trim()) ? source.trim() : "Consultation Form - Homepage",
+      assignedTo: cleanAssignedTo,
     });
 
     return Response.json(
@@ -110,6 +139,7 @@ export async function POST(request: NextRequest) {
           status: newInquiry.status,
           notes: newInquiry.notes,
           source: newInquiry.source,
+          assignedTo: newInquiry.assignedTo,
           createdAt: newInquiry.createdAt,
         },
       },
