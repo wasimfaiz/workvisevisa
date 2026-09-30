@@ -41,12 +41,12 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST /api/inquiries (Public - from Consultation Form)
+// POST /api/inquiries (Public Consultation Form & Admin Lead Creation)
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const { name, phone, country, occupation, source } = body;
+    const { name, phone, country, occupation, source, status, notes } = body;
 
     const trimmedName = typeof name === "string" ? name.trim() : "";
     const trimmedPhone = typeof phone === "string" ? phone.trim() : "";
@@ -70,19 +70,27 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
+    const validStatuses = ["new", "contacted", "in_progress", "converted", "closed"] as const;
+    type InquiryStatus = (typeof validStatuses)[number];
+    const inquiryStatus: InquiryStatus =
+      typeof status === "string" && (validStatuses as readonly string[]).includes(status)
+        ? (status as InquiryStatus)
+        : "new";
+
     const newInquiry = await Inquiry.create({
       name: trimmedName,
       phone: trimmedPhone,
       country: trimmedCountry,
       occupation: trimmedOccupation,
-      status: "new",
-      source: source || "Consultation Form - Homepage",
+      status: inquiryStatus,
+      notes: typeof notes === "string" ? notes.trim() : "",
+      source: (typeof source === "string" && source.trim()) ? source.trim() : "Consultation Form - Homepage",
     });
 
     return Response.json(
       {
         success: true,
-        message: "Your consultation request has been received. Our team will contact you shortly!",
+        message: "Inquiry / Lead created successfully!",
         data: {
           id: newInquiry.id,
           name: newInquiry.name,
@@ -90,6 +98,8 @@ export async function POST(request: NextRequest) {
           country: newInquiry.country,
           occupation: newInquiry.occupation,
           status: newInquiry.status,
+          notes: newInquiry.notes,
+          source: newInquiry.source,
           createdAt: newInquiry.createdAt,
         },
       },

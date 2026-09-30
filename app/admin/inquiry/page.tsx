@@ -31,6 +31,11 @@ import {
   FileSpreadsheet,
   Save,
   ArrowUpDown,
+  Plus,
+  UserPlus,
+  MapPin,
+  Tag,
+  FileText,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
 
@@ -81,6 +86,22 @@ export default function AdminInquiryPage() {
   const [noteText, setNoteText] = useState("");
   const [savingNote, setSavingNote] = useState(false);
 
+  // Add Lead Modal state
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newLead, setNewLead] = useState({
+    name: "",
+    phone: "",
+    country: "Poland",
+    customCountry: "",
+    occupation: "Warehouse Worker",
+    customOccupation: "",
+    status: "new" as InquiryItem["status"],
+    source: "Walk-in Office",
+    customSource: "",
+    notes: "",
+  });
+  const [addingLead, setAddingLead] = useState(false);
+
   // Delete Modal state
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -93,6 +114,79 @@ export default function AdminInquiryPage() {
     setTimeout(() => {
       setToast(null);
     }, 3500);
+  };
+
+  // Handle Add Lead Submission
+  const handleAddLead = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newLead.name.trim() || newLead.name.trim().length < 2) {
+      showToast("Please enter candidate's full name (at least 2 characters)", "error");
+      return;
+    }
+    const cleanDigits = newLead.phone.replace(/\D/g, "");
+    if (!newLead.phone.trim() || cleanDigits.length < 7) {
+      showToast("Please enter a valid phone or WhatsApp number (minimum 7 digits)", "error");
+      return;
+    }
+
+    setAddingLead(true);
+    try {
+      const selectedCountry =
+        newLead.country === "Other"
+          ? newLead.customCountry.trim() || "Other"
+          : newLead.country;
+
+      const selectedOccupation =
+        newLead.occupation === "Other"
+          ? newLead.customOccupation.trim() || "General / Not Specified"
+          : newLead.occupation;
+
+      const selectedSource =
+        newLead.source === "Other"
+          ? newLead.customSource.trim() || "Manual Entry"
+          : newLead.source;
+
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newLead.name.trim(),
+          phone: newLead.phone.trim(),
+          country: selectedCountry,
+          occupation: selectedOccupation,
+          status: newLead.status,
+          source: selectedSource,
+          notes: newLead.notes.trim(),
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Failed to add lead");
+      }
+
+      showToast("Lead added successfully!", "success");
+      setShowAddModal(false);
+      setNewLead({
+        name: "",
+        phone: "",
+        country: "Poland",
+        customCountry: "",
+        occupation: "Warehouse Worker",
+        customOccupation: "",
+        status: "new",
+        source: "Walk-in Office",
+        customSource: "",
+        notes: "",
+      });
+      fetchInquiries();
+    } catch (err) {
+      console.error("Error adding lead:", err);
+      const msg = err instanceof Error ? err.message : "Failed to add lead";
+      showToast(msg, "error");
+    } finally {
+      setAddingLead(false);
+    }
   };
 
   // 1. Check Authentication on Mount
@@ -463,7 +557,25 @@ export default function AdminInquiryPage() {
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+            {canEditInquiry && (
+              <button
+                onClick={() => setShowAddModal(true)}
+                style={{
+                  ...s.btnPrimary,
+                  background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                  boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+                title="Add New Lead Manually"
+              >
+                <UserPlus style={{ width: "16px", height: "16px" }} />
+                <span>+ Add Lead</span>
+              </button>
+            )}
+
             <button
               onClick={() => fetchInquiries(true)}
               disabled={refreshing || loading}
@@ -1111,6 +1223,303 @@ export default function AdminInquiryPage() {
                 {isDeleting ? "Deleting..." : "Yes, Delete"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {/* ── Add New Lead Modal ── */}
+      {showAddModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(15, 23, 42, 0.6)",
+            backdropFilter: "blur(4px)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            overflowY: "auto",
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              borderRadius: "20px",
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+              maxWidth: "620px",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              padding: "28px",
+              border: "1px solid #e2e8f0",
+            }}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingBottom: "16px",
+                borderBottom: "1px solid #f1f5f9",
+                marginBottom: "20px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div
+                  style={{
+                    width: "42px",
+                    height: "42px",
+                    borderRadius: "12px",
+                    background: "#ecfdf5",
+                    color: "#059669",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <UserPlus style={{ width: "22px", height: "22px" }} />
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#0f172a" }}>
+                    Add New Lead / Inquiry
+                  </h3>
+                  <div style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
+                    Register candidate for work visa consultation
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowAddModal(false)}
+                style={{
+                  background: "#f1f5f9",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "6px",
+                  cursor: "pointer",
+                  color: "#64748b",
+                  display: "flex",
+                }}
+              >
+                <X style={{ width: "18px", height: "18px" }} />
+              </button>
+            </div>
+
+            {/* Modal Form */}
+            <form onSubmit={handleAddLead} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+                {/* Candidate Name */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Candidate Full Name <span style={{ color: "#ef4444" }}>*</span>
+                  </label>
+                  <div style={{ position: "relative" }}>
+                    <User style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Sharma / Mohd Ali"
+                      value={newLead.name}
+                      onChange={(e) => setNewLead({ ...newLead, name: e.target.value })}
+                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Phone / WhatsApp */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Phone / WhatsApp Number <span style={{ color: "#ef4444" }}>*</span>
+                  </label>
+                  <div style={{ position: "relative" }}>
+                    <Phone style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
+                    <input
+                      type="tel"
+                      required
+                      placeholder="e.g. +91 98765 43210 or 9876543210"
+                      value={newLead.phone}
+                      onChange={(e) => setNewLead({ ...newLead, phone: e.target.value })}
+                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
+                    />
+                  </div>
+                  <span style={{ fontSize: "11px", color: "#64748b", marginTop: "3px", display: "block" }}>
+                    Include country code (+91, +92, etc.) for direct 1-click WhatsApp messaging.
+                  </span>
+                </div>
+
+                {/* Target Country */}
+                <div>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Target Destination
+                  </label>
+                  <select
+                    value={newLead.country}
+                    onChange={(e) => setNewLead({ ...newLead, country: e.target.value })}
+                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                  >
+                    <option value="Poland">🇵🇱 Poland</option>
+                    <option value="Romania">🇷🇴 Romania</option>
+                    <option value="Croatia">🇭🇷 Croatia</option>
+                    <option value="Hungary">🇭🇺 Hungary</option>
+                    <option value="Malta">🇲🇹 Malta</option>
+                    <option value="Czech Republic">🇨🇿 Czech Republic</option>
+                    <option value="Canada">🇨🇦 Canada</option>
+                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
+                    <option value="Australia">🇦🇺 Australia</option>
+                    <option value="Germany">🇩🇪 Germany</option>
+                    <option value="UAE / Dubai">🇦🇪 UAE / Dubai</option>
+                    <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
+                    <option value="Qatar">🇶🇦 Qatar</option>
+                    <option value="General Destination">🌐 General Destination</option>
+                    <option value="Other">✏️ Other Country...</option>
+                  </select>
+                  {newLead.country === "Other" && (
+                    <input
+                      type="text"
+                      placeholder="Enter custom country..."
+                      value={newLead.customCountry}
+                      onChange={(e) => setNewLead({ ...newLead, customCountry: e.target.value })}
+                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
+                      autoFocus
+                    />
+                  )}
+                </div>
+
+                {/* Occupation */}
+                <div>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Occupation / Trade
+                  </label>
+                  <select
+                    value={newLead.occupation}
+                    onChange={(e) => setNewLead({ ...newLead, occupation: e.target.value })}
+                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                  >
+                    <option value="Warehouse Worker">Warehouse Worker / Packer</option>
+                    <option value="Heavy Vehicle Driver">Heavy Vehicle / Truck Driver</option>
+                    <option value="Light Vehicle Driver">Light Vehicle / Taxi Driver</option>
+                    <option value="Factory Worker">Factory &amp; Assembly Worker</option>
+                    <option value="Welder / Fabricator">Welder &amp; Metal Fabricator</option>
+                    <option value="Electrician">Electrician / Technician</option>
+                    <option value="Construction Worker">Construction &amp; Masonry</option>
+                    <option value="Hospitality & Kitchen">Hospitality, Chef &amp; Kitchen</option>
+                    <option value="Hotel Housekeeping">Hotel Housekeeping &amp; Cleaning</option>
+                    <option value="Caregiver & Healthcare">Caregiver &amp; Healthcare</option>
+                    <option value="Agriculture & Farm">Agriculture &amp; Farming</option>
+                    <option value="Software Engineer / IT">Software Engineer / IT</option>
+                    <option value="General / Not Specified">General / Not Specified</option>
+                    <option value="Other">✏️ Other Occupation...</option>
+                  </select>
+                  {newLead.occupation === "Other" && (
+                    <input
+                      type="text"
+                      placeholder="Enter custom occupation..."
+                      value={newLead.customOccupation}
+                      onChange={(e) => setNewLead({ ...newLead, customOccupation: e.target.value })}
+                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
+                      autoFocus
+                    />
+                  )}
+                </div>
+
+                {/* Lead Source */}
+                <div>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Lead Source
+                  </label>
+                  <select
+                    value={newLead.source}
+                    onChange={(e) => setNewLead({ ...newLead, source: e.target.value })}
+                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                  >
+                    <option value="Walk-in Office">🏢 Walk-in Office</option>
+                    <option value="Phone Call Inquiry">📞 Phone Call Inquiry</option>
+                    <option value="WhatsApp Direct">💬 WhatsApp Direct</option>
+                    <option value="Instagram / Facebook Ad">📱 Social Media Ad</option>
+                    <option value="Agent / Referral">🤝 Agent / Referral</option>
+                    <option value="Consultation Form - Homepage">🌐 Website Form</option>
+                    <option value="Other">📋 Other...</option>
+                  </select>
+                  {newLead.source === "Other" && (
+                    <input
+                      type="text"
+                      placeholder="Enter source name..."
+                      value={newLead.customSource}
+                      onChange={(e) => setNewLead({ ...newLead, customSource: e.target.value })}
+                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
+                      autoFocus
+                    />
+                  )}
+                </div>
+
+                {/* Initial Status */}
+                <div>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Initial Status
+                  </label>
+                  <select
+                    value={newLead.status}
+                    onChange={(e) => setNewLead({ ...newLead, status: e.target.value as InquiryItem["status"] })}
+                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                  >
+                    <option value="new">✨ New Lead</option>
+                    <option value="contacted">📞 Contacted</option>
+                    <option value="in_progress">⏳ In Progress</option>
+                    <option value="converted">🎉 Converted</option>
+                  </select>
+                </div>
+
+                {/* Notes & Candidate History */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                    Follow-up Notes &amp; Profile Details (Optional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="e.g. Passport valid till 2030, 3 years GCC heavy driver experience, discussed Poland package, budget ready..."
+                    value={newLead.notes}
+                    onChange={(e) => setNewLead({ ...newLead, notes: e.target.value })}
+                    style={{ ...s.input, width: "100%", resize: "none", fontFamily: "inherit", lineHeight: "1.5" }}
+                  />
+                </div>
+              </div>
+
+              {/* Form Buttons */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "12px",
+                  marginTop: "12px",
+                  paddingTop: "16px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setShowAddModal(false)}
+                  style={s.btnSecondary}
+                  disabled={addingLead}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={addingLead}
+                  style={{
+                    ...s.btnPrimary,
+                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  <Save style={{ width: "15px", height: "15px" }} />
+                  <span>{addingLead ? "Saving Lead..." : "Save & Create Lead"}</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
