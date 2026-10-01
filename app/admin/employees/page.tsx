@@ -947,10 +947,14 @@ export default function AdminEmployeesPage() {
                 <div>
                   <label style={s.label}>Phone Number (Optional)</label>
                   <input
-                    type="text"
-                    placeholder="+91 98765 43210"
+                    type="tel"
+                    inputMode="numeric"
+                    placeholder="e.g. 9876543210 or +919876543210"
                     value={addForm.phone}
-                    onChange={(e) => setAddForm((d) => ({ ...d, phone: e.target.value }))}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9+]/g, "");
+                      setAddForm((d) => ({ ...d, phone: val }));
+                    }}
                     style={s.input}
                   />
                 </div>

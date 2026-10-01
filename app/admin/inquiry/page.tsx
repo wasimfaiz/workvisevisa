@@ -1667,10 +1667,14 @@ export default function AdminInquiryPage() {
                     <Phone style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
                     <input
                       type="tel"
+                      inputMode="numeric"
                       required
-                      placeholder="e.g. +91 98765 43210 or 9876543210"
+                      placeholder="e.g. 9876543210 or +919876543210"
                       value={newLead.phone}
-                      onChange={(e) => setNewLead({ ...newLead, phone: e.target.value })}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9+]/g, "");
+                        setNewLead({ ...newLead, phone: val });
+                      }}
                       style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
                     />
                   </div>

@@ -1658,10 +1658,14 @@ export default function AdminApplicationsPage() {
                   </label>
                   <input
                     type="tel"
+                    inputMode="numeric"
                     required
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. 9876543210 or +919876543210"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9+]/g, "");
+                      setFormData({ ...formData, phone: val });
+                    }}
                     style={s.input}
                     className="w-full"
                   />

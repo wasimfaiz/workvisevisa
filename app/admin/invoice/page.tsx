@@ -983,10 +983,14 @@ export default function AdminInvoicePage() {
                   <div>
                     <label className="block font-semibold text-slate-700 mb-1">Mobile Number *</label>
                     <input
-                      type="text"
+                      type="tel"
+                      inputMode="numeric"
                       value={currentInvoice.mobileNumber}
-                      onChange={(e) => setCurrentInvoice({ ...currentInvoice, mobileNumber: e.target.value })}
-                      placeholder="e.g. +91 9876543210"
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9+]/g, "");
+                        setCurrentInvoice({ ...currentInvoice, mobileNumber: val });
+                      }}
+                      placeholder="e.g. 9876543210 or +919876543210"
                       className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none font-mono"
                     />
                   </div>

@@ -101,7 +101,8 @@ export default function ConsultationForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setData((d) => ({ ...d, [name]: value }));
+    const finalVal = name === "phone" ? value.replace(/[^0-9+]/g, "") : value;
+    setData((d) => ({ ...d, [name]: finalVal }));
     if (errors[name as keyof FormErrors])
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     if (serverError) setServerError("");
@@ -247,6 +248,7 @@ export default function ConsultationForm() {
                     id="form-phone"
                     name="phone"
                     type="tel"
+                    inputMode="numeric"
                     placeholder="+91 98765 43210"
                     value={data.phone}
                     onChange={handleChange}
