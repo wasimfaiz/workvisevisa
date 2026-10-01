@@ -272,6 +272,15 @@ export default function AdminInvoicePage() {
     return sum + itemsBal;
   }, 0);
 
+  // Helper to format currency cleanly (omits awkward trailing .00 on whole amounts)
+  const formatCurrency = (amount: number): string => {
+    const num = Number(amount) || 0;
+    if (num % 1 === 0) {
+      return num.toLocaleString("en-IN", { maximumFractionDigits: 0 });
+    }
+    return num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+
   // ── Current Editing Calculations ─────────────────────────────────
   const currentTotalPaid = currentInvoice.items.reduce((sum, it) => sum + (Number(it.paidAmt) || 0), 0);
   const currentTotalBalance = currentInvoice.items.reduce((sum, it) => sum + (Number(it.balanceAmt) || 0), 0);
@@ -571,62 +580,100 @@ export default function AdminInvoicePage() {
             {/* 4 Financial KPI Overview Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Card 1: TOTAL AMOUNT */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-500">
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600">
                     TOTAL AMOUNT
                   </span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                    ₹{totalAmountSum.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-sm">
+                    <Wallet className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20">
-                  <Wallet className="w-6 h-6" />
+                <div className="mt-2 min-w-0">
+                  <div
+                    className="text-xl sm:text-2xl xl:text-[25px] font-black text-slate-900 tracking-tight flex items-baseline gap-0.5 truncate"
+                    title={`₹${totalAmountSum.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`}
+                  >
+                    <span className="text-indigo-600 font-extrabold text-base sm:text-lg">₹</span>
+                    <span className="truncate">{formatCurrency(totalAmountSum)}</span>
+                  </div>
+                  <div className="text-[11px] font-medium text-slate-400 mt-1 truncate">
+                    Across all generated invoices
+                  </div>
                 </div>
               </div>
 
               {/* Card 2: PAID AMOUNT */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                <div>
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between min-w-0">
+                <div className="flex items-center justify-between gap-2">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">
                     PAID AMOUNT
                   </span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                    ₹{totalPaidSum.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 shadow-sm">
+                    <CheckCircle2 className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-emerald-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
-                  <CheckCircle2 className="w-6 h-6" />
+                <div className="mt-2 min-w-0">
+                  <div
+                    className="text-xl sm:text-2xl xl:text-[25px] font-black text-slate-900 tracking-tight flex items-baseline gap-0.5 truncate"
+                    title={`₹${totalPaidSum.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`}
+                  >
+                    <span className="text-emerald-600 font-extrabold text-base sm:text-lg">₹</span>
+                    <span className="truncate text-emerald-700">{formatCurrency(totalPaidSum)}</span>
+                  </div>
+                  <div className="text-[11px] font-medium text-slate-400 mt-1 truncate">
+                    Successfully collected
+                  </div>
                 </div>
               </div>
 
               {/* Card 3: BALANCE AMOUNT */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-rose-500">
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-rose-600">
                     BALANCE AMOUNT
                   </span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                    ₹{totalBalanceSum.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0 shadow-sm">
+                    <Clock className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-rose-500 flex items-center justify-center text-white shadow-md shadow-rose-500/20">
-                  <Clock className="w-6 h-6" />
+                <div className="mt-2 min-w-0">
+                  <div
+                    className="text-xl sm:text-2xl xl:text-[25px] font-black text-slate-900 tracking-tight flex items-baseline gap-0.5 truncate"
+                    title={`₹${totalBalanceSum.toLocaleString("en-IN", { minimumFractionDigits: 2 })}`}
+                  >
+                    <span className="text-rose-600 font-extrabold text-base sm:text-lg">₹</span>
+                    <span className="truncate text-rose-700">{formatCurrency(totalBalanceSum)}</span>
+                  </div>
+                  <div className="text-[11px] font-medium text-slate-400 mt-1 truncate">
+                    Total pending collection
+                  </div>
                 </div>
               </div>
 
               {/* Card 4: TOTAL INVOICES */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                <div>
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between min-w-0">
+                <div className="flex items-center justify-between gap-2">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">
                     TOTAL INVOICES
                   </span>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-                    {invoices.length} <span className="text-sm font-normal text-slate-500">Generated</span>
+                  <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0 shadow-sm">
+                    <RotateCcw className="w-4 h-4" />
                   </div>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-amber-500 flex items-center justify-center text-white shadow-md shadow-amber-500/20">
-                  <RotateCcw className="w-6 h-6" />
+                <div className="mt-2 min-w-0">
+                  <div className="text-xl sm:text-2xl xl:text-[25px] font-black text-slate-900 tracking-tight truncate">
+                    {invoices.length} <span className="text-sm font-semibold text-slate-500">Invoices</span>
+                  </div>
+                  <div className="text-[11px] font-medium text-slate-400 mt-1 truncate">
+                    {invoices.filter((i) => {
+                      const bal = i.totalBalanceAmount !== undefined ? Number(i.totalBalanceAmount) : (i.items?.reduce((s, it) => s + (Number(it.balanceAmt) || 0), 0) || 0);
+                      return bal <= 0;
+                    }).length} Paid · {invoices.filter((i) => {
+                      const bal = i.totalBalanceAmount !== undefined ? Number(i.totalBalanceAmount) : (i.items?.reduce((s, it) => s + (Number(it.balanceAmt) || 0), 0) || 0);
+                      return bal > 0;
+                    }).length} Pending
+                  </div>
                 </div>
               </div>
             </div>
@@ -774,20 +821,20 @@ export default function AdminInvoicePage() {
                             <td className="py-3.5 px-4 text-slate-600 max-w-[200px] truncate">
                               {inv.positionApplyingFor || inv.courseApplyingFor || inv.invoiceFor || "—"}
                             </td>
-                            <td className="py-3.5 px-4 text-right font-bold text-slate-900">
-                              ₹{total.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
+                            <td className="py-3.5 px-4 text-right font-bold text-slate-900 font-mono text-xs whitespace-nowrap">
+                              ₹{formatCurrency(total)}
                             </td>
-                            <td className="py-3.5 px-4 text-right font-semibold text-emerald-600">
-                              ₹{paid.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
+                            <td className="py-3.5 px-4 text-right font-bold text-emerald-600 font-mono text-xs whitespace-nowrap">
+                              ₹{formatCurrency(paid)}
                             </td>
-                            <td className="py-3.5 px-4 text-right">
+                            <td className="py-3.5 px-4 text-right whitespace-nowrap">
                               {balance <= 0 ? (
-                                <span className="inline-flex items-center text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                                  0.00 Paid
+                                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                                  <CheckCircle2 className="w-3 h-3" /> Paid
                                 </span>
                               ) : (
-                                <span className="inline-flex items-center text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full">
-                                  ₹{balance.toLocaleString("en-IN", { minimumFractionDigits: 2 })} Due
+                                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2.5 py-0.5 rounded-full font-mono">
+                                  ₹{formatCurrency(balance)} Due
                                 </span>
                               )}
                             </td>
