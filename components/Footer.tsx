@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa6";
 
 const quickLinks = [
+  { label: "Track Application", href: "/track", highlight: true },
   { label: "Countries", href: "/countries" },
   { label: "Services", href: "/#services" },
   { label: "About Us", href: "/about" },
@@ -92,9 +93,18 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-slate-600 hover:text-emerald-600 transition-colors font-medium"
+                    className={`text-sm transition-colors font-medium inline-flex items-center gap-1.5 ${
+                      l.highlight
+                        ? "text-emerald-600 font-bold hover:text-emerald-700"
+                        : "text-slate-600 hover:text-emerald-600"
+                    }`}
                   >
-                    {l.label}
+                    <span>{l.label}</span>
+                    {l.highlight && (
+                      <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-300">
+                        Live Status
+                      </span>
+                    )}
                   </a>
                 </li>
               ))}
