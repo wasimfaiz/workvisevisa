@@ -101,6 +101,16 @@ async function getEffectiveMongoUri(rawUri: string): Promise<string> {
     return directUri;
   } catch (err) {
     console.warn("MongoDB SRV DNS auto-resolution fallback skipped:", err);
+    // If it's the known workwisevisa Atlas cluster, use the known replica set seed list directly
+    if (rawUri.includes("workwisevisa.lxmf8ut.mongodb.net")) {
+      const match = rawUri.match(/^mongodb\+srv:\/\/([^:]+):([^@]+)@/);
+      if (match) {
+        const [, user, pass] = match;
+        const seedUri = `mongodb://${encodeURIComponent(user)}:${encodeURIComponent(pass)}@ac-rvplgkx-shard-00-00.lxmf8ut.mongodb.net:27017,ac-rvplgkx-shard-00-01.lxmf8ut.mongodb.net:27017,ac-rvplgkx-shard-00-02.lxmf8ut.mongodb.net:27017/workwisevisa?ssl=true&replicaSet=atlas-zvb22d-shard-0&authSource=admin`;
+        cache.resolvedUri = seedUri;
+        return seedUri;
+      }
+    }
     cache.resolvedUri = rawUri;
     return rawUri;
   }
