@@ -16,8 +16,8 @@ import {
 
 const quickLinks = [
   { label: "Track Application", href: "/track", highlight: true },
+  { label: "Jobs & Openings", href: "/jobs" },
   { label: "Countries", href: "/countries" },
-  { label: "Services", href: "/#services" },
   { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
   { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
@@ -114,7 +114,7 @@ export default function Footer() {
           {/* offices */}
           <div>
             <h4 className="text-sm font-display font-bold text-slate-900 uppercase tracking-wider mb-5">
-              {t.servicesHeading}
+              {currentLang === "hi" ? "हमारे कार्यालय" : "Our Offices"}
             </h4>
             <ul className="space-y-4">
               {offices.map((o) => (
