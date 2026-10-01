@@ -105,7 +105,14 @@ interface AdminUser {
   name: string;
   email: string;
   role: string;
-  permissions?: EmployeePermissions;
+  permissions?: EmployeePermissions & {
+    applications?: {
+      view?: boolean;
+      create?: boolean;
+      edit?: boolean;
+      delete?: boolean;
+    };
+  };
 }
 
 export default function AdminApplicationsPage() {
