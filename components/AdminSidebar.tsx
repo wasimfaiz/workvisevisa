@@ -25,6 +25,7 @@ import {
   Menu,
   X,
   ShieldCheck,
+  Compass,
 } from "lucide-react";
 import { EmployeePermissions } from "@/lib/types/rbac";
 
@@ -39,6 +40,7 @@ export interface AdminSidebarUser {
 interface AdminSidebarProps {
   currentUser?: AdminSidebarUser | null;
   counts?: {
+    applications?: number;
     jobs?: number;
     inquiries?: number;
     newInquiries?: number;
@@ -111,6 +113,7 @@ export default function AdminSidebar({
   const isSuper = user?.role === "superadmin" || user?.email === "wasim@yastudy.com";
   const canViewJobs = isSuper || Boolean(user?.permissions?.jobs?.view !== false);
   const canViewInquiries = isSuper || Boolean(user?.permissions?.inquiries?.view !== false);
+  const canViewApplications = isSuper || Boolean(user?.permissions?.applications?.view !== false);
   const canViewInvoices = isSuper || Boolean(user?.permissions?.invoices?.view);
   const canViewEmployees = isSuper || Boolean(user?.permissions?.employees?.view);
 
@@ -140,6 +143,16 @@ export default function AdminSidebar({
       badgeColor:
         counts?.newInquiries && counts.newInquiries > 0 ? "#10b981" : "rgba(255,255,255,0.18)",
       isActive: pathname.startsWith("/admin/inquiry"),
+    },
+    {
+      id: "applications",
+      label: "Application Tracker",
+      href: "/admin/applications",
+      icon: Compass,
+      visible: canViewApplications,
+      badge: counts?.applications !== undefined ? counts.applications : null,
+      badgeColor: "#6366f1",
+      isActive: pathname.startsWith("/admin/applications"),
     },
     {
       id: "jobs",
