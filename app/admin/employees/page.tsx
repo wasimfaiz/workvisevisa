@@ -34,6 +34,7 @@ import {
   Plus,
   Printer,
   FileSpreadsheet,
+  Compass,
 } from "lucide-react";
 import { EmployeePermissions, AdminRole, DEFAULT_PERMISSIONS } from "@/lib/types/rbac";
 import AdminSidebar from "@/components/AdminSidebar";
@@ -627,6 +628,7 @@ export default function AdminEmployeesPage() {
                     const hasInvoices = isSuper || p.invoices?.view;
                     const hasInquiries = isSuper || p.inquiries?.view;
                     const hasJobs = isSuper || p.jobs?.view;
+                    const hasApps = isSuper || p.applications?.view;
                     const hasEmpMgmt = isSuper || p.employees?.view;
 
                     return (
@@ -701,6 +703,21 @@ export default function AdminEmployeesPage() {
                         {/* Allowed Sections */}
                         <td style={s.td}>
                           <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                            {/* Tracker */}
+                            <span
+                              style={{
+                                padding: "2px 8px",
+                                borderRadius: "6px",
+                                fontSize: "11px",
+                                fontWeight: 700,
+                                background: hasApps ? "#fdf4ff" : "#fef2f2",
+                                color: hasApps ? "#86198f" : "#b91c1c",
+                                border: `1px solid ${hasApps ? "#f5d0fe" : "#fecaca"}`,
+                              }}
+                            >
+                              🧭 Tracker: {hasApps ? "Permitted" : "Blocked"}
+                            </span>
+
                             {/* Invoices */}
                             <span
                               style={{
@@ -1056,6 +1073,42 @@ export default function AdminEmployeesPage() {
                     </div>
                   </div>
 
+                  {/* Application Tracker Group */}
+                  <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
+                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
+                      <Compass style={{ width: "14px", height: "14px", color: "#8b5cf6" }} />
+                      Application Tracker (Milestones &amp; Visas)
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "8px" }}>
+                      {[
+                        { key: "view", label: "View Tracker" },
+                        { key: "create", label: "Enroll Candidate" },
+                        { key: "edit", label: "Update Milestones" },
+                        { key: "delete", label: "Delete Case" },
+                      ].map((item) => (
+                        <label key={item.key} style={s.checkboxLabel}>
+                          <input
+                            type="checkbox"
+                            checked={Boolean(addForm.permissions.applications?.[item.key as keyof typeof addForm.permissions.applications])}
+                            onChange={(e) =>
+                              setAddForm((d) => ({
+                                ...d,
+                                permissions: {
+                                  ...d.permissions,
+                                  applications: {
+                                    ...(d.permissions.applications || { view: false, create: false, edit: false, delete: false }),
+                                    [item.key]: e.target.checked,
+                                  },
+                                },
+                              }))
+                            }
+                          />
+                          <span>{item.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Jobs Group */}
                   <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
                     <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
@@ -1198,6 +1251,43 @@ export default function AdminEmployeesPage() {
                                   ...prev,
                                   inquiries: {
                                     ...prev.inquiries,
+                                    [item.key]: e.target.checked,
+                                  },
+                                }
+                              : null
+                          )
+                        }
+                      />
+                      <span>{item.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Application Tracker Group */}
+              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
+                  <Compass style={{ width: "15px", height: "15px", color: "#8b5cf6" }} />
+                  Application Tracker (Milestones &amp; Visas)
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "8px" }}>
+                  {[
+                    { key: "view", label: "View Tracker" },
+                    { key: "create", label: "Enroll Candidate" },
+                    { key: "edit", label: "Update Milestones" },
+                    { key: "delete", label: "Delete Case" },
+                  ].map((item) => (
+                    <label key={item.key} style={s.checkboxLabel}>
+                      <input
+                        type="checkbox"
+                        checked={Boolean(editPermissionsForm.applications?.[item.key as keyof typeof editPermissionsForm.applications])}
+                        onChange={(e) =>
+                          setEditPermissionsForm((prev) =>
+                            prev
+                              ? {
+                                  ...prev,
+                                  applications: {
+                                    ...(prev.applications || { view: false, create: false, edit: false, delete: false }),
                                     [item.key]: e.target.checked,
                                   },
                                 }
