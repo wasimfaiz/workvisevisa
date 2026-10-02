@@ -270,8 +270,8 @@ export default function AdminApplicationsPage() {
   // 3. Derived Metrics & Filters
   const metrics = useMemo(() => {
     const total = applications.length;
-    const inProgress = applications.filter((a) => a.stageStatus === "in_progress").length;
-    const visaApproved = applications.filter((a) => a.currentStage >= 6 && a.stageStatus !== "rejected").length;
+    const inProgress = applications.filter((a) => a.currentStage <= 5 && a.stageStatus === "in_progress").length;
+    const visaApproved = applications.filter((a) => a.currentStage === 6 && a.stageStatus !== "rejected").length;
     const deployed = applications.filter((a) => a.currentStage === 7 && a.stageStatus === "completed").length;
     const onHold = applications.filter((a) => a.stageStatus === "on_hold").length;
     const rejected = applications.filter((a) => a.stageStatus === "rejected").length;
@@ -807,7 +807,7 @@ export default function AdminApplicationsPage() {
             </div>
             <div className="mt-2">
               <div className="text-2xl font-black text-emerald-600 tracking-tight">{metrics.visaApproved}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Visa granted</div>
+              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Stage 6 · Awaiting flight</div>
             </div>
           </div>
 
@@ -823,7 +823,7 @@ export default function AdminApplicationsPage() {
             </div>
             <div className="mt-2">
               <div className="text-2xl font-black text-teal-700 tracking-tight">{metrics.deployed}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Successfully departed</div>
+              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Stage 7 · Departed</div>
             </div>
           </div>
 
