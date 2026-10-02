@@ -43,24 +43,49 @@ const Job = mongoose.models.Job || mongoose.model("Job", JobSchema);
 
 const INITIAL_JOBS = [
   {
-    title: "Tile Mason & Helper",
+    title: "Tile Mason",
     company: "Dubai Project",
     country: "Dubai, UAE",
     flag: "🇦🇪",
     category: "Construction & Civil",
-    salary: "1,200 – 1,800 AED",
-    totalOpenings: 10,
+    salary: "1,800 AED",
+    totalOpenings: 5,
     visaType: "Employment Visa",
     interviewDate: "Direct Selection",
     venue: "WorkWise Visa Office",
     dutyHours: "Standard Duty + Overtime",
     perks: [
-      "5 Tile Mason (Salary: 1,800 AED)",
-      "5 Helper (Salary: 1,200 AED)",
+      "5 Vacancies for Skilled Tile Masons (1,800 AED)",
+      "Free Company Accommodation & Transport",
+      "Overtime Allowance Provided",
     ],
     requirements: [
-      "5 Tile Mason — Salary: 1,800 AED",
-      "5 Helper — Salary: 1,200 AED",
+      "Tile fixing, cutting, grouting & civil finishing experience",
+      "Knowledge of floor and wall tiles installation",
+    ],
+    postedDate: "Sep 17, 2026",
+    urgent: true,
+  },
+  {
+    title: "Construction Helper",
+    company: "Dubai Project",
+    country: "Dubai, UAE",
+    flag: "🇦🇪",
+    category: "Construction & Civil",
+    salary: "1,200 AED",
+    totalOpenings: 5,
+    visaType: "Employment Visa",
+    interviewDate: "Direct Selection",
+    venue: "WorkWise Visa Office",
+    dutyHours: "Standard Duty + Overtime",
+    perks: [
+      "5 Vacancies for General Helpers (1,200 AED)",
+      "Free Company Accommodation & Transport",
+      "Overtime Allowance Provided",
+    ],
+    requirements: [
+      "Assisting Tile Masons & site material handling",
+      "Physically fit & energetic candidate",
     ],
     postedDate: "Sep 17, 2026",
     urgent: true,
@@ -95,6 +120,9 @@ async function seedJobs() {
     console.log("Connecting to MongoDB Atlas...");
     await mongoose.connect(MONGODB_URI);
     console.log("Connected to MongoDB Atlas!");
+
+    // Remove legacy combined job if it exists
+    await Job.deleteMany({ title: "Tile Mason & Helper" });
 
     for (const job of INITIAL_JOBS) {
       const existing = await Job.findOne({ title: job.title, company: job.company });
