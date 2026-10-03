@@ -1,16 +1,18 @@
 "use client";
 
 /* ================================================================
-   app/admin/inquiry/page.tsx — WorkWise Visa Inquiries & Leads Management
-   Matches the EXACT Admin Theme as Dashboard & Invoice Generator:
-   - Deep Indigo/Purple gradient sidebar (#1e1b4b -> #312e81)
-   - Consistent typography, stat cards, search/filter chips, and data table
-   - 1-Click WhatsApp, Direct Call, Inline Status Updater, Notes & CSV Export
+   app/admin/inquiry/page.tsx — Clean & Optimized Leads & Inquiries CRM
+   Streamlined, high-performance lead management dashboard with:
+   - Live KPI Stat Highlights & Pipeline overview
+   - Fast instant search, multi-faceted filters (Country, Staff, Status)
+   - 1-Click WhatsApp integration & Direct Phone calling
+   - Inline Status & Counselor Assignment updaters
+   - Strictly numeric phone input validation & CSV Export
+   - Clean, accessible modal dialogs for Notes and New Lead creation
    ================================================================ */
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Search,
@@ -42,10 +44,15 @@ import {
   CheckCheck,
   Building,
   CreditCard,
+  MessageSquare,
+  ShieldCheck,
+  ChevronRight,
+  Sparkles,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
-
 import { EmployeePermissions } from "@/lib/types/rbac";
+
+// ── Types ─────────────────────────────────────────────────────────
 
 export interface InquiryItem {
   id: string;
@@ -148,6 +155,83 @@ export default function AdminInquiryPage() {
     }, 3500);
   };
 
+  // 1. Check Authentication on Mount
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const res = await fetch("/api/auth/me");
+        if (!res.ok) {
+          router.replace("/admin");
+          return;
+        }
+        const data = await res.json();
+        if (data.user) {
+          setAdmin(data.user);
+          const isSuper = data.user.role === "superadmin" || data.user.email === "wasim@yastudy.com";
+          if (!isSuper && data.user.permissions?.inquiries?.view === false) {
+            router.replace("/admin/dashboard");
+            return;
+          }
+        } else {
+          router.replace("/admin");
+        }
+      } catch {
+        router.replace("/admin");
+      } finally {
+        setAuthLoading(false);
+      }
+    }
+    checkAuth();
+  }, [router]);
+
+  // 2. Fetch Inquiries & Staff Assignees
+  const fetchEmployees = useCallback(async () => {
+    try {
+      const res = await fetch("/api/employees");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data)) {
+          setEmployees(data.data);
+        }
+      }
+    } catch (err) {
+      console.error("Error fetching employees list:", err);
+    }
+  }, []);
+
+  const fetchInquiries = useCallback(async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    else setLoading(true);
+
+    try {
+      const res = await fetch("/api/inquiries", { cache: "no-store" });
+      if (!res.ok) {
+        if (res.status === 401) {
+          router.replace("/admin");
+          return;
+        }
+        throw new Error("Failed to load inquiries");
+      }
+      const data = await res.json();
+      if (data.success && Array.isArray(data.data)) {
+        setInquiries(data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching inquiries:", err);
+      showToast("Unable to load latest inquiries. Please refresh.", "error");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, [router]);
+
+  useEffect(() => {
+    if (!authLoading && admin) {
+      fetchInquiries();
+      fetchEmployees();
+    }
+  }, [authLoading, admin, fetchInquiries, fetchEmployees]);
+
   // Handle Add Lead Submission
   const handleAddLead = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -234,83 +318,6 @@ export default function AdminInquiryPage() {
     }
   };
 
-  // 1. Check Authentication on Mount
-  useEffect(() => {
-    async function checkAuth() {
-      try {
-        const res = await fetch("/api/auth/me");
-        if (!res.ok) {
-          router.replace("/admin");
-          return;
-        }
-        const data = await res.json();
-        if (data.user) {
-          setAdmin(data.user);
-          const isSuper = data.user.role === "superadmin" || data.user.email === "wasim@yastudy.com";
-          if (!isSuper && data.user.permissions?.inquiries?.view === false) {
-            router.replace("/admin/dashboard");
-            return;
-          }
-        } else {
-          router.replace("/admin");
-        }
-      } catch {
-        router.replace("/admin");
-      } finally {
-        setAuthLoading(false);
-      }
-    }
-    checkAuth();
-  }, [router]);
-
-  // 2. Fetch Inquiries & Staff Assignees
-  const fetchEmployees = useCallback(async () => {
-    try {
-      const res = await fetch("/api/employees");
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && Array.isArray(data.data)) {
-          setEmployees(data.data);
-        }
-      }
-    } catch (err) {
-      console.error("Error fetching employees list:", err);
-    }
-  }, []);
-
-  const fetchInquiries = useCallback(async (isRefresh = false) => {
-    if (isRefresh) setRefreshing(true);
-    else setLoading(true);
-
-    try {
-      const res = await fetch("/api/inquiries", { cache: "no-store" });
-      if (!res.ok) {
-        if (res.status === 401) {
-          router.replace("/admin");
-          return;
-        }
-        throw new Error("Failed to load inquiries");
-      }
-      const data = await res.json();
-      if (data.success && Array.isArray(data.data)) {
-        setInquiries(data.data);
-      }
-    } catch (err) {
-      console.error("Error fetching inquiries:", err);
-      showToast("Unable to load latest inquiries. Please refresh.", "error");
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
-  }, [router]);
-
-  useEffect(() => {
-    if (!authLoading && admin) {
-      fetchInquiries();
-      fetchEmployees();
-    }
-  }, [authLoading, admin, fetchInquiries, fetchEmployees]);
-
   // Handle Assigning Lead to an Employee / Counselor
   const handleAssignChange = async (inquiryId: string, employeeIdOrValue: string) => {
     setAssigningId(inquiryId);
@@ -358,7 +365,6 @@ export default function AdminInquiryPage() {
         throw new Error(data.message || "Failed to update assigned counselor");
       }
 
-      // Sync exact saved document from response
       if (data.data) {
         setInquiries((prev) =>
           prev.map((item) =>
@@ -468,16 +474,7 @@ export default function AdminInquiryPage() {
     }
   };
 
-  // 6. Handle Sign Out
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/auth/logout", { method: "POST" });
-    } finally {
-      router.replace("/admin");
-    }
-  };
-
-  // 7. Export Inquiries to CSV
+  // 6. Export Inquiries to CSV
   const handleExportCSV = () => {
     if (inquiries.length === 0) {
       showToast("No inquiries available to export.", "error");
@@ -527,7 +524,7 @@ export default function AdminInquiryPage() {
     showToast(`Exported ${filteredInquiries.length} inquiries to CSV.`);
   };
 
-  // 8. Derived Stats & Filtered Data
+  // 7. Derived Stats & Filtered Data
   const stats = useMemo(() => {
     const total = inquiries.length;
     const newCount = inquiries.filter((i) => i.status === "new").length;
@@ -543,12 +540,6 @@ export default function AdminInquiryPage() {
     const unassignedCount = inquiries.filter(
       (i) => !i.assignedTo || (!i.assignedTo.id && !i.assignedTo.name)
     ).length;
-    const assignedCount = total - unassignedCount;
-
-    const today = new Date().toDateString();
-    const todayCount = inquiries.filter(
-      (i) => new Date(i.createdAt).toDateString() === today
-    ).length;
 
     return {
       total,
@@ -562,8 +553,6 @@ export default function AdminInquiryPage() {
       notInterested,
       closed,
       unassignedCount,
-      assignedCount,
-      todayCount,
     };
   }, [inquiries]);
 
@@ -625,82 +614,82 @@ export default function AdminInquiryPage() {
     switch (status) {
       case "new":
         return {
-          background: "#ecfdf5",
-          color: "#047857",
-          border: "1.5px solid #a7f3d0",
-          dotColor: "#10b981",
+          bg: "bg-emerald-50",
+          text: "text-emerald-700",
+          border: "border-emerald-200",
+          dot: "bg-emerald-500",
           label: "New Lead",
         };
       case "interested":
         return {
-          background: "#f0fdf4",
-          color: "#15803d",
-          border: "1.5px solid #86efac",
-          dotColor: "#22c55e",
+          bg: "bg-teal-50",
+          text: "text-teal-700",
+          border: "border-teal-200",
+          dot: "bg-teal-500",
           label: "Interested",
         };
       case "dnp":
         return {
-          background: "#fff1f2",
-          color: "#be123c",
-          border: "1.5px solid #fecdd3",
-          dotColor: "#f43f5e",
-          label: "DNP (Did Not Pick)",
+          bg: "bg-rose-50",
+          text: "text-rose-700",
+          border: "border-rose-200",
+          dot: "bg-rose-500",
+          label: "DNP",
         };
       case "contacted":
         return {
-          background: "#fffbeb",
-          color: "#b45309",
-          border: "1.5px solid #fde68a",
-          dotColor: "#f59e0b",
+          bg: "bg-amber-50",
+          text: "text-amber-700",
+          border: "border-amber-200",
+          dot: "bg-amber-500",
           label: "Contacted",
         };
       case "in_progress":
         return {
-          background: "#eff6ff",
-          color: "#1d4ed8",
-          border: "1.5px solid #bfdbfe",
-          dotColor: "#3b82f6",
+          bg: "bg-blue-50",
+          text: "text-blue-700",
+          border: "border-blue-200",
+          dot: "bg-blue-500",
           label: "In Progress",
         };
       case "payment_mode":
         return {
-          background: "#fdf4ff",
-          color: "#a21caf",
-          border: "1.5px solid #f5d0fe",
-          dotColor: "#d946ef",
+          bg: "bg-fuchsia-50",
+          text: "text-fuchsia-700",
+          border: "border-fuchsia-200",
+          dot: "bg-fuchsia-500",
           label: "Payment Mode",
         };
       case "converted":
         return {
-          background: "#f5f3ff",
-          color: "#6d28d9",
-          border: "1.5px solid #ddd6fe",
-          dotColor: "#8b5cf6",
+          bg: "bg-purple-50",
+          text: "text-purple-700",
+          border: "border-purple-200",
+          dot: "bg-purple-500",
           label: "Converted",
         };
       case "not_interested":
         return {
-          background: "#fef2f2",
-          color: "#b91c1c",
-          border: "1.5px solid #fecaca",
-          dotColor: "#ef4444",
+          bg: "bg-red-50",
+          text: "text-red-700",
+          border: "border-red-200",
+          dot: "bg-red-500",
           label: "Not Interested",
         };
       case "closed":
         return {
-          background: "#f1f5f9",
-          color: "#64748b",
-          border: "1.5px solid #cbd5e1",
-          dotColor: "#94a3b8",
-          label: "Closed / Lost",
+          bg: "bg-slate-100",
+          text: "text-slate-600",
+          border: "border-slate-300",
+          dot: "bg-slate-400",
+          label: "Closed",
         };
       default:
         return {
-          background: "#f8fafc",
-          color: "#475569",
-          border: "1.5px solid #e2e8f0",
-          dotColor: "#64748b",
+          bg: "bg-slate-50",
+          text: "text-slate-700",
+          border: "border-slate-200",
+          dot: "bg-slate-400",
           label: status,
         };
     }
@@ -708,19 +697,14 @@ export default function AdminInquiryPage() {
 
   if (authLoading || !admin) {
     return (
-      <div style={s.loadingContainer}>
-        <div style={s.spinner} />
-        <p style={{ marginTop: "12px", color: "white", fontSize: "14px" }}>
-          Verifying admin access...
-        </p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#1e1b4b]">
+        <div className="w-10 h-10 border-4 border-white/20 border-t-indigo-400 rounded-full animate-spin" />
+        <p className="mt-3 text-white text-sm font-semibold">Verifying admin access...</p>
       </div>
     );
   }
 
   const isSuper = admin?.role === "superadmin" || admin?.email === "wasim@yastudy.com";
-  const canViewJobs = isSuper || Boolean(admin?.permissions?.jobs?.view !== false);
-  const canViewInvoices = isSuper || Boolean(admin?.permissions?.invoices?.view);
-  const canViewEmployees = isSuper || Boolean(admin?.permissions?.employees?.view);
   const canExportCSV = isSuper || Boolean(admin?.permissions?.inquiries?.export !== false);
   const canDeleteInquiry = isSuper || Boolean(admin?.permissions?.inquiries?.delete !== false);
   const canEditInquiry = isSuper || Boolean(admin?.permissions?.inquiries?.edit !== false);
@@ -730,28 +714,14 @@ export default function AdminInquiryPage() {
       {/* Toast Notification */}
       {toast && (
         <div
-          style={{
-            position: "fixed",
-            top: "24px",
-            right: "24px",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "12px 20px",
-            borderRadius: "12px",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
-            fontSize: "14px",
-            fontWeight: 600,
-            background: toast.type === "success" ? "#10b981" : "#ef4444",
-            color: "white",
-            animation: "fadeIn 0.2s ease-in-out",
-          }}
+          className={`fixed top-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-lg text-sm font-bold text-white transition-all animate-bounce ${
+            toast.type === "success" ? "bg-emerald-600" : "bg-rose-600"
+          }`}
         >
           {toast.type === "success" ? (
-            <CheckCircle2 style={{ width: "18px", height: "18px" }} />
+            <CheckCircle2 className="w-4 h-4" />
           ) : (
-            <AlertCircle style={{ width: "18px", height: "18px" }} />
+            <AlertCircle className="w-4 h-4" />
           )}
           <span>{toast.message}</span>
         </div>
@@ -767,31 +737,35 @@ export default function AdminInquiryPage() {
       />
 
       {/* ── MAIN CONTENT AREA ── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
-        {/* Header */}
-        <div style={s.header}>
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-5">
+        
+        {/* Header Bar */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 style={s.pageTitle}>Consultation Inquiries &amp; Leads</h1>
-            <p style={s.pageSubtitle}>
-              {inquiries.length} total consultation requests · {stats.newCount} new leads pending review
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                Candidate Leads &amp; Consultations
+              </h1>
+              {stats.newCount > 0 && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  {stats.newCount} New
+                </span>
+              )}
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              {inquiries.length} total overseas candidate inquiries registered
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+          <div className="flex items-center gap-2.5 flex-wrap">
             {canEditInquiry && (
               <button
                 onClick={() => setShowAddModal(true)}
-                style={{
-                  ...s.btnPrimary,
-                  background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                  boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                }}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all cursor-pointer"
                 title="Add New Lead Manually"
               >
-                <UserPlus style={{ width: "16px", height: "16px" }} />
+                <UserPlus className="w-3.5 h-3.5" />
                 <span>+ Add Lead</span>
               </button>
             )}
@@ -799,224 +773,164 @@ export default function AdminInquiryPage() {
             <button
               onClick={() => fetchInquiries(true)}
               disabled={refreshing || loading}
-              style={{ ...s.btnSecondary, display: "flex", alignItems: "center", gap: "8px" }}
-              title="Refresh Inquiries"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              title="Sync Latest Leads"
             >
-              <RefreshCw
-                className={refreshing ? "animate-spin" : ""}
-                style={{ width: "15px", height: "15px", color: refreshing ? "#6366f1" : "inherit" }}
-              />
-              <span>{refreshing ? "Syncing..." : "Refresh"}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
+              <span>{refreshing ? "Syncing..." : "Sync"}</span>
             </button>
 
-            <button
-              onClick={handleExportCSV}
-              disabled={inquiries.length === 0}
-              style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "8px" }}
-            >
-              <Download style={{ width: "15px", height: "15px" }} />
-              <span>Export CSV</span>
-            </button>
+            {canExportCSV && (
+              <button
+                onClick={handleExportCSV}
+                disabled={inquiries.length === 0}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all cursor-pointer disabled:opacity-50"
+                title="Export to Excel CSV"
+              >
+                <Download className="w-3.5 h-3.5 text-slate-500" />
+                <span>Export CSV</span>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* ── KPI Stat Cards ── */}
-        <div style={s.statsRow}>
+        {/* ── Compact Stat Highlights ── */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
           {[
-            { label: "Total Leads", value: stats.total, color: "#6366f1" },
-            { label: "New Leads", value: stats.newCount, color: "#10b981" },
-            { label: "Interested", value: stats.interested, color: "#059669" },
-            { label: "DNP (Did Not Pick)", value: stats.dnp, color: "#e11d48" },
-            { label: "Payment Mode", value: stats.paymentMode, color: "#c026d3" },
-            { label: "In Progress / Contacted", value: stats.inProgress + stats.contacted, color: "#2563eb" },
-            { label: "Converted Clients", value: stats.converted, color: "#7c3aed" },
-            { label: "Not Interested", value: stats.notInterested, color: "#dc2626" },
+            { label: "Total Leads", value: stats.total, color: "text-slate-900", bg: "bg-white" },
+            { label: "New Leads", value: stats.newCount, color: "text-emerald-700", bg: "bg-emerald-50/70" },
+            { label: "Interested", value: stats.interested, color: "text-teal-700", bg: "bg-teal-50/70" },
+            { label: "In Progress", value: stats.inProgress + stats.contacted, color: "text-blue-700", bg: "bg-blue-50/70" },
+            { label: "Payment Mode", value: stats.paymentMode, color: "text-fuchsia-700", bg: "bg-fuchsia-50/70" },
+            { label: "Converted", value: stats.converted, color: "text-purple-700", bg: "bg-purple-50/70" },
+            { label: "DNP (No Answer)", value: stats.dnp, color: "text-rose-700", bg: "bg-rose-50/70" },
+            { label: "Not Interested", value: stats.notInterested, color: "text-slate-600", bg: "bg-slate-100/70" },
           ].map((stat) => (
-            <div key={stat.label} style={s.statCard}>
-              <div style={{ fontSize: "28px", fontWeight: 800, color: stat.color }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px", fontWeight: 600 }}>
+            <div
+              key={stat.label}
+              className={`p-3 rounded-xl border border-slate-200/80 ${stat.bg} shadow-xs text-center transition-all hover:scale-[1.02]`}
+            >
+              <div className={`text-xl font-black ${stat.color}`}>{stat.value}</div>
+              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-tight mt-0.5">
                 {stat.label}
               </div>
             </div>
           ))}
         </div>
 
-        {/* ── Search & Filter Bar ── */}
-        <div style={{ ...s.card, padding: "16px 20px", marginBottom: "20px" }}>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "14px",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            {/* Search input */}
-            <div style={{ position: "relative", flex: 1, minWidth: "260px" }}>
-              <Search
-                style={{
-                  position: "absolute",
-                  left: "14px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "16px",
-                  height: "16px",
-                  color: "#9ca3af",
-                  pointerEvents: "none",
-                }}
-              />
+        {/* ── Search & Filter Controls ── */}
+        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm space-y-3">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search by candidate name, phone, country, occupation..."
-                style={{ ...s.input, paddingLeft: "40px", fontSize: "13px", width: "100%" }}
+                placeholder="Search candidate name, phone number, destination, occupation..."
+                className="w-full pl-10 pr-9 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  style={{
-                    position: "absolute",
-                    right: "12px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background: "transparent",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "#9ca3af",
-                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  <X style={{ width: "15px", height: "15px" }} />
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
 
-            {/* Country Selector */}
-            <select
-              value={countryFilter}
-              onChange={(e) => setCountryFilter(e.target.value)}
-              style={{
-                ...s.input,
-                width: "auto",
-                minWidth: "165px",
-                fontSize: "13px",
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-            >
-              <option value="all">All Destinations ({uniqueCountries.length})</option>
-              {uniqueCountries.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-
-            {/* Assigned Staff Filter */}
-            <select
-              value={assignedFilter}
-              onChange={(e) => setAssignedFilter(e.target.value)}
-              style={{
-                ...s.input,
-                width: "auto",
-                minWidth: "190px",
-                fontSize: "13px",
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-            >
-              <option value="all">All Staff Leads ({inquiries.length})</option>
-              <option value="unassigned">Unassigned Leads ({stats.unassignedCount})</option>
-              {employees.map((emp) => {
-                const empLeadCount = inquiries.filter(
-                  (i) => i.assignedTo?.id === emp.id || i.assignedTo?.name === emp.name || i.assignedTo?.email === emp.email
-                ).length;
-                return (
-                  <option key={emp.id} value={emp.id}>
-                    {emp.name} ({empLeadCount})
+            {/* Dropdown Filters */}
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Destination Filter */}
+              <select
+                value={countryFilter}
+                onChange={(e) => setCountryFilter(e.target.value)}
+                className="px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+              >
+                <option value="all">All Destinations ({uniqueCountries.length})</option>
+                {uniqueCountries.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
                   </option>
-                );
-              })}
-            </select>
+                ))}
+              </select>
 
-            {/* Sort Order */}
-            <button
-              onClick={() => setSortBy((prev) => (prev === "newest" ? "oldest" : "newest"))}
-              style={{ ...s.btnSecondary, padding: "10px 14px", fontSize: "13px", display: "flex", alignItems: "center", gap: "6px" }}
-              title="Toggle Sort"
-            >
-              <ArrowUpDown style={{ width: "14px", height: "14px", color: "#6b7280" }} />
-              <span>{sortBy === "newest" ? "Newest" : "Oldest"}</span>
-            </button>
+              {/* Staff Assignee Filter */}
+              <select
+                value={assignedFilter}
+                onChange={(e) => setAssignedFilter(e.target.value)}
+                className="px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+              >
+                <option value="all">All Staff Leads ({inquiries.length})</option>
+                <option value="unassigned">Unassigned Leads ({stats.unassignedCount})</option>
+                {employees.map((emp) => {
+                  const count = inquiries.filter(
+                    (i) => i.assignedTo?.id === emp.id || i.assignedTo?.name === emp.name || i.assignedTo?.email === emp.email
+                  ).length;
+                  return (
+                    <option key={emp.id} value={emp.id}>
+                      {emp.name} ({count})
+                    </option>
+                  );
+                })}
+              </select>
 
-            {/* Status Filter Buttons */}
-            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
-              {[
-                { id: "all", label: `All (${inquiries.length})` },
-                { id: "new", label: `New (${stats.newCount})` },
-                { id: "interested", label: `Interested (${stats.interested})` },
-                { id: "dnp", label: `DNP (${stats.dnp})` },
-                { id: "contacted", label: `Contacted (${stats.contacted})` },
-                { id: "in_progress", label: `In Progress (${stats.inProgress})` },
-                { id: "payment_mode", label: `Payment Mode (${stats.paymentMode})` },
-                { id: "converted", label: `Converted (${stats.converted})` },
-                { id: "not_interested", label: `Not Interested (${stats.notInterested})` },
-                { id: "closed", label: `Closed (${stats.closed})` },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setStatusFilter(tab.id)}
-                  style={{
-                    padding: "7px 14px",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    border: "1px solid",
-                    transition: "all 0.15s",
-                    background: statusFilter === tab.id ? "#6366f1" : "#f8fafc",
-                    color: statusFilter === tab.id ? "white" : "#475569",
-                    borderColor: statusFilter === tab.id ? "#6366f1" : "#e2e8f0",
-                  }}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              {/* Sort Toggle */}
+              <button
+                onClick={() => setSortBy((prev) => (prev === "newest" ? "oldest" : "newest"))}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer"
+              >
+                <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
+                <span>{sortBy === "newest" ? "Newest First" : "Oldest First"}</span>
+              </button>
             </div>
+          </div>
+
+          {/* Status Tabs Row */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1 scrollbar-none">
+            {[
+              { id: "all", label: "All Leads", count: inquiries.length },
+              { id: "new", label: "New", count: stats.newCount },
+              { id: "interested", label: "Interested", count: stats.interested },
+              { id: "in_progress", label: "In Progress", count: stats.inProgress },
+              { id: "payment_mode", label: "Payment", count: stats.paymentMode },
+              { id: "converted", label: "Converted", count: stats.converted },
+              { id: "dnp", label: "DNP", count: stats.dnp },
+              { id: "not_interested", label: "Not Interested", count: stats.notInterested },
+              { id: "closed", label: "Closed", count: stats.closed },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setStatusFilter(tab.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-all cursor-pointer ${
+                  statusFilter === tab.id
+                    ? "bg-indigo-600 text-white shadow-xs"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
+                }`}
+              >
+                {tab.label} ({tab.count})
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* ── Inquiries Table Card ── */}
-        <div style={s.card}>
+        {/* ── Leads Data Table ── */}
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           {loading ? (
-            <div style={{ padding: "48px", textAlign: "center", color: "#6b7280" }}>
-              <RefreshCw
-                className="animate-spin"
-                style={{ width: "24px", height: "24px", margin: "0 auto 12px", color: "#6366f1" }}
-              />
-              Loading consultation inquiries…
+            <div className="p-12 text-center text-sm text-slate-500 font-medium">
+              <RefreshCw className="w-6 h-6 animate-spin mx-auto text-indigo-600 mb-2" />
+              Loading inquiries...
             </div>
           ) : filteredInquiries.length === 0 ? (
-            <div style={{ padding: "56px 20px", textAlign: "center" }}>
-              <Inbox style={{ width: "42px", height: "42px", color: "#cbd5e1", margin: "0 auto 12px" }} />
-              <div style={{ color: "#374151", fontWeight: 700, fontSize: "16px" }}>
-                No Consultation Inquiries Found
-              </div>
-              <p
-                style={{
-                  color: "#9ca3af",
-                  fontSize: "13px",
-                  marginTop: "4px",
-                  maxWidth: "460px",
-                  margin: "4px auto 0",
-                }}
-              >
+            <div className="p-12 text-center">
+              <Inbox className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+              <h3 className="font-extrabold text-base text-slate-800">No Consultation Leads Found</h3>
+              <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
                 {search || statusFilter !== "all" || countryFilter !== "all" || assignedFilter !== "all"
-                  ? "No leads matched your search/filter criteria. Try clearing filters."
-                  : "When candidates fill the 'Book Free Consultation' form on the website, they will appear here in real time."}
+                  ? "No leads match your active filters. Try clearing your search parameters."
+                  : "When candidates submit the consultation form on the website, they will appear here."}
               </p>
               {(search || statusFilter !== "all" || countryFilter !== "all" || assignedFilter !== "all") && (
                 <button
@@ -1026,28 +940,27 @@ export default function AdminInquiryPage() {
                     setCountryFilter("all");
                     setAssignedFilter("all");
                   }}
-                  style={{ ...s.btnSecondary, marginTop: "16px", fontSize: "12px", padding: "8px 16px" }}
+                  className="mt-4 px-4 py-2 rounded-xl text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 cursor-pointer"
                 >
-                  Clear Search Filters
+                  Clear All Filters
                 </button>
               )}
             </div>
           ) : (
-            <div style={{ overflowX: "auto" }}>
-              <table style={s.table}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr>
-                    <th style={{ ...s.th, width: "40px", textAlign: "center" }}>#</th>
-                    <th style={s.th}>Candidate &amp; Submission Date</th>
-                    <th style={s.th}>Phone &amp; Quick Connect</th>
-                    <th style={s.th}>Target Destination</th>
-                    <th style={s.th}>Current Occupation</th>
-                    <th style={s.th}>Status</th>
-                    <th style={s.th}>Assigned Counselor / Staff</th>
-                    <th style={{ ...s.th, textAlign: "right" }}>Actions</th>
+                  <tr className="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
+                    <th className="py-3.5 px-4 w-12 text-center">#</th>
+                    <th className="py-3.5 px-4">Candidate &amp; Submission</th>
+                    <th className="py-3.5 px-4">Phone &amp; Connect</th>
+                    <th className="py-3.5 px-4">Destination &amp; Trade</th>
+                    <th className="py-3.5 px-4">Status</th>
+                    <th className="py-3.5 px-4">Assigned Counselor</th>
+                    <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-100">
                   {filteredInquiries.map((inq, idx) => {
                     const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
                     const waPhone = cleanPhone.startsWith("+")
@@ -1056,216 +969,116 @@ export default function AdminInquiryPage() {
                       ? `91${cleanPhone}`
                       : cleanPhone;
 
-                    const formattedDate = new Date(inq.createdAt).toLocaleString("en-IN", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: true,
-                    });
-
                     const waMessage = encodeURIComponent(
                       `Hello ${inq.name}, greetings from WorkWise Visa! Thank you for requesting an overseas work visa consultation for ${inq.country}. We would love to assess your profile for ${inq.occupation}.`
                     );
 
-                    const currentStyle = getStatusStyle(inq.status);
+                    const badge = getStatusStyle(inq.status);
 
                     return (
                       <tr
                         key={inq.id}
-                        style={{
-                          background: inq.status === "new" ? "#f0fdf4" : idx % 2 === 0 ? "white" : "#f9fafb",
-                          transition: "background 0.15s",
-                        }}
+                        className={`transition-all hover:bg-slate-50/80 ${
+                          inq.status === "new" ? "bg-emerald-50/30" : ""
+                        }`}
                       >
                         {/* Index */}
-                        <td
-                          style={{
-                            ...s.td,
-                            textAlign: "center",
-                            color: "#9ca3af",
-                            fontWeight: 700,
-                            fontSize: "12px",
-                          }}
-                        >
+                        <td className="py-3.5 px-4 text-center font-bold text-slate-400">
                           {idx + 1}
                         </td>
 
-                        {/* Candidate Name & Date */}
-                        <td style={s.td}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ fontWeight: 700, color: "#0f172a", fontSize: "14px" }}>
+                        {/* Candidate Name & Submission Date */}
+                        <td className="py-3.5 px-4">
+                          <div className="flex items-center gap-2">
+                            <span className="font-extrabold text-sm text-slate-900">
                               {inq.name}
                             </span>
                             {inq.status === "new" && (
-                              <span
-                                style={{
-                                  background: "#dcfce7",
-                                  color: "#15803d",
-                                  border: "1px solid #86efac",
-                                  borderRadius: "999px",
-                                  padding: "1px 7px",
-                                  fontSize: "10px",
-                                  fontWeight: 800,
-                                  textTransform: "uppercase",
-                                }}
-                              >
+                              <span className="bg-emerald-100 text-emerald-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
                                 NEW
                               </span>
                             )}
                           </div>
-                          <div
-                            style={{
-                              fontSize: "11px",
-                              color: "#64748b",
-                              marginTop: "3px",
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "4px",
-                            }}
-                          >
-                            <Clock style={{ width: "12px", height: "12px", color: "#94a3b8" }} />
-                            {formattedDate}
+                          <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-slate-400" />
+                            {new Date(inq.createdAt).toLocaleString("en-IN", {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                            })}
                           </div>
                           {inq.notes && (
-                            <div
-                              style={{
-                                marginTop: "6px",
-                                fontSize: "11px",
-                                background: "#fffbeb",
-                                border: "1px solid #fef3c7",
-                                borderRadius: "6px",
-                                padding: "4px 8px",
-                                color: "#92400e",
-                                maxWidth: "320px",
-                              }}
-                            >
+                            <div className="mt-1.5 text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2 py-1 text-amber-900 max-w-xs truncate">
                               <strong>Note:</strong> {inq.notes}
                             </div>
                           )}
                         </td>
 
-                        {/* Phone & Connect */}
-                        <td style={s.td}>
-                          <div
-                            style={{
-                              fontFamily: "monospace",
-                              fontWeight: 600,
-                              color: "#1e293b",
-                              fontSize: "13px",
-                            }}
-                          >
+                        {/* Phone & 1-Click WhatsApp / Call */}
+                        <td className="py-3.5 px-4">
+                          <div className="font-mono font-bold text-slate-800">
                             {inq.phone}
                           </div>
-                          <div style={{ display: "flex", gap: "8px", marginTop: "6px" }}>
+                          <div className="flex items-center gap-1.5 mt-1">
                             <a
                               href={`https://wa.me/${waPhone}?text=${waMessage}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "#ecfdf5",
-                                color: "#059669",
-                                border: "1px solid #a7f3d0",
-                                borderRadius: "6px",
-                                padding: "3px 8px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                textDecoration: "none",
-                              }}
+                              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-2xs transition-all"
                               title="Chat on WhatsApp"
                             >
-                              <MessageCircle style={{ width: "12px", height: "12px" }} />
-                              WhatsApp
+                              <MessageCircle className="w-3 h-3" />
+                              <span>WhatsApp</span>
                             </a>
                             <a
                               href={`tel:${cleanPhone}`}
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "#eff6ff",
-                                color: "#2563eb",
-                                border: "1px solid #bfdbfe",
-                                borderRadius: "6px",
-                                padding: "3px 8px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                textDecoration: "none",
-                              }}
-                              title="Direct Call"
+                              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-all"
+                              title="Direct Phone Call"
                             >
-                              <Phone style={{ width: "11px", height: "11px" }} />
-                              Call
+                              <Phone className="w-3 h-3" />
+                              <span>Call</span>
                             </a>
                           </div>
                         </td>
 
-                        {/* Country */}
-                        <td style={s.td}>
-                          <span
-                            style={{
-                              background: "#f0fdf4",
-                              color: "#166534",
-                              border: "1px solid #bbf7d0",
-                              borderRadius: "6px",
-                              padding: "4px 10px",
-                              fontSize: "12px",
-                              fontWeight: 700,
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: "4px",
-                            }}
-                          >
-                            <MapPin style={{ width: "12px", height: "12px", color: "#166534" }} />
+                        {/* Country & Occupation */}
+                        <td className="py-3.5 px-4">
+                          <div className="inline-flex items-center gap-1 font-bold text-slate-800">
+                            <MapPin className="w-3 h-3 text-emerald-600 shrink-0" />
                             <span>{inq.country || "General Destination"}</span>
-                          </span>
-                        </td>
-
-                        {/* Occupation */}
-                        <td style={s.td}>
-                          <div style={{ color: "#334155", fontSize: "13px", fontWeight: 600 }}>
-                            {inq.occupation || "Not Specified"}
+                          </div>
+                          <div className="text-[11px] text-slate-500 mt-0.5">
+                            {inq.occupation || "General / Unspecified"}
                           </div>
                         </td>
 
-                        {/* Status Dropdown */}
-                        <td style={s.td}>
+                        {/* Status Select Badge */}
+                        <td className="py-3.5 px-4">
                           <select
                             value={inq.status}
                             disabled={statusUpdatingId === inq.id}
                             onChange={(e) =>
                               handleStatusChange(inq.id, e.target.value as InquiryItem["status"])
                             }
-                            style={{
-                              padding: "5px 10px",
-                              borderRadius: "8px",
-                              fontSize: "12px",
-                              fontWeight: 700,
-                              cursor: "pointer",
-                              border: currentStyle.border,
-                              background: currentStyle.background,
-                              color: currentStyle.color,
-                              outline: "none",
-                            }}
+                            className={`px-2.5 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer ${badge.bg} ${badge.text} ${badge.border}`}
                           >
                             <option value="new">New Lead</option>
                             <option value="interested">Interested</option>
-                            <option value="dnp">DNP (Did Not Pick)</option>
+                            <option value="dnp">DNP (No Answer)</option>
                             <option value="contacted">Contacted</option>
                             <option value="in_progress">In Progress</option>
                             <option value="payment_mode">Payment Mode</option>
                             <option value="converted">Converted</option>
                             <option value="not_interested">Not Interested</option>
-                            <option value="closed">Closed / Lost</option>
+                            <option value="closed">Closed</option>
                           </select>
                         </td>
 
-                        {/* Assigned Counselor / Staff Column */}
-                        <td style={s.td}>
+                        {/* Assigned Counselor */}
+                        <td className="py-3.5 px-4">
                           {(() => {
                             let selectedVal = "unassigned";
                             if (inq.assignedTo) {
@@ -1275,46 +1088,27 @@ export default function AdminInquiryPage() {
                                 const foundByName = employees.find(
                                   (e) => e.name.trim().toLowerCase() === inq.assignedTo?.name?.trim().toLowerCase()
                                 );
-                                if (foundByName) {
-                                  selectedVal = foundByName.id;
-                                } else {
-                                  selectedVal = inq.assignedTo.id || inq.assignedTo.name;
-                                }
+                                selectedVal = foundByName ? foundByName.id : (inq.assignedTo.id || inq.assignedTo.name);
                               } else if (inq.assignedTo.id) {
                                 selectedVal = inq.assignedTo.id;
                               }
                             }
 
-                            const hasAssignee =
-                              selectedVal !== "unassigned" &&
-                              Boolean(inq.assignedTo?.name || inq.assignedTo?.id);
+                            const hasAssignee = selectedVal !== "unassigned";
 
                             return (
-                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                              <div className="flex items-center gap-1.5">
                                 <select
                                   value={selectedVal}
                                   disabled={assigningId === inq.id}
                                   onChange={(e) => handleAssignChange(inq.id, e.target.value)}
-                                  style={{
-                                    padding: "5px 8px",
-                                    borderRadius: "8px",
-                                    fontSize: "12px",
-                                    fontWeight: 600,
-                                    cursor: "pointer",
-                                    outline: "none",
-                                    border: hasAssignee ? "1.5px solid #c7d2fe" : "1.5px dashed #cbd5e1",
-                                    background: hasAssignee ? "#f5f3ff" : "#f8fafc",
-                                    color: hasAssignee ? "#4338ca" : "#64748b",
-                                    maxWidth: "165px",
-                                  }}
-                                  title="Assign lead to a counselor or staff member"
+                                  className={`px-2 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer max-w-[150px] ${
+                                    hasAssignee
+                                      ? "bg-purple-50 text-purple-800 border-purple-200"
+                                      : "bg-slate-50 text-slate-500 border-dashed border-slate-300"
+                                  }`}
                                 >
                                   <option value="unassigned">Unassigned</option>
-                                  {hasAssignee && !employees.some((emp) => emp.id === selectedVal) && (
-                                    <option value={selectedVal}>
-                                      {inq.assignedTo?.name || "Assigned"} ({inq.assignedTo?.role ? inq.assignedTo.role.toUpperCase() : "STAFF"})
-                                    </option>
-                                  )}
                                   {employees.map((emp) => (
                                     <option key={emp.id} value={emp.id}>
                                       {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
@@ -1322,62 +1116,37 @@ export default function AdminInquiryPage() {
                                   ))}
                                 </select>
                                 {assigningId === inq.id && (
-                                  <RefreshCw
-                                    className="animate-spin"
-                                    style={{ width: "12px", height: "12px", color: "#6366f1", flexShrink: 0 }}
-                                  />
+                                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-600" />
                                 )}
                               </div>
                             );
                           })()}
                         </td>
 
-                        {/* Actions */}
-                        <td style={{ ...s.td, textAlign: "right" }}>
-                          <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
+                        {/* Actions (Notes / Delete) */}
+                        <td className="py-3.5 px-4 text-right">
+                          <div className="flex items-center justify-end gap-1.5">
                             <button
                               onClick={() => {
                                 setActiveNoteInquiry(inq);
                                 setNoteText(inq.notes || "");
                               }}
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "white",
-                                border: "1.5px solid #e2e8f0",
-                                borderRadius: "8px",
-                                padding: "6px 10px",
-                                fontSize: "12px",
-                                fontWeight: 600,
-                                color: "#475569",
-                                cursor: "pointer",
-                              }}
-                              title="Add/Edit Follow-up Notes"
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer"
+                              title="View & Edit Notes"
                             >
-                              <Edit3 style={{ width: "12px", height: "12px" }} />
-                              {inq.notes ? "Edit Note" : "Note"}
+                              <Edit3 className="w-3 h-3 text-slate-500" />
+                              <span>{inq.notes ? "Note" : "+ Note"}</span>
                             </button>
 
-                            <button
-                              onClick={() => setDeletingId(inq.id)}
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "#fef2f2",
-                                border: "1px solid #fecaca",
-                                borderRadius: "8px",
-                                padding: "6px 10px",
-                                fontSize: "12px",
-                                fontWeight: 600,
-                                color: "#dc2626",
-                                cursor: "pointer",
-                              }}
-                              title="Delete Inquiry"
-                            >
-                              <Trash2 style={{ width: "12px", height: "12px" }} />
-                            </button>
+                            {canDeleteInquiry && (
+                              <button
+                                onClick={() => setDeletingId(inq.id)}
+                                className="p-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all cursor-pointer"
+                                title="Delete Lead"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -1390,86 +1159,42 @@ export default function AdminInquiryPage() {
         </div>
       </main>
 
-      {/* ── Notes Modal ── */}
+      {/* ── Follow-up Notes Modal ── */}
       {activeNoteInquiry && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.6)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "16px",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
-              maxWidth: "520px",
-              width: "100%",
-              padding: "24px",
-              border: "1px solid #e2e8f0",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingBottom: "14px",
-                borderBottom: "1px solid #f1f5f9",
-                marginBottom: "16px",
-              }}
-            >
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-5 sm:p-6 border border-slate-200">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
-                <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                  Follow-up Notes
-                </h3>
-                <div style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
+                <h3 className="text-base font-extrabold text-slate-900">Follow-up Notes</h3>
+                <p className="text-xs text-slate-500 mt-0.5">
                   Candidate: <strong>{activeNoteInquiry.name}</strong> ({activeNoteInquiry.phone})
-                </div>
+                </p>
               </div>
               <button
                 onClick={() => setActiveNoteInquiry(null)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "#94a3b8",
-                }}
+                className="text-slate-400 hover:text-slate-600"
               >
-                <X style={{ width: "20px", height: "20px" }} />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              <label style={{ fontSize: "12px", fontWeight: 700, color: "#475569", textTransform: "uppercase" }}>
-                Notes &amp; Discussion History
+            <div className="mt-4 space-y-3">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                Discussion History &amp; Remarks
               </label>
               <textarea
-                rows={5}
+                rows={4}
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
-                placeholder="e.g. Spoke on WhatsApp, interested in Poland Heavy Driver permit, passport valid till 2029, will send documents tomorrow..."
-                style={{
-                  ...s.input,
-                  fontFamily: "inherit",
-                  resize: "none",
-                  padding: "12px",
-                  lineHeight: "1.5",
-                }}
+                placeholder="e.g. Spoke on WhatsApp, interested in Poland Heavy Driver permit, passport valid till 2029, will submit advance next week..."
+                className="w-full p-3 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 outline-none resize-none leading-relaxed"
               />
 
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "8px" }}>
+              <div className="flex items-center justify-end gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setActiveNoteInquiry(null)}
-                  style={s.btnSecondary}
+                  className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -1477,10 +1202,10 @@ export default function AdminInquiryPage() {
                   type="button"
                   onClick={handleSaveNote}
                   disabled={savingNote}
-                  style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "6px" }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm cursor-pointer disabled:opacity-50"
                 >
-                  <Save style={{ width: "14px", height: "14px" }} />
-                  <span>{savingNote ? "Saving..." : "Save Notes"}</span>
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{savingNote ? "Saving..." : "Save Note"}</span>
                 </button>
               </div>
             </div>
@@ -1490,58 +1215,21 @@ export default function AdminInquiryPage() {
 
       {/* ── Delete Confirmation Modal ── */}
       {deletingId && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.6)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "16px",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
-              maxWidth: "400px",
-              width: "100%",
-              padding: "24px",
-              textAlign: "center",
-              border: "1px solid #e2e8f0",
-            }}
-          >
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                background: "#fef2f2",
-                color: "#dc2626",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 16px",
-              }}
-            >
-              <Trash2 style={{ width: "24px", height: "24px" }} />
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center border border-slate-200">
+            <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3">
+              <Trash2 className="w-6 h-6" />
             </div>
-            <h3 style={{ margin: "0 0 8px", fontSize: "17px", fontWeight: 800, color: "#0f172a" }}>
-              Delete this Inquiry?
-            </h3>
-            <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: "1.5" }}>
-              Are you sure you want to permanently delete this lead? This action cannot be undone.
+            <h3 className="text-base font-extrabold text-slate-900">Delete this Lead?</h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Are you sure you want to permanently delete this consultation record? This cannot be undone.
             </p>
 
-            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "24px" }}>
+            <div className="flex items-center justify-center gap-2.5 mt-5">
               <button
                 type="button"
                 onClick={() => setDeletingId(null)}
-                style={s.btnSecondary}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 cursor-pointer"
               >
                 Cancel
               </button>
@@ -1549,7 +1237,7 @@ export default function AdminInquiryPage() {
                 type="button"
                 onClick={handleDeleteInquiry}
                 disabled={isDeleting}
-                style={s.btnDanger}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-sm cursor-pointer disabled:opacity-50"
               >
                 {isDeleting ? "Deleting..." : "Yes, Delete"}
               </button>
@@ -1557,151 +1245,84 @@ export default function AdminInquiryPage() {
           </div>
         </div>
       )}
+
       {/* ── Add New Lead Modal ── */}
       {showAddModal && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.6)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "20px",
-              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-              maxWidth: "620px",
-              width: "100%",
-              maxHeight: "90vh",
-              overflowY: "auto",
-              padding: "28px",
-              border: "1px solid #e2e8f0",
-            }}
-          >
-            {/* Modal Header */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                paddingBottom: "16px",
-                borderBottom: "1px solid #f1f5f9",
-                marginBottom: "20px",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <div
-                  style={{
-                    width: "42px",
-                    height: "42px",
-                    borderRadius: "12px",
-                    background: "#ecfdf5",
-                    color: "#059669",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <UserPlus style={{ width: "22px", height: "22px" }} />
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 border border-slate-200">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <UserPlus className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#0f172a" }}>
-                    Add New Lead / Inquiry
-                  </h3>
-                  <div style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
-                    Register candidate for work visa consultation
-                  </div>
+                  <h3 className="text-base font-extrabold text-slate-900">Add New Lead</h3>
+                  <p className="text-xs text-slate-500">Register candidate consultation request</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowAddModal(false)}
-                style={{
-                  background: "#f1f5f9",
-                  border: "none",
-                  borderRadius: "8px",
-                  padding: "6px",
-                  cursor: "pointer",
-                  color: "#64748b",
-                  display: "flex",
-                }}
+                className="text-slate-400 hover:text-slate-600"
               >
-                <X style={{ width: "18px", height: "18px" }} />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Form */}
-            <form onSubmit={handleAddLead} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
-                {/* Candidate Name */}
-                <div style={{ gridColumn: "span 2" }}>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Candidate Full Name <span style={{ color: "#ef4444" }}>*</span>
-                  </label>
-                  <div style={{ position: "relative" }}>
-                    <User style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rahul Sharma / Mohd Ali"
-                      value={newLead.name}
-                      onChange={(e) => setNewLead({ ...newLead, name: e.target.value })}
-                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
-                    />
-                  </div>
-                </div>
+            <form onSubmit={handleAddLead} className="mt-4 space-y-4 text-xs">
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Candidate Full Name <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Rahul Sharma"
+                  value={newLead.name}
+                  onChange={(e) => setNewLead({ ...newLead, name: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 outline-none"
+                />
+              </div>
 
-                {/* Phone / WhatsApp */}
-                <div style={{ gridColumn: "span 2" }}>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Phone / WhatsApp Number <span style={{ color: "#ef4444" }}>*</span>
-                  </label>
-                  <div style={{ position: "relative" }}>
-                    <Phone style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
-                    <input
-                      type="tel"
-                      inputMode="numeric"
-                      required
-                      placeholder="e.g. 9876543210 or +919876543210"
-                      value={newLead.phone}
-                      onChange={(e) => {
-                        const val = e.target.value.replace(/[^0-9+]/g, "");
-                        setNewLead({ ...newLead, phone: val });
-                      }}
-                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
-                    />
-                  </div>
-                  <span style={{ fontSize: "11px", color: "#64748b", marginTop: "3px", display: "block" }}>
-                    Include country code (+91, +92, etc.) for direct 1-click WhatsApp messaging.
-                  </span>
-                </div>
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Phone / WhatsApp Number <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  required
+                  placeholder="e.g. 9876543210 or +919876543210"
+                  value={newLead.phone}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9+]/g, "");
+                    setNewLead({ ...newLead, phone: val });
+                  }}
+                  className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 outline-none"
+                />
+                <span className="text-[10px] text-slate-400 mt-1 block">
+                  Add country code for direct 1-click WhatsApp messaging.
+                </span>
+              </div>
 
-                {/* Target Country */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Target Destination
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    Target Country
                   </label>
                   <select
                     value={newLead.country}
                     onChange={(e) => setNewLead({ ...newLead, country: e.target.value })}
-                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                    className="w-full px-3 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
-                    <optgroup label="GCC &amp; Gulf Countries (High Demand)">
-                      <option value="United Arab Emirates (UAE / Dubai)">United Arab Emirates (UAE / Dubai)</option>
+                    <optgroup label="GCC &amp; Gulf (High Demand)">
+                      <option value="United Arab Emirates (UAE / Dubai)">UAE / Dubai</option>
                       <option value="Saudi Arabia">Saudi Arabia</option>
                       <option value="Qatar">Qatar</option>
                       <option value="Oman">Oman</option>
                       <option value="Kuwait">Kuwait</option>
                       <option value="Bahrain">Bahrain</option>
                     </optgroup>
-                    <optgroup label="Europe &amp; Schengen Area">
+                    <optgroup label="Europe &amp; Schengen">
                       <option value="Poland">Poland</option>
                       <option value="Romania">Romania</option>
                       <option value="Croatia">Croatia</option>
@@ -1709,9 +1330,8 @@ export default function AdminInquiryPage() {
                       <option value="Malta">Malta</option>
                       <option value="Czech Republic">Czech Republic</option>
                       <option value="Germany">Germany</option>
-                      <option value="Russia">Russia</option>
                     </optgroup>
-                    <optgroup label="Other Global Destinations">
+                    <optgroup label="Other Destinations">
                       <option value="United Kingdom">United Kingdom</option>
                       <option value="Canada">Canada</option>
                       <option value="Australia">Australia</option>
@@ -1723,72 +1343,57 @@ export default function AdminInquiryPage() {
                   {newLead.country === "Other" && (
                     <input
                       type="text"
-                      placeholder="Enter custom country..."
+                      placeholder="Custom Country..."
                       value={newLead.customCountry}
                       onChange={(e) => setNewLead({ ...newLead, customCountry: e.target.value })}
-                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
-                      autoFocus
+                      className="w-full mt-2 px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none"
                     />
                   )}
                 </div>
 
-                {/* Occupation / Trade - Full Manual Input */}
                 <div>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Occupation / Trade <span style={{ color: "#ef4444" }}>*</span>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    Occupation / Trade <span className="text-rose-500">*</span>
                   </label>
-                  <div style={{ position: "relative" }}>
-                    <Briefcase style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", width: "16px", height: "16px", color: "#94a3b8" }} />
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Heavy Driver, CNC Operator, Welder, Electrician..."
-                      value={newLead.occupation}
-                      onChange={(e) => setNewLead({ ...newLead, occupation: e.target.value })}
-                      style={{ ...s.input, width: "100%", paddingLeft: "38px" }}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Heavy Driver, Welder"
+                    value={newLead.occupation}
+                    onChange={(e) => setNewLead({ ...newLead, occupation: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white outline-none"
+                  />
                 </div>
+              </div>
 
-                {/* Lead Source */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     Lead Source
                   </label>
                   <select
                     value={newLead.source}
                     onChange={(e) => setNewLead({ ...newLead, source: e.target.value })}
-                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                    className="w-full px-3 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
                     <option value="Walk-in Office">Walk-in Office</option>
                     <option value="Phone Call Inquiry">Phone Call Inquiry</option>
                     <option value="WhatsApp Direct">WhatsApp Direct</option>
                     <option value="Instagram / Facebook Ad">Social Media Ad</option>
                     <option value="Agent / Referral">Agent / Referral</option>
-                    <option value="Consultation Form - Homepage">Website Form</option>
+                    <option value="Website Form">Website Form</option>
                     <option value="Other">Other Source...</option>
                   </select>
-                  {newLead.source === "Other" && (
-                    <input
-                      type="text"
-                      placeholder="Enter source name..."
-                      value={newLead.customSource}
-                      onChange={(e) => setNewLead({ ...newLead, customSource: e.target.value })}
-                      style={{ ...s.input, width: "100%", marginTop: "6px" }}
-                      autoFocus
-                    />
-                  )}
                 </div>
 
-                {/* Initial Status */}
                 <div>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     Initial Status
                   </label>
                   <select
                     value={newLead.status}
                     onChange={(e) => setNewLead({ ...newLead, status: e.target.value as InquiryItem["status"] })}
-                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
+                    className="w-full px-3 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
                     <option value="new">New Lead</option>
                     <option value="interested">Interested</option>
@@ -1797,77 +1402,57 @@ export default function AdminInquiryPage() {
                     <option value="in_progress">In Progress</option>
                     <option value="payment_mode">Payment Mode</option>
                     <option value="converted">Converted</option>
-                    <option value="not_interested">Not Interested</option>
-                    <option value="closed">Closed / Lost</option>
                   </select>
-                </div>
-
-                {/* Assign To Staff / Counselor */}
-                <div>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Assign To Counselor / Staff
-                  </label>
-                  <select
-                    value={newLead.assignedToId}
-                    onChange={(e) => setNewLead({ ...newLead, assignedToId: e.target.value })}
-                    style={{ ...s.input, width: "100%", background: "white", cursor: "pointer" }}
-                  >
-                    <option value="">Unassigned (General Pool)</option>
-                    {employees.map((emp) => (
-                      <option key={emp.id} value={emp.id}>
-                        {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Notes & Candidate History */}
-                <div style={{ gridColumn: "span 2" }}>
-                  <label style={{ display: "block", fontSize: "12px", fontWeight: 700, color: "#334155", marginBottom: "6px", textTransform: "uppercase" }}>
-                    Follow-up Notes &amp; Profile Details (Optional)
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="e.g. Passport valid till 2030, 3 years GCC heavy driver experience, discussed Poland package, budget ready..."
-                    value={newLead.notes}
-                    onChange={(e) => setNewLead({ ...newLead, notes: e.target.value })}
-                    style={{ ...s.input, width: "100%", resize: "none", fontFamily: "inherit", lineHeight: "1.5" }}
-                  />
                 </div>
               </div>
 
-              {/* Form Buttons */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  gap: "12px",
-                  marginTop: "12px",
-                  paddingTop: "16px",
-                  borderTop: "1px solid #f1f5f9",
-                }}
-              >
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Assign To Staff / Counselor
+                </label>
+                <select
+                  value={newLead.assignedToId}
+                  onChange={(e) => setNewLead({ ...newLead, assignedToId: e.target.value })}
+                  className="w-full px-3 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+                >
+                  <option value="">Unassigned (General Pool)</option>
+                  {employees.map((emp) => (
+                    <option key={emp.id} value={emp.id}>
+                      {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Initial Notes (Optional)
+                </label>
+                <textarea
+                  rows={2}
+                  placeholder="e.g. Passport valid till 2030, GCC driving license holder..."
+                  value={newLead.notes}
+                  onChange={(e) => setNewLead({ ...newLead, notes: e.target.value })}
+                  className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white outline-none resize-none leading-relaxed"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  style={s.btnSecondary}
                   disabled={addingLead}
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={addingLead}
-                  style={{
-                    ...s.btnPrimary,
-                    background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm cursor-pointer disabled:opacity-50"
                 >
-                  <Save style={{ width: "15px", height: "15px" }} />
-                  <span>{addingLead ? "Saving Lead..." : "Save & Create Lead"}</span>
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{addingLead ? "Saving..." : "Create Lead"}</span>
                 </button>
               </div>
             </form>
@@ -1877,248 +1462,3 @@ export default function AdminInquiryPage() {
     </div>
   );
 }
-
-// ── Shared Dashboard & Admin Style System ──
-const s = {
-  layout: {
-    display: "flex",
-    minHeight: "100vh",
-    background: "#f8fafc",
-    fontFamily: "'Inter', sans-serif",
-  },
-  loadingContainer: {
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-    background: "#1e1b4b",
-  },
-  spinner: {
-    width: "40px",
-    height: "40px",
-    border: "4px solid rgba(255,255,255,0.2)",
-    borderTopColor: "#6366f1",
-    borderRadius: "50%",
-    animation: "spin 0.8s linear infinite",
-  },
-  sidebar: {
-    width: "260px",
-    flexShrink: 0,
-    background: "linear-gradient(180deg, #1e1b4b 0%, #312e81 100%)",
-    display: "flex",
-    flexDirection: "column" as const,
-    padding: "0",
-    position: "sticky" as const,
-    top: 0,
-    height: "100vh",
-    overflowY: "auto" as const,
-  },
-  sidebarLogo: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    padding: "28px 24px 24px",
-    borderBottom: "1px solid rgba(255,255,255,0.08)",
-    marginBottom: "8px",
-  },
-  sidebarIconWrap: {
-    width: "44px",
-    height: "44px",
-    borderRadius: "12px",
-    background: "rgba(255,255,255,0.95)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "4px",
-    flexShrink: 0,
-    boxShadow: "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,1)",
-  },
-  nav: {
-    flex: 1,
-    padding: "8px 12px",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "4px",
-  },
-  navItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "12px 16px",
-    borderRadius: "10px",
-    border: "none",
-    background: "transparent",
-    color: "rgba(255,255,255,0.6)",
-    fontSize: "14px",
-    fontWeight: 500,
-    cursor: "pointer",
-    textAlign: "left" as const,
-    transition: "all 0.15s",
-    width: "100%",
-  },
-  navItemActive: {
-    background: "rgba(255,255,255,0.12)",
-    color: "white",
-    fontWeight: 600,
-  },
-  badge: {
-    marginLeft: "auto",
-    background: "rgba(255,255,255,0.15)",
-    borderRadius: "999px",
-    padding: "2px 8px",
-    fontSize: "11px",
-    fontWeight: 700,
-    color: "rgba(255,255,255,0.8)",
-  },
-  sidebarFooter: {
-    padding: "16px 16px 24px",
-    borderTop: "1px solid rgba(255,255,255,0.08)",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "12px",
-  },
-  adminInfo: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-  },
-  adminAvatar: {
-    width: "36px",
-    height: "36px",
-    borderRadius: "10px",
-    background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontWeight: 700,
-    fontSize: "15px",
-    color: "white",
-    flexShrink: 0,
-  },
-  logoutBtn: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    width: "100%",
-    padding: "10px 14px",
-    borderRadius: "10px",
-    border: "1px solid rgba(255,255,255,0.1)",
-    background: "transparent",
-    color: "rgba(255,255,255,0.5)",
-    fontSize: "13px",
-    cursor: "pointer",
-    fontWeight: 500,
-  },
-  main: {
-    flex: 1,
-    padding: "32px",
-    overflowY: "auto" as const,
-    maxHeight: "100vh",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: "28px",
-    flexWrap: "wrap" as const,
-    gap: "16px",
-  },
-  pageTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 800,
-    color: "#111827",
-    letterSpacing: "-0.3px",
-  },
-  pageSubtitle: {
-    margin: "4px 0 0",
-    fontSize: "14px",
-    color: "#6b7280",
-  },
-  statsRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-    gap: "16px",
-    marginBottom: "24px",
-  },
-  statCard: {
-    background: "white",
-    borderRadius: "16px",
-    padding: "20px 24px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.06)",
-    border: "1px solid #f1f5f9",
-  },
-  card: {
-    background: "white",
-    borderRadius: "16px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
-    border: "1px solid #f1f5f9",
-    overflow: "hidden",
-  },
-  input: {
-    border: "1.5px solid #e5e7eb",
-    borderRadius: "10px",
-    padding: "10px 14px",
-    fontSize: "14px",
-    color: "#111827",
-    background: "#fafafa",
-    transition: "all 0.15s",
-    outline: "none",
-  },
-  btnPrimary: {
-    background: "linear-gradient(135deg, #6366f1, #4f46e5)",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(99,102,241,0.35)",
-    letterSpacing: "0.02em",
-  },
-  btnSecondary: {
-    background: "white",
-    color: "#374151",
-    border: "1.5px solid #e5e7eb",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 600,
-    cursor: "pointer",
-  },
-  btnDanger: {
-    background: "linear-gradient(135deg, #ef4444, #dc2626)",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(239,68,68,0.35)",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse" as const,
-    fontSize: "14px",
-  },
-  th: {
-    textAlign: "left" as const,
-    padding: "14px 16px",
-    fontSize: "12px",
-    fontWeight: 700,
-    color: "#6b7280",
-    letterSpacing: "0.05em",
-    textTransform: "uppercase" as const,
-    background: "#f9fafb",
-    borderBottom: "1px solid #f1f5f9",
-  },
-  td: {
-    padding: "14px 16px",
-    color: "#374151",
-    borderBottom: "1px solid #f9fafb",
-    verticalAlign: "middle" as const,
-  },
-};
