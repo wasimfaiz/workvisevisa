@@ -1,12 +1,12 @@
 "use client";
 
 /* ================================================================
-   app/admin/dashboard/page.tsx — Executive & Role-Aware Admin Dashboard
-   Provides a comprehensive 360° overview across:
-   - Leads & Consultations Pipeline (with 1-click WhatsApp & Status tracking)
-   - Active Job Demands & Visa Openings
-   - Invoices & Billing Operations
-   - Team & Staff Access Management
+   app/admin/dashboard/page.tsx — Clean & Optimized Executive Dashboard
+   Streamlined, modern, role-aware dashboard featuring:
+   - Dynamic KPI metric cards with subtle micro-badges
+   - Interactive Pipeline Hub (Leads Funnel & Visa Milestones)
+   - Balanced 2-Column Activity Hub with Tabbed Feeds
+   - 100% role-based permission enforcement (Zero clutter)
    ================================================================ */
 
 import { useState, useEffect, useCallback, useMemo } from "react";
@@ -38,6 +38,10 @@ import {
   UserCheck,
   MapPin,
   Compass,
+  Layers,
+  Sparkles,
+  Award,
+  Filter,
 } from "lucide-react";
 
 import { EmployeePermissions } from "@/lib/types/rbac";
@@ -145,6 +149,11 @@ export default function AdminDashboardPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+
+  // Tab State for Activity Hub
+  const [leftTab, setLeftTab] = useState<"inquiries" | "applications">("inquiries");
+  const [rightTab, setRightTab] = useState<"jobs" | "invoices">("jobs");
+  const [pipelineTab, setPipelineTab] = useState<"leads" | "milestones">("leads");
 
   // 1. Check Authentication
   useEffect(() => {
@@ -287,43 +296,7 @@ export default function AdminDashboardPage() {
     };
   }, [inquiries, applications, jobs, invoices, employees]);
 
-  // Helper for Status Badge styling
-  const getStatusBadge = (status: Inquiry["status"]) => {
-    switch (status) {
-      case "new":
-        return { bg: "#ecfdf5", text: "#047857", border: "#a7f3d0", label: "New Lead" };
-      case "interested":
-        return { bg: "#f0fdf4", text: "#15803d", border: "#86efac", label: "Interested" };
-      case "dnp":
-        return { bg: "#fff1f2", text: "#be123c", border: "#fecdd3", label: "DNP" };
-      case "contacted":
-        return { bg: "#fffbeb", text: "#b45309", border: "#fde68a", label: "Contacted" };
-      case "in_progress":
-        return { bg: "#eff6ff", text: "#1d4ed8", border: "#bfdbfe", label: "In Progress" };
-      case "payment_mode":
-        return { bg: "#fdf4ff", text: "#a21caf", border: "#f5d0fe", label: "Payment Mode" };
-      case "converted":
-        return { bg: "#f5f3ff", text: "#6d28d9", border: "#ddd6fe", label: "Converted" };
-      case "not_interested":
-        return { bg: "#fef2f2", text: "#b91c1c", border: "#fecaca", label: "Not Interested" };
-      case "closed":
-        return { bg: "#f1f5f9", text: "#64748b", border: "#cbd5e1", label: "Closed" };
-      default:
-        return { bg: "#f8fafc", text: "#475569", border: "#e2e8f0", label: status };
-    }
-  };
-
-  if (authLoading || !admin) {
-    return (
-      <div style={s.loadingContainer}>
-        <div style={s.spinner} />
-        <p style={{ marginTop: "12px", color: "white", fontSize: "14px" }}>
-          Verifying dashboard access...
-        </p>
-      </div>
-    );
-  }
-
+  // Permissions
   const isSuper = admin?.role === "superadmin" || admin?.email === "wasim@yastudy.com";
   const canViewInquiries = isSuper || Boolean(admin?.permissions?.inquiries?.view !== false);
   const canViewApplications = isSuper || Boolean(admin?.permissions?.applications?.view !== false);
@@ -336,7 +309,72 @@ export default function AdminDashboardPage() {
   const canCreateJobs = canViewJobs && (isSuper || Boolean(admin?.permissions?.jobs?.create !== false));
   const canCreateInvoices = canViewInvoices && (isSuper || Boolean(admin?.permissions?.invoices?.create !== false));
 
-  // Role formatted label
+  // Sync default tabs with available permissions
+  useEffect(() => {
+    if (!canViewInquiries && canViewApplications) {
+      setLeftTab("applications");
+      setPipelineTab("milestones");
+    } else if (canViewInquiries && !canViewApplications) {
+      setLeftTab("inquiries");
+      setPipelineTab("leads");
+    }
+    if (!canViewJobs && canViewInvoices) {
+      setRightTab("invoices");
+    } else if (canViewJobs && !canViewInvoices) {
+      setRightTab("jobs");
+    }
+  }, [canViewInquiries, canViewApplications, canViewJobs, canViewInvoices]);
+
+  // Status Badge styling helper
+  const getStatusBadge = (status: Inquiry["status"]) => {
+    switch (status) {
+      case "new":
+        return { bg: "#ecfdf5", text: "#047857", border: "#a7f3d0", label: "New" };
+      case "interested":
+        return { bg: "#f0fdf4", text: "#15803d", border: "#86efac", label: "Interested" };
+      case "dnp":
+        return { bg: "#fff1f2", text: "#be123c", border: "#fecdd3", label: "DNP" };
+      case "contacted":
+        return { bg: "#fffbeb", text: "#b45309", border: "#fde68a", label: "Contacted" };
+      case "in_progress":
+        return { bg: "#eff6ff", text: "#1d4ed8", border: "#bfdbfe", label: "In Progress" };
+      case "payment_mode":
+        return { bg: "#fdf4ff", text: "#a21caf", border: "#f5d0fe", label: "Payment" };
+      case "converted":
+        return { bg: "#f5f3ff", text: "#6d28d9", border: "#ddd6fe", label: "Converted" };
+      case "not_interested":
+        return { bg: "#fef2f2", text: "#b91c1c", border: "#fecaca", label: "Not Int." };
+      case "closed":
+        return { bg: "#f1f5f9", text: "#64748b", border: "#cbd5e1", label: "Closed" };
+      default:
+        return { bg: "#f8fafc", text: "#475569", border: "#e2e8f0", label: status };
+    }
+  };
+
+  const getStageName = (stage: number) => {
+    switch (stage) {
+      case 1: return "1. Registration";
+      case 2: return "2. Doc Audit / PCC";
+      case 3: return "3. Offer Letter";
+      case 4: return "4. Work Permit";
+      case 5: return "5. VFS / Embassy";
+      case 6: return "6. Visa Ready";
+      case 7: return "7. Flown / Deployed";
+      default: return `Stage ${stage}`;
+    }
+  };
+
+  if (authLoading || !admin) {
+    return (
+      <div style={s.loadingContainer}>
+        <div style={s.spinner} />
+        <p style={{ marginTop: "14px", color: "white", fontSize: "14px", fontWeight: 600 }}>
+          Securing workspace...
+        </p>
+      </div>
+    );
+  }
+
   const roleName = isSuper
     ? "Super Admin"
     : admin.role.charAt(0).toUpperCase() + admin.role.slice(1);
@@ -357,65 +395,49 @@ export default function AdminDashboardPage() {
       />
 
       {/* ── MAIN EXECUTIVE DASHBOARD ── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
-        {/* Top Welcome Header */}
-        <div style={s.header}>
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-6">
+        
+        {/* 1. Header Banner & Quick Actions */}
+        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-              <h1 style={s.pageTitle}>Welcome back, {admin.name}! 👋</h1>
-              <span
-                style={{
-                  background: isSuper ? "linear-gradient(135deg, #6366f1, #4f46e5)" : "#3b82f6",
-                  color: "white",
-                  padding: "3px 10px",
-                  borderRadius: "999px",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  letterSpacing: "0.04em",
-                  textTransform: "uppercase",
-                  boxShadow: "0 2px 6px rgba(99,102,241,0.25)",
-                }}
-              >
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                Welcome back, {admin.name}! 👋
+              </h1>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-200/60">
+                <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
                 {roleName}
               </span>
             </div>
-            <p style={s.pageSubtitle}>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               {new Date().toLocaleDateString("en-IN", {
                 weekday: "long",
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}{" "}
-              · Real-time operational overview of WorkWise Visa
+              · Operational Live Control Center
             </p>
           </div>
 
-          {/* Quick Actions Bar */}
-          <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+          {/* Quick Action Buttons */}
+          <div className="flex items-center gap-2.5 flex-wrap">
             <button
               onClick={() => loadDashboardData(true)}
               disabled={refreshing || loading}
-              style={{ ...s.btnSecondary, display: "flex", alignItems: "center", gap: "6px" }}
-              title="Refresh Dashboard"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              title="Sync Live Data"
             >
-              <RefreshCw className={refreshing ? "animate-spin" : ""} style={{ width: "14px", height: "14px" }} />
-              <span>{refreshing ? "Syncing..." : "Refresh"}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
+              <span>{refreshing ? "Syncing..." : "Sync"}</span>
             </button>
 
             {canCreateApplications && (
               <Link
                 href="/admin/applications"
-                style={{
-                  ...s.btnPrimary,
-                  background: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
-                  boxShadow: "0 4px 12px rgba(139, 92, 246, 0.3)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  textDecoration: "none",
-                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all"
               >
-                <Compass style={{ width: "15px", height: "15px" }} />
+                <Compass className="w-3.5 h-3.5" />
                 <span>+ Enroll Candidate</span>
               </Link>
             )}
@@ -423,17 +445,9 @@ export default function AdminDashboardPage() {
             {canCreateInquiries && (
               <Link
                 href="/admin/inquiry"
-                style={{
-                  ...s.btnPrimary,
-                  background: "linear-gradient(135deg, #10b981, #059669)",
-                  boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  textDecoration: "none",
-                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all"
               >
-                <UserPlus style={{ width: "15px", height: "15px" }} />
+                <UserPlus className="w-3.5 h-3.5" />
                 <span>+ Add Lead</span>
               </Link>
             )}
@@ -441,647 +455,573 @@ export default function AdminDashboardPage() {
             {canCreateJobs && (
               <Link
                 href="/admin/jobs"
-                style={{
-                  ...s.btnPrimary,
-                  background: "linear-gradient(135deg, #4f46e5, #6366f1)",
-                  boxShadow: "0 4px 12px rgba(79, 70, 229, 0.3)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  textDecoration: "none",
-                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-sm transition-all"
               >
-                <Briefcase style={{ width: "15px", height: "15px" }} />
-                <span>Post Job Demand</span>
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>Post Job</span>
               </Link>
             )}
 
             {canCreateInvoices && (
               <Link
                 href="/admin/invoice"
-                style={{
-                  ...s.btnSecondary,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  textDecoration: "none",
-                }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
               >
-                <FileText style={{ width: "15px", height: "15px" }} />
-                <span>Create Invoice</span>
+                <FileText className="w-3.5 h-3.5 text-slate-500" />
+                <span>Invoice</span>
               </Link>
             )}
           </div>
         </div>
 
-        {/* ── TOP EXECUTIVE KPI CARDS (Only Allowed Modules) ── */}
-        <div style={s.kpiGrid}>
-          {/* 1. Application Tracker */}
+        {/* 2. Primary KPI Cards Grid (Compact & Role-Aware) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Card 1: Applications Tracker */}
           {canViewApplications && (
-            <div style={s.kpiCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="flex items-start justify-between">
                 <div>
-                  <span style={s.kpiLabel}>Visa Milestone Tracker</span>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Visa Tracker
+                  </span>
+                  <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                     {metrics.totalApplications}
                   </div>
                 </div>
-                <div style={{ ...s.iconBadge, background: "#f5f3ff", color: "#7c3aed" }}>
-                  <Compass style={{ width: "20px", height: "20px" }} />
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                  <Compass className="w-5 h-5" />
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#eff6ff", color: "#1d4ed8", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.activeApplications} In Progress
-                </span>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#ecfdf5", color: "#047857", padding: "2px 8px", borderRadius: "6px" }}>
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md">
                   {metrics.visaApprovedApplications} Visa Ready
                 </span>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.deployedApplications} Deployed
-                </span>
+                <Link
+                  href="/admin/applications"
+                  className="font-bold text-purple-600 hover:text-purple-700 inline-flex items-center gap-0.5"
+                >
+                  Manage <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-
-              <Link href="/admin/applications" style={s.cardLink}>
-                Open Application Tracker <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-              </Link>
             </div>
           )}
 
-          {/* 2. Leads & Inquiries */}
+          {/* Card 2: Leads & Inquiries */}
           {canViewInquiries && (
-            <div style={s.kpiCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="flex items-start justify-between">
                 <div>
-                  <span style={s.kpiLabel}>Candidate Leads &amp; Inquiries</span>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Candidate Leads
+                  </span>
+                  <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                     {metrics.totalInquiries}
                   </div>
                 </div>
-                <div style={{ ...s.iconBadge, background: "#ecfdf5", color: "#059669" }}>
-                  <MessageSquare style={{ width: "20px", height: "20px" }} />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <MessageSquare className="w-5 h-5" />
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#dcfce7", color: "#166534", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.newInquiries} New
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md">
+                  {metrics.newInquiries} New Leads
                 </span>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.interestedInquiries} Interested
-                </span>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#fdf4ff", color: "#a21caf", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.paymentModeInquiries} Payment
-                </span>
-                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f5f3ff", color: "#6d28d9", padding: "2px 8px", borderRadius: "6px" }}>
-                  {metrics.convertedInquiries} Converted
-                </span>
+                <Link
+                  href="/admin/inquiry"
+                  className="font-bold text-emerald-600 hover:text-emerald-700 inline-flex items-center gap-0.5"
+                >
+                  View All <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-
-              <Link href="/admin/inquiry" style={s.cardLink}>
-                Manage Inquiries &amp; Leads <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-              </Link>
             </div>
           )}
 
-          {/* 3. Active Job Demands */}
+          {/* Card 3: Job Demands */}
           {canViewJobs && (
-            <div style={s.kpiCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="flex items-start justify-between">
                 <div>
-                  <span style={s.kpiLabel}>Active Job Demands</span>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Active Jobs
+                  </span>
+                  <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
                     {metrics.totalJobs}
                   </div>
                 </div>
-                <div style={{ ...s.iconBadge, background: "#eff6ff", color: "#2563eb" }}>
-                  <Briefcase style={{ width: "20px", height: "20px" }} />
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                  <Briefcase className="w-5 h-5" />
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-                <div style={{ fontWeight: 700, color: "#2563eb" }}>
-                  {metrics.totalOpenings} Total Open Openings
-                </div>
-                {metrics.urgentJobs > 0 && (
-                  <div style={{ fontWeight: 700, color: "#dc2626", display: "flex", alignItems: "center", gap: "4px" }}>
-                    <Flame style={{ width: "13px", height: "13px" }} /> {metrics.urgentJobs} Urgent Demands
-                  </div>
-                )}
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded-md">
+                  {metrics.totalOpenings} Open Vacancies
+                </span>
+                <Link
+                  href="/admin/jobs"
+                  className="font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-0.5"
+                >
+                  Demands <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-
-              <Link href="/admin/jobs" style={s.cardLink}>
-                View Job Demands &amp; Openings <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-              </Link>
             </div>
           )}
 
-          {/* 4. Invoices & Billing */}
+          {/* Card 4: Invoices & Revenue */}
           {canViewInvoices && (
-            <div style={s.kpiCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div className="flex items-start justify-between">
                 <div>
-                  <span style={s.kpiLabel}>Invoices &amp; Billing</span>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                    {metrics.totalInvoices}
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Total Invoiced
+                  </span>
+                  <div className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                    ₹{metrics.totalBilled.toLocaleString("en-IN")}
                   </div>
                 </div>
-                <div style={{ ...s.iconBadge, background: "#fdf4ff", color: "#c026d3" }}>
-                  <Receipt style={{ width: "20px", height: "20px" }} />
+                <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center">
+                  <Receipt className="w-5 h-5" />
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-                <div style={{ fontWeight: 700, color: "#059669" }}>
-                  ₹{metrics.totalBilled.toLocaleString("en-IN")} Total Billed
-                </div>
-                <div style={{ color: "#64748b" }}>
-                  ({metrics.paidInvoices} Paid / Cleared)
-                </div>
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-pink-700 font-bold bg-pink-50 px-2 py-0.5 rounded-md">
+                  {metrics.paidInvoices} Settled
+                </span>
+                <Link
+                  href="/admin/invoice"
+                  className="font-bold text-pink-600 hover:text-pink-700 inline-flex items-center gap-0.5"
+                >
+                  Billing <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-
-              <Link href="/admin/invoice" style={s.cardLink}>
-                Open Invoice Generator <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-              </Link>
-            </div>
-          )}
-
-          {/* 5. Team & Employees Access */}
-          {canViewEmployees && (
-            <div style={s.kpiCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div>
-                  <span style={s.kpiLabel}>Staff &amp; Access Roles</span>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                    {metrics.totalEmployees || 1}
-                  </div>
-                </div>
-                <div style={{ ...s.iconBadge, background: "#f5f3ff", color: "#7c3aed" }}>
-                  <Users style={{ width: "20px", height: "20px" }} />
-                </div>
-              </div>
-
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-                <div style={{ fontWeight: 700, color: "#7c3aed" }}>
-                  {metrics.activeEmployees || 1} Active Team Members
-                </div>
-                <div style={{ color: "#64748b" }}>
-                  Role-based RBAC protected
-                </div>
-              </div>
-
-              <Link href="/admin/employees" style={s.cardLink}>
-                Manage Staff &amp; Roles <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-              </Link>
             </div>
           )}
         </div>
 
-        {/* ── APPLICATION TRACKER MILESTONE PIPELINE (If permitted) ── */}
-        {canViewApplications && (
-          <div style={{ ...s.card, padding: "20px 24px", marginBottom: "24px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Compass style={{ width: "18px", height: "18px", color: "#7c3aed" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Candidate Visa Milestone Pipeline
-                  </h3>
-                </div>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Live tracking of candidate progress across the 7 international deployment milestones
-                </p>
+        {/* 3. Interactive Operations Pipeline Hub */}
+        {(canViewApplications || canViewInquiries) && (
+          <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <Layers className="w-4 h-4 text-indigo-600" />
+                <h2 className="text-sm font-extrabold text-slate-900 uppercase tracking-wider">
+                  Conversion &amp; Milestone Pipelines
+                </h2>
               </div>
-              <Link
-                href="/admin/applications"
-                style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
-              >
-                Open Full Application Tracker →
-              </Link>
+
+              {/* Selector Tabs if user has both permissions */}
+              {canViewApplications && canViewInquiries && (
+                <div className="inline-flex rounded-xl bg-slate-100 p-1 self-start">
+                  <button
+                    onClick={() => setPipelineTab("leads")}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      pipelineTab === "leads"
+                        ? "bg-white text-emerald-700 shadow-xs"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    Candidate Leads Pipeline
+                  </button>
+                  <button
+                    onClick={() => setPipelineTab("milestones")}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      pipelineTab === "milestones"
+                        ? "bg-white text-purple-700 shadow-xs"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    Visa Milestones (Stages 1-7)
+                  </button>
+                </div>
+              )}
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
-              {[
-                { label: "Total Cases", count: metrics.totalApplications, bg: "#f8fafc", border: "#e2e8f0", color: "#334155" },
-                { label: "In Processing", count: metrics.inProgressApplications, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
-                { label: "Visa Stamped / Approved", count: metrics.visaApprovedApplications, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
-                { label: "Flown & Deployed", count: metrics.deployedApplications, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
-              ].map((st) => (
-                <div
-                  key={st.label}
-                  style={{
-                    background: st.bg,
-                    border: `1px solid ${st.border}`,
-                    borderRadius: "12px",
-                    padding: "12px 14px",
-                    textAlign: "center",
-                  }}
-                >
-                  <div style={{ fontSize: "22px", fontWeight: 800, color: st.color }}>{st.count}</div>
-                  <div style={{ fontSize: "11px", fontWeight: 700, color: st.color, marginTop: "2px" }}>
-                    {st.label}
+            {/* Leads Pipeline Body */}
+            {(pipelineTab === "leads" && canViewInquiries) && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-4">
+                {[
+                  { label: "New Leads", count: metrics.newInquiries, bg: "bg-emerald-50/70", text: "text-emerald-800", border: "border-emerald-200/70" },
+                  { label: "Interested", count: metrics.interestedInquiries, bg: "bg-teal-50/70", text: "text-teal-800", border: "border-teal-200/70" },
+                  { label: "In Progress", count: metrics.inProgressInquiries, bg: "bg-blue-50/70", text: "text-blue-800", border: "border-blue-200/70" },
+                  { label: "Payment Mode", count: metrics.paymentModeInquiries, bg: "bg-fuchsia-50/70", text: "text-fuchsia-800", border: "border-fuchsia-200/70" },
+                  { label: "Converted", count: metrics.convertedInquiries, bg: "bg-indigo-50/70", text: "text-indigo-800", border: "border-indigo-200/70" },
+                  { label: "DNP (No Answer)", count: metrics.dnpInquiries, bg: "bg-rose-50/70", text: "text-rose-800", border: "border-rose-200/70" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`p-3.5 rounded-xl border ${item.border} ${item.bg} text-center transition-all hover:scale-[1.02]`}
+                  >
+                    <div className={`text-xl font-black ${item.text}`}>{item.count}</div>
+                    <div className="text-[11px] font-bold text-slate-600 mt-0.5">{item.label}</div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
+
+            {/* Visa Milestones Body */}
+            {(pipelineTab === "milestones" && canViewApplications) && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                {[
+                  { label: "Total Cases Enrolled", count: metrics.totalApplications, color: "text-slate-800", bg: "bg-slate-50", border: "border-slate-200" },
+                  { label: "In Verification / Audit", count: metrics.inProgressApplications, color: "text-blue-700", bg: "bg-blue-50/70", border: "border-blue-200" },
+                  { label: "Visa Approved & Stamped", count: metrics.visaApprovedApplications, color: "text-emerald-700", bg: "bg-emerald-50/70", border: "border-emerald-200" },
+                  { label: "Successfully Deployed", count: metrics.deployedApplications, color: "text-purple-700", bg: "bg-purple-50/70", border: "border-purple-200" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`p-3.5 rounded-xl border ${item.border} ${item.bg} text-center transition-all hover:scale-[1.02]`}
+                  >
+                    <div className={`text-2xl font-black ${item.color}`}>{item.count}</div>
+                    <div className="text-[11px] font-bold text-slate-600 mt-0.5">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
-        {/* ── LEADS PIPELINE STATUS STRIP (If permitted) ── */}
-        {canViewInquiries && (
-          <div style={{ ...s.card, padding: "20px 24px", marginBottom: "28px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <MessageSquare style={{ width: "18px", height: "18px", color: "#059669" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Lead Status &amp; Conversion Pipeline
-                  </h3>
+        {/* 4. Tabbed Real-Time Activity Hub (Clean 2-Column Responsive Layout) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          {/* ── LEFT COLUMN: Candidate Operations (Leads vs Applications) ── */}
+          {(canViewInquiries || canViewApplications) && (
+            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+              {/* Header with Switcher Tabs */}
+              <div className="p-4 sm:px-5 sm:py-4 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50/50">
+                <div className="flex items-center gap-2">
+                  {canViewInquiries && canViewApplications ? (
+                    <div className="inline-flex rounded-xl bg-slate-200/70 p-1">
+                      <button
+                        onClick={() => setLeftTab("inquiries")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          leftTab === "inquiries"
+                            ? "bg-white text-emerald-700 shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Recent Leads ({inquiries.length})
+                      </button>
+                      <button
+                        onClick={() => setLeftTab("applications")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          leftTab === "applications"
+                            ? "bg-white text-purple-700 shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Active Visa Cases ({applications.length})
+                      </button>
+                    </div>
+                  ) : (
+                    <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                      {canViewInquiries ? (
+                        <>
+                          <MessageSquare className="w-4 h-4 text-emerald-600" />
+                          Recent Candidate Inquiries
+                        </>
+                      ) : (
+                        <>
+                          <Compass className="w-4 h-4 text-purple-600" />
+                          Active Visa Applications
+                        </>
+                      )}
+                    </h3>
+                  )}
                 </div>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Live breakdown of candidate consultation stages
-                </p>
-              </div>
-              <Link
-                href="/admin/inquiry"
-                style={{ fontSize: "12px", fontWeight: 700, color: "#059669", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
-              >
-                Open Full Leads Manager →
-              </Link>
-            </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
-              {[
-                { label: "New Leads", count: metrics.newInquiries, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
-                { label: "Interested", count: metrics.interestedInquiries, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
-                { label: "In Progress", count: metrics.inProgressInquiries, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
-                { label: "Payment Mode", count: metrics.paymentModeInquiries, bg: "#fdf4ff", border: "#f5d0fe", color: "#a21caf" },
-                { label: "Converted", count: metrics.convertedInquiries, bg: "#f5f3ff", border: "#ddd6fe", color: "#6d28d9" },
-                { label: "DNP (No Answer)", count: metrics.dnpInquiries, bg: "#fff1f2", border: "#fecdd3", color: "#be123c" },
-              ].map((st) => (
-                <div
-                  key={st.label}
-                  style={{
-                    background: st.bg,
-                    border: `1px solid ${st.border}`,
-                    borderRadius: "12px",
-                    padding: "12px 14px",
-                    textAlign: "center",
-                  }}
+                <Link
+                  href={leftTab === "inquiries" && canViewInquiries ? "/admin/inquiry" : "/admin/applications"}
+                  className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-0.5 shrink-0"
                 >
-                  <div style={{ fontSize: "20px", fontWeight: 800, color: st.color }}>{st.count}</div>
-                  <div style={{ fontSize: "11px", fontWeight: 700, color: st.color, marginTop: "2px" }}>
-                    {st.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ── REAL-TIME ACTIVITY GRID (Permission-Adaptive) ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))", gap: "24px" }}>
-          {/* Column 1: Inquiries / Leads (if permitted) */}
-          {canViewInquiries && (
-            <div style={{ ...s.card, padding: "20px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <MessageSquare style={{ width: "18px", height: "18px", color: "#059669" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Recent Inquiries &amp; Consultations
-                  </h3>
-                </div>
-                <Link href="/admin/inquiry" style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none" }}>
-                  View All ({inquiries.length}) →
+                  Full View →
                 </Link>
               </div>
 
-              {loading ? (
-                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  Loading inquiries...
-                </div>
-              ) : inquiries.length === 0 ? (
-                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  No inquiries registered yet.
-                </div>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {inquiries.slice(0, 5).map((inq) => {
-                    const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
-                    const waPhone = cleanPhone.startsWith("+")
-                      ? cleanPhone.replace("+", "")
-                      : cleanPhone.length === 10
-                      ? `91${cleanPhone}`
-                      : cleanPhone;
+              {/* Body: Leads List */}
+              {leftTab === "inquiries" && canViewInquiries && (
+                <div className="p-4 divide-y divide-slate-100 flex-1">
+                  {loading ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      Loading inquiries...
+                    </div>
+                  ) : inquiries.length === 0 ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      No candidate inquiries registered yet.
+                    </div>
+                  ) : (
+                    inquiries.slice(0, 5).map((inq) => {
+                      const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
+                      const waPhone = cleanPhone.startsWith("+")
+                        ? cleanPhone.replace("+", "")
+                        : cleanPhone.length === 10
+                        ? `91${cleanPhone}`
+                        : cleanPhone;
 
-                    const waMessage = encodeURIComponent(
-                      `Hello ${inq.name}, greetings from WorkWise Visa! We received your overseas consultation request for ${inq.country}.`
-                    );
-                    const badge = getStatusBadge(inq.status);
+                      const waMessage = encodeURIComponent(
+                        `Hello ${inq.name}, greetings from WorkWise Visa! We received your overseas consultation request for ${inq.country}.`
+                      );
+                      const badge = getStatusBadge(inq.status);
 
-                    return (
+                      return (
+                        <div
+                          key={inq.id}
+                          className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3 hover:bg-slate-50/70 p-2 rounded-xl transition-all"
+                        >
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="font-bold text-sm text-slate-900 truncate">
+                                {inq.name}
+                              </span>
+                              <span
+                                className="text-[10px] font-extrabold px-2 py-0.5 rounded-full border"
+                                style={{ background: badge.bg, color: badge.text, borderColor: badge.border }}
+                              >
+                                {badge.label}
+                              </span>
+                            </div>
+                            <div className="text-xs text-slate-500 mt-1 flex items-center gap-2 flex-wrap">
+                              <span className="inline-flex items-center gap-1">
+                                <MapPin className="w-3 h-3 text-slate-400" />
+                                {inq.country}
+                              </span>
+                              <span>·</span>
+                              <span>{inq.occupation || "General"}</span>
+                              {inq.assignedTo?.name && (
+                                <>
+                                  <span>·</span>
+                                  <span className="text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded text-[10px] font-bold">
+                                    {inq.assignedTo.name}
+                                  </span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+
+                          <a
+                            href={`https://wa.me/${waPhone}?text=${waMessage}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-xs shrink-0 transition-all"
+                            title="Chat on WhatsApp"
+                          >
+                            <MessageCircle className="w-3.5 h-3.5" />
+                            <span className="hidden sm:inline">WhatsApp</span>
+                          </a>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              )}
+
+              {/* Body: Applications List */}
+              {leftTab === "applications" && canViewApplications && (
+                <div className="p-4 divide-y divide-slate-100 flex-1">
+                  {loading ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      Loading candidate cases...
+                    </div>
+                  ) : applications.length === 0 ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      No candidate cases enrolled yet.
+                    </div>
+                  ) : (
+                    applications.slice(0, 5).map((app) => (
                       <div
-                        key={inq.id}
-                        style={{
-                          background: inq.status === "new" ? "#f0fdf4" : "#fafafa",
-                          border: inq.status === "new" ? "1px solid #bbf7d0" : "1px solid #f1f5f9",
-                          borderRadius: "12px",
-                          padding: "12px 14px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          gap: "12px",
-                        }}
+                        key={app.id}
+                        className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3 hover:bg-slate-50/70 p-2 rounded-xl transition-all"
                       >
-                        <div style={{ minWidth: 0, flex: 1 }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a" }}>
-                              {inq.name}
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-sm text-slate-900 truncate">
+                              {app.candidateName}
                             </span>
-                            <span
-                              style={{
-                                background: badge.bg,
-                                color: badge.text,
-                                border: `1px solid ${badge.border}`,
-                                borderRadius: "999px",
-                                padding: "1px 8px",
-                                fontSize: "10px",
-                                fontWeight: 800,
-                              }}
-                            >
-                              {badge.label}
+                            <span className="font-mono text-[10px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
+                              {app.applicationNo}
                             </span>
                           </div>
-                          <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px", display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-                            <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
-                              <MapPin style={{ width: "11px", height: "11px", color: "#94a3b8" }} /> {inq.country}
-                            </span>
+                          <div className="text-xs text-slate-500 mt-1 flex items-center gap-2 flex-wrap">
+                            <span>{app.jobTrade}</span>
                             <span>·</span>
-                            <span>{inq.occupation || "General"}</span>
-                            {inq.assignedTo?.name ? (
+                            <span>{app.targetCountry}</span>
+                            {app.passportNumber && (
                               <>
                                 <span>·</span>
-                                <span style={{ background: "#ede9fe", color: "#6d28d9", padding: "1px 6px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                                  {inq.assignedTo.name}
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                                <span>·</span>
-                                <span style={{ color: "#94a3b8", fontSize: "11px" }}>
-                                  Unassigned
-                                </span>
+                                <span className="font-mono text-slate-400">Pass: {app.passportNumber}</span>
                               </>
                             )}
                           </div>
                         </div>
 
-                        {/* Quick 1-Click WhatsApp */}
-                        <a
-                          href={`https://wa.me/${waPhone}?text=${waMessage}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "4px",
-                            background: "#25d366",
-                            color: "white",
-                            borderRadius: "8px",
-                            padding: "6px 10px",
-                            fontSize: "12px",
-                            fontWeight: 700,
-                            textDecoration: "none",
-                            boxShadow: "0 2px 6px rgba(37,211,102,0.25)",
-                            flexShrink: 0,
-                          }}
-                        >
-                          <MessageCircle style={{ width: "13px", height: "13px" }} />
-                          <span>Chat</span>
-                        </a>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Column: Application Tracker Cases (if permitted) */}
-          {canViewApplications && (
-            <div style={{ ...s.card, padding: "20px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Compass style={{ width: "18px", height: "18px", color: "#7c3aed" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Active Applications &amp; Passports
-                  </h3>
-                </div>
-                <Link href="/admin/applications" style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed", textDecoration: "none" }}>
-                  View All ({applications.length}) →
-                </Link>
-              </div>
-
-              {loading ? (
-                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  Loading applications...
-                </div>
-              ) : applications.length === 0 ? (
-                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  No candidate applications enrolled yet.
-                </div>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {applications.slice(0, 5).map((app) => (
-                    <div
-                      key={app.id}
-                      style={{
-                        background: "#fafafa",
-                        border: "1px solid #f1f5f9",
-                        borderRadius: "12px",
-                        padding: "12px 14px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "10px",
-                      }}
-                    >
-                      <div style={{ minWidth: 0, flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                          <span style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a" }}>
-                            {app.candidateName}
-                          </span>
-                          <span
-                            style={{
-                              background: "#f1f5f9",
-                              color: "#475569",
-                              borderRadius: "4px",
-                              padding: "1px 6px",
-                              fontSize: "10px",
-                              fontWeight: 800,
-                              fontFamily: "monospace",
-                            }}
-                          >
-                            {app.applicationNo}
-                          </span>
-                        </div>
-                        <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px" }}>
-                          {app.jobTrade} · {app.targetCountry} {app.passportNumber ? `· Passport: ${app.passportNumber}` : ""}
-                        </div>
-                      </div>
-
-                      <div style={{ textAlign: "right", flexShrink: 0 }}>
                         <span
-                          style={{
-                            background: app.currentStage === 7 ? "#f0fdf4" : app.currentStage === 6 ? "#ecfdf5" : "#eff6ff",
-                            color: app.currentStage === 7 ? "#15803d" : app.currentStage === 6 ? "#047857" : "#1d4ed8",
-                            border: `1px solid ${app.currentStage === 7 ? "#86efac" : app.currentStage === 6 ? "#a7f3d0" : "#bfdbfe"}`,
-                            borderRadius: "6px",
-                            padding: "2px 8px",
-                            fontSize: "11px",
-                            fontWeight: 700,
-                          }}
+                          className={`text-[11px] font-bold px-2.5 py-1 rounded-lg shrink-0 border ${
+                            app.currentStage === 7
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              : app.currentStage === 6
+                              ? "bg-teal-50 text-teal-700 border-teal-200"
+                              : "bg-indigo-50 text-indigo-700 border-indigo-200"
+                          }`}
                         >
-                          Stage {app.currentStage}/7
+                          {getStageName(app.currentStage)}
                         </span>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
               )}
             </div>
           )}
 
-          {/* Column: Active Job Demands (if permitted) */}
-          {canViewJobs && (
-            <div style={{ ...s.card, padding: "20px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Briefcase style={{ width: "18px", height: "18px", color: "#2563eb" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Active Job Demands
-                  </h3>
+          {/* ── RIGHT COLUMN: Job Demands & Invoicing Snapshot ── */}
+          {(canViewJobs || canViewInvoices) && (
+            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+              {/* Header with Switcher Tabs */}
+              <div className="p-4 sm:px-5 sm:py-4 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50/50">
+                <div className="flex items-center gap-2">
+                  {canViewJobs && canViewInvoices ? (
+                    <div className="inline-flex rounded-xl bg-slate-200/70 p-1">
+                      <button
+                        onClick={() => setRightTab("jobs")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          rightTab === "jobs"
+                            ? "bg-white text-blue-700 shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Active Demands ({jobs.length})
+                      </button>
+                      <button
+                        onClick={() => setRightTab("invoices")}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          rightTab === "invoices"
+                            ? "bg-white text-pink-700 shadow-xs"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                      >
+                        Recent Invoices ({invoices.length})
+                      </button>
+                    </div>
+                  ) : (
+                    <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                      {canViewJobs ? (
+                        <>
+                          <Briefcase className="w-4 h-4 text-blue-600" />
+                          Active Overseas Demands
+                        </>
+                      ) : (
+                        <>
+                          <Receipt className="w-4 h-4 text-pink-600" />
+                          Recent Invoices &amp; Billing
+                        </>
+                      )}
+                    </h3>
+                  )}
                 </div>
-                <Link href="/admin/jobs" style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none" }}>
-                  Manage ({jobs.length}) →
+
+                <Link
+                  href={rightTab === "jobs" && canViewJobs ? "/admin/jobs" : "/admin/invoice"}
+                  className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-0.5 shrink-0"
+                >
+                  Full View →
                 </Link>
               </div>
 
-              {loading ? (
-                <div style={{ padding: "20px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  Loading demands...
-                </div>
-              ) : jobs.length === 0 ? (
-                <div style={{ padding: "20px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  No job demands posted.
-                </div>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {jobs.slice(0, 4).map((job) => (
-                    <div
-                      key={job.id}
-                      style={{
-                        background: "#fafafa",
-                        border: "1px solid #f1f5f9",
-                        borderRadius: "12px",
-                        padding: "10px 14px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                          <span style={{ fontSize: "14px" }}>{job.flag}</span>
-                          <span style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a" }}>
-                            {job.title}
-                          </span>
-                          {job.urgent && (
-                            <span style={{ background: "#fef2f2", color: "#dc2626", padding: "1px 6px", borderRadius: "4px", fontSize: "10px", fontWeight: 800 }}>
-                              HOT
+              {/* Body: Jobs List */}
+              {rightTab === "jobs" && canViewJobs && (
+                <div className="p-4 divide-y divide-slate-100 flex-1">
+                  {loading ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      Loading job openings...
+                    </div>
+                  ) : jobs.length === 0 ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      No active overseas job demands posted yet.
+                    </div>
+                  ) : (
+                    jobs.slice(0, 5).map((job) => (
+                      <div
+                        key={job.id}
+                        className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3 hover:bg-slate-50/70 p-2 rounded-xl transition-all"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-base">{job.flag}</span>
+                            <span className="font-bold text-sm text-slate-900 truncate">
+                              {job.title}
                             </span>
-                          )}
+                            {job.urgent && (
+                              <span className="text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-200 px-1.5 py-0.5 rounded">
+                                URGENT
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-slate-500 mt-1 flex items-center gap-2">
+                            <span>{job.country}</span>
+                            <span>·</span>
+                            <span>{job.totalOpenings || 1} Openings</span>
+                            <span>·</span>
+                            <span className="font-bold text-emerald-600">{job.salary}</span>
+                          </div>
                         </div>
-                        <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
-                          {job.country} · {job.totalOpenings || 1} Openings · {job.salary}
-                        </div>
-                      </div>
 
-                      <span style={{ fontWeight: 700, fontSize: "12px", color: "#059669" }}>
-                        {job.salary}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Column: Invoices & Billing Summary (if permitted) */}
-          {canViewInvoices && (
-            <div style={{ ...s.card, padding: "20px 24px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <Receipt style={{ width: "18px", height: "18px", color: "#c026d3" }} />
-                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                    Recent Billing &amp; Invoices
-                  </h3>
-                </div>
-                <Link href="/admin/invoice" style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none" }}>
-                  View All ({invoices.length}) →
-                </Link>
-              </div>
-
-              {loading ? (
-                <div style={{ padding: "20px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  Loading invoices...
-                </div>
-              ) : invoices.length === 0 ? (
-                <div style={{ padding: "20px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                  No invoices created yet.
-                </div>
-              ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {invoices.slice(0, 4).map((inv) => (
-                    <div
-                      key={inv.id}
-                      style={{
-                        background: "#fafafa",
-                        border: "1px solid #f1f5f9",
-                        borderRadius: "12px",
-                        padding: "10px 14px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a" }}>
-                          {inv.clientName}
-                        </div>
-                        <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
-                          Invoice #{inv.invoiceNumber || inv.id.substring(0, 8)} · {new Date(inv.createdAt).toLocaleDateString("en-IN")}
-                        </div>
-                      </div>
-
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontWeight: 800, fontSize: "13px", color: "#0f172a" }}>
-                          ₹{(inv.totalAmount || 0).toLocaleString("en-IN")}
-                        </div>
-                        <span
-                          style={{
-                            fontSize: "10px",
-                            fontWeight: 700,
-                            textTransform: "uppercase",
-                            color: inv.status === "paid" ? "#166534" : "#92400e",
-                          }}
-                        >
-                          {inv.status || "paid"}
+                        <span className="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg shrink-0">
+                          {job.visaType}
                         </span>
                       </div>
+                    ))
+                  )}
+                </div>
+              )}
+
+              {/* Body: Invoices List */}
+              {rightTab === "invoices" && canViewInvoices && (
+                <div className="p-4 divide-y divide-slate-100 flex-1">
+                  {loading ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      Loading billing records...
                     </div>
-                  ))}
+                  ) : invoices.length === 0 ? (
+                    <div className="py-10 text-center text-xs text-slate-400 font-medium">
+                      No invoices generated yet.
+                    </div>
+                  ) : (
+                    invoices.slice(0, 5).map((inv) => (
+                      <div
+                        key={inv.id}
+                        className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3 hover:bg-slate-50/70 p-2 rounded-xl transition-all"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-sm text-slate-900 truncate">
+                              {inv.clientName}
+                            </span>
+                          </div>
+                          <div className="text-xs text-slate-500 mt-1">
+                            Inv #{inv.invoiceNumber || inv.id.substring(0, 8)} ·{" "}
+                            {new Date(inv.createdAt).toLocaleDateString("en-IN")}
+                          </div>
+                        </div>
+
+                        <div className="text-right shrink-0">
+                          <div className="font-black text-sm text-slate-900">
+                            ₹{(inv.totalAmount || 0).toLocaleString("en-IN")}
+                          </div>
+                          <span
+                            className={`text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded ${
+                              inv.status === "paid"
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "bg-amber-50 text-amber-700"
+                            }`}
+                          >
+                            {inv.status || "paid"}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               )}
             </div>
@@ -1092,7 +1032,7 @@ export default function AdminDashboardPage() {
   );
 }
 
-// ── Styles ────────────────────────────────────────────────────────
+// ── Fallback Spinner Styles ───────────────────────────────────────
 
 const s = {
   loadingContainer: {
@@ -1104,102 +1044,12 @@ const s = {
     background: "#1e1b4b",
   },
   spinner: {
-    width: "40px",
-    height: "40px",
-    border: "4px solid rgba(255,255,255,0.2)",
-    borderTopColor: "#6366f1",
+    width: "36px",
+    height: "36px",
+    border: "3px solid rgba(255,255,255,0.2)",
+    borderTopColor: "#818cf8",
     borderRadius: "50%",
     animation: "spin 0.8s linear infinite",
   },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: "28px",
-    flexWrap: "wrap" as const,
-    gap: "16px",
-  },
-  pageTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 800,
-    color: "#0f172a",
-    letterSpacing: "-0.3px",
-  },
-  pageSubtitle: {
-    margin: "4px 0 0",
-    fontSize: "13px",
-    color: "#64748b",
-  },
-  kpiGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: "16px",
-    marginBottom: "28px",
-  },
-  kpiCard: {
-    background: "white",
-    borderRadius: "18px",
-    padding: "20px 22px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
-    border: "1px solid #f1f5f9",
-    display: "flex",
-    flexDirection: "column" as const,
-    justifyContent: "space-between",
-  },
-  kpiLabel: {
-    fontSize: "12px",
-    fontWeight: 700,
-    color: "#64748b",
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.04em",
-  },
-  iconBadge: {
-    width: "40px",
-    height: "40px",
-    borderRadius: "12px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-  },
-  cardLink: {
-    fontSize: "12px",
-    fontWeight: 700,
-    color: "#4f46e5",
-    textDecoration: "none",
-    display: "flex",
-    alignItems: "center",
-    gap: "4px",
-    marginTop: "16px",
-    paddingTop: "12px",
-    borderTop: "1px solid #f8fafc",
-  },
-  card: {
-    background: "white",
-    borderRadius: "18px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-    border: "1px solid #f1f5f9",
-  },
-  btnPrimary: {
-    background: "linear-gradient(135deg, #6366f1, #4f46e5)",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(99,102,241,0.3)",
-  },
-  btnSecondary: {
-    background: "white",
-    color: "#334155",
-    border: "1.5px solid #e2e8f0",
-    borderRadius: "10px",
-    padding: "10px 16px",
-    fontSize: "13px",
-    fontWeight: 600,
-    cursor: "pointer",
-  },
 };
+
