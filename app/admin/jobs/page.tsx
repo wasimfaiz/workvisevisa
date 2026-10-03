@@ -352,7 +352,16 @@ export default function AdminJobsPage() {
           return;
         }
         const data = await res.json();
-        setAdmin(data.user);
+        if (data.user) {
+          setAdmin(data.user);
+          const isSuper = data.user.role === "superadmin" || data.user.email === "wasim@yastudy.com";
+          if (!isSuper && data.user.permissions?.jobs?.view === false) {
+            router.replace("/admin/dashboard");
+            return;
+          }
+        } else {
+          router.replace("/admin");
+        }
       } catch {
         router.replace("/admin");
       }

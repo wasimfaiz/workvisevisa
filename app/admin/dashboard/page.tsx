@@ -37,6 +37,7 @@ import {
   Receipt,
   UserCheck,
   MapPin,
+  Compass,
 } from "lucide-react";
 
 import { EmployeePermissions } from "@/lib/types/rbac";
@@ -70,6 +71,19 @@ interface Inquiry {
   };
   createdAt: string;
   updatedAt?: string;
+}
+
+interface ApplicationItem {
+  id: string;
+  applicationNo: string;
+  candidateName: string;
+  passportNumber?: string;
+  targetCountry: string;
+  jobTrade: string;
+  currentStage: number;
+  stageStatus: "in_progress" | "completed" | "on_hold" | "rejected";
+  phone: string;
+  createdAt: string;
 }
 
 interface Job {
@@ -125,6 +139,7 @@ export default function AdminDashboardPage() {
 
   // Data states
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [applications, setApplications] = useState<ApplicationItem[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [invoices, setInvoices] = useState<InvoiceItem[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -161,11 +176,12 @@ export default function AdminDashboardPage() {
     else setLoading(true);
 
     try {
-      const [inqRes, jobsRes, invRes, empRes] = await Promise.all([
+      const [inqRes, jobsRes, invRes, empRes, appRes] = await Promise.all([
         fetch("/api/inquiries", { cache: "no-store" }).catch(() => null),
         fetch("/api/jobs", { cache: "no-store" }).catch(() => null),
         fetch("/api/invoices", { cache: "no-store" }).catch(() => null),
         fetch("/api/employees", { cache: "no-store" }).catch(() => null),
+        fetch("/api/applications", { cache: "no-store" }).catch(() => null),
       ]);
 
       if (inqRes && inqRes.ok) {
@@ -195,6 +211,13 @@ export default function AdminDashboardPage() {
           setEmployees(empData.data);
         }
       }
+
+      if (appRes && appRes.ok) {
+        const appData = await appRes.json();
+        if (appData.success && Array.isArray(appData.data)) {
+          setApplications(appData.data);
+        }
+      }
     } catch (err) {
       console.error("Error loading dashboard data:", err);
     } finally {
@@ -220,6 +243,12 @@ export default function AdminDashboardPage() {
     const paymentModeInquiries = inquiries.filter((i) => i.status === "payment_mode").length;
     const convertedInquiries = inquiries.filter((i) => i.status === "converted").length;
 
+    // Applications metrics
+    const totalApplications = applications.length;
+    const inProgressApplications = applications.filter((a) => a.currentStage <= 5 && a.stageStatus === "in_progress").length;
+    const visaApprovedApplications = applications.filter((a) => a.currentStage === 6 && a.stageStatus !== "rejected").length;
+    const deployedApplications = applications.filter((a) => a.currentStage === 7 && a.stageStatus === "completed").length;
+
     // Jobs metrics
     const totalJobs = jobs.length;
     const totalOpenings = jobs.reduce((sum, j) => sum + (j.totalOpenings || 1), 0);
@@ -242,6 +271,11 @@ export default function AdminDashboardPage() {
       inProgressInquiries,
       paymentModeInquiries,
       convertedInquiries,
+      totalApplications,
+      activeApplications: inProgressApplications,
+      inProgressApplications,
+      visaApprovedApplications,
+      deployedApplications,
       totalJobs,
       totalOpenings,
       urgentJobs,
@@ -251,7 +285,7 @@ export default function AdminDashboardPage() {
       totalEmployees,
       activeEmployees,
     };
-  }, [inquiries, jobs, invoices, employees]);
+  }, [inquiries, applications, jobs, invoices, employees]);
 
   // Helper for Status Badge styling
   const getStatusBadge = (status: Inquiry["status"]) => {
@@ -292,9 +326,15 @@ export default function AdminDashboardPage() {
 
   const isSuper = admin?.role === "superadmin" || admin?.email === "wasim@yastudy.com";
   const canViewInquiries = isSuper || Boolean(admin?.permissions?.inquiries?.view !== false);
+  const canViewApplications = isSuper || Boolean(admin?.permissions?.applications?.view !== false);
   const canViewJobs = isSuper || Boolean(admin?.permissions?.jobs?.view !== false);
   const canViewInvoices = isSuper || Boolean(admin?.permissions?.invoices?.view);
   const canViewEmployees = isSuper || Boolean(admin?.permissions?.employees?.view);
+
+  const canCreateInquiries = canViewInquiries && (isSuper || Boolean(admin?.permissions?.inquiries?.edit !== false));
+  const canCreateApplications = canViewApplications && (isSuper || Boolean(admin?.permissions?.applications?.create !== false));
+  const canCreateJobs = canViewJobs && (isSuper || Boolean(admin?.permissions?.jobs?.create !== false));
+  const canCreateInvoices = canViewInvoices && (isSuper || Boolean(admin?.permissions?.invoices?.create !== false));
 
   // Role formatted label
   const roleName = isSuper
@@ -307,6 +347,7 @@ export default function AdminDashboardPage() {
       <AdminSidebar
         currentUser={admin}
         counts={{
+          applications: applications.length,
           jobs: jobs.length,
           inquiries: inquiries.length,
           newInquiries: metrics.newInquiries,
@@ -361,7 +402,25 @@ export default function AdminDashboardPage() {
               <span>{refreshing ? "Syncing..." : "Refresh"}</span>
             </button>
 
-            {canViewInquiries && (
+            {canCreateApplications && (
+              <Link
+                href="/admin/applications"
+                style={{
+                  ...s.btnPrimary,
+                  background: "linear-gradient(135deg, #8b5cf6, #6d28d9)",
+                  boxShadow: "0 4px 12px rgba(139, 92, 246, 0.3)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  textDecoration: "none",
+                }}
+              >
+                <Compass style={{ width: "15px", height: "15px" }} />
+                <span>+ Enroll Candidate</span>
+              </Link>
+            )}
+
+            {canCreateInquiries && (
               <Link
                 href="/admin/inquiry"
                 style={{
@@ -379,7 +438,7 @@ export default function AdminDashboardPage() {
               </Link>
             )}
 
-            {canViewJobs && (
+            {canCreateJobs && (
               <Link
                 href="/admin/jobs"
                 style={{
@@ -397,7 +456,7 @@ export default function AdminDashboardPage() {
               </Link>
             )}
 
-            {canViewInvoices && (
+            {canCreateInvoices && (
               <Link
                 href="/admin/invoice"
                 style={{
@@ -415,311 +474,487 @@ export default function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* ── TOP 4 EXECUTIVE KPI CARDS ── */}
+        {/* ── TOP EXECUTIVE KPI CARDS (Only Allowed Modules) ── */}
         <div style={s.kpiGrid}>
-          {/* 1. Leads & Inquiries */}
-          <div style={s.kpiCard}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <span style={s.kpiLabel}>Candidate Leads &amp; Inquiries</span>
-                <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                  {metrics.totalInquiries}
+          {/* 1. Application Tracker */}
+          {canViewApplications && (
+            <div style={s.kpiCard}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <span style={s.kpiLabel}>Visa Milestone Tracker</span>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                    {metrics.totalApplications}
+                  </div>
+                </div>
+                <div style={{ ...s.iconBadge, background: "#f5f3ff", color: "#7c3aed" }}>
+                  <Compass style={{ width: "20px", height: "20px" }} />
                 </div>
               </div>
-              <div style={{ ...s.iconBadge, background: "#ecfdf5", color: "#059669" }}>
-                <MessageSquare style={{ width: "20px", height: "20px" }} />
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#eff6ff", color: "#1d4ed8", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.activeApplications} In Progress
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#ecfdf5", color: "#047857", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.visaApprovedApplications} Visa Ready
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.deployedApplications} Deployed
+                </span>
               </div>
+
+              <Link href="/admin/applications" style={s.cardLink}>
+                Open Application Tracker <ArrowUpRight style={{ width: "14px", height: "14px" }} />
+              </Link>
             </div>
+          )}
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
-              <span style={{ fontSize: "11px", fontWeight: 700, background: "#dcfce7", color: "#166534", padding: "2px 8px", borderRadius: "6px" }}>
-                {metrics.newInquiries} New
-              </span>
-              <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
-                {metrics.interestedInquiries} Interested
-              </span>
-              <span style={{ fontSize: "11px", fontWeight: 700, background: "#fdf4ff", color: "#a21caf", padding: "2px 8px", borderRadius: "6px" }}>
-                {metrics.paymentModeInquiries} Payment
-              </span>
-              <span style={{ fontSize: "11px", fontWeight: 700, background: "#f5f3ff", color: "#6d28d9", padding: "2px 8px", borderRadius: "6px" }}>
-                {metrics.convertedInquiries} Converted
-              </span>
-            </div>
-
-            <Link href="/admin/inquiry" style={s.cardLink}>
-              Manage Inquiries &amp; Leads <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-            </Link>
-          </div>
-
-          {/* 2. Active Job Demands */}
-          <div style={s.kpiCard}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <span style={s.kpiLabel}>Active Job Demands</span>
-                <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                  {metrics.totalJobs}
+          {/* 2. Leads & Inquiries */}
+          {canViewInquiries && (
+            <div style={s.kpiCard}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <span style={s.kpiLabel}>Candidate Leads &amp; Inquiries</span>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                    {metrics.totalInquiries}
+                  </div>
+                </div>
+                <div style={{ ...s.iconBadge, background: "#ecfdf5", color: "#059669" }}>
+                  <MessageSquare style={{ width: "20px", height: "20px" }} />
                 </div>
               </div>
-              <div style={{ ...s.iconBadge, background: "#eff6ff", color: "#2563eb" }}>
-                <Briefcase style={{ width: "20px", height: "20px" }} />
-              </div>
-            </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-              <div style={{ fontWeight: 700, color: "#2563eb" }}>
-                {metrics.totalOpenings} Total Open Openings
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#dcfce7", color: "#166534", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.newInquiries} New
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f0fdf4", color: "#15803d", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.interestedInquiries} Interested
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#fdf4ff", color: "#a21caf", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.paymentModeInquiries} Payment
+                </span>
+                <span style={{ fontSize: "11px", fontWeight: 700, background: "#f5f3ff", color: "#6d28d9", padding: "2px 8px", borderRadius: "6px" }}>
+                  {metrics.convertedInquiries} Converted
+                </span>
               </div>
-              {metrics.urgentJobs > 0 && (
-                <div style={{ fontWeight: 700, color: "#dc2626", display: "flex", alignItems: "center", gap: "4px" }}>
-                  <Flame style={{ width: "13px", height: "13px" }} /> {metrics.urgentJobs} Urgent Demands
+
+              <Link href="/admin/inquiry" style={s.cardLink}>
+                Manage Inquiries &amp; Leads <ArrowUpRight style={{ width: "14px", height: "14px" }} />
+              </Link>
+            </div>
+          )}
+
+          {/* 3. Active Job Demands */}
+          {canViewJobs && (
+            <div style={s.kpiCard}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <span style={s.kpiLabel}>Active Job Demands</span>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                    {metrics.totalJobs}
+                  </div>
                 </div>
-              )}
-            </div>
-
-            <Link href="/admin/jobs" style={s.cardLink}>
-              View Job Demands &amp; Openings <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-            </Link>
-          </div>
-
-          {/* 3. Invoices & Billing */}
-          <div style={s.kpiCard}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <span style={s.kpiLabel}>Invoices &amp; Billing</span>
-                <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                  {metrics.totalInvoices}
-                </div>
-              </div>
-              <div style={{ ...s.iconBadge, background: "#fdf4ff", color: "#c026d3" }}>
-                <Receipt style={{ width: "20px", height: "20px" }} />
-              </div>
-            </div>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-              <div style={{ fontWeight: 700, color: "#059669" }}>
-                ₹{metrics.totalBilled.toLocaleString("en-IN")} Total Billed
-              </div>
-              <div style={{ color: "#64748b" }}>
-                ({metrics.paidInvoices} Paid / Cleared)
-              </div>
-            </div>
-
-            <Link href="/admin/invoice" style={s.cardLink}>
-              Open Invoice Generator <ArrowUpRight style={{ width: "14px", height: "14px" }} />
-            </Link>
-          </div>
-
-          {/* 4. Team & Employees Access */}
-          <div style={s.kpiCard}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-              <div>
-                <span style={s.kpiLabel}>Staff &amp; Access Roles</span>
-                <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
-                  {metrics.totalEmployees || 1}
+                <div style={{ ...s.iconBadge, background: "#eff6ff", color: "#2563eb" }}>
+                  <Briefcase style={{ width: "20px", height: "20px" }} />
                 </div>
               </div>
-              <div style={{ ...s.iconBadge, background: "#f5f3ff", color: "#7c3aed" }}>
-                <Users style={{ width: "20px", height: "20px" }} />
-              </div>
-            </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
-              <div style={{ fontWeight: 700, color: "#7c3aed" }}>
-                {metrics.activeEmployees || 1} Active Team Members
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
+                <div style={{ fontWeight: 700, color: "#2563eb" }}>
+                  {metrics.totalOpenings} Total Open Openings
+                </div>
+                {metrics.urgentJobs > 0 && (
+                  <div style={{ fontWeight: 700, color: "#dc2626", display: "flex", alignItems: "center", gap: "4px" }}>
+                    <Flame style={{ width: "13px", height: "13px" }} /> {metrics.urgentJobs} Urgent Demands
+                  </div>
+                )}
               </div>
-              <div style={{ color: "#64748b" }}>
-                Role-based RBAC protected
-              </div>
-            </div>
 
-            {canViewEmployees ? (
+              <Link href="/admin/jobs" style={s.cardLink}>
+                View Job Demands &amp; Openings <ArrowUpRight style={{ width: "14px", height: "14px" }} />
+              </Link>
+            </div>
+          )}
+
+          {/* 4. Invoices & Billing */}
+          {canViewInvoices && (
+            <div style={s.kpiCard}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <span style={s.kpiLabel}>Invoices &amp; Billing</span>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                    {metrics.totalInvoices}
+                  </div>
+                </div>
+                <div style={{ ...s.iconBadge, background: "#fdf4ff", color: "#c026d3" }}>
+                  <Receipt style={{ width: "20px", height: "20px" }} />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
+                <div style={{ fontWeight: 700, color: "#059669" }}>
+                  ₹{metrics.totalBilled.toLocaleString("en-IN")} Total Billed
+                </div>
+                <div style={{ color: "#64748b" }}>
+                  ({metrics.paidInvoices} Paid / Cleared)
+                </div>
+              </div>
+
+              <Link href="/admin/invoice" style={s.cardLink}>
+                Open Invoice Generator <ArrowUpRight style={{ width: "14px", height: "14px" }} />
+              </Link>
+            </div>
+          )}
+
+          {/* 5. Team & Employees Access */}
+          {canViewEmployees && (
+            <div style={s.kpiCard}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <span style={s.kpiLabel}>Staff &amp; Access Roles</span>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", marginTop: "4px" }}>
+                    {metrics.totalEmployees || 1}
+                  </div>
+                </div>
+                <div style={{ ...s.iconBadge, background: "#f5f3ff", color: "#7c3aed" }}>
+                  <Users style={{ width: "20px", height: "20px" }} />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "14px", fontSize: "12px", color: "#475569" }}>
+                <div style={{ fontWeight: 700, color: "#7c3aed" }}>
+                  {metrics.activeEmployees || 1} Active Team Members
+                </div>
+                <div style={{ color: "#64748b" }}>
+                  Role-based RBAC protected
+                </div>
+              </div>
+
               <Link href="/admin/employees" style={s.cardLink}>
                 Manage Staff &amp; Roles <ArrowUpRight style={{ width: "14px", height: "14px" }} />
               </Link>
-            ) : (
-              <div style={{ ...s.cardLink, color: "#94a3b8" }}>
-                Active Session ({admin.role})
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* ── LEADS PIPELINE STATUS STRIP ── */}
-        <div style={{ ...s.card, padding: "20px 24px", marginBottom: "28px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
-            <div>
-              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                Lead Status &amp; Conversion Pipeline
-              </h3>
-              <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                Live breakdown of candidate consultation stages
-              </p>
             </div>
-            <Link
-              href="/admin/inquiry"
-              style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
-            >
-              Open Full Leads Manager →
-            </Link>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
-            {[
-              { label: "New Leads", count: metrics.newInquiries, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
-              { label: "Interested", count: metrics.interestedInquiries, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
-              { label: "In Progress", count: metrics.inProgressInquiries, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
-              { label: "Payment Mode", count: metrics.paymentModeInquiries, bg: "#fdf4ff", border: "#f5d0fe", color: "#a21caf" },
-              { label: "Converted", count: metrics.convertedInquiries, bg: "#f5f3ff", border: "#ddd6fe", color: "#6d28d9" },
-              { label: "DNP (Did Not Pick)", count: metrics.dnpInquiries, bg: "#fff1f2", border: "#fecdd3", color: "#be123c" },
-            ].map((st) => (
-              <div
-                key={st.label}
-                style={{
-                  background: st.bg,
-                  border: `1px solid ${st.border}`,
-                  borderRadius: "12px",
-                  padding: "12px 14px",
-                  textAlign: "center",
-                }}
-              >
-                <div style={{ fontSize: "20px", fontWeight: 800, color: st.color }}>{st.count}</div>
-                <div style={{ fontSize: "11px", fontWeight: 700, color: st.color, marginTop: "2px" }}>
-                  {st.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          )}
         </div>
 
-        {/* ── 2-COLUMN REAL-TIME ACTIVITY GRID ── */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))", gap: "24px" }}>
-          {/* Left Column: Recent Inquiries & Leads */}
-          <div style={{ ...s.card, padding: "20px 24px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <MessageSquare style={{ width: "18px", height: "18px", color: "#059669" }} />
-                <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                  Recent Inquiries &amp; Consultations
-                </h3>
+        {/* ── APPLICATION TRACKER MILESTONE PIPELINE (If permitted) ── */}
+        {canViewApplications && (
+          <div style={{ ...s.card, padding: "20px 24px", marginBottom: "24px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Compass style={{ width: "18px", height: "18px", color: "#7c3aed" }} />
+                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Candidate Visa Milestone Pipeline
+                  </h3>
+                </div>
+                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
+                  Live tracking of candidate progress across the 7 international deployment milestones
+                </p>
               </div>
-              <Link href="/admin/inquiry" style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none" }}>
-                View All ({inquiries.length}) →
+              <Link
+                href="/admin/applications"
+                style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                Open Full Application Tracker →
               </Link>
             </div>
 
-            {loading ? (
-              <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                Loading inquiries...
-              </div>
-            ) : inquiries.length === 0 ? (
-              <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
-                No inquiries registered yet.
-              </div>
-            ) : (
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                {inquiries.slice(0, 5).map((inq) => {
-                  const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
-                  const waPhone = cleanPhone.startsWith("+")
-                    ? cleanPhone.replace("+", "")
-                    : cleanPhone.length === 10
-                    ? `91${cleanPhone}`
-                    : cleanPhone;
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
+              {[
+                { label: "Total Cases", count: metrics.totalApplications, bg: "#f8fafc", border: "#e2e8f0", color: "#334155" },
+                { label: "In Processing", count: metrics.inProgressApplications, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
+                { label: "Visa Stamped / Approved", count: metrics.visaApprovedApplications, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
+                { label: "Flown & Deployed", count: metrics.deployedApplications, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
+              ].map((st) => (
+                <div
+                  key={st.label}
+                  style={{
+                    background: st.bg,
+                    border: `1px solid ${st.border}`,
+                    borderRadius: "12px",
+                    padding: "12px 14px",
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontSize: "22px", fontWeight: 800, color: st.color }}>{st.count}</div>
+                  <div style={{ fontSize: "11px", fontWeight: 700, color: st.color, marginTop: "2px" }}>
+                    {st.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
-                  const waMessage = encodeURIComponent(
-                    `Hello ${inq.name}, greetings from WorkWise Visa! We received your overseas consultation request for ${inq.country}.`
-                  );
-                  const badge = getStatusBadge(inq.status);
+        {/* ── LEADS PIPELINE STATUS STRIP (If permitted) ── */}
+        {canViewInquiries && (
+          <div style={{ ...s.card, padding: "20px 24px", marginBottom: "28px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px", flexWrap: "wrap", gap: "10px" }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <MessageSquare style={{ width: "18px", height: "18px", color: "#059669" }} />
+                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Lead Status &amp; Conversion Pipeline
+                  </h3>
+                </div>
+                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
+                  Live breakdown of candidate consultation stages
+                </p>
+              </div>
+              <Link
+                href="/admin/inquiry"
+                style={{ fontSize: "12px", fontWeight: 700, color: "#059669", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}
+              >
+                Open Full Leads Manager →
+              </Link>
+            </div>
 
-                  return (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
+              {[
+                { label: "New Leads", count: metrics.newInquiries, bg: "#ecfdf5", border: "#a7f3d0", color: "#047857" },
+                { label: "Interested", count: metrics.interestedInquiries, bg: "#f0fdf4", border: "#86efac", color: "#15803d" },
+                { label: "In Progress", count: metrics.inProgressInquiries, bg: "#eff6ff", border: "#bfdbfe", color: "#1d4ed8" },
+                { label: "Payment Mode", count: metrics.paymentModeInquiries, bg: "#fdf4ff", border: "#f5d0fe", color: "#a21caf" },
+                { label: "Converted", count: metrics.convertedInquiries, bg: "#f5f3ff", border: "#ddd6fe", color: "#6d28d9" },
+                { label: "DNP (No Answer)", count: metrics.dnpInquiries, bg: "#fff1f2", border: "#fecdd3", color: "#be123c" },
+              ].map((st) => (
+                <div
+                  key={st.label}
+                  style={{
+                    background: st.bg,
+                    border: `1px solid ${st.border}`,
+                    borderRadius: "12px",
+                    padding: "12px 14px",
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontSize: "20px", fontWeight: 800, color: st.color }}>{st.count}</div>
+                  <div style={{ fontSize: "11px", fontWeight: 700, color: st.color, marginTop: "2px" }}>
+                    {st.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── REAL-TIME ACTIVITY GRID (Permission-Adaptive) ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))", gap: "24px" }}>
+          {/* Column 1: Inquiries / Leads (if permitted) */}
+          {canViewInquiries && (
+            <div style={{ ...s.card, padding: "20px 24px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <MessageSquare style={{ width: "18px", height: "18px", color: "#059669" }} />
+                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Recent Inquiries &amp; Consultations
+                  </h3>
+                </div>
+                <Link href="/admin/inquiry" style={{ fontSize: "12px", fontWeight: 700, color: "#4f46e5", textDecoration: "none" }}>
+                  View All ({inquiries.length}) →
+                </Link>
+              </div>
+
+              {loading ? (
+                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
+                  Loading inquiries...
+                </div>
+              ) : inquiries.length === 0 ? (
+                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
+                  No inquiries registered yet.
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {inquiries.slice(0, 5).map((inq) => {
+                    const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
+                    const waPhone = cleanPhone.startsWith("+")
+                      ? cleanPhone.replace("+", "")
+                      : cleanPhone.length === 10
+                      ? `91${cleanPhone}`
+                      : cleanPhone;
+
+                    const waMessage = encodeURIComponent(
+                      `Hello ${inq.name}, greetings from WorkWise Visa! We received your overseas consultation request for ${inq.country}.`
+                    );
+                    const badge = getStatusBadge(inq.status);
+
+                    return (
+                      <div
+                        key={inq.id}
+                        style={{
+                          background: inq.status === "new" ? "#f0fdf4" : "#fafafa",
+                          border: inq.status === "new" ? "1px solid #bbf7d0" : "1px solid #f1f5f9",
+                          borderRadius: "12px",
+                          padding: "12px 14px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          gap: "12px",
+                        }}
+                      >
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <span style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a" }}>
+                              {inq.name}
+                            </span>
+                            <span
+                              style={{
+                                background: badge.bg,
+                                color: badge.text,
+                                border: `1px solid ${badge.border}`,
+                                borderRadius: "999px",
+                                padding: "1px 8px",
+                                fontSize: "10px",
+                                fontWeight: 800,
+                              }}
+                            >
+                              {badge.label}
+                            </span>
+                          </div>
+                          <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px", display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
+                              <MapPin style={{ width: "11px", height: "11px", color: "#94a3b8" }} /> {inq.country}
+                            </span>
+                            <span>·</span>
+                            <span>{inq.occupation || "General"}</span>
+                            {inq.assignedTo?.name ? (
+                              <>
+                                <span>·</span>
+                                <span style={{ background: "#ede9fe", color: "#6d28d9", padding: "1px 6px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                                  {inq.assignedTo.name}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span>·</span>
+                                <span style={{ color: "#94a3b8", fontSize: "11px" }}>
+                                  Unassigned
+                                </span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Quick 1-Click WhatsApp */}
+                        <a
+                          href={`https://wa.me/${waPhone}?text=${waMessage}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "4px",
+                            background: "#25d366",
+                            color: "white",
+                            borderRadius: "8px",
+                            padding: "6px 10px",
+                            fontSize: "12px",
+                            fontWeight: 700,
+                            textDecoration: "none",
+                            boxShadow: "0 2px 6px rgba(37,211,102,0.25)",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <MessageCircle style={{ width: "13px", height: "13px" }} />
+                          <span>Chat</span>
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Column: Application Tracker Cases (if permitted) */}
+          {canViewApplications && (
+            <div style={{ ...s.card, padding: "20px 24px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Compass style={{ width: "18px", height: "18px", color: "#7c3aed" }} />
+                  <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Active Applications &amp; Passports
+                  </h3>
+                </div>
+                <Link href="/admin/applications" style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed", textDecoration: "none" }}>
+                  View All ({applications.length}) →
+                </Link>
+              </div>
+
+              {loading ? (
+                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
+                  Loading applications...
+                </div>
+              ) : applications.length === 0 ? (
+                <div style={{ padding: "30px", textAlign: "center", color: "#64748b", fontSize: "13px" }}>
+                  No candidate applications enrolled yet.
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {applications.slice(0, 5).map((app) => (
                     <div
-                      key={inq.id}
+                      key={app.id}
                       style={{
-                        background: inq.status === "new" ? "#f0fdf4" : "#fafafa",
-                        border: inq.status === "new" ? "1px solid #bbf7d0" : "1px solid #f1f5f9",
+                        background: "#fafafa",
+                        border: "1px solid #f1f5f9",
                         borderRadius: "12px",
                         padding: "12px 14px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        gap: "12px",
+                        gap: "10px",
                       }}
                     >
                       <div style={{ minWidth: 0, flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                           <span style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a" }}>
-                            {inq.name}
+                            {app.candidateName}
                           </span>
                           <span
                             style={{
-                              background: badge.bg,
-                              color: badge.text,
-                              border: `1px solid ${badge.border}`,
-                              borderRadius: "999px",
-                              padding: "1px 8px",
+                              background: "#f1f5f9",
+                              color: "#475569",
+                              borderRadius: "4px",
+                              padding: "1px 6px",
                               fontSize: "10px",
                               fontWeight: 800,
+                              fontFamily: "monospace",
                             }}
                           >
-                            {badge.label}
+                            {app.applicationNo}
                           </span>
                         </div>
-                        <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px", display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-                          <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
-                            <MapPin style={{ width: "11px", height: "11px", color: "#94a3b8" }} /> {inq.country}
-                          </span>
-                          <span>·</span>
-                          <span>{inq.occupation || "General"}</span>
-                          {inq.assignedTo?.name ? (
-                            <>
-                              <span>·</span>
-                              <span style={{ background: "#ede9fe", color: "#6d28d9", padding: "1px 6px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                                {inq.assignedTo.name}
-                              </span>
-                            </>
-                          ) : (
-                            <>
-                              <span>·</span>
-                              <span style={{ color: "#94a3b8", fontSize: "11px" }}>
-                                Unassigned
-                              </span>
-                            </>
-                          )}
+                        <div style={{ fontSize: "12px", color: "#64748b", marginTop: "3px" }}>
+                          {app.jobTrade} · {app.targetCountry} {app.passportNumber ? `· Passport: ${app.passportNumber}` : ""}
                         </div>
                       </div>
 
-                      {/* Quick 1-Click WhatsApp */}
-                      <a
-                        href={`https://wa.me/${waPhone}?text=${waMessage}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "4px",
-                          background: "#25d366",
-                          color: "white",
-                          borderRadius: "8px",
-                          padding: "6px 10px",
-                          fontSize: "12px",
-                          fontWeight: 700,
-                          textDecoration: "none",
-                          boxShadow: "0 2px 6px rgba(37,211,102,0.25)",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <MessageCircle style={{ width: "13px", height: "13px" }} />
-                        <span>Chat</span>
-                      </a>
+                      <div style={{ textAlign: "right", flexShrink: 0 }}>
+                        <span
+                          style={{
+                            background: app.currentStage === 7 ? "#f0fdf4" : app.currentStage === 6 ? "#ecfdf5" : "#eff6ff",
+                            color: app.currentStage === 7 ? "#15803d" : app.currentStage === 6 ? "#047857" : "#1d4ed8",
+                            border: `1px solid ${app.currentStage === 7 ? "#86efac" : app.currentStage === 6 ? "#a7f3d0" : "#bfdbfe"}`,
+                            borderRadius: "6px",
+                            padding: "2px 8px",
+                            fontSize: "11px",
+                            fontWeight: 700,
+                          }}
+                        >
+                          Stage {app.currentStage}/7
+                        </span>
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
-          {/* Right Column: Hot Job Demands & Invoices Summary */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-            {/* Active Overseas Job Demands */}
+          {/* Column: Active Job Demands (if permitted) */}
+          {canViewJobs && (
             <div style={{ ...s.card, padding: "20px 24px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -743,7 +978,7 @@ export default function AdminDashboardPage() {
                 </div>
               ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {jobs.slice(0, 3).map((job) => (
+                  {jobs.slice(0, 4).map((job) => (
                     <div
                       key={job.id}
                       style={{
@@ -781,8 +1016,10 @@ export default function AdminDashboardPage() {
                 </div>
               )}
             </div>
+          )}
 
-            {/* Invoices Summary */}
+          {/* Column: Invoices & Billing Summary (if permitted) */}
+          {canViewInvoices && (
             <div style={{ ...s.card, padding: "20px 24px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -806,7 +1043,7 @@ export default function AdminDashboardPage() {
                 </div>
               ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {invoices.slice(0, 3).map((inv) => (
+                  {invoices.slice(0, 4).map((inv) => (
                     <div
                       key={inv.id}
                       style={{
@@ -848,7 +1085,7 @@ export default function AdminDashboardPage() {
                 </div>
               )}
             </div>
-          </div>
+          )}
         </div>
       </main>
     </div>
