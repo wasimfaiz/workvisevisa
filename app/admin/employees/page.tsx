@@ -3,14 +3,13 @@
 /* ================================================================
    app/admin/employees/page.tsx — WorkWise Visa Staff & RBAC Permissions
    Full Role-Based Access Control:
-   - Create and manage employees
-   - Assign custom granular permissions for Invoices, Inquiries, Jobs, and Staff
+   - Create and manage employee profiles
+   - Assign custom granular permissions for Invoices, Inquiries, Jobs, Tracker, and Staff
    - Control who can view, add, edit, delete, or export in each section
    ================================================================ */
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Users,
@@ -18,7 +17,7 @@ import {
   Shield,
   Key,
   Trash2,
-  Edit,
+  Edit3,
   CheckCircle2,
   AlertCircle,
   X,
@@ -32,12 +31,19 @@ import {
   MessageSquare,
   Eye,
   Plus,
-  Printer,
-  FileSpreadsheet,
   Compass,
+  Check,
+  ShieldCheck,
+  ShieldAlert,
+  UserCheck,
+  Sliders,
+  Settings,
+  MoreVertical,
 } from "lucide-react";
 import { EmployeePermissions, AdminRole, DEFAULT_PERMISSIONS } from "@/lib/types/rbac";
 import AdminSidebar from "@/components/AdminSidebar";
+
+// ── Types ─────────────────────────────────────────────────────────
 
 interface Employee {
   id: string;
@@ -58,6 +64,8 @@ interface CurrentUser {
   role: string;
   permissions?: EmployeePermissions;
 }
+
+// ── Main Page Component ───────────────────────────────────────────
 
 export default function AdminEmployeesPage() {
   const router = useRouter();
@@ -123,7 +131,6 @@ export default function AdminEmployeesPage() {
         const data = await res.json();
         if (data.user) {
           setCurrentUser(data.user);
-          // Verify if user has permission to view employees
           const isSuper = data.user.role === "superadmin" || data.user.email === "wasim@yastudy.com";
           if (!isSuper && !data.user.permissions?.employees?.view) {
             router.replace("/admin/dashboard");
@@ -184,7 +191,7 @@ export default function AdminEmployeesPage() {
     }));
   };
 
-  const handleCreateEmployee = async (e: React.FormEvent) => {
+  const handleCreateEmployee = async (e: FormEvent) => {
     e.preventDefault();
     if (!addForm.name.trim() || !addForm.email.trim() || !addForm.password) {
       showToast("Please fill in Name, Email, and Password.", "error");
@@ -332,14 +339,6 @@ export default function AdminEmployeesPage() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/auth/logout", { method: "POST" });
-    } finally {
-      router.replace("/admin");
-    }
-  };
-
   // Derived metrics
   const stats = useMemo(() => {
     const total = employees.length;
@@ -369,66 +368,53 @@ export default function AdminEmployeesPage() {
   const getRoleBadge = (role: AdminRole) => {
     switch (role) {
       case "superadmin":
-        return { label: "Super Admin", bg: "#f5f3ff", color: "#6d28d9", border: "#ddd6fe" };
+        return { label: "Super Admin", bg: "bg-purple-50 text-purple-700 border-purple-200" };
       case "admin":
-        return { label: "Administrator", bg: "#eef2ff", color: "#4338ca", border: "#c7d2fe" };
+        return { label: "Administrator", bg: "bg-indigo-50 text-indigo-700 border-indigo-200" };
       case "manager":
-        return { label: "Branch Manager", bg: "#eff6ff", color: "#1d4ed8", border: "#bfdbfe" };
+        return { label: "Branch Manager", bg: "bg-blue-50 text-blue-700 border-blue-200" };
       case "counselor":
-        return { label: "Visa Counselor", bg: "#ecfdf5", color: "#047857", border: "#a7f3d0" };
+        return { label: "Visa Counselor", bg: "bg-emerald-50 text-emerald-700 border-emerald-200" };
       case "accountant":
-        return { label: "Accountant / Billing", bg: "#fffbeb", color: "#b45309", border: "#fde68a" };
+        return { label: "Accountant / Billing", bg: "bg-amber-50 text-amber-800 border-amber-200" };
       default:
-        return { label: "Staff", bg: "#f1f5f9", color: "#475569", border: "#cbd5e1" };
+        return { label: "Staff", bg: "bg-slate-100 text-slate-700 border-slate-200" };
     }
   };
 
   if (authLoading) {
     return (
-      <div style={s.loadingContainer}>
-        <div style={s.spinner} />
-        <p style={{ marginTop: "12px", color: "white", fontSize: "14px" }}>
-          Verifying access rights...
-        </p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0f172a] text-white">
+        <div className="w-10 h-10 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin mb-4" />
+        <p className="text-sm font-medium text-slate-400">Verifying access rights...</p>
       </div>
     );
   }
 
   if (!currentUser) return null;
 
+  const isSuperAdmin = currentUser.role === "superadmin" || currentUser.email === "wasim@yastudy.com";
+  const canManageEmployees = isSuperAdmin || Boolean(currentUser.permissions?.employees?.manage);
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#f8fafc] font-sans">
       {/* Toast Notification */}
       {toast && (
         <div
-          style={{
-            position: "fixed",
-            top: "24px",
-            right: "24px",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "12px 20px",
-            borderRadius: "12px",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
-            fontSize: "14px",
-            fontWeight: 600,
-            background: toast.type === "success" ? "#10b981" : "#ef4444",
-            color: "white",
-            animation: "fadeIn 0.2s ease-in-out",
-          }}
+          className={`fixed top-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-xl text-sm font-bold text-white transition-all animate-bounce ${
+            toast.type === "success" ? "bg-emerald-600" : "bg-red-600"
+          }`}
         >
           {toast.type === "success" ? (
-            <CheckCircle2 style={{ width: "18px", height: "18px" }} />
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
           ) : (
-            <AlertCircle style={{ width: "18px", height: "18px" }} />
+            <AlertCircle className="w-5 h-5 flex-shrink-0" />
           )}
           <span>{toast.message}</span>
         </div>
       )}
 
-      {/* ── RESPONSIVE UNIFIED SIDEBAR ── */}
+      {/* Responsive Unified Admin Sidebar */}
       <AdminSidebar
         currentUser={currentUser}
         counts={{
@@ -436,113 +422,121 @@ export default function AdminEmployeesPage() {
         }}
       />
 
-      {/* ── MAIN CONTENT ── */}
+      {/* Main Content Area */}
       <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
-        {/* Header */}
-        <div style={s.header}>
+        {/* Header Bar */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
           <div>
-            <h1 style={s.pageTitle}>Employees &amp; Access Control</h1>
-            <p style={s.pageSubtitle}>
-              Assign section permissions (Invoices, Leads, Jobs) so staff only access what they are granted.
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                Employees &amp; Access Control
+              </h1>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                <Users className="w-3.5 h-3.5 text-indigo-600" />
+                {employees.length} Staff Profiles
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              Configure granular module access (Invoices, Leads, Tracker, Jobs) per employee
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          {/* Action Buttons */}
+          <div className="flex items-center gap-2.5 flex-wrap">
             <button
               onClick={() => fetchEmployees(true)}
               disabled={refreshing || loading}
-              style={{ ...s.btnSecondary, display: "flex", alignItems: "center", gap: "8px" }}
-              title="Refresh Employees"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              title="Sync latest staff roster"
             >
-              <RefreshCw
-                className={refreshing ? "animate-spin" : ""}
-                style={{ width: "15px", height: "15px", color: refreshing ? "#6366f1" : "inherit" }}
-              />
-              <span>{refreshing ? "Syncing..." : "Refresh"}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
+              <span>{refreshing ? "Syncing..." : "Sync"}</span>
             </button>
 
-            <button
-              onClick={() => setIsAddModalOpen(true)}
-              style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "8px" }}
-            >
-              <UserPlus style={{ width: "15px", height: "15px" }} />
-              <span>+ Add New Employee</span>
-            </button>
+            {canManageEmployees && (
+              <button
+                onClick={() => setIsAddModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
+              >
+                <UserPlus className="w-3.5 h-3.5" />
+                <span>+ Add Employee</span>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* ── KPI Stat Cards ── */}
-        <div style={s.statsRow}>
-          {[
-            { label: "Total Staff", value: stats.total, color: "#6366f1" },
-            { label: "Active Accounts", value: stats.active, color: "#10b981" },
-            { label: "Super Admins", value: stats.superCount, color: "#8b5cf6" },
-            { label: "Permitted to Invoices", value: stats.invoiceAccess, color: "#f59e0b" },
-          ].map((stat) => (
-            <div key={stat.label} style={s.statCard}>
-              <div style={{ fontSize: "28px", fontWeight: 800, color: stat.color }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px", fontWeight: 600 }}>
-                {stat.label}
+        {/* 4 KPI Metric Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Staff</span>
+              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <Users className="w-4 h-4" />
               </div>
             </div>
-          ))}
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">{stats.total}</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">Registered staff profiles</div>
+          </div>
+
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Active Logins</span>
+              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <UserCheck className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl font-black text-emerald-600">{stats.active}</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">Authorized for sign-in</div>
+          </div>
+
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Super Admins</span>
+              <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl font-black text-purple-600">{stats.superCount}</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">Unrestricted tier</div>
+          </div>
+
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Invoice Access</span>
+              <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                <FileText className="w-4 h-4" />
+              </div>
+            </div>
+            <div className="text-2xl sm:text-3xl font-black text-amber-600">{stats.invoiceAccess}</div>
+            <div className="text-[11px] text-slate-500 font-medium mt-1">Financial billing allowed</div>
+          </div>
         </div>
 
-        {/* ── Search & Filter Bar ── */}
-        <div style={{ ...s.card, padding: "16px 20px", marginBottom: "20px" }}>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "14px",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+        {/* Search & Filter Bar */}
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 mb-4">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 justify-between">
             {/* Search */}
-            <div style={{ position: "relative", flex: 1, minWidth: "260px" }}>
-              <Search
-                style={{
-                  position: "absolute",
-                  left: "14px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "16px",
-                  height: "16px",
-                  color: "#9ca3af",
-                  pointerEvents: "none",
-                }}
-              />
+            <div className="relative flex-1 min-w-[260px]">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search staff by name, email, or phone..."
-                style={{ ...s.input, paddingLeft: "40px", fontSize: "13px", width: "100%" }}
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  style={{
-                    position: "absolute",
-                    right: "12px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background: "transparent",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "#9ca3af",
-                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  <X style={{ width: "15px", height: "15px" }} />
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
 
             {/* Role Filter Chips */}
-            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
               {[
                 { id: "all", label: "All Staff" },
                 { id: "superadmin", label: "Super Admin" },
@@ -554,18 +548,11 @@ export default function AdminEmployeesPage() {
                 <button
                   key={tab.id}
                   onClick={() => setRoleFilter(tab.id)}
-                  style={{
-                    padding: "7px 14px",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    border: "1px solid",
-                    transition: "all 0.15s",
-                    background: roleFilter === tab.id ? "#6366f1" : "#f8fafc",
-                    color: roleFilter === tab.id ? "white" : "#475569",
-                    borderColor: roleFilter === tab.id ? "#6366f1" : "#e2e8f0",
-                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex-shrink-0 ${
+                    roleFilter === tab.id
+                      ? "bg-indigo-600 text-white shadow-sm shadow-indigo-500/20"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200/60"
+                  }`}
                 >
                   {tab.label}
                 </button>
@@ -574,50 +561,50 @@ export default function AdminEmployeesPage() {
           </div>
         </div>
 
-        {/* ── Employees Table ── */}
-        <div style={s.card}>
+        {/* Staff Table */}
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           {loading ? (
-            <div style={{ padding: "48px", textAlign: "center", color: "#6b7280" }}>
-              <RefreshCw
-                className="animate-spin"
-                style={{ width: "24px", height: "24px", margin: "0 auto 12px", color: "#6366f1" }}
-              />
-              Loading employees &amp; permissions…
+            <div className="p-12 text-center text-slate-500">
+              <div className="w-10 h-10 border-4 border-indigo-500/20 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-sm font-semibold text-slate-700">Loading staff accounts &amp; permissions...</p>
             </div>
           ) : filteredEmployees.length === 0 ? (
-            <div style={{ padding: "56px 20px", textAlign: "center" }}>
-              <div style={{ fontSize: "44px", marginBottom: "12px" }}>👥</div>
-              <div style={{ color: "#374151", fontWeight: 700, fontSize: "16px" }}>
-                No Employees Found
+            <div className="p-12 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8" />
               </div>
-              <p
-                style={{
-                  color: "#9ca3af",
-                  fontSize: "13px",
-                  marginTop: "4px",
-                  maxWidth: "460px",
-                  margin: "4px auto 0",
-                }}
-              >
+              <h3 className="text-base font-bold text-slate-800">No Staff Accounts Found</h3>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1 mb-5">
                 {search || roleFilter !== "all"
-                  ? "No staff matched your active search query."
-                  : "Click '+ Add New Employee' above to create a staff account with specific permissions."}
+                  ? "No employees matched your current search filters."
+                  : "Click '+ Add Employee' to create an account with customized permissions."}
               </p>
+              {(search || roleFilter !== "all") && (
+                <button
+                  onClick={() => {
+                    setSearch("");
+                    setRoleFilter("all");
+                  }}
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
+                >
+                  Clear Filters
+                </button>
+              )}
             </div>
           ) : (
-            <div style={{ overflowX: "auto" }}>
-              <table style={s.table}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
                 <thead>
-                  <tr>
-                    <th style={{ ...s.th, width: "40px", textAlign: "center" }}>#</th>
-                    <th style={s.th}>Employee Details</th>
-                    <th style={s.th}>Role</th>
-                    <th style={s.th}>Allowed Sections (RBAC)</th>
-                    <th style={s.th}>Status</th>
-                    <th style={{ ...s.th, textAlign: "right" }}>Actions</th>
+                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <th className="py-3.5 px-4 w-12 text-center">#</th>
+                    <th className="py-3.5 px-4">Employee Details</th>
+                    <th className="py-3.5 px-4">Role</th>
+                    <th className="py-3.5 px-4">Allowed Sections (RBAC)</th>
+                    <th className="py-3.5 px-4 text-center">Status</th>
+                    <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="divide-y divide-slate-100">
                   {filteredEmployees.map((emp, idx) => {
                     const roleBadge = getRoleBadge(emp.role);
                     const isSelf = currentUser.id === emp.id;
@@ -632,263 +619,171 @@ export default function AdminEmployeesPage() {
                     const hasEmpMgmt = isSuper || p.employees?.view;
 
                     return (
-                      <tr
-                        key={emp.id}
-                        style={{
-                          background: idx % 2 === 0 ? "white" : "#f9fafb",
-                          transition: "background 0.15s",
-                        }}
-                      >
-                        <td
-                          style={{
-                            ...s.td,
-                            textAlign: "center",
-                            color: "#9ca3af",
-                            fontWeight: 700,
-                            fontSize: "12px",
-                          }}
-                        >
+                      <tr key={emp.id} className="hover:bg-slate-50/70 transition-colors">
+                        {/* Index */}
+                        <td className="py-3.5 px-4 text-center font-bold text-xs text-slate-400">
                           {idx + 1}
                         </td>
 
                         {/* Name & Contact */}
-                        <td style={s.td}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ fontWeight: 700, color: "#0f172a", fontSize: "14px" }}>
-                              {emp.name}
-                            </span>
-                            {isSelf && (
-                              <span
-                                style={{
-                                  background: "#f1f5f9",
-                                  color: "#475569",
-                                  borderRadius: "6px",
-                                  padding: "1px 6px",
-                                  fontSize: "10px",
-                                  fontWeight: 700,
-                                }}
-                              >
-                                You
-                              </span>
-                            )}
-                          </div>
-                          <div style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
-                            {emp.email}
-                          </div>
-                          {emp.phone && (
-                            <div style={{ fontSize: "11px", color: "#94a3b8", marginTop: "2px" }}>
-                              📞 {emp.phone}
+                        <td className="py-3.5 px-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center flex-shrink-0 text-sm border border-indigo-100">
+                              {emp.name.charAt(0).toUpperCase()}
                             </div>
-                          )}
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-slate-900">{emp.name}</span>
+                                {isSelf && (
+                                  <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md">
+                                    You
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-xs text-slate-500">{emp.email}</div>
+                              {emp.phone && (
+                                <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
+                                  <Phone className="w-3 h-3" />
+                                  <span>{emp.phone}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </td>
 
                         {/* Role Badge */}
-                        <td style={s.td}>
+                        <td className="py-3.5 px-4">
                           <span
-                            style={{
-                              background: roleBadge.bg,
-                              color: roleBadge.color,
-                              border: `1px solid ${roleBadge.border}`,
-                              borderRadius: "6px",
-                              padding: "4px 10px",
-                              fontSize: "12px",
-                              fontWeight: 700,
-                              display: "inline-block",
-                            }}
+                            className={`px-2.5 py-1 rounded-lg text-xs font-bold border inline-block ${roleBadge.bg}`}
                           >
                             {roleBadge.label}
                           </span>
                         </td>
 
                         {/* Allowed Sections */}
-                        <td style={s.td}>
-                          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                        <td className="py-3.5 px-4">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             {/* Tracker */}
                             <span
-                              style={{
-                                padding: "2px 8px",
-                                borderRadius: "6px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                background: hasApps ? "#fdf4ff" : "#fef2f2",
-                                color: hasApps ? "#86198f" : "#b91c1c",
-                                border: `1px solid ${hasApps ? "#f5d0fe" : "#fecaca"}`,
-                              }}
+                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                hasApps
+                                  ? "bg-purple-50 text-purple-700 border-purple-200"
+                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                              }`}
                             >
-                              🧭 Tracker: {hasApps ? "Permitted" : "Blocked"}
+                              <Compass className="w-3 h-3" />
+                              <span>Tracker: {hasApps ? "Yes" : "No"}</span>
                             </span>
 
                             {/* Invoices */}
                             <span
-                              style={{
-                                padding: "2px 8px",
-                                borderRadius: "6px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                background: hasInvoices ? "#ecfdf5" : "#fef2f2",
-                                color: hasInvoices ? "#047857" : "#b91c1c",
-                                border: `1px solid ${hasInvoices ? "#a7f3d0" : "#fecaca"}`,
-                              }}
+                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                hasInvoices
+                                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                              }`}
                             >
-                              📄 Invoices: {hasInvoices ? (isSuper ? "Full Access" : "Permitted") : "Blocked"}
+                              <FileText className="w-3 h-3" />
+                              <span>Invoices: {hasInvoices ? "Yes" : "No"}</span>
                             </span>
 
                             {/* Inquiries */}
                             <span
-                              style={{
-                                padding: "2px 8px",
-                                borderRadius: "6px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                background: hasInquiries ? "#eff6ff" : "#fef2f2",
-                                color: hasInquiries ? "#1d4ed8" : "#b91c1c",
-                                border: `1px solid ${hasInquiries ? "#bfdbfe" : "#fecaca"}`,
-                              }}
+                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                hasInquiries
+                                  ? "bg-blue-50 text-blue-700 border-blue-200"
+                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                              }`}
                             >
-                              💬 Leads: {hasInquiries ? "Permitted" : "Blocked"}
+                              <MessageSquare className="w-3 h-3" />
+                              <span>Leads: {hasInquiries ? "Yes" : "No"}</span>
                             </span>
 
                             {/* Jobs */}
                             <span
-                              style={{
-                                padding: "2px 8px",
-                                borderRadius: "6px",
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                background: hasJobs ? "#f5f3ff" : "#fef2f2",
-                                color: hasJobs ? "#6d28d9" : "#b91c1c",
-                                border: `1px solid ${hasJobs ? "#ddd6fe" : "#fecaca"}`,
-                              }}
+                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                hasJobs
+                                  ? "bg-indigo-50 text-indigo-700 border-indigo-200"
+                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                              }`}
                             >
-                              💼 Jobs: {hasJobs ? "Permitted" : "Blocked"}
+                              <Briefcase className="w-3 h-3" />
+                              <span>Jobs: {hasJobs ? "Yes" : "No"}</span>
                             </span>
 
-                            {/* Employees */}
+                            {/* Staff admin */}
                             {hasEmpMgmt && (
-                              <span
-                                style={{
-                                  padding: "2px 8px",
-                                  borderRadius: "6px",
-                                  fontSize: "11px",
-                                  fontWeight: 700,
-                                  background: "#fef3c7",
-                                  color: "#92400e",
-                                  border: "1px solid #fde68a",
-                                }}
-                              >
-                                👥 Staff Admin
+                              <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold border bg-amber-50 text-amber-800 border-amber-200 flex items-center gap-1">
+                                <Users className="w-3 h-3" />
+                                <span>Staff Admin</span>
                               </span>
                             )}
                           </div>
                         </td>
 
                         {/* Status Toggle */}
-                        <td style={s.td}>
+                        <td className="py-3.5 px-4 text-center">
                           <button
                             onClick={() => !isSuper && handleToggleStatus(emp)}
-                            disabled={isSuper}
-                            style={{
-                              border: "none",
-                              background: emp.status === "active" ? "#ecfdf5" : "#f1f5f9",
-                              color: emp.status === "active" ? "#059669" : "#64748b",
-                              padding: "4px 10px",
-                              borderRadius: "8px",
-                              fontSize: "12px",
-                              fontWeight: 700,
-                              cursor: isSuper ? "default" : "pointer",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: "4px",
-                            }}
+                            disabled={isSuper || !canManageEmployees}
+                            className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 transition-all ${
+                              emp.status === "active"
+                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                : "bg-slate-100 text-slate-500 border border-slate-200"
+                            } ${isSuper || !canManageEmployees ? "cursor-default" : "cursor-pointer hover:opacity-80"}`}
                           >
                             <span
-                              style={{
-                                width: "6px",
-                                height: "6px",
-                                borderRadius: "50%",
-                                background: emp.status === "active" ? "#10b981" : "#94a3b8",
-                              }}
+                              className={`w-2 h-2 rounded-full ${
+                                emp.status === "active" ? "bg-emerald-500" : "bg-slate-400"
+                              }`}
                             />
-                            {emp.status === "active" ? "Active" : "Inactive"}
+                            <span>{emp.status === "active" ? "Active" : "Inactive"}</span>
                           </button>
                         </td>
 
                         {/* Actions */}
-                        <td style={{ ...s.td, textAlign: "right" }}>
-                          <div style={{ display: "flex", gap: "6px", justifyContent: "flex-end" }}>
-                            {/* Edit Permissions */}
-                            <button
-                              onClick={() => {
-                                setEditingEmployee(emp);
-                                setEditPermissionsForm(
-                                  JSON.parse(
-                                    JSON.stringify(
-                                      emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff
-                                    )
-                                  )
-                                );
-                              }}
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "white",
-                                border: "1.5px solid #e2e8f0",
-                                borderRadius: "8px",
-                                padding: "6px 10px",
-                                fontSize: "12px",
-                                fontWeight: 700,
-                                color: "#475569",
-                                cursor: "pointer",
-                              }}
-                              title="Edit Permissions"
-                            >
-                              <Shield style={{ width: "13px", height: "13px", color: "#6366f1" }} />
-                              <span>Permissions</span>
-                            </button>
+                        <td className="py-3.5 px-4 text-right">
+                          <div className="flex items-center justify-end gap-1.5">
+                            {canManageEmployees && (
+                              <>
+                                <button
+                                  onClick={() => {
+                                    setEditingEmployee(emp);
+                                    setEditPermissionsForm(
+                                      JSON.parse(
+                                        JSON.stringify(
+                                          emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff
+                                        )
+                                      )
+                                    );
+                                  }}
+                                  className="px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
+                                  title="Configure Granular Permissions"
+                                >
+                                  <Shield className="w-3.5 h-3.5 text-indigo-600" />
+                                  <span>Permissions</span>
+                                </button>
 
-                            {/* Reset Password */}
-                            <button
-                              onClick={() => {
-                                setResetTargetEmployee(emp);
-                                setNewPassword("");
-                              }}
-                              style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "4px",
-                                background: "white",
-                                border: "1.5px solid #e2e8f0",
-                                borderRadius: "8px",
-                                padding: "6px 10px",
-                                fontSize: "12px",
-                                fontWeight: 700,
-                                color: "#475569",
-                                cursor: "pointer",
-                              }}
-                              title="Reset Password"
-                            >
-                              <Key style={{ width: "13px", height: "13px", color: "#f59e0b" }} />
-                            </button>
+                                <button
+                                  onClick={() => {
+                                    setResetTargetEmployee(emp);
+                                    setNewPassword("");
+                                  }}
+                                  className="p-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl transition-all shadow-sm"
+                                  title="Reset Password"
+                                >
+                                  <Key className="w-3.5 h-3.5 text-amber-500" />
+                                </button>
+                              </>
+                            )}
 
-                            {/* Delete Employee */}
-                            {!isSuper && !isSelf && (
+                            {!isSuper && !isSelf && canManageEmployees && (
                               <button
                                 onClick={() => setDeletingEmployee(emp)}
-                                style={{
-                                  display: "inline-flex",
-                                  alignItems: "center",
-                                  background: "#fef2f2",
-                                  border: "1px solid #fecaca",
-                                  borderRadius: "8px",
-                                  padding: "6px 8px",
-                                  fontSize: "12px",
-                                  color: "#dc2626",
-                                  cursor: "pointer",
-                                }}
-                                title="Delete Employee"
+                                className="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl transition-all shadow-sm"
+                                title="Delete Employee Account"
                               >
-                                <Trash2 style={{ width: "13px", height: "13px" }} />
+                                <Trash2 className="w-3.5 h-3.5" />
                               </button>
                             )}
                           </div>
@@ -901,192 +796,136 @@ export default function AdminEmployeesPage() {
             </div>
           )}
         </div>
-      </main>
 
-      {/* ── MODAL: ADD NEW EMPLOYEE ── */}
-      {isAddModalOpen && (
-        <div style={s.modalOverlay}>
-          <div style={{ ...s.modalContent, maxWidth: "620px" }}>
-            <div style={s.modalHeader}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#0f172a" }}>
-                  Add New Staff / Employee
-                </h3>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Create credentials and choose which sections this staff member can access.
-                </p>
-              </div>
-              <button onClick={() => setIsAddModalOpen(false)} style={s.closeBtn}>
-                <X style={{ width: "18px", height: "18px" }} />
-              </button>
-            </div>
-
-            <form onSubmit={handleCreateEmployee} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                <div>
-                  <label style={s.label}>Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Priya Sharma"
-                    value={addForm.name}
-                    onChange={(e) => setAddForm((d) => ({ ...d, name: e.target.value }))}
-                    style={s.input}
-                  />
+        {/* ── MODAL: ADD NEW EMPLOYEE ── */}
+        {isAddModalOpen && (
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                    <UserPlus className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black text-slate-900">Add New Staff / Employee</h3>
+                    <p className="text-xs text-slate-500">
+                      Create credentials and specify exact module permissions
+                    </p>
+                  </div>
                 </div>
-
-                <div>
-                  <label style={s.label}>Email Address (Login ID) *</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="priya@workwisevisa.com"
-                    value={addForm.email}
-                    onChange={(e) => setAddForm((d) => ({ ...d, email: e.target.value }))}
-                    style={s.input}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                <div>
-                  <label style={s.label}>Initial Password *</label>
-                  <input
-                    type="password"
-                    required
-                    placeholder="Minimum 6 characters"
-                    value={addForm.password}
-                    onChange={(e) => setAddForm((d) => ({ ...d, password: e.target.value }))}
-                    style={s.input}
-                  />
-                </div>
-
-                <div>
-                  <label style={s.label}>Phone Number (Optional)</label>
-                  <input
-                    type="tel"
-                    inputMode="numeric"
-                    placeholder="e.g. 9876543210 or +919876543210"
-                    value={addForm.phone}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/[^0-9+]/g, "");
-                      setAddForm((d) => ({ ...d, phone: val }));
-                    }}
-                    style={s.input}
-                  />
-                </div>
-              </div>
-
-              {/* Role Preset Selector */}
-              <div>
-                <label style={s.label}>Role Preset (Auto-sets Recommended Permissions)</label>
-                <select
-                  value={addForm.role}
-                  onChange={(e) => handleRolePresetChange(e.target.value as AdminRole)}
-                  style={{ ...s.input, width: "100%", fontWeight: 700 }}
+                <button
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-xl transition-colors"
                 >
-                  <option value="counselor">Visa Counselor / Telecaller (Inquiries Only · Invoices Blocked)</option>
-                  <option value="accountant">Accountant / Billing (Invoices Full Access · Leads Blocked)</option>
-                  <option value="manager">Branch Manager (Invoices &amp; Leads Access)</option>
-                  <option value="staff">Custom Staff Member (Custom Checkboxes)</option>
-                  <option value="superadmin">Super Administrator (Unrestricted Full Access)</option>
-                </select>
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Granular Permission Matrix */}
-              <div style={{ border: "1px solid #e2e8f0", borderRadius: "12px", padding: "14px", background: "#f8fafc" }}>
-                <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e293b", marginBottom: "10px", textTransform: "uppercase" }}>
-                  Granular Section Permissions
+              <form onSubmit={handleCreateEmployee} className="space-y-4">
+                {/* 2-col inputs */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Priya Sharma"
+                      value={addForm.name}
+                      onChange={(e) => setAddForm((d) => ({ ...d, name: e.target.value }))}
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Email Address (Login ID) <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="priya@workwisevisa.com"
+                      value={addForm.email}
+                      onChange={(e) => setAddForm((d) => ({ ...d, email: e.target.value }))}
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                    />
+                  </div>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  {/* Invoices Group */}
-                  <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
-                      <FileText style={{ width: "14px", height: "14px", color: "#6366f1" }} />
-                      Invoices Management
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "8px" }}>
-                      {[
-                        { key: "view", label: "View Invoices" },
-                        { key: "create", label: "Create Invoice" },
-                        { key: "edit", label: "Edit Invoice" },
-                        { key: "delete", label: "Delete Invoice" },
-                        { key: "print", label: "Print A4" },
-                      ].map((item) => (
-                        <label key={item.key} style={s.checkboxLabel}>
-                          <input
-                            type="checkbox"
-                            checked={Boolean(addForm.permissions.invoices?.[item.key as keyof typeof addForm.permissions.invoices])}
-                            onChange={(e) =>
-                              setAddForm((d) => ({
-                                ...d,
-                                permissions: {
-                                  ...d.permissions,
-                                  invoices: {
-                                    ...d.permissions.invoices,
-                                    [item.key]: e.target.checked,
-                                  },
-                                },
-                              }))
-                            }
-                          />
-                          <span>{item.label}</span>
-                        </label>
-                      ))}
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Initial Password <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      required
+                      placeholder="Minimum 6 characters"
+                      value={addForm.password}
+                      onChange={(e) => setAddForm((d) => ({ ...d, password: e.target.value }))}
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                    />
                   </div>
 
-                  {/* Inquiries Group */}
-                  <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
-                      <MessageSquare style={{ width: "14px", height: "14px", color: "#10b981" }} />
-                      Consultation Leads / Inquiries
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "8px" }}>
-                      {[
-                        { key: "view", label: "View Leads" },
-                        { key: "edit", label: "Update Status & Notes" },
-                        { key: "delete", label: "Delete Leads" },
-                        { key: "export", label: "Export CSV" },
-                      ].map((item) => (
-                        <label key={item.key} style={s.checkboxLabel}>
-                          <input
-                            type="checkbox"
-                            checked={Boolean(addForm.permissions.inquiries?.[item.key as keyof typeof addForm.permissions.inquiries])}
-                            onChange={(e) =>
-                              setAddForm((d) => ({
-                                ...d,
-                                permissions: {
-                                  ...d.permissions,
-                                  inquiries: {
-                                    ...d.permissions.inquiries,
-                                    [item.key]: e.target.checked,
-                                  },
-                                },
-                              }))
-                            }
-                          />
-                          <span>{item.label}</span>
-                        </label>
-                      ))}
-                    </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      type="tel"
+                      inputMode="numeric"
+                      placeholder="e.g. 9876543210"
+                      value={addForm.phone}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9+]/g, "");
+                        setAddForm((d) => ({ ...d, phone: val }));
+                      }}
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Role Preset */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    Role Preset (Auto-configures Recommended Defaults)
+                  </label>
+                  <select
+                    value={addForm.role}
+                    onChange={(e) => handleRolePresetChange(e.target.value as AdminRole)}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                  >
+                    <option value="counselor">Visa Counselor (Inquiries &amp; Tracker Allowed · Invoices Blocked)</option>
+                    <option value="accountant">Accountant / Billing (Invoices Full Access · Leads Blocked)</option>
+                    <option value="manager">Branch Manager (Invoices, Leads &amp; Tracker Access)</option>
+                    <option value="staff">Custom Staff Member (Select Below)</option>
+                    <option value="superadmin">Super Administrator (Unrestricted Full Access)</option>
+                  </select>
+                </div>
+
+                {/* Granular Permission Matrix */}
+                <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-200 space-y-3">
+                  <div className="text-xs font-black text-slate-900 uppercase tracking-wider">
+                    Granular Module Access
                   </div>
 
-                  {/* Application Tracker Group */}
-                  <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
-                      <Compass style={{ width: "14px", height: "14px", color: "#8b5cf6" }} />
-                      Application Tracker (Milestones &amp; Visas)
+                  {/* Application Tracker */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-xs font-bold text-purple-900 flex items-center gap-1.5">
+                        <Compass className="w-4 h-4 text-purple-600" />
+                        <span>Application Tracker &amp; Visas</span>
+                      </div>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "8px" }}>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                       {[
                         { key: "view", label: "View Tracker" },
-                        { key: "create", label: "Enroll Candidate" },
-                        { key: "edit", label: "Update Milestones" },
+                        { key: "create", label: "Enroll Cases" },
+                        { key: "edit", label: "Edit Milestones" },
                         { key: "delete", label: "Delete Case" },
                       ].map((item) => (
-                        <label key={item.key} style={s.checkboxLabel}>
+                        <label key={item.key} className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={Boolean(addForm.permissions.applications?.[item.key as keyof typeof addForm.permissions.applications])}
@@ -1102,27 +941,109 @@ export default function AdminEmployeesPage() {
                                 },
                               }))
                             }
+                            className="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500"
                           />
-                          <span>{item.label}</span>
+                          <span className="text-slate-700">{item.label}</span>
                         </label>
                       ))}
                     </div>
                   </div>
 
-                  {/* Jobs Group */}
-                  <div style={{ background: "white", padding: "10px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
-                      <Briefcase style={{ width: "14px", height: "14px", color: "#3b82f6" }} />
-                      Job Listings
+                  {/* Invoices */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
+                        <FileText className="w-4 h-4 text-emerald-600" />
+                        <span>Invoices &amp; Billing</span>
+                      </div>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "8px" }}>
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                      {[
+                        { key: "view", label: "View Invoices" },
+                        { key: "create", label: "Create Invoice" },
+                        { key: "edit", label: "Edit Invoice" },
+                        { key: "delete", label: "Delete" },
+                        { key: "print", label: "Print A4" },
+                      ].map((item) => (
+                        <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={Boolean(addForm.permissions.invoices?.[item.key as keyof typeof addForm.permissions.invoices])}
+                            onChange={(e) =>
+                              setAddForm((d) => ({
+                                ...d,
+                                permissions: {
+                                  ...d.permissions,
+                                  invoices: {
+                                    ...d.permissions.invoices,
+                                    [item.key]: e.target.checked,
+                                  },
+                                },
+                              }))
+                            }
+                            className="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500"
+                          />
+                          <span className="text-slate-700">{item.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Consultation Leads */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-xs font-bold text-blue-900 flex items-center gap-1.5">
+                        <MessageSquare className="w-4 h-4 text-blue-600" />
+                        <span>Consultation Leads / Inquiries</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                      {[
+                        { key: "view", label: "View Leads" },
+                        { key: "edit", label: "Update Status" },
+                        { key: "delete", label: "Delete Leads" },
+                        { key: "export", label: "Export CSV" },
+                      ].map((item) => (
+                        <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={Boolean(addForm.permissions.inquiries?.[item.key as keyof typeof addForm.permissions.inquiries])}
+                            onChange={(e) =>
+                              setAddForm((d) => ({
+                                ...d,
+                                permissions: {
+                                  ...d.permissions,
+                                  inquiries: {
+                                    ...d.permissions.inquiries,
+                                    [item.key]: e.target.checked,
+                                  },
+                                },
+                              }))
+                            }
+                            className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
+                          />
+                          <span className="text-slate-700">{item.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Job Listings */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
+                        <Briefcase className="w-4 h-4 text-indigo-600" />
+                        <span>Job Listings &amp; Demands</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                       {[
                         { key: "view", label: "View Jobs" },
-                        { key: "create", label: "Post Job" },
-                        { key: "edit", label: "Edit Job" },
-                        { key: "delete", label: "Delete Job" },
+                        { key: "create", label: "Post Jobs" },
+                        { key: "edit", label: "Edit Jobs" },
+                        { key: "delete", label: "Delete Jobs" },
                       ].map((item) => (
-                        <label key={item.key} style={s.checkboxLabel}>
+                        <label key={item.key} className="flex items-center gap-2 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={Boolean(addForm.permissions.jobs?.[item.key as keyof typeof addForm.permissions.jobs])}
@@ -1138,660 +1059,379 @@ export default function AdminEmployeesPage() {
                                 },
                               }))
                             }
+                            className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500"
                           />
-                          <span>{item.label}</span>
+                          <span className="text-slate-700">{item.label}</span>
                         </label>
                       ))}
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Submit Buttons */}
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "8px" }}>
-                <button
-                  type="button"
-                  onClick={() => setIsAddModalOpen(false)}
-                  style={s.btnSecondary}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={submittingAdd}
-                  style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "6px" }}
-                >
-                  <UserPlus style={{ width: "15px", height: "15px" }} />
-                  <span>{submittingAdd ? "Creating..." : "Save Employee Account"}</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ── MODAL: EDIT PERMISSIONS ── */}
-      {editingEmployee && editPermissionsForm && (
-        <div style={s.modalOverlay}>
-          <div style={{ ...s.modalContent, maxWidth: "580px" }}>
-            <div style={s.modalHeader}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: "17px", fontWeight: 800, color: "#0f172a" }}>
-                  Edit Permissions: {editingEmployee.name}
-                </h3>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Role: <strong>{editingEmployee.role.toUpperCase()}</strong> ({editingEmployee.email})
-                </p>
-              </div>
-              <button onClick={() => setEditingEmployee(null)} style={s.closeBtn}>
-                <X style={{ width: "18px", height: "18px" }} />
-              </button>
+                {/* Form Actions */}
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+                  <button
+                    type="button"
+                    onClick={() => setIsAddModalOpen(false)}
+                    className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submittingAdd}
+                    className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/20 flex items-center gap-2"
+                  >
+                    {submittingAdd ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <span>Creating...</span>
+                      </>
+                    ) : (
+                      <>
+                        <UserPlus className="w-4 h-4" />
+                        <span>Save Employee Account</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
+        )}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              {/* Invoices Group */}
-              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <FileText style={{ width: "15px", height: "15px", color: "#6366f1" }} />
-                  Invoices Section
+        {/* ── MODAL: EDIT PERMISSIONS ── */}
+        {editingEmployee && editPermissionsForm && (
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                    <Shield className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black text-slate-900">
+                      Edit Permissions: {editingEmployee.name}
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      Role: <strong className="uppercase">{editingEmployee.role}</strong> ({editingEmployee.email})
+                    </p>
+                  </div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "8px" }}>
-                  {[
-                    { key: "view", label: "View Invoices" },
-                    { key: "create", label: "Create Invoice" },
-                    { key: "edit", label: "Edit Invoice" },
-                    { key: "delete", label: "Delete Invoice" },
-                    { key: "print", label: "Print / PDF" },
-                  ].map((item) => (
-                    <label key={item.key} style={s.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={Boolean(editPermissionsForm.invoices?.[item.key as keyof typeof editPermissionsForm.invoices])}
-                        onChange={(e) =>
-                          setEditPermissionsForm((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  invoices: {
-                                    ...prev.invoices,
-                                    [item.key]: e.target.checked,
-                                  },
-                                }
-                              : null
-                          )
-                        }
-                      />
-                      <span>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Inquiries Group */}
-              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <MessageSquare style={{ width: "15px", height: "15px", color: "#10b981" }} />
-                  Consultation Leads / Inquiries
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "8px" }}>
-                  {[
-                    { key: "view", label: "View Leads" },
-                    { key: "edit", label: "Update Status & Notes" },
-                    { key: "delete", label: "Delete Leads" },
-                    { key: "export", label: "Export CSV" },
-                  ].map((item) => (
-                    <label key={item.key} style={s.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={Boolean(editPermissionsForm.inquiries?.[item.key as keyof typeof editPermissionsForm.inquiries])}
-                        onChange={(e) =>
-                          setEditPermissionsForm((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  inquiries: {
-                                    ...prev.inquiries,
-                                    [item.key]: e.target.checked,
-                                  },
-                                }
-                              : null
-                          )
-                        }
-                      />
-                      <span>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Application Tracker Group */}
-              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <Compass style={{ width: "15px", height: "15px", color: "#8b5cf6" }} />
-                  Application Tracker (Milestones &amp; Visas)
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "8px" }}>
-                  {[
-                    { key: "view", label: "View Tracker" },
-                    { key: "create", label: "Enroll Candidate" },
-                    { key: "edit", label: "Update Milestones" },
-                    { key: "delete", label: "Delete Case" },
-                  ].map((item) => (
-                    <label key={item.key} style={s.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={Boolean(editPermissionsForm.applications?.[item.key as keyof typeof editPermissionsForm.applications])}
-                        onChange={(e) =>
-                          setEditPermissionsForm((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  applications: {
-                                    ...(prev.applications || { view: false, create: false, edit: false, delete: false }),
-                                    [item.key]: e.target.checked,
-                                  },
-                                }
-                              : null
-                          )
-                        }
-                      />
-                      <span>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Jobs Group */}
-              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <Briefcase style={{ width: "15px", height: "15px", color: "#3b82f6" }} />
-                  Job Listings
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "8px" }}>
-                  {[
-                    { key: "view", label: "View Jobs" },
-                    { key: "create", label: "Post Job" },
-                    { key: "edit", label: "Edit Job" },
-                    { key: "delete", label: "Delete Job" },
-                  ].map((item) => (
-                    <label key={item.key} style={s.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={Boolean(editPermissionsForm.jobs?.[item.key as keyof typeof editPermissionsForm.jobs])}
-                        onChange={(e) =>
-                          setEditPermissionsForm((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  jobs: {
-                                    ...prev.jobs,
-                                    [item.key]: e.target.checked,
-                                  },
-                                }
-                              : null
-                          )
-                        }
-                      />
-                      <span>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Employees Access Group */}
-              <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "8px", display: "flex", alignItems: "center", gap: "6px" }}>
-                  <Users style={{ width: "15px", height: "15px", color: "#f59e0b" }} />
-                  Employees &amp; Staff Administration
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: "8px" }}>
-                  {[
-                    { key: "view", label: "View Staff List" },
-                    { key: "manage", label: "Manage Roles & Add Staff" },
-                  ].map((item) => (
-                    <label key={item.key} style={s.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={Boolean(editPermissionsForm.employees?.[item.key as keyof typeof editPermissionsForm.employees])}
-                        onChange={(e) =>
-                          setEditPermissionsForm((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  employees: {
-                                    ...prev.employees,
-                                    [item.key]: e.target.checked,
-                                  },
-                                }
-                              : null
-                          )
-                        }
-                      />
-                      <span>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "10px" }}>
                 <button
-                  type="button"
                   onClick={() => setEditingEmployee(null)}
-                  style={s.btnSecondary}
+                  className="p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-xl transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Application Tracker */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-purple-900 mb-2.5 flex items-center gap-1.5">
+                    <Compass className="w-4 h-4 text-purple-600" />
+                    <span>Application Tracker &amp; Visas</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Tracker" },
+                      { key: "create", label: "Enroll Cases" },
+                      { key: "edit", label: "Update Milestones" },
+                      { key: "delete", label: "Delete Case" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.applications?.[item.key as keyof typeof editPermissionsForm.applications])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    applications: {
+                                      ...(prev.applications || { view: false, create: false, edit: false, delete: false }),
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Invoices */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-emerald-900 mb-2.5 flex items-center gap-1.5">
+                    <FileText className="w-4 h-4 text-emerald-600" />
+                    <span>Invoices &amp; Billing</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Invoices" },
+                      { key: "create", label: "Create Invoice" },
+                      { key: "edit", label: "Edit Invoice" },
+                      { key: "delete", label: "Delete" },
+                      { key: "print", label: "Print A4" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.invoices?.[item.key as keyof typeof editPermissionsForm.invoices])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    invoices: {
+                                      ...prev.invoices,
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Consultation Leads */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-blue-900 mb-2.5 flex items-center gap-1.5">
+                    <MessageSquare className="w-4 h-4 text-blue-600" />
+                    <span>Consultation Leads / Inquiries</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Leads" },
+                      { key: "edit", label: "Update Status" },
+                      { key: "delete", label: "Delete Leads" },
+                      { key: "export", label: "Export CSV" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.inquiries?.[item.key as keyof typeof editPermissionsForm.inquiries])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    inquiries: {
+                                      ...prev.inquiries,
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Job Listings */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-indigo-900 mb-2.5 flex items-center gap-1.5">
+                    <Briefcase className="w-4 h-4 text-indigo-600" />
+                    <span>Job Listings &amp; Demands</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Jobs" },
+                      { key: "create", label: "Post Jobs" },
+                      { key: "edit", label: "Edit Jobs" },
+                      { key: "delete", label: "Delete Jobs" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.jobs?.[item.key as keyof typeof editPermissionsForm.jobs])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    jobs: {
+                                      ...prev.jobs,
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Staff Administration */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-amber-900 mb-2.5 flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-amber-600" />
+                    <span>Staff &amp; Role Administration</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Staff List" },
+                      { key: "manage", label: "Manage Roles & Add Staff" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.employees?.[item.key as keyof typeof editPermissionsForm.employees])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    employees: {
+                                      ...prev.employees,
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-amber-600 rounded border-slate-300 focus:ring-amber-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Modal Footer */}
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+                  <button
+                    type="button"
+                    onClick={() => setEditingEmployee(null)}
+                    className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSavePermissions}
+                    disabled={savingPermissions}
+                    className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/20 flex items-center gap-2"
+                  >
+                    {savingPermissions ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <span>Saving...</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Save Permissions</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── MODAL: RESET PASSWORD ── */}
+        {resetTargetEmployee && (
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-4">
+                <Key className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900 text-center mb-1">
+                Reset Staff Password
+              </h3>
+              <p className="text-xs text-slate-500 text-center mb-5">
+                Set a new login password for <strong>{resetTargetEmployee.name}</strong> ({resetTargetEmployee.email}).
+              </p>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    New Password
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Enter at least 6 characters"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                  />
+                </div>
+
+                <div className="flex items-center justify-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setResetTargetEmployee(null);
+                      setNewPassword("");
+                    }}
+                    className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleResetPassword}
+                    disabled={savingPassword || !newPassword}
+                    className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-amber-500/20 disabled:opacity-50"
+                  >
+                    {savingPassword ? "Updating..." : "Update Password"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── MODAL: DELETE CONFIRMATION ── */}
+        {deletingEmployee && (
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 text-center">
+              <div className="w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-4">
+                <Trash2 className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-black text-slate-900 mb-1">Delete Employee Profile?</h3>
+              <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+                Are you sure you want to remove <strong>{deletingEmployee.name}</strong> ({deletingEmployee.email})? Their system login access will be permanently revoked.
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={() => setDeletingEmployee(null)}
+                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
                 >
                   Cancel
                 </button>
                 <button
-                  type="button"
-                  onClick={handleSavePermissions}
-                  disabled={savingPermissions}
-                  style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "6px" }}
+                  onClick={handleDeleteEmployee}
+                  disabled={isDeleting}
+                  className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-red-500/20"
                 >
-                  <Shield style={{ width: "14px", height: "14px" }} />
-                  <span>{savingPermissions ? "Saving..." : "Save Permissions"}</span>
+                  {isDeleting ? "Deleting..." : "Yes, Delete Account"}
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* ── MODAL: RESET PASSWORD ── */}
-      {resetTargetEmployee && (
-        <div style={s.modalOverlay}>
-          <div style={{ ...s.modalContent, maxWidth: "420px" }}>
-            <div style={s.modalHeader}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
-                  Reset Password
-                </h3>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Staff: <strong>{resetTargetEmployee.name}</strong> ({resetTargetEmployee.email})
-                </p>
-              </div>
-              <button onClick={() => setResetTargetEmployee(null)} style={s.closeBtn}>
-                <X style={{ width: "18px", height: "18px" }} />
-              </button>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-              <div>
-                <label style={s.label}>New Password *</label>
-                <input
-                  type="password"
-                  placeholder="Enter minimum 6 characters"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  style={s.input}
-                />
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px", marginTop: "8px" }}>
-                <button
-                  type="button"
-                  onClick={() => setResetTargetEmployee(null)}
-                  style={s.btnSecondary}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={handleResetPassword}
-                  disabled={savingPassword}
-                  style={{ ...s.btnPrimary, display: "flex", alignItems: "center", gap: "6px" }}
-                >
-                  <Key style={{ width: "14px", height: "14px" }} />
-                  <span>{savingPassword ? "Updating..." : "Update Password"}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── MODAL: DELETE EMPLOYEE ── */}
-      {deletingEmployee && (
-        <div style={s.modalOverlay}>
-          <div style={{ ...s.modalContent, maxWidth: "400px", textAlign: "center" }}>
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                background: "#fef2f2",
-                color: "#dc2626",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 16px",
-              }}
-            >
-              <Trash2 style={{ width: "24px", height: "24px" }} />
-            </div>
-            <h3 style={{ margin: "0 0 8px", fontSize: "17px", fontWeight: 800, color: "#0f172a" }}>
-              Delete Employee Account?
-            </h3>
-            <p style={{ margin: 0, fontSize: "13px", color: "#64748b", lineHeight: "1.5" }}>
-              Are you sure you want to delete <strong>{deletingEmployee.name}</strong> ({deletingEmployee.email})? They will immediately lose all login access.
-            </p>
-
-            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "24px" }}>
-              <button
-                type="button"
-                onClick={() => setDeletingEmployee(null)}
-                style={s.btnSecondary}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleDeleteEmployee}
-                disabled={isDeleting}
-                style={s.btnDanger}
-              >
-                {isDeleting ? "Deleting..." : "Yes, Delete"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </main>
     </div>
   );
 }
-
-// ── Shared Theme Style System ──
-const s = {
-  layout: {
-    display: "flex",
-    minHeight: "100vh",
-    background: "#f8fafc",
-    fontFamily: "'Inter', sans-serif",
-  },
-  loadingContainer: {
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-    background: "#1e1b4b",
-  },
-  spinner: {
-    width: "40px",
-    height: "40px",
-    border: "4px solid rgba(255,255,255,0.2)",
-    borderTopColor: "#6366f1",
-    borderRadius: "50%",
-    animation: "spin 0.8s linear infinite",
-  },
-  sidebar: {
-    width: "260px",
-    flexShrink: 0,
-    background: "linear-gradient(180deg, #1e1b4b 0%, #312e81 100%)",
-    display: "flex",
-    flexDirection: "column" as const,
-    padding: "0",
-    position: "sticky" as const,
-    top: 0,
-    height: "100vh",
-    overflowY: "auto" as const,
-  },
-  sidebarLogo: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    padding: "28px 24px 24px",
-    borderBottom: "1px solid rgba(255,255,255,0.08)",
-    marginBottom: "8px",
-  },
-  sidebarIconWrap: {
-    width: "44px",
-    height: "44px",
-    borderRadius: "12px",
-    background: "rgba(255,255,255,0.95)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "4px",
-    flexShrink: 0,
-    boxShadow: "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,1)",
-  },
-  nav: {
-    flex: 1,
-    padding: "8px 12px",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "4px",
-  },
-  navItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "12px 16px",
-    borderRadius: "10px",
-    border: "none",
-    background: "transparent",
-    color: "rgba(255,255,255,0.6)",
-    fontSize: "14px",
-    fontWeight: 500,
-    cursor: "pointer",
-    textAlign: "left" as const,
-    transition: "all 0.15s",
-    width: "100%",
-  },
-  navItemActive: {
-    background: "rgba(255,255,255,0.12)",
-    color: "white",
-    fontWeight: 600,
-  },
-  badge: {
-    marginLeft: "auto",
-    background: "rgba(255,255,255,0.15)",
-    borderRadius: "999px",
-    padding: "2px 8px",
-    fontSize: "11px",
-    fontWeight: 700,
-    color: "rgba(255,255,255,0.8)",
-  },
-  sidebarFooter: {
-    padding: "16px 16px 24px",
-    borderTop: "1px solid rgba(255,255,255,0.08)",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: "12px",
-  },
-  adminInfo: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-  },
-  adminAvatar: {
-    width: "36px",
-    height: "36px",
-    borderRadius: "10px",
-    background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontWeight: 700,
-    fontSize: "15px",
-    color: "white",
-    flexShrink: 0,
-  },
-  logoutBtn: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    width: "100%",
-    padding: "10px 14px",
-    borderRadius: "10px",
-    border: "1px solid rgba(255,255,255,0.1)",
-    background: "transparent",
-    color: "rgba(255,255,255,0.5)",
-    fontSize: "13px",
-    cursor: "pointer",
-    fontWeight: 500,
-  },
-  main: {
-    flex: 1,
-    padding: "32px",
-    overflowY: "auto" as const,
-    maxHeight: "100vh",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: "28px",
-    flexWrap: "wrap" as const,
-    gap: "16px",
-  },
-  pageTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 800,
-    color: "#111827",
-    letterSpacing: "-0.3px",
-  },
-  pageSubtitle: {
-    margin: "4px 0 0",
-    fontSize: "14px",
-    color: "#6b7280",
-  },
-  statsRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-    gap: "16px",
-    marginBottom: "24px",
-  },
-  statCard: {
-    background: "white",
-    borderRadius: "16px",
-    padding: "20px 24px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.06)",
-    border: "1px solid #f1f5f9",
-  },
-  card: {
-    background: "white",
-    borderRadius: "16px",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
-    border: "1px solid #f1f5f9",
-    overflow: "hidden",
-  },
-  label: {
-    fontSize: "12px",
-    fontWeight: 700,
-    color: "#374151",
-    marginBottom: "6px",
-    display: "block",
-  },
-  input: {
-    border: "1.5px solid #e5e7eb",
-    borderRadius: "10px",
-    padding: "10px 14px",
-    fontSize: "14px",
-    color: "#111827",
-    background: "#fafafa",
-    transition: "all 0.15s",
-    outline: "none",
-    width: "100%",
-  },
-  checkboxLabel: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "12px",
-    fontWeight: 600,
-    color: "#374151",
-    cursor: "pointer",
-  },
-  btnPrimary: {
-    background: "linear-gradient(135deg, #6366f1, #4f46e5)",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(99,102,241,0.35)",
-    letterSpacing: "0.02em",
-  },
-  btnSecondary: {
-    background: "white",
-    color: "#374151",
-    border: "1.5px solid #e5e7eb",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 600,
-    cursor: "pointer",
-  },
-  btnDanger: {
-    background: "linear-gradient(135deg, #ef4444, #dc2626)",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    padding: "10px 18px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 4px 12px rgba(239,68,68,0.35)",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse" as const,
-    fontSize: "14px",
-  },
-  th: {
-    textAlign: "left" as const,
-    padding: "14px 16px",
-    fontSize: "12px",
-    fontWeight: 700,
-    color: "#6b7280",
-    letterSpacing: "0.05em",
-    textTransform: "uppercase" as const,
-    background: "#f9fafb",
-    borderBottom: "1px solid #f1f5f9",
-  },
-  td: {
-    padding: "14px 16px",
-    color: "#374151",
-    borderBottom: "1px solid #f9fafb",
-    verticalAlign: "middle" as const,
-  },
-  modalOverlay: {
-    position: "fixed" as const,
-    inset: 0,
-    background: "rgba(15, 23, 42, 0.6)",
-    backdropFilter: "blur(4px)",
-    zIndex: 9999,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "20px",
-  },
-  modalContent: {
-    background: "white",
-    borderRadius: "16px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
-    width: "100%",
-    padding: "24px",
-    border: "1px solid #e2e8f0",
-    maxHeight: "90vh",
-    overflowY: "auto" as const,
-  },
-  modalHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingBottom: "14px",
-    borderBottom: "1px solid #f1f5f9",
-    marginBottom: "16px",
-  },
-  closeBtn: {
-    background: "transparent",
-    border: "none",
-    cursor: "pointer",
-    color: "#94a3b8",
-  },
-};

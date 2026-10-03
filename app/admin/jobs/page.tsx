@@ -689,21 +689,23 @@ export default function AdminJobsPage() {
 
       {/* Main Content Area */}
       <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
-        {/* Top Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        {/* Header Bar */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-indigo-600 uppercase tracking-wider mb-1">
-              <Briefcase className="w-3.5 h-3.5" />
-              <span>Recruitment Operations</span>
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                {editingJob
+                  ? "Edit Job Demand"
+                  : activeTab === "new"
+                  ? "Create New Overseas Demand"
+                  : "Job Postings & Demands"}
+              </h1>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                <Briefcase className="w-3.5 h-3.5 text-indigo-600" />
+                {jobs.length} Active Listings
+              </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              {editingJob
-                ? "Edit Job Demand"
-                : activeTab === "new"
-                ? "Create New Overseas Demand"
-                : "Job Postings & Demands"}
-            </h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               {editingJob
                 ? `Modifying vacancy specifications for ${editingJob.title}`
                 : activeTab === "new"
@@ -719,11 +721,11 @@ export default function AdminJobsPage() {
                 <button
                   onClick={loadJobs}
                   disabled={loading}
-                  className="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm flex items-center gap-2"
-                  title="Refresh Job Listings"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+                  title="Sync latest job listings"
                 >
-                  <RefreshCw className={`w-4 h-4 text-slate-500 ${loading ? "animate-spin" : ""}`} />
-                  <span>Refresh</span>
+                  <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
+                  <span>{loading ? "Syncing..." : "Sync"}</span>
                 </button>
 
                 <div className="bg-slate-200/70 p-1 rounded-xl flex items-center">
@@ -754,10 +756,10 @@ export default function AdminJobsPage() {
                 {canCreateJob && (
                   <button
                     onClick={openNewForm}
-                    className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-indigo-500/25 flex items-center gap-2"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
                   >
-                    <Plus className="w-4 h-4" />
-                    <span>Post New Job</span>
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>+ Post New Job</span>
                   </button>
                 )}
               </>
@@ -766,7 +768,7 @@ export default function AdminJobsPage() {
             {activeTab === "new" && (
               <button
                 onClick={() => setActiveTab("jobs")}
-                className="px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-sm font-semibold transition-all shadow-sm"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all"
               >
                 ← Back to All Postings
               </button>
