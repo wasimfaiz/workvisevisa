@@ -1,15 +1,15 @@
 "use client";
 
 /* ================================================================
-   app/admin/applications/page.tsx — Candidate Application Tracker
-   Complete 7-Stage Work Visa Processing & Record Management:
-   1. Registration & Agreement
-   2. Document Audit & PCC Attestation
-   3. Employer Selection & Contract Signing
-   4. Work Permit / MOI Ministry Approval
-   5. Embassy Appointment & VFS Filing
-   6. Visa Stamping / Visa Approved
-   7. Flight Ticket & Deployment
+   app/admin/applications/page.tsx — Clean & Optimized Application Tracker
+   Comprehensive 7-Stage Work Visa Milestone Tracker featuring:
+   - 5-KPI executive overview cards
+   - Interactive 7-Stage workflow filter strip
+   - Multi-facet search & filtering (Country, Counselor, Stage, Status)
+   - Progress meter with 7 milestone step dots
+   - 1-Click WhatsApp milestone update with live tracking link (/track)
+   - Interactive Case Timeline Drawer with stage advance & audit logs
+   - Strictly numeric inputs & Granular RBAC permission enforcement
    ================================================================ */
 
 import { useState, useEffect, useCallback, useMemo } from "react";
@@ -39,7 +39,6 @@ import {
   ChevronRight,
   Eye,
   Award,
-  Building2,
   Plane,
   FileSearch,
   UserCheck,
@@ -49,17 +48,19 @@ import {
   AlertTriangle,
   History,
   Check,
-  HelpCircle,
   Save,
   Copy,
   ExternalLink,
-  Printer,
   Share2,
-  Download,
+  Sparkles,
+  ChevronDown,
+  Layers,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
 import { PROCESSING_STAGES, IStageHistory } from "@/lib/types/application";
 import { EmployeePermissions } from "@/lib/types/rbac";
+
+// ── Types ─────────────────────────────────────────────────────────
 
 export interface ApplicationItem {
   id: string;
@@ -184,10 +185,7 @@ export default function AdminApplicationsPage() {
   // Helper currency format
   const formatCurrency = (amount: number) => {
     const num = Number(amount) || 0;
-    if (num % 1 === 0) {
-      return num.toLocaleString("en-IN", { maximumFractionDigits: 0 });
-    }
-    return num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return num.toLocaleString("en-IN", { maximumFractionDigits: 0 });
   };
 
   // 1. Auth Check
@@ -348,43 +346,43 @@ export default function AdminApplicationsPage() {
     switch (status) {
       case "completed":
         return {
-          bg: "#ecfdf5",
-          color: "#047857",
-          border: "#a7f3d0",
-          label: "Completed / Deployed",
+          bg: "bg-emerald-50",
+          color: "text-emerald-700",
+          border: "border-emerald-200",
+          label: "Completed",
         };
       case "in_progress":
         return {
-          bg: "#eff6ff",
-          color: "#1d4ed8",
-          border: "#bfdbfe",
+          bg: "bg-blue-50",
+          color: "text-blue-700",
+          border: "border-blue-200",
           label: "In Progress",
         };
       case "on_hold":
         return {
-          bg: "#fffbeb",
-          color: "#b45309",
-          border: "#fde68a",
+          bg: "bg-amber-50",
+          color: "text-amber-700",
+          border: "border-amber-200",
           label: "On Hold",
         };
       case "rejected":
         return {
-          bg: "#fef2f2",
-          color: "#b91c1c",
-          border: "#fecaca",
-          label: "Rejected / Appeal",
+          bg: "bg-rose-50",
+          color: "text-rose-700",
+          border: "border-rose-200",
+          label: "Rejected",
         };
       default:
         return {
-          bg: "#f8fafc",
-          color: "#475569",
-          border: "#e2e8f0",
+          bg: "bg-slate-50",
+          color: "text-slate-700",
+          border: "border-slate-200",
           label: status,
         };
     }
   };
 
-  // 4. Open Case Details
+  // 4. Open Case Details Drawer
   const handleOpenCase = (app: ApplicationItem) => {
     setActiveCase(app);
     setSelectedNextStage(app.currentStage);
@@ -486,7 +484,7 @@ export default function AdminApplicationsPage() {
       flightDate: "",
       flightPnr: "",
       notes: "",
-      remarks: "Candidate registered for processing",
+      remarks: "Candidate enrolled for processing",
     });
     setShowAddModal(true);
   };
@@ -524,7 +522,8 @@ export default function AdminApplicationsPage() {
       showToast("Candidate full name is required (min 2 characters)", "error");
       return;
     }
-    if (!formData.phone.trim() || formData.phone.replace(/\D/g, "").length < 7) {
+    const cleanDigits = formData.phone.replace(/\D/g, "");
+    if (!formData.phone.trim() || cleanDigits.length < 7) {
       showToast("Valid phone / WhatsApp number is required (min 7 digits)", "error");
       return;
     }
@@ -607,7 +606,7 @@ export default function AdminApplicationsPage() {
             flightDate: formData.flightDate.trim(),
             flightPnr: formData.flightPnr.trim(),
             notes: formData.notes.trim(),
-            remarks: formData.remarks.trim() || "Candidate registered for visa processing",
+            remarks: formData.remarks.trim() || "Candidate enrolled for visa processing",
           }),
         });
 
@@ -616,7 +615,7 @@ export default function AdminApplicationsPage() {
           throw new Error(data.message || "Failed to create application");
         }
 
-        showToast("New candidate processing case created successfully!");
+        showToast("New candidate case created successfully!");
         setShowAddModal(false);
         fetchApplications(true);
       }
@@ -661,11 +660,17 @@ export default function AdminApplicationsPage() {
   // 10. WhatsApp Update Builder with Live Public Tracker Link
   const getWhatsAppUpdateUrl = (app: ApplicationItem) => {
     const cleanPhone = app.phone.replace(/\D/g, "");
+    const waPhone = cleanPhone.startsWith("+")
+      ? cleanPhone.replace("+", "")
+      : cleanPhone.length === 10
+      ? `91${cleanPhone}`
+      : cleanPhone;
+
     const stageMeta = getStageMeta(app.currentStage);
     const origin = typeof window !== "undefined" ? window.location.origin : "https://workwisevisa.com";
     const trackingUrl = `${origin}/track?app=${encodeURIComponent(app.applicationNo)}`;
     const msg = `Hello ${app.candidateName},\n\nThis is an official milestone update regarding your Work Visa Application (*${app.applicationNo}*) for *${app.targetCountry}* (${app.jobTrade}) with WorkWise Visa.\n\n📍 *Current Processing Stage:* Stage ${app.currentStage}/7 — ${stageMeta.name}\n⚡ *Status:* ${app.stageStatus.toUpperCase()}\n${app.workPermitNumber ? `📄 *Work Permit No:* ${app.workPermitNumber}\n` : ""}${app.vfsAppointmentDate ? `🗓️ *VFS Appointment:* ${app.vfsAppointmentDate}\n` : ""}${app.visaNumber ? `✅ *Visa Grant No:* ${app.visaNumber}\n` : ""}${app.flightDate ? `✈️ *Flight Departure:* ${app.flightDate} (PNR: ${app.flightPnr || "Confirmed"})\n` : ""}\n🔗 *Track your live status anytime here:*\n${trackingUrl}\n\nOur visa processing division is actively managing your file. Please feel free to reach out if you have any questions.\n\nWarm Regards,\n*WorkWise Visa Immigration Team*`;
-    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
+    return `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`;
   };
 
   const copyTrackingLink = (app: ApplicationItem, e?: React.MouseEvent) => {
@@ -673,16 +678,14 @@ export default function AdminApplicationsPage() {
     const origin = typeof window !== "undefined" ? window.location.origin : "https://workwisevisa.com";
     const link = `${origin}/track?app=${encodeURIComponent(app.applicationNo)}`;
     navigator.clipboard.writeText(link);
-    showToast(`Live Tracking link copied for ${app.candidateName}!`);
+    showToast(`Live tracking link copied for ${app.candidateName}!`);
   };
 
   if (authLoading || !admin) {
     return (
-      <div style={s.loadingContainer}>
-        <div style={s.spinner} />
-        <p style={{ marginTop: "12px", color: "white", fontSize: "14px" }}>
-          Verifying admin access...
-        </p>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#1e1b4b]">
+        <div className="w-10 h-10 border-4 border-white/20 border-t-purple-400 rounded-full animate-spin" />
+        <p className="mt-3 text-white text-sm font-semibold">Verifying tracker access...</p>
       </div>
     );
   }
@@ -697,34 +700,20 @@ export default function AdminApplicationsPage() {
       {/* Toast Notification */}
       {toast && (
         <div
-          style={{
-            position: "fixed",
-            top: "24px",
-            right: "24px",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "12px 20px",
-            borderRadius: "12px",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
-            fontSize: "14px",
-            fontWeight: 600,
-            background: toast.type === "success" ? "#10b981" : "#ef4444",
-            color: "white",
-            animation: "fadeIn 0.2s ease-in-out",
-          }}
+          className={`fixed top-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-lg text-sm font-bold text-white transition-all animate-bounce ${
+            toast.type === "success" ? "bg-emerald-600" : "bg-rose-600"
+          }`}
         >
           {toast.type === "success" ? (
-            <CheckCircle2 style={{ width: "18px", height: "18px" }} />
+            <CheckCircle2 className="w-4 h-4" />
           ) : (
-            <AlertCircle style={{ width: "18px", height: "18px" }} />
+            <AlertCircle className="w-4 h-4" />
           )}
           <span>{toast.message}</span>
         </div>
       )}
 
-      {/* ── RESPONSIVE SIDEBAR ── */}
+      {/* ── RESPONSIVE UNIFIED SIDEBAR ── */}
       <AdminSidebar
         currentUser={admin}
         counts={{
@@ -733,147 +722,150 @@ export default function AdminApplicationsPage() {
       />
 
       {/* ── MAIN CONTENT AREA ── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
-        {/* Header */}
-        <div style={s.header}>
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-5">
+        
+        {/* Header Bar */}
+        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 style={s.pageTitle}>Candidate Application Tracker</h1>
-            <p style={s.pageSubtitle}>
-              Live milestone tracker for enrolled candidates from agreement to visa stamping &amp; flight departure.
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                Candidate Application Tracker
+              </h1>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-purple-100 text-purple-800 border border-purple-200">
+                <Compass className="w-3.5 h-3.5 text-purple-600" />
+                {applications.length} Active Files
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              End-to-end 7-stage work visa milestone management &amp; candidate passport tracking
             </p>
           </div>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+
+          <div className="flex items-center gap-2.5 flex-wrap">
             <button
               onClick={() => fetchApplications(true)}
-              style={s.btnSecondary}
-              disabled={refreshing}
-              title="Refresh applications list"
+              disabled={refreshing || loading}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              title="Sync latest application cases"
             >
-              <RefreshCw className={refreshing ? "animate-spin" : ""} style={{ width: "15px", height: "15px" }} />
-              <span>{refreshing ? "Refreshing..." : "Refresh"}</span>
+              <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
+              <span>{refreshing ? "Syncing..." : "Sync"}</span>
             </button>
+
             {canCreate && (
-              <button onClick={handleOpenAddModal} style={s.btnPrimary}>
-                <Plus style={{ width: "16px", height: "16px" }} />
-                <span>New Candidate Case</span>
+              <button
+                onClick={handleOpenAddModal}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>+ Enroll Candidate</span>
               </button>
             )}
           </div>
         </div>
 
-        {/* ── 5 EXECUTIVE KPI OVERVIEW CARDS ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-          {/* Card 1: Total Enrolled */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                Total In Processing
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+        {/* ── 5 Executive KPI Highlights ── */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {/* Total Cases */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Enrolled</span>
+              <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
                 <Compass className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-2">
               <div className="text-2xl font-black text-slate-900 tracking-tight">{metrics.total}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Enrolled candidates</div>
+              <div className="text-[11px] text-slate-500 font-medium">All processing files</div>
             </div>
           </div>
 
-          {/* Card 2: In Progress */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">
-                Active Processing
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+          {/* Active Processing */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-500">In Progress</span>
+              <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
                 <Clock className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-2">
               <div className="text-2xl font-black text-blue-600 tracking-tight">{metrics.inProgress}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Stages 1 to 5 active</div>
+              <div className="text-[11px] text-slate-500 font-medium">Stages 1 to 5 active</div>
             </div>
           </div>
 
-          {/* Card 3: Visa Approved */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">
-                Visa Stamped / Approved
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+          {/* Visa Ready */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-teal-600">Visa Ready</span>
+              <div className="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
                 <Award className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-2">
-              <div className="text-2xl font-black text-emerald-600 tracking-tight">{metrics.visaApproved}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Stage 6 · Awaiting flight</div>
+              <div className="text-2xl font-black text-teal-700 tracking-tight">{metrics.visaApproved}</div>
+              <div className="text-[11px] text-slate-500 font-medium">Stage 6 · Stamped</div>
             </div>
           </div>
 
-          {/* Card 4: Deployed */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600">
-                Deployed / Flown
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600">
+          {/* Deployed & Flown */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">Deployed</span>
+              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
                 <Plane className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-2">
-              <div className="text-2xl font-black text-teal-700 tracking-tight">{metrics.deployed}</div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">Stage 7 · Departed</div>
+              <div className="text-2xl font-black text-emerald-700 tracking-tight">{metrics.deployed}</div>
+              <div className="text-[11px] text-slate-500 font-medium">Stage 7 · Landed</div>
             </div>
           </div>
 
-          {/* Card 5: On Hold / Review */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">
-                Action / On Hold
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
-                <AlertTriangle className="w-4 h-4" />
+          {/* Financial Balance */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between col-span-2 sm:col-span-1">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Collected</span>
+              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <CreditCard className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-2">
-              <div className="text-2xl font-black text-amber-600 tracking-tight">
-                {metrics.onHold + metrics.rejected}
-              </div>
-              <div className="text-[11px] font-medium text-slate-400 mt-0.5">
-                {metrics.onHold} on hold · {metrics.rejected} rejected
-              </div>
+              <div className="text-lg font-black text-slate-900 tracking-tight">₹{formatCurrency(metrics.totalCollected)}</div>
+              <div className="text-[11px] text-rose-600 font-bold">₹{formatCurrency(metrics.totalPending)} pending</div>
             </div>
           </div>
         </div>
 
-        {/* ── 7-STAGE PIPELINE ROADMAP STRIP ── */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6 overflow-x-auto">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
-            <span>Work Visa 7-Stage Milestone Workflow</span>
-            <span className="text-[11px] text-slate-400 font-normal">Click a stage chip to filter candidates</span>
+        {/* ── 7-Stage Interactive Pipeline Roadmap Strip ── */}
+        <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm overflow-x-auto">
+          <div className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+            <span className="flex items-center gap-1.5 text-slate-700">
+              <Layers className="w-3.5 h-3.5 text-purple-600" />
+              Work Visa 7-Stage Milestone Workflow
+            </span>
+            <span className="text-[10px] text-slate-400 font-normal">Click a stage chip to filter list</span>
           </div>
-          <div className="flex items-center gap-2 min-w-[780px]">
+
+          <div className="flex items-center gap-2 min-w-[820px]">
             {PROCESSING_STAGES.map((stg) => {
               const isSelected = stageFilter === String(stg.step);
-              const countInStage = applications.filter((a) => a.currentStage === stg.step).length;
+              const count = applications.filter((a) => a.currentStage === stg.step).length;
+
               return (
                 <button
                   key={stg.step}
                   onClick={() => setStageFilter(isSelected ? "all" : String(stg.step))}
-                  className={`flex-1 flex items-center gap-2 p-2.5 rounded-xl border text-left transition ${
+                  className={`flex-1 flex items-center gap-2.5 p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                     isSelected
-                      ? "bg-indigo-50 border-indigo-300 ring-2 ring-indigo-500/20 shadow-sm"
-                      : "bg-slate-50/70 border-slate-200 hover:bg-slate-100/80"
+                      ? "bg-purple-50 border-purple-300 ring-2 ring-purple-500/20 shadow-xs"
+                      : "bg-slate-50/70 border-slate-200 hover:bg-slate-100"
                   }`}
                 >
                   <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black flex-shrink-0"
-                    style={{
-                      background: isSelected ? "#4338ca" : "#e2e8f0",
-                      color: isSelected ? "white" : "#475569",
-                    }}
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 ${
+                      isSelected ? "bg-purple-700 text-white" : "bg-slate-200 text-slate-700"
+                    }`}
                   >
                     {stg.step}
                   </div>
@@ -882,7 +874,7 @@ export default function AdminApplicationsPage() {
                       {stg.shortName}
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5">
-                      {countInStage} {countInStage === 1 ? "case" : "cases"}
+                      {count} {count === 1 ? "case" : "cases"}
                     </div>
                   </div>
                 </button>
@@ -891,85 +883,77 @@ export default function AdminApplicationsPage() {
           </div>
         </div>
 
-        {/* ── SEARCH & FILTER CONTROLS ── */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6 flex flex-wrap items-center gap-3">
+        {/* ── Search & Multi-Facet Filters ── */}
+        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-wrap items-center gap-3">
           {/* Search */}
           <div className="relative flex-1 min-w-[240px]">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search candidate name, passport no, app id, trade..."
-              className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 bg-slate-50/50"
+              placeholder="Search candidate name, passport no, application id, trade, permit..."
+              className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 bg-slate-50"
             />
           </div>
 
-          {/* Stage Filter */}
-          <div className="w-44">
-            <select
-              value={stageFilter}
-              onChange={(e) => setStageFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-slate-50/50 text-slate-700 cursor-pointer"
-            >
-              <option value="all">All Stages (1-7)</option>
-              {PROCESSING_STAGES.map((s) => (
-                <option key={s.step} value={s.step}>
-                  Stage {s.step}: {s.shortName}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Stage Dropdown */}
+          <select
+            value={stageFilter}
+            onChange={(e) => setStageFilter(e.target.value)}
+            className="px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
+          >
+            <option value="all">All Stages (1-7)</option>
+            {PROCESSING_STAGES.map((s) => (
+              <option key={s.step} value={s.step}>
+                Stage {s.step}: {s.shortName}
+              </option>
+            ))}
+          </select>
 
-          {/* Status Filter */}
-          <div className="w-36">
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-slate-50/50 text-slate-700 cursor-pointer"
-            >
-              <option value="all">All Statuses</option>
-              <option value="in_progress">In Progress</option>
-              <option value="completed">Completed</option>
-              <option value="on_hold">On Hold</option>
-              <option value="rejected">Rejected</option>
-            </select>
-          </div>
+          {/* Status Dropdown */}
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
+          >
+            <option value="all">All Statuses</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+            <option value="on_hold">On Hold</option>
+            <option value="rejected">Rejected</option>
+          </select>
 
-          {/* Country Filter */}
-          <div className="w-40">
-            <select
-              value={countryFilter}
-              onChange={(e) => setCountryFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-slate-50/50 text-slate-700 cursor-pointer"
-            >
-              <option value="all">All Countries</option>
-              {uniqueCountries.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Destination Dropdown */}
+          <select
+            value={countryFilter}
+            onChange={(e) => setCountryFilter(e.target.value)}
+            className="px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
+          >
+            <option value="all">All Destinations ({uniqueCountries.length})</option>
+            {uniqueCountries.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
 
-          {/* Counselor Filter */}
-          <div className="w-44">
-            <select
-              value={counselorFilter}
-              onChange={(e) => setCounselorFilter(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-slate-50/50 text-slate-700 cursor-pointer"
-            >
-              <option value="all">All Counselors</option>
-              <option value="unassigned">Unassigned</option>
-              {employees.map((emp) => (
-                <option key={emp.id} value={emp.id}>
-                  {emp.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Counselor Dropdown */}
+          <select
+            value={counselorFilter}
+            onChange={(e) => setCounselorFilter(e.target.value)}
+            className="px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
+          >
+            <option value="all">All Counselors</option>
+            <option value="unassigned">Unassigned</option>
+            {employees.map((emp) => (
+              <option key={emp.id} value={emp.id}>
+                {emp.name}
+              </option>
+            ))}
+          </select>
 
-          {/* Reset button */}
+          {/* Reset Filters */}
           {(search || stageFilter !== "all" || statusFilter !== "all" || countryFilter !== "all" || counselorFilter !== "all") && (
             <button
               onClick={() => {
@@ -979,35 +963,35 @@ export default function AdminApplicationsPage() {
                 setCountryFilter("all");
                 setCounselorFilter("all");
               }}
-              className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-semibold transition"
+              className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-bold cursor-pointer"
             >
               Reset
             </button>
           )}
         </div>
 
-        {/* ── CANDIDATE APPLICATIONS DATA TABLE ── */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+        {/* ── Candidate Applications Data Table ── */}
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           {loading ? (
-            <div className="py-20 text-center text-slate-400 text-sm">
-              <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-indigo-500" />
+            <div className="py-20 text-center text-slate-400 text-xs font-medium">
+              <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-purple-600" />
               Loading candidate tracking database...
             </div>
           ) : filteredApplications.length === 0 ? (
             <div className="py-16 text-center">
-              <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-3">
-                <Compass className="w-7 h-7" />
+              <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mx-auto mb-3">
+                <Compass className="w-6 h-6" />
               </div>
-              <h3 className="text-base font-bold text-slate-800">No Candidate Applications Found</h3>
+              <h3 className="text-base font-extrabold text-slate-800">No Applications Found</h3>
               <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
                 {search || stageFilter !== "all"
-                  ? "No candidate tracker matched your search criteria. Try clearing filters."
-                  : "No candidates have been enrolled in processing yet. Click below to create your first application tracker."}
+                  ? "No candidate files match your search criteria. Try clearing active filters."
+                  : "No candidates enrolled in processing yet. Click below to add your first case."}
               </p>
               {canCreate && (
                 <button
                   onClick={handleOpenAddModal}
-                  className="mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow transition inline-flex items-center gap-1.5"
+                  className="mt-4 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold shadow-sm transition inline-flex items-center gap-1.5 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   Enroll First Candidate
@@ -1016,56 +1000,56 @@ export default function AdminApplicationsPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <tr className="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
                     <th className="py-3 px-4 w-12 text-center">#</th>
                     <th className="py-3 px-4">Candidate &amp; Passport</th>
                     <th className="py-3 px-4">Destination &amp; Trade</th>
-                    <th className="py-3 px-4">Processing Progress</th>
-                    <th className="py-3 px-4">Active Stage &amp; Status</th>
+                    <th className="py-3 px-4">7-Stage Progress</th>
+                    <th className="py-3 px-4">Current Milestone</th>
                     <th className="py-3 px-4">Assigned Counselor</th>
-                    <th className="py-3 px-4 text-right">Payment Status</th>
+                    <th className="py-3 px-4 text-right">Payment</th>
                     <th className="py-3 px-4 text-center">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-medium">
+                <tbody className="divide-y divide-slate-100 font-medium">
                   {filteredApplications.map((app, idx) => {
                     const stageMeta = getStageMeta(app.currentStage);
-                    const statusStyle = getStatusBadgeStyle(app.stageStatus);
+                    const statusBadge = getStatusBadgeStyle(app.stageStatus);
                     const progressPercent = Math.round((app.currentStage / 7) * 100);
 
                     return (
                       <tr
                         key={app.id || idx}
                         onClick={() => handleOpenCase(app)}
-                        className="hover:bg-indigo-50/40 transition-colors cursor-pointer"
+                        className="hover:bg-purple-50/40 transition-colors cursor-pointer"
                       >
                         {/* Index */}
                         <td className="py-3.5 px-4 text-center text-slate-400 font-bold">{idx + 1}</td>
 
-                        {/* Candidate & Passport */}
+                        {/* Candidate Name & Passport */}
                         <td className="py-3.5 px-4">
-                          <div className="font-bold text-slate-900 text-sm">{app.candidateName}</div>
+                          <div className="font-extrabold text-slate-900 text-sm">{app.candidateName}</div>
                           <div className="flex items-center gap-2 mt-1">
                             <span className="bg-slate-100 text-slate-600 font-mono text-[10px] px-1.5 py-0.5 rounded border border-slate-200 font-bold">
                               {app.applicationNo}
                             </span>
                             {app.passportNumber ? (
-                              <span className="font-mono text-[11px] text-indigo-700 font-semibold">
+                              <span className="font-mono text-[11px] text-purple-700 font-bold">
                                 🛂 {app.passportNumber}
                               </span>
                             ) : (
                               <span className="text-[10px] text-slate-400">Passport pending</span>
                             )}
                           </div>
-                          <div className="text-[11px] text-slate-500 font-mono mt-0.5">{app.phone}</div>
+                          <div className="text-[11px] text-slate-400 font-mono mt-0.5">{app.phone}</div>
                         </td>
 
                         {/* Destination & Trade */}
                         <td className="py-3.5 px-4">
-                          <div className="inline-flex items-center gap-1 font-bold text-slate-900 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-lg text-xs">
-                            <Globe className="w-3 h-3 text-indigo-600" />
+                          <div className="inline-flex items-center gap-1 font-bold text-slate-800 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-lg text-xs">
+                            <Globe className="w-3 h-3 text-purple-600" />
                             {app.targetCountry}
                           </div>
                           <div className="text-slate-600 text-xs font-semibold mt-1 flex items-center gap-1">
@@ -1075,31 +1059,29 @@ export default function AdminApplicationsPage() {
                         </td>
 
                         {/* Processing Progress */}
-                        <td className="py-3.5 px-4 min-w-[170px]">
+                        <td className="py-3.5 px-4 min-w-[160px]">
                           <div className="flex items-center justify-between text-[11px] font-bold mb-1">
-                            <span className="text-indigo-600">Stage {app.currentStage} of 7</span>
-                            <span className="text-slate-500 font-mono">{progressPercent}%</span>
+                            <span className="text-purple-700">Stage {app.currentStage}/7</span>
+                            <span className="text-slate-400 font-mono">{progressPercent}%</span>
                           </div>
-                          {/* Progress bar */}
-                          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200 flex">
+                          <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200 flex">
                             <div
-                              className="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full transition-all duration-500"
+                              className="h-full bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full transition-all duration-500"
                               style={{ width: `${progressPercent}%` }}
                             />
                           </div>
                           {/* Mini milestone dots */}
-                          <div className="flex justify-between items-center mt-1.5 px-0.5">
+                          <div className="flex justify-between items-center mt-1 px-0.5">
                             {[1, 2, 3, 4, 5, 6, 7].map((sNum) => (
                               <div
                                 key={sNum}
-                                className={`w-2 h-2 rounded-full ${
+                                className={`w-1.5 h-1.5 rounded-full ${
                                   sNum < app.currentStage
                                     ? "bg-emerald-500"
                                     : sNum === app.currentStage
-                                    ? "bg-indigo-600 ring-2 ring-indigo-200"
+                                    ? "bg-purple-600 ring-2 ring-purple-200"
                                     : "bg-slate-200"
                                 }`}
-                                title={`Stage ${sNum}: ${getStageMeta(sNum).shortName}`}
                               />
                             ))}
                           </div>
@@ -1107,28 +1089,23 @@ export default function AdminApplicationsPage() {
 
                         {/* Active Stage & Status */}
                         <td className="py-3.5 px-4">
-                          <div className="font-bold text-slate-900 text-xs">{stageMeta.name}</div>
+                          <div className="font-extrabold text-slate-900 text-xs">{stageMeta.name}</div>
                           <div className="mt-1">
                             <span
-                              className="inline-flex items-center text-[10px] font-bold px-2 py-0.5 rounded-full border"
-                              style={{
-                                background: statusStyle.bg,
-                                color: statusStyle.color,
-                                borderColor: statusStyle.border,
-                              }}
+                              className={`inline-flex items-center text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${statusBadge.bg} ${statusBadge.color} ${statusBadge.border}`}
                             >
-                              {statusStyle.label}
+                              {statusBadge.label}
                             </span>
                           </div>
                         </td>
 
                         {/* Counselor */}
                         <td className="py-3.5 px-4">
-                          <div className="text-xs font-semibold text-slate-800">
+                          <div className="text-xs font-bold text-slate-800">
                             {app.assignedCounselor?.name || "Unassigned"}
                           </div>
                           <div className="text-[10px] text-slate-400 capitalize">
-                            {app.assignedCounselor?.role || "General Pool"}
+                            {app.assignedCounselor?.role || "General"}
                           </div>
                         </td>
 
@@ -1149,79 +1126,61 @@ export default function AdminApplicationsPage() {
                         </td>
 
                         {/* Actions */}
-                        <td className="py-3.5 px-4 text-center whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
-                          <div className="flex items-center justify-center gap-1">
-                            {/* Quick Next Stage Advance */}
-                            {app.currentStage < 7 && (
-                              <button
-                                onClick={(e) => handleQuickAdvance(app, e)}
-                                className="p-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition font-semibold text-[11px] flex items-center gap-1"
-                                title={`Advance to Next Stage (${getStageMeta(app.currentStage + 1).shortName})`}
-                              >
-                                <ArrowRight className="w-3.5 h-3.5" />
-                                <span>Next</span>
-                              </button>
-                            )}
+                        <td className="py-3.5 px-4 text-center">
+                          <div className="flex items-center justify-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+                            {/* Copy Live Tracking Link */}
+                            <button
+                              onClick={(e) => copyTrackingLink(app, e)}
+                              className="p-1.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-all cursor-pointer"
+                              title="Copy Live Public Tracking Link"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
 
-                            {/* WhatsApp Direct */}
+                            {/* 1-Click WhatsApp Milestone Update */}
                             <a
                               href={getWhatsAppUpdateUrl(app)}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg transition"
+                              className="p-1.5 rounded-lg text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition-all"
                               title="Send WhatsApp Milestone Update"
                             >
-                              <MessageCircle className="w-4 h-4" />
+                              <MessageCircle className="w-3.5 h-3.5" />
                             </a>
 
-                            {/* Copy Public Tracking URL */}
-                            <button
-                              onClick={(e) => copyTrackingLink(app, e)}
-                              className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
-                              title="Copy Candidate Tracking Link"
-                            >
-                              <Copy className="w-4 h-4" />
-                            </button>
-
-                            {/* Open Public Live Tracker */}
-                            <a
-                              href={`/track?app=${encodeURIComponent(app.applicationNo)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-1.5 text-indigo-500 hover:bg-indigo-50 rounded-lg transition"
-                              title="Open Live Public Tracking Page"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-
-                            {/* View / Manage Details */}
-                            <button
-                              onClick={() => handleOpenCase(app)}
-                              className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
-                              title="View Full Case History"
-                            >
-                              <Eye className="w-4 h-4" />
-                            </button>
-
-                            {/* Edit */}
-                            {canEdit && (
+                            {/* Quick Advance 1 Step */}
+                            {canEdit && app.currentStage < 7 && (
                               <button
-                                onClick={(e) => handleOpenEditModal(app, e)}
-                                className="p-1.5 text-slate-600 hover:bg-slate-100 rounded-lg transition"
-                                title="Edit Candidate Details"
+                                onClick={(e) => handleQuickAdvance(app, e)}
+                                className="p-1.5 rounded-lg text-purple-700 bg-purple-50 hover:bg-purple-100 transition-all cursor-pointer font-bold text-[10px] inline-flex items-center gap-0.5"
+                                title="Quick Advance to Next Stage"
                               >
-                                <Edit3 className="w-4 h-4" />
+                                <ChevronRight className="w-3.5 h-3.5" />
                               </button>
                             )}
 
-                            {/* Delete */}
+                            {/* Edit Case */}
+                            {canEdit && (
+                              <button
+                                onClick={(e) => handleOpenEditModal(app, e)}
+                                className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-all cursor-pointer"
+                                title="Edit Candidate Details"
+                              >
+                                <Edit3 className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+
+                            {/* Delete Case */}
                             {canDelete && (
                               <button
-                                onClick={() => setDeletingId(app.id)}
-                                className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition"
-                                title="Delete Case"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setDeletingId(app.id);
+                                }}
+                                className="p-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all cursor-pointer"
+                                title="Delete Candidate File"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="w-3.5 h-3.5" />
                               </button>
                             )}
                           </div>
@@ -1236,164 +1195,166 @@ export default function AdminApplicationsPage() {
         </div>
       </main>
 
-      {/* ══════════════════════════════════════════════════════════
-          VIEW CASE DETAILS & TIMELINE DRAWER / MODAL
-          ══════════════════════════════════════════════════════════ */}
+      {/* ── CASE TIMELINE & MILESTONE ADVANCE DRAWER ── */}
       {activeCase && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.65)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "20px",
-              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-              maxWidth: "840px",
-              width: "100%",
-              maxHeight: "92vh",
-              overflowY: "auto",
-              border: "1px solid #e2e8f0",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {/* Drawer Header */}
-            <div className="p-6 border-b border-slate-100 bg-gradient-to-r from-slate-900 to-indigo-950 text-white rounded-t-2xl flex items-center justify-between">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase">
-                    {activeCase.applicationNo}
-                  </span>
-                  <span
-                    className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                    style={{
-                      background: getStatusBadgeStyle(activeCase.stageStatus).bg,
-                      color: getStatusBadgeStyle(activeCase.stageStatus).color,
-                    }}
-                  >
-                    {getStatusBadgeStyle(activeCase.stageStatus).label}
-                  </span>
-                </div>
-                <h2 className="text-xl font-extrabold text-white mt-1.5 flex items-center gap-2">
-                  {activeCase.candidateName}
-                  {activeCase.passportNumber && (
-                    <span className="text-xs font-mono text-slate-300 font-semibold bg-white/10 px-2 py-0.5 rounded">
-                      🛂 {activeCase.passportNumber}
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-end">
+          <div className="bg-white w-full max-w-xl h-full shadow-2xl overflow-y-auto p-6 flex flex-col justify-between border-l border-slate-200">
+            <div>
+              {/* Drawer Header */}
+              <div className="flex items-start justify-between pb-4 border-b border-slate-100">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-black text-slate-900">{activeCase.candidateName}</h2>
+                    <span className="font-mono text-xs font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border">
+                      {activeCase.applicationNo}
                     </span>
-                  )}
-                </h2>
-                <p className="text-xs text-slate-300 mt-1 flex items-center gap-3">
-                  <span>
-                    🌍 <strong>{activeCase.targetCountry}</strong> · {activeCase.jobTrade}
-                  </span>
-                  <span>📞 {activeCase.phone}</span>
-                </p>
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1 flex items-center gap-2">
+                    <span>{activeCase.jobTrade}</span>
+                    <span>·</span>
+                    <span className="font-bold text-purple-700">{activeCase.targetCountry}</span>
+                    {activeCase.passportNumber && (
+                      <>
+                        <span>·</span>
+                        <span className="font-mono font-bold">Pass: {activeCase.passportNumber}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setActiveCase(null)}
+                  className="p-1 text-slate-400 hover:text-slate-600 cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              <button
-                onClick={() => setActiveCase(null)}
-                className="p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl transition"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Drawer Body */}
-            <div className="p-6 space-y-6 flex-1 overflow-y-auto">
-              {/* 1. Quick Info Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">Assigned Counselor</span>
-                  <div className="font-bold text-slate-800 mt-0.5">
-                    {activeCase.assignedCounselor?.name || "Unassigned"}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">Total Package</span>
-                  <div className="font-bold text-slate-800 mt-0.5 font-mono">
-                    ₹{formatCurrency(activeCase.packageAmount)}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">Paid Amount</span>
-                  <div className="font-bold text-emerald-600 mt-0.5 font-mono">
-                    ₹{formatCurrency(activeCase.paidAmount)}
-                  </div>
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">Balance Due</span>
-                  <div className="font-bold text-rose-600 mt-0.5 font-mono">
-                    ₹{formatCurrency(activeCase.balanceAmount)}
-                  </div>
-                </div>
+              {/* Quick Actions Row */}
+              <div className="flex items-center gap-2 my-4">
+                <a
+                  href={getWhatsAppUpdateUrl(activeCase)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-xs transition-all"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  Send WhatsApp Update
+                </a>
+                <Link
+                  href={`/track?app=${encodeURIComponent(activeCase.applicationNo)}`}
+                  target="_blank"
+                  className="inline-flex items-center gap-1 py-2 px-3 rounded-xl text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-200 transition-all"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Live Track Page
+                </Link>
               </div>
 
-              {/* 2. Visual 7-Stage Tracker */}
+              {/* Advance Milestone Box */}
+              {canEdit && (
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-6 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+                    <Sparkles className="w-4 h-4 text-purple-600" />
+                    Advance Milestone / Change Status
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Target Stage</label>
+                      <select
+                        value={selectedNextStage}
+                        onChange={(e) => setSelectedNextStage(Number(e.target.value))}
+                        className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 font-bold text-slate-800 text-xs outline-none cursor-pointer"
+                      >
+                        {PROCESSING_STAGES.map((s) => (
+                          <option key={s.step} value={s.step}>
+                            Stage {s.step}: {s.shortName}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Status</label>
+                      <select
+                        value={selectedNextStatus}
+                        onChange={(e) => setSelectedNextStatus(e.target.value as ApplicationItem["stageStatus"])}
+                        className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 font-bold text-slate-800 text-xs outline-none cursor-pointer"
+                      >
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="on_hold">On Hold</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Stage Remarks / Audit Note</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Work permit approved by ministry, reference #PL-9821"
+                      value={newRemarkText}
+                      onChange={(e) => setNewRemarkText(e.target.value)}
+                      className="w-full px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs outline-none"
+                    />
+                  </div>
+
+                  <button
+                    onClick={handleUpdateMilestone}
+                    disabled={updatingStage}
+                    className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-xs transition cursor-pointer disabled:opacity-50"
+                  >
+                    {updatingStage ? "Updating Milestone..." : "Save Milestone Progress"}
+                  </button>
+                </div>
+              )}
+
+              {/* Stage Milestone Timeline */}
               <div>
-                <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">
-                  Processing Milestone Roadmap
-                </h4>
-                <div className="space-y-2">
+                <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
+                  <History className="w-3.5 h-3.5 text-purple-600" />
+                  Chronological Processing Timeline
+                </h3>
+
+                <div className="space-y-4 pl-2 border-l-2 border-slate-200">
                   {PROCESSING_STAGES.map((stg) => {
-                    const isPassed = stg.step < activeCase.currentStage;
+                    const isDone = stg.step < activeCase.currentStage || (stg.step === activeCase.currentStage && activeCase.stageStatus === "completed");
                     const isCurrent = stg.step === activeCase.currentStage;
-                    const isFuture = stg.step > activeCase.currentStage;
+                    const historyRecord = activeCase.stageHistory?.find((h) => h.stageNumber === stg.step);
 
                     return (
-                      <div
-                        key={stg.step}
-                        className={`p-3 rounded-xl border flex items-center justify-between transition ${
-                          isCurrent
-                            ? "bg-indigo-50/80 border-indigo-300 ring-2 ring-indigo-500/20 shadow-sm"
-                            : isPassed
-                            ? "bg-emerald-50/50 border-emerald-200"
-                            : "bg-slate-50/60 border-slate-200 opacity-60"
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
-                              isPassed
-                                ? "bg-emerald-600 text-white shadow-sm"
-                                : isCurrent
-                                ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/30"
-                                : "bg-slate-200 text-slate-500"
-                            }`}
-                          >
-                            {isPassed ? <Check className="w-4 h-4" /> : stg.step}
-                          </div>
-                          <div>
-                            <div className="font-bold text-slate-900 text-xs sm:text-sm">
-                              Stage {stg.step}: {stg.name}
-                            </div>
-                            <div className="text-[11px] text-slate-500">{stg.description}</div>
-                          </div>
+                      <div key={stg.step} className="relative pl-6">
+                        {/* Dot indicator */}
+                        <div
+                          className={`absolute -left-[9px] top-0.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black text-white ${
+                            isDone
+                              ? "bg-emerald-500"
+                              : isCurrent
+                              ? "bg-purple-600 ring-4 ring-purple-100"
+                              : "bg-slate-300"
+                          }`}
+                        >
+                          {isDone ? "✓" : stg.step}
                         </div>
 
                         <div>
-                          {isPassed && (
-                            <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
-                              Completed
+                          <div className="flex items-center gap-2">
+                            <span className="font-extrabold text-xs text-slate-900">
+                              Stage {stg.step}: {stg.name}
                             </span>
-                          )}
-                          {isCurrent && (
-                            <span className="text-[11px] font-bold text-indigo-700 bg-indigo-100 px-2.5 py-1 rounded-md animate-pulse">
-                              Active Stage
-                            </span>
-                          )}
-                          {isFuture && (
-                            <span className="text-[11px] font-semibold text-slate-400">Upcoming</span>
+                            {isCurrent && (
+                              <span className="bg-purple-100 text-purple-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
+                                Active ({activeCase.stageStatus})
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-slate-500 mt-0.5">{stg.description}</p>
+                          {historyRecord && (
+                            <div className="mt-1 text-[10px] text-slate-600 bg-slate-50 border border-slate-200 rounded px-2 py-1">
+                              <strong>{new Date(historyRecord.date).toLocaleDateString("en-IN")}:</strong>{" "}
+                              {historyRecord.remarks || "Updated by counselor"}
+                            </div>
                           )}
                         </div>
                       </div>
@@ -1401,259 +1362,80 @@ export default function AdminApplicationsPage() {
                   })}
                 </div>
               </div>
-
-              {/* 3. Milestone Update Form */}
-              {canEdit && (
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                  <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-                    <History className="w-4 h-4 text-indigo-600" />
-                    Advance Stage &amp; Log Progress Update
-                  </h4>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
-                        Move to Stage
-                      </label>
-                      <select
-                        value={selectedNextStage}
-                        onChange={(e) => setSelectedNextStage(Number(e.target.value))}
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800"
-                      >
-                        {PROCESSING_STAGES.map((s) => (
-                          <option key={s.step} value={s.step}>
-                            Stage {s.step}: {s.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
-                        Processing Status
-                      </label>
-                      <select
-                        value={selectedNextStatus}
-                        onChange={(e) => setSelectedNextStatus(e.target.value as ApplicationItem["stageStatus"])}
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800"
-                      >
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed / Deployed</option>
-                        <option value="on_hold">On Hold</option>
-                        <option value="rejected">Rejected / Appeal</option>
-                      </select>
-                    </div>
-
-                    <div className="sm:col-span-2">
-                      <label className="block text-[11px] font-bold text-slate-600 uppercase mb-1">
-                        Milestone Remarks / Notes (e.g. Work permit approved, VFS appointment date, Flight PNR)
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Work permit received from Voivodeship #PO-88192, appointment scheduled for 18th Oct..."
-                        value={newRemarkText}
-                        onChange={(e) => setNewRemarkText(e.target.value)}
-                        className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end gap-2 pt-2">
-                    <button
-                      onClick={handleUpdateMilestone}
-                      disabled={updatingStage}
-                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold shadow transition flex items-center gap-1.5"
-                    >
-                      <Save className="w-3.5 h-3.5" />
-                      <span>{updatingStage ? "Saving..." : "Save Milestone Progress"}</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* 4. Complete Timeline History Log */}
-              <div>
-                <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">
-                  Historical Action &amp; Audit Log
-                </h4>
-                {activeCase.stageHistory && activeCase.stageHistory.length > 0 ? (
-                  <div className="space-y-2 border-l-2 border-indigo-200 pl-4 ml-2">
-                    {activeCase.stageHistory.map((hist, hIdx) => (
-                      <div key={hIdx} className="relative text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
-                        <div className="absolute -left-[23px] top-3.5 w-3 h-3 bg-indigo-600 rounded-full border-2 border-white ring-2 ring-indigo-200" />
-                        <div className="flex items-center justify-between font-bold text-slate-800">
-                          <span>
-                            Stage {hist.stageNumber}: {hist.stageName}
-                          </span>
-                          <span className="text-[10px] text-slate-400 font-normal">
-                            {new Date(hist.date).toLocaleString("en-IN")}
-                          </span>
-                        </div>
-                        {hist.remarks && (
-                          <div className="text-[11px] text-slate-600 mt-1 bg-white p-2 rounded-lg border border-slate-100">
-                            {hist.remarks}
-                          </div>
-                        )}
-                        <div className="text-[10px] text-slate-400 mt-1">Updated by: {hist.updatedBy || "Staff"}</div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-xs text-slate-400 italic">No timeline history recorded yet.</div>
-                )}
-              </div>
             </div>
 
             {/* Drawer Footer */}
-            <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-2xl flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                <a
-                  href={getWhatsAppUpdateUrl(activeCase)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold shadow transition inline-flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Send WhatsApp Update</span>
-                </a>
-
-                <button
-                  onClick={() => copyTrackingLink(activeCase)}
-                  className="px-3 py-2 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-xl text-xs font-bold transition inline-flex items-center gap-1.5"
-                  title="Copy direct candidate tracking link"
-                >
-                  <Copy className="w-3.5 h-3.5" />
-                  <span>Copy Tracker Link</span>
-                </button>
-
-                <a
-                  href={`/track?app=${encodeURIComponent(activeCase.applicationNo)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-2 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 text-indigo-700 rounded-xl text-xs font-bold transition inline-flex items-center gap-1.5"
-                  title="Open candidate tracking page in new tab"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Live Candidate View</span>
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2">
-                {canEdit && (
-                  <button
-                    onClick={() => {
-                      const caseToEdit = activeCase;
-                      setActiveCase(null);
-                      handleOpenEditModal(caseToEdit);
-                    }}
-                    className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-xl text-xs font-bold transition"
-                  >
-                    Edit Case Profile
-                  </button>
-                )}
-                <button
-                  onClick={() => setActiveCase(null)}
-                  className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-bold transition"
-                >
-                  Close
-                </button>
-              </div>
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span className="text-slate-400">Created: {new Date(activeCase.createdAt).toLocaleDateString("en-IN")}</span>
+              <button
+                onClick={() => handleOpenEditModal(activeCase)}
+                className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg cursor-pointer"
+              >
+                Edit Details
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════════
-          CREATE / EDIT CANDIDATE CASE MODAL
-          ══════════════════════════════════════════════════════════ */}
+      {/* ── CREATE / EDIT CANDIDATE CASE MODAL ── */}
       {showAddModal && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.65)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "20px",
-              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-              maxWidth: "680px",
-              width: "100%",
-              maxHeight: "92vh",
-              overflowY: "auto",
-              padding: "28px",
-              border: "1px solid #e2e8f0",
-            }}
-          >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 border border-slate-200">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">
-                    {editingApp ? `Edit Case: ${editingApp.candidateName}` : "Enroll Candidate in Processing"}
+                  <h3 className="text-base font-extrabold text-slate-900">
+                    {editingApp ? "Edit Candidate Case" : "Enroll New Candidate"}
                   </h3>
-                  <p className="text-xs text-slate-500">
-                    Register candidate &amp; initialize work visa milestone tracking
-                  </p>
+                  <p className="text-xs text-slate-500">7-Stage work visa tracking file</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Form */}
-            <form onSubmit={handleSaveApplication} className="space-y-4 text-xs font-medium">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSaveApplication} className="mt-4 space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Candidate Name */}
-                <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                <div className="sm:col-span-2">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Candidate Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Rahul Sharma / Mohd Ali"
+                    placeholder="e.g. Mohd Rashid Khan"
                     value={formData.candidateName}
                     onChange={(e) => setFormData({ ...formData, candidateName: e.target.value })}
-                    style={s.input}
-                    className="w-full"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-purple-500 outline-none"
                   />
                 </div>
 
                 {/* Passport Number */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Passport Number (Optional)
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Passport Number
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. M1234567"
+                    placeholder="e.g. Z5689124"
                     value={formData.passportNumber}
-                    onChange={(e) => setFormData({ ...formData, passportNumber: e.target.value })}
-                    style={s.input}
-                    className="w-full uppercase font-mono"
+                    onChange={(e) => setFormData({ ...formData, passportNumber: e.target.value.toUpperCase() })}
+                    className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white font-mono outline-none"
                   />
                 </div>
 
                 {/* Phone / WhatsApp */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Phone / WhatsApp <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -1666,49 +1448,31 @@ export default function AdminApplicationsPage() {
                       const val = e.target.value.replace(/[^0-9+]/g, "");
                       setFormData({ ...formData, phone: val });
                     }}
-                    style={s.input}
-                    className="w-full"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white outline-none"
                   />
                 </div>
 
-                {/* Email */}
+                {/* Target Country */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Email Address (Optional)
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="candidate@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    style={s.input}
-                    className="w-full"
-                  />
-                </div>
-
-                {/* Destination Country */}
-                <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Destination Country <span className="text-rose-500">*</span>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Destination Country
                   </label>
                   <select
                     value={formData.targetCountry}
                     onChange={(e) => setFormData({ ...formData, targetCountry: e.target.value })}
-                    style={s.input}
-                    className="w-full bg-white cursor-pointer"
+                    className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
-                    <optgroup label="Europe &amp; Schengen Area">
+                    <optgroup label="Europe &amp; Schengen">
                       <option value="Poland">Poland</option>
-                      <option value="Croatia">Croatia</option>
                       <option value="Romania">Romania</option>
+                      <option value="Croatia">Croatia</option>
                       <option value="Hungary">Hungary</option>
                       <option value="Malta">Malta</option>
                       <option value="Czech Republic">Czech Republic</option>
                       <option value="Germany">Germany</option>
-                      <option value="Lithuania">Lithuania</option>
                     </optgroup>
-                    <optgroup label="GCC &amp; Middle East">
-                      <option value="United Arab Emirates (UAE / Dubai)">United Arab Emirates (UAE / Dubai)</option>
+                    <optgroup label="GCC &amp; Gulf">
+                      <option value="United Arab Emirates (UAE / Dubai)">UAE / Dubai</option>
                       <option value="Saudi Arabia">Saudi Arabia</option>
                       <option value="Qatar">Qatar</option>
                       <option value="Oman">Oman</option>
@@ -1718,7 +1482,8 @@ export default function AdminApplicationsPage() {
                     <optgroup label="Other Destinations">
                       <option value="United Kingdom">United Kingdom</option>
                       <option value="Canada">Canada</option>
-                      <option value="Russia">Russia</option>
+                      <option value="Australia">Australia</option>
+                      <option value="United States">United States</option>
                       <option value="General Destination">General Destination</option>
                     </optgroup>
                   </select>
@@ -1726,30 +1491,28 @@ export default function AdminApplicationsPage() {
 
                 {/* Job Trade */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Job Trade / Occupation <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Heavy Driver, Electrician, Cook..."
+                    placeholder="e.g. Heavy Driver, Tile Mason"
                     value={formData.jobTrade}
                     onChange={(e) => setFormData({ ...formData, jobTrade: e.target.value })}
-                    style={s.input}
-                    className="w-full"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 focus:bg-white outline-none"
                   />
                 </div>
 
-                {/* Current Stage */}
+                {/* Initial Stage */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Initial Stage
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Current Milestone Stage
                   </label>
                   <select
                     value={formData.currentStage}
                     onChange={(e) => setFormData({ ...formData, currentStage: Number(e.target.value) })}
-                    style={s.input}
-                    className="w-full bg-white cursor-pointer"
+                    className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
                     {PROCESSING_STAGES.map((s) => (
                       <option key={s.step} value={s.step}>
@@ -1759,16 +1522,15 @@ export default function AdminApplicationsPage() {
                   </select>
                 </div>
 
-                {/* Initial Status */}
+                {/* Status */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Status
                   </label>
                   <select
                     value={formData.stageStatus}
                     onChange={(e) => setFormData({ ...formData, stageStatus: e.target.value as ApplicationItem["stageStatus"] })}
-                    style={s.input}
-                    className="w-full bg-white cursor-pointer"
+                    className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
                     <option value="in_progress">In Progress</option>
                     <option value="completed">Completed</option>
@@ -1779,14 +1541,13 @@ export default function AdminApplicationsPage() {
 
                 {/* Assigned Counselor */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Assign To Counselor / Staff
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Assigned Counselor
                   </label>
                   <select
                     value={formData.assignedCounselorId}
                     onChange={(e) => setFormData({ ...formData, assignedCounselorId: e.target.value })}
-                    style={s.input}
-                    className="w-full bg-white cursor-pointer"
+                    className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
                   >
                     <option value="">Unassigned (General Pool)</option>
                     {employees.map((emp) => (
@@ -1799,7 +1560,7 @@ export default function AdminApplicationsPage() {
 
                 {/* Total Package Amount */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Total Package Amount (₹)
                   </label>
                   <input
@@ -1808,15 +1569,14 @@ export default function AdminApplicationsPage() {
                     placeholder="e.g. 150000"
                     value={formData.packageAmount || ""}
                     onChange={(e) => setFormData({ ...formData, packageAmount: Number(e.target.value) })}
-                    style={s.input}
-                    className="w-full font-mono"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 font-mono outline-none"
                   />
                 </div>
 
                 {/* Paid Amount */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
-                    Initial Paid Amount (₹)
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Paid Amount (₹)
                   </label>
                   <input
                     type="number"
@@ -1824,14 +1584,13 @@ export default function AdminApplicationsPage() {
                     placeholder="e.g. 50000"
                     value={formData.paidAmount || ""}
                     onChange={(e) => setFormData({ ...formData, paidAmount: Number(e.target.value) })}
-                    style={s.input}
-                    className="w-full font-mono"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 font-mono outline-none"
                   />
                 </div>
 
                 {/* Work Permit No */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Work Permit Number (Optional)
                   </label>
                   <input
@@ -1839,40 +1598,41 @@ export default function AdminApplicationsPage() {
                     placeholder="e.g. PL-WP-9821"
                     value={formData.workPermitNumber}
                     onChange={(e) => setFormData({ ...formData, workPermitNumber: e.target.value })}
-                    style={s.input}
-                    className="w-full font-mono"
+                    className="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 font-mono outline-none"
                   />
                 </div>
 
-                {/* Notes */}
+                {/* Initial Remarks */}
                 <div className="sm:col-span-2">
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
                     Initial Case Remarks / Notes
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="e.g. Agreement executed, deposit received, PCC submitted..."
+                    placeholder="e.g. Agreement executed, advance received, PCC in progress..."
                     value={formData.remarks}
                     onChange={(e) => setFormData({ ...formData, remarks: e.target.value })}
-                    style={s.input}
-                    className="w-full"
+                    className="w-full p-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none resize-none leading-relaxed"
                   />
                 </div>
               </div>
 
-              {/* Form Buttons */}
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
+              <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  style={s.btnSecondary}
                   disabled={savingApp}
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 cursor-pointer"
                 >
                   Cancel
                 </button>
-                <button type="submit" disabled={savingApp} style={s.btnPrimary}>
-                  <Save className="w-4 h-4" />
-                  <span>{savingApp ? "Saving Case..." : editingApp ? "Update Case" : "Enroll Candidate"}</span>
+                <button
+                  type="submit"
+                  disabled={savingApp}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-600 hover:bg-purple-700 shadow-sm cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{savingApp ? "Saving..." : editingApp ? "Update Case" : "Enroll Candidate"}</span>
                 </button>
               </div>
             </form>
@@ -1882,63 +1642,29 @@ export default function AdminApplicationsPage() {
 
       {/* ── DELETE CONFIRMATION MODAL ── */}
       {deletingId && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.65)",
-            backdropFilter: "blur(4px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          <div
-            style={{
-              background: "white",
-              borderRadius: "16px",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
-              maxWidth: "440px",
-              width: "100%",
-              padding: "24px",
-              textAlign: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                background: "#fee2e2",
-                color: "#dc2626",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "0 auto 16px",
-              }}
-            >
-              <Trash2 style={{ width: "24px", height: "24px" }} />
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center border border-slate-200">
+            <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3">
+              <Trash2 className="w-6 h-6" />
             </div>
-            <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", marginBottom: "8px" }}>
-              Delete Application Case?
-            </h3>
-            <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "20px", lineHeight: "1.5" }}>
+            <h3 className="text-base font-extrabold text-slate-900">Delete Application Case?</h3>
+            <p className="text-xs text-slate-500 mt-1">
               Are you sure you want to delete this candidate application? All stage milestone logs will be permanently removed.
             </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "12px" }}>
-              <button onClick={() => setDeletingId(null)} style={s.btnSecondary} disabled={isDeleting}>
+
+            <div className="flex items-center justify-center gap-2.5 mt-5">
+              <button
+                type="button"
+                onClick={() => setDeletingId(null)}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 cursor-pointer"
+              >
                 Cancel
               </button>
               <button
+                type="button"
                 onClick={handleDeleteApplication}
                 disabled={isDeleting}
-                style={{
-                  ...s.btnPrimary,
-                  background: "#dc2626",
-                  borderColor: "#dc2626",
-                }}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-sm cursor-pointer disabled:opacity-50"
               >
                 {isDeleting ? "Deleting..." : "Yes, Delete Case"}
               </button>
@@ -1949,80 +1675,3 @@ export default function AdminApplicationsPage() {
     </div>
   );
 }
-
-// ── Inline Design System Styles ──────────────────────────────────────
-const s: Record<string, React.CSSProperties> = {
-  loadingContainer: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "#0f172a",
-  },
-  spinner: {
-    width: "32px",
-    height: "32px",
-    border: "3px solid rgba(255,255,255,0.1)",
-    borderTopColor: "#6366f1",
-    borderRadius: "50%",
-    animation: "spin 0.8s linear infinite",
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginBottom: "20px",
-    flexWrap: "wrap",
-    gap: "16px",
-  },
-  pageTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 800,
-    color: "#0f172a",
-    letterSpacing: "-0.5px",
-  },
-  pageSubtitle: {
-    margin: "4px 0 0",
-    fontSize: "13px",
-    color: "#64748b",
-  },
-  btnPrimary: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    background: "#4338ca",
-    color: "white",
-    border: "1px solid #3730a3",
-    borderRadius: "10px",
-    padding: "8px 16px",
-    fontSize: "13px",
-    fontWeight: 700,
-    cursor: "pointer",
-    boxShadow: "0 2px 6px rgba(67, 56, 202, 0.25)",
-    transition: "all 0.15s ease",
-  },
-  btnSecondary: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "6px",
-    background: "white",
-    color: "#334155",
-    border: "1.5px solid #e2e8f0",
-    borderRadius: "10px",
-    padding: "8px 14px",
-    fontSize: "13px",
-    fontWeight: 600,
-    cursor: "pointer",
-    transition: "all 0.15s ease",
-  },
-  input: {
-    padding: "8px 12px",
-    border: "1.5px solid #e2e8f0",
-    borderRadius: "10px",
-    fontSize: "12px",
-    color: "#1e293b",
-    outline: "none",
-  },
-};
