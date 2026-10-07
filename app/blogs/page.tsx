@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -93,60 +94,67 @@ export default function BlogsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-16 sm:pt-20 pb-20 bg-slate-50 min-h-screen">
-        {/* Page Hero Header */}
-        <section className="relative pt-8 sm:pt-12 pb-12 sm:pb-16 bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 text-slate-900 border-b border-slate-200/80 shadow-xs overflow-hidden">
+      <main className="min-h-screen bg-slate-50 pt-16 sm:pt-20 pb-20">
+        {/* Page Hero Header — Standard Site-Wide UI */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 pt-8 sm:pt-12 pb-12 sm:pb-16 text-slate-900 border-b border-slate-200/80 shadow-xs">
           <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+          
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-800 mb-4 shadow-xs">
-              <FaNewspaper className="w-3.5 h-3.5 text-emerald-600" />
-              Immigration & Career Knowledge Base
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-slate-900 tracking-tight">
-              WorkWise Visa Blog & Insights
-            </h1>
-            <p className="mt-4 mx-auto max-w-3xl text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
-              Expert guides, embassy policy updates, trade testing tips, and step-by-step overseas work permit procedures for Gulf, Schengen, UK, and North America.
-            </p>
-
-            {/* Search Bar */}
-            <div className="mt-8 max-w-2xl mx-auto relative">
-              <div className="relative flex items-center">
-                <FaMagnifyingGlass className="absolute left-4 w-4 h-4 text-emerald-600" />
-                <input
-                  type="text"
-                  placeholder="Search articles, visa guides, trade roles, or medical rules..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white pl-11 pr-4 py-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-md shadow-slate-200/40 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all font-medium"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-4 text-slate-400 hover:text-slate-700"
-                  >
-                    <FaXmark className="w-4 h-4" />
-                  </button>
-                )}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
+                <FaNewspaper className="w-3.5 h-3.5 text-emerald-600" />
+                Visa &amp; Migration Insights
               </div>
-            </div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto">
+                Latest News &amp; Overseas Career Guides
+              </h1>
+              <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">
+                Stay updated on work permit policies, embassy requirements, trade test centers, and overseas employment rules.
+              </p>
 
-            {/* Category Filter Pills */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                    activeCategory === cat
-                      ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/25"
-                      : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+              {/* Search Bar matching jobs page */}
+              <div className="mt-10 max-w-2xl mx-auto relative">
+                <div className="relative flex items-center rounded-2xl bg-white border border-slate-200 p-2 shadow-lg shadow-slate-200/50 focus-within:border-emerald-500 focus-within:ring-4 focus-within:ring-emerald-500/10 transition-all">
+                  <FaMagnifyingGlass className="w-5 h-5 text-emerald-600 ml-4 shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search articles, visa guides, trade roles, or medical rules..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-transparent px-4 py-2.5 text-sm sm:text-base text-slate-900 placeholder-slate-400 outline-none font-medium"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="p-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
+                    >
+                      <FaXmark className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Category Filter Pills matching site-wide style */}
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`rounded-full px-5 py-2 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+                      activeCategory === cat
+                        ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-600/20"
+                        : "bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-xs"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
 
