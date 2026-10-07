@@ -26,6 +26,7 @@ import {
   X,
   ShieldCheck,
   Compass,
+  Newspaper,
 } from "lucide-react";
 import { EmployeePermissions } from "@/lib/types/rbac";
 
@@ -42,6 +43,7 @@ interface AdminSidebarProps {
   counts?: {
     applications?: number;
     jobs?: number;
+    blogs?: number;
     inquiries?: number;
     newInquiries?: number;
     invoices?: number;
@@ -112,6 +114,7 @@ export default function AdminSidebar({
 
   const isSuper = user?.role === "superadmin" || user?.email === "wasim@yastudy.com";
   const canViewJobs = isSuper || Boolean(user?.permissions?.jobs?.view !== false);
+  const canViewBlogs = isSuper || Boolean(user?.permissions?.blogs?.view !== false);
   const canViewInquiries = isSuper || Boolean(user?.permissions?.inquiries?.view !== false);
   const canViewApplications = isSuper || Boolean(user?.permissions?.applications?.view !== false);
   const canViewInvoices = isSuper || Boolean(user?.permissions?.invoices?.view);
@@ -163,6 +166,16 @@ export default function AdminSidebar({
       badge: counts?.jobs !== undefined ? counts.jobs : null,
       badgeColor: "rgba(255,255,255,0.18)",
       isActive: pathname.startsWith("/admin/jobs"),
+    },
+    {
+      id: "blogs",
+      label: "Blogs & Articles",
+      href: "/admin/blogs",
+      icon: Newspaper,
+      visible: canViewBlogs,
+      badge: counts?.blogs !== undefined ? counts.blogs : null,
+      badgeColor: "#10b981",
+      isActive: pathname.startsWith("/admin/blogs"),
     },
     {
       id: "invoices",

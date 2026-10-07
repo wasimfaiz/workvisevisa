@@ -61,13 +61,22 @@ export interface WhyUsPoint {
 export interface BlogPost {
   id: string;
   title: string;
+  slug?: string;
   category: string;
   date: string;
   readTime: string;
   excerpt: string;
+  content?: string;
   image: string;
   author: string;
   tags: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  canonicalUrl?: string;
+  published?: boolean;
+  featured?: boolean;
+  views?: number;
 }
 
 export interface Industry {

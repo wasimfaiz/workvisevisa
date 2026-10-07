@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import { blogPosts, BlogPost } from "@/lib/data";
+import { blogPosts as initialBlogPosts, BlogPost } from "@/lib/data";
 import {
   FaNewspaper,
   FaCalendarDays,
@@ -19,20 +19,55 @@ import {
   FaShareNodes,
 } from "react-icons/fa6";
 
-const categories = ["All", "Gulf Visas", "Schengen Visa", "UK Immigration", "Driver Recruitment"];
+const DEFAULT_CATEGORIES = [
+  "All",
+  "Gulf Visas",
+  "Schengen Visa",
+  "UK Immigration",
+  "Driver Recruitment",
+  "Work Permits",
+  "GAMCA Medical",
+  "Trade Testing",
+];
 
 export default function BlogsPage() {
+  const [posts, setPosts] = useState<BlogPost[]>(initialBlogPosts);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const filteredPosts = blogPosts.filter((post) => {
+  useEffect(() => {
+    async function loadBlogs() {
+      try {
+        setIsLoading(true);
+        const res = await fetch("/api/blogs");
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+            setPosts(json.data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic blogs:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadBlogs();
+  }, []);
+
+  const categories = Array.from(
+    new Set(["All", ...posts.map((p) => p.category).filter(Boolean), ...DEFAULT_CATEGORIES.slice(1)])
+  );
+
+  const filteredPosts = posts.filter((post) => {
     const matchesCategory =
       activeCategory === "All" || post.category === activeCategory;
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
+      (post.tags && post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())));
     return matchesCategory && matchesSearch;
   });
 
@@ -273,24 +308,33 @@ export default function BlogsPage() {
               <p className="font-semibold text-slate-800 text-base sm:text-lg">
                 {selectedPost.excerpt}
               </p>
-              <p>
-                Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
-              </p>
-              <h4 className="text-base font-bold text-slate-900 pt-2">Key Highlights & Action Checklist:</h4>
-              <ul className="space-y-2 list-none pl-0 text-sm">
-                <li className="flex items-start gap-2 text-slate-700">
-                  <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                  <span>Verify employer sponsorship terms & accommodation provisions before contract signing.</span>
-                </li>
-                <li className="flex items-start gap-2 text-slate-700">
-                  <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                  <span>Complete HRD / MEA degree & trade certificate apostille attestation.</span>
-                </li>
-                <li className="flex items-start gap-2 text-slate-700">
-                  <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                  <span>Ensure valid passport with at least 6 months validity and PCC (Police Clearance).</span>
-                </li>
-              </ul>
+              
+              {selectedPost.content ? (
+                <div className="text-slate-700 whitespace-pre-wrap leading-relaxed space-y-4 pt-2">
+                  {selectedPost.content}
+                </div>
+              ) : (
+                <>
+                  <p>
+                    Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
+                  </p>
+                  <h4 className="text-base font-bold text-slate-900 pt-2">Key Highlights & Action Checklist:</h4>
+                  <ul className="space-y-2 list-none pl-0 text-sm">
+                    <li className="flex items-start gap-2 text-slate-700">
+                      <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                      <span>Verify employer sponsorship terms & accommodation provisions before contract signing.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-slate-700">
+                      <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                      <span>Complete HRD / MEA degree & trade certificate apostille attestation.</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-slate-700">
+                      <FaCheck className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                      <span>Ensure valid passport with at least 6 months validity and PCC (Police Clearance).</span>
+                    </li>
+                  </ul>
+                </>
+              )}
             </div>
 
             <div className="mt-8 border-t border-slate-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">

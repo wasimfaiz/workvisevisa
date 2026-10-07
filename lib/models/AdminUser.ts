@@ -74,6 +74,12 @@ const AdminUserSchema = new Schema<IAdminUser>(
         edit: { type: Boolean, default: false },
         delete: { type: Boolean, default: false },
       },
+      blogs: {
+        view: { type: Boolean, default: true },
+        create: { type: Boolean, default: false },
+        edit: { type: Boolean, default: false },
+        delete: { type: Boolean, default: false },
+      },
       applications: {
         view: { type: Boolean, default: true },
         create: { type: Boolean, default: false },
