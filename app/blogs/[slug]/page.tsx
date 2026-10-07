@@ -7,7 +7,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import MarkdownContent from "@/components/MarkdownContent";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
-import { blogPosts as fallbackPosts } from "@/lib/data";
+import { blogPosts as fallbackPosts, sortBlogsByDate } from "@/lib/data";
 import {
   FaCalendarDays,
   FaClock,
@@ -33,6 +33,24 @@ async function getBlog(slug: string) {
       p.id.toLowerCase() === decodedSlug ||
       p.id === `blog-${decodedSlug}` ||
       p.title.toLowerCase().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-") === decodedSlug ||
+      (decodedSlug.includes("construction") && p.id === "blog-5") ||
+      (decodedSlug.includes("mep") && p.id === "blog-5") ||
+      (decodedSlug.includes("hotel") && p.id === "blog-6") ||
+      (decodedSlug.includes("hospitality") && p.id === "blog-6") ||
+      (decodedSlug.includes("delivery") && p.id === "blog-7") ||
+      (decodedSlug.includes("rider") && p.id === "blog-7") ||
+      (decodedSlug.includes("warehouse") && p.id === "blog-7") ||
+      (decodedSlug.includes("neom") && p.id === "blog-8") ||
+      (decodedSlug.includes("megaprojects") && p.id === "blog-8") ||
+      (decodedSlug.includes("shutdown") && p.id === "blog-9") ||
+      (decodedSlug.includes("qatar-kuwait") && p.id === "blog-9") ||
+      (decodedSlug.includes("qatar") && p.id === "blog-9") ||
+      (decodedSlug.includes("grand-tours") && p.id === "blog-10") ||
+      (decodedSlug.includes("gcc-unified") && p.id === "blog-10") ||
+      (decodedSlug.includes("kuwait-work-visa") && p.id === "blog-11") ||
+      (decodedSlug.includes("degree-attestation") && p.id === "blog-11") ||
+      (decodedSlug.includes("wafid") && p.id === "blog-12") ||
+      (decodedSlug.includes("gamca") && p.id === "blog-12") ||
       (decodedSlug.includes("heavy") && p.id === "blog-4") ||
       (decodedSlug.includes("caregiver") && p.id === "blog-3") ||
       (decodedSlug.includes("opportunity-card") && p.id === "blog-2") ||
@@ -80,10 +98,7 @@ async function getRecentBlogs(currentSlug: string) {
   const decoded = decodeURIComponent(currentSlug).trim().toLowerCase();
   try {
     await connectDB();
-    const blogs = await Blog.find({ published: { $ne: false } })
-      .sort({ createdAt: -1 })
-      .limit(6)
-      .lean();
+    const blogs = await Blog.find({ published: { $ne: false } }).lean();
 
     if (blogs && blogs.length > 0) {
       const filtered = blogs.filter((b) => {
@@ -91,11 +106,14 @@ async function getRecentBlogs(currentSlug: string) {
         return bSlug !== decoded && b._id.toString() !== decoded;
       });
       if (filtered.length > 0) {
-        return filtered.slice(0, 4).map((b) => ({
-          ...b,
-          id: (b._id as unknown as { toString(): string }).toString(),
-          _id: undefined,
-        }));
+        const sorted = sortBlogsByDate(
+          filtered.map((b) => ({
+            ...b,
+            id: (b._id as unknown as { toString(): string }).toString(),
+            _id: undefined,
+          }))
+        );
+        return sorted.slice(0, 4);
       }
     }
   } catch (err) {
@@ -103,7 +121,7 @@ async function getRecentBlogs(currentSlug: string) {
   }
 
   // Fallback to static data
-  return fallbackPosts
+  return sortBlogsByDate(fallbackPosts)
     .filter(
       (p) =>
         p.slug?.toLowerCase() !== decoded &&

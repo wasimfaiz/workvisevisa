@@ -8,7 +8,7 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Blog, { IBlog } from "@/lib/models/Blog";
 import { requirePermission } from "@/lib/auth";
-import { blogPosts as fallbackInitialPosts } from "@/lib/data";
+import { blogPosts as fallbackInitialPosts, sortBlogsByDate, parseBlogDate } from "@/lib/data";
 
 // ── Helpers ────────────────────────────────────────────────────────
 
@@ -55,6 +55,38 @@ export async function ensureSeedData() {
         pattern: /Heavy Vehicle|Heavy Driver|Dubai & Riyadh|GCC/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-4") || fallbackInitialPosts[3],
       },
+      {
+        pattern: /Dubai Construction|MEP.*Trade|Skill Card.*Salary/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-5"),
+      },
+      {
+        pattern: /Dubai Hotel|Hospitality Work Visa|Waiters.*Chefs/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-6"),
+      },
+      {
+        pattern: /Dubai Delivery Rider|RTA Bike License|Warehouse.*Logistics/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-7"),
+      },
+      {
+        pattern: /Saudi Arabia NEOM|NEOM.*Megaprojects|Vision 2030.*Recruitment/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-8"),
+      },
+      {
+        pattern: /Qatar.*Kuwait|Oil & Gas Shutdown|Plant Maintenance Work Visa/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-9"),
+      },
+      {
+        pattern: /GCC Unified Tourist Visa|GCC Grand Tours|Cross-Border Employment/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-10"),
+      },
+      {
+        pattern: /Kuwait Work Visa Reopening|PAM Quotas|Degree Attestation.*Kuwait/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-11"),
+      },
+      {
+        pattern: /Wafid.*GAMCA|GAMCA.*Medical|TB Scarring.*GCC/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-12"),
+      },
     ];
 
     for (const item of seedMatchers) {
@@ -87,6 +119,9 @@ export async function ensureSeedData() {
         existing.tags = p.tags;
         existing.published = true;
         existing.featured = Boolean(p.featured);
+        if (p.date) {
+          existing.date = p.date;
+        }
         await existing.save();
       } else {
         await Blog.create({
@@ -162,10 +197,13 @@ export async function getAllBlogs(request: NextRequest): Promise<Response> {
       __v: undefined,
     }));
 
+    // Sort chronologically: newest published date first
+    const sorted = sortBlogsByDate(transformed);
+
     return Response.json({
       success: true,
-      data: transformed,
-      count: transformed.length,
+      data: sorted,
+      count: sorted.length,
     });
   } catch (error) {
     console.error("[blogController.getAllBlogs]", error);

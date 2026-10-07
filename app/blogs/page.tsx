@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import MarkdownContent from "@/components/MarkdownContent";
-import { blogPosts as initialBlogPosts, BlogPost } from "@/lib/data";
+import { blogPosts as initialBlogPosts, BlogPost, sortBlogsByDate } from "@/lib/data";
 import {
   FaNewspaper,
   FaCalendarDays,
@@ -35,7 +35,7 @@ const DEFAULT_CATEGORIES = [
 ];
 
 export default function BlogsPage() {
-  const [posts, setPosts] = useState<BlogPost[]>(initialBlogPosts);
+  const [posts, setPosts] = useState<BlogPost[]>(() => sortBlogsByDate(initialBlogPosts));
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
@@ -55,6 +55,17 @@ export default function BlogsPage() {
                   p.slug === post.slug ||
                   p.id === post.id ||
                   (p.title && post.title && p.title.toLowerCase().includes(post.title.substring(0, 20).toLowerCase())) ||
+                  (post.slug && post.slug.includes("construction") && p.id === "blog-5") ||
+                  (post.slug && post.slug.includes("hotel") && p.id === "blog-6") ||
+                  (post.slug && post.slug.includes("delivery") && p.id === "blog-7") ||
+                  (post.slug && post.slug.includes("neom") && p.id === "blog-8") ||
+                  (post.slug && post.slug.includes("shutdown") && p.id === "blog-9") ||
+                  (post.slug && post.slug.includes("grand-tours") && p.id === "blog-10") ||
+                  (post.slug && post.slug.includes("gcc-unified") && p.id === "blog-10") ||
+                  (post.slug && post.slug.includes("kuwait-work-visa") && p.id === "blog-11") ||
+                  (post.slug && post.slug.includes("degree-attestation") && p.id === "blog-11") ||
+                  (post.slug && post.slug.includes("wafid") && p.id === "blog-12") ||
+                  (post.slug && post.slug.includes("gamca") && p.id === "blog-12") ||
                   (post.slug && post.slug.includes("heavy") && p.id === "blog-4") ||
                   (post.slug && post.slug.includes("caregiver") && p.id === "blog-3") ||
                   (post.slug && post.slug.includes("opportunity") && p.id === "blog-2") ||
@@ -65,7 +76,7 @@ export default function BlogsPage() {
               }
               return post;
             });
-            setPosts(hydrated);
+            setPosts(sortBlogsByDate<BlogPost>(hydrated as BlogPost[]));
           }
         }
       } catch (err) {
@@ -81,15 +92,17 @@ export default function BlogsPage() {
     new Set(["All", ...posts.map((p) => p.category).filter(Boolean), ...DEFAULT_CATEGORIES.slice(1)])
   );
 
-  const filteredPosts = posts.filter((post) => {
-    const matchesCategory =
-      activeCategory === "All" || post.category === activeCategory;
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (post.tags && post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())));
-    return matchesCategory && matchesSearch;
-  });
+  const filteredPosts = sortBlogsByDate(
+    posts.filter((post) => {
+      const matchesCategory =
+        activeCategory === "All" || post.category === activeCategory;
+      const matchesSearch =
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (post.tags && post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())));
+      return matchesCategory && matchesSearch;
+    })
+  );
 
   return (
     <>
@@ -159,7 +172,7 @@ export default function BlogsPage() {
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16">
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12">
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 shadow-sm">
               <p className="text-lg font-bold text-slate-700">
@@ -176,15 +189,15 @@ export default function BlogsPage() {
               </button>
             </div>
           ) : (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredPosts.map((post) => (
                 <article
                   key={post.id}
-                  className="group flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-sm transition-all duration-300 hover:border-emerald-500/60 hover:shadow-xl hover:-translate-y-1"
+                  className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white overflow-hidden shadow-xs transition-all duration-300 hover:border-emerald-500/60 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div>
                     {/* Image Header */}
-                    <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-100">
+                    <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100">
                       <img
                         src={post.image}
                         alt={post.title}
@@ -194,68 +207,68 @@ export default function BlogsPage() {
                         }}
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4">
-                        <span className="rounded-full bg-slate-900/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-emerald-400 border border-slate-700 shadow-md">
+                      <div className="absolute top-3 left-3">
+                        <span className="rounded-full bg-slate-900/90 backdrop-blur-md px-2.5 py-0.5 text-[11px] font-bold text-emerald-400 border border-slate-700 shadow-xs">
                           {post.category}
                         </span>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-6 sm:p-8">
-                      <div className="flex items-center gap-4 text-xs font-semibold text-slate-400 mb-3">
-                        <span className="flex items-center gap-1.5">
-                          <FaCalendarDays className="w-3.5 h-3.5 text-emerald-600" />
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-400 mb-2">
+                        <span className="flex items-center gap-1">
+                          <FaCalendarDays className="w-3 h-3 text-emerald-600" />
                           {post.date}
                         </span>
                         <span>•</span>
-                        <span className="flex items-center gap-1.5">
-                          <FaClock className="w-3.5 h-3.5 text-emerald-600" />
+                        <span className="flex items-center gap-1">
+                          <FaClock className="w-3 h-3 text-emerald-600" />
                           {post.readTime}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1.5 text-slate-500">
-                          <FaUserCheck className="w-3.5 h-3.5 text-slate-400" />
-                          {post.author}
                         </span>
                       </div>
 
-                      <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug mb-3">
+                      <h2 className="text-base sm:text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 leading-snug mb-2">
                         {post.title}
                       </h2>
 
-                      <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                      <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed font-normal mb-3.5">
                         {post.excerpt}
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.map((tag) => (
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {(post.tags || []).slice(0, 2).map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600"
+                            className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600"
                           >
-                            <FaTag className="w-2.5 h-2.5 text-slate-400" />
+                            <FaTag className="w-2 h-2 text-slate-400" />
                             {tag}
                           </span>
                         ))}
+                        {post.tags && post.tags.length > 2 && (
+                          <span className="text-[10px] text-slate-400 self-center font-semibold">
+                            +{post.tags.length - 2}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
 
                   {/* Card Action */}
-                  <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex items-center justify-between border-t border-slate-100 pt-5">
+                  <div className="px-5 pb-4 pt-3 flex items-center justify-between border-t border-slate-100">
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/blogs/${post.slug || post.id}`}
-                        className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3 py-1.5 text-xs font-bold text-white shadow-2xs hover:bg-emerald-600 transition-colors"
                       >
-                        <span>Read Full Guide</span>
-                        <FaArrowRight className="w-3.5 h-3.5" />
+                        <span>Read Guide</span>
+                        <FaArrowRight className="w-3 h-3" />
                       </Link>
 
                       <button
                         onClick={() => setSelectedPost(post)}
-                        className="p-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition"
+                        className="px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition cursor-pointer"
                         title="Quick View"
                       >
                         <span>Preview</span>
@@ -268,10 +281,10 @@ export default function BlogsPage() {
                       )}"`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 hover:text-emerald-700"
                     >
-                      <FaWhatsapp className="w-4 h-4" />
-                      <span>Ask Expert</span>
+                      <FaWhatsapp className="w-3.5 h-3.5" />
+                      <span>Ask</span>
                     </a>
                   </div>
                 </article>

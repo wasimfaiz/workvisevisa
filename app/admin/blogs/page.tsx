@@ -69,6 +69,7 @@ import {
 import { EmployeePermissions } from "@/lib/types/rbac";
 import AdminSidebar from "@/components/AdminSidebar";
 import MarkdownContent from "@/components/MarkdownContent";
+import { sortBlogsByDate } from "@/lib/data";
 
 // ── Types ─────────────────────────────────────────────────────────
 
@@ -602,9 +603,9 @@ export default function AdminBlogsPage() {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  // Filtered list
+  // Filtered list (sorted date-wise descending, newest first)
   const filteredBlogs = useMemo(() => {
-    return blogs.filter((blog) => {
+    const list = blogs.filter((blog) => {
       const matchesSearch =
         searchQuery.trim() === "" ||
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -626,6 +627,8 @@ export default function AdminBlogsPage() {
 
       return matchesSearch && matchesCat && matchesStatus;
     });
+
+    return sortBlogsByDate(list);
   }, [blogs, searchQuery, selectedCategory, statusFilter]);
 
   // Metric counts
