@@ -145,16 +145,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = (blog as any).metaDescription || blog.excerpt;
   const keywords = (blog as any).metaKeywords || (blog.tags ? blog.tags.join(", ") : "");
   const image = blog.image || "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80";
+  const canonicalUrl = `https://www.workwisevisa.com/blogs/${blog.slug || slug}`;
 
   return {
     title: `${title} | WorkWise Visa`,
     description,
     keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     openGraph: {
       title,
       description,
+      url: canonicalUrl,
       images: [{ url: image }],
       type: "article",
+      publishedTime: (blog as any).date,
+      authors: [blog.author || "WorkWise Editorial Team"],
     },
     twitter: {
       card: "summary_large_image",
@@ -176,8 +194,68 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   const recentBlogs = await getRecentBlogs(slug);
   const article = blog as any;
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt || article.metaDescription,
+    "image": article.image || "https://www.workwisevisa.com/images/workwise_logo.png",
+    "datePublished": article.date,
+    "dateModified": article.date,
+    "author": {
+      "@type": "Organization",
+      "name": article.author || "WorkWise Editorial Team",
+      "url": "https://www.workwisevisa.com",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "WorkWise Visa",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.workwisevisa.com/images/workwise_logo.png",
+      },
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.workwisevisa.com/blogs/${article.slug || slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.workwisevisa.com",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blogs & Visa Guides",
+        "item": "https://www.workwisevisa.com/blogs",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": article.title,
+        "item": `https://www.workwisevisa.com/blogs/${article.slug || slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
       <main className="pt-20 sm:pt-24 pb-20 bg-slate-50 min-h-screen">
         {/* Article Breadcrumb & Category Bar */}
