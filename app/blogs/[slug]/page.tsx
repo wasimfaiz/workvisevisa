@@ -14,11 +14,9 @@ import {
   FaTag,
   FaWhatsapp,
   FaArrowLeft,
-  FaShareNodes,
-  FaCheck,
   FaUserCheck,
-  FaGlobe,
-  FaBookOpen,
+  FaFire,
+  FaChevronRight,
 } from "react-icons/fa6";
 
 interface PageProps {
@@ -78,6 +76,43 @@ async function getBlog(slug: string) {
   return null;
 }
 
+async function getRecentBlogs(currentSlug: string) {
+  const decoded = decodeURIComponent(currentSlug).trim().toLowerCase();
+  try {
+    await connectDB();
+    const blogs = await Blog.find({ published: { $ne: false } })
+      .sort({ createdAt: -1 })
+      .limit(6)
+      .lean();
+
+    if (blogs && blogs.length > 0) {
+      const filtered = blogs.filter((b) => {
+        const bSlug = (b.slug || "").toLowerCase();
+        return bSlug !== decoded && b._id.toString() !== decoded;
+      });
+      if (filtered.length > 0) {
+        return filtered.slice(0, 4).map((b) => ({
+          ...b,
+          id: (b._id as unknown as { toString(): string }).toString(),
+          _id: undefined,
+        }));
+      }
+    }
+  } catch (err) {
+    console.error("Error loading recent blogs:", err);
+  }
+
+  // Fallback to static data
+  return fallbackPosts
+    .filter(
+      (p) =>
+        p.slug?.toLowerCase() !== decoded &&
+        p.id.toLowerCase() !== decoded &&
+        !decoded.includes(p.id)
+    )
+    .slice(0, 4);
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const blog = await getBlog(slug);
@@ -120,6 +155,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const recentBlogs = await getRecentBlogs(slug);
   const article = blog as any;
 
   return (
@@ -127,7 +163,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       <Navbar />
       <main className="pt-20 sm:pt-24 pb-20 bg-slate-50 min-h-screen">
         {/* Article Breadcrumb & Category Bar */}
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 pb-6">
           <Link
             href="/blogs"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition mb-6"
@@ -164,94 +200,148 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Featured Cover Image */}
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-72 sm:h-96 w-full bg-slate-100">
-            <img
-              src={article.image}
-              alt={article.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
+        {/* 2-Column Responsive Layout: Main Content (8 cols) + Sticky Sidebar (4 cols) */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            
+            {/* ── Left / Main Content Column (lg:col-span-8) ── */}
+            <div className="lg:col-span-8 space-y-8">
+              {/* Featured Cover Image */}
+              <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-72 sm:h-96 w-full bg-slate-100">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-        {/* Article Body Content */}
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl p-6 sm:p-12 border border-slate-200 shadow-sm space-y-8">
-            {/* Key Summary Excerpt Callout */}
-            <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
-              <p className="text-sm sm:text-base font-semibold text-emerald-950 leading-relaxed">
-                {article.excerpt}
-              </p>
-            </div>
-
-            {/* Main Text / Markdown Output */}
-            <div>
-              {article.content ? (
-                <MarkdownContent content={article.content} />
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-slate-700 text-base leading-relaxed">
-                    Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
+              {/* Main White Article Container */}
+              <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-slate-200 shadow-sm space-y-8">
+                {/* Key Summary Excerpt Callout */}
+                <div className="p-5 rounded-2xl bg-emerald-50/80 border border-emerald-200 shadow-xs">
+                  <p className="text-sm sm:text-base font-semibold text-emerald-950 leading-relaxed">
+                    {article.excerpt}
                   </p>
-                  <h3 className="text-xl font-bold text-slate-900 pt-2">Key Highlights & Action Checklist:</h3>
-                  <ul className="space-y-2 list-none pl-0 text-sm sm:text-base">
-                    <li className="flex items-start gap-2 text-slate-700">
-                      <FaCheck className="w-4 h-4 text-emerald-600 mt-1 shrink-0" />
-                      <span>Verify employer sponsorship terms & accommodation provisions before contract signing.</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-slate-700">
-                      <FaCheck className="w-4 h-4 text-emerald-600 mt-1 shrink-0" />
-                      <span>Complete HRD / MEA degree & trade certificate apostille attestation.</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-slate-700">
-                      <FaCheck className="w-4 h-4 text-emerald-600 mt-1 shrink-0" />
-                      <span>Ensure valid passport with at least 6 months validity and PCC (Police Clearance).</span>
-                    </li>
-                  </ul>
                 </div>
-              )}
-            </div>
 
-            {/* Tags */}
-            {article.tags && article.tags.length > 0 && (
-              <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold text-slate-400 mr-1">TOPICS:</span>
-                {article.tags.map((tag: string) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700"
+                {/* Markdown Body */}
+                <div>
+                  {article.content ? (
+                    <MarkdownContent content={article.content} />
+                  ) : (
+                    <div className="space-y-4">
+                      <p className="text-slate-700 text-base leading-relaxed">
+                        Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Tags */}
+                {article.tags && article.tags.length > 0 && (
+                  <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-bold text-slate-400 mr-1">TOPICS:</span>
+                    {article.tags.map((tag: string) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700"
+                      >
+                        <FaTag className="w-2.5 h-2.5 text-slate-400" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* WhatsApp Consultation Action Box */}
+                <div className="rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                      Have Questions Regarding This Visa Guide?
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                      Chat directly with WorkWise Visa immigration and trade testing advisors on WhatsApp.
+                    </p>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20read%20your%20article%20"${encodeURIComponent(
+                      article.title
+                    )}"%20and%20want%20to%20apply!`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-3 text-sm shadow-md transition-all shrink-0 cursor-pointer"
                   >
-                    <FaTag className="w-2.5 h-2.5 text-slate-400" />
-                    {tag}
-                  </span>
-                ))}
+                    <FaWhatsapp className="w-5 h-5 text-slate-950" />
+                    <span>Ask Expert on WhatsApp</span>
+                  </a>
+                </div>
               </div>
-            )}
-
-            {/* WhatsApp Consultation Action Box */}
-            <div className="rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">
-                  Have Questions Regarding This Visa Guide?
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                  Chat directly with WorkWise Visa immigration and trade testing advisors on WhatsApp.
-                </p>
-              </div>
-
-              <a
-                href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20read%20your%20article%20"${encodeURIComponent(
-                  article.title
-                )}"%20and%20want%20to%20apply!`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-3 text-sm shadow-md transition-all shrink-0 cursor-pointer"
-              >
-                <FaWhatsapp className="w-5 h-5 text-slate-950" />
-                <span>Ask Expert on WhatsApp</span>
-              </a>
             </div>
+
+            {/* ── Right Column / Sticky Sidebar (lg:col-span-4) ── */}
+            <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+              {/* Recent & Trending Guides Widget */}
+              <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm">
+                <div className="flex items-center gap-2.5 mb-5 pb-3.5 border-b border-slate-100">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-50 text-orange-600 border border-orange-200/80">
+                    <FaFire className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-display font-extrabold text-slate-900">
+                      Recent & Trending Guides
+                    </h3>
+                    <p className="text-[11px] text-slate-500 font-medium">
+                      Latest overseas career updates
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {recentBlogs.map((item: any) => (
+                    <Link
+                      key={item.id || item.slug}
+                      href={`/blogs/${item.slug || item.id}`}
+                      className="group flex gap-3.5 p-2.5 rounded-2xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200/70"
+                    >
+                      <div className="relative h-18 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 border border-slate-200">
+                        <img
+                          src={
+                            item.image ||
+                            "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=300&q=80"
+                          }
+                          alt={item.title}
+                          className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center min-w-0 flex-1">
+                        <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1 line-clamp-1">
+                          {item.category}
+                        </span>
+                        <h4 className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2 leading-snug">
+                          {item.title}
+                        </h4>
+                        <div className="flex items-center gap-2 text-[11px] text-slate-400 mt-1.5 font-medium">
+                          <span>{item.date}</span>
+                          <span>•</span>
+                          <span>{item.readTime}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="mt-5 pt-3.5 border-t border-slate-100 text-center">
+                  <Link
+                    href="/blogs"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition"
+                  >
+                    <span>View All Articles & Insights</span>
+                    <FaChevronRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </main>
