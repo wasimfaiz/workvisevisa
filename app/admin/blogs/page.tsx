@@ -68,6 +68,7 @@ import {
 
 import { EmployeePermissions } from "@/lib/types/rbac";
 import AdminSidebar from "@/components/AdminSidebar";
+import MarkdownContent from "@/components/MarkdownContent";
 
 // ── Types ─────────────────────────────────────────────────────────
 
@@ -2176,8 +2177,8 @@ export default function AdminBlogsPage() {
                       </p>
                     </div>
 
-                    <div className="prose prose-slate max-w-none text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
-                      {form.content || "Write content in the editor to see formatted live preview."}
+                    <div className="pt-2">
+                      <MarkdownContent content={form.content || "Write content in the editor to see formatted live preview."} />
                     </div>
 
                     {form.tags && form.tags.length > 0 && (
@@ -2453,8 +2454,8 @@ export default function AdminBlogsPage() {
               </p>
             </div>
 
-            <div className="text-xs sm:text-sm text-slate-700 whitespace-pre-wrap leading-relaxed space-y-3">
-              {previewingBlog.content}
+            <div className="pt-2">
+              <MarkdownContent content={previewingBlog.content} />
             </div>
 
             <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">

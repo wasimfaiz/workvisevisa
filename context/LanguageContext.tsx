@@ -6,15 +6,16 @@ export type LanguageCode = "en" | "hi" | "ar";
 
 export interface LanguageOption {
   code: LanguageCode;
+  countryCode: string;
   label: string;
   nativeName: string;
   flag: string;
 }
 
 export const supportedLanguages: LanguageOption[] = [
-  { code: "en", label: "English", nativeName: "English", flag: "🇬🇧" },
-  { code: "hi", label: "Hindi", nativeName: "हिंदी", flag: "🇮🇳" },
-  { code: "ar", label: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
+  { code: "en", countryCode: "GB", label: "English", nativeName: "English", flag: "🇬🇧" },
+  { code: "hi", countryCode: "IN", label: "Hindi", nativeName: "हिंदी", flag: "🇮🇳" },
+  { code: "ar", countryCode: "AE", label: "Arabic", nativeName: "العربية", flag: "🇦🇪" },
 ];
 
 interface LanguageContextType {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MarkdownContent from "@/components/MarkdownContent";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
 import { blogPosts as fallbackPosts } from "@/lib/data";
@@ -25,15 +26,44 @@ interface PageProps {
 }
 
 async function getBlog(slug: string) {
+  const decodedSlug = decodeURIComponent(slug).trim().toLowerCase();
+
+  // Find corresponding rich fallback first
+  const staticFound = fallbackPosts.find(
+    (p) =>
+      (p.slug && p.slug.toLowerCase() === decodedSlug) ||
+      p.id.toLowerCase() === decodedSlug ||
+      p.id === `blog-${decodedSlug}` ||
+      p.title.toLowerCase().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-") === decodedSlug ||
+      (decodedSlug.includes("heavy") && p.id === "blog-4") ||
+      (decodedSlug.includes("caregiver") && p.id === "blog-3") ||
+      (decodedSlug.includes("opportunity-card") && p.id === "blog-2") ||
+      (decodedSlug.includes("germany") && p.id === "blog-2") ||
+      (decodedSlug.includes("blue-collar") && p.id === "blog-1") ||
+      (decodedSlug.includes("uae-saudi") && p.id === "blog-1")
+  );
+
   try {
     await connectDB();
     const blog = await Blog.findOne({
-      $or: [{ slug: slug }, { _id: slug.match(/^[0-9a-fA-F]{24}$/) ? slug : null }],
+      $or: [
+        { slug: decodedSlug },
+        { slug: slug },
+        { title: { $regex: `^${decodedSlug.replace(/-/g, " ")}$`, $options: "i" } },
+        { _id: slug.match(/^[0-9a-fA-F]{24}$/) ? slug : null },
+      ].filter(Boolean),
     }).lean();
 
     if (blog) {
+      // If DB has short stub content (<800 chars or placeholder) and fallback has rich content, prefer the rich content
+      const contentToUse =
+        blog.content && blog.content.length > 800 && !blog.content.startsWith("## Overview:")
+          ? blog.content
+          : staticFound?.content || blog.content;
+
       return {
         ...blog,
+        content: contentToUse,
         id: (blog._id as unknown as { toString(): string }).toString(),
         _id: undefined,
       };
@@ -43,7 +73,6 @@ async function getBlog(slug: string) {
   }
 
   // Fallback to static data
-  const staticFound = fallbackPosts.find((p) => p.id === slug || p.id === `blog-${slug}`);
   if (staticFound) return staticFound;
 
   return null;
@@ -157,12 +186,12 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             </div>
 
             {/* Main Text / Markdown Output */}
-            <div className="prose prose-slate max-w-none text-base sm:text-lg text-slate-700 leading-relaxed whitespace-pre-wrap">
+            <div>
               {article.content ? (
-                article.content
+                <MarkdownContent content={article.content} />
               ) : (
                 <div className="space-y-4">
-                  <p>
+                  <p className="text-slate-700 text-base leading-relaxed">
                     Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
                   </p>
                   <h3 className="text-xl font-bold text-slate-900 pt-2">Key Highlights & Action Checklist:</h3>

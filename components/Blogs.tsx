@@ -22,7 +22,23 @@ export default function Blogs() {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            setPosts(json.data.slice(0, 4));
+            const hydrated = json.data.map((post: BlogPost) => {
+              const matched = fallbackPosts.find(
+                (p) =>
+                  p.slug === post.slug ||
+                  p.id === post.id ||
+                  (p.title && post.title && p.title.toLowerCase().includes(post.title.substring(0, 20).toLowerCase())) ||
+                  (post.slug && post.slug.includes("heavy") && p.id === "blog-4") ||
+                  (post.slug && post.slug.includes("caregiver") && p.id === "blog-3") ||
+                  (post.slug && post.slug.includes("opportunity") && p.id === "blog-2") ||
+                  (post.slug && post.slug.includes("blue-collar") && p.id === "blog-1")
+              );
+              if (matched && (!post.content || post.content.length < 800 || post.content.startsWith("## Overview:"))) {
+                return { ...post, content: matched.content, slug: post.slug || matched.slug };
+              }
+              return post;
+            });
+            setPosts(hydrated.slice(0, 4));
           }
         }
       } catch (err) {
@@ -130,7 +146,7 @@ export default function Blogs() {
               {/* Card Footer Link */}
               <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-0">
                 <Link
-                  href="/blogs"
+                  href={`/blogs/${post.slug || post.id}`}
                   className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 group-hover:text-emerald-600 transition-colors"
                 >
                   <span>Read Full Article & Guides</span>

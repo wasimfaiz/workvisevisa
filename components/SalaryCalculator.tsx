@@ -11,6 +11,7 @@ import {
   FaGraduationCap,
   FaBriefcase,
 } from "react-icons/fa6";
+import CountryFlag from "@/components/CountryFlag";
 
 interface CalculationResult {
   salaryRange: string;
@@ -31,12 +32,12 @@ const roles = [
 ];
 
 const destinations = [
-  { id: "UAE", name: "Dubai & UAE", flag: "🇦🇪", region: "Gulf" },
-  { id: "DE", name: "Germany (EU)", flag: "🇩🇪", region: "Schengen" },
-  { id: "CAN", name: "Canada", flag: "🇨🇦", region: "North America" },
-  { id: "UK", name: "United Kingdom", flag: "🇬🇧", region: "UK" },
-  { id: "SA", name: "Saudi Arabia", flag: "🇸🇦", region: "Gulf" },
-  { id: "US", name: "United States", flag: "🇺🇸", region: "North America" },
+  { id: "UAE", code: "AE", name: "Dubai & UAE", flag: "🇦🇪", region: "Gulf" },
+  { id: "DE", code: "DE", name: "Germany (EU)", flag: "🇩🇪", region: "Schengen" },
+  { id: "CAN", code: "CA", name: "Canada", flag: "🇨🇦", region: "North America" },
+  { id: "UK", code: "GB", name: "United Kingdom", flag: "🇬🇧", region: "UK" },
+  { id: "SA", code: "SA", name: "Saudi Arabia", flag: "🇸🇦", region: "Gulf" },
+  { id: "US", code: "US", name: "United States", flag: "🇺🇸", region: "North America" },
 ];
 
 const experienceLevels = [
@@ -172,7 +173,7 @@ export default function SalaryCalculator() {
                           : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80"
                       }`}
                     >
-                      <span className="text-base">{d.flag}</span>
+                      <CountryFlag code={d.code} size="xs" countryName={d.name} />
                       <span className="truncate">{d.name}</span>
                     </button>
                   ))}
@@ -227,8 +228,9 @@ export default function SalaryCalculator() {
                   <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                     Calculated Result
                   </span>
-                  <h3 className="text-xl font-display font-bold text-white mt-0.5">
-                    {activeDestObj.flag} {activeDestObj.name} Pathway
+                  <h3 className="text-xl font-display font-bold text-white mt-0.5 flex items-center gap-2">
+                    <CountryFlag code={activeDestObj.code} size="sm" countryName={activeDestObj.name} />
+                    <span>{activeDestObj.name} Pathway</span>
                   </h3>
                 </div>
 

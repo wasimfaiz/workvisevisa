@@ -35,30 +35,82 @@ function todayDateString(): string {
   });
 }
 
-/** Seed fallback blog posts if MongoDB collection is empty */
-async function ensureSeedData() {
+/** Seed or update fallback blog posts if MongoDB collection is empty or needs refresh */
+export async function ensureSeedData() {
   try {
-    const count = await Blog.countDocuments();
-    if (count === 0 && fallbackInitialPosts.length > 0) {
-      const initialDocs = fallbackInitialPosts.map((p, idx) => ({
-        title: p.title,
-        slug: generateSlug(p.title) || `blog-post-${idx + 1}`,
-        category: p.category || "Gulf Visas",
-        excerpt: p.excerpt,
-        content: `## Overview: ${p.title}\n\n${p.excerpt}\n\n### Essential Requirements & Guidelines\nNavigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.\n\n### Step-by-Step Procedure\n1. **Document Verification**: Complete HRD / MEA degree & trade certificate apostille attestation.\n2. **Medical Clearance**: Undergo approved GAMCA / Embassy medical panel tests.\n3. **Trade Testing**: Obtain recognized vocational skill certificate from accredited testing centers.\n4. **Visa Stamping & Flight Deployment**: Work visa endorsement via authorized recruiting agent with flight itinerary confirmation.\n\n### Expert Advice for Applicants\nAlways verify that your offer letter mentions proper basic salary, overtime eligibility, company accommodation, and standard airfare coverage. Avoid unauthorized agents and always process through licensed recruitment agencies.`,
-        image: p.image,
-        author: p.author || "WorkWise Editorial Team",
-        readTime: p.readTime || "5 min read",
-        tags: p.tags || ["Work Permits", "Visa Guide"],
-        published: true,
-        featured: idx === 0,
-        views: 120 + idx * 45,
-        date: p.date || todayDateString(),
-      }));
-      await Blog.insertMany(initialDocs);
+    const seedMatchers = [
+      {
+        pattern: /Blue-Collar Work Permits|UAE.*Saudi|Work Permits in 2026/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-1") || fallbackInitialPosts[0],
+      },
+      {
+        pattern: /Germany Opportunity Card|Chancenkarte|Trade Workers/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-2") || fallbackInitialPosts[1],
+      },
+      {
+        pattern: /Health.*Care Worker|Caregiver/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-3") || fallbackInitialPosts[2],
+      },
+      {
+        pattern: /Heavy Vehicle|Heavy Driver|Dubai & Riyadh|GCC/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-4") || fallbackInitialPosts[3],
+      },
+    ];
+
+    for (const item of seedMatchers) {
+      const p = item.post;
+      if (!p || !p.content) continue;
+      const generatedSlug = p.slug || generateSlug(p.title);
+
+      // Find if document exists by slug or title pattern
+      const existing = await Blog.findOne({
+        $or: [
+          { slug: generatedSlug },
+          { slug: p.id },
+          { title: { $regex: item.pattern } },
+        ],
+      });
+
+      if (existing) {
+        // Force update to the comprehensive 1,500+ word content
+        existing.title = p.title;
+        existing.slug = generatedSlug;
+        existing.category = p.category;
+        existing.excerpt = p.excerpt;
+        existing.content = p.content;
+        existing.image = p.image;
+        existing.metaTitle = p.metaTitle || p.title;
+        existing.metaDescription = p.metaDescription || p.excerpt;
+        existing.metaKeywords = p.metaKeywords || (p.tags ? p.tags.join(", ") : "");
+        existing.readTime = p.readTime || calculateReadTime(p.content);
+        existing.author = p.author;
+        existing.tags = p.tags;
+        existing.published = true;
+        existing.featured = Boolean(p.featured);
+        await existing.save();
+      } else {
+        await Blog.create({
+          title: p.title,
+          slug: generatedSlug,
+          category: p.category || "Gulf Visas",
+          excerpt: p.excerpt,
+          content: p.content,
+          image: p.image,
+          author: p.author || "WorkWise Editorial Team",
+          readTime: p.readTime || calculateReadTime(p.content),
+          tags: p.tags || ["Work Permits", "Visa Guide"],
+          metaTitle: p.metaTitle || p.title,
+          metaDescription: p.metaDescription || p.excerpt,
+          metaKeywords: p.metaKeywords || (p.tags ? p.tags.join(", ") : ""),
+          published: true,
+          featured: Boolean(p.featured),
+          views: 500,
+          date: p.date || todayDateString(),
+        });
+      }
     }
   } catch (err) {
-    console.error("[blogController.ensureSeedData] Error seeding initial blogs:", err);
+    console.error("[blogController.ensureSeedData] Error seeding/updating blogs:", err);
   }
 }
 

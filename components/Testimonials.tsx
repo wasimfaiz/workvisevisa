@@ -9,6 +9,7 @@ import {
   FaStar,
   FaAward,
 } from "react-icons/fa6";
+import CountryFlag from "@/components/CountryFlag";
 import { testimonials } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -101,8 +102,8 @@ export default function Testimonials() {
                     right: idx >= 3 ? `${-4 + (idx - 3) * 2}%` : "auto",
                   }}
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-800">
-                    {item.flag}
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 overflow-hidden border border-slate-200">
+                    <CountryFlag countryName={item.country} size="xs" />
                   </div>
                   <span className="text-xs font-bold truncate max-w-[90px]">
                     {item.name.split(" ")[0]}
@@ -149,9 +150,11 @@ export default function Testimonials() {
                       <p className="text-base font-bold text-slate-900 font-display">
                         {t.name}
                       </p>
-                      <p className="text-xs text-emerald-700 font-bold">
-                        {t.role} · <span className="text-slate-600 font-medium">{t.company}</span>{" "}
-                        <span className="ml-1 text-sm">{t.flag}</span>
+                      <p className="text-xs text-emerald-700 font-bold flex items-center justify-center sm:justify-start gap-1.5 mt-0.5">
+                        <span>{t.role}</span>
+                        <span>·</span>
+                        <span className="text-slate-600 font-medium">{t.company}</span>
+                        <CountryFlag countryName={t.country} size="xs" />
                       </p>
                     </div>
                   </div>

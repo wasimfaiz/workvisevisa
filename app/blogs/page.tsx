@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MarkdownContent from "@/components/MarkdownContent";
 import { blogPosts as initialBlogPosts, BlogPost } from "@/lib/data";
 import {
   FaNewspaper,
@@ -17,6 +19,7 @@ import {
   FaCheck,
   FaUserCheck,
   FaShareNodes,
+  FaArrowUpRightFromSquare,
 } from "react-icons/fa6";
 
 const DEFAULT_CATEGORIES = [
@@ -45,7 +48,23 @@ export default function BlogsPage() {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            setPosts(json.data);
+            const hydrated = json.data.map((post: BlogPost) => {
+              const matched = initialBlogPosts.find(
+                (p) =>
+                  p.slug === post.slug ||
+                  p.id === post.id ||
+                  (p.title && post.title && p.title.toLowerCase().includes(post.title.substring(0, 20).toLowerCase())) ||
+                  (post.slug && post.slug.includes("heavy") && p.id === "blog-4") ||
+                  (post.slug && post.slug.includes("caregiver") && p.id === "blog-3") ||
+                  (post.slug && post.slug.includes("opportunity") && p.id === "blog-2") ||
+                  (post.slug && post.slug.includes("blue-collar") && p.id === "blog-1")
+              );
+              if (matched && (!post.content || post.content.length < 800 || post.content.startsWith("## Overview:"))) {
+                return { ...post, content: matched.content, slug: post.slug || matched.slug };
+              }
+              return post;
+            });
+            setPosts(hydrated);
           }
         }
       } catch (err) {
@@ -217,16 +236,28 @@ export default function BlogsPage() {
 
                   {/* Card Action */}
                   <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 flex items-center justify-between border-t border-slate-100 pt-5">
-                    <button
-                      onClick={() => setSelectedPost(post)}
-                      className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors cursor-pointer"
-                    >
-                      <span>Read Article & Guide</span>
-                      <FaArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/blogs/${post.slug || post.id}`}
+                        className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors"
+                      >
+                        <span>Read Full Guide</span>
+                        <FaArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+
+                      <button
+                        onClick={() => setSelectedPost(post)}
+                        className="p-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition"
+                        title="Quick View"
+                      >
+                        <span>Preview</span>
+                      </button>
+                    </div>
 
                     <a
-                      href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20have%20a%20question%20regarding%20your%20blog%20article!"
+                      href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20have%20a%20question%20regarding%20"${encodeURIComponent(
+                        post.title
+                      )}"`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700"
@@ -268,7 +299,7 @@ export default function BlogsPage() {
       {/* Article Detail Modal */}
       {selectedPost && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm overflow-y-auto">
-          <div className="relative w-full max-w-3xl rounded-3xl bg-white p-6 sm:p-10 shadow-2xl my-8">
+          <div className="relative w-full max-w-3xl rounded-3xl bg-white p-6 sm:p-10 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedPost(null)}
               className="absolute top-6 right-6 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
@@ -276,9 +307,18 @@ export default function BlogsPage() {
               <FaXmark className="w-5 h-5" />
             </button>
 
-            <span className="inline-block rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800 mb-3">
-              {selectedPost.category}
-            </span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-block rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+                {selectedPost.category}
+              </span>
+              <Link
+                href={`/blogs/${selectedPost.slug || selectedPost.id}`}
+                className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800 underline ml-2"
+              >
+                <span>Open Dedicated Full Page</span>
+                <FaArrowUpRightFromSquare className="w-3 h-3" />
+              </Link>
+            </div>
 
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 mb-4 leading-tight">
               {selectedPost.title}
@@ -304,17 +344,20 @@ export default function BlogsPage() {
               />
             </div>
 
-            <div className="prose prose-slate max-w-none text-sm sm:text-base text-slate-600 leading-relaxed space-y-4">
-              <p className="font-semibold text-slate-800 text-base sm:text-lg">
-                {selectedPost.excerpt}
-              </p>
-              
+            {/* Render with MarkdownContent */}
+            <div className="space-y-4">
+              <div className="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                <p className="font-semibold text-slate-800 text-sm sm:text-base leading-relaxed">
+                  {selectedPost.excerpt}
+                </p>
+              </div>
+
               {selectedPost.content ? (
-                <div className="text-slate-700 whitespace-pre-wrap leading-relaxed space-y-4 pt-2">
-                  {selectedPost.content}
+                <div className="pt-2">
+                  <MarkdownContent content={selectedPost.content} />
                 </div>
               ) : (
-                <>
+                <div className="space-y-4 text-slate-700 text-sm">
                   <p>
                     Navigating foreign work permits requires strict adherence to embassy documentation, medical clearances (such as GAMCA), trade test skill certificates, and employer contract verifications.
                   </p>
@@ -333,7 +376,7 @@ export default function BlogsPage() {
                       <span>Ensure valid passport with at least 6 months validity and PCC (Police Clearance).</span>
                     </li>
                   </ul>
-                </>
+                </div>
               )}
             </div>
 
@@ -350,12 +393,21 @@ export default function BlogsPage() {
                 <span>Apply via WhatsApp Now</span>
               </a>
 
-              <button
-                onClick={() => setSelectedPost(null)}
-                className="w-full sm:w-auto rounded-xl border border-slate-200 px-5 py-3 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
-              >
-                Close Article
-              </button>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Link
+                  href={`/blogs/${selectedPost.slug || selectedPost.id}`}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-xs font-bold text-white hover:bg-slate-800 transition"
+                >
+                  <span>Full Article Page</span>
+                  <FaArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <button
+                  onClick={() => setSelectedPost(null)}
+                  className="w-full sm:w-auto rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
