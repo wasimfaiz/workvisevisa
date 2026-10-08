@@ -5,6 +5,7 @@
    ================================================================ */
 
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/mongodb";
 import Blog, { IBlog } from "@/lib/models/Blog";
 import { requirePermission } from "@/lib/auth";
@@ -35,7 +36,7 @@ function todayDateString(): string {
   });
 }
 
-/** Seed or update fallback blog posts if MongoDB collection is empty or needs refresh */
+/** Seed fallback blog posts ONLY if they do not already exist in MongoDB */
 export async function ensureSeedData() {
   try {
     const seedMatchers = [
@@ -106,7 +107,7 @@ export async function ensureSeedData() {
       if (!p || !p.content) continue;
       const generatedSlug = p.slug || generateSlug(p.title);
 
-      // Find if document exists by slug or title pattern
+      // Check if document already exists in DB
       const existing = await Blog.findOne({
         $or: [
           { slug: generatedSlug },
@@ -115,27 +116,8 @@ export async function ensureSeedData() {
         ],
       });
 
-      if (existing) {
-        // Force update to the comprehensive 1,500+ word content
-        existing.title = p.title;
-        existing.slug = generatedSlug;
-        existing.category = p.category;
-        existing.excerpt = p.excerpt;
-        existing.content = p.content;
-        existing.image = p.image;
-        existing.metaTitle = p.metaTitle || p.title;
-        existing.metaDescription = p.metaDescription || p.excerpt;
-        existing.metaKeywords = p.metaKeywords || (p.tags ? p.tags.join(", ") : "");
-        existing.readTime = p.readTime || calculateReadTime(p.content);
-        existing.author = p.author;
-        existing.tags = p.tags;
-        existing.published = true;
-        existing.featured = Boolean(p.featured);
-        if (p.date) {
-          existing.date = p.date;
-        }
-        await existing.save();
-      } else {
+      // ONLY create if missing — NEVER overwrite existing user-edited data!
+      if (!existing) {
         await Blog.create({
           title: p.title,
           slug: generatedSlug,
@@ -157,7 +139,7 @@ export async function ensureSeedData() {
       }
     }
   } catch (err) {
-    console.error("[blogController.ensureSeedData] Error seeding/updating blogs:", err);
+    console.error("[blogController.ensureSeedData] Error seeding blogs:", err);
   }
 }
 
@@ -358,6 +340,15 @@ export async function createBlog(request: NextRequest): Promise<Response> {
       __v: undefined,
     };
 
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${newBlog.slug}`);
+      revalidatePath("/");
+      revalidatePath("/sitemap.xml");
+    } catch {
+      // Ignored in non-SSR environment
+    }
+
     return Response.json(
       { success: true, data: transformed, message: "Blog published successfully!" },
       { status: 201 }
@@ -456,6 +447,15 @@ export async function updateBlog(
 
     await existing.save();
 
+    try {
+      revalidatePath("/blogs");
+      revalidatePath(`/blogs/${existing.slug}`);
+      revalidatePath("/");
+      revalidatePath("/sitemap.xml");
+    } catch {
+      // Ignored in non-SSR environment
+    }
+
     const transformed = {
       ...existing.toObject(),
       id: existing._id.toString(),
@@ -503,6 +503,15 @@ export async function deleteBlog(
         { success: false, message: "Blog article not found." },
         { status: 404 }
       );
+    }
+
+    try {
+      revalidatePath("/blogs");
+      if (deleted.slug) revalidatePath(`/blogs/${deleted.slug}`);
+      revalidatePath("/");
+      revalidatePath("/sitemap.xml");
+    } catch {
+      // Ignored in non-SSR environment
     }
 
     return Response.json({

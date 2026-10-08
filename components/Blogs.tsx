@@ -22,34 +22,7 @@ export default function Blogs() {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            const hydrated = json.data.map((post: BlogPost) => {
-              const matched = fallbackPosts.find(
-                (p) =>
-                  p.slug === post.slug ||
-                  p.id === post.id ||
-                  (p.title && post.title && p.title.toLowerCase().includes(post.title.substring(0, 20).toLowerCase())) ||
-                  (post.slug && post.slug.includes("construction") && p.id === "blog-5") ||
-                  (post.slug && post.slug.includes("hotel") && p.id === "blog-6") ||
-                  (post.slug && post.slug.includes("delivery") && p.id === "blog-7") ||
-                  (post.slug && post.slug.includes("neom") && p.id === "blog-8") ||
-                  (post.slug && post.slug.includes("shutdown") && p.id === "blog-9") ||
-                  (post.slug && post.slug.includes("grand-tours") && p.id === "blog-10") ||
-                  (post.slug && post.slug.includes("gcc-unified") && p.id === "blog-10") ||
-                  (post.slug && post.slug.includes("kuwait-work-visa") && p.id === "blog-11") ||
-                  (post.slug && post.slug.includes("degree-attestation") && p.id === "blog-11") ||
-                  (post.slug && post.slug.includes("wafid") && p.id === "blog-12") ||
-                  (post.slug && post.slug.includes("gamca") && p.id === "blog-12") ||
-                  (post.slug && post.slug.includes("heavy") && p.id === "blog-4") ||
-                  (post.slug && post.slug.includes("caregiver") && p.id === "blog-3") ||
-                  (post.slug && post.slug.includes("opportunity") && p.id === "blog-2") ||
-                  (post.slug && post.slug.includes("blue-collar") && p.id === "blog-1")
-              );
-              if (matched && (!post.content || post.content.length < 800 || post.content.startsWith("## Overview:"))) {
-                return { ...post, content: matched.content, slug: post.slug || matched.slug };
-              }
-              return post;
-            });
-            const sorted = sortBlogsByDate<BlogPost>(hydrated as BlogPost[]);
+            const sorted = sortBlogsByDate<BlogPost>(json.data as BlogPost[]);
             setPosts(sorted.slice(0, 6));
           }
         }

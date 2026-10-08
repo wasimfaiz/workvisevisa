@@ -19,6 +19,9 @@ import {
   FaChevronRight,
 } from "react-icons/fa6";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -75,15 +78,9 @@ async function getBlog(slug: string) {
     }).lean();
 
     if (blog) {
-      // If DB has short stub content (<800 chars or placeholder) and fallback has rich content, prefer the rich content
-      const contentToUse =
-        blog.content && blog.content.length > 800 && !blog.content.startsWith("## Overview:")
-          ? blog.content
-          : staticFound?.content || blog.content;
-
       return {
         ...blog,
-        content: contentToUse,
+        content: blog.content || staticFound?.content || "",
         id: (blog._id as unknown as { toString(): string }).toString(),
         _id: undefined,
       };
