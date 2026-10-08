@@ -1935,7 +1935,7 @@ WorkWise Visa assists aspiring riders and warehouse workers with direct employer
     readTime: "14 min read",
     excerpt:
       "Comprehensive 2026 master guide to securing high-paying technical, construction, and plant trade jobs in Saudi Arabia's NEOM, Red Sea, and Qiddiya megaprojects. Detailed coverage of Takamol PVP verification, Qiwa digital contracts, remote camp allowances, Iqama processing, and salary scales.",
-    image: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
     author: "WorkWise Gulf Megaprojects Editorial Desk",
     tags: [
       "Gulf Visas",

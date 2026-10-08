@@ -95,8 +95,11 @@ export default function Blogs() {
               transition={{ duration: 0.35, delay: idx * 0.05 }}
             >
               <div>
-                {/* Image & Category Overlay */}
-                <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100">
+                {/* Image & Category Overlay - Clickable Link */}
+                <Link
+                  href={`/blogs/${post.slug || post.id}`}
+                  className="block relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100 cursor-pointer"
+                >
                   <img
                     src={post.image}
                     alt={post.title}
@@ -111,7 +114,7 @@ export default function Blogs() {
                       {post.category}
                     </span>
                   </div>
-                </div>
+                </Link>
 
                 {/* Card Content */}
                 <div className="p-5">
@@ -128,10 +131,15 @@ export default function Blogs() {
                     </span>
                   </div>
 
-                  {/* Post Title */}
-                  <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 leading-snug mb-2">
-                    {post.title}
-                  </h3>
+                  {/* Post Title - Clickable Link */}
+                  <Link
+                    href={`/blogs/${post.slug || post.id}`}
+                    className="block group/title focus:outline-none"
+                  >
+                    <h3 className="text-base sm:text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 group-hover/title:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
+                      {post.title}
+                    </h3>
+                  </Link>
 
                   {/* Post Excerpt */}
                   <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed font-normal mb-3">

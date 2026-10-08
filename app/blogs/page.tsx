@@ -59,6 +59,7 @@ export default function BlogsPage() {
                   (post.slug && post.slug.includes("hotel") && p.id === "blog-6") ||
                   (post.slug && post.slug.includes("delivery") && p.id === "blog-7") ||
                   (post.slug && post.slug.includes("neom") && p.id === "blog-8") ||
+                  (post.slug && (post.slug.includes("qvc") || post.slug.includes("qatar-work-visa")) && p.id === "blog-13") ||
                   (post.slug && post.slug.includes("shutdown") && p.id === "blog-9") ||
                   (post.slug && post.slug.includes("grand-tours") && p.id === "blog-10") ||
                   (post.slug && post.slug.includes("gcc-unified") && p.id === "blog-10") ||
@@ -196,8 +197,11 @@ export default function BlogsPage() {
                   className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white overflow-hidden shadow-xs transition-all duration-300 hover:border-emerald-500/60 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div>
-                    {/* Image Header */}
-                    <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100">
+                    {/* Image Header - Clickable Link */}
+                    <Link
+                      href={`/blogs/${post.slug || post.id}`}
+                      className="block relative h-44 sm:h-48 w-full overflow-hidden bg-slate-100 cursor-pointer"
+                    >
                       <img
                         src={post.image}
                         alt={post.title}
@@ -212,7 +216,7 @@ export default function BlogsPage() {
                           {post.category}
                         </span>
                       </div>
-                    </div>
+                    </Link>
 
                     {/* Content */}
                     <div className="p-5">
@@ -228,9 +232,15 @@ export default function BlogsPage() {
                         </span>
                       </div>
 
-                      <h2 className="text-base sm:text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 leading-snug mb-2">
-                        {post.title}
-                      </h2>
+                      {/* Title - Clickable Link */}
+                      <Link
+                        href={`/blogs/${post.slug || post.id}`}
+                        className="block group/title focus:outline-none"
+                      >
+                        <h2 className="text-base sm:text-lg font-display font-bold text-slate-900 group-hover:text-emerald-700 group-hover/title:text-emerald-600 transition-colors line-clamp-2 leading-snug mb-2">
+                          {post.title}
+                        </h2>
+                      </Link>
 
                       <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed font-normal mb-3.5">
                         {post.excerpt}
