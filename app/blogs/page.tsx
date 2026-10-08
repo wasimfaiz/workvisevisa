@@ -49,6 +49,8 @@ export default function BlogsPage() {
                   p.slug === post.slug ||
                   p.id === post.id ||
                   (p.title && post.title && p.title.toLowerCase().includes(post.title.substring(0, 20).toLowerCase())) ||
+                  (post.slug && (post.slug.includes("police-clearance") || post.slug.includes("pcc")) && p.id === "blog-15") ||
+                  (post.slug && (post.slug.includes("takamol") || post.slug.includes("skill-verification")) && p.id === "blog-14") ||
                   (post.slug && (post.slug.includes("qvc") || post.slug.includes("qatar-work-visa")) && p.id === "blog-13") ||
                   (post.slug && post.slug.includes("wafid") && p.id === "blog-12") ||
                   (post.slug && post.slug.includes("gamca") && p.id === "blog-12") ||

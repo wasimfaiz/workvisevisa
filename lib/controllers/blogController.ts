@@ -91,6 +91,14 @@ export async function ensureSeedData() {
         pattern: /Qatar Work Visa|QVC.*Process|Qatar Visa Center|Contract Signing.*Qatar/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-13"),
       },
+      {
+        pattern: /Takamol.*SVP|Skill Verification Program|Trade Test.*Saudi/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-14"),
+      },
+      {
+        pattern: /Police Clearance Certificate|PCC.*Passport Seva|MEA Apostille.*PCC/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-15"),
+      },
     ];
 
     for (const item of seedMatchers) {

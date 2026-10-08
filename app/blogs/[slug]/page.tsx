@@ -32,7 +32,10 @@ async function getBlog(slug: string) {
       (p.slug && p.slug.toLowerCase() === decodedSlug) ||
       p.id.toLowerCase() === decodedSlug ||
       p.id === `blog-${decodedSlug}` ||
-      p.title.toLowerCase().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-") === decodedSlug ||
+      (decodedSlug.includes("police-clearance") && p.id === "blog-15") ||
+      (decodedSlug.includes("pcc") && p.id === "blog-15") ||
+      (decodedSlug.includes("takamol") && p.id === "blog-14") ||
+      (decodedSlug.includes("skill-verification") && p.id === "blog-14") ||
       (decodedSlug.includes("qvc") && p.id === "blog-13") ||
       (decodedSlug.includes("qatar-work-visa") && p.id === "blog-13") ||
       (decodedSlug.includes("wafid") && p.id === "blog-12") ||
