@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useLanguage, supportedLanguages, LanguageCode } from "@/context/LanguageContext";
-import { FaGlobe, FaChevronDown, FaCheck } from "react-icons/fa6";
+import { FaChevronDown, FaCheck } from "react-icons/fa6";
 import CountryFlag from "@/components/CountryFlag";
 
 export default function LanguageSwitcher() {
@@ -35,9 +35,8 @@ export default function LanguageSwitcher() {
         onClick={() => setIsOpen((prev) => !prev)}
         type="button"
         aria-label="Select Language"
-        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-800 shadow-xs hover:border-emerald-500 hover:bg-slate-50 transition-all cursor-pointer"
+        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-800 shadow-xs hover:border-emerald-500 hover:bg-slate-50 transition-all cursor-pointer"
       >
-        <FaGlobe className="w-3.5 h-3.5 text-emerald-600" />
         <CountryFlag code={activeLang.countryCode} size="xs" countryName={activeLang.label} />
         <span className="font-bold text-slate-800">{activeLang.nativeName}</span>
         <FaChevronDown className={`w-2.5 h-2.5 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
