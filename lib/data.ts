@@ -1517,11 +1517,13 @@ For specialized commercial MEP and high-rise projects, contracting companies reg
 
 The legal pathway to secure a Dubai construction work visa involves a transparent, multi-stage workflow:
 
-\`\`\`
-Client Trade Interview & Practical Test ➔ MOHRE Offer Letter (MB-1) ➔ GAMCA/Wafid Medical Clearance
-       ➔ Electronic Work Permit & Entry Visa ➔ Flight to Dubai International Airport (DXB)
-       ➔ DHA Medical Fitness & Emirates ID Biometrics ➔ Residency Visa & Labour Card Issued
-\`\`\`
+> 📌 **Dubai Construction Work Visa Pipeline:**  
+> **1. Overseas Testing:** Client Trade Interview & Practical Test  
+> **2. Offer Letter:** MOHRE Official Offer Letter (MB-1) Issuance  
+> **3. Medical:** GAMCA / Wafid Medical Clearance  
+> **4. Travel Entry:** Electronic Work Permit & Entry Visa  
+> **5. Onboarding:** DHA Medical Fitness & Emirates ID Biometrics  
+> **6. Finalization:** Physical Residency Visa Stamping & MOHRE Labour Card
 
 ### Phase 1: Overseas Trade Testing & Client Interview
 Candidates appear at accredited government-approved trade testing centers (such as Don Bosco, Anuptech, or Little Flower in India, or similar technical testing institutes in Lahore, Rawalpindi, and Kathmandu). Candidates complete practical trials:
@@ -1703,10 +1705,13 @@ All culinary, F&B service, and kitchen stewardship staff in Dubai must adhere to
 
 Securing an overseas hotel job in Dubai involves a smooth 5-step process:
 
-\`\`\`
-Virtual/In-Person Client Interview ➔ Formal Offer Letter & Contract ➔ GAMCA/Wafid Medical Test
-    ➔ MOHRE Employment Visa Stamping ➔ Flight to Dubai ➔ Onboarding & Emirates ID Issuance
-\`\`\`
+> 📌 **Hospitality Recruitment & Visa Lifecycle:**  
+> **Step 1:** Virtual / In-Person Client Interview  
+> **Step 2:** Formal Offer Letter & MOHRE Contract  
+> **Step 3:** GAMCA / Wafid Medical Clearance  
+> **Step 4:** MOHRE Employment Visa Stamping  
+> **Step 5:** Flight to Dubai & Hotel Staff Onboarding  
+> **Step 6:** Emirates ID Issuance & Bank Account Opening
 
 ### Step 1: Employer Interview & Selection
 Interviews are conducted either through scheduled recruitment drives organized by licensed recruitment agencies (like WorkWise Visa) or via virtual multi-round video interviews (HR round, Department Head practical scenario assessment, and General Manager final approval).
@@ -1889,11 +1894,13 @@ The Dubai Government and MOHRE enforce strict occupational safety regulations fo
 
 ## 7. Step-by-Step Recruitment & Relocation Roadmap
 
-\`\`\`
-Overseas Screening & Preliminary Driving Test ➔ GAMCA/Wafid Medical Fitness Clearance
-     ➔ MOHRE Entry Permit Stamping ➔ Arrival in Dubai ➔ RTA Driving Institute Training
-     ➔ Pass RTA Road Exam ➔ Emirates ID & RTA Delivery Permit ➔ App Activation & Work
-\`\`\`
+> 📌 **Delivery Rider Relocation Roadmap:**  
+> **1. Overseas Screening:** Preliminary Motorcycle Control & Safety Trial  
+> **2. Medical Check:** GAMCA / Wafid Medical Fitness Clearance  
+> **3. Entry Stamping:** MOHRE Entry Permit Stamping & Flight to Dubai  
+> **4. Driving Training:** RTA Driving Institute Practical Training  
+> **5. Certification:** Pass RTA Road Exam & Obtain Motorcycle License  
+> **6. Deployment:** Emirates ID, RTA Delivery Rider Permit & App Activation
 
 1. **Step 1:** Candidate attends preliminary interview and motorcycle control trial at an accredited technical center.
 2. **Step 2:** Completion of **[Wafid / GAMCA medical fitness examination](https://wafid.com)** in home country.
@@ -2025,10 +2032,13 @@ To raise the standard of the skilled labor force, the Saudi Ministry of Human Re
 
 Legacy paper-based contracts are completely obsolete in Saudi Arabia. All legal employment relations are governed through the **[Qiwa Digital Labor Platform (qiwa.sa)](https://qiwa.sa)**:
 
-\`\`\`
-Digital Offer Letter ➔ Candidate Authenticates on Qiwa Portal ➔ MOFA Visa Stamping
-   ➔ Arrival via King Khalid / Tabuk Airport ➔ Wafid In-Country Medical ➔ Muqeem Digital Iqama
-\`\`\`
+> 📌 **Qiwa Digital Contract & Visa Progression:**  
+> **1. Digital Offer:** Employer uploads electronic contract on Qiwa  
+> **2. Authentication:** Candidate reviews & accepts digitally via OTP / Qiwa portal  
+> **3. MOFA Stamping:** Saudi Embassy / TasHeel visa stamping  
+> **4. Arrival:** Entry via King Khalid / Tabuk Airport  
+> **5. In-Country Medical:** Wafid medical fitness test in Saudi Arabia  
+> **6. Iqama Issuance:** Muqeem digital Iqama card printed & active
 
 ### Key Legal Rights Guaranteed in Qiwa Contracts:
 - **Binding Salary & Allowance Schedule:** Basic pay, housing provision, food allowance, and overtime rates are unchangeable without mutual electronic consent.
@@ -2209,11 +2219,13 @@ Refineries and LNG processing terminals operate under zero-tolerance safety envi
 
 ## 6. Complete Recruitment Roadmap for Oil & Gas Candidates
 
-\`\`\`
-Client Trade Interview & Weld Coupon Testing ➔ QVC Biometrics / GAMCA Medical
-   ➔ Labor Contract Digitization ➔ Visa Stamping & Flight Deployment ➔ On-Site Plant HSE Induction
-   ➔ Plant Safety Passport Issuance ➔ Execution of Turnaround Maintenance
-\`\`\`
+> 📌 **Oil & Gas Shutdown Recruitment Pipeline:**  
+> **1. Trade Testing:** Client Trade Interview & Weld Coupon (6G/TIG) Testing  
+> **2. Medical & Biometrics:** QVC Biometrics (Qatar) or GAMCA Medical (Kuwait/KSA)  
+> **3. Documentation:** Labor Contract Digitization & Visa Stamping  
+> **4. Deployment:** Flight Deployment to Plant Location  
+> **5. Safety Induction:** On-Site Plant HSE Induction & Emergency Training  
+> **6. Plant Access:** Safety Passport Issuance & Turnaround Execution
 
 1. **Trade Practical Test:** Candidate attends practical welder / pipe fitter trial at an authorized technical testing institute with client QC inspectors.
 2. **Medical & Biometric Clearance:** Complete screening at QVC (for Qatar) or authorized GAMCA clinic (for Kuwait).
@@ -2347,11 +2359,13 @@ While the GCC Grand Tours Visa is formally classified as a visit authorization (
 
 ## 5. Step-by-Step Online Application Workflow
 
-\`\`\`
-Register on Central GCC Portal ➔ Select Primary First Point of Entry ➔ Upload Passport & Photo
-   ➔ Select Unified Regional Travel Insurance ➔ Pay Single Visa Fee (Approx. $100–$140)
-   ➔ Receive Digital QR-Coded GCC Grand Tours eVisa ➔ Fly to Any GCC Destination
-\`\`\`
+> 📌 **Unified GCC Grand Tours eVisa Online Workflow:**  
+> **1. Portal Registration:** Register on Central GCC Portal or primary entry country portal  
+> **2. Travel Details:** Select First Point of Entry & submit itinerary  
+> **3. Document Upload:** Upload high-resolution passport copy & photo  
+> **4. Insurance & Payment:** Select unified regional travel insurance & pay single fee ($100–$140)  
+> **5. eVisa Issuance:** Receive digital QR-coded GCC Unified eVisa via email  
+> **6. Regional Travel:** Fly and move freely across all 6 Gulf nations
 
 1. **Step 1: Account Creation:** Log on to the official centralized GCC Visa Portal or the immigration portal of your first point of entry (e.g., UAE ICP, KSA Visa, or Qatar Hayya).
 2. **Step 2: Travel Details & Accommodation:** Enter travel dates, intended first arrival city, hotel booking reference, and onward flight ticket.
@@ -2467,10 +2481,11 @@ Due to the exceptional purchasing power of the Kuwaiti Dinar, net savings for sk
 
 To prevent document falsification, PAM and the Kuwait Embassy enforce a rigorous 4-tier certificate authentication workflow:
 
-\`\`\`
-State Education Department / HRD Authentication ➔ Ministry of External Affairs (MEA) Apostille
-   ➔ Kuwait Embassy Consular Attestation ➔ Kuwait Ministry of Foreign Affairs (MOFA) Stamp in Kuwait
-\`\`\`
+> 📌 **Kuwait Degree Attestation 4-Step Pipeline:**  
+> **Step 1:** State Education Department / HRD Authentication  
+> **Step 2:** Ministry of External Affairs (MEA) Apostille / Attestation  
+> **Step 3:** Kuwait Embassy Consular Attestation & QR Stamp in Home Country  
+> **Step 4:** Kuwait Ministry of Foreign Affairs (MOFA) Final Stamp in Kuwait
 
 1. **Notary & State HRD Attestation:** Original degree/diploma is authenticated by the Department of Higher Education in the candidate's home state.
 2. **MEA Attestation (New Delhi / Islamabad / Manila):** Central government authentication by the Ministry of External Affairs.
@@ -2588,11 +2603,13 @@ The Wafid platform operates as an electronic health clearinghouse managed direct
 
 To eliminate manual bribery and fraudulent paper slips, all appointments must be booked through the official digital portal:
 
-\`\`\`
-Visit wafid.com ➔ Enter Passport & Nationality Details ➔ Select Target Gulf Destination
-   ➔ Pay $10 USD Online Appointment Fee ➔ Automated GCC Approved Clinic Allocation
-   ➔ Print Official Wafid Slip with Barcode ➔ Visit Assigned Clinic with Passport & Photos
-\`\`\`
+> 📌 **Wafid Online Appointment Booking Workflow:**  
+> **1. Access Portal:** Visit **[wafid.com](https://wafid.com)** and choose Book Appointment  
+> **2. Enter Details:** Input Passport Number, Nationality & Target Gulf Country  
+> **3. Payment:** Pay $10 USD digital allocation fee via card/Apple Pay  
+> **4. Clinic Allocation:** Automated system assigns the nearest approved medical center  
+> **5. Print Slip:** Download official Wafid PDF slip with encrypted barcode  
+> **6. Attend Test:** Visit assigned clinic with passport, photographs & Wafid slip
 
 ### 4 Key Steps for Generating Your Wafid Slip:
 1. **Access the Portal:** Navigate to **[wafid.com/book-appointment](https://wafid.com)**.
@@ -2778,22 +2795,12 @@ Qatar’s expatriate labor landscape operates under a modernized legal framework
 
 Securing a legal Qatar Work Residence Visa follows a synchronized 5-phase pipeline that connects the employer in Doha with the international candidate via the government cloud network:
 
-\`\`\`
-[Phase 1: Doha Employer]
-Employer submits Block Visa / Work Visa Quota Application to Ministry of Labour (MOL)
-                           ⬇
-[Phase 2: MOI Visa Generation]
-Ministry of Interior generates electronic Visa Reference Number & Preliminary Approval
-                           ⬇
-[Phase 3: QVC Pre-Departure Processing (Home Country)]
-Candidate visits Qatar Visa Center (QVC) ➔ Biometrics ➔ Contract Signing ➔ Medical Exam
-                           ⬇
-[Phase 4: Visa Endorsement & Travel]
-MOI issues Electronic Work Visa ➔ Employer books Air Ticket ➔ Candidate Lands at Hamad Airport
-                           ⬇
-[Phase 5: In-Country QID Issuance]
-Medical data syncs with Medical Commission ➔ Fingerprint sync ➔ Physical QID Printed & Metrash2 Activated
-\`\`\`
+> 📌 **Qatar Work Visa 5-Phase End-to-End Pipeline:**  
+> - **Phase 1 (Doha Employer):** Employer submits Block Visa / Quota Application to Ministry of Labour (MOL).  
+> - **Phase 2 (MOI Approval):** Ministry of Interior generates electronic Visa Reference Number and authorization.  
+> - **Phase 3 (QVC Processing):** Candidate completes biometrics, digital contract signing, and medical tests at Qatar Visa Center in home country.  
+> - **Phase 4 (Deployment):** MOI issues electronic Work Visa, employer books air tickets, and candidate travels to Doha.  
+> - **Phase 5 (QID Issuance):** Data syncs with Medical Commission, biometrics finalized, physical Qatar ID printed, and Metrash2 activated.
 
 ---
 
@@ -2856,22 +2863,11 @@ Qatar operates dedicated, state-of-the-art QVC biometric and medical hubs across
 
 Understanding what happens inside the Qatar Visa Center helps applicants prepare mentally and physically for a smooth, single-visit clearance:
 
-\`\`\`
-       STAGE 1: BIOMETRICS
-       • 10-Digit Fingerprint Digital Scanning
-       • High-Resolution Facial Iris Capture
-       • Electronic Digital Signature
-               ⬇
-       STAGE 2: DIGITAL CONTRACT
-       • Native Language Contract Display (Hindi/Urdu/Nepali/Bengali/English)
-       • Verification of Basic Salary & Allowances
-       • Legally Binding Digital Signature
-               ⬇
-       STAGE 3: CLINICAL & LAB MEDICAL
-       • Digital Chest X-Ray (PA View)
-       • Blood Serology (HIV, Hepatitis B, Hepatitis C, Syphilis)
-       • Physical Vitals, BP, Vision & Blood Sugar
-\`\`\`
+| QVC Stage | Focus Area | Key Procedures & Verification |
+| :--- | :--- | :--- |
+| **Stage 1: Biometrics** | Identity & Security | 10-digit fingerprint scanning, high-resolution iris capture, and digital photo |
+| **Stage 2: Digital Contract** | Legal Protection | Native language contract review (Hindi, Urdu, Bengali, Nepali, English) & electronic signing |
+| **Stage 3: Clinical & Lab** | Medical Fitness | Digital Chest X-Ray (PA View), blood serology (HIV, Hep B/C, VDRL), vitals & vision test |
 
 ### Stage 1: Biometric Enrollment & Facial Iris Capture
 - Candidates are guided into secure biometric booths where high-precision optical scanners record **all 10 fingerprints**.
@@ -3078,19 +3074,14 @@ The Skill Verification Program is governed by a unified tripartite oversight str
 
 The Ministry of Human Resources has phased the SVP rollout across key industrial, electrical, mechanical, and civil disciplines:
 
-\`\`\`
-ELECTRICAL & HVAC               WELDING & FABRICATION             CIVIL & FINISHING
-• Building Electrician          • 6G TIG & ARC Welder             • Shuttering Carpenter
-• Industrial Electrician        • Structural Fabricator           • Steel Fixer / Rebar Tier
-• High Voltage (HV) Cable Tech  • Pipe Fitter & Spool Fabricator  • Civil Mason / Plasterer
-• Central Chiller HVAC Tech     • Plate & Tank Fabricator         • Commercial Painter
-• Window & Split AC Mechanic    • Rigging Specialist (Level 1/2)  • Ceramic & Tile Mason
-
-AUTOMOTIVE & MECHANICAL         PLUMBING & FLUIDS                 ELECTRONICS & CONTROL
-• Automotive Mechanic (Petrol)  • Sanitary Plumber                • PLC / Instrumentation Tech
-• Diesel Engine Mechanic        • Drainage Pipe Laying Tech       • Telecommunication Installer
-• Auto Electrician & AC Tech    • Firefighting Piping Tech        • CCTV & Fire Alarm Tech
-\`\`\`
+| Sector | Core Regulated Occupations |
+| :--- | :--- |
+| **Electrical & HVAC** | Building Electrician, Industrial Electrician, High Voltage Cable Tech, Central Chiller HVAC Tech, Window & Split AC Mechanic |
+| **Welding & Fabrication** | 6G TIG & ARC Welder, Structural Fabricator, Pipe Fitter & Spool Fabricator, Plate & Tank Fabricator, Rigging Specialist (Level 1/2) |
+| **Civil & Finishing** | Shuttering Carpenter, Steel Fixer / Rebar Tier, Civil Mason / Plasterer, Commercial Painter, Ceramic & Tile Mason |
+| **Automotive & Mechanical** | Automotive Mechanic (Petrol), Diesel Engine Mechanic, Auto Electrician & AC Tech |
+| **Plumbing & Piping** | Sanitary Plumber, Drainage Pipe Laying Tech, Firefighting Piping Tech |
+| **Electronics & Controls** | PLC / Instrumentation Tech, Telecommunication Installer, CCTV & Fire Alarm Tech |
 
 > ⚠️ **Important Visa Note:** If an employer in Riyadh, Jeddah, or Dammam issues a visa allocation under any of the above 23 profession codes, the candidate **must present a verified Takamol Certificate** before the Saudi Embassy / VFS TasHeel center will accept the passport for visa stamping.
 
@@ -3100,19 +3091,11 @@ AUTOMOTIVE & MECHANICAL         PLUMBING & FLUIDS                 ELECTRONICS & 
 
 The Takamol SVP test is split into two distinct evaluative segments conducted on the same day at an accredited vocational testing institute:
 
-\`\`\`
-       STAGE 1: THEORETICAL COMPUTER EXAM (30 Minutes)
-       • 30 Multiple-Choice Questions (MCQ) on Touchscreen Tablet / PC
-       • Available in English, Hindi, Urdu, Bengali, Tagalog & Arabic
-       • Focus: Safety, Symbol Recognition, Tools & Core Technical Theory
-                               ⬇
-       STAGE 2: PRACTICAL WORKSHOP ASSESSMENT (1.5 to 2 Hours)
-       • Live Hands-On Workshop Exercise under Certified TVTC Evaluator
-       • Blueprint Reading, Tool Handling, Workpiece Execution & Quality Control
-       • Mandatory Personal Protective Equipment (PPE) Compliance
-                               ⬇
-       TOTAL EVALUATION: 60% Passing Benchmark ➔ Digital Qiwa Certificate
-\`\`\`
+| Examination Component | Duration & Format | Content & Evaluation Criteria |
+| :--- | :--- | :--- |
+| **Stage 1: Computer Theory Exam** | 30 Minutes (30 MCQs) on Touchscreen Tablet | Available in Hindi, Urdu, Bengali, English, Tagalog & Arabic. Evaluates safety rules, tool terminology, blueprint symbols, and trade fundamentals. (30% weightage) |
+| **Stage 2: Workshop Practical Exam** | 1.5 to 2 Hours Hands-on Workshop Trial | Live test under certified TVTC evaluators. Covers blueprint execution, precise measurements, tool handling, workmanship quality & PPE safety. (70% weightage) |
+| **Final Result Benchmark** | Combined 60% Passing Mark | Immediate automatic sync with Qiwa portal and Saudi MOFA visa system upon passing. |
 
 ### Stage 1: Computer-Based Theoretical Examination (30% Weightage)
 - **Duration:** 30 Minutes.
@@ -3161,19 +3144,13 @@ Takamol Holding operates accredited test facilities equipped with standardized T
 
 ## 5. Step-by-Step Registration & Qiwa Integration Workflow
 
-\`\`\`
-Candidate or Agency creates account on svp-international.com
-                           ⬇
-Select Target Trade Profession (e.g., Building Electrician) & Center Location
-                           ⬇
-Pay Standard Government Exam Fee ➔ Select Date & Time Slot
-                           ⬇
-Attend Exam ➔ Complete Computer Theory (30m) & Workshop Practical (2h)
-                           ⬇
-Results Uploaded to Central Server within 24–48 Hours
-                           ⬇
-Automated API Verification Syncs with Qiwa Platform (qiwa.sa) & Saudi MOFA
-\`\`\`
+> 📌 **Takamol SVP Registration & Verification Lifecycle:**  
+> **1. Portal Registration:** Candidate or licensed agency registers on **[svp-international.com](https://svp-international.com)**.  
+> **2. Trade Selection:** Select the exact profession matching the Saudi visa allocation (e.g., Building Electrician, 6G Welder).  
+> **3. Slot Booking:** Pay the official exam fee and reserve your test center, date, and preferred time slot.  
+> **4. Examination Day:** Attend the center, complete 30-minute computer theory exam, followed by the hands-on practical workshop assessment.  
+> **5. Result Processing:** Evaluators upload scores to the central TVTC database within 24 to 48 hours.  
+> **6. Qiwa & MOFA Sync:** Passing certificate automatically links with Qiwa, enabling immediate Saudi visa stamping.
 
 ### 1. Registering on the Official Portal:
 - Navigate to **[svp-international.com](https://svp-international.com)**.
@@ -3294,19 +3271,13 @@ Different destination countries enforce distinct requirements regarding whether 
 
 In India, the most globally accepted and tamper-proof PCC is issued directly by the **Ministry of External Affairs (Consular, Passport & Visa Division)** through the national **Passport Seva portal**:
 
-\`\`\`
-Register / Login on passportindia.gov.in
-                   ⬇
-Fill Online PCC Application Form (Select Target Country & Visa Purpose)
-                   ⬇
-Pay Online Government Fee (₹500 INR) & Book PSK / POPSK Appointment Slot
-                   ⬇
-Visit PSK with Original Passport & Address Proof ➔ Biometric & Document Verification
-                   ⬇
-Electronic File Dispatched to Local Police Station (Thana) for Field Verification
-                   ⬇
-Police Officer submits "Clear" Report ➔ RPO prints & dispatches official PCC with Security Hologram
-\`\`\`
+> 📌 **Step-by-Step PSK Online Application Workflow:**  
+> **1. Online Registration:** Login / Register on the official Passport Seva portal (**[passportindia.gov.in](https://www.passportindia.gov.in)**).  
+> **2. Fill Application:** Select "Apply for Police Clearance Certificate", specify destination country and visa purpose.  
+> **3. Payment & Slot Booking:** Pay the ₹500 INR government fee online and book an appointment at your nearest PSK or POPSK.  
+> **4. PSK Verification:** Visit PSK on the appointment date for physical document checks, biometric capture, and photo recording.  
+> **5. Police Inquiry (Thana):** File is routed electronically to your local police station for residential and criminal record verification.  
+> **6. PCC Issuance:** Local SHO submits "Clear" report; Regional Passport Office prints and dispatches the official PCC with security hologram.
 
 ### Step 1: Online Portal Registration
 1. Visit the official government portal: **[passportindia.gov.in](https://www.passportindia.gov.in)**.
@@ -3367,20 +3338,14 @@ Once your biometric scans and physical documents are verified at the PSK counter
 
 Once your official physical PCC is collected from the PSK or delivered via India Post Speed Post, you must complete the required international legalizations based on destination country treaties:
 
-\`\`\`
-                      OFFICIAL PHYSICAL PCC ISSUED BY RPO
-                                       ⬇
-              ┌────────────────────────┴────────────────────────┐
-              ▼                                                 ▼
-      [HAGUE APOSTILLE COUNTRIES]                    [NON-APOSTILLE GULF COUNTRIES]
-    (Germany, Poland, Malta, Croatia)                 (Kuwait, Qatar, UAE, Saudi)
-              ⬇                                                 ⬇
-  MEA Apostille Sticker (Square)               State Home Dept / SDM Attestation
-  Recognized across 120+ Hague Nations                          ⬇
-                                                  Ministry of External Affairs (MEA)
-                                                                ⬇
-                                                   Target Embassy Consular Stamping
-\`\`\`
+| Parameter | Hague Apostille Pathway (Europe / Schengen) | Embassy Legalization Pathway (Gulf / GCC) |
+| :--- | :--- | :--- |
+| **Applicable Countries** | Germany, Poland, Malta, Croatia, Portugal, Lithuania, etc. | Kuwait, Qatar, UAE, Saudi Arabia, Bahrain, Oman |
+| **Authentication Step 1** | Original PCC issued by Regional Passport Office (RPO) | Original PCC issued by Regional Passport Office (RPO) |
+| **Authentication Step 2** | Direct Ministry of External Affairs (MEA) Verification | State Home Dept / Sub-Divisional Magistrate (SDM) Attestation |
+| **Authentication Step 3** | Official Square MEA Apostille Sticker affixed to PCC | Ministry of External Affairs (MEA) Consular Stamp |
+| **Final Legalization** | Universally valid across all 120+ Hague Convention member nations | Destination Country Embassy Consular Legalization & Stamping |
+| **Embassy Visit Needed?** | ❌ No embassy attestation needed | ✅ Mandatory target embassy consular stamp |
 
 ### A. Hague Apostille Certification (For European & Schengen Nations)
 - For countries party to the **Hague Apostille Convention of 1961** (such as Germany, Poland, Malta, Croatia, Portugal, and Lithuania):
