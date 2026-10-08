@@ -620,7 +620,7 @@ export default function AdminInvoicePage() {
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
-                    <span>+ Add Invoice</span>
+                    <span>Add Invoice</span>
                   </button>
                 )}
               </>

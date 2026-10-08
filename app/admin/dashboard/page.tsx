@@ -448,7 +448,7 @@ export default function AdminDashboardPage() {
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all"
               >
                 <UserPlus className="w-3.5 h-3.5" />
-                <span>+ Add Lead</span>
+                <span>Add Lead</span>
               </Link>
             )}
 

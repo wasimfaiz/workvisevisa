@@ -766,7 +766,7 @@ export default function AdminInquiryPage() {
                 title="Add New Lead Manually"
               >
                 <UserPlus className="w-3.5 h-3.5" />
-                <span>+ Add Lead</span>
+                <span>Add Lead</span>
               </button>
             )}
 
