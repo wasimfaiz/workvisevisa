@@ -33,24 +33,25 @@ async function getBlog(slug: string) {
       p.id.toLowerCase() === decodedSlug ||
       p.id === `blog-${decodedSlug}` ||
       p.title.toLowerCase().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-") === decodedSlug ||
-      (decodedSlug.includes("construction") && p.id === "blog-5") ||
-      (decodedSlug.includes("mep") && p.id === "blog-5") ||
-      (decodedSlug.includes("hotel") && p.id === "blog-6") ||
-      (decodedSlug.includes("hospitality") && p.id === "blog-6") ||
+      (decodedSlug.includes("qvc") && p.id === "blog-13") ||
+      (decodedSlug.includes("qatar-work-visa") && p.id === "blog-13") ||
+      (decodedSlug.includes("wafid") && p.id === "blog-12") ||
+      (decodedSlug.includes("gamca") && p.id === "blog-12") ||
+      (decodedSlug.includes("kuwait-work-visa") && p.id === "blog-11") ||
+      (decodedSlug.includes("degree-attestation") && p.id === "blog-11") ||
+      (decodedSlug.includes("grand-tours") && p.id === "blog-10") ||
+      (decodedSlug.includes("gcc-unified") && p.id === "blog-10") ||
+      (decodedSlug.includes("shutdown") && p.id === "blog-9") ||
+      (decodedSlug.includes("plant-turnaround") && p.id === "blog-9") ||
+      (decodedSlug.includes("neom") && p.id === "blog-8") ||
+      (decodedSlug.includes("megaprojects") && p.id === "blog-8") ||
       (decodedSlug.includes("delivery") && p.id === "blog-7") ||
       (decodedSlug.includes("rider") && p.id === "blog-7") ||
       (decodedSlug.includes("warehouse") && p.id === "blog-7") ||
-      (decodedSlug.includes("neom") && p.id === "blog-8") ||
-      (decodedSlug.includes("megaprojects") && p.id === "blog-8") ||
-      (decodedSlug.includes("shutdown") && p.id === "blog-9") ||
-      (decodedSlug.includes("qatar-kuwait") && p.id === "blog-9") ||
-      (decodedSlug.includes("qatar") && p.id === "blog-9") ||
-      (decodedSlug.includes("grand-tours") && p.id === "blog-10") ||
-      (decodedSlug.includes("gcc-unified") && p.id === "blog-10") ||
-      (decodedSlug.includes("kuwait-work-visa") && p.id === "blog-11") ||
-      (decodedSlug.includes("degree-attestation") && p.id === "blog-11") ||
-      (decodedSlug.includes("wafid") && p.id === "blog-12") ||
-      (decodedSlug.includes("gamca") && p.id === "blog-12") ||
+      (decodedSlug.includes("hotel") && p.id === "blog-6") ||
+      (decodedSlug.includes("hospitality") && p.id === "blog-6") ||
+      (decodedSlug.includes("construction") && p.id === "blog-5") ||
+      (decodedSlug.includes("mep") && p.id === "blog-5") ||
       (decodedSlug.includes("heavy") && p.id === "blog-4") ||
       (decodedSlug.includes("caregiver") && p.id === "blog-3") ||
       (decodedSlug.includes("opportunity-card") && p.id === "blog-2") ||

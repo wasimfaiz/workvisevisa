@@ -2713,6 +2713,307 @@ WorkWise Visa provides end-to-end recruitment support, document attestation, and
 👉 **Direct WhatsApp Medical & Visa Advisory Desk:** [+91 8130161603](https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20need%20assistance%20with%20Wafid%20GAMCA%20medical%20and%20Gulf%20work%20visas!)  
 📋 [**Explore Live Gulf Job Demands**](/jobs) | 🌍 [**Read Destination Country Visa Guides**](/countries) | 📖 [**Explore All Visa & Immigration Knowledge Guides**](/blogs) | 🔍 [**Track Your Visa Application Status**](/track-application)`,
   },
+  {
+    id: "blog-13",
+    title: "Qatar Work Visa & QVC (Qatar Visa Center) Process 2026: Complete Guide on Medical, Biometrics, Contract Signing, Ministry of Labour Rules & Qatar ID (QID)",
+    slug: "qatar-work-visa-qvc-process-guide-2026-medical-biometrics-contract-qid",
+    category: "Qatar Visas",
+    date: "Oct 08, 2026",
+    readTime: "16 min read",
+    excerpt:
+      "Authoritative 2026 master manual on securing a Qatar Employment Residence Visa and completing the Qatar Visa Center (QVC) process. Step-by-step breakdown of online appointment scheduling, mandatory diagnostic medical tests & X-ray parameters, biometric enrollment, electronic digital contract signing, non-discriminatory minimum wage standards, exit permit rules, and post-arrival Qatar ID (QID) stamping.",
+    image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?auto=format&fit=crop&w=800&q=80",
+    author: "WorkWise Qatar Immigration & Legal Compliance Desk",
+    tags: [
+      "Qatar Work Visa",
+      "QVC Process",
+      "Qatar Visa Center",
+      "Qatar ID QID",
+      "Qatar Labour Law",
+      "Ministry of Labour Qatar",
+      "Gulf Work Visas",
+      "QVC Medical Test",
+      "Overseas Jobs Qatar",
+    ],
+    metaTitle: "Qatar Work Visa & QVC Process 2026: Medical, Biometrics & QID Guide",
+    metaDescription:
+      "Complete 2026 guide to Qatar work visas & QVC (Qatar Visa Center) process. Learn QVC appointment booking, medical tests, digital contract signing, minimum wage, and QID issuance.",
+    metaKeywords:
+      "Qatar work visa 2026, QVC appointment booking India, Qatar Visa Center medical test rules, Qatar work permit requirements, QID status check online, Qatar minimum wage law 2026, Qatar digital employment contract signing, Metrash2 visa inquiry, Qatar Ministry of Labour ADLSA, Qatar jobs for Indian workers",
+    published: true,
+    featured: true,
+    views: 4890,
+    content: `# Qatar Work Visa & QVC (Qatar Visa Center) Process 2026: Complete Guide on Medical, Biometrics, Contract Signing, Ministry of Labour Rules & Qatar ID (QID)
+
+The **State of Qatar** has solidified its reputation as one of the most economically resilient, technologically advanced, and well-regulated employment hubs in the Arabian Gulf. Propelled by the **Qatar National Vision 2030 (QNV 2030)**, mega-scale industrial ventures such as the **North Field East (NFE) and North Field South (NFS) Liquefied Natural Gas (LNG) expansion projects**, extensive smart-city developments in Lusail and Ras Laffan, and surging demand across high-tier infrastructure, technical MEP engineering, transportation, and international hospitality, Qatar continues to recruit tens of thousands of skilled, semi-skilled, and professional expatriates worldwide.
+
+For prospective workers migrating from key labor-sending countries—including **India, Pakistan, Nepal, Bangladesh, Sri Lanka, and the Philippines**—the State of Qatar operates a groundbreaking and highly streamlined immigration framework known as the **[Qatar Visa Center (QVC)](https://www.qatarvisacenter.com)**.
+
+Unlike traditional migration pathways where candidates travel abroad before undertaking medical examinations and contract validations, Qatar’s statutory framework completes **digital biometric enrollment, comprehensive diagnostic medical screening, and electronic labor contract signing in the worker's home country prior to visa issuance**. This system protects expatriate workers against contract substitution, ensures strict public health standards under the **Ministry of Public Health (MOPH)**, and guarantees legal compliance overseen by the **[Ministry of Labour (MOL)](https://www.mol.gov.qa)** and the **[Ministry of Interior (MOI)](https://www.moi.gov.qa)**.
+
+This comprehensive 2026 master guide provides an end-to-end walkthrough of the entire Qatar overseas employment lifecycle—covering employer visa quota approvals, QVC appointment booking, clinical laboratory parameters, electronic contract signing, statutory non-discriminatory minimum wage rates, and post-arrival **Qatar Smart ID (QID)** issuance in Doha.
+
+---
+
+## 1. 2026 Qatar Employment & Immigration Governance Overview
+
+Qatar’s expatriate labor landscape operates under a modernized legal framework established by **Law No. 21 of 2015** (regulating the entry, exit, and residence of expatriates) and landmark reforms enacted via **Law No. 17 of 2020** (establishing the non-discriminatory national minimum wage and dismantling legacy sponsorship restrictions):
+
+| Statutory Category | Qatar Employment Regulatory Architecture (2026) |
+| :--- | :--- |
+| **Immigration & Visas Authority** | [Ministry of Interior (MOI) - General Directorate of Passports](https://www.moi.gov.qa) |
+| **Labor & Employment Authority** | [Ministry of Labour (MOL - formerly ADLSA)](https://www.mol.gov.qa) |
+| **Health Clearance Governing Body** | [Ministry of Public Health (MOPH)](https://www.moph.gov.qa) & Qatar Medical Commission |
+| **Pre-Departure Clearance Center** | [Qatar Visa Center (QVC Network)](https://www.qatarvisacenter.com) |
+| **Primary Identity Document** | **Qatar Smart ID Card (*QID / Bitaqa Qatariya*)** |
+| **Mobile Governance App** | **Metrash2 App** (MOI Digital E-Services Ecosystem) |
+| **Mandatory Wage Mechanism** | **Wage Protection System (WPS)** via Qatar Central Bank |
+| **Exit Permit Mandate** | **Completely Abolished** (Workers can exit without employer exit permits) |
+| **Related Medical Testing System** | [Compare with GCC Wafid/GAMCA Medical System](/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria) |
+| **Related Regional Work Permits** | [UAE & Saudi Arabia Work Permits Guide 2026](/blogs/complete-guide-uae-saudi-arabia-blue-collar-work-permits-2026) |
+
+---
+
+## 2. Step-by-Step Qatar Work Visa Processing Pipeline
+
+Securing a legal Qatar Work Residence Visa follows a synchronized 5-phase pipeline that connects the employer in Doha with the international candidate via the government cloud network:
+
+\`\`\`
+[Phase 1: Doha Employer]
+Employer submits Block Visa / Work Visa Quota Application to Ministry of Labour (MOL)
+                           ⬇
+[Phase 2: MOI Visa Generation]
+Ministry of Interior generates electronic Visa Reference Number & Preliminary Approval
+                           ⬇
+[Phase 3: QVC Pre-Departure Processing (Home Country)]
+Candidate visits Qatar Visa Center (QVC) ➔ Biometrics ➔ Contract Signing ➔ Medical Exam
+                           ⬇
+[Phase 4: Visa Endorsement & Travel]
+MOI issues Electronic Work Visa ➔ Employer books Air Ticket ➔ Candidate Lands at Hamad Airport
+                           ⬇
+[Phase 5: In-Country QID Issuance]
+Medical data syncs with Medical Commission ➔ Fingerprint sync ➔ Physical QID Printed & Metrash2 Activated
+\`\`\`
+
+---
+
+## 3. The 5 Essential Phases of the Qatar Work Visa Process
+
+### Phase 1: Employer Work Visa Approval & Job Offer Submission
+1. **Labor Quota Allocation:** The hiring Qatari company or multinational EPC contractor must hold an active corporate registration (Commercial Registration - CR), Computer Card (*Qaid Al-Munsha'a*), and approved labor quota (*Block Visa approval*) issued by the **Ministry of Labour (MOL)**.
+2. **Issuance of Preliminary Job Offer:** The employer drafts an official employment offer outlining job designation, basic monthly wage, food and housing allowances, overtime compensation, and annual paid leave entitlements.
+3. **MOL Digital Contract Stamping:** The employer uploads the standard contract to the **MOL Digital Unified Platform** for preliminary governmental validation.
+
+### Phase 2: MOI Electronic Visa Reference Generation
+1. Once the Ministry of Labour approves the contract terms, the file automatically transitions to the **Ministry of Interior (MOI)**.
+2. The MOI generates an official **Visa Number and Application Number**.
+3. The employer pays the government visa authorization fees and authorizes the designated **Qatar Visa Center (QVC)** in the candidate’s home country to commence pre-departure processing.
+
+### Phase 3: Qatar Visa Center (QVC) Pre-Departure Processing
+1. **Appointment Booking:** The employer or authorized recruitment consultant logs into the official portal **[qatarvisacenter.com](https://www.qatarvisacenter.com)**, inputs the candidate's Passport Number and Visa Number, and selects the nearest QVC city branch.
+2. **Zero-Fee Protection for Workers:** Under Qatari statutory law, **all QVC service fees, diagnostic lab tests, biometric capture, and administrative charges are 100% paid by the Qatari employer**. Candidates must never be charged any appointment or medical fees at the center.
+3. **Execution of 3 Key Steps:**
+   - **Step A: Digital Biometrics & Iris Capture**
+   - **Step B: Digital Employment Contract Review & Electronic Signature**
+   - **Step C: Diagnostic Medical Health Screening & Radiology**
+
+### Phase 4: Visa Issuance & Travel Deployment
+1. Upon receipt of a **"FIT" medical clearance** and verified biometric record, the Ministry of Interior in Doha automatically issues the official **Work Residence Entry Visa (E-Visa)** within 48 to 72 hours.
+2. The employer downloads the electronic visa copy from the **MOI E-Services Portal** or **Metrash2** app and forwards it to the candidate along with the booked flight ticket to Doha.
+3. **Protector of Emigrants (PoE) / Bureau of Emigration Clearance:** Candidates holding ECR (Emigration Check Required) passports in India obtain an online **e-Migrate PoE clearance sticker** prior to departure, while Pakistani and Nepali candidates complete equivalent national emigration briefings.
+
+### Phase 5: Arrival in Doha & Qatar ID (QID) Card Printing
+1. **Arrival Clearance:** Candidate lands at **Hamad International Airport (DOH)** in Doha, presenting their passport and approved QVC Work Entry Visa.
+2. **Medical Commission Synchronization:** Because the medical exam was completed at an accredited QVC, the results automatically sync with the **Qatar Medical Commission**, eliminating repetitive lab testing in Doha for standard commercial categories.
+3. **Blood Group Card & Biometric Finalization:** The employer’s Government Relations Officer (PRO / *Mandoob*) completes in-country blood group typing and registers the worker on the national civil registry.
+4. **QID Card Delivery:** The General Directorate of Passports prints the smart **Qatar Residence Permit Card (QID)**, valid for 1, 2, or 3 years (renewable), and activates the candidate’s electronic profile on the **Metrash2 Mobile App**.
+
+---
+
+## 4. Complete Network of Qatar Visa Centers (QVC)
+
+Qatar operates dedicated, state-of-the-art QVC biometric and medical hubs across six major international labor-sending nations:
+
+| Country | Official QVC Operational Cities | Key Contact / Website |
+| :--- | :--- | :--- |
+| **India 🇮🇳** | **New Delhi, Mumbai, Kolkata, Chennai, Hyderabad, Kochi, Lucknow** | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+| **Nepal 🇳🇵** | **Kathmandu** (Trade Tower, Thapathali) | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+| **Pakistan 🇵🇰** | **Islamabad & Karachi** | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+| **Bangladesh 🇧🇩**| **Dhaka & Sylhet** | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+| **Sri Lanka 🇱🇰** | **Colombo** | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+| **Philippines 🇵🇭**| **Manila (Pasay City)** | [qatarvisacenter.com](https://www.qatarvisacenter.com) |
+
+> 📌 **What to Bring to Your QVC Appointment:**
+> 1. Original International Passport (valid for a minimum of 6 to 8 months).
+> 2. Printed QVC Appointment Confirmation Letter with QR Barcode.
+> 3. Original Academic / Trade Test Certificates (attested if applying for technical or supervisory designations).
+> 4. 4 recent passport-size color photographs with white background.
+> 5. Original National Identity Card (e.g., Aadhaar Card, CNIC, Citizenship Certificate).
+
+---
+
+## 5. In-Depth Breakdown of QVC 3-Stage Testing Battery
+
+Understanding what happens inside the Qatar Visa Center helps applicants prepare mentally and physically for a smooth, single-visit clearance:
+
+\`\`\`
+       STAGE 1: BIOMETRICS
+       • 10-Digit Fingerprint Digital Scanning
+       • High-Resolution Facial Iris Capture
+       • Electronic Digital Signature
+               ⬇
+       STAGE 2: DIGITAL CONTRACT
+       • Native Language Contract Display (Hindi/Urdu/Nepali/Bengali/English)
+       • Verification of Basic Salary & Allowances
+       • Legally Binding Digital Signature
+               ⬇
+       STAGE 3: CLINICAL & LAB MEDICAL
+       • Digital Chest X-Ray (PA View)
+       • Blood Serology (HIV, Hepatitis B, Hepatitis C, Syphilis)
+       • Physical Vitals, BP, Vision & Blood Sugar
+\`\`\`
+
+### Stage 1: Biometric Enrollment & Facial Iris Capture
+- Candidates are guided into secure biometric booths where high-precision optical scanners record **all 10 fingerprints**.
+- Digital iris cameras capture high-resolution biometric eye patterns for Qatar’s national border security database.
+- A standardized digital facial photo and electronic signature are recorded, which will directly appear on your future physical Qatar ID (QID) card.
+
+### Stage 2: Digital Contract Signing & Verification
+- QVC provides dedicated contract stations where your official **Qatar Ministry of Labour Contract** is displayed on interactive touchscreens in your native language (e.g., **Hindi, Urdu, Nepali, Bengali, Tagalog, or English**).
+- **Mandatory Checks Before Signing:**
+  - Verify that your **Job Title** matches what was promised by the employer or recruitment agency.
+  - Verify your **Basic Salary**, **Food Allowance**, and **Housing Allowance**.
+  - Confirm standard working hours (**8 hours per day / 48 hours per week**) and overtime compensation rules.
+- Once verified, you sign electronically on the digital signature pad. The signed copy is encrypted and instantly synchronized with the **MOL Labor Cloud Database** in Doha.
+
+### Stage 3: Clinical Examination & Diagnostic Laboratory Battery
+The medical wing of the QVC operates under stringent protocols established by the **Qatar Ministry of Public Health (MOPH)**:
+
+| Diagnostic Screening Test | Target Medical Condition | QVC Medical Standard |
+| :--- | :--- | :--- |
+| **Digital Chest X-Ray (PA View)** | Active Pulmonary Tuberculosis, Cavities, Large Fibrosis | **Clear lung fields / Inactive Ghon nodule review** |
+| **HIV 1 & 2 ELISA / Antibody Test** | Human Immunodeficiency Virus | **Non-Reactive (Zero Tolerance)** |
+| **Hepatitis B Surface Antigen (HBsAg)** | Active Hepatitis B Viral Infection | **Negative / Non-Reactive** |
+| **Hepatitis C Antibody (Anti-HCV)** | Hepatitis C Infection | **Negative / Non-Reactive** |
+| **VDRL / RPR Serology** | Syphilis (*Treponema pallidum*) | **Non-Reactive / Negative** |
+| **Blood Pressure & Pulse Rate** | Hypertension / Cardiac Stress | Systolic ≤ 140 mmHg, Diastolic ≤ 90 mmHg |
+| **Fasting Blood Glucose & HbA1c** | Severe Diabetes Mellitus | Fasting Blood Sugar < 126 mg/dL / HbA1c < 8.0% |
+| **Visual Acuity & Color Vision** | Refractive Error & Color Blindness | 6/6 or 6/9 with glasses; Ishihara Color Test |
+| **Serum Creatinine & Urine Routine** | Renal Dysfunction & Proteinuria | Normal creatinine range / Nil sugar & albumin |
+| **Pregnancy Testing (Female Workers)**| Pregnancy (for occupational deployment)| Negative Beta-hCG |
+
+---
+
+## 6. Qatar Labor Rights, Minimum Wage Laws & Worker Protections (2026)
+
+Qatar was the first country in the Gulf Cooperation Council to enact a **non-discriminatory statutory national minimum wage** and eliminate restrictive sponsorship frameworks:
+
+### Statutory Minimum Wage Architecture (Law No. 17 of 2020)
+Under Qatari law, no employer can pay less than the statutory minimum wage rates, regardless of nationality or job category:
+
+| Wage Component | Statutory Minimum Amount (QAR) | Equivalent in INR (Approx.) |
+| :--- | :--- | :--- |
+| **Minimum Basic Monthly Wage** | **QAR 1,000 / month** | ~₹23,000 INR |
+| **Mandatory Food Allowance** (if not provided in-kind) | **QAR 300 / month** | ~₹6,900 INR |
+| **Mandatory Accommodation Allowance** (if not provided) | **QAR 500 / month** | ~₹11,500 INR |
+| **Total Minimum Monthly Compensation** | **QAR 1,800 / month** | **~₹41,400 INR** |
+
+> 💡 *Note: Most skilled tradesmen (certified welders, electricians, HVAC technicians, heavy crane operators, and mechanical supervisors) earn between **QAR 1,800 to QAR 4,500+ per month basic**, plus overtime, free furnished camp housing, and duty transport.*
+
+### Key Statutory Worker Rights Under Qatar Labor Law
+1. **Wage Protection System (WPS):** Employers must deposit 100% of employee salaries directly into a Qatari commercial bank account within 7 days of the monthly due date. Any non-compliance triggers automatic Ministry of Labour penalties.
+2. **Abolition of Exit Permits:** Expatriate workers can travel outside Qatar temporarily for annual vacations or emergency family leave without needing an "Exit Permit" from their sponsor.
+3. **Freedom of Job Transfer (Changing Employers in Qatar):** Workers can change jobs legally within Qatar after completing their probation period by submitting a notice via the **MOL Electronic Notification Platform (Adlsa / MOL Portal)** without requiring a legacy "No Objection Certificate" (NOC), provided statutory notice periods (1 month for service <2 years; 2 months for service >2 years) are respected.
+4. **Summer Outdoor Heat Stress Ban:** Ministerial Resolution No. 17 of 2021 strictly prohibits work in outdoor or non-air-conditioned open spaces **between 10:00 AM and 3:30 PM from June 1 to September 15 every year** to prevent thermal stress and heat stroke.
+5. **End of Service Gratuity (ESB):** Upon completing at least 1 year of continuous service, employees are entitled to statutory gratuity calculated at a minimum of **3 weeks' basic salary for every year of completed service**.
+
+---
+
+## 7. In-Demand Job Roles & 2026 Salary Benchmarks in Qatar
+
+Qatar’s expanding industrial and service sectors offer extensive opportunities across technical, civil, and hospitality trades:
+
+| Job Title / Occupation | Experience Level Required | Average Monthly Salary (QAR) | Free Benefits Provided |
+| :--- | :--- | :--- | :--- |
+| **6G / TIG & ARC Certified Pipe Welder** | 3–5 Years (Oil & Gas / ASME) | **QAR 2,400 – QAR 3,800** | Free Accommodation + Food + OT |
+| **Industrial / Building Electrician** | 2–4 Years (MEP / Commercial) | **QAR 1,600 – QAR 2,600** | Free Housing + Duty Transport |
+| **HVAC Chiller & Duct Technician** | 3–5 Years (Central HVAC) | **QAR 1,800 – QAR 3,000** | Free Camp + Medical Insurance |
+| **Heavy Trailer / Dump Truck Driver** | GCC / Qatar Heavy License | **QAR 2,200 – QAR 3,500** | Housing + Trip Commission |
+| **Light Vehicle / Limousine Driver** | Qatar / GCC Valid Driving License | **QAR 1,800 – QAR 2,800** | Vehicle + Fuel Allowance |
+| **Hotel Waiter / Food Service Steward** | 1–3 Years (Star Hospitality) | **QAR 1,500 – QAR 2,400** | Duty Meals + Accommodation + Tips |
+| **Commercial Kitchen Cook / Line Chef** | 3–5 Years (International Cuisine)| **QAR 2,200 – QAR 4,000** | Duty Meals + Housing + Medical |
+| **Civil Mason / Shuttering Carpenter** | 2–3 Years (Building Construction)| **QAR 1,400 – QAR 2,000** | Free Camp Housing + Overtime |
+| **Warehouse Logistics / Forklift Driver** | 2+ Years (Forklift Certificate) | **QAR 1,700 – QAR 2,600** | Free Accommodation + Transport |
+
+---
+
+## 8. How to Verify Qatar Visa Status & QID Online
+
+Applicants and employers can track their visa approvals in real-time through official government channels without relying on unofficial middlemen:
+
+### Method 1: Tracking Visa Status on the Ministry of Interior (MOI) Portal
+1. Visit the official **[MOI Qatar Visa Inquiry Portal](https://portal.moi.gov.qa/wps/portal/MOIInternet/services/inquiries/visaservices/visainquiry)**.
+2. Select your query parameter: **Visa Number** or **Passport Number**.
+3. Enter your **Nationality** from the dropdown menu.
+4. Input the on-screen security CAPTCHA code and click **"Submit"**.
+5. The system will display the real-time visa status:
+   - *Under Processing:* File is under review at MOI/MOL.
+   - *Ready to Print:* Visa is approved and ready for digital download.
+   - *Used:* Candidate has arrived at Hamad Airport and used the entry visa.
+
+### Method 2: Verifying QVC Appointment & Medical Status
+1. Navigate to **[qatarvisacenter.com](https://www.qatarvisacenter.com)**.
+2. Select your home country and preferred language.
+3. Click on **"Track Application"**.
+4. Enter your **Visa Number** and **Passport Number**.
+5. The dashboard provides individual status checkpoints for:
+   - *Biometrics Status:* Completed / Pending
+   - *Contract Signing:* Signed / Pending
+   - *Medical Examination:* Fit / Unfit / In-Progress
+
+---
+
+## 9. 7 Essential Pro-Tips for Qatar Visa Applicants
+
+1. **Never Pay for QVC Appointments:** All QVC booking fees and medical screening costs are legally covered by the hiring sponsor in Qatar. Never pay an agency or intermediary claiming to sell QVC slots.
+2. **Maintain Healthy Habits 7 Days Prior to Medicals:** Avoid heavy oily foods, refrain from alcohol consumption, drink plenty of water (2–3 liters daily), and get 8 hours of sleep to ensure blood pressure and liver enzyme (SGPT/ALT) values remain within normal limits.
+3. **Disclose Chronic Prescriptions:** If you take daily prescribed blood pressure or thyroid tablets, bring your official physician prescription to the QVC doctor during clinical evaluation.
+4. **Attest Educational Degrees for Professional Categories:** If your visa designation is Engineer, Manager, Accountant, or Medical Specialist, ensure your original degree certificate is attested through your **State Higher Education Department, Ministry of External Affairs (MEA/MOFA), and the Embassy of the State of Qatar**.
+5. **Verify Job Designation Against Driver Licensing:** If you plan to obtain a Qatar Driving License later, ensure your visa designation is not listed in the "Non-Eligible Driving Professions List" maintained by the Traffic Directorate.
+6. **Download and Activate Metrash2 Upon Arrival:** The Metrash2 application contains your digital QID card, health card, driver's license, and residency expiry dates directly on your smartphone.
+7. **Report Exploitation or Non-Payment:** If an employer fails to pay statutory wages or withholds your passport, lodge a complaint directly with the **MOL Labour Dispute Department** or call the Ministry of Labour multilingual toll-free hotline (**16008**).
+
+---
+
+## 10. Frequently Asked Questions (FAQs)
+
+### Q1: Can a candidate attend QVC without an official appointment letter?
+**Answer:** No. Entry into the Qatar Visa Center strictly requires a confirmed, pre-booked appointment slip generated through [qatarvisacenter.com](https://www.qatarvisacenter.com) along with your original passport. Walk-ins are not permitted.
+
+### Q2: What happens if a candidate is declared "Temporarily Unfit" at QVC?
+**Answer:** If temporary, treatable issues are identified (such as elevated blood pressure, temporary respiratory bronchitis, or minor high fasting sugar), the QVC medical board grants a re-examination window (usually 15 to 30 days) allowing the candidate to undergo medical treatment and return to the same center for re-testing.
+
+### Q3: Is a GAMCA / Wafid medical slip accepted for Qatar work visas?
+**Answer:** No. For workers traveling from India, Nepal, Pakistan, Bangladesh, Sri Lanka, and the Philippines, **QVC medical screening is exclusively mandatory**. Standard [Wafid (GAMCA) slips](/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria) are only utilized for other GCC countries such as Saudi Arabia, Kuwait, Bahrain, and Oman.
+
+### Q4: How long is a Qatar Work Entry Visa valid for travel once issued?
+**Answer:** Once the electronic Work Residence Entry Visa is issued by the Ministry of Interior, the candidate must enter the State of Qatar within **90 calendar days (3 months)** from the date of visa issuance.
+
+### Q5: Can an expatriate worker bring their family to Qatar on a Family Residence Visa?
+**Answer:** Yes. Expatriate employees holding a valid QID with a professional designation and earning a minimum qualifying monthly salary (typically **QAR 10,000 basic, or QAR 6,000 to QAR 7,000 plus employer-provided family housing**) can sponsor their spouse and children under a long-term Family Residence Permit.
+
+### Q6: Can I change my job in Qatar without an NOC from my current company?
+**Answer:** Yes. Under Law No. 18 and 19 of 2020, the traditional "No Objection Certificate" (NOC) requirement has been abolished. Employees can transfer their employment to a new company by submitting a digital notification on the **MOL Electronic Notification Platform**, respecting the statutory notice period.
+
+---
+
+### Ready to Explore Verified Overseas Jobs in Qatar & the Arabian Gulf?
+
+WorkWise Visa partners directly with government-approved Qatari EPC contractors, industrial facilities, and leading hospitality groups to deliver 100% verified employment visas and transparent QVC processing.
+
+👉 **Direct WhatsApp Qatar Recruitment & Visa Advisory Desk:** [+91 8130161603](https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20want%20to%20apply%20for%20Qatar%20work%20visas%20and%20QVC%20guidance!)  
+📋 [**Explore Live Overseas Job Vacancies**](/jobs) | 🌍 [**View Qatar & Middle East Country Guides**](/countries) | 📖 [**Explore All Visa & Immigration Knowledge Guides**](/blogs) | 🔍 [**Track Your Visa Application Online**](/track-application)`,
+  },
 ];
 
 export const blogPosts: BlogPost[] = sortBlogsByDate(rawBlogPosts);

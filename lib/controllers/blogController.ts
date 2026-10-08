@@ -87,6 +87,10 @@ export async function ensureSeedData() {
         pattern: /Wafid.*GAMCA|GAMCA.*Medical|TB Scarring.*GCC/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-12"),
       },
+      {
+        pattern: /Qatar Work Visa|QVC.*Process|Qatar Visa Center|Contract Signing.*Qatar/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-13"),
+      },
     ];
 
     for (const item of seedMatchers) {
