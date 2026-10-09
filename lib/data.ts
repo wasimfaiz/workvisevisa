@@ -148,6 +148,28 @@ export const countries: Country[] = [
     popularRoles: ["Scaffolder & Steel Fixer", "Kitchen Steward", "Facility Cleaner"],
   },
   {
+    name: "Oman",
+    code: "OM",
+    flag: "🇴🇲",
+    region: "Gulf",
+    description:
+      "Oman Vision 2040 and Duqm Refinery industrial zones offer steady tax-free jobs, company accommodation, and urgent openings for welders, electricians, and drivers.",
+    visaTypes: ["Employment Visa", "Investor Visa", "Temporary Work Permit"],
+    processingTime: "2–3 weeks",
+    popularRoles: ["6G Pipe Welder", "Industrial Electrician", "Heavy Trailer Driver"],
+  },
+  {
+    name: "Bahrain",
+    code: "BH",
+    flag: "🇧🇭",
+    region: "Gulf",
+    description:
+      "Bapco modernization and Alba industrial expansions drive strong hiring for fabricators, MEP technicians, heavy equipment operators, and hospitality staff.",
+    visaTypes: ["LMRA Work Visa", "Flexi Permit", "Commercial Visa"],
+    processingTime: "2–3 weeks",
+    popularRoles: ["Pipe Fabricator", "HVAC Technician", "Heavy Equipment Operator"],
+  },
+  {
     name: "Germany",
     code: "DE",
     flag: "🇩🇪",
