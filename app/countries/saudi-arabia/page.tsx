@@ -355,7 +355,7 @@ export default function SaudiArabiaCountryPage() {
                         className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/25 shrink-0"
                       />
                       <div>
-                        <h3 className="text-xl font-display font-extrabold text-white">Kingdom of Saudi Arabia</h3>
+                        <h2 className="text-xl font-display font-extrabold text-white">Kingdom of Saudi Arabia</h2>
                         <p className="text-xs text-emerald-300 font-medium">Riyadh • Jeddah • Dammam • NEOM</p>
                       </div>
                     </div>
@@ -510,6 +510,30 @@ export default function SaudiArabiaCountryPage() {
                 </a>
                 , the <strong>Wage Protection System (WPS)</strong>, and the <strong>Labor Reform Initiative (LRI)</strong> has eliminated legacy paper disputes, guaranteed on-time electronic payroll, and provided complete job mobility across employers upon contract completion.
               </p>
+            </div>
+
+            {/* Official Authority Citation & Statutory Quote */}
+            <div className="rounded-2xl border-l-4 border-emerald-500 bg-emerald-50/60 p-5 sm:p-6 shadow-xs">
+              <blockquote
+                cite="https://www.hrsd.gov.sa"
+                className="text-sm sm:text-base text-slate-800 italic font-medium leading-relaxed"
+              >
+                &ldquo;Under the Labor Reform Initiative (LRI) and MHRSD statutory directives, all expatriate employment contracts in the Kingdom must be digitally authenticated via the Qiwa platform. Foreign employees enjoy full electronic job mobility and exit-re-entry autonomy upon fulfilling contractual terms.&rdquo;
+              </blockquote>
+              <div className="mt-3 flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-emerald-200/60 text-xs">
+                <cite className="not-italic font-bold text-slate-900 flex items-center gap-1.5">
+                  <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
+                  Ministry of Human Resources and Social Development (MHRSD), Saudi Arabia
+                </cite>
+                <a
+                  href="https://qiwa.sa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 hover:text-emerald-800 underline underline-offset-2 flex items-center gap-1"
+                >
+                  Qiwa Official Platform <FaArrowRight className="w-2.5 h-2.5" />
+                </a>
+              </div>
             </div>
 
             {/* Key Macro Stats Grid */}

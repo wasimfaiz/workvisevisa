@@ -390,7 +390,7 @@ export default function BahrainCountryPage() {
                         />
                       </div>
                       <div>
-                        <h3 className="font-display font-bold text-white text-lg">Kingdom of Bahrain</h3>
+                        <h2 className="font-display font-bold text-white text-lg">Kingdom of Bahrain</h2>
                         <p className="text-xs text-emerald-400 font-semibold">Manama, Sitra, Muharraq &amp; Riffa</p>
                       </div>
                     </div>
@@ -550,6 +550,30 @@ export default function BahrainCountryPage() {
                 </a>
                 , comprehensive employer-funded medical insurance, and clear job mobility pathways upon contract completion.
               </p>
+            </div>
+
+            {/* Official Authority Citation & Statutory Quote */}
+            <div className="rounded-2xl border-l-4 border-emerald-500 bg-emerald-50/60 p-5 sm:p-6 shadow-xs">
+              <blockquote
+                cite="https://lmra.gov.bh"
+                className="text-sm sm:text-base text-slate-800 italic font-medium leading-relaxed"
+              >
+                &ldquo;Under Law No. 36 of 2012 (Bahrain Labour Law for the Private Sector) and LMRA statutory regulations, employers are strictly responsible for all work permit fees and travel costs. Workers are entitled to transparent wage disbursement through the Wage Protection System and complete contract portability.&rdquo;
+              </blockquote>
+              <div className="mt-3 flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-emerald-200/60 text-xs">
+                <cite className="not-italic font-bold text-slate-900 flex items-center gap-1.5">
+                  <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
+                  Labour Market Regulatory Authority (LMRA), Kingdom of Bahrain
+                </cite>
+                <a
+                  href="https://lmra.gov.bh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 hover:text-emerald-800 underline underline-offset-2 flex items-center gap-1"
+                >
+                  LMRA Official Portal <FaArrowRight className="w-2.5 h-2.5" />
+                </a>
+              </div>
             </div>
 
             {/* Key Macro Stats Grid */}

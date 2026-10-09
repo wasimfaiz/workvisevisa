@@ -358,7 +358,7 @@ export default function UAECountryPage() {
                         className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/25 shrink-0"
                       />
                       <div>
-                        <h3 className="text-xl font-display font-extrabold text-white">United Arab Emirates</h3>
+                        <h2 className="text-xl font-display font-extrabold text-white">United Arab Emirates</h2>
                         <p className="text-xs text-emerald-300 font-medium">Dubai • Abu Dhabi • Sharjah</p>
                       </div>
                     </div>
@@ -495,6 +495,30 @@ export default function UAECountryPage() {
                 </a>{" "}
                 have transformed expatriate worker welfare. The legacy sponsorship restrictions have been superseded by modernized fixed-term contracts, universal <strong>Wage Protection System (WPS)</strong> direct electronic bank deposits, mandatory employer-funded medical insurance, stringent midday heat bans, and clear statutory pathways for job mobility without exit employer objections.
               </p>
+            </div>
+
+            {/* Official Authority Citation & Statutory Quote */}
+            <div className="rounded-2xl border-l-4 border-emerald-500 bg-emerald-50/60 p-5 sm:p-6 shadow-xs">
+              <blockquote
+                cite="https://www.mohre.gov.ae/en/laws-and-regulations/laws.aspx"
+                className="text-sm sm:text-base text-slate-800 italic font-medium leading-relaxed"
+              >
+                &ldquo;Under Federal Decree-Law No. 33 of 2021, the employer is legally prohibited from charging or deducting any recruitment fees or expenses from the worker, directly or indirectly. All employment relationships must be executed under transparent electronic standard contracts registered with the Ministry.&rdquo;
+              </blockquote>
+              <div className="mt-3 flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-emerald-200/60 text-xs">
+                <cite className="not-italic font-bold text-slate-900 flex items-center gap-1.5">
+                  <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
+                  Ministry of Human Resources &amp; Emiratisation (MOHRE), UAE
+                </cite>
+                <a
+                  href="https://www.mohre.gov.ae/en/laws-and-regulations/laws.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 hover:text-emerald-800 underline underline-offset-2 flex items-center gap-1"
+                >
+                  Official Decree Source <FaArrowRight className="w-2.5 h-2.5" />
+                </a>
+              </div>
             </div>
 
             {/* Key Macro Stats Grid */}

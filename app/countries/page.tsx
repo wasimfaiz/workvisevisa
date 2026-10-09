@@ -314,8 +314,32 @@ export default function CountriesPage() {
             </div>
           )}
 
+          {/* Official GCC Migration Authority Quote & Citation */}
+          <div className="mt-16 rounded-3xl border-l-4 border-emerald-500 bg-gradient-to-r from-emerald-50/70 via-white to-slate-50 p-6 sm:p-8 shadow-xs border border-slate-200">
+            <blockquote
+              cite="https://wafid.com"
+              className="text-sm sm:text-base text-slate-800 italic font-medium leading-relaxed"
+            >
+              &ldquo;All overseas employment across the Gulf Cooperation Council (GCC) mandates pre-departure electronic biometric verification, certified medical clearance through the Wafid platform, and direct registration with national ministries of labour. Statutory laws strictly safeguard workers against unauthorized recruitment fees.&rdquo;
+            </blockquote>
+            <div className="mt-4 flex items-center justify-between flex-wrap gap-2 pt-3 border-t border-slate-200 text-xs">
+              <cite className="not-italic font-bold text-slate-900 flex items-center gap-1.5">
+                <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
+                Gulf Health Council (GHC) &amp; GCC Labour Ministries
+              </cite>
+              <a
+                href="https://wafid.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-emerald-700 hover:text-emerald-800 underline underline-offset-2 flex items-center gap-1"
+              >
+                Wafid Official Medical Portal <FaArrowRight className="w-2.5 h-2.5" />
+              </a>
+            </div>
+          </div>
+
           {/* Country Visa FAQs */}
-          <div className="mt-20 rounded-3xl bg-white p-8 sm:p-12 border border-slate-200/90 shadow-sm">
+          <div className="mt-12 rounded-3xl bg-white p-8 sm:p-12 border border-slate-200/90 shadow-sm">
             <div className="max-w-3xl mb-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800 mb-3">
                 <FaCircleInfo className="w-3.5 h-3.5 text-emerald-600" />
