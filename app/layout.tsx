@@ -20,9 +20,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.workwisevisa.com"),
-  title: "WorkWise Visa | Overseas Job Placement & Work Visa Consultancy",
+  title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
   description:
-    "Trusted international work visa consultancy and overseas recruitment agency. Secure verified jobs abroad for trade workers, drivers, CNC operators, welders & caregivers across Gulf, Schengen Europe, UK, Russia & Canada. 5,000+ successful placements.",
+    "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
   keywords: [
     "work visa consultancy",
     "overseas job placement agency",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "WorkWise Visa — Overseas Job Placement & Work Visa Agency",
+    title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
     description:
-      "Premium international recruitment and work visa consultancy. Connecting skilled trade candidates with 100% verified overseas employers with guaranteed visa sponsorship.",
+      "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
     url: "https://www.workwisevisa.com",
     siteName: "WorkWise Visa",
     images: [
@@ -66,9 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WorkWise Visa — Overseas Job Placement & Work Visa Agency",
+    title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
     description:
-      "Trusted international work visa consultancy. 5,000+ placements in Gulf, Europe, Russia & Canada with a 98% visa approval rate.",
+      "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
     images: ["/images/workwise_logo.png"],
   },
   robots: {
