@@ -89,62 +89,119 @@ export const metadata: Metadata = {
 
 const jsonLdSchema = {
   "@context": "https://schema.org",
-  "@type": "EmploymentAgency",
-  "name": "WorkWise Visa",
-  "legalName": "Europass Immigration Pvt Ltd",
-  "url": "https://www.workwisevisa.com",
-  "logo": "https://www.workwisevisa.com/images/workwise_logo.png",
-  "image": "https://www.workwisevisa.com/images/workwise_logo.png",
-  "description":
-    "Trusted international work visa consultancy and overseas job placement agency connecting skilled trade workers, drivers, technicians, and caregivers with verified employers in Gulf, Schengen Europe, UK, Russia, and Canada.",
-  "telephone": "+918130161603",
-  "email": "workwisevisa@gmail.com",
-  "address": [
+  "@graph": [
     {
-      "@type": "PostalAddress",
-      "streetAddress": "Urbtech Trade Centre, D-701 C, Sector 132",
-      "addressLocality": "Noida",
-      "addressRegion": "Uttar Pradesh",
-      "postalCode": "201304",
-      "addressCountry": "IN",
+      "@type": ["Organization", "EmploymentAgency"],
+      "@id": "https://www.workwisevisa.com/#organization",
+      name: "WorkWise Visa",
+      legalName: "Europass Immigration Pvt Ltd",
+      url: "https://www.workwisevisa.com",
+      logo: {
+        "@type": "ImageObject",
+        "@id": "https://www.workwisevisa.com/#logo",
+        url: "https://www.workwisevisa.com/images/workwise_logo.png",
+        caption: "WorkWise Visa Logo",
+      },
+      image: "https://www.workwisevisa.com/images/workwise_logo.png",
+      description:
+        "Trusted international work visa consultancy and overseas job placement agency connecting skilled trade workers, drivers, technicians, and caregivers with verified employers in Gulf, Schengen Europe, UK, Russia, and Canada.",
+      telephone: "+918130161603",
+      email: "workwisevisa@gmail.com",
+      address: [
+        {
+          "@type": "PostalAddress",
+          streetAddress: "Urbtech Trade Centre, D-701 C, Sector 132",
+          addressLocality: "Noida",
+          addressRegion: "Uttar Pradesh",
+          postalCode: "201304",
+          addressCountry: "IN",
+        },
+        {
+          "@type": "PostalAddress",
+          streetAddress:
+            "6th floor office no 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri",
+          addressLocality: "Patna",
+          addressRegion: "Bihar",
+          postalCode: "800001",
+          addressCountry: "IN",
+        },
+      ],
+      sameAs: [
+        "https://www.instagram.com/workwisevisa/",
+        "https://www.facebook.com/workwisevisa/",
+        "https://www.linkedin.com/company/workwisevisa/",
+        "https://twitter.com/workwisevisa",
+        "https://www.youtube.com/@workwisevisa",
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "5000",
+      },
+      areaServed: [
+        "Gulf Countries",
+        "UAE",
+        "Saudi Arabia",
+        "Qatar",
+        "Kuwait",
+        "Oman",
+        "Bahrain",
+        "Schengen Area",
+        "Croatia",
+        "Poland",
+        "Romania",
+        "Russia",
+        "United Kingdom",
+        "Canada",
+      ],
+      priceRange: "$$",
     },
     {
-      "@type": "PostalAddress",
-      "streetAddress":
-        "6th floor office no 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri",
-      "addressLocality": "Patna",
-      "addressRegion": "Bihar",
-      "postalCode": "800001",
-      "addressCountry": "IN",
+      "@type": "WebSite",
+      "@id": "https://www.workwisevisa.com/#website",
+      url: "https://www.workwisevisa.com",
+      name: "WorkWise Visa",
+      description:
+        "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
+      publisher: {
+        "@id": "https://www.workwisevisa.com/#organization",
+      },
+      inLanguage: "en-US",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://www.workwisevisa.com/jobs?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.workwisevisa.com/#webpage",
+      url: "https://www.workwisevisa.com",
+      name: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
+      description:
+        "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
+      isPartOf: {
+        "@id": "https://www.workwisevisa.com/#website",
+      },
+      about: {
+        "@id": "https://www.workwisevisa.com/#organization",
+      },
+      author: {
+        "@type": "Organization",
+        name: "WorkWise Visa",
+        url: "https://www.workwisevisa.com",
+      },
+      publisher: {
+        "@id": "https://www.workwisevisa.com/#organization",
+      },
+      inLanguage: "en-US",
+      datePublished: "2025-01-01T08:00:00+05:30",
+      dateModified: "2026-10-09T16:25:00+05:30",
     },
   ],
-  "sameAs": [
-    "https://www.instagram.com/workwisevisa/",
-    "https://www.facebook.com/workwisevisa/",
-    "https://www.linkedin.com/company/workwisevisa/",
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "5000",
-  },
-  "areaServed": [
-    "Gulf Countries",
-    "UAE",
-    "Saudi Arabia",
-    "Qatar",
-    "Kuwait",
-    "Oman",
-    "Bahrain",
-    "Schengen Area",
-    "Croatia",
-    "Poland",
-    "Romania",
-    "Russia",
-    "United Kingdom",
-    "Canada",
-  ],
-  "priceRange": "$$",
 };
 
 export default function RootLayout({
@@ -160,6 +217,11 @@ export default function RootLayout({
     >
       <head>
         <meta name="google" content="notranslate" />
+        {/* Schema.org Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
+        />
         {/* Google Tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-92V3VTHDM6"
@@ -187,11 +249,6 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
-        <Script
-          id="json-ld-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
-        />
       </head>
       <body className="min-h-screen">
         <noscript>
