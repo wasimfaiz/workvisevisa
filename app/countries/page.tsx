@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -245,14 +246,40 @@ export default function CountriesPage() {
                   </div>
 
                   {/* Card Actions */}
-                  <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center gap-3">
-                    <button
-                      onClick={() => setSelectedCountry(country)}
-                      className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors cursor-pointer"
-                    >
-                      <span>View Program Details</span>
-                      <FaArrowRight className="w-3 h-3" />
-                    </button>
+                  <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center gap-2.5">
+                    {country.code === "AE" ? (
+                      <Link
+                        href="/countries/uae"
+                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
+                      >
+                        <span>Explore UAE Full Guide</span>
+                        <FaArrowRight className="w-3 h-3" />
+                      </Link>
+                    ) : country.code === "SA" ? (
+                      <Link
+                        href="/countries/saudi-arabia"
+                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
+                      >
+                        <span>Explore Saudi Full Guide</span>
+                        <FaArrowRight className="w-3 h-3" />
+                      </Link>
+                    ) : country.code === "QA" ? (
+                      <Link
+                        href="/countries/qatar"
+                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
+                      >
+                        <span>Explore Qatar Full Guide</span>
+                        <FaArrowRight className="w-3 h-3" />
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => setSelectedCountry(country)}
+                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors cursor-pointer"
+                      >
+                        <span>View Program Details</span>
+                        <FaArrowRight className="w-3 h-3" />
+                      </button>
+                    )}
 
                     <a
                       href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20applying%20for%20a%20work%20visa%20in%20${encodeURIComponent(

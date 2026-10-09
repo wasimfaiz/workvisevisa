@@ -1,0 +1,1282 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import {
+  FaCheck,
+  FaArrowRight,
+  FaWhatsapp,
+  FaEnvelope,
+  FaShieldHalved,
+  FaBuildingColumns,
+  FaFileInvoiceDollar,
+  FaBriefcase,
+  FaClock,
+  FaMoneyBillWave,
+  FaHospital,
+  FaHelmetSafety,
+  FaWrench,
+  FaPassport,
+  FaPlaneArrival,
+  FaScaleUnbalanced,
+  FaHandshakeAngle,
+  FaTriangleExclamation,
+  FaCircleQuestion,
+  FaMagnifyingGlass,
+  FaCertificate,
+  FaCity,
+  FaOilWell,
+  FaTruckFast,
+  FaUtensils,
+  FaAward,
+} from "react-icons/fa6";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
+
+export const metadata: Metadata = {
+  title: "Qatar Work Visa & QVC Process Guide 2026: Ministry of Labour, QID, Salaries & Jobs | WorkWise Visa",
+  description:
+    "Complete 2026 authority guide on Qatar work visas, Qatar Visa Center (QVC) biometrics, Medical Commission clearance, Qatar ID (QID) printing, North Field LNG jobs, tax-free salaries across 25+ trades, and certified overseas recruitment.",
+  keywords: [
+    "Qatar work visa 2026",
+    "Qatar Visa Center QVC appointment",
+    "Qatar ID QID issuance process",
+    "Qatar Ministry of Labour MOL contract",
+    "Qatar blue collar jobs salary 2026",
+    "Qatar Energy North Field expansion jobs",
+    "QVC medical biometrics fit unfit rules",
+    "Qatar labour law minimum wage gratuity 2026",
+    "Qatar 6G welder electrician driver jobs",
+    "Metrash2 Qatar visa status tracking",
+    "Wage Protection System WPS Qatar",
+    "Qatar construction recruitment agency",
+    "WorkWise Visa Qatar recruitment",
+  ],
+  alternates: {
+    canonical: `${BASE_URL}/countries/qatar`,
+  },
+  openGraph: {
+    title: "Qatar Work Visa & QVC Process Guide 2026 | WorkWise Visa",
+    description:
+      "Authoritative manual for Qatar employment: QVC biometric appointments, MOL digital contract rules, Medical Commission clearance, Qatar ID issuance, and verified Gulf recruitment.",
+    url: `${BASE_URL}/countries/qatar`,
+    siteName: "WorkWise Visa",
+    locale: "en_US",
+    type: "article",
+    images: [
+      {
+        url: `${BASE_URL}/images/qatar_hero.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Qatar Work Visa & QVC Recruitment Guide 2026",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Qatar Work Visa & QVC Process Guide 2026 | WorkWise Visa",
+    description:
+      "Step-by-step QVC appointment workflow, tax-free salary benchmarks, Qatar ID printing, and genuine Qatar job vacancies.",
+    images: [`${BASE_URL}/images/qatar_hero.jpg`],
+  },
+};
+
+export default function QatarCountryPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${BASE_URL}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Countries",
+        item: `${BASE_URL}/countries`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Qatar",
+        item: `${BASE_URL}/countries/qatar`,
+      },
+    ],
+  };
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Qatar Work Visa & QVC Process Guide 2026: Complete Ministry of Labour Pipeline, QID, Salaries & Worker Rights",
+    description:
+      "Comprehensive, expert-backed manual for migrating and working in the State of Qatar (Doha, Ras Laffan, Lusail, Al Wakrah). Covers Ministry of Labour approvals, Qatar Visa Center (QVC) pre-departure testing, Medical Commission sync, 2026 salary scales across trades, and statutory labor protections.",
+    image: `${BASE_URL}/images/qatar_hero.jpg`,
+    author: {
+      "@type": "Organization",
+      name: "WorkWise Visa Overseas Employment Editorial Team",
+      url: `${BASE_URL}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "WorkWise Visa",
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/workwise_logo.png`,
+      },
+    },
+    datePublished: "2026-02-01T09:00:00+03:00",
+    dateModified: "2026-10-09T10:00:00+03:00",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/countries/qatar`,
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the total processing time for a Qatar employment work visa in 2026?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Standard Qatar work visa processing takes 2 to 4 weeks. Once the Doha employer secures Block Visa approval from the Ministry of Labour (MOL), an electronic visa reference number is generated by the Ministry of Interior (MOI). The candidate attends a Qatar Visa Center (QVC) in their home country for biometrics and medical tests (taking 2–4 days for results). Upon medical fitness clearance, the electronic Work Entry Visa is issued within 48 to 72 hours, allowing immediate flight deployment to Doha.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the Qatar Visa Center (QVC) and what tests are conducted?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Qatar Visa Centers (QVC) are government-operated biometric and medical hubs located in major labor-sending nations (India, Pakistan, Nepal, Bangladesh, Sri Lanka, and the Philippines). Inside QVC, candidates complete three mandatory stages: (1) 10-digit fingerprint scanning and facial iris capture, (2) digital review and electronic signing of the official MOL employment contract in their native language, and (3) diagnostic medical screening including digital PA chest X-rays and blood serology.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Who pays for the QVC appointment, medical tests, and Qatar visa fees?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under Qatari statutory law and Ministry of Labour directives, the hiring Qatari employer is legally required to pay 100% of all QVC appointment fees, diagnostic laboratory tests, biometric capture, government visa issuance fees, and mobilization flight tickets. It is strictly illegal for recruitment agencies or employers to charge candidates for any QVC service.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the statutory minimum wage in Qatar under 2026 labor laws?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under Qatar Law No. 17 of 2020, Qatar enforces a non-discriminatory statutory minimum wage of 1,000 QAR basic salary per month. If the employer does not provide adequate furnished accommodation and food, they must provide additional statutory allowances of at least 500 QAR for housing and 300 QAR for food, bringing the minimum total compensation to 1,800 QAR per month. Skilled technical trades typically earn 2,000 to 4,500+ QAR.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do candidates have to repeat the medical test upon arrival in Doha?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Because the candidate completes an authorized medical exam at an accredited QVC before departure, the diagnostic results automatically synchronize with the Qatar Medical Commission database. Standard commercial and construction categories do not require repeat blood or X-ray tests in Doha, significantly speeding up physical Qatar ID (QID) card printing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Has the Kafala system been abolished in Qatar for worker mobility?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Qatar became the first Gulf nation to dismantle the traditional Kafala sponsorship system. Under landmark labor law reforms, workers no longer require a No Objection Certificate (NOC) from their employer to change jobs upon contract completion or by giving standard written notice (1 month if employed under 2 years, 2 months if employed over 2 years). Exit permits for leaving the country have also been completely eliminated for private sector employees.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is End-of-Service Gratuity calculated under Qatar Labour Law?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under Article 54 of Qatar Labour Law (Law No. 14 of 2004), an employee who completes at least one full year of continuous service is entitled to End-of-Service Gratuity severance pay of at least three weeks (21 days) basic salary for each year of completed service, calculated strictly on the last drawn basic wage.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the Wage Protection System (WPS) in Qatar?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Wage Protection System (WPS) is an electronic payroll monitoring mechanism operated by Qatar Central Bank and the Ministry of Labour. All private employers must transfer workers' wages directly into Qatari bank accounts or authorized QNB / Ooredoo Money salary cards within seven days of their monthly due date. Employers who default on WPS payments face immediate commercial license suspension and criminal prosecution.",
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      {/* Schema.org Structured Data Injection */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      <Navbar />
+
+      <main className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+        {/* ── Hero Section ───────────────────────────────────── */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950 text-white pt-24 sm:pt-28 pb-16 md:pb-24">
+          {/* Subtle Grid overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Breadcrumb inside Hero */}
+            <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6 sm:mb-8">
+              <Link href="/" className="hover:text-emerald-400 transition-colors">
+                Home
+              </Link>
+              <span className="text-slate-600">/</span>
+              <Link href="/countries" className="hover:text-emerald-400 transition-colors">
+                Countries
+              </Link>
+              <span className="text-slate-600">/</span>
+              <span className="text-emerald-300 font-bold">State of Qatar</span>
+            </nav>
+
+            <div className="grid lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                {/* Government & Authority Badge */}
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                  Official 2026 Ministry of Labour &amp; QVC Relocation Authority
+                </div>
+
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15]">
+                  Qatar Work Visa &amp; QVC Process Guide <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">2026</span>
+                </h1>
+
+                <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+                  The definitive, expert-verified guide to securing legal employment in <strong className="font-bold text-white">Doha, Ras Laffan, Lusail, and across Qatar</strong>. Explore official <strong className="font-bold text-emerald-300">Qatar Visa Center (QVC) procedures</strong>, <strong className="font-bold text-white">North Field LNG expansion jobs</strong>, <strong className="font-bold text-emerald-300">tax-free salary benchmarks across 25+ trades</strong>, and <strong className="font-bold text-white">guaranteed worker protections under Qatar Labour Law</strong>.
+                </p>
+
+                {/* Key Benefits Pill Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaMoneyBillWave className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">0% Income Tax</div>
+                      <div className="text-[10px] text-slate-400">100% Tax-Free Pay</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaBuildingColumns className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Zero-Fee QVC</div>
+                      <div className="text-[10px] text-slate-400">100% Employer Paid</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaOilWell className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">North Field LNG</div>
+                      <div className="text-[10px] text-slate-400">Mega Energy Projects</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaShieldHalved className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">WPS Protected</div>
+                      <div className="text-[10px] text-slate-400">Direct Bank Salary</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaClock className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">2–4 Weeks Transit</div>
+                      <div className="text-[10px] text-slate-400">Fast Deployment</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaPlaneArrival className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Employer Airfare</div>
+                      <div className="text-[10px] text-slate-400">Free Flight Ticket</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Action Buttons */}
+                <div className="flex flex-wrap items-center gap-4 pt-4">
+                  <Link
+                    href="/jobs?country=Qatar"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    <FaBriefcase className="w-4 h-4" />
+                    Browse Active Qatar Vacancies
+                  </Link>
+
+                  <a
+                    href="https://wa.me/919152288874?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20Qatar%20work%20visas%20and%20QVC%20job%20vacancies."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3.5 text-sm font-bold text-white transition-all shadow-md"
+                  >
+                    <FaWhatsapp className="w-4 h-4 text-emerald-300" />
+                    WhatsApp Qatar Desk
+                  </a>
+
+                  <Link
+                    href="/track-application"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white underline underline-offset-4"
+                  >
+                    Track Existing Qatar Application <FaArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Quick Country Snapshot Card */}
+              <div className="lg:col-span-5">
+                <div className="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3.5">
+                      <img
+                        src="https://flagcdn.com/w160/qa.png"
+                        alt="State of Qatar Flag"
+                        className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/25 shrink-0"
+                      />
+                      <div>
+                        <h3 className="text-xl font-display font-extrabold text-white">State of Qatar</h3>
+                        <p className="text-xs text-emerald-300 font-medium">Doha • Ras Laffan • Lusail • Mesaieed</p>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3 py-1 text-xs font-black text-emerald-300">
+                      HIGH INCOME
+                    </span>
+                  </div>
+
+                  <div className="space-y-3.5 text-xs text-slate-200">
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Labor Ministry:</span>
+                      <span className="font-bold text-white">Ministry of Labour (MOL)</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Pre-Departure Hub:</span>
+                      <span className="font-bold text-emerald-300">Qatar Visa Center (QVC)</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Residency Card (QID):</span>
+                      <span className="font-bold text-white">Physical Smart Qatar ID</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Statutory Minimum Base:</span>
+                      <span className="font-bold text-emerald-300">1,000 QAR + 800 Allowances</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Average Blue-Collar Pay:</span>
+                      <span className="font-bold text-amber-300">1,600 – 4,200 QAR / Month</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400 font-medium">Standard Processing:</span>
+                      <span className="font-bold text-emerald-300">15 to 25 Days</span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl bg-emerald-900/40 border border-emerald-500/30 p-4 text-center">
+                    <p className="text-xs font-medium text-emerald-200 mb-2">
+                      Ready to apply for high-paying Qatar energy, construction, or transport jobs?
+                    </p>
+                    <a
+                      href="mailto:workwisevisa@gmail.com?subject=Qatar%20Job%20Application&body=Hello%20WorkWise%20Visa%20Team,%0A%0AI%20am%20applying%20for%20a%20job%20in%20Qatar.%0A%0AFull%20Name:%0APhone%20Number:%0ATrade/Designation:%0APassport%20Number:%0AExperience%20(Years):%0ANearest%20QVC%20City:"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-sm"
+                    >
+                      <FaEnvelope className="w-3.5 h-3.5 text-emerald-600" />
+                      Submit CV for Qatar Recruitment
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Table of Contents & Quick Navigation ────────────── */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/50">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+              <FaMagnifyingGlass className="w-3 h-3 text-emerald-600" />
+              Comprehensive Qatar Page Directory:
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-bold">
+              <a href="#overview" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                1. 2026 Overview &amp; North Field LNG
+              </a>
+              <a href="#visa-types" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                2. Qatar Visa Types
+              </a>
+              <a href="#step-by-step" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                3. 6-Stage Visa Process
+              </a>
+              <a href="#salary-matrix" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                4. 2026 Salary Table
+              </a>
+              <a href="#qvc-battery" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                5. QVC Centers &amp; Medical Battery
+              </a>
+              <a href="#labour-law" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                6. Labour Law, Minimum Wage &amp; Gratuity
+              </a>
+              <a href="#medical-commission" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                7. Medical Commission Rules
+              </a>
+              <a href="#faqs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                8. Detailed FAQs (12+)
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Main Content Container ─────────────────────────── */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+          {/* ── Section 1: Overview & North Field LNG ──────────── */}
+          <section id="overview" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaOilWell className="w-3.5 h-3.5 text-emerald-600" />
+              Section 1: Country Overview &amp; Global Energy Capital
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Qatar in 2026: North Field LNG Expansion &amp; High-Wage Workforce Demand
+            </h2>
+
+            <div className="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base leading-relaxed space-y-4">
+              <p>
+                The <strong>State of Qatar</strong> is one of the wealthiest nations per capita on earth, anchored by the world&apos;s largest non-associated natural gas reserves. In 2026, the national economy is undergoing massive industrial acceleration through the <strong>$30+ Billion USD North Field East (NFE) and North Field South (NFS) LNG Expansion Projects</strong> spearheaded by{" "}
+                <a
+                  href="https://www.qatarenergy.qa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                >
+                  QatarEnergy
+                </a>
+                . This megaproject is increasing Qatar&apos;s liquefied natural gas production capacity from 77 million to <strong>142 million tonnes per annum (MTPA)</strong>.
+              </p>
+              <p>
+                This historic energy expansion, coupled with continuous urban development across <strong>Lusail Smart City</strong>, <strong>Ras Laffan Industrial City</strong>, <strong>Mesaieed Industrial Zone</strong>, and transport infrastructure linked to Hamad International Airport and Hamad Port, has triggered immense demand for overseas technical craftsmen, certified 6G pipe welders, spool fabricators, instrumentation technicians, heavy equipment drivers, and facility operations crews.
+              </p>
+              <p>
+                Under pioneering legislative reforms overseen by the{" "}
+                <a
+                  href="https://www.mol.gov.qa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                >
+                  Ministry of Labour (MOL)
+                </a>{" "}
+                in coordination with the International Labour Organization (ILO), Qatar has established the region&apos;s most advanced worker protection mechanisms: the universal{" "}
+                <a
+                  href="https://www.qatarvisacenter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                >
+                  Qatar Visa Center (QVC)
+                </a>{" "}
+                pre-departure biometric network, complete dismantling of the Kafala sponsorship framework, a non-discriminatory statutory minimum wage, and strict enforcement of the{" "}
+                <a
+                  href="https://www.qcb.gov.qa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                >
+                  Wage Protection System (WPS)
+                </a>
+                .
+              </p>
+            </div>
+
+            {/* Key Macro Stats Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">LNG Expansion Project</div>
+                <div className="text-2xl sm:text-3xl font-display font-black text-slate-900 mt-1">$30B+</div>
+                <p className="text-[11px] text-slate-500 mt-1">North Field East &amp; South LNG trains</p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Personal Income Tax</div>
+                <div className="text-2xl sm:text-3xl font-display font-black text-emerald-600 mt-1">0.0%</div>
+                <p className="text-[11px] text-slate-500 mt-1">100% tax-free take-home earnings</p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Pre-Departure QVC</div>
+                <div className="text-2xl sm:text-3xl font-display font-black text-teal-600 mt-1">100%</div>
+                <p className="text-[11px] text-slate-500 mt-1">Zero-fee contract &amp; medical clearance</p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Statutory Minimum Base</div>
+                <div className="text-2xl sm:text-3xl font-display font-black text-amber-600 mt-1">1,000 QAR</div>
+                <p className="text-[11px] text-slate-500 mt-1">+500 housing + 300 food minimum</p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 2: Types of Qatar Work Visas ──────────── */}
+          <section id="visa-types" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaPassport className="w-3.5 h-3.5 text-emerald-600" />
+              Section 2: Legal Visa Classifications &amp; Permits in Qatar
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Major Qatar Work Visa Categories in 2026
+            </h2>
+
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              The Ministry of Interior (MOI) and Ministry of Labour (MOL) authorize specific work residency channels depending on hiring company status and contract terms:
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+              {/* Card 1: Standard Work Residence Permit */}
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:border-emerald-500/60 hover:shadow-md transition-all flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs px-2.5 py-1">
+                      Most Common (90%)
+                    </span>
+                    <span className="text-xs font-bold text-slate-400">1–3 Year Renewable</span>
+                  </div>
+                  <h3 className="text-lg font-display font-extrabold text-slate-900">
+                    Standard Work Residence Visa (QID)
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Issued under an authorized corporate Block Visa quota approved by the Ministry of Labour. Processed via QVC with biometric capture and leading to a smart physical <strong>Qatar ID Card (QID)</strong>.
+                  </p>
+                  <ul className="text-xs text-slate-700 space-y-1.5 pt-2">
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-emerald-600 shrink-0" />
+                      WPS electronic bank account guarantee
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-emerald-600 shrink-0" />
+                      Zero-fee worker protection (100% employer paid)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-emerald-600 shrink-0" />
+                      Full Hamad Medical Corporation health card
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Card 2: Business Work Visa */}
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:border-teal-500/60 hover:shadow-md transition-all flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-lg bg-teal-100 text-teal-900 font-extrabold text-xs px-2.5 py-1">
+                      Short-Term Projects
+                    </span>
+                    <span className="text-xs font-bold text-slate-400">1 to 3 Months</span>
+                  </div>
+                  <h3 className="text-lg font-display font-extrabold text-slate-900">
+                    Business Work Visa (Temporary)
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Designed for emergency refinery shutdown turnarounds (QatarEnergy, QAPCO, Qatargas) and specialized technical commissioning requiring rapid 48-hour entry without full residency stamping.
+                  </p>
+                  <ul className="text-xs text-slate-700 space-y-1.5 pt-2">
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-teal-600 shrink-0" />
+                      Fast-track electronic MOI issuance
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-teal-600 shrink-0" />
+                      Extendable up to 6 months
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-teal-600 shrink-0" />
+                      High shutdown hazard allowances
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Card 3: Free Zone / Golden Residency */}
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:border-amber-500/60 hover:shadow-md transition-all flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs px-2.5 py-1">
+                      High-Skilled &amp; Free Zone
+                    </span>
+                    <span className="text-xs font-bold text-slate-400">5-Year / Permanent</span>
+                  </div>
+                  <h3 className="text-lg font-display font-extrabold text-slate-900">
+                    Qatar Free Zones (QFZA) Employment
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Operating in Ras Bufontas and Umm Alhoul Special Economic Zones adjacent to Hamad Port. Offers direct corporate sponsorship and streamlined multi-year residency permits for logistics and high-tech industries.
+                  </p>
+                  <ul className="text-xs text-slate-700 space-y-1.5 pt-2">
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-amber-600 shrink-0" />
+                      Direct QFZA labor dispute resolution
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-amber-600 shrink-0" />
+                      100% foreign ownership corporate ecosystem
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <FaCheck className="w-3 h-3 text-amber-600 shrink-0" />
+                      Family sponsorship eligibility
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 3: Step-by-Step 6-Stage Process Pipeline ── */}
+          <section id="step-by-step" className="scroll-mt-28 space-y-8">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaClock className="w-3.5 h-3.5 text-emerald-600" />
+              Section 3: Complete Step-by-Step Qatar Recruitment &amp; Visa Pipeline
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                The 6-Phase Qatar Work Visa Processing Pipeline
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                WorkWise Visa enforces a synchronized deployment pipeline connecting candidates with licensed Qatari establishments:
+              </p>
+            </div>
+
+            {/* Workflow Card Blocks */}
+            <div className="space-y-4">
+              {/* Phase 1 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  01
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 1: Trade Practical Testing &amp; Block Visa Quota Allocation
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 2–5 Days
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Candidates complete practical trials (pipe coupons, electrical DB boards, machinery handling) under client QC inspectors. The hiring Qatari company submits their <strong>Block Visa quota application</strong> to the Ministry of Labour (MOL).
+                  </p>
+                </div>
+              </div>
+
+              {/* Phase 2 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  02
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 2: MOI Electronic Visa Generation &amp; QVC Appointment Booking
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 2–4 Days
+                    </span>
+                  </div>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Once the Ministry of Labour validates the job terms, the file automatically transitions to the{" "}
+                    <a
+                      href="https://portal.moi.gov.qa"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                    >
+                      Ministry of Interior (MOI Portal)
+                    </a>{" "}
+                    to generate an official <strong>Visa Number &amp; Application Number</strong>. The employer books an appointment at the candidate&apos;s nearest Qatar Visa Center via <a href="https://www.qatarvisacenter.com" target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800">qatarvisacenter.com</a>.
+                  </p>
+                </div>
+              </div>
+
+              {/* Phase 3 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  03
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 3: Qatar Visa Center (QVC) 3-Stage Testing Battery
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 1 Day (2–4 Days for Medical Clearance)
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Candidate visits the QVC hub to complete (1) digital biometrics (10 fingerprints and iris scan), (2) native-language digital employment contract verification and electronic signing, and (3) clinical diagnostic medical tests (PA chest X-ray and blood serology). 100% of costs are paid by the employer.
+                  </p>
+                </div>
+              </div>
+
+              {/* Phase 4 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  04
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 4: Electronic Work Visa Issuance &amp; Flight Booking
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 2–3 Days
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Upon receipt of &quot;FIT&quot; medical clearance from QVC, the{" "}
+                    <a
+                      href="https://portal.moi.gov.qa"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                    >
+                      Ministry of Interior (MOI)
+                    </a>{" "}
+                    in Doha automatically issues the official <strong>Electronic Work Entry Visa</strong>. The employer forwards the digital visa and booked flight ticket to Hamad International Airport (DOH).
+                  </p>
+                </div>
+              </div>
+
+              {/* Phase 5 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  05
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 5: Emigration Clearance (e-Migrate / PoE) &amp; Travel Deployment
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 2–3 Days
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Indian ECR passport holders obtain online <strong>e-Migrate PoE clearance</strong>. Candidates land at Hamad International Airport in Doha and are received by company representatives for transportation to comfortable company accommodations.
+                  </p>
+                </div>
+              </div>
+
+              {/* Phase 6 */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400 transition-all flex flex-col md:flex-row gap-6 items-start">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-display font-black text-lg shadow-md shadow-emerald-600/20">
+                  06
+                </div>
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-base font-display font-bold text-slate-900">
+                      Phase 6: In-Country Medical Sync, QID Printing &amp; Metrash2 Activation
+                    </h3>
+                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Timeline: 3–5 Days
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Because the medical test was validated at QVC, data syncs automatically with the Qatar Medical Commission. The General Directorate of Passports prints the physical <strong>Smart Qatar ID Card (QID)</strong>, activates the employee on <strong>Metrash2</strong>, and opens their WPS bank payroll account.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 4: Comprehensive 2026 Salary Matrix ───── */}
+          <section id="salary-matrix" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaMoneyBillWave className="w-3.5 h-3.5 text-emerald-600" />
+              Section 4: Complete Qatar Salary Matrix 2026
+            </div>
+
+            <div className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                2026 Qatar Salary Scales by Trade &amp; Skill Category
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Below is the verified, industry-standard monthly compensation structure for skilled, technical, and blue-collar occupations across Doha, Ras Laffan, and Lusail. Figures reflect 8 hours/day basic wage, standard company overtime, and employer perks:
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-200 bg-slate-50/80 text-slate-900 font-display font-bold">
+                    <th className="py-4 px-4 sm:px-6">Industry / Trade Role</th>
+                    <th className="py-4 px-3 sm:px-4">Basic Wage (QAR)</th>
+                    <th className="py-4 px-3 sm:px-4">Overtime / Site Perks</th>
+                    <th className="py-4 px-3 sm:px-4">Total Net (QAR / Mo)</th>
+                    <th className="py-4 px-3 sm:px-4">INR Equivalent (Approx.)</th>
+                    <th className="py-4 px-4 sm:px-6">Company Benefits</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-700">
+                  {/* Energy & Welding */}
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      6G TIG &amp; ARC Pipe Welder (Argon Purging)
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">2,400 – 3,600 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">600 – 1,100 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">3,000 – 4,700 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹69,000 – ₹1,08,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Free Mess Food, AC Camp, Site Transport, Flight</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Industrial / Plant Electrician
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">1,900 – 2,800 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">450 – 800 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">2,350 – 3,600 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹54,000 – ₹83,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Free Accommodation, Tools, Health Card</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Pipe Fitter &amp; Spool Fabricator
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">1,900 – 2,700 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">500 – 850 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">2,400 – 3,550 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹55,000 – ₹82,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Free Food, Housing, Safety PPE, Insurance</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      HVAC &amp; Central Chiller Technician
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">2,100 – 3,000 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">450 – 750 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">2,550 – 3,750 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹59,000 – ₹86,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Free Housing, Site Bus, 30-Day Paid Leave</td>
+                  </tr>
+
+                  {/* Driving & Transport */}
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Heavy Trailer (6-Axle) Driver (Qatar License)
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">2,600 – 3,800 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">Trip Allowances</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">3,200 – 5,000 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹74,000 – ₹1,15,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Per-trip bonus, Phone allowance, Insurance</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Heavy Bus Driver (50+ Seater)
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">2,300 – 3,200 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">350 – 600 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">2,650 – 3,800 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹61,000 – ₹87,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Free Accommodation, Annual Air Ticket</td>
+                  </tr>
+
+                  {/* Civil & Construction */}
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Civil Mason / Plasterer / Tile Fixer
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">1,400 – 1,900 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">350 – 600 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">1,750 – 2,500 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹40,000 – ₹58,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Camp Accommodation, Mess Facility, Transport</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Shuttering Carpenter &amp; Steel Fixer
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">1,400 – 1,850 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">350 – 650 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">1,750 – 2,500 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹40,000 – ₹58,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Camp Housing, Daily Site Bus, Medical</td>
+                  </tr>
+
+                  <tr className="hover:bg-slate-50/80 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-slate-900">
+                      Site Construction Helper / Cleaner
+                    </td>
+                    <td className="py-3.5 px-3 sm:px-4 font-semibold text-emerald-700">1,200 – 1,500 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 text-slate-600">250 – 450 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-extrabold text-slate-900">1,450 – 1,950 QAR</td>
+                    <td className="py-3.5 px-3 sm:px-4 font-bold text-teal-700">₹33,000 – ₹45,000</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-[11px] text-slate-500">Camp Housing, Mess Food, Medical Insurance</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 leading-relaxed">
+              <strong>💡 Currency Conversion Note:</strong> Exchange rates hover around 1 QAR ≈ ₹23.00 to ₹23.20 INR / 76 to 78 PKR. Under Qatar law, earnings are 100% tax-free and monitored by the Qatar Central Bank Wage Protection System (WPS).
+            </div>
+          </section>
+
+          {/* ── Section 5: QVC Network & 3-Stage Testing ──────── */}
+          <section id="qvc-battery" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaAward className="w-3.5 h-3.5 text-emerald-600" />
+              Section 5: Qatar Visa Center (QVC) Network &amp; Medical Battery
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Qatar Visa Center (QVC) Pre-Departure Processing
+            </h2>
+
+            <div className="prose prose-slate max-w-none text-slate-600 text-sm sm:text-base leading-relaxed space-y-4">
+              <p>
+                Qatar operates state-of-the-art <strong>Qatar Visa Centers (QVC)</strong> across six major international labor-sending nations (India: New Delhi, Mumbai, Kolkata, Chennai, Hyderabad, Kochi, Lucknow; Pakistan: Islamabad, Karachi; Nepal: Kathmandu; Bangladesh: Dhaka, Sylhet; Sri Lanka: Colombo; Philippines: Manila).
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 pt-2">
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                  <FaCertificate className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Stage 1: Biometrics</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  10-digit optical fingerprint scanning, high-resolution iris capture, digital facial photography, and electronic signature capture for your future smart Qatar ID (QID).
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100 text-teal-800 font-bold">
+                  <FaFileInvoiceDollar className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Stage 2: Digital Contract</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Candidates review and digitally sign their official Ministry of Labour employment contract displayed on touchscreen terminals in their native language (Hindi, Urdu, Nepali, Bengali, or English).
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-800 font-bold">
+                  <FaHospital className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Stage 3: Lab Medical</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Digital Chest X-Ray (PA view) for Tuberculosis screening, blood serology (HIV, Hepatitis B/C, Syphilis/VDRL), blood sugar, blood pressure, and visual acuity testing.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 6: Labour Law & Worker Rights ─────────── */}
+          <section id="labour-law" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaScaleUnbalanced className="w-3.5 h-3.5 text-emerald-600" />
+              Section 6: Qatar Labour Law Protections, Minimum Wage &amp; Gratuity
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Legal Protections Guaranteed by Qatar Labour Law (Law No. 14 of 2004 &amp; Reforms)
+            </h2>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                  <FaFileInvoiceDollar className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  Statutory Minimum Wage
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Law No. 17 of 2020 mandates <strong>1,000 QAR basic wage + 500 QAR housing + 300 QAR food allowance</strong> per month minimum. Employers cannot legally pay below this benchmark.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100 text-teal-800 font-bold">
+                  <FaClock className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  8-Hour Duty &amp; Overtime Rules
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Standard work is 8 hours/day (48 hours/week). Overtime is compensated at <strong>125% of hourly rate</strong> for day overtime and <strong>150%</strong> for night shifts or Friday work.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-800 font-bold">
+                  <FaMoneyBillWave className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  End-of-Service Gratuity (ESB)
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Under Article 54, workers completing at least 1 year of continuous service receive <strong>at least 3 weeks (21 days) basic salary</strong> for each completed year of service.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-100 text-rose-800 font-bold">
+                  <FaTriangleExclamation className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  Summer Heat Ban (June 1 – Sept 15)
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Outdoor work under direct sunlight is strictly illegal between <strong>10:00 AM and 3:30 PM</strong>. Violating companies face immediate site closure and hefty financial penalties.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800 font-bold">
+                  <FaPlaneArrival className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  Annual Paid Leave &amp; Flights
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Workers receive a minimum of <strong>3 to 4 weeks of paid annual leave</strong> plus return economy flight tickets to their home country upon contract renewal.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-sky-800 font-bold">
+                  <FaHandshakeAngle className="w-5 h-5" />
+                </div>
+                <h3 className="font-display font-bold text-slate-900 text-base">
+                  NOC Abolished: Full Job Mobility
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Workers have the legal right to transition to a new employer without requiring an employer No Objection Certificate (NOC) by giving standard 30 to 60 days written notice.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 7: Medical Commission ─────────────────── */}
+          <section id="medical-commission" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaHospital className="w-3.5 h-3.5 text-emerald-600" />
+              Section 7: Qatar Medical Commission Synchronization
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Pre-Departure &amp; In-Country Medical Clearance Standards
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6 pt-2">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2.5">
+                <div className="text-xs font-bold uppercase tracking-wider text-emerald-700">Diagnostic Test 1</div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Digital PA Chest X-Ray</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Screens for active pulmonary Tuberculosis (TB), pleural calcification, and lung cavitation. Clear, healthy chest X-rays are mandatory for Qatar visa issuance.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2.5">
+                <div className="text-xs font-bold uppercase tracking-wider text-teal-700">Diagnostic Test 2</div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Blood Serology Screening</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Screening for HIV-1/2 antibodies, Hepatitis B Surface Antigen (HBsAg), Hepatitis C Antibodies (Anti-HCV), and Syphilis (VDRL/TPHA).
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2.5">
+                <div className="text-xs font-bold uppercase tracking-wider text-amber-700">Diagnostic Test 3</div>
+                <h3 className="font-display font-bold text-slate-900 text-base">Medical Commission Sync</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Upon landing in Doha, QVC results automatically sync with the{" "}
+                  <a
+                    href="https://www.moph.gov.qa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                  >
+                    Ministry of Public Health (MOPH) Medical Commission
+                  </a>{" "}
+                  database, enabling fast Qatar ID card printing without duplicate testing.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 8: Detailed FAQs Section ──────────────── */}
+          <section id="faqs" className="scroll-mt-28 space-y-8">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+              <FaCircleQuestion className="w-3.5 h-3.5 text-emerald-600" />
+              Section 8: Frequently Asked Questions (FAQs) for Qatar Work Visas
+            </div>
+
+            <div className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                Frequently Asked Questions Regarding Qatar &amp; QVC Work Permits
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base">
+                Clear, legally verified answers to the most critical queries about working in Qatar:
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              {faqSchema.mainEntity.map((faq, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-400/80 transition-all space-y-2"
+                >
+                  <h3 className="font-display font-bold text-slate-900 text-base flex items-start gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-xs font-black">
+                      {index + 1}
+                    </span>
+                    {faq.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-9">
+                    {faq.acceptedAnswer.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Internal Linking & Relevant Guides ─────────────── */}
+          <section className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/70 p-8 sm:p-10 shadow-sm space-y-6">
+            <div className="space-y-2">
+              <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+                Explore Related Qatar In-Depth Resources
+              </div>
+              <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
+                Authoritative Qatar Career &amp; Immigration Guides
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-fees-rules"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">QVC Examination Manual</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Qatar Work Visa &amp; QVC Step-by-Step Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Comprehensive manual for QVC appointments, biometrics, Medical Commission sync, and Qatar ID (QID) printing.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/gulf-petrochemical-refinery-shutdown-jobs-aramco-adnoc-knpc-turnaround-recruitment"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-teal-600">Energy &amp; Petrochemicals</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Gulf Petrochemical &amp; Refinery Shutdown Recruitment
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    QatarEnergy, Ras Laffan, QAPCO turnaround maintenance, 6G welders, riggers, and safety officers.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/pcc-police-clearance-certificate-guide-passport-seva-mea-apostille-gulf-visas"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-amber-600">Attestation &amp; PCC</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    PCC for Gulf &amp; Europe Work Visas Guide
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Step-by-step Passport Seva Kendra (PSK) online application, police inquiry, and Qatar Embassy attestation.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </section>
+
+          {/* ── Direct CTA Banner ──────────────────────────────── */}
+          <section className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 max-w-3xl space-y-4">
+              <span className="inline-block rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3.5 py-1 text-xs font-bold text-emerald-300">
+                Direct Qatar Client Recruitment Drives Active
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight">
+                Apply for Verified Qatar &amp; QVC Jobs with WorkWise Visa
+              </h2>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Connect with licensed Qatari establishments for zero-fee, government-registered recruitment in oil &amp; gas, energy expansion, civil construction, and driving. Get verified MOL contracts, QVC assistance, and express flight deployment.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <a
+                  href="https://wa.me/919152288874?text=Hello%20WorkWise%20Visa,%20I%20want%20to%20apply%20for%20a%20Qatar%20work%20visa%20and%20QVC%20job%20vacancy."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-emerald-500 px-6 py-3 text-xs sm:text-sm font-bold text-slate-950 hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/25"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                  Chat on WhatsApp with Qatar Specialist
+                </a>
+
+                <Link
+                  href="/jobs"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition-colors"
+                >
+                  <FaBriefcase className="w-3.5 h-3.5" />
+                  View All Open Jobs
+                </Link>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      <Footer />
+      <FloatingWhatsApp />
+    </>
+  );
+}
