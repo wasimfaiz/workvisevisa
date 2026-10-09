@@ -35,9 +35,10 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
 
 export const metadata: Metadata = {
-  title: "Qatar Work Visa & QVC Process Guide 2026: Ministry of Labour, QID, Salaries & Jobs | WorkWise Visa",
+  applicationName: "WorkWise Visa",
+  title: "Qatar Work Visa & Doha Jobs Guide 2026 | WorkWise Visa",
   description:
-    "Complete 2026 authority guide on Qatar work visas, Qatar Visa Center (QVC) biometrics, Medical Commission clearance, Qatar ID (QID) printing, North Field LNG jobs, tax-free salaries across 25+ trades, and certified overseas recruitment.",
+    "Complete 2026 Qatar work visa guide. Learn QVC biometric testing, Ministry of Labour permits, North Field LNG salaries, medical sync & certified recruitment.",
   keywords: [
     "Qatar work visa 2026",
     "Qatar Visa Center QVC appointment",
@@ -57,9 +58,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/countries/qatar`,
   },
   openGraph: {
-    title: "Qatar Work Visa & QVC Process Guide 2026 | WorkWise Visa",
+    title: "Qatar Work Visa & Doha Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Authoritative manual for Qatar employment: QVC biometric appointments, MOL digital contract rules, Medical Commission clearance, Qatar ID issuance, and verified Gulf recruitment.",
+      "Complete 2026 Qatar work visa guide. Learn QVC biometric testing, Ministry of Labour permits, North Field LNG salaries, medical sync & certified recruitment.",
     url: `${BASE_URL}/countries/qatar`,
     siteName: "WorkWise Visa",
     locale: "en_US",
@@ -75,9 +76,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Qatar Work Visa & QVC Process Guide 2026 | WorkWise Visa",
+    title: "Qatar Work Visa & Doha Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Step-by-step QVC appointment workflow, tax-free salary benchmarks, Qatar ID printing, and genuine Qatar job vacancies.",
+      "Complete 2026 Qatar work visa guide. Learn QVC biometric testing, Ministry of Labour permits, North Field LNG salaries, medical sync & certified recruitment.",
     images: [`${BASE_URL}/images/qatar_hero.jpg`],
   },
 };

@@ -37,9 +37,10 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
 
 export const metadata: Metadata = {
-  title: "UAE Work Visa & Dubai Jobs Guide 2026: MOHRE Work Permit, Salaries, Process & Recruitment | WorkWise Visa",
+  applicationName: "WorkWise Visa",
+  title: "UAE Work Visa & Dubai Jobs Guide 2026 | WorkWise Visa",
   description:
-    "Complete 2026 authority guide on UAE work visas, Dubai employment permits, MOHRE approvals, GDRFA entry visas, DHA medical tests, Emirates ID, WPS salaries, top trade roles (welders, electricians, drivers, hospitality), and direct recruitment.",
+    "Complete 2026 UAE work visa guide. Explore Dubai MOHRE work permits, tax-free salary scales across 25+ trades, DHA medical tests & genuine Gulf job vacancies.",
   keywords: [
     "UAE work visa 2026",
     "Dubai employment visa process",
@@ -61,9 +62,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/countries/uae`,
   },
   openGraph: {
-    title: "UAE Work Visa & Dubai Employment Guide 2026 | WorkWise Visa",
+    title: "UAE Work Visa & Dubai Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Authoritative guide for UAE work visas: MOHRE contract rules, GDRFA entry permit, DHA medical fitness, salary matrices across 25+ trades, and certified overseas recruitment.",
+      "Complete 2026 UAE work visa guide. Explore Dubai MOHRE work permits, tax-free salary scales across 25+ trades, DHA medical tests & genuine Gulf job vacancies.",
     url: `${BASE_URL}/countries/uae`,
     siteName: "WorkWise Visa",
     locale: "en_US",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "UAE Work Visa & Dubai Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Step-by-step MOHRE work permit pipeline, tax-free salary benchmarks, DHA medical tests, and genuine Gulf job vacancies.",
+      "Complete 2026 UAE work visa guide. Explore Dubai MOHRE work permits, tax-free salary scales across 25+ trades, DHA medical tests & genuine Gulf job vacancies.",
     images: [`${BASE_URL}/images/dubai_hero.jpg`],
   },
 };

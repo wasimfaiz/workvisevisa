@@ -39,9 +39,10 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
 
 export const metadata: Metadata = {
-  title: "Bahrain Work Visa & Manama Jobs Guide 2026: LMRA Work Permit, Salaries, Bapco Jobs & Process | WorkWise Visa",
+  applicationName: "WorkWise Visa",
+  title: "Bahrain Work Visa & Jobs Guide 2026 | WorkWise Visa",
   description:
-    "Comprehensive 2026 authority guide on Bahrain work visas, LMRA work permits, NPRA visa clearance, Bapco refinery jobs, Wafid GAMCA medical tests, 2026 salary scales across 25+ trades, and certified Gulf overseas recruitment.",
+    "Complete 2026 Bahrain work visa guide. Learn LMRA work permits, NPRA visa clearance, Bapco refinery jobs, tax-free salary scales & verified Gulf recruitment.",
   keywords: [
     "Bahrain work visa 2026",
     "Manama employment visa process",
@@ -61,9 +62,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/countries/bahrain`,
   },
   openGraph: {
-    title: "Bahrain Work Visa & Manama Employment Guide 2026 | WorkWise Visa",
+    title: "Bahrain Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Authoritative guide for Bahrain work visas: LMRA electronic permits, Bapco refinery & Alba industrial projects, salary matrices across 25+ trades, and certified overseas recruitment.",
+      "Complete 2026 Bahrain work visa guide. Learn LMRA work permits, NPRA visa clearance, Bapco refinery jobs, tax-free salary scales & verified Gulf recruitment.",
     url: `${BASE_URL}/countries/bahrain`,
     siteName: "WorkWise Visa",
     locale: "en_US",
@@ -79,9 +80,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bahrain Work Visa & Manama Jobs Guide 2026 | WorkWise Visa",
+    title: "Bahrain Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Step-by-step Bahrain LMRA work permit pipeline, tax-free salary benchmarks, Wafid medical tests, and genuine Gulf job vacancies.",
+      "Complete 2026 Bahrain work visa guide. Learn LMRA work permits, NPRA visa clearance, Bapco refinery jobs, tax-free salary scales & verified Gulf recruitment.",
     images: [`${BASE_URL}/images/bahrain_hero.jpg`],
   },
 };

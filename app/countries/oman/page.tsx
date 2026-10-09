@@ -39,9 +39,10 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
 
 export const metadata: Metadata = {
-  title: "Oman Work Visa & Muscat Jobs Guide 2026: MOL Work Permit, ROP Visa, Salaries & Recruitment | WorkWise Visa",
+  applicationName: "WorkWise Visa",
+  title: "Oman Work Visa & Muscat Jobs Guide 2026 | WorkWise Visa",
   description:
-    "Complete 2026 authority guide on Oman work visas, Ministry of Labour (MOL) permits, Royal Oman Police (ROP) visa stamping, Duqm Refinery jobs, Wafid medical tests, 2026 salary scales across 25+ trades, and certified Gulf overseas recruitment.",
+    "Complete 2026 Oman work visa guide. Explore Ministry of Labour permits, ROP eVisa, Duqm Refinery jobs, tax-free salary scales & certified Gulf recruitment.",
   keywords: [
     "Oman work visa 2026",
     "Muscat employment visa process",
@@ -61,9 +62,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/countries/oman`,
   },
   openGraph: {
-    title: "Oman Work Visa & Muscat Employment Guide 2026 | WorkWise Visa",
+    title: "Oman Work Visa & Muscat Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Authoritative guide for Oman work visas: MOL labour quotas, ROP visa approvals, Duqm & Sohar industrial projects, salary matrices across 25+ trades, and certified overseas recruitment.",
+      "Complete 2026 Oman work visa guide. Explore Ministry of Labour permits, ROP eVisa, Duqm Refinery jobs, tax-free salary scales & certified Gulf recruitment.",
     url: `${BASE_URL}/countries/oman`,
     siteName: "WorkWise Visa",
     locale: "en_US",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Oman Work Visa & Muscat Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Step-by-step Oman MOL work permit pipeline, ROP visa stamping, tax-free salary benchmarks, and genuine Gulf job vacancies.",
+      "Complete 2026 Oman work visa guide. Explore Ministry of Labour permits, ROP eVisa, Duqm Refinery jobs, tax-free salary scales & certified Gulf recruitment.",
     images: [`${BASE_URL}/images/oman_hero.jpg`],
   },
 };

@@ -20,6 +20,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.workwisevisa.com"),
+  applicationName: "WorkWise Visa",
+  appleWebApp: {
+    title: "WorkWise Visa",
+    statusBarStyle: "default",
+  },
   title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
   description:
     "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
@@ -94,7 +99,8 @@ const jsonLdSchema = {
       "@type": ["Organization", "EmploymentAgency"],
       "@id": "https://www.workwisevisa.com/#organization",
       name: "WorkWise Visa",
-      legalName: "Europass Immigration Pvt Ltd",
+      legalName: "WorkWise Visa",
+      alternateName: "WorkWise Visa Overseas Placement",
       url: "https://www.workwisevisa.com",
       logo: {
         "@type": "ImageObject",

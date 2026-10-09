@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export const metadata: Metadata = {
+  applicationName: "WorkWise Visa",
   title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
   description:
     "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
@@ -24,6 +25,15 @@ export const metadata: Metadata = {
     description:
       "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
     url: "https://www.workwisevisa.com",
+    siteName: "WorkWise Visa",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
+    description:
+      "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
   },
 };
 

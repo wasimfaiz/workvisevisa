@@ -35,9 +35,10 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
 
 export const metadata: Metadata = {
-  title: "Saudi Arabia Work Visa & NEOM Jobs Guide 2026: Qiwa Contract, Iqama, Takamol SVP & Salaries | WorkWise Visa",
+  applicationName: "WorkWise Visa",
+  title: "Saudi Arabia Work Visa & Jobs Guide 2026 | WorkWise Visa",
   description:
-    "Complete 2026 authority guide on Saudi Arabia work visas, Qiwa digital labor contracts, Muqeem Iqama issuance, Takamol SVP trade testing, Vision 2030 NEOM jobs, tax-free salaries across 25+ trades, and certified overseas recruitment.",
+    "Complete 2026 Saudi Arabia work visa guide. Explore NEOM jobs, Qiwa digital contracts, Takamol SVP trade tests, tax-free salaries & verified Gulf recruitment.",
   keywords: [
     "Saudi Arabia work visa 2026",
     "Saudi employment visa process",
@@ -58,9 +59,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/countries/saudi-arabia`,
   },
   openGraph: {
-    title: "Saudi Arabia Work Visa & NEOM Jobs Guide 2026 | WorkWise Visa",
+    title: "Saudi Arabia Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Authoritative manual for Saudi Arabia employment: Qiwa labor contracts, Takamol SVP trade test, Iqama issuance, salary matrices across 25+ trades, and verified Gulf recruitment.",
+      "Complete 2026 Saudi Arabia work visa guide. Explore NEOM jobs, Qiwa digital contracts, Takamol SVP trade tests, tax-free salaries & verified Gulf recruitment.",
     url: `${BASE_URL}/countries/saudi-arabia`,
     siteName: "WorkWise Visa",
     locale: "en_US",
@@ -76,9 +77,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saudi Arabia Work Visa & NEOM Jobs Guide 2026 | WorkWise Visa",
+    title: "Saudi Arabia Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
-      "Step-by-step Qiwa contract process, Takamol trade exam guidelines, tax-free salary benchmarks, and genuine Saudi job vacancies.",
+      "Complete 2026 Saudi Arabia work visa guide. Explore NEOM jobs, Qiwa digital contracts, Takamol SVP trade tests, tax-free salaries & verified Gulf recruitment.",
     images: [`${BASE_URL}/images/saudi_hero.jpg`],
   },
 };
