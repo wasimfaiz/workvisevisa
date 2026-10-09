@@ -1,0 +1,133 @@
+# WorkWise Visa - Full Documentation & AI Context (llms-full.txt)
+
+> WorkWise Visa is a government-registered, ethical overseas recruitment agency, visa processing consultancy, and human resources provider specializing in international manpower placement for Gulf Cooperation Council (GCC) nations (Saudi Arabia, UAE, Qatar, Kuwait, Oman, Bahrain) and European destinations (Poland, Malta, Croatia, Romania).
+
+---
+
+## 1. Company Profile & Core Mission
+
+- **Brand Name:** WorkWise Visa
+- **Primary Domain:** https://www.workwisevisa.com
+- **Core Specialization:** Cross-border recruitment for skilled, semi-skilled, technical, and blue-collar workforces.
+- **Industry Verticals Served:**
+  - Civil & Infrastructure Construction (Mega Projects, High-Rise, Bridges, Tunnels, Roads)
+  - Mechanical, Electrical, Plumbing (MEP) & HVAC Engineering
+  - Oil & Gas, Petrochemical Refineries, and Industrial Plant Turnarounds / Shutdowns
+  - Hospitality, Culinary Arts, Facility Management & Cleaning Services
+  - Logistics, Fleet Delivery, Warehousing, and Supply Chain
+  - Healthcare Support, Security, and Automotive Technical Services
+- **Compliance & Ethics:** 100% compliant with Ministry of External Affairs (MEA), e-Migrate regulations, Saudi Vision 2030 Qiwa protocols, UAE Ministry of Human Resources and Emiratisation (MOHRE), Qatar Ministry of Labour (MOL), and Kuwait Public Authority for Manpower (PAM).
+
+---
+
+## 2. Key Service Offerings
+
+### A. International Manpower Sourcing & Deployment
+- Technical trade testing, practical screening, and interview drives across accredited centers in South Asia.
+- Direct employer-to-candidate matching with transparent compensation structures and Zero-Fee recruitment compliance.
+- End-to-end mobilization logistics including airfare, transit assistance, and airport reception.
+
+### B. Gulf Work Visa Stamping & Processing
+- **Saudi Arabia:** Qiwa digital contract formulation, Saudi MOFA visa authorization, VFS TasHeel submission, and Iqama processing.
+- **United Arab Emirates:** MOHRE quota approvals, electronic entry work permits, GDRFA/ICP stamping, DHA medical fitness, and Emirates ID issuance.
+- **Qatar:** Ministry of Interior (MOI) work visa clearance, Qatar Visa Center (QVC) biometrics, contract digital stamping, and Qatar ID (QID) printing.
+- **Kuwait:** Public Authority for Manpower (PAM) work visa clearance, Kuwait Society of Engineers (KSE) accreditation, and Kuwait MOFA attestation.
+- **Oman & Bahrain:** Royal Oman Police (ROP) and LMRA work permit processing.
+
+### C. Technical Trade Testing & Takamol SVP Guidance
+- Comprehensive preparation and test booking for the Saudi **Takamol Skill Verification Program (SVP)** across 23 regulated professions (Electricians, 6G Welders, HVAC Technicians, Pipe Fitters, Carpenters, Plumbers).
+- 2-stage assessment support covering theoretical computerized testing (30 MCQs in multilingual audio/text) and practical workshop trials.
+
+### D. Medical Coordination (Wafid / GAMCA)
+- Online appointment scheduling via **[wafid.com](https://wafid.com)** for GCC-bound workers.
+- Medical fit/unfit advisory covering infectious disease screening (TB chest X-rays, Hepatitis B/C, HIV), blood pressure, vision, and repeat test clearance.
+
+### E. Document Attestation & Police Clearance Certificate (PCC)
+- Passport Seva Kendra (PSK) PCC online application and police station field inquiry support.
+- Ministry of External Affairs (MEA) Apostille stickers for Hague Convention nations (Europe / Schengen).
+- Multi-tier Embassy consular legalization for Non-Apostille Gulf nations (State HRD/Home -> MEA -> Target Embassy -> Destination MOFA).
+
+---
+
+## 3. Destination Country Portfolios
+
+| Country | Primary Visa Types | Key Regulatory Bodies | Minimum Blue-Collar Wage Range |
+| :--- | :--- | :--- | :--- |
+| **Saudi Arabia 🇸🇦** | Work Residence Visa (Iqama) | MHRSD, Qiwa, MOFA, TVTC | 1,200 – 3,500+ SAR + Housing/Food |
+| **United Arab Emirates 🇦🇪** | MOHRE 2-Year Employment Visa | MOHRE, GDRFA, ICP | 1,200 – 3,800+ AED + Overtime |
+| **Qatar 🇶🇦** | Work Residence Permit (QID) | MOL, MOI, QVC, Medical Commission | 1,000 – 2,800+ QAR + 500 Food/Accom. |
+| **Kuwait 🇰🇼** | Article 18 Private Sector Visa | PAM, MOI, KSE | 120 – 280+ KWD + Allowances |
+| **Oman 🇴🇲** | Employment Residency Visa | Ministry of Labour, ROP | 120 – 260+ OMR + Overtime |
+| **Bahrain 🇧🇭** | LMRA Work Permit | LMRA, NPRA | 120 – 250+ BHD + Overtime |
+| **Poland & Europe 🇵🇱** | National Type-D Work Visa (Krajowa) | Voivodeship Labour Office | 3,800 – 6,000+ PLN (~€850 – €1,400) |
+
+---
+
+## 4. Key Online Portals & Candidate Tools
+
+- **Job Portal:** https://www.workwisevisa.com/jobs
+- **Application Tracking:** https://www.workwisevisa.com/track-application (and /track)
+- **Countries Directory:** https://www.workwisevisa.com/countries
+- **Blog & Knowledge Base:** https://www.workwisevisa.com/blogs
+- **About Us & Leadership:** https://www.workwisevisa.com/about
+
+---
+
+## 5. Comprehensive Knowledge Base & Article Directory
+
+1. **Qatar Work Visa & QVC Process Guide 2026:**
+   URL: https://www.workwisevisa.com/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-fees-rules
+   Covers: Doha employer block visa, MOI preliminary approval, Qatar Visa Center (QVC) appointment booking, 3-stage tests (biometrics, digital contract, lab medicals), zero-fee worker protection, Hamad Airport arrival, Medical Commission sync, and Qatar ID (QID) printing.
+
+2. **Takamol Skill Verification Program (SVP) Saudi Arabia 2026:**
+   URL: https://www.workwisevisa.com/blogs/takamol-skill-verification-program-saudi-arabia-svp-exam-pattern-qiwa-centers
+   Covers: MHRSD mandatory SVP mandate, 23 regulated professions (Electrician, Welder, HVAC, Plumber, Mason, Mechanic), 2-stage exam pattern (30-min computerized MCQ + 2-hour practical workshop), passing score (60%), test centers across India/Pakistan/Bangladesh, and Qiwa API synchronization.
+
+3. **Police Clearance Certificate (PCC) Complete Guide for Gulf & Europe:**
+   URL: https://www.workwisevisa.com/blogs/pcc-police-clearance-certificate-guide-passport-seva-mea-apostille-gulf-visas
+   Covers: Passport Seva Kendra (PSK) online application, ₹500 fee, Thana police field inquiry, CCTNS criminal database check, MEA Apostille sticker vs Embassy consular legalization, and 6-month document validity rules.
+
+4. **Wafid (GAMCA) Medical Examination Guidelines 2026:**
+   URL: https://www.workwisevisa.com/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria
+   Covers: Wafid.com $10 online appointment booking, automated GCC-approved clinic allocation, laboratory tests (Chest X-Ray for TB, Blood serology for HIV/HBsAg/HCV/VDRL), permanent unfit vs temporarily treatable conditions, repeat test guidelines, and GCC slip verification.
+
+5. **Saudi Arabia Blue-Collar & Construction Recruitment (NEOM / Red Sea / Vision 2030):**
+   URL: https://www.workwisevisa.com/blogs/saudi-arabia-blue-collar-construction-recruitment-vision-2030-neom-work-visas
+   Covers: Mega infrastructure projects (NEOM The Line, Trojena, Oxagon, Red Sea Global, Riyadh Metro), trade skill requirements, Qiwa electronic labor contracts, digital Iqama, Wage Protection System (WPS), and end-of-service gratuity benefits.
+
+6. **Kuwait Work Visa & Educational Degree Attestation Rules:**
+   URL: https://www.workwisevisa.com/blogs/kuwait-work-visa-degree-attestation-rules-engineers-diploma-holders-pam-guidelines
+   Covers: Public Authority for Manpower (PAM) work visa quotas, Kuwait Society of Engineers (KSE) accreditation, 4-tier degree attestation pipeline (State HRD -> MEA -> Kuwait Embassy -> Kuwait MOFA), and Civil ID designation stamping.
+
+7. **Complete Guide to UAE & Saudi Arabia Blue-Collar Work Permits 2026:**
+   URL: https://www.workwisevisa.com/blogs/complete-guide-uae-saudi-arabia-blue-collar-work-permits-2026
+   Covers: MOHRE vs Qiwa contrast, quota allocation, e-visa issuance, mandatory health insurance, WPS compliance, employer transfer rights, and dispute resolution mechanisms.
+
+8. **Dubai Hotel & Hospitality Staff Recruitment 2026:**
+   URL: https://www.workwisevisa.com/blogs/dubai-hotel-hospitality-staff-recruitment-waiter-cook-housekeeping-salary-visa
+   Covers: 4-star and 5-star hotel recruitment, roles (waiters, commis chefs, housekeeping, concierge), salary scales, service charges, tips, MOHRE offer letters, and career growth pathways.
+
+9. **GCC Unified Tourist & Business Grand Tours Visa:**
+   URL: https://www.workwisevisa.com/blogs/gcc-unified-tourist-visa-grand-tours-schengen-style-travel-gulf-countries
+   Covers: 6-country single tourist eVisa, 30+ day multi-entry validity, central GCC portal workflow, regional travel insurance, and border clearance protocols.
+
+10. **Dubai Delivery Rider Jobs & RTA Motorcycle License Guide:**
+    URL: https://www.workwisevisa.com/blogs/dubai-delivery-rider-jobs-talabat-noon-careem-bike-license-cost-salary-visa
+    Covers: Onboarding for Talabat, Noon, Careem, and Deliveroo, RTA driving school lessons, road test preparation, commission pay structures, motorcycle safety, and summer midday break directives.
+
+11. **Gulf Petrochemical & Refinery Shutdown Jobs:**
+    URL: https://www.workwisevisa.com/blogs/gulf-petrochemical-refinery-shutdown-jobs-aramco-adnoc-knpc-turnaround-recruitment
+    Covers: Aramco, ADNOC, KNPC, QatarEnergy turnaround maintenance, 30-to-90 day fast-track visas, 6G TIG welders, riggers, safety officers, PTW protocols, and overtime earning multipliers.
+
+12. **European Blue-Collar Work Permits (Poland, Croatia, Malta):**
+    URL: https://www.workwisevisa.com/blogs/european-blue-collar-work-permits-poland-croatia-malta-recruitment-agency
+    Covers: Voivodeship work permits, National Type-D visa stamping, seasonal agriculture/construction hiring, TRC (Temporary Residence Card) pathways, and Schengen area mobility.
+
+---
+
+## 6. Official Contact & Communications
+
+- **Website:** https://www.workwisevisa.com
+- **Official Inquiries:** workwisevisa@gmail.com
+- **Helpline Numbers:** +91 91522 88874 / +91 91522 88875
+- **Operating Hours:** Monday to Saturday: 09:30 AM – 06:30 PM (IST / GST)
