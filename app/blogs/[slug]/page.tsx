@@ -58,6 +58,8 @@ async function getBlog(slug: string) {
       (decodedSlug.includes("hospitality") && p.id === "blog-6") ||
       (decodedSlug.includes("construction") && p.id === "blog-5") ||
       (decodedSlug.includes("mep") && p.id === "blog-5") ||
+      (decodedSlug.includes("skills-in-demand") && p.id === "blog-17") ||
+      (decodedSlug.includes("chancenkarte-eu-blue-card") && p.id === "blog-16") ||
       (decodedSlug.includes("heavy") && p.id === "blog-4") ||
       (decodedSlug.includes("caregiver") && p.id === "blog-3") ||
       (decodedSlug.includes("opportunity-card") && p.id === "blog-2") ||

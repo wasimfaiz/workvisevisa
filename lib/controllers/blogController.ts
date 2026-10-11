@@ -100,6 +100,14 @@ export async function ensureSeedData() {
         pattern: /Police Clearance Certificate|PCC.*Passport Seva|MEA Apostille.*PCC/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-15"),
       },
+      {
+        pattern: /Germany Opportunity Card.*EU Blue Card|Chancenkarte.*EU Blue Card|Job Seeker Points/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-16"),
+      },
+      {
+        pattern: /Australia Skills in Demand.*UK Skilled Worker|Skills in Demand.*Salary Guide|SID Visa/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-17"),
+      },
     ];
 
     for (const item of seedMatchers) {
