@@ -3,7 +3,11 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
 import { blogPosts as fallbackPosts, parseBlogDate } from "@/lib/data";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+const BASE_URL =
+  rawUrl.startsWith("http") && !rawUrl.includes("localhost")
+    ? rawUrl.replace(/\/+$/, "")
+    : "https://www.workwisevisa.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

@@ -1,13 +1,17 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+const BASE_URL =
+  rawUrl.startsWith("http") && !rawUrl.includes("localhost")
+    ? rawUrl.replace(/\/+$/, "")
+    : "https://www.workwisevisa.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        allow: ["/", "/favicon.ico", "/favicon-*.png", "/apple-touch-icon.png", "/icon.png"],
         disallow: [
           "/admin",
           "/admin/*",
