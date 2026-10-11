@@ -126,7 +126,7 @@ const jsonLdSchema = {
         "https://www.instagram.com/workwisevisa/",
         "https://www.facebook.com/workwisevisa/",
         "https://www.linkedin.com/company/workwisevisa/",
-        "https://twitter.com/workwisevisa",
+        "https://x.com/workwisevisa",
         "https://www.youtube.com/@workwisevisa",
       ],
       aggregateRating: {

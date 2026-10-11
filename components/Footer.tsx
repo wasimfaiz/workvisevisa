@@ -31,6 +31,7 @@ const offices = [
 const socials = [
   { label: "Instagram", icon: FaInstagram, href: "https://www.instagram.com/workwisevisa/" },
   { label: "Facebook", icon: FaFacebook, href: "https://www.facebook.com/workwisevisa/" },
+  { label: "X (Twitter)", icon: FaXTwitter, href: "https://x.com/workwisevisa" },
   { label: "WhatsApp", icon: FaWhatsapp, href: "https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!" },
   { label: "LinkedIn", icon: FaLinkedin, href: "https://www.linkedin.com/company/workwisevisa/" },
 ];
