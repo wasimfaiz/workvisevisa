@@ -1721,20 +1721,20 @@ export default function GorakhpurLocationPage() {
         </section>
 
         {/* ==================================================================== */}
+                {/* ==================================================================== */}
         {/* SECTION 13: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION       */}
         {/* ==================================================================== */}
         <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Purvanchal, Bihar &amp; NCR Network
+                Strategic Regional &amp; District Network
               </span>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Explore WorkWise Visa Across Strategic Regional Desks
               </h2>
               <p className="mt-3 text-sm text-slate-600">
-                Access authorized recruitment, POE emigration processing, and
-                trade counseling across our key hubs.
+                Access authorized recruitment, POE emigration processing, and trade counseling across our key hubs.
               </p>
             </div>
 
@@ -1771,9 +1771,10 @@ export default function GorakhpurLocationPage() {
                   Gorakhpur Hub
                 </div>
                 <div className="text-xs text-emerald-600 mt-1">
-                  Eastern UP &amp; Purvanchal
+                  Eastern UP & Purvanchal
                 </div>
               </Link>
+
               <Link
                 href="/locations/lucknow"
                 className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
@@ -1782,7 +1783,7 @@ export default function GorakhpurLocationPage() {
                   Lucknow Hub
                 </div>
                 <div className="text-xs text-slate-500 mt-1">
-                  State Capital &amp; POE Aliganj
+                  State Capital & POE Aliganj
                 </div>
               </Link>
 

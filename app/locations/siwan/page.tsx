@@ -1909,80 +1909,193 @@ export default function SiwanLocationPage() {
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 13: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION      */}
+                {/* ==================================================================== */}
+        {/* SECTION 13: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION       */}
         {/* ==================================================================== */}
-        <section className="bg-slate-100 py-12 border-b border-slate-200">
+        <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 text-center">
-              Explore WorkWise Visa Regional &amp; Country Portals
-            </h3>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Strategic Regional &amp; District Network
+              </span>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                Explore WorkWise Visa Across Strategic Regional Desks
+              </h2>
+              <p className="mt-3 text-sm text-slate-600">
+                Access authorized recruitment, POE emigration processing, and trade counseling across our key hubs.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               <Link
                 href="/locations/patna"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Patna Headquarters &amp; POE Guide
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Patna Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Varma Centre, Boring Road
+                </div>
               </Link>
+
               <Link
                 href="/locations/noida"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Noida Corporate Branch
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Noida Corporate HQ
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Urbtech Trade Centre, Sec 132
+                </div>
               </Link>
+
               <Link
                 href="/locations/gorakhpur"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Gorakhpur &amp; Purvanchal Desk
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Gorakhpur Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Eastern UP & Purvanchal
+                </div>
               </Link>
+
               <Link
                 href="/locations/lucknow"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Lucknow State Capital &amp; POE Desk
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Lucknow Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  State Capital & POE Aliganj
+                </div>
               </Link>
+
               <Link
-                href="/countries/saudi-arabia"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/siwan"
+                className="rounded-xl border border-emerald-500 bg-emerald-50/50 p-4 text-center shadow-sm"
               >
-                Saudi Arabia Work Visa Guide
+                <div className="font-bold text-emerald-800">
+                  Siwan Gateway
+                </div>
+                <div className="text-xs text-emerald-600 mt-1">
+                  Gulf Emigration Corridor
+                </div>
               </Link>
+
               <Link
-                href="/countries/uae"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/gopalganj"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                UAE Dubai Employment Visa
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Gopalganj Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  North Bihar Industrial
+                </div>
               </Link>
+
               <Link
-                href="/countries/qatar"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/muzaffarpur"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Qatar Work Residence Permit
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Muzaffarpur Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Tirhut Division Central
+                </div>
               </Link>
+
               <Link
-                href="/countries/oman"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/chhapra"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Oman Employment Visa
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Chhapra (Saran)
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Saran Division Desk
+                </div>
               </Link>
+
               <Link
-                href="/countries/bahrain"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/darbhanga"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Bahrain LMRA Work Visa
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Darbhanga Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Mithilanchal Gateway
+                </div>
               </Link>
+
               <Link
-                href="/jobs"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+                href="/locations/gaya"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Browse Active Overseas Jobs
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Gaya Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Magadh Division Gateway
+                </div>
               </Link>
-              <Link
-                href="/track"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
-              >
-                Track Visa Application Status
-              </Link>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 text-center">
+                Explore WorkWise Visa Destination Country Guides &amp; Portals
+              </h4>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                <Link
+                  href="/countries/saudi-arabia"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Saudi Arabia Work Visa Guide
+                </Link>
+                <Link
+                  href="/countries/uae"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  UAE Dubai Employment Visa
+                </Link>
+                <Link
+                  href="/countries/qatar"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Qatar Work Residence Permit
+                </Link>
+                <Link
+                  href="/countries/oman"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Oman Employment Visa
+                </Link>
+                <Link
+                  href="/countries/bahrain"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Bahrain LMRA Work Visa
+                </Link>
+                <Link
+                  href="/jobs"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Browse Active Overseas Jobs
+                </Link>
+                <Link
+                  href="/track"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Track Visa Application Status
+                </Link>
+              </div>
             </div>
           </div>
         </section>

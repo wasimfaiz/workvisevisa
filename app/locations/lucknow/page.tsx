@@ -1519,13 +1519,14 @@ export default function LucknowLocationPage() {
         </section>
 
         {/* ==================================================================== */}
+                {/* ==================================================================== */}
         {/* SECTION 13: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION       */}
         {/* ==================================================================== */}
         <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Central UP, Purvanchal, Bihar &amp; NCR Network
+                Strategic Regional &amp; District Network
               </span>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Explore WorkWise Visa Across Strategic Regional Desks
@@ -1568,7 +1569,19 @@ export default function LucknowLocationPage() {
                   Gorakhpur Hub
                 </div>
                 <div className="text-xs text-slate-500 mt-1">
-                  Eastern UP &amp; Purvanchal
+                  Eastern UP & Purvanchal
+                </div>
+              </Link>
+
+              <Link
+                href="/locations/lucknow"
+                className="rounded-xl border border-emerald-500 bg-emerald-50/50 p-4 text-center shadow-sm"
+              >
+                <div className="font-bold text-emerald-800">
+                  Lucknow Hub
+                </div>
+                <div className="text-xs text-emerald-600 mt-1">
+                  State Capital & POE Aliganj
                 </div>
               </Link>
 
@@ -1641,18 +1654,6 @@ export default function LucknowLocationPage() {
                 </div>
                 <div className="text-xs text-slate-500 mt-1">
                   Magadh Division Gateway
-                </div>
-              </Link>
-
-              <Link
-                href="/locations/lucknow"
-                className="rounded-xl border border-emerald-500 bg-emerald-50/50 p-4 text-center shadow-sm"
-              >
-                <div className="font-bold text-emerald-800">
-                  Lucknow Hub
-                </div>
-                <div className="text-xs text-emerald-600 mt-1">
-                  State Capital &amp; POE Aliganj
                 </div>
               </Link>
             </div>

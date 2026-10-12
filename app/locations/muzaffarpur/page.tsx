@@ -1718,24 +1718,24 @@ export default function MuzaffarpurLocationPage() {
         </section>
 
         {/* ==================================================================== */}
+                {/* ==================================================================== */}
         {/* SECTION 13: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION       */}
         {/* ==================================================================== */}
         <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-10">
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Bihar &amp; NCR Overseas Network
+                Strategic Regional &amp; District Network
               </span>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Explore WorkWise Visa Across Strategic Regional Desks
               </h2>
               <p className="mt-3 text-sm text-slate-600">
-                Access authorized recruitment, POE emigration processing, and
-                trade counseling across our key hubs.
+                Access authorized recruitment, POE emigration processing, and trade counseling across our key hubs.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               <Link
                 href="/locations/patna"
                 className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
@@ -1759,17 +1759,29 @@ export default function MuzaffarpurLocationPage() {
                   Urbtech Trade Centre, Sec 132
                 </div>
               </Link>
+
               <Link
                 href="/locations/gorakhpur"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Gorakhpur &amp; Purvanchal Desk
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Gorakhpur Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  Eastern UP & Purvanchal
+                </div>
               </Link>
+
               <Link
                 href="/locations/lucknow"
-                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
               >
-                Lucknow State Capital &amp; POE Desk
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Lucknow Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  State Capital & POE Aliganj
+                </div>
               </Link>
 
               <Link
@@ -1843,6 +1855,56 @@ export default function MuzaffarpurLocationPage() {
                   Magadh Division Gateway
                 </div>
               </Link>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 text-center">
+                Explore WorkWise Visa Destination Country Guides &amp; Portals
+              </h4>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                <Link
+                  href="/countries/saudi-arabia"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Saudi Arabia Work Visa Guide
+                </Link>
+                <Link
+                  href="/countries/uae"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  UAE Dubai Employment Visa
+                </Link>
+                <Link
+                  href="/countries/qatar"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Qatar Work Residence Permit
+                </Link>
+                <Link
+                  href="/countries/oman"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Oman Employment Visa
+                </Link>
+                <Link
+                  href="/countries/bahrain"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Bahrain LMRA Work Visa
+                </Link>
+                <Link
+                  href="/jobs"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Browse Active Overseas Jobs
+                </Link>
+                <Link
+                  href="/track"
+                  className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+                >
+                  Track Visa Application Status
+                </Link>
+              </div>
             </div>
           </div>
         </section>
