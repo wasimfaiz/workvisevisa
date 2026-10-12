@@ -170,43 +170,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Popular Locations & Candidate Hubs Strip */}
-        <div className="mt-12 pt-8 border-t border-slate-200">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
-              Locations & Candidate Assistance Desks:
-            </span>
-            <a
-              href="/locations"
-              className="text-xs font-bold text-emerald-600 hover:text-emerald-700 inline-flex items-center gap-1"
-            >
-              All Locations & Assistance Desks (10+) →
-            </a>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs text-slate-600">
-            <span className="font-bold text-slate-700">Offices:</span>
-            <a href="/locations/patna" className="hover:text-emerald-600 font-medium">Patna (Varma Centre)</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/noida" className="hover:text-emerald-600 font-medium">Noida HQ</a>
-            <span className="text-slate-300">|</span>
-            <span className="font-bold text-slate-700">Regional Desks:</span>
-            <a href="/locations/siwan" className="hover:text-emerald-600 font-medium">Siwan</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/gopalganj" className="hover:text-emerald-600 font-medium">Gopalganj</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/gorakhpur" className="hover:text-emerald-600 font-medium">Gorakhpur</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/muzaffarpur" className="hover:text-emerald-600 font-medium">Muzaffarpur</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/chhapra" className="hover:text-emerald-600 font-medium">Chhapra</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/lucknow" className="hover:text-emerald-600 font-medium">Lucknow</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/darbhanga" className="hover:text-emerald-600 font-medium">Darbhanga</a>
-            <span className="text-slate-300">•</span>
-            <a href="/locations/gaya" className="hover:text-emerald-600 font-medium">Gaya</a>
-          </div>
-        </div>
 
         {/* bottom bar */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-8">
