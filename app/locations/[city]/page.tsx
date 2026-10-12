@@ -652,25 +652,7 @@ export default async function LocationCityPage({ params }: PageProps) {
         {/* ========================================================= */}
         {/* APPLICATION FORM SECTION */}
         {/* ========================================================= */}
-        <section id="apply-form" className="py-16 sm:py-24 bg-white border-b border-slate-200">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
-                Direct Application
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">
-                Apply for Overseas Jobs from {location.name}
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 mt-2">
-                Apna trade aur contact details bharein. Hamari team 24 ghante ke andar aapse direct contact karegi.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-6 sm:p-10 shadow-xl">
-              <ConsultationForm />
-            </div>
-          </div>
-        </section>
+        <ConsultationForm />
 
         {/* ========================================================= */}
         {/* LOCAL FAQS */}

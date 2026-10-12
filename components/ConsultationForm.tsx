@@ -110,21 +110,21 @@ export default function ConsultationForm() {
 
   if (submitted) {
     return (
-      <section id="consultation" className="relative py-24 md:py-32 bg-slate-50">
+      <section id="consultation" className="relative py-14 sm:py-20 bg-slate-50">
         <div className="relative z-10 mx-auto max-w-xl px-4 text-center">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4 }}
-            className="rounded-3xl border border-emerald-200 bg-white p-10 shadow-xl"
+            className="rounded-3xl border border-emerald-200 bg-white p-6 sm:p-10 shadow-xl"
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mx-auto mb-5 border border-emerald-200">
               <FaCircleCheck className="w-8 h-8" />
             </div>
-            <h3 className="text-3xl font-display font-bold text-slate-900 mb-3">
+            <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 mb-3">
               Consultation Booked!
             </h3>
-            <p className="text-slate-600 text-base leading-relaxed font-medium">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
               Our lead immigration specialist will reach out to you on WhatsApp / Phone within <strong>24 hours</strong> to review your eligibility.
             </p>
             <button
@@ -143,7 +143,7 @@ export default function ConsultationForm() {
   }
 
   const fieldClass = (field: keyof FormErrors) =>
-    `w-full rounded-xl border bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 ${
+    `w-full rounded-xl border bg-slate-50 px-4 py-3 sm:py-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 ${
       errors[field]
         ? "border-red-400 focus:border-red-500"
         : "border-slate-200"
@@ -152,10 +152,10 @@ export default function ConsultationForm() {
   return (
     <section
       id="consultation"
-      className="relative py-24 md:py-32 overflow-hidden bg-slate-50"
+      className="relative py-14 sm:py-18 md:py-20 overflow-hidden bg-slate-50 border-y border-slate-200/80"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left copy */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -205,11 +205,11 @@ export default function ConsultationForm() {
             <form
               onSubmit={handleSubmit}
               noValidate
-              className="relative rounded-3xl border border-slate-200/90 bg-white shadow-xl overflow-hidden p-8 sm:p-10"
+              className="relative rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white shadow-xl overflow-hidden p-5 sm:p-8 md:p-10"
             >
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                 <div>
-                  <h3 className="text-xl font-display font-bold text-slate-900">
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-slate-900">
                     Book Free Consultation
                   </h3>
                   <p className="text-xs text-emerald-700 mt-0.5 font-bold">
@@ -344,7 +344,7 @@ export default function ConsultationForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4.5 text-base font-extrabold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+                className="mt-8 flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-3.5 sm:py-4 text-base font-extrabold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
               >
                 {loading ? (
                   <>

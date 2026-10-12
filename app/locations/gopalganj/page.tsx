@@ -1638,32 +1638,7 @@ export default function GopalganjLocationPage() {
         {/* ==================================================================== */}
         {/* SECTION 11: FULL CONSULTATION BOOKING FORM (HOMEPAGE 2-COL STYLE)    */}
         {/* ==================================================================== */}
-        <section
-          id="consultation"
-          className="relative bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 py-20 text-white"
-        >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
-                Institutional Candidate Evaluation
-              </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
-                Book Your In-Person or Online Profile Assessment in Gopalganj
-              </h2>
-              <p className="mt-4 text-sm sm:text-base text-slate-300">
-                Are you looking for a legitimate work visa for Saudi Arabia, UAE,
-                Qatar, Oman, or Europe? Connect directly with our authorized
-                recruitment specialists. We review your trade experience, verify
-                passport eligibility, and match your profile with active,
-                government-approved job demands.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/90 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
-              <ConsultationForm />
-            </div>
-          </div>
-        </section>
+        <ConsultationForm />
 
         {/* ==================================================================== */}
         {/* SECTION 12: EXHAUSTIVE FAQS (20 DETAILED TECHNICAL QUESTIONS)         */}
