@@ -1758,6 +1758,12 @@ export default function DarbhangaLocationPage() {
                   Urbtech Trade Centre, Sec 132
                 </div>
               </Link>
+              <Link
+                href="/locations/gorakhpur"
+                className="rounded-lg bg-white px-3.5 py-2 font-medium text-slate-700 shadow-sm border border-slate-200 hover:border-emerald-500 hover:text-emerald-600 transition-colors"
+              >
+                Gorakhpur &amp; Purvanchal Desk
+              </Link>
 
               <Link
                 href="/locations/siwan"
