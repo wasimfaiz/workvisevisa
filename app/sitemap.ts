@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
 import { blogPosts as fallbackPosts, parseBlogDate } from "@/lib/data";
+import { locationsList } from "@/data/locations";
 
 const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
 const BASE_URL =
@@ -68,6 +69,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.95,
     },
+    {
+      url: `${BASE_URL}/locations`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.95,
+    },
+    ...locationsList.map((loc) => ({
+      url: `${BASE_URL}/locations/${loc.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: loc.isPhysicalBranch ? 0.95 : 0.9,
+    })),
     {
       url: `${BASE_URL}/about`,
       lastModified: now,
