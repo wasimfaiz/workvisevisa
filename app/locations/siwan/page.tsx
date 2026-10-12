@@ -1692,7 +1692,7 @@ export default function SiwanLocationPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
-                Candidate Frequently Asked Questions
+                Frequently Asked Questions
               </span>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                 Everything Siwan Candidates Need to Know About Overseas Work Visas

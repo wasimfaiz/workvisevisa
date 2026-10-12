@@ -675,36 +675,35 @@ export default async function LocationCityPage({ params }: PageProps) {
         {/* ========================================================= */}
         {/* LOCAL FAQS */}
         {/* ========================================================= */}
-        <section className="py-14 sm:py-20 bg-slate-50 border-b border-slate-200">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
+        <section className="bg-white py-16 sm:py-24 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                 FAQs for Candidates in {location.name}
               </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Detailed answers to key queries on government compliance,
+                medical requirements, document attestations, and overseas
+                employment security:
+              </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="mt-12 space-y-6">
               {location.faqs.map((faq, idx) => (
-                <details
+                <div
                   key={idx}
-                  className="group rounded-2xl bg-white border border-slate-200 p-5 open:border-emerald-300 transition-colors"
+                  className="rounded-xl border border-slate-200 bg-slate-50/60 p-6"
                 >
-                  <summary className="flex cursor-pointer items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
-                    <span className="flex items-center gap-2.5">
-                      <FaCircleQuestion className="w-4 h-4 text-emerald-600 shrink-0" />
-                      {faq.q}
-                    </span>
-                    <span className="ml-4 text-emerald-600 font-bold transition-transform group-open:rotate-180">
-                      ▼
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6 border-l-2 border-emerald-500">
+                  <h3 className="text-base font-bold text-slate-900">
+                    {idx + 1}. {faq.q}
+                  </h3>
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
                     {faq.a}
                   </p>
-                </details>
+                </div>
               ))}
             </div>
           </div>

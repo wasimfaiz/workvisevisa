@@ -1605,8 +1605,8 @@ export default function MuzaffarpurLocationPage() {
         <section className="bg-white py-16 sm:py-24 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Candidate Frequently Asked Questions
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
+                Frequently Asked Questions
               </span>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                 Everything Muzaffarpur Candidates Need to Know About Overseas Work Visas
@@ -1702,13 +1702,12 @@ export default function MuzaffarpurLocationPage() {
               ].map((faq, idx) => (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 transition-all hover:bg-white hover:shadow-md"
+                  className="rounded-xl border border-slate-200 bg-slate-50/60 p-6"
                 >
-                  <h3 className="flex items-start gap-3 text-base font-bold text-slate-900 sm:text-lg">
-                    <FaCircleQuestion className="mt-1 h-5 w-5 shrink-0 text-emerald-600" />
-                    <span>{faq.q}</span>
+                  <h3 className="text-base font-bold text-slate-900">
+                    {idx + 1}. {faq.q}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600 pl-8">
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">
                     {faq.a}
                   </p>
                 </div>
