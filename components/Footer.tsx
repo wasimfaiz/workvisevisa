@@ -60,7 +60,17 @@ export default function Footer() {
               </a>
               <div className="mt-2 text-xs font-medium text-slate-600 flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shrink-0" />
-                <span>A Unit of <strong className="font-extrabold text-slate-900">Europass Immigration Pvt Ltd</strong></span>
+                <span>
+                  A Unit of{" "}
+                  <a
+                    href="https://www.europass.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-extrabold text-slate-900 hover:text-emerald-700 underline decoration-slate-300 hover:decoration-emerald-600 underline-offset-2 transition-colors"
+                  >
+                    Europass Immigration Pvt Ltd
+                  </a>
+                </span>
               </div>
             </div>
             <p className="text-sm text-slate-600 leading-relaxed mb-6 max-w-xs font-normal">
@@ -174,7 +184,16 @@ export default function Footer() {
         {/* bottom bar */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-8">
           <p className="text-xs text-slate-500 text-center sm:text-left">
-            © {new Date().getFullYear()} WorkWise Visa — A Unit of <strong className="text-slate-700 font-bold">Europass Immigration Pvt. Ltd.</strong> All rights reserved.
+            © {new Date().getFullYear()} WorkWise Visa — A Unit of{" "}
+            <a
+              href="https://www.europass.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-700 font-bold hover:text-emerald-700 underline decoration-slate-300 hover:decoration-emerald-600 underline-offset-2 transition-colors"
+            >
+              Europass Immigration Pvt. Ltd.
+            </a>{" "}
+            All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-slate-500 font-medium">
             <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>

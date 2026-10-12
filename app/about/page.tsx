@@ -85,7 +85,16 @@ export default function AboutPage() {
             </h1>
             
             <p className="mt-3 mx-auto max-w-3xl text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
-              Operating as a specialized brand entity of <strong>Europass Immigration Pvt. Ltd.</strong>, WorkWise Visa connects skilled trade workers, drivers, technicians, and caregivers with verified employers across 12+ nations.
+              Operating as a specialized brand entity of{" "}
+              <a
+                href="https://www.europass.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-slate-800 hover:text-emerald-700 underline decoration-slate-300 underline-offset-2 transition-colors"
+              >
+                Europass Immigration Pvt. Ltd.
+              </a>
+              , WorkWise Visa connects skilled trade workers, drivers, technicians, and caregivers with verified employers across 12+ nations.
             </p>
 
             {/* Impact Stats Grid */}
