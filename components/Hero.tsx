@@ -483,29 +483,29 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <a
                 href="#consultation"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 {t.ctaConsultation}
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-4 text-lg font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 sm:px-7 py-3.5 text-sm sm:text-base font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:border-slate-400 transition-all duration-200"
               >
                 {t.ctaExploreServices}
               </a>
             </motion.div>
 
-            {/* stats row */}
+            {/* stats row - clean aligned grid on mobile, horizontal flex on desktop */}
             <motion.div
-              className="flex flex-wrap gap-8 justify-center lg:justify-start"
+              className="grid grid-cols-3 gap-2 sm:gap-6 pt-5 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -515,15 +515,20 @@ export default function Hero() {
                 { Icon: FaUsers, val: "5,000+", sub: t.placementsLabel },
                 { Icon: FaGlobe, val: "98%", sub: t.approvalRateLabel },
               ].map(({ Icon, val, sub }) => (
-                <div key={val} className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100/80 border border-emerald-200 text-emerald-700">
+                <div
+                  key={val}
+                  className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-1.5 sm:gap-3 p-2 sm:p-0 rounded-2xl bg-white/70 sm:bg-transparent border border-slate-200/60 sm:border-0 shadow-2xs sm:shadow-none"
+                >
+                  <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100/80 border border-emerald-200 text-emerald-700 shadow-2xs">
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-slate-900 font-display leading-tight">
+                    <p className="text-base sm:text-lg font-bold text-slate-900 font-display leading-tight">
                       {val}
                     </p>
-                    <p className="text-xs text-slate-500 font-medium">{sub}</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500 font-medium leading-tight mt-0.5">
+                      {sub}
+                    </p>
                   </div>
                 </div>
               ))}
