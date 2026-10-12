@@ -160,14 +160,48 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = (blog as any).metaTitle || blog.title;
-  const description = (blog as any).metaDescription || blog.excerpt;
-  const keywords = (blog as any).metaKeywords || (blog.tags ? blog.tags.join(", ") : "");
-  const image = blog.image || "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80";
+  const rawTitle = (blog as any).metaTitle || blog.title;
+  const siteSuffix = " | WorkWise Visa";
+  let title = rawTitle;
+  if (!rawTitle.toLowerCase().includes("workwise")) {
+    if (rawTitle.length + siteSuffix.length <= 60) {
+      title = `${rawTitle}${siteSuffix}`;
+    } else {
+      const allowedBaseLength = Math.max(20, 60 - siteSuffix.length);
+      title = `${rawTitle.slice(0, allowedBaseLength).trim()}${siteSuffix}`;
+    }
+  } else if (title.length > 60) {
+    title = title.slice(0, 60).trim();
+  }
+
+  let description = (blog as any).metaDescription || blog.excerpt || "";
+  if (description.length > 158) {
+    description = description.slice(0, 155).trim() + "...";
+  }
+
+  let keywords = (blog as any).metaKeywords || (blog.tags ? blog.tags.join(", ") : "");
+  if (keywords.length > 100) {
+    const parts = keywords.split(",").map((k: string) => k.trim());
+    let combined = "";
+    for (const part of parts) {
+      if ((combined ? combined + ", " + part : part).length <= 100) {
+        combined = combined ? combined + ", " + part : part;
+      } else {
+        break;
+      }
+    }
+    keywords = combined || keywords.slice(0, 100);
+  }
+
+  let image = blog.image || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
+  if (!image || image.includes("photo-1541888946425-d0fbb18086f6")) {
+    image = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
+  }
+
   const canonicalUrl = `https://www.workwisevisa.com/blogs/${blog.slug || slug}`;
 
   return {
-    title: `${title} | WorkWise Visa`,
+    title,
     description,
     keywords,
     alternates: {
@@ -211,7 +245,13 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   }
 
   const recentBlogs = await getRecentBlogs(slug);
-  const article = blog as any;
+  const article = {
+    ...blog,
+    image:
+      !blog.image || blog.image.includes("photo-1541888946425-d0fbb18086f6")
+        ? "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
+        : blog.image,
+  } as any;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
