@@ -1774,6 +1774,17 @@ export default function GorakhpurLocationPage() {
                   Eastern UP &amp; Purvanchal
                 </div>
               </Link>
+              <Link
+                href="/locations/lucknow"
+                className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm hover:border-emerald-500 hover:shadow-md transition-all group"
+              >
+                <div className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Lucknow Hub
+                </div>
+                <div className="text-xs text-slate-500 mt-1">
+                  State Capital &amp; POE Aliganj
+                </div>
+              </Link>
 
               <Link
                 href="/locations/siwan"
