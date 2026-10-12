@@ -19,6 +19,7 @@ import {
 
 const DEFAULT_CATEGORIES = [
   "All",
+  "Global Immigration",
   "Gulf Visas",
   "Qatar Visas",
   "Schengen Visa",
@@ -43,7 +44,16 @@ export default function BlogsPage() {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            setPosts(sortBlogsByDate<BlogPost>(json.data as BlogPost[]));
+            const dbPosts = json.data as BlogPost[];
+            const dbSlugsAndIds = new Set(
+              dbPosts.flatMap((p) => [p.slug?.toLowerCase(), p.id?.toLowerCase()].filter(Boolean))
+            );
+            const missingFromDb = initialBlogPosts.filter(
+              (p) =>
+                !dbSlugsAndIds.has(p.slug?.toLowerCase()) &&
+                !dbSlugsAndIds.has(p.id?.toLowerCase())
+            );
+            setPosts(sortBlogsByDate<BlogPost>([...dbPosts, ...missingFromDb]));
           }
         }
       } catch (err) {

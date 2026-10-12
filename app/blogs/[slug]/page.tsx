@@ -58,6 +58,10 @@ async function getBlog(slug: string) {
       (decodedSlug.includes("hospitality") && p.id === "blog-6") ||
       (decodedSlug.includes("construction") && p.id === "blog-5") ||
       (decodedSlug.includes("mep") && p.id === "blog-5") ||
+      (decodedSlug.includes("global-work-visa") && p.id === "blog-18") ||
+      (decodedSlug.includes("pr-rules-overhaul") && p.id === "blog-18") ||
+      (decodedSlug.includes("lmia-caps") && p.id === "blog-18") ||
+      (decodedSlug.includes("185k-pr") && p.id === "blog-18") ||
       (decodedSlug.includes("skills-in-demand") && p.id === "blog-17") ||
       (decodedSlug.includes("chancenkarte-eu-blue-card") && p.id === "blog-16") ||
       (decodedSlug.includes("heavy") && p.id === "blog-4") ||
@@ -104,19 +108,31 @@ async function getRecentBlogs(currentSlug: string) {
     const blogs = await Blog.find({ published: { $ne: false } }).lean();
 
     if (blogs && blogs.length > 0) {
-      const filtered = blogs.filter((b) => {
+      const dbSlugsAndIds = new Set(
+        blogs.flatMap((b) => [(b.slug || "").toLowerCase(), b._id.toString().toLowerCase()])
+      );
+      const missingFromDb = fallbackPosts.filter(
+        (p) =>
+          !dbSlugsAndIds.has((p.slug || "").toLowerCase()) &&
+          !dbSlugsAndIds.has(p.id.toLowerCase())
+      );
+      const merged = [
+        ...blogs.map((b) => ({
+          ...b,
+          id: (b._id as unknown as { toString(): string }).toString(),
+          _id: undefined,
+        })),
+        ...missingFromDb,
+      ];
+
+      const filtered = merged.filter((b) => {
         const bSlug = (b.slug || "").toLowerCase();
-        return bSlug !== decoded && b._id.toString() !== decoded;
+        const bId = (b.id || "").toLowerCase();
+        return bSlug !== decoded && bId !== decoded;
       });
+
       if (filtered.length > 0) {
-        const sorted = sortBlogsByDate(
-          filtered.map((b) => ({
-            ...b,
-            id: (b._id as unknown as { toString(): string }).toString(),
-            _id: undefined,
-          }))
-        );
-        return sorted.slice(0, 4);
+        return sortBlogsByDate(filtered).slice(0, 4);
       }
     }
   } catch (err) {

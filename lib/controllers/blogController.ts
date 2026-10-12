@@ -108,6 +108,10 @@ export async function ensureSeedData() {
         pattern: /Australia Skills in Demand.*UK Skilled Worker|Skills in Demand.*Salary Guide|SID Visa/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-17"),
       },
+      {
+        pattern: /Global Work Visa.*PR Policy Overhaul|LMIA Caps.*Australia NOM Cuts|global-work-visa-pr-rules/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-18"),
+      },
     ];
 
     for (const item of seedMatchers) {
@@ -129,7 +133,41 @@ export async function ensureSeedData() {
         await Blog.create({
           title: p.title,
           slug: generatedSlug,
-          category: p.category || "Gulf Visas",
+          category: p.category || "Global Immigration",
+          excerpt: p.excerpt,
+          content: p.content,
+          image: p.image,
+          author: p.author || "WorkWise Global Immigration Editorial Team",
+          readTime: p.readTime || calculateReadTime(p.content),
+          tags: p.tags || ["Work Permits", "Visa Guide"],
+          metaTitle: p.metaTitle || p.title,
+          metaDescription: p.metaDescription || p.excerpt,
+          metaKeywords: p.metaKeywords || (p.tags ? p.tags.join(", ") : ""),
+          published: true,
+          featured: Boolean(p.featured),
+          views: 500,
+          date: p.date || todayDateString(),
+        });
+      }
+    }
+
+    // Universal safety net: ensure all posts from fallbackInitialPosts exist in DB
+    for (const p of fallbackInitialPosts) {
+      if (!p || !p.content) continue;
+      const generatedSlug = p.slug || generateSlug(p.title);
+      const existing = await Blog.findOne({
+        $or: [
+          { slug: generatedSlug },
+          { slug: p.id },
+          { title: p.title },
+        ],
+      });
+
+      if (!existing) {
+        await Blog.create({
+          title: p.title,
+          slug: generatedSlug,
+          category: p.category || "Global Immigration",
           excerpt: p.excerpt,
           content: p.content,
           image: p.image,

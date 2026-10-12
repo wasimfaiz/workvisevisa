@@ -22,7 +22,16 @@ export default function Blogs() {
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.data) && json.data.length > 0) {
-            const sorted = sortBlogsByDate<BlogPost>(json.data as BlogPost[]);
+            const dbPosts = json.data as BlogPost[];
+            const dbSlugsAndIds = new Set(
+              dbPosts.flatMap((p) => [p.slug?.toLowerCase(), p.id?.toLowerCase()].filter(Boolean))
+            );
+            const missingFromDb = fallbackPosts.filter(
+              (p) =>
+                !dbSlugsAndIds.has(p.slug?.toLowerCase()) &&
+                !dbSlugsAndIds.has(p.id?.toLowerCase())
+            );
+            const sorted = sortBlogsByDate<BlogPost>([...dbPosts, ...missingFromDb]);
             setPosts(sorted.slice(0, 6));
           }
         }
