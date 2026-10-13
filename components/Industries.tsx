@@ -109,13 +109,9 @@ export default function Industries() {
                 : "bg-teal-50 text-teal-800 border-teal-200";
 
             return (
-              <motion.article
+              <article
                 key={ind.id}
-                className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-emerald-500/60 hover:shadow-md"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.3 }}
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-8 shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-emerald-500/60 hover:shadow-md"
               >
                 <div>
                   {/* Top card bar: Icon + Demand Badge */}
@@ -160,7 +156,7 @@ export default function Industries() {
                     </div>
                   </div>
                 </div>
-              </motion.article>
+              </article>
             );
           })}
         </div>
