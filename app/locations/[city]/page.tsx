@@ -219,7 +219,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                   <span>{location.heroBadge}</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15]">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   {location.isPhysicalBranch ? (
                     <>
                       Best Work Visa Consultancy in{" "}
@@ -266,7 +266,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                           {location.name} Candidate Desk
                         </span>
                       </div>
-                      <h2 className="text-xl font-bold text-white mt-1">
+                      <h2 className="text-xl font-display font-bold text-white mt-1">
                         Fast-Track Visa Assistance
                       </h2>
                     </div>
@@ -349,7 +349,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                     <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                       Easy Commute
                     </span>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                       How to Reach {location.name} Branch
                     </h2>
                     <p className="text-sm text-slate-600 mt-2">
@@ -364,7 +364,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                         className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-emerald-300 transition-colors"
                       >
                         <div className="flex items-center justify-between">
-                          <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
+                          <h3 className="font-display font-bold text-slate-900 text-base flex items-center gap-2">
                             <FaTrainSubway className="w-4 h-4 text-emerald-600" />
                             {tp.title}
                           </h3>
@@ -421,7 +421,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                   <span className="text-xs uppercase tracking-wider font-bold text-teal-600">
                     Step-by-Step Guidance
                   </span>
-                  <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                     How Candidates from {location.name} Get Recruited
                   </h2>
                   <p className="text-sm sm:text-base text-slate-600 mt-2">
@@ -438,7 +438,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-lg flex items-center justify-center mb-4 shadow-md">
                         {step.step}
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                      <h3 className="text-lg font-display font-bold text-slate-900 mb-2">{step.title}</h3>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                         {step.description}
                       </p>
@@ -454,7 +454,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                         <FaRoute className="w-3.5 h-3.5" />
                         Travel Guide: {location.name} to Nearest Branch
                       </span>
-                      <h3 className="text-xl sm:text-2xl font-bold">
+                      <h3 className="text-xl sm:text-2xl font-display font-bold">
                         Going from {location.name} to {location.serviceAreaDetails.nearestBranchName}
                       </h3>
                       <p className="text-sm text-slate-300 leading-relaxed">
@@ -507,7 +507,7 @@ export default async function LocationCityPage({ params }: PageProps) {
               <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                 Verified Vacancies
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                 In-Demand Trades & Monthly Salaries for {location.name}
               </h2>
               <p className="text-sm sm:text-base text-slate-600 mt-2">
@@ -526,7 +526,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                       <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
                         Category {idx + 1}
                       </span>
-                      <h3 className="text-lg font-bold text-slate-900 mt-0.5">
+                      <h3 className="text-lg font-display font-bold text-slate-900 mt-0.5">
                         {trade.category}
                       </h3>
                     </div>
@@ -574,7 +574,7 @@ export default async function LocationCityPage({ params }: PageProps) {
               <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                 100% Genuine Recruitment
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                 Why Candidates in {location.name} Trust WorkWise Visa
               </h2>
             </div>
@@ -588,7 +588,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                   <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-4">
                     <FaShieldHalved className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">{item.title}</h3>
+                  <h3 className="text-base font-display font-bold text-slate-900 mb-2">{item.title}</h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
@@ -606,7 +606,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                 <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                   Real Success Stories
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                   Reviews from Candidates Connected to {location.name}
                 </h2>
               </div>
@@ -663,7 +663,7 @@ export default async function LocationCityPage({ params }: PageProps) {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl font-display font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
                 FAQs for Candidates in {location.name}
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -679,7 +679,7 @@ export default async function LocationCityPage({ params }: PageProps) {
                   key={idx}
                   className="rounded-xl border border-slate-200 bg-slate-50/60 p-6"
                 >
-                  <h3 className="text-base font-bold text-slate-900">
+                  <h3 className="text-base font-display font-bold text-slate-900">
                     {idx + 1}. {faq.q}
                   </h3>
                   <p className="mt-3 text-sm text-slate-600 leading-relaxed">

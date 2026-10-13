@@ -284,7 +284,7 @@ export default function DarbhangaLocationPage() {
                   Government-Compliant Overseas Career Pathway for Darbhanga
                 </div>
 
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+                <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
                     Darbhanga, Bihar
@@ -347,7 +347,7 @@ export default function DarbhangaLocationPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         WorkWise Candidate Desk
                       </span>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-display font-bold text-white">
                         Darbhanga Overseas Career Desk
                       </h2>
                     </div>
@@ -418,7 +418,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 In-Depth Regional Analysis &amp; Workforce Demographics
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Why Darbhanga is the Nerve Center of North Bihar&apos;s
                 Global Workforce
               </h2>
@@ -508,7 +508,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Statutory Compliance &amp; Legal Framework
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 ECR vs. ECNR Passport Regulations for Darbhanga Migrants
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -766,7 +766,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Target Employment Corridors
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Comprehensive Visa &amp; Work Regulations by Destination
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1011,7 +1011,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Medical Compliance Standards
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 GAMCA / Wafid Medical Protocol for Darbhanga Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1111,7 +1111,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Verified Earnings &amp; Compensation
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Trade-Wise Salary Benchmarks for Darbhanga Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1269,7 +1269,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
                 Candidate Protection Advisory
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
                 How Unlicensed Intermediaries Trap Candidates in Darbhanga
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-300">
@@ -1340,7 +1340,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Worksite Communication Readiness
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Essential Worksite Arabic Lexicon for Darbhanga Technicians
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1412,7 +1412,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Family Financial Security
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Safe Remittance &amp; Banking Architecture for Darbhanga Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1482,7 +1482,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Logistics &amp; Travel Readiness
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Transit, Medical &amp; Embassy Routing from Darbhanga
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1583,7 +1583,7 @@ export default function DarbhangaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Everything Darbhanga Candidates Need to Know About Overseas Work Visas
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">

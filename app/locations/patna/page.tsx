@@ -279,7 +279,7 @@ export default function PatnaLocationPage() {
                   Government-Approved Overseas Recruitment Center • Boring Road
                 </div>
 
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+                <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy in{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
                     Patna, Bihar
@@ -339,7 +339,7 @@ export default function PatnaLocationPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         WorkWise Candidate Desk
                       </span>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-display font-bold text-white">
                         Patna Regional Career Desk
                       </h2>
                     </div>
@@ -410,7 +410,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Institutional Hub of Bihar
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Why Patna is the Central Nerve Center for Overseas Employment
               </h2>
             </div>
@@ -494,7 +494,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Statutory Ministry of External Affairs Authority
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 The Protector of Emigrants (POE) Patna Clearance Guide
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -736,7 +736,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Target Employment Corridors
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Comprehensive Visa &amp; Work Regulations by Destination
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1013,7 +1013,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Educational &amp; Legal Authentication
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 State HRD &amp; MEA Apostille Authentication in Patna
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1088,7 +1088,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Medical &amp; Technical Bench Testing
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 GAMCA Medical Centers &amp; Takamol Trade Testing in Patna
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1240,7 +1240,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Transparent Compensation Standards
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Overseas Salary &amp; Allowance Benchmarks for Bihar Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1402,7 +1402,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
                 Candidate Consumer Protection
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
                 How to Spot and Avoid Fake Visa Rackets in Patna
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-300">
@@ -1501,7 +1501,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Worksite Safety &amp; Language Readiness
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Gulf Worksite Technical Arabic Glossary for Bihar Workers
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1597,7 +1597,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Transit &amp; Accessibility
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 How to Reach WorkWise Visa at Varma Centre, Boring Road
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1668,7 +1668,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Healthcare &amp; White-Collar Credentials
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Medical, Nursing &amp; Engineering Overseas Licensure from Patna
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1740,7 +1740,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Financial Security &amp; Asset Preservation
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Safe Remittance &amp; Banking Guide for Bihar NRI Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1829,7 +1829,7 @@ export default function PatnaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Everything Candidates in Patna Need to Know About Work Visas
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">

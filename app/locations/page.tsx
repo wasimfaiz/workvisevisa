@@ -77,7 +77,7 @@ export default function LocationsHubPage() {
               <span>Pan-India Presence & Regional Assistance</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight max-w-4xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight max-w-4xl mx-auto">
               WorkWise Visa{" "}
               <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
                 Locations & Candidate Hubs
@@ -116,7 +116,7 @@ export default function LocationsHubPage() {
                 <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                   Walk-In Facilitation Centers
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                   Official Branch Offices
                 </h2>
                 <p className="text-sm text-slate-600 mt-1">
@@ -137,7 +137,7 @@ export default function LocationsHubPage() {
                         <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
                           {branch.name === "Noida" ? "Corporate HQ • Delhi NCR" : "Regional Branch • Bihar"}
                         </span>
-                        <h3 className="text-2xl font-black text-slate-900 mt-0.5">
+                        <h3 className="text-2xl font-display font-bold text-slate-900 mt-0.5">
                           {branch.name} Office
                         </h3>
                       </div>
@@ -203,7 +203,7 @@ export default function LocationsHubPage() {
               <span className="text-xs uppercase tracking-wider font-bold text-teal-600">
                 Service Coverage & Assistance
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                 Regional Candidate Assistance Hubs
               </h2>
               <p className="text-sm sm:text-base text-slate-600 mt-2">
@@ -231,7 +231,7 @@ export default function LocationsHubPage() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                        <h3 className="text-xl font-display font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
                           {hub.name}
                         </h3>
                         <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
@@ -272,7 +272,7 @@ export default function LocationsHubPage() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+                        <h3 className="text-xl font-display font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
                           {hub.name}
                         </h3>
                         <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
@@ -304,7 +304,7 @@ export default function LocationsHubPage() {
               <span className="text-xs uppercase tracking-wider font-bold text-emerald-600">
                 Transparent Process
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 mt-1">
                 How Our Regional Network Works For You
               </h2>
             </div>
@@ -314,7 +314,7 @@ export default function LocationsHubPage() {
                 <div className="w-12 h-12 mx-auto rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xl mb-4">
                   1
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2">Apply Online</h3>
+                <h3 className="font-display font-bold text-slate-900 mb-2">Apply Online</h3>
                 <p className="text-xs text-slate-600">
                   Apne shehar se direct WhatsApp par CV aur passport send karein.
                 </p>

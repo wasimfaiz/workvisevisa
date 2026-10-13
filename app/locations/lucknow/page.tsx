@@ -293,7 +293,7 @@ export default function LucknowLocationPage() {
                   <span>Government-Approved Overseas Employment Consultancy • Lucknow &amp; Central UP</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
                     Lucknow, UP
@@ -338,7 +338,7 @@ export default function LucknowLocationPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         WorkWise Candidate Desk
                       </span>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-display font-bold text-white">
                         Lucknow Overseas Career Desk
                       </h2>
                     </div>
@@ -405,7 +405,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 In-Depth Regional Analysis &amp; Workforce Demographics
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Why Lucknow is the Administrative &amp; Technical Engine of Central UP&apos;s Global Workforce
               </h2>
             </div>
@@ -525,7 +525,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Statutory Compliance &amp; Legal Framework
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Office of Protector of Emigrants (POE) Lucknow &amp; ECR Regulations
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -657,7 +657,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Target Employment Corridors
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Comprehensive Visa &amp; Work Regulations by Destination
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -929,7 +929,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Medical Clearance &amp; Biometrics
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 GAMCA (Wafid) Medical Centers &amp; VFS Tasheel in Lucknow
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -997,7 +997,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Transparent Compensation Benchmarks
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Trade-Wise Salary &amp; Benefits Benchmarking Matrix
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1089,7 +1089,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Fraud Prevention Directive
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Anti-Fraud Exposé: Protecting Central UP Aspirants from Sub-Agent Traps
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1168,7 +1168,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Worksite Communication Readiness
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Essential Worksite Arabic Lexicon for Lucknow Technicians
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1239,7 +1239,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Family Financial Security
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Safe Remittance &amp; Banking Architecture for Lucknow Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1316,7 +1316,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
                 Logistics &amp; Travel Readiness
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Transit, Medical &amp; Embassy Routing from Lucknow Hub
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1386,7 +1386,7 @@ export default function LucknowLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Everything Lucknow Candidates Need to Know About Overseas Work Visas
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">

@@ -276,7 +276,7 @@ export default function NoidaLocationPage() {
                   Corporate Headquarters • Urbtech Trade Centre, Sector 132
                 </div>
 
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+                <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy in{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
                     Noida, Delhi NCR
@@ -337,7 +337,7 @@ export default function NoidaLocationPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         WorkWise Corporate HQ
                       </span>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-display font-bold text-white">
                         Noida Expressway Career Desk
                       </h2>
                     </div>
@@ -408,7 +408,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Strategic NCR Advantage &amp; Global Mobility
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Why Noida is India&apos;s Premier Gateway for Overseas Employment
               </h2>
             </div>
@@ -485,7 +485,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Schengen &amp; European Skilled Migration
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 European National Type-D Work Permits Process from Noida
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -649,7 +649,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Diplomatic &amp; Consular Verification
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 MEA Apostille &amp; Embassy Attestation Protocol in New Delhi
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -721,7 +721,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Comparative Compensation Intelligence
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Global Salary &amp; Benefits Benchmarking from Noida
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -883,7 +883,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Statutory Ministry of External Affairs Oversight
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 The Protector of Emigrants (POE) Delhi &amp; PBBY Framework
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1087,7 +1087,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Financial Security &amp; Compliance
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Safe Remittance &amp; Wealth Architecture for NCR NRI Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1170,7 +1170,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
                 Consumer Safety Advisory
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
                 Exposing Deceptive Visa Schemes in Delhi NCR
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-300">
@@ -1271,7 +1271,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Advanced European Migration
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Germany Skilled Immigration &amp; Opportunity Card (Chancenkarte)
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1343,7 +1343,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 High-Value Infrastructure &amp; Tech Careers
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 GCC Executive &amp; Engineering Mobility from Noida
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1462,7 +1462,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Workplace Integration &amp; Safety
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Multilingual Technical Worksite Glossary for Global Deployments
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1552,7 +1552,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Transit &amp; Accessibility
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 How to Reach WorkWise Visa at Urbtech Trade Centre, Sector 132
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1631,7 +1631,7 @@ export default function NoidaLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Everything Candidates in Noida &amp; Delhi NCR Need to Know
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">

@@ -251,7 +251,7 @@ export default function GopalganjLocationPage() {
                   Government-Compliant Overseas Career Pathway for Gopalganj
                 </div>
 
-                <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl text-white">
+                <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-teal-500 bg-clip-text text-transparent">
                     Gopalganj, Bihar
@@ -313,7 +313,7 @@ export default function GopalganjLocationPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         WorkWise Candidate Desk
                       </span>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="text-lg font-display font-bold text-white">
                         Gopalganj Career Assistance Desk
                       </h2>
                     </div>
@@ -384,7 +384,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 In-Depth Regional Profile &amp; Emigration Dynamics
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Gopalganj: A Pillar of India&apos;s Skilled Overseas Workforce
               </h2>
             </div>
@@ -467,7 +467,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Statutory Regulatory Compliance
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 ECR vs. ECNR Passport Regulations for Gopalganj Migrants
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -717,7 +717,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Key Employment Corridors
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Comprehensive Visa &amp; Work Regulations by Destination
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -969,7 +969,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Medical Screening Protocol
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 GAMCA / Wafid Medical Protocol for Gopalganj Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1072,7 +1072,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Transparent Financial Standards
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Trade-Wise Salary &amp; Allowance Benchmarks for Gopalganj Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1259,7 +1259,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
                 Candidate Consumer Protection
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
                 The Anatomy of Local Sub-Agent Scams in Gopalganj District
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-300">
@@ -1366,7 +1366,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Worksite Safety &amp; Communication Mastery
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Essential Worksite Arabic Technical Vocabulary
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1483,7 +1483,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Financial Security &amp; Asset Preservation
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Safe Remittance &amp; Banking Guide for Gopalganj NRI Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1570,7 +1570,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                 Logistics &amp; Travel Assistance
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Consular &amp; Biometric Travel Routes from Gopalganj
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
@@ -1649,7 +1649,7 @@ export default function GopalganjLocationPage() {
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
                 Frequently Asked Questions
               </span>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
                 Everything Gopalganj Candidates Need to Know About Overseas Work Visas
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
