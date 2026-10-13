@@ -468,9 +468,10 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              {t.titleLine1}{" "}
-              <span className="gradient-text">{t.titleLine2}</span>
-              <br className="hidden sm:block" /> {t.titleHighlight}
+              {t.titleLine1}
+              <br className="hidden sm:block" />{" "}
+              <span className="gradient-text">{t.titleLine2}</span>{" "}
+              {t.titleHighlight}
             </motion.h1>
 
             <motion.p
