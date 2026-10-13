@@ -224,14 +224,14 @@ export default async function LocationCityPage({ params }: PageProps) {
                     <>
                       Best Work Visa Consultancy in{" "}
                       <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
-                        {location.name}, {location.state}
+                        {location.name}
                       </span>
                     </>
                   ) : (
                     <>
                       Overseas Work Visa & Gulf Jobs for Candidates in{" "}
                       <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
-                        {location.name} ({location.state})
+                        {location.name}
                       </span>
                     </>
                   )}

@@ -273,7 +273,7 @@ export default function DarbhangaLocationPage() {
                 Locations
               </Link>
               <span>/</span>
-              <span className="font-semibold text-emerald-400">Darbhanga, Bihar</span>
+              <span className="font-semibold text-emerald-400">Darbhanga</span>
             </nav>
 
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
@@ -287,7 +287,7 @@ export default function DarbhangaLocationPage() {
                 <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                    Darbhanga, Bihar
+                    Darbhanga
                   </span>
                 </h1>
 
@@ -419,8 +419,7 @@ export default function DarbhangaLocationPage() {
                 In-Depth Regional Analysis &amp; Workforce Demographics
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Why Darbhanga is the Nerve Center of North Bihar&apos;s
-                Global Workforce
+                Why Darbhanga is the Nerve Center of Global Workforce Recruitment
               </h2>
             </div>
 

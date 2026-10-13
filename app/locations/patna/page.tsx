@@ -268,7 +268,7 @@ export default function PatnaLocationPage() {
                 Locations
               </Link>
               <span>/</span>
-              <span className="font-semibold text-emerald-400">Patna, Bihar</span>
+              <span className="font-semibold text-emerald-400">Patna</span>
             </nav>
 
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
@@ -282,7 +282,7 @@ export default function PatnaLocationPage() {
                 <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy in{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                    Patna, Bihar
+                    Patna
                   </span>
                 </h1>
 
@@ -1241,7 +1241,7 @@ export default function PatnaLocationPage() {
                 Transparent Compensation Standards
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Overseas Salary &amp; Allowance Benchmarks for Bihar Candidates
+                Overseas Salary &amp; Allowance Benchmarks for Patna Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Verified monthly salaries, company perks, and overtime
@@ -1502,7 +1502,7 @@ export default function PatnaLocationPage() {
                 Worksite Safety &amp; Language Readiness
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Gulf Worksite Technical Arabic Glossary for Bihar Workers
+                Gulf Worksite Technical Arabic Glossary for Patna Candidates
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Familiarity with key workplace Arabic terms enhances safety,
@@ -1741,7 +1741,7 @@ export default function PatnaLocationPage() {
                 Financial Security &amp; Asset Preservation
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Safe Remittance &amp; Banking Guide for Bihar NRI Families
+                Safe Remittance &amp; Banking Guide for Patna NRI Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Protecting your hard-earned foreign exchange begins with avoiding

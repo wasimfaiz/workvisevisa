@@ -265,7 +265,7 @@ export default function NoidaLocationPage() {
                 Locations
               </Link>
               <span>/</span>
-              <span className="font-semibold text-emerald-400">Noida, Delhi NCR</span>
+              <span className="font-semibold text-emerald-400">Noida</span>
             </nav>
 
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
@@ -279,7 +279,7 @@ export default function NoidaLocationPage() {
                 <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy in{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                    Noida, Delhi NCR
+                    Noida
                   </span>
                 </h1>
 
@@ -1088,7 +1088,7 @@ export default function NoidaLocationPage() {
                 Financial Security &amp; Compliance
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Safe Remittance &amp; Wealth Architecture for NCR NRI Families
+                Safe Remittance &amp; Wealth Architecture for Noida NRI Families
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Proper financial structuring ensures full compliance with the
@@ -1171,7 +1171,7 @@ export default function NoidaLocationPage() {
                 Consumer Safety Advisory
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
-                Exposing Deceptive Visa Schemes in Delhi NCR
+                Exposing Deceptive Visa Schemes in Noida
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-300">
                 Delhi NCR is heavily targeted by unlicensed consultants operating
@@ -1632,7 +1632,7 @@ export default function NoidaLocationPage() {
                 Frequently Asked Questions
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Everything Candidates in Noida &amp; Delhi NCR Need to Know
+                Everything Candidates in Noida Need to Know
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Authoritative guidance on European national work permits, GCC

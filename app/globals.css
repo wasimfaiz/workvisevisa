@@ -2,7 +2,7 @@
 
 /* ── Theme ───────────────────────────────────────────────────── */
 @theme inline {
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-inter);
   --font-body: var(--font-inter);
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), var(--font-body), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
 
 /* ── Custom Scrollbar ────────────────────────────────────────── */

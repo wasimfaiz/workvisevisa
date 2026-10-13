@@ -240,7 +240,7 @@ export default function GopalganjLocationPage() {
                 Locations
               </Link>
               <span>/</span>
-              <span className="font-semibold text-emerald-400">Gopalganj, Bihar</span>
+              <span className="font-semibold text-emerald-400">Gopalganj</span>
             </nav>
 
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
@@ -254,7 +254,7 @@ export default function GopalganjLocationPage() {
                 <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-teal-500 bg-clip-text text-transparent">
-                    Gopalganj, Bihar
+                    Gopalganj
                   </span>
                 </h1>
 

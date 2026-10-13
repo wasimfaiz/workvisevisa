@@ -282,7 +282,7 @@ export default function LucknowLocationPage() {
                 Locations
               </Link>
               <span>/</span>
-              <span className="text-emerald-300 font-medium">Lucknow, Uttar Pradesh</span>
+              <span className="text-emerald-300 font-medium">Lucknow</span>
             </nav>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -296,7 +296,7 @@ export default function LucknowLocationPage() {
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
                   Work Visa &amp; Overseas Employment Consultancy for{" "}
                   <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                    Lucknow, UP
+                    Lucknow
                   </span>
                 </h1>
 
@@ -406,7 +406,7 @@ export default function LucknowLocationPage() {
                 In-Depth Regional Analysis &amp; Workforce Demographics
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Why Lucknow is the Administrative &amp; Technical Engine of Central UP&apos;s Global Workforce
+                Why Lucknow is the Administrative &amp; Technical Engine for Global Workforce Recruitment
               </h2>
             </div>
 
@@ -1090,7 +1090,7 @@ export default function LucknowLocationPage() {
                 Fraud Prevention Directive
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Anti-Fraud Exposé: Protecting Central UP Aspirants from Sub-Agent Traps
+                Anti-Fraud Exposé: Protecting Lucknow Aspirants from Sub-Agent Traps
               </h2>
               <p className="mt-4 text-sm sm:text-base text-slate-600">
                 Unaccredited street brokers operating around Charbagh, Kaiserbagh, and Aminabad exploit candidates
