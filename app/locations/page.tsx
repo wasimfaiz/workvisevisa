@@ -57,6 +57,7 @@ export default function LocationsHubPage() {
   const branchOffices = locationsList.filter((loc) => loc.isPhysicalBranch);
   const serviceAreas = locationsList.filter((loc) => !loc.isPhysicalBranch);
 
+  const ncrHubs = serviceAreas.filter((loc) => loc.state === "Delhi NCR" || loc.slug === "delhi");
   const biharHubs = serviceAreas.filter((loc) => loc.state === "Bihar");
   const upHubs = serviceAreas.filter((loc) => loc.state === "Uttar Pradesh");
 
@@ -85,7 +86,7 @@ export default function LocationsHubPage() {
             </h1>
 
             <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto font-normal">
-              Chahe aap hamare Patna ya Noida corporate office me aamne-saamne visit karein, ya Siwan, Gopalganj, Gorakhpur se 100% online apply karein — WorkWise Visa har candidate ko authentic Gulf & Europe opportunities provide karta hai.
+              Chahe aap hamare Patna ya Noida corporate office me aamne-saamne visit karein, Delhi NCR placement desk se apply karein, ya Siwan, Gopalganj, Gorakhpur se 100% online apply karein — WorkWise Visa har candidate ko authentic Gulf &amp; Europe opportunities provide karta hai.
             </p>
 
             {/* Quick Stat Badges */}
@@ -96,7 +97,7 @@ export default function LocationsHubPage() {
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaUsers className="text-teal-400 w-4 h-4" />
-                <span>10+ District Assistance Hubs</span>
+                <span>11+ Candidate Assistance Hubs</span>
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaShieldHalved className="text-emerald-400 w-4 h-4" />
@@ -209,6 +210,47 @@ export default function LocationsHubPage() {
               <p className="text-sm sm:text-base text-slate-600 mt-2">
                 In shehron ke candidates ghar baithe 100% online verification le sakte hain aur final interviews ke liye nazdeeki center visit kar sakte hain:
               </p>
+            </div>
+
+            {/* Delhi NCR Section */}
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
+                <span className="text-lg font-black text-slate-900">
+                  📍 Delhi NCR Candidate Placement Desk
+                </span>
+                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800">
+                  Connected to Noida Corporate HQ &amp; Central Consulates
+                </span>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {ncrHubs.map((hub) => (
+                  <Link
+                    key={hub.slug}
+                    href={`/locations/${hub.slug}`}
+                    className="group rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-xl font-display font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                          {hub.name}
+                        </h3>
+                        <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+                          National Capital Desk
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                        {hub.districtIntro}
+                      </p>
+                    </div>
+
+                    <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:text-emerald-700">
+                      <span>View Jobs &amp; Guide</span>
+                      <FaArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Bihar Section */}

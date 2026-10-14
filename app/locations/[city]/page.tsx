@@ -690,6 +690,64 @@ export default async function LocationCityPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* ========================================================= */}
+        {/* CROSS-CITY NETWORK DIRECTORY                              */}
+        {/* ========================================================= */}
+        <section className="bg-white py-14 border-t border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <span className="font-bold text-slate-700 text-xs block mb-3">WorkWise Visa Pan-India Network:</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+              <Link href="/locations/noida" className="hover:text-emerald-700 font-semibold underline">
+                Noida Corporate HQ
+              </Link>
+              <span>•</span>
+              <Link href="/locations/delhi" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
+                Delhi NCR Placement Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">
+                Patna Regional Branch
+              </Link>
+              <span>•</span>
+              <Link href="/locations/siwan" className="hover:text-emerald-700">
+                Siwan Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/gopalganj" className="hover:text-emerald-700">
+                Gopalganj Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/gorakhpur" className="hover:text-emerald-700">
+                Gorakhpur Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/lucknow" className="hover:text-emerald-700">
+                Lucknow Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/muzaffarpur" className="hover:text-emerald-700">
+                Muzaffarpur Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/chhapra" className="hover:text-emerald-700">
+                Chhapra Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/darbhanga" className="hover:text-emerald-700">
+                Darbhanga Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/gaya" className="hover:text-emerald-700">
+                Gaya Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations" className="hover:text-emerald-700 font-bold text-emerald-700">
+                View All Locations &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

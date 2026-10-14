@@ -1962,7 +1962,126 @@ export default function NoidaLocationPage() {
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 10: INTERNAL LINKING & CROSS-CITY DIRECTORY NAVIGATION       */}
+        {/* SECTION 12: RELATED GUIDES & CROSS-CITY DIRECTORY NAVIGATION         */}
+        {/* ==================================================================== */}
+        <section className="bg-white py-16 border-t border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="space-y-2 mb-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">
+                Authoritative Knowledge Resources
+              </span>
+              <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
+                Explore In-Depth Visa &amp; Immigration Manuals
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Link
+                href="/blogs/complete-guide-uae-saudi-arabia-blue-collar-work-permits-2026"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Gulf Corridors</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Complete UAE &amp; Saudi Arabia Blue-Collar Work Permits 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    MOHRE contracts, Qiwa portal, Takamol trade tests, and WPS wage protection.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/europe-work-visa-for-indian-workers-poland-croatia-romania-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-teal-600">European Corridors</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Europe Work Visa Guide: Poland, Croatia &amp; Romania 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    Voivodeship permits, MUP single permits, VFS Delhi appointments, and Euro salaries.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-amber-600">Authentication Hub</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    PCC &amp; MEA Patiala House Apostille Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    Passport Seva Kendra booking, police verification, and MEA Hague Apostille stamping.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+
+            {/* Complete Cross-City Network Links */}
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <span className="font-bold text-slate-700 text-xs block mb-3">WorkWise Visa Pan-India Network:</span>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+                <Link href="/locations/delhi" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
+                  Delhi NCR Placement Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">
+                  Patna Regional Branch
+                </Link>
+                <span>•</span>
+                <Link href="/locations/siwan" className="hover:text-emerald-700">
+                  Siwan Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gopalganj" className="hover:text-emerald-700">
+                  Gopalganj Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gorakhpur" className="hover:text-emerald-700">
+                  Gorakhpur Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/lucknow" className="hover:text-emerald-700">
+                  Lucknow Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/muzaffarpur" className="hover:text-emerald-700">
+                  Muzaffarpur Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/chhapra" className="hover:text-emerald-700">
+                  Chhapra Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/darbhanga" className="hover:text-emerald-700">
+                  Darbhanga Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gaya" className="hover:text-emerald-700">
+                  Gaya Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations" className="hover:text-emerald-700 font-bold text-emerald-700">
+                  View All Locations &rarr;
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

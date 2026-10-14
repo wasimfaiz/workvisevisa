@@ -359,7 +359,147 @@ export const locationsList: LocationData[] = [
   },
 
   // ==========================================
-  // 3. SIWAN (Service Area - Bihar's #1 Gulf Hub)
+  // 3. DELHI (National Capital Region - Dedicated Candidate Desk)
+  // ==========================================
+  {
+    slug: "delhi",
+    name: "Delhi",
+    state: "Delhi NCR",
+    type: "service-area",
+    heroBadge: "National Capital Region • Dedicated Placement Desk",
+    metaTitle: "Work Visa Consultancy in Delhi | Overseas Jobs & Recruitment | WorkWise Visa",
+    metaDescription:
+      "Premier work visa consultancy & overseas recruitment agency serving Delhi NCR. Verified Europe & Gulf work permits with MEA Apostille & embassy stamping support.",
+    keywords: [
+      "work visa consultancy in delhi",
+      "visa consultancy in delhi",
+      "overseas recruitment agency delhi",
+      "gulf job consultancy in delhi",
+      "europe work visa consultant delhi",
+      "best immigration consultant delhi",
+      "dubai work visa agent in delhi",
+      "saudi arabia visa processing delhi",
+      "manpower consultancy in delhi for gulf",
+      "takamol trade test guidance delhi",
+      "gamca medical appointment center delhi",
+      "mea apostille attestation patiala house delhi",
+      "vfs global delhi visa appointment",
+      "licensed overseas manpower agency delhi",
+    ],
+    districtIntro:
+      "WorkWise Visa serves candidates across Delhi—including South Delhi, East Delhi, West Delhi, North Delhi, and Central Delhi—providing direct access to Gulf and European work visa quotas, Patiala House MEA Apostille, and Chanakyapuri diplomatic consular clearance via our nearby Noida Corporate HQ.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Corporate Headquarters (Urbtech Trade Centre, Sector 132)",
+      nearestBranchSlug: "noida",
+      nearestBranchAddress: "Urbtech Trade Centre, Sector 132, Noida-Greater Noida Expressway (20 Mins from South Delhi)",
+      distanceFromCity: "12-15 KM from South Delhi",
+      travelDuration: "20 Mins via Expressway",
+      recommendedTrains: [
+        "Delhi Metro Magenta Line (Janakpuri West - Hauz Khas - Botanical Garden)",
+        "Delhi Metro Blue Line (Dwarka Sector 21 - Rajiv Chowk - Noida)",
+        "DND Flyway & Kalindi Kunj Expressway Route",
+      ],
+      roadRoute: "Direct access via DND Flyway or Kalindi Kunj Road onto Noida-Greater Noida Expressway to Sector 132.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile Evaluation",
+          description: "Submit your resume, trade credentials, and target country preference online or via WhatsApp.",
+        },
+        {
+          step: "02",
+          title: "In-Person Review at Corporate HQ",
+          description: "Visit our Corporate HQ at Urbtech Trade Centre, Sector 132 for document verification and trade testing.",
+        },
+        {
+          step: "03",
+          title: "Consular Biometrics & Stamping",
+          description: "Attend your VFS Global appointment at Shivaji Stadium Metro Station for European Type-D stamping.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job offers in Europe & Gulf",
+        "Direct coordination with Chanakyapuri foreign embassies",
+        "Fast-track MEA Apostille at Patiala House Courts",
+        "Zero registration fee for initial profile evaluation",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "European Industrial Trades & Logistics",
+        roles: ["6G Pipe Welder", "CNC Operator", "Warehouse Logistics Handler", "Commercial Electrician"],
+        monthlySalary: "€900 - €1,700 (₹82,000 - ₹1,55,000)",
+        countries: "Poland, Croatia, Romania, Germany",
+        overtime: "Standard EU Labor Protection + Provided Accommodation",
+      },
+      {
+        category: "Gulf Megaprojects & Engineering",
+        roles: ["Industrial Electrician", "Instrumentation Tech", "Refinery Pipefitter", "Civil Mason"],
+        monthlySalary: "2,200 - 4,500 SAR/AED (₹50,000 - ₹1,05,000)",
+        countries: "Saudi Arabia (NEOM), UAE, Qatar, Oman",
+        overtime: "100% Tax-Free + Free Housing & Overtime @ 1.25x-1.5x",
+      },
+      {
+        category: "Heavy Fleet & Transport Drivers",
+        roles: ["Heavy Trailer Driver (GCC / Indian HMV)", "Transit Mixer Operator", "Bus Driver"],
+        monthlySalary: "2,400 - 4,000 SAR/AED (₹55,000 - ₹92,000)",
+        countries: "Saudi Arabia, UAE, Qatar, Bahrain",
+        overtime: "Trip Bonuses + License Conversion Support",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Direct Diplomatic & Embassy Proximity",
+        desc: "Located minutes from Chanakyapuri foreign embassies and VFS Global Shivaji Stadium for expedited file submissions.",
+      },
+      {
+        title: "100% Verified Employer Work Visas",
+        desc: "All vacancies carry official government labor quotas with guaranteed salary protections under Gulf WPS and EU standards.",
+      },
+      {
+        title: "MEA Apostille & PSK PCC Support",
+        desc: "Complete documentation desk facilitating fast-track police clearance and Patiala House Hague Apostille legalization.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Mohammad Irfan",
+        cityOrDistrict: "Okhla, New Delhi",
+        jobRole: "6G Argon Welder",
+        destinationCountry: "Dubai, UAE",
+        monthlySalary: "3,200 AED (₹74,000)",
+        quote: "Delhi me bohot agents ghumate the. WorkWise Visa se counseling li aur 22 din me MOHRE work visa aur flight ticket mil gayi. 100% genuine agency!",
+        rating: 5,
+      },
+      {
+        name: "Rahul Verma",
+        cityOrDistrict: "Laxmi Nagar, East Delhi",
+        jobRole: "Warehouse Logistics Handler",
+        destinationCountry: "Warsaw, Poland",
+        monthlySalary: "€1,250 (₹1,14,000)",
+        quote: "Poland ka Voivodeship work permit aur National Type-D visa bilkul smooth mila. VFS Delhi appointment aur PCC apostille me puri help mili.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "How can candidates from Delhi visit the WorkWise Visa office?",
+        a: "Candidates from anywhere in Delhi can easily reach our corporate office via the Delhi Metro Magenta Line (interchanging at Botanical Garden) or by car/cab via the DND Flyway or Kalindi Kunj Road (just 20 minutes from South Delhi).",
+      },
+      {
+        q: "Does WorkWise Visa assist with MEA Apostille at Patiala House?",
+        a: "Yes. We coordinate end-to-end document attestation with the Ministry of External Affairs (MEA) CPV Division at Patiala House and state HRD departments for European and Gulf visas.",
+      },
+      {
+        q: "Which countries are currently recruiting candidates from Delhi?",
+        a: "We have active direct recruitment drives for Poland, Romania, Croatia, Germany, Saudi Arabia (NEOM & Vision 2030), UAE (Dubai & Abu Dhabi), Qatar, and Oman across technical, driving, MEP, and hospitality roles.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 4. SIWAN (Service Area - Bihar's #1 Gulf Hub)
   // ==========================================
   {
     slug: "siwan",
