@@ -1504,6 +1504,75 @@ export default function OmanCountryPage() {
             </div>
           </section>
 
+          {/* ── Related Guides & Articles Section ─────────── */}
+          <section className="space-y-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
+                <FaBuildingColumns className="w-3.5 h-3.5 text-emerald-600" />
+                Explore Related Oman &amp; Gulf In-Depth Resources
+              </div>
+              <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
+                Authoritative Oman Career &amp; Immigration Guides
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/blogs/oman-bahrain-work-visa-guide-2026-mol-lmra-jobs-wafid-salaries"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Oman &amp; Bahrain Master Guide</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Oman &amp; Bahrain Work Visa &amp; Labor Law Reforms 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Comprehensive manual on Oman MOL permits, ROP eVisa, Duqm Refinery jobs, Wafid medicals, and tax-free OMR salary scales.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-teal-600">Medical Fitness Clearance</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Wafid (GAMCA) Medical Examination 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Online appointment booking, fit/unfit criteria, TB scarring re-test rules, and GCC Health Council medical guidelines.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-amber-600">Attestation &amp; PCC</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    PCC for Gulf &amp; Europe Work Visas Guide
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Step-by-step Passport Seva Kendra (PSK) online application, police inquiry, MEA Apostille, and Oman Embassy attestation.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </section>
+
           {/* ── Section 11: Call to Action Banner ─────────────── */}
           <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden text-center space-y-6">
             <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
