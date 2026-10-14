@@ -1247,7 +1247,7 @@ export default function SaudiArabiaCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
-                href="/blogs/takamol-skill-verification-program-saudi-arabia-svp-exam-pattern-qiwa-centers"
+                href="/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
@@ -1265,7 +1265,7 @@ export default function SaudiArabiaCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/saudi-arabia-blue-collar-construction-recruitment-vision-2030-neom-work-visas"
+                href="/blogs/saudi-arabia-neom-megaprojects-recruitment-work-visa-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
@@ -1283,7 +1283,7 @@ export default function SaudiArabiaCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/gulf-petrochemical-refinery-shutdown-jobs-aramco-adnoc-knpc-turnaround-recruitment"
+                href="/blogs/qatar-kuwait-oil-gas-shutdown-plant-maintenance-work-visa-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">

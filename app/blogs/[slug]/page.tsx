@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect, RedirectType } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +7,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import MarkdownContent from "@/components/MarkdownContent";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
-import { blogPosts as fallbackPosts, sortBlogsByDate } from "@/lib/data";
+import { blogPosts as fallbackPosts, sortBlogsByDate, parseBlogDate } from "@/lib/data";
 import {
   FaCalendarDays,
   FaClock,
@@ -199,6 +199,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const canonicalUrl = `https://www.workwisevisa.com/blogs/${blog.slug || slug}`;
+  const publishTimestamp = parseBlogDate((blog as any).date, (blog as any).createdAt);
+  const isoPublishedDate = publishTimestamp > 0 ? new Date(publishTimestamp).toISOString() : new Date().toISOString();
 
   return {
     title,
@@ -224,7 +226,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonicalUrl,
       images: [{ url: image }],
       type: "article",
-      publishedTime: (blog as any).date,
+      publishedTime: isoPublishedDate,
+      modifiedTime: isoPublishedDate,
       authors: [blog.author || "WorkWise Editorial Team"],
     },
     twitter: {
@@ -244,6 +247,14 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // 301 Permanent Redirect to canonical slug if accessed via old alias, ID, or variant
+  if (blog.slug && slug !== blog.slug) {
+    redirect(`/blogs/${blog.slug}`, RedirectType.permanent);
+  }
+
+  const publishTimestamp = parseBlogDate(blog.date, (blog as any).createdAt);
+  const isoPublishedDate = publishTimestamp > 0 ? new Date(publishTimestamp).toISOString() : new Date().toISOString();
+
   const recentBlogs = await getRecentBlogs(slug);
   const article = {
     ...blog,
@@ -259,8 +270,8 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     "headline": article.title,
     "description": article.excerpt || article.metaDescription,
     "image": article.image || "https://www.workwisevisa.com/images/workwise_logo.png",
-    "datePublished": article.date,
-    "dateModified": article.date,
+    "datePublished": isoPublishedDate,
+    "dateModified": isoPublishedDate,
     "author": {
       "@type": "Organization",
       "name": article.author || "WorkWise Editorial Team",

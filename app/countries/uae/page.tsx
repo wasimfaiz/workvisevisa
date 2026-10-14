@@ -1292,7 +1292,7 @@ export default function UAECountryPage() {
               </Link>
 
               <Link
-                href="/blogs/dubai-delivery-rider-jobs-talabat-noon-careem-bike-license-cost-salary-visa"
+                href="/blogs/dubai-delivery-rider-warehouse-logistics-work-permit-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
@@ -1310,7 +1310,7 @@ export default function UAECountryPage() {
               </Link>
 
               <Link
-                href="/blogs/dubai-hotel-hospitality-staff-recruitment-waiter-cook-housekeeping-salary-visa"
+                href="/blogs/dubai-hotel-hospitality-work-visa-guide-waiters-chefs-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">

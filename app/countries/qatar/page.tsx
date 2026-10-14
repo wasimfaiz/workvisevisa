@@ -1206,7 +1206,7 @@ export default function QatarCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
-                href="/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-fees-rules"
+                href="/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-contract-qid"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
@@ -1224,7 +1224,7 @@ export default function QatarCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/gulf-petrochemical-refinery-shutdown-jobs-aramco-adnoc-knpc-turnaround-recruitment"
+                href="/blogs/qatar-kuwait-oil-gas-shutdown-plant-maintenance-work-visa-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
@@ -1242,7 +1242,7 @@ export default function QatarCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/pcc-police-clearance-certificate-guide-passport-seva-mea-apostille-gulf-visas"
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
