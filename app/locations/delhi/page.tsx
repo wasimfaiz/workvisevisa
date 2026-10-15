@@ -68,6 +68,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${BASE_URL}/locations/delhi`,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Work Visa Consultancy in Delhi | Overseas Jobs & Recruitment",
     description:

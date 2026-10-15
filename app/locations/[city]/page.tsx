@@ -43,9 +43,24 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllLocationSlugs().map((slug) => ({
-    city: slug,
-  }));
+  const dedicatedDirectories = new Set([
+    "chhapra",
+    "darbhanga",
+    "delhi",
+    "gaya",
+    "gopalganj",
+    "gorakhpur",
+    "lucknow",
+    "muzaffarpur",
+    "noida",
+    "patna",
+    "siwan",
+  ]);
+  return getAllLocationSlugs()
+    .filter((slug) => !dedicatedDirectories.has(slug.toLowerCase()))
+    .map((slug) => ({
+      city: slug,
+    }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

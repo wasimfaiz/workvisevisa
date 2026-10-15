@@ -71,6 +71,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.workwisevisa.com/locations/patna",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Work Visa Consultancy in Patna | WorkWise Visa Bihar",
     description:
@@ -81,7 +92,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/workwise_logo.png",
+        url: "https://www.workwisevisa.com/images/workwise_logo.png",
         width: 1200,
         height: 630,
         alt: "WorkWise Visa Consultancy Office at Varma Centre, Boring Road, Patna",

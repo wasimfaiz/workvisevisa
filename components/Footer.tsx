@@ -25,8 +25,16 @@ const quickLinks = [
 ];
 
 const offices = [
-  { city: "Noida (HQ)", address: "Urbtech Trade Centre, D-701 C, Sector 132, Noida, Uttar Pradesh 201304" },
-  { city: "Patna", address: "6th floor office no 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001" },
+  {
+    city: "Noida (Corporate HQ)",
+    href: "/locations/noida",
+    address: "Urbtech Trade Centre, D-701 C, Sector 132, Noida, Uttar Pradesh 201304",
+  },
+  {
+    city: "Patna (Regional Branch)",
+    href: "/locations/patna",
+    address: "6th floor office no 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001",
+  },
 ];
 
 const socials = [
@@ -133,8 +141,14 @@ export default function Footer() {
                 <li key={o.city} className="flex items-start gap-2.5">
                   <FaLocationDot className="w-4 h-4 mt-0.5 text-emerald-600 shrink-0" />
                   <div>
-                    <p className="text-sm font-bold text-slate-900">{o.city}</p>
-                    <p className="text-xs text-slate-600 font-normal leading-relaxed">{o.address}</p>
+                    <a
+                      href={o.href}
+                      className="text-sm font-bold text-slate-900 hover:text-emerald-700 transition-colors inline-flex items-center gap-1 group"
+                    >
+                      <span>{o.city}</span>
+                      <span className="text-xs text-emerald-600 group-hover:translate-x-0.5 transition-transform">→</span>
+                    </a>
+                    <p className="text-xs text-slate-600 font-normal leading-relaxed mt-0.5">{o.address}</p>
                   </div>
                 </li>
               ))}
@@ -227,6 +241,20 @@ export default function Footer() {
               className="text-emerald-700 font-bold hover:underline"
             >
               🇱🇺 Luxembourg Work Visa 2026 Guide
+            </a>
+            <span className="text-slate-300">•</span>
+            <a
+              href="/locations/noida"
+              className="text-slate-900 font-bold hover:text-emerald-700 hover:underline transition-colors"
+            >
+              🏢 Noida Corporate HQ (Sector 132)
+            </a>
+            <span className="text-slate-300">•</span>
+            <a
+              href="/locations/patna"
+              className="text-slate-900 font-bold hover:text-emerald-700 hover:underline transition-colors"
+            >
+              🏢 Patna Regional Branch (Boring Rd)
             </a>
           </div>
         </div>

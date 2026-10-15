@@ -69,6 +69,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.workwisevisa.com/locations/noida",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Work Visa Consultancy in Noida | WorkWise Visa Sector 132",
     description:
@@ -79,7 +90,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/workwise_logo.png",
+        url: "https://www.workwisevisa.com/images/workwise_logo.png",
         width: 1200,
         height: 630,
         alt: "WorkWise Visa Corporate Office Urbtech Trade Centre Sector 132 Noida",
@@ -91,7 +102,7 @@ export const metadata: Metadata = {
     title: "Work Visa Consultancy in Noida | WorkWise Visa Sector 132",
     description:
       "Trusted overseas job placement & work visa consultancy in Noida. 100% verified employer contracts for Europe & GCC with direct embassy processing in Delhi NCR.",
-    images: ["/images/workwise_logo.png"],
+    images: ["https://www.workwisevisa.com/images/workwise_logo.png"],
   },
 };
 
