@@ -1,16 +1,12 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState } from "react";
 import {
   FaCoins,
   FaArrowRight,
   FaWhatsapp,
-  FaCheck,
-  FaHouseUser,
-  FaShieldHalved,
   FaArrowTrendUp,
   FaPiggyBank,
-  FaRotate,
   FaArrowRightArrowLeft,
   FaChartLine,
 } from "react-icons/fa6";
@@ -324,14 +320,13 @@ const CURRENCIES: CurrencyItem[] = [
 export default function SalaryCalculator() {
   const [fromCode, setFromCode] = useState<string>("AED");
   const [toCode, setToCode] = useState<string>("INR");
-  const [fromAmount, setFromAmount] = useState<number>(2800);
-  const sliderId = useId();
-
+  const [fromAmount, setFromAmount] = useState<number | "">("");
   const fromCurr = CURRENCIES.find((c) => c.code === fromCode) || CURRENCIES[0];
   const toCurr = CURRENCIES.find((c) => c.code === toCode) || CURRENCIES[CURRENCIES.length - 1];
 
   // Live conversion formula: From -> INR -> To
-  const valueInINR = fromAmount * fromCurr.rateToINR;
+  const numericAmount = typeof fromAmount === "number" ? fromAmount : 0;
+  const valueInINR = numericAmount * fromCurr.rateToINR;
   const convertedToAmount = valueInINR / toCurr.rateToINR;
   const directExchangeRate = fromCurr.rateToINR / toCurr.rateToINR;
 
@@ -341,15 +336,13 @@ export default function SalaryCalculator() {
     const prevTo = toCode;
     setFromCode(prevTo);
     setToCode(prevFrom);
-    setFromAmount(Math.round(convertedToAmount));
+    if (numericAmount > 0) {
+      setFromAmount(Math.round(convertedToAmount));
+    }
   };
 
   const handleFromChange = (newCode: string) => {
     setFromCode(newCode);
-    const found = CURRENCIES.find((c) => c.code === newCode);
-    if (found) {
-      setFromAmount(found.defaultAmount);
-    }
   };
 
   // Remittance & Savings calculations
@@ -358,83 +351,88 @@ export default function SalaryCalculator() {
   const monthlyFoodCost = fromCurr.monthlyFoodEstimateINR || 7000;
   const estimatedNetSavingsMonthlyINR = Math.max(0, primaryDisplayAmountINR - monthlyFoodCost);
   const estimatedAnnualSavingsINR = estimatedNetSavingsMonthlyINR * 12;
-  const multiplier = (primaryDisplayAmountINR / (fromCurr.averageIndiaSalaryINR || 16000)).toFixed(1);
+  const multiplier = numericAmount > 0 ? (primaryDisplayAmountINR / (fromCurr.averageIndiaSalaryINR || 16000)).toFixed(1) : null;
 
   // WhatsApp Link
   const targetCountryName = fromCurr.code === "INR" ? toCurr.country : fromCurr.country;
+  const whatsappMsgAmount = numericAmount > 0 ? `${fromCurr.symbol} ${numericAmount.toLocaleString()} (${toCurr.symbol} ${Math.round(convertedToAmount).toLocaleString()})` : fromCurr.country;
   const whatsappMessage = encodeURIComponent(
-    `Hi WorkWise Visa! I used your Overseas Currency & Salary Calculator for ${targetCountryName}. My expected salary is ${fromCurr.symbol} ${fromAmount.toLocaleString()} (${toCurr.symbol} ${Math.round(convertedToAmount).toLocaleString()}). Please check my eligibility for active vacancies!`
+    `Hi WorkWise Visa! I used your Overseas Currency & Salary Calculator for ${targetCountryName}. Expected salary: ${whatsappMsgAmount}. Please check my eligibility for active vacancies!`
   );
   const whatsappUrl = `https://wa.me/918130161603?text=${whatsappMessage}`;
 
   return (
-    <section id="salary-calculator" className="relative overflow-hidden bg-slate-50 py-16 sm:py-24 border-y border-slate-200/80">
+    <section id="salary-calculator" className="relative overflow-hidden bg-slate-50 py-10 sm:py-16 border-y border-slate-200/80">
       {/* Background glow effects */}
-      <div className="absolute top-0 left-1/4 -z-10 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 -z-10 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 -z-10 h-72 w-72 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 -z-10 h-72 w-72 rounded-full bg-teal-500/5 blur-3xl pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header with High-Rank SEO Keywords and Zero Artificial Line Breaks */}
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/80 text-emerald-800 text-xs sm:text-sm font-semibold mb-3 shadow-xs">
-            <FaArrowRightArrowLeft className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Live Foreign Exchange &amp; Remittance Tool</span>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-7">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-300/80 text-emerald-800 text-xs font-semibold mb-2.5 shadow-2xs">
+            <FaArrowRightArrowLeft className="w-3 h-3 text-emerald-700" />
+            <span>Live Foreign Exchange &amp; Salary Tool</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900 leading-tight">
-            Overseas Currency &amp; Savings Calculator: Gulf &amp; Abroad Salary in INR
+          <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-slate-900 leading-tight">
+            Overseas Currency &amp; Salary Calculator (in INR)
           </h2>
 
-          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-            Convert Gulf and European work visa salaries into Indian Rupees (INR) with real-time exchange rates, monthly expense deductions, and savings potential.
+          <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+            Calculate your monthly in-hand earnings in Indian Rupees with real-time exchange rates and estimated family savings.
           </p>
         </div>
 
-        {/* Main Converter Card */}
-        <div className="mt-10 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-xl shadow-slate-200/50">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
+        {/* Main Converter Card - Optimized & Compact */}
+        <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white p-5 sm:p-7 shadow-lg shadow-slate-200/50">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-center">
             
-            {/* ========================================================= */}
-            {/* LEFT COLUMN: CLEAN CONVERTER (FROM -> SWAP -> TO)         */}
-            {/* ========================================================= */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* LEFT COLUMN: CONVERTER BOX */}
+            <div className="lg:col-span-7 space-y-3.5">
               
-              {/* Google Converter Box */}
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 sm:p-6 shadow-xs space-y-4">
+              <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 shadow-2xs space-y-3">
                 
                 {/* 1. FROM ROW */}
                 <div>
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1.5">
-                    <span>From:</span>
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1">
+                    <span>From Currency / Salary:</span>
                     <span className="text-emerald-700 font-bold">{fromCurr.country}</span>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                     {/* Amount Input */}
                     <div className="relative flex-1">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-emerald-700">
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-black text-emerald-700">
                         {fromCurr.symbol}
                       </span>
                       <input
                         type="number"
-                        min={fromCurr.minAmount}
-                        max={fromCurr.maxAmount * 2}
-                        step={fromCurr.step}
+                        min={1}
+                        placeholder="Enter salary amount..."
                         value={fromAmount}
                         onChange={(e) => {
-                          const val = Number(e.target.value);
-                          if (!isNaN(val)) setFromAmount(val);
+                          const raw = e.target.value;
+                          if (raw === "") {
+                            setFromAmount("");
+                            return;
+                          }
+                          const clean = raw.replace(/^0+(?=\d)/, "");
+                          const val = Number(clean);
+                          if (!isNaN(val)) {
+                            setFromAmount(val);
+                          }
                         }}
-                        className="w-full rounded-xl border border-slate-300 bg-white py-3.5 pl-12 pr-4 text-xl font-extrabold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                        className="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-lg font-extrabold text-slate-900 placeholder:text-slate-400 placeholder:font-normal placeholder:text-sm shadow-2xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                       />
                     </div>
 
-                    {/* From Currency Selector Dropdown - Clean Full Currency Names */}
-                    <div className="sm:w-72 relative">
+                    {/* From Currency Selector Dropdown */}
+                    <div className="sm:w-64 relative">
                       <select
                         value={fromCode}
                         onChange={(e) => handleFromChange(e.target.value)}
-                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-3.5 pl-4 pr-10 text-sm font-bold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-2.5 pl-3.5 pr-8 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
                       >
                         {CURRENCIES.map((c) => (
                           <option key={c.code} value={c.code} className="bg-white text-slate-900 py-1">
@@ -442,8 +440,8 @@ export default function SalaryCalculator() {
                           </option>
                         ))}
                       </select>
-                      <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">
-                        <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                      <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
+                        <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
                       </div>
@@ -452,14 +450,14 @@ export default function SalaryCalculator() {
                 </div>
 
                 {/* SWAP BUTTON & LIVE RATE DIVIDER */}
-                <div className="flex items-center justify-between py-1">
+                <div className="flex items-center justify-between py-0.5">
                   <div className="h-px flex-1 bg-slate-200" />
                   <button
                     onClick={handleSwap}
                     title="Swap Currencies"
-                    className="mx-3 inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 transition-all hover:scale-105 active:scale-95 shadow-xs"
+                    className="mx-3 inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 transition-all hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
                   >
-                    <FaArrowRightArrowLeft className="w-3 h-3 text-emerald-600" />
+                    <FaArrowRightArrowLeft className="w-2.5 h-2.5 text-emerald-600" />
                     <span>Swap</span>
                   </button>
                   <div className="h-px flex-1 bg-slate-200" />
@@ -467,30 +465,36 @@ export default function SalaryCalculator() {
 
                 {/* 2. TO ROW */}
                 <div>
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1.5">
-                    <span>To:</span>
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1">
+                    <span>Converted In:</span>
                     <span className="text-teal-700 font-bold">{toCurr.country}</span>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                     {/* Converted Output Display */}
-                    <div className="relative flex-1 rounded-xl border border-emerald-300/80 bg-emerald-50/70 py-3.5 pl-12 pr-4 shadow-xs flex items-center">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-emerald-700">
+                    <div className="relative flex-1 rounded-xl border border-emerald-300/80 bg-emerald-50/70 py-2.5 pl-10 pr-3 shadow-2xs flex items-center min-h-[46px]">
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-black text-emerald-700">
                         {toCurr.symbol}
                       </span>
-                      <div className="text-xl font-black text-slate-900">
-                        {convertedToAmount.toLocaleString(undefined, {
-                          maximumFractionDigits: directExchangeRate < 1 ? 4 : 2,
-                        })}
-                      </div>
+                      {numericAmount > 0 ? (
+                        <div className="text-lg font-black text-slate-900">
+                          {convertedToAmount.toLocaleString(undefined, {
+                            maximumFractionDigits: directExchangeRate < 1 ? 4 : 2,
+                          })}
+                        </div>
+                      ) : (
+                        <div className="text-sm font-semibold text-slate-400 italic">
+                          Enter salary above
+                        </div>
+                      )}
                     </div>
 
-                    {/* To Currency Selector Dropdown - Clean Full Currency Names */}
-                    <div className="sm:w-72 relative">
+                    {/* To Currency Selector Dropdown */}
+                    <div className="sm:w-64 relative">
                       <select
                         value={toCode}
                         onChange={(e) => setToCode(e.target.value)}
-                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-3.5 pl-4 pr-10 text-sm font-bold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-2.5 pl-3.5 pr-8 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
                       >
                         {CURRENCIES.map((c) => (
                           <option key={c.code} value={c.code} className="bg-white text-slate-900 py-1">
@@ -498,8 +502,8 @@ export default function SalaryCalculator() {
                           </option>
                         ))}
                       </select>
-                      <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">
-                        <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                      <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
+                        <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
                       </div>
@@ -507,225 +511,133 @@ export default function SalaryCalculator() {
                   </div>
                 </div>
 
-                {/* Live Exchange Rate & Formula Note */}
-                <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <FaChartLine className="text-emerald-600 w-3.5 h-3.5" />
+                {/* Live Exchange Rate Note */}
+                <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1.5 text-slate-600 font-medium">
+                    <FaChartLine className="text-emerald-600 w-3 h-3" />
                     <span>
-                      1 {fromCurr.displayName} ={" "}
-                      <strong className="text-emerald-700 font-extrabold">
-                        {directExchangeRate.toFixed(directExchangeRate < 1 ? 4 : 2)} {toCurr.displayName}
-                      </strong>
+                      1 {fromCurr.symbol} = <strong className="text-emerald-700">{directExchangeRate.toFixed(directExchangeRate < 1 ? 4 : 2)} {toCurr.symbol}</strong>
                     </span>
                   </div>
-                  <span className="text-[11px] text-slate-500">
-                    Live Interbank Mid-Market Exchange Rate
-                  </span>
+                  <span>Live Mid-Market Exchange Rate</span>
                 </div>
               </div>
 
-              {/* Slider for Smooth Mobile Adjustment */}
-              {fromCurr.code !== "INR" && (
-                <div>
-                  <div className="flex justify-between items-center text-xs font-semibold text-slate-600 mb-2">
-                    <label htmlFor={sliderId}>Adjust Monthly Salary Range:</label>
-                    <button
-                      onClick={() => setFromAmount(fromCurr.defaultAmount)}
-                      className="text-emerald-700 font-bold hover:underline flex items-center gap-1 cursor-pointer"
-                    >
-                      <FaRotate className="w-2.5 h-2.5" /> Reset Default
-                    </button>
-                  </div>
-                  <input
-                    id={sliderId}
-                    type="range"
-                    min={fromCurr.minAmount}
-                    max={fromCurr.maxAmount}
-                    step={fromCurr.step}
-                    value={fromAmount}
-                    onChange={(e) => setFromAmount(Number(e.target.value))}
-                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
-                  />
-                  <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-semibold">
-                    <span>{fromCurr.symbol} {fromCurr.minAmount.toLocaleString()}</span>
-                    <span>{fromCurr.symbol} {fromCurr.maxAmount.toLocaleString()}</span>
-                  </div>
-                </div>
-              )}
-
-              {/* 1-Click Popular Job Presets */}
+              {/* 1-Click Popular Job Benchmarks */}
               {fromCurr.popularTrades && fromCurr.popularTrades.length > 0 && (
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
-                    Standard Job Benchmarks ({fromCurr.country}):
+                <div className="flex items-center flex-wrap gap-1.5 pt-0.5">
+                  <span className="text-[11px] font-bold text-slate-500 mr-1">
+                    Quick Benchmarks:
                   </span>
-                  <div className="flex flex-wrap gap-2">
-                    {fromCurr.popularTrades.map((trade) => {
-                      const isActive = fromAmount === trade.amount;
-                      return (
-                        <button
-                          key={trade.title}
-                          onClick={() => setFromAmount(trade.amount)}
-                          className={`rounded-xl px-3 py-2 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                            isActive
-                              ? "bg-emerald-100 text-emerald-900 border border-emerald-400 font-bold shadow-xs"
-                              : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                          }`}
-                        >
-                          <span>{trade.title}:</span>
-                          <strong className={isActive ? "text-emerald-900" : "text-slate-900"}>
-                            {fromCurr.symbol} {trade.amount.toLocaleString()}
-                          </strong>
-                        </button>
-                      );
-                    })}
-                  </div>
+                  {fromCurr.popularTrades.map((trade) => {
+                    const isActive = fromAmount === trade.amount;
+                    return (
+                      <button
+                        key={trade.title}
+                        onClick={() => setFromAmount(trade.amount)}
+                        className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+                          isActive
+                            ? "bg-emerald-100 text-emerald-900 border border-emerald-400 font-bold"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        <span>{trade.title}:</span>
+                        <strong>{fromCurr.symbol} {trade.amount.toLocaleString()}</strong>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
-              {/* Employer Statutory Inclusions */}
-              {fromCurr.visaHighlights && fromCurr.visaHighlights.length > 0 && (
-                <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-4">
-                  <span className="text-xs font-bold text-slate-800 block mb-2 flex items-center gap-1.5">
-                    <FaShieldHalved className="text-emerald-600 w-3.5 h-3.5" />
-                    Statutory Contract Inclusions Guaranteed by Employer:
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
-                    {fromCurr.visaHighlights.map((hl) => (
-                      <div key={hl} className="flex items-start gap-2">
-                        <FaCheck className="text-emerald-600 mt-0.5 shrink-0 w-3 h-3" />
-                        <span>{hl}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Contextual Country Guide Link for Immediate Crawl Equity */}
+              {/* Contextual Link */}
               {fromCurr.guideUrl && (
-                <div className="pt-1">
+                <div className="pt-0.5">
                   <a
                     href={fromCurr.guideUrl}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
                   >
-                    <span>Read Complete {fromCurr.country} Work Visa &amp; Salary Authority Manual →</span>
+                    <span>View Official {fromCurr.country} Visa &amp; Jobs Guide →</span>
                   </a>
                 </div>
               )}
             </div>
 
-            {/* ========================================================= */}
-            {/* RIGHT COLUMN: FULLY OPTIMIZED HIGH-IMPACT RESULTS BOX     */}
-            {/* ========================================================= */}
+            {/* RIGHT COLUMN: COMPACT HIGH-IMPACT RESULTS */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl border border-emerald-200 bg-gradient-to-b from-white via-emerald-50/30 to-teal-50/20 p-6 sm:p-8 shadow-xl shadow-emerald-500/5">
+              <div className="relative rounded-2xl border border-emerald-200 bg-gradient-to-b from-white via-emerald-50/30 to-teal-50/20 p-5 sm:p-6 shadow-md shadow-emerald-500/5 space-y-4">
                 
-                {/* Income Jump Multiplier Badge */}
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/80 px-3 py-1 text-xs font-bold text-emerald-900 mb-5">
-                  <FaArrowTrendUp className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>~{multiplier}x More Than India Average</span>
-                </div>
-
-                {/* Primary Metric: Gross Monthly Take-Home */}
-                <div className="mb-6 pb-6 border-b border-slate-200">
-                  <span className="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-1">
-                    Gross Monthly Take-Home in INR
+                {/* Income Multiplier Badge */}
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 border border-emerald-300 px-2.5 py-0.5 text-xs font-bold text-emerald-900">
+                  <FaArrowTrendUp className="w-3 h-3 text-emerald-700" />
+                  <span>
+                    {multiplier ? `~${multiplier}x More Than Average India Salary` : "Live Real-Time Salary Conversion"}
                   </span>
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 tracking-tight">
+                </div>
+
+                {/* Primary Metric */}
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider text-slate-500 font-bold block">
+                    Gross Monthly Take-Home (INR)
+                  </span>
+                  <div className="text-3xl sm:text-4xl font-display font-black text-slate-900 tracking-tight mt-0.5">
                     <span className="text-emerald-600">₹</span>
-                    {primaryDisplayAmountINR.toLocaleString("en-IN")}
-                    <span className="text-base text-slate-500 font-normal ml-2">/ month</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Calculated from {fromCurr.symbol} {fromAmount.toLocaleString()} {fromCurr.displayName} at live interbank rate.
-                  </p>
-                </div>
-
-                {/* Remittance & Savings Breakdown */}
-                <div className="space-y-3.5 text-xs sm:text-sm">
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
-                    <span className="text-slate-700 flex items-center gap-2 font-medium">
-                      <FaPiggyBank className="text-emerald-600 w-4 h-4" />
-                      Est. Monthly Net Savings (Ghar Bhejne Layak):
-                    </span>
-                    <strong className="text-emerald-700 font-extrabold text-base">
-                      ₹{estimatedNetSavingsMonthlyINR.toLocaleString("en-IN")}
-                    </strong>
-                  </div>
-
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
-                    <span className="text-slate-700 flex items-center gap-2 font-medium">
-                      <FaCoins className="text-amber-600 w-4 h-4" />
-                      1 Year Total Savings Potential:
-                    </span>
-                    <strong className="text-amber-700 font-extrabold text-base">
-                      ₹{(estimatedAnnualSavingsINR / 100000).toFixed(2)} Lakh
-                    </strong>
-                  </div>
-
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600">
-                    <span className="flex items-center gap-1.5 font-medium">
-                      <FaHouseUser className="text-teal-600" />
-                      Room + Transport Provided Free:
-                    </span>
-                    <span className="text-teal-800 font-bold">Saves ₹15,000+/mo</span>
+                    {numericAmount > 0 ? (
+                      <>
+                        {primaryDisplayAmountINR.toLocaleString("en-IN")}
+                        <span className="text-xs sm:text-sm text-slate-500 font-normal ml-1.5">/ month</span>
+                      </>
+                    ) : (
+                      <span className="text-slate-400 font-bold text-2xl sm:text-3xl ml-1">—</span>
+                    )}
                   </div>
                 </div>
 
-                {/* Action CTA Buttons */}
-                <div className="mt-8 space-y-3 pt-6 border-t border-slate-200">
+                {/* Savings 2-Card Grid */}
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="p-2.5 rounded-xl bg-white border border-slate-200">
+                    <span className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                      <FaPiggyBank className="text-emerald-600 w-3 h-3" />
+                      Monthly In-Hand Savings
+                    </span>
+                    <strong className="text-emerald-700 font-extrabold text-sm block mt-0.5">
+                      {numericAmount > 0 ? `₹${estimatedNetSavingsMonthlyINR.toLocaleString("en-IN")}` : "—"}
+                    </strong>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-white border border-slate-200">
+                    <span className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                      <FaCoins className="text-amber-600 w-3 h-3" />
+                      1-Year Savings Potential
+                    </span>
+                    <strong className="text-amber-700 font-extrabold text-sm block mt-0.5">
+                      {numericAmount > 0 ? `₹${(estimatedAnnualSavingsINR / 100000).toFixed(2)} Lakh` : "—"}
+                    </strong>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="space-y-2 pt-2 border-t border-slate-200">
                   <a
                     href="#consultation"
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 px-6 py-3.5 text-center text-sm font-extrabold text-white shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-center text-xs sm:text-sm font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
                   >
-                    <span>Apply for {targetCountryName} Jobs Now</span>
-                    <FaArrowRight className="text-xs" />
+                    <span>Check Eligibility for {targetCountryName} Jobs</span>
+                    <FaArrowRight className="w-3 h-3" />
                   </a>
 
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl border border-emerald-300 bg-emerald-50 px-6 py-3 text-center text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-all"
+                    className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-center text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-all cursor-pointer"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-600" />
-                    <span>WhatsApp Eligibility Check with this Salary</span>
+                    <FaWhatsapp className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>WhatsApp with this Salary</span>
                   </a>
-
-                  <p className="text-center text-[10px] text-slate-400 mt-2">
-                    *Rates updated daily based on RBI &amp; foreign exchange benchmarks. Actual salary confirmed in legal MoHRE/Qiwa/Work Permit contracts.
-                  </p>
                 </div>
               </div>
             </div>
 
-          </div>
-
-          {/* Destination Work Visa Portals: Direct High-Priority Internal Links for Fast Crawl & Indexing */}
-          <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-            <span className="font-bold text-slate-800 shrink-0">
-              Explore Official Destination Guides:
-            </span>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 font-semibold text-emerald-700">
-              <a href="/countries/uae" className="hover:underline">🇦🇪 UAE Guide</a>
-              <span className="text-slate-300">•</span>
-              <a href="/countries/saudi-arabia" className="hover:underline">🇸🇦 Saudi Arabia Guide</a>
-              <span className="text-slate-300">•</span>
-              <a href="/countries/qatar" className="hover:underline">🇶🇦 Qatar Guide</a>
-              <span className="text-slate-300">•</span>
-              <a href="/countries/oman" className="hover:underline">🇴🇲 Oman Guide</a>
-              <span className="text-slate-300">•</span>
-              <a href="/countries/bahrain" className="hover:underline">🇧🇭 Bahrain Guide</a>
-              <span className="text-slate-300">•</span>
-              <a href="/countries/germany" className="hover:underline">🇩🇪 Germany Guide</a>
-              <span className="text-slate-300">•</span>
-              <a
-                href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
-                className="text-teal-800 font-extrabold hover:underline"
-              >
-                🌟 GCC Grand Tours Visa 2026
-              </a>
-            </div>
           </div>
         </div>
       </div>
