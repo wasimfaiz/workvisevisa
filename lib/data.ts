@@ -230,10 +230,10 @@ export const countries: Country[] = [
     flag: "🇷🇺",
     region: "Russia & CIS",
     description:
-      "Direct work permits and multi-entry visas for heavy tractor operators, construction masons, and mining rig helpers.",
-    visaTypes: ["Standard Work Permit", "Multi-Entry Work Visa"],
-    processingTime: "3–6 weeks",
-    popularRoles: ["Mining Rig Helper", "Heavy Tractor Operator", "Construction Mason"],
+      "Direct MVD work invitations, 1–3 year multi-entry visas, and urgent hiring for 6G industrial welders, CNC machinists, heavy crawler operators, and engineers.",
+    visaTypes: ["MVD Work Permit", "HQS 3-Year Visa (ВКС)", "Non-Quota Permit"],
+    processingTime: "4–6 weeks",
+    popularRoles: ["6G TIG/MIG Welder", "CNC Machine Operator", "Heavy Equipment Driver"],
   },
 ];
 
