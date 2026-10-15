@@ -1290,6 +1290,74 @@ export default function GermanyCountryPage() {
             </div>
           </section>
 
+          {/* ── Related European Guides Section ───────────────── */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">Western &amp; Central Europe Career Paths</span>
+                <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
+                  Explore Related European Work Visa Master Guides
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/blogs/luxembourg-work-visa-guide-2026-salaried-worker-adem-salaries-culture-guide"
+                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Grand Duchy of Luxembourg</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Luxembourg Work Visa Master Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Salaried Worker permit, EU Blue Card, €3,180+ qualified minimum wage, 100% free public transit &amp; ADEM shortage lists.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/europe-work-visa-for-indian-workers-poland-croatia-romania-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full inline-block">Central &amp; Eastern Europe</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Poland, Croatia &amp; Romania Work Visa Guide
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Vocational trades, factory assembly, weld testing, VFS National Type-D stamping, and legal EU deployment.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full inline-block">Mandatory Consular Legalization</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Police Clearance (PCC) &amp; MEA Apostille Guide
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Regional Passport Office (RPO) PSK appointment booking, Hague Convention Apostille sticker &amp; sworn translations.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </section>
+
           {/* ── Section 9: CTA & Office Directory ─────────────── */}
           <section className="rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />

@@ -107,7 +107,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     await connectDB();
     const dbBlogs = await Blog.find({ published: { $ne: false } }).lean();
 
-    const blogsToMap = dbBlogs && dbBlogs.length > 0 ? dbBlogs : fallbackPosts;
+    const dbSlugs = new Set((dbBlogs || []).map((b: any) => (b.slug || "").toLowerCase()));
+    const dbIds = new Set((dbBlogs || []).map((b: any) => (b.id || (b._id ? b._id.toString() : "")).toLowerCase()));
+    const missingFromDb = fallbackPosts.filter(
+      (fb) => !dbSlugs.has((fb.slug || "").toLowerCase()) && !dbIds.has((fb.id || "").toLowerCase())
+    );
+
+    const blogsToMap = [...(dbBlogs || []), ...missingFromDb];
 
     const seenUrls = new Set<string>();
 

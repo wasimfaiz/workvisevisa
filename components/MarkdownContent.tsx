@@ -241,6 +241,29 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
       continue;
     }
 
+    // 3b. Code Blocks (``` or ~~~)
+    if (line.startsWith("```") || line.startsWith("~~~")) {
+      const fence = line.substring(0, 3);
+      i++;
+      const codeLines: string[] = [];
+      while (i < lines.length && !lines[i].trim().startsWith(fence)) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      if (i < lines.length) i++; // consume closing fence
+      elements.push(
+        <div
+          key={`codeblock-${elementKey++}`}
+          className="my-5 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 text-slate-100 shadow-xs"
+        >
+          <pre className="p-4 sm:p-5 overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed">
+            <code>{codeLines.join("\n")}</code>
+          </pre>
+        </div>
+      );
+      continue;
+    }
+
     // 4. Tables (lines containing '|')
     if (line.startsWith("|") && line.endsWith("|")) {
       const tableLines: string[] = [];

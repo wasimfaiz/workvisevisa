@@ -221,6 +221,13 @@ export default function Footer() {
             >
               🌟 GCC Grand Tours Unified Visa 2026 Manual
             </a>
+            <span className="text-slate-300">•</span>
+            <a
+              href="/blogs/luxembourg-work-visa-guide-2026-salaried-worker-adem-salaries-culture-guide"
+              className="text-emerald-700 font-bold hover:underline"
+            >
+              🇱🇺 Luxembourg Work Visa 2026 Guide
+            </a>
           </div>
         </div>
 

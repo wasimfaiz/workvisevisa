@@ -34,7 +34,9 @@ async function getBlog(slug: string) {
     (p) =>
       (p.slug && p.slug.toLowerCase() === decodedSlug) ||
       p.id.toLowerCase() === decodedSlug ||
-      p.id === `blog-${decodedSlug}` ||
+      (decodedSlug.includes("luxembourg") && p.id === "blog-21") ||
+      (decodedSlug.includes("salaried-worker") && p.id === "blog-21") ||
+      (decodedSlug.includes("oman-bahrain") && p.id === "blog-20") ||
       (decodedSlug.includes("police-clearance") && p.id === "blog-15") ||
       (decodedSlug.includes("pcc") && p.id === "blog-15") ||
       (decodedSlug.includes("takamol") && p.id === "blog-14") ||

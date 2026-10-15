@@ -112,6 +112,18 @@ export async function ensureSeedData() {
         pattern: /Global Work Visa.*PR Policy Overhaul|LMIA Caps.*Australia NOM Cuts|global-work-visa-pr-rules/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-18"),
       },
+      {
+        pattern: /Europe Work Visa.*Indian Workers|Poland.*Croatia.*Romania|europe-work-visa/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-19"),
+      },
+      {
+        pattern: /Oman.*Bahrain|LMRA.*MOL|Duqm.*Bapco/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-20"),
+      },
+      {
+        pattern: /Luxembourg Work Visa|Salaried Worker.*Luxembourg|ADEM.*Luxembourg/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-21"),
+      },
     ];
 
     for (const item of seedMatchers) {
