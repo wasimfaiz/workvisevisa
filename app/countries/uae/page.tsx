@@ -61,6 +61,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${BASE_URL}/countries/uae`,
   },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "UAE Work Visa & Dubai Jobs Guide 2026 | WorkWise Visa",
     description:
@@ -71,7 +83,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: `${BASE_URL}/images/dubai_hero.jpg`,
+        url: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
         alt: "UAE Dubai Work Visa & Recruitment Guide 2026",
@@ -83,7 +95,7 @@ export const metadata: Metadata = {
     title: "UAE Work Visa & Dubai Jobs Guide 2026 | WorkWise Visa",
     description:
       "Complete 2026 UAE work visa guide. Explore Dubai MOHRE work permits, tax-free salary scales across 25+ trades, DHA medical tests & genuine Gulf job vacancies.",
-    images: [`${BASE_URL}/images/dubai_hero.jpg`],
+    images: ["https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80"],
   },
 };
 
@@ -1272,7 +1284,25 @@ export default function UAECountryPage() {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Link
+                href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
+                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Regional Landmark Visa</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    GCC Unified Tourist Visa (Grand Tours) 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Single-visa mobility across UAE, Saudi, Qatar, Oman, Kuwait &amp; Bahrain. Eligibility, launch timeline &amp; job interview impact.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
               <Link
                 href="/blogs/complete-guide-uae-saudi-arabia-blue-collar-work-permits-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
@@ -1280,7 +1310,7 @@ export default function UAECountryPage() {
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase text-emerald-600">Work Permit Manual</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Complete UAE & Saudi Blue-Collar Work Permits 2026
+                    Complete UAE &amp; Saudi Blue-Collar Work Permits 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
                     MOHRE vs Qiwa contrast, quota allocation, e-visa issuance, mandatory health insurance, and WPS compliance.
@@ -1296,9 +1326,9 @@ export default function UAECountryPage() {
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-teal-600">Logistics & Transport</span>
+                  <span className="text-[10px] font-bold uppercase text-teal-600">Logistics &amp; Transport</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Dubai Delivery Rider Jobs & RTA Motorcycle License
+                    Dubai Delivery Rider Jobs &amp; RTA Motorcycle License
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
                     Onboarding for Talabat, Noon, Careem, RTA driving school lessons, and commission pay structures.
@@ -1314,9 +1344,9 @@ export default function UAECountryPage() {
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-amber-600">Hospitality & Dining</span>
+                  <span className="text-[10px] font-bold uppercase text-amber-600">Hospitality &amp; Dining</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Dubai Hotel & Hospitality Staff Recruitment 2026
+                    Dubai Hotel &amp; Hospitality Staff Recruitment 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
                     5-star hotel recruitment, waiters, commis chefs, housekeeping, salary scales, tips, and MOHRE contracts.

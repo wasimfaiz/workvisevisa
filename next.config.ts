@@ -10,6 +10,19 @@ const nextConfig: NextConfig = {
   experimental: {
     cpus: 1,
   },
+  async headers() {
+    return [
+      {
+        source: "/:path(llms\\.txt|llms-full\\.txt)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

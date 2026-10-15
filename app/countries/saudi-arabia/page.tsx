@@ -58,6 +58,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${BASE_URL}/countries/saudi-arabia`,
   },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Saudi Arabia Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
@@ -68,7 +80,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: `${BASE_URL}/images/saudi_hero.jpg`,
+        url: "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
         alt: "Saudi Arabia Work Visa & Vision 2030 Recruitment Guide 2026",
@@ -80,7 +92,7 @@ export const metadata: Metadata = {
     title: "Saudi Arabia Work Visa & Jobs Guide 2026 | WorkWise Visa",
     description:
       "Complete 2026 Saudi Arabia work visa guide. Explore NEOM jobs, Qiwa digital contracts, Takamol SVP trade tests, tax-free salaries & verified Gulf recruitment.",
-    images: [`${BASE_URL}/images/saudi_hero.jpg`],
+    images: ["https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?auto=format&fit=crop&w=1200&q=80"],
   },
 };
 
@@ -1245,7 +1257,25 @@ export default function SaudiArabiaCountryPage() {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Link
+                href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
+                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Regional Landmark Visa</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    GCC Unified Tourist Visa (Grand Tours) 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Single-visa mobility across Saudi Arabia, UAE, Qatar, Oman, Bahrain &amp; Kuwait. Application guidelines &amp; cross-border interview norms.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
               <Link
                 href="/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
