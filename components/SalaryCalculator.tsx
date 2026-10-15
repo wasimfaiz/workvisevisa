@@ -1,301 +1,685 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useState, useId } from "react";
 import {
-  FaCalculator,
+  FaCoins,
   FaArrowRight,
-  FaCircleCheck,
-  FaGlobe,
-  FaClock,
-  FaGraduationCap,
-  FaBriefcase,
+  FaWhatsapp,
+  FaCheck,
+  FaHouseUser,
+  FaShieldHalved,
+  FaArrowTrendUp,
+  FaPiggyBank,
+  FaRotate,
+  FaArrowRightArrowLeft,
+  FaChartLine,
 } from "react-icons/fa6";
-import CountryFlag from "@/components/CountryFlag";
 
-interface CalculationResult {
-  salaryRange: string;
-  currency: string;
-  visaRoute: string;
-  processingTime: string;
-  matchScore: number;
-  perks: string[];
+interface CurrencyItem {
+  code: string;
+  displayName: string;
+  country: string;
+  flag: string;
+  symbol: string;
+  rateToINR: number;
+  defaultAmount: number;
+  minAmount: number;
+  maxAmount: number;
+  step: number;
+  monthlyFoodEstimateINR: number;
+  averageIndiaSalaryINR: number;
+  popularTrades: Array<{
+    title: string;
+    amount: number;
+  }>;
+  visaHighlights: string[];
 }
 
-const roles = [
-  "Software Engineering / IT",
-  "Healthcare & Nursing",
-  "Civil & Mechanical Eng.",
-  "Finance & Accounting",
-  "Project Management",
-  "Hospitality & Tourism",
-];
-
-const destinations = [
-  { id: "UAE", code: "AE", name: "Dubai & UAE", flag: "🇦🇪", region: "Gulf" },
-  { id: "DE", code: "DE", name: "Germany (EU)", flag: "🇩🇪", region: "Schengen" },
-  { id: "CAN", code: "CA", name: "Canada", flag: "🇨🇦", region: "North America" },
-  { id: "UK", code: "GB", name: "United Kingdom", flag: "🇬🇧", region: "UK" },
-  { id: "SA", code: "SA", name: "Saudi Arabia", flag: "🇸🇦", region: "Gulf" },
-  { id: "US", code: "US", name: "United States", flag: "🇺🇸", region: "North America" },
-];
-
-const experienceLevels = [
-  { label: "1–3 Years", multiplier: 1 },
-  { label: "3–7 Years", multiplier: 1.45 },
-  { label: "7+ Years", multiplier: 1.9 },
-];
-
-/* Pre-calibrated realistic salary & visa matrix data */
-const matrixData: Record<string, Record<string, Partial<CalculationResult>>> = {
-  "Software Engineering / IT": {
-    UAE: { salaryRange: "18,000 – 32,000", currency: "AED / month", visaRoute: "UAE Green / Golden Visa", processingTime: "2–3 weeks", perks: ["100% Tax-Free Income", "Golden Residency (10 Yrs)", "Family Sponsoring"] },
-    DE: { salaryRange: "4,800 – 7,200", currency: "EUR / month", visaRoute: "EU Blue Card", processingTime: "4–6 weeks", perks: ["PR in 21 Months", "EU Wide Mobility", "High Quality Healthcare"] },
-    CAN: { salaryRange: "6,500 – 9,800", currency: "CAD / month", visaRoute: "Express Entry / GTS", processingTime: "8–12 weeks", perks: ["Direct PR Pathway", "Free Public Healthcare", "Spouse Work Permit"] },
-    UK: { salaryRange: "4,200 – 6,500", currency: "GBP / month", visaRoute: "Skilled Worker Visa", processingTime: "3–4 weeks", perks: ["NHS Health Access", "5-Year Settlement Path", "Global Tech Hub"] },
-    SA: { salaryRange: "16,000 – 28,000", currency: "SAR / month", visaRoute: "Work Visa / Premium PR", processingTime: "3–5 weeks", perks: ["Tax-Free Salary Package", "Housing Allowance", "Annual Flight Tickets"] },
-    US: { salaryRange: "7,500 – 12,500", currency: "USD / month", visaRoute: "H-1B / O-1 Specialty Visa", processingTime: "2–4 months", perks: ["Highest Global Pay", "Stock Options (RSUs)", "Green Card Eligible"] },
+const CURRENCIES: CurrencyItem[] = [
+  {
+    code: "AED",
+    displayName: "United Arab Emirates Dirham",
+    country: "United Arab Emirates",
+    flag: "🇦🇪",
+    symbol: "AED",
+    rateToINR: 22.9,
+    defaultAmount: 2800,
+    minAmount: 1200,
+    maxAmount: 12000,
+    step: 100,
+    monthlyFoodEstimateINR: 7000,
+    averageIndiaSalaryINR: 16000,
+    popularTrades: [
+      { title: "Hotel Staff", amount: 1800 },
+      { title: "Electrician", amount: 2500 },
+      { title: "Taxi Driver", amount: 3600 },
+      { title: "Trailer Driver", amount: 4500 },
+    ],
+    visaHighlights: [
+      "Free Company Accommodation Included",
+      "Overtime Wages Under MOHRE Law",
+      "Comprehensive Health Insurance Card",
+    ],
   },
-  "Healthcare & Nursing": {
-    UAE: { salaryRange: "14,000 – 24,000", currency: "AED / month", visaRoute: "DHA Medical Work Visa", processingTime: "3–4 weeks", perks: ["Tax-Free Salary", "DHA Credentialing Support", "Hospital Housing"] },
-    DE: { salaryRange: "3,600 – 5,400", currency: "EUR / month", visaRoute: "Fast-Track Healthcare Visa", processingTime: "6–8 weeks", perks: ["Accelerated B2 German Path", "Permanent Contract", "State Pension"] },
-    CAN: { salaryRange: "5,500 – 8,200", currency: "CAD / month", visaRoute: "Healthcare Express Entry", processingTime: "6–10 weeks", perks: ["Priority PR Draw", "Provincial Nomination", "Full Family Benefits"] },
-    UK: { salaryRange: "3,200 – 4,800", currency: "GBP / month", visaRoute: "Health & Care Worker Visa", processingTime: "2–3 weeks", perks: ["Reduced Visa Fees", "Exempt from Health Surcharge", "Fast Approval"] },
-    SA: { salaryRange: "12,000 – 22,000", currency: "SAR / month", visaRoute: "MOH Work Permit", processingTime: "3–5 weeks", perks: ["Tax-Free Package", "Free Accommodation", "Family Visa"] },
-    US: { salaryRange: "6,200 – 9,500", currency: "USD / month", visaRoute: "EB-3 Nurse Green Card", processingTime: "3–6 months", perks: ["Direct Permanent Residency", "High Demand Bonus", "Relocation Stipend"] },
+  {
+    code: "SAR",
+    displayName: "Saudi Riyal",
+    country: "Saudi Arabia",
+    flag: "🇸🇦",
+    symbol: "SAR",
+    rateToINR: 22.5,
+    defaultAmount: 2600,
+    minAmount: 1200,
+    maxAmount: 12000,
+    step: 100,
+    monthlyFoodEstimateINR: 6500,
+    averageIndiaSalaryINR: 15000,
+    popularTrades: [
+      { title: "Mason", amount: 1800 },
+      { title: "Heavy Driver", amount: 2800 },
+      { title: "6G Welder", amount: 3400 },
+      { title: "Supervisor", amount: 4800 },
+    ],
+    visaHighlights: [
+      "Direct Qiwa Digital Contract",
+      "Free Furnished Bachelor Camp",
+      "CCHI Health Cover & Travel Pass",
+    ],
   },
-};
-
-/* Default fallback calculation builder */
-function calculateResult(role: string, dest: string, expIdx: number): CalculationResult {
-  const roleData = matrixData[role]?.[dest] || {
-    salaryRange: "4,500 – 7,500",
-    currency: "USD / month",
-    visaRoute: "Skilled Work Permit",
-    processingTime: "4–6 weeks",
-    perks: ["Tax-Free / Competitive Salary", "Employer Sponsorship", "Family Visa Eligible"],
-  };
-
-  const baseScore = 88 + (expIdx * 4);
-  return {
-    salaryRange: roleData.salaryRange || "5,000 – 8,000",
-    currency: roleData.currency || "USD / month",
-    visaRoute: roleData.visaRoute || "Skilled Work Visa",
-    processingTime: roleData.processingTime || "4–6 weeks",
-    matchScore: Math.min(baseScore, 98),
-    perks: roleData.perks || ["Competitive Pay", "Employer Visa Sponsorship", "Residency Pathway"],
-  };
-}
+  {
+    code: "QAR",
+    displayName: "Qatari Riyal",
+    country: "Qatar",
+    flag: "🇶🇦",
+    symbol: "QAR",
+    rateToINR: 23.1,
+    defaultAmount: 2500,
+    minAmount: 1200,
+    maxAmount: 12000,
+    step: 100,
+    monthlyFoodEstimateINR: 6500,
+    averageIndiaSalaryINR: 16000,
+    popularTrades: [
+      { title: "General Worker", amount: 1500 },
+      { title: "Pipe Fitter", amount: 2300 },
+      { title: "Crane Operator", amount: 3200 },
+      { title: "Safety Officer", amount: 4200 },
+    ],
+    visaHighlights: [
+      "QVC Biometric Verification Cleared",
+      "Fixed 300 QAR Food Allowance",
+      "Free AC Housing & Utilities",
+    ],
+  },
+  {
+    code: "OMR",
+    displayName: "Omani Rial",
+    country: "Oman",
+    flag: "🇴🇲",
+    symbol: "OMR",
+    rateToINR: 218.5,
+    defaultAmount: 260,
+    minAmount: 120,
+    maxAmount: 1200,
+    step: 10,
+    monthlyFoodEstimateINR: 6500,
+    averageIndiaSalaryINR: 15000,
+    popularTrades: [
+      { title: "Maintenance", amount: 180 },
+      { title: "Electrician", amount: 250 },
+      { title: "Heavy Driver", amount: 340 },
+      { title: "Foreman", amount: 450 },
+    ],
+    visaHighlights: [
+      "High Value Currency (1 OMR ≈ ₹218)",
+      "Free Return Flight Tickets",
+      "Company Medical & Living Facilities",
+    ],
+  },
+  {
+    code: "KWD",
+    displayName: "Kuwaiti Dinar",
+    country: "Kuwait",
+    flag: "🇰🇼",
+    symbol: "KWD",
+    rateToINR: 274.5,
+    defaultAmount: 220,
+    minAmount: 100,
+    maxAmount: 1000,
+    step: 10,
+    monthlyFoodEstimateINR: 7000,
+    averageIndiaSalaryINR: 15000,
+    popularTrades: [
+      { title: "Construction", amount: 160 },
+      { title: "Electrician", amount: 230 },
+      { title: "Trailer Driver", amount: 300 },
+      { title: "Foreman", amount: 420 },
+    ],
+    visaHighlights: [
+      "World's Highest Currency Value (1 KWD ≈ ₹274)",
+      "Direct Kuwait PAM Verified Work Visa",
+      "Free Bachelor Camp & Medical Support",
+    ],
+  },
+  {
+    code: "BHD",
+    displayName: "Bahraini Dinar",
+    country: "Bahrain",
+    flag: "🇧🇭",
+    symbol: "BHD",
+    rateToINR: 223.0,
+    defaultAmount: 250,
+    minAmount: 120,
+    maxAmount: 1000,
+    step: 10,
+    monthlyFoodEstimateINR: 6500,
+    averageIndiaSalaryINR: 15000,
+    popularTrades: [
+      { title: "Fabricator", amount: 220 },
+      { title: "Heavy Driver", amount: 300 },
+      { title: "Storekeeper", amount: 360 },
+      { title: "Supervisor", amount: 450 },
+    ],
+    visaHighlights: [
+      "LMRA Registered Work Permit",
+      "Free Bachelor Accommodation",
+      "Comprehensive State Healthcare",
+    ],
+  },
+  {
+    code: "EUR",
+    displayName: "Euro",
+    country: "Europe",
+    flag: "🇪🇺",
+    symbol: "€",
+    rateToINR: 91.2,
+    defaultAmount: 1250,
+    minAmount: 800,
+    maxAmount: 4000,
+    step: 50,
+    monthlyFoodEstimateINR: 12000,
+    averageIndiaSalaryINR: 20000,
+    popularTrades: [
+      { title: "Warehouse", amount: 1050 },
+      { title: "Forklift Driver", amount: 1250 },
+      { title: "Welder", amount: 1500 },
+      { title: "CNC Programmer", amount: 1850 },
+    ],
+    visaHighlights: [
+      "Schengen Zone 29-Nation Mobility",
+      "NFZ Free European Public Healthcare",
+      "Overtime @ 1.5x Hourly Rate",
+    ],
+  },
+  {
+    code: "PLN",
+    displayName: "Polish Zloty",
+    country: "Poland",
+    flag: "🇵🇱",
+    symbol: "zł",
+    rateToINR: 21.4,
+    defaultAmount: 5200,
+    minAmount: 3500,
+    maxAmount: 16000,
+    step: 100,
+    monthlyFoodEstimateINR: 11000,
+    averageIndiaSalaryINR: 20000,
+    popularTrades: [
+      { title: "Production Line", amount: 4200 },
+      { title: "Warehouse Picker", amount: 5000 },
+      { title: "Welder", amount: 6500 },
+      { title: "Machine Operator", amount: 7800 },
+    ],
+    visaHighlights: [
+      "Voivodeship Type A Government Work Permit",
+      "Free or Subsidized Living Accommodation",
+      "Legal Polish Work & Residence Permit",
+    ],
+  },
+  {
+    code: "GBP",
+    displayName: "British Pound",
+    country: "United Kingdom",
+    flag: "🇬🇧",
+    symbol: "£",
+    rateToINR: 109.5,
+    defaultAmount: 2000,
+    minAmount: 1200,
+    maxAmount: 6000,
+    step: 50,
+    monthlyFoodEstimateINR: 20000,
+    averageIndiaSalaryINR: 30000,
+    popularTrades: [
+      { title: "Caregiver", amount: 1900 },
+      { title: "Hospitality", amount: 2100 },
+      { title: "HGV Driver", amount: 2800 },
+      { title: "Technician", amount: 3200 },
+    ],
+    visaHighlights: [
+      "UK Skilled Worker Visa Route",
+      "NHS Comprehensive Health Cover",
+      "Strong British Pound Remittance",
+    ],
+  },
+  {
+    code: "USD",
+    displayName: "United States Dollar",
+    country: "United States",
+    flag: "🇺🇸",
+    symbol: "$",
+    rateToINR: 84.1,
+    defaultAmount: 1800,
+    minAmount: 1000,
+    maxAmount: 8000,
+    step: 50,
+    monthlyFoodEstimateINR: 15000,
+    averageIndiaSalaryINR: 25000,
+    popularTrades: [
+      { title: "Logistics", amount: 1600 },
+      { title: "Fabrication Welder", amount: 2200 },
+      { title: "Technician", amount: 2800 },
+      { title: "Supervisor", amount: 3600 },
+    ],
+    visaHighlights: [
+      "Global Benchmark Currency",
+      "International Employment Protection",
+      "Direct USD Bank Transfers",
+    ],
+  },
+  {
+    code: "INR",
+    displayName: "Indian Rupee",
+    country: "India",
+    flag: "🇮🇳",
+    symbol: "₹",
+    rateToINR: 1.0,
+    defaultAmount: 60000,
+    minAmount: 15000,
+    maxAmount: 300000,
+    step: 1000,
+    monthlyFoodEstimateINR: 5000,
+    averageIndiaSalaryINR: 16000,
+    popularTrades: [
+      { title: "India Average", amount: 18000 },
+      { title: "India Skilled", amount: 30000 },
+      { title: "Gulf Equivalent", amount: 65000 },
+      { title: "Europe Equivalent", amount: 120000 },
+    ],
+    visaHighlights: [
+      "Domestic Currency Benchmark",
+      "Zero Currency Conversion Loss",
+      "Local Savings Standard",
+    ],
+  },
+];
 
 export default function SalaryCalculator() {
-  const [selectedRole, setSelectedRole] = useState(roles[0]);
-  const [selectedDest, setSelectedDest] = useState(destinations[0].id);
-  const [selectedExp, setSelectedExp] = useState(1); // 3-7 yrs
+  const [fromCode, setFromCode] = useState<string>("AED");
+  const [toCode, setToCode] = useState<string>("INR");
+  const [fromAmount, setFromAmount] = useState<number>(2800);
+  const sliderId = useId();
 
-  const activeDestObj = destinations.find((d) => d.id === selectedDest) || destinations[0];
-  const result = calculateResult(selectedRole, selectedDest, selectedExp);
+  const fromCurr = CURRENCIES.find((c) => c.code === fromCode) || CURRENCIES[0];
+  const toCurr = CURRENCIES.find((c) => c.code === toCode) || CURRENCIES[CURRENCIES.length - 1];
 
-  const scrollToForm = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.querySelector("#consultation")?.scrollIntoView({ behavior: "smooth" });
+  // Live conversion formula: From -> INR -> To
+  const valueInINR = fromAmount * fromCurr.rateToINR;
+  const convertedToAmount = valueInINR / toCurr.rateToINR;
+  const directExchangeRate = fromCurr.rateToINR / toCurr.rateToINR;
+
+  // Swap currencies
+  const handleSwap = () => {
+    const prevFrom = fromCode;
+    const prevTo = toCode;
+    setFromCode(prevTo);
+    setToCode(prevFrom);
+    setFromAmount(Math.round(convertedToAmount));
   };
 
+  const handleFromChange = (newCode: string) => {
+    setFromCode(newCode);
+    const found = CURRENCIES.find((c) => c.code === newCode);
+    if (found) {
+      setFromAmount(found.defaultAmount);
+    }
+  };
+
+  // Remittance & Savings calculations
+  const isToINR = toCode === "INR";
+  const primaryDisplayAmountINR = isToINR ? Math.round(convertedToAmount) : Math.round(valueInINR);
+  const monthlyFoodCost = fromCurr.monthlyFoodEstimateINR || 7000;
+  const estimatedNetSavingsMonthlyINR = Math.max(0, primaryDisplayAmountINR - monthlyFoodCost);
+  const estimatedAnnualSavingsINR = estimatedNetSavingsMonthlyINR * 12;
+  const multiplier = (primaryDisplayAmountINR / (fromCurr.averageIndiaSalaryINR || 16000)).toFixed(1);
+
+  // WhatsApp Link
+  const targetCountryName = fromCurr.code === "INR" ? toCurr.country : fromCurr.country;
+  const whatsappMessage = encodeURIComponent(
+    `Hi WorkWise Visa! I used your Overseas Currency & Salary Calculator for ${targetCountryName}. My expected salary is ${fromCurr.symbol} ${fromAmount.toLocaleString()} (${toCurr.symbol} ${Math.round(convertedToAmount).toLocaleString()}). Please check my eligibility for active vacancies!`
+  );
+  const whatsappUrl = `https://wa.me/918130161603?text=${whatsappMessage}`;
+
   return (
-    <section id="calculator" className="relative py-24 md:py-32 bg-slate-50 overflow-hidden">
-      <div className="absolute inset-0 section-alt pointer-events-none" />
+    <section id="salary-calculator" className="relative overflow-hidden bg-slate-50 py-16 sm:py-24 border-y border-slate-200/80">
+      {/* Background glow effects */}
+      <div className="absolute top-0 left-1/4 -z-10 h-96 w-96 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 -z-10 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-sm">
-            <FaCalculator className="w-3.5 h-3.5 text-emerald-600" /> Interactive Assessment Hub
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Header with High-Rank SEO Keywords and Zero Artificial Line Breaks */}
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/80 text-emerald-800 text-xs sm:text-sm font-semibold mb-3 shadow-xs">
+            <FaArrowRightArrowLeft className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Live Foreign Exchange &amp; Remittance Tool</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-            Calculate Your Overseas Salary & Visa Match
+
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900 leading-tight">
+            Overseas Currency &amp; Savings Calculator: Gulf &amp; Abroad Salary in INR
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-slate-600 text-lg font-medium">
-            Select your profession, target destination, and experience level to get instant real-time eligibility feedback.
+
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
+            Convert Gulf and European work visa salaries into Indian Rupees (INR) with real-time exchange rates, monthly expense deductions, and savings potential.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Main Interactive Grid Container */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column: Interactive Inputs (7 cols) */}
-          <motion.div
-            className="lg:col-span-7 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xl flex flex-col justify-between"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div>
-              {/* Step 1: Select Industry/Role */}
-              <div className="mb-8">
-                <label className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-3">
-                  <FaBriefcase className="w-4 h-4 text-emerald-600" /> 1. Select Your Profession
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                  {roles.map((r) => (
-                    <button
-                      key={r}
-                      onClick={() => setSelectedRole(r)}
-                      className={`p-3 rounded-xl text-xs font-bold text-left transition-all cursor-pointer ${
-                        selectedRole === r
-                          ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
-                          : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80"
-                      }`}
-                    >
-                      {r}
-                    </button>
-                  ))}
+        {/* Main Converter Card */}
+        <div className="mt-10 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-xl shadow-slate-200/50">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
+            
+            {/* ========================================================= */}
+            {/* LEFT COLUMN: CLEAN CONVERTER (FROM -> SWAP -> TO)         */}
+            {/* ========================================================= */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Google Converter Box */}
+              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 sm:p-6 shadow-xs space-y-4">
+                
+                {/* 1. FROM ROW */}
+                <div>
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1.5">
+                    <span>From:</span>
+                    <span className="text-emerald-700 font-bold">{fromCurr.country}</span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                    {/* Amount Input */}
+                    <div className="relative flex-1">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-emerald-700">
+                        {fromCurr.symbol}
+                      </span>
+                      <input
+                        type="number"
+                        min={fromCurr.minAmount}
+                        max={fromCurr.maxAmount * 2}
+                        step={fromCurr.step}
+                        value={fromAmount}
+                        onChange={(e) => {
+                          const val = Number(e.target.value);
+                          if (!isNaN(val)) setFromAmount(val);
+                        }}
+                        className="w-full rounded-xl border border-slate-300 bg-white py-3.5 pl-12 pr-4 text-xl font-extrabold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                      />
+                    </div>
+
+                    {/* From Currency Selector Dropdown - Clean Full Currency Names */}
+                    <div className="sm:w-72 relative">
+                      <select
+                        value={fromCode}
+                        onChange={(e) => handleFromChange(e.target.value)}
+                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-3.5 pl-4 pr-10 text-sm font-bold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+                      >
+                        {CURRENCIES.map((c) => (
+                          <option key={c.code} value={c.code} className="bg-white text-slate-900 py-1">
+                            {c.displayName}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">
+                        <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SWAP BUTTON & LIVE RATE DIVIDER */}
+                <div className="flex items-center justify-between py-1">
+                  <div className="h-px flex-1 bg-slate-200" />
+                  <button
+                    onClick={handleSwap}
+                    title="Swap Currencies"
+                    className="mx-3 inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 transition-all hover:scale-105 active:scale-95 shadow-xs"
+                  >
+                    <FaArrowRightArrowLeft className="w-3 h-3 text-emerald-600" />
+                    <span>Swap</span>
+                  </button>
+                  <div className="h-px flex-1 bg-slate-200" />
+                </div>
+
+                {/* 2. TO ROW */}
+                <div>
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1.5">
+                    <span>To:</span>
+                    <span className="text-teal-700 font-bold">{toCurr.country}</span>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                    {/* Converted Output Display */}
+                    <div className="relative flex-1 rounded-xl border border-emerald-300/80 bg-emerald-50/70 py-3.5 pl-12 pr-4 shadow-xs flex items-center">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-emerald-700">
+                        {toCurr.symbol}
+                      </span>
+                      <div className="text-xl font-black text-slate-900">
+                        {convertedToAmount.toLocaleString(undefined, {
+                          maximumFractionDigits: directExchangeRate < 1 ? 4 : 2,
+                        })}
+                      </div>
+                    </div>
+
+                    {/* To Currency Selector Dropdown - Clean Full Currency Names */}
+                    <div className="sm:w-72 relative">
+                      <select
+                        value={toCode}
+                        onChange={(e) => setToCode(e.target.value)}
+                        className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-3.5 pl-4 pr-10 text-sm font-bold text-slate-900 shadow-xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+                      >
+                        {CURRENCIES.map((c) => (
+                          <option key={c.code} value={c.code} className="bg-white text-slate-900 py-1">
+                            {c.displayName}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500">
+                        <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Live Exchange Rate & Formula Note */}
+                <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2 text-slate-600">
+                    <FaChartLine className="text-emerald-600 w-3.5 h-3.5" />
+                    <span>
+                      1 {fromCurr.displayName} ={" "}
+                      <strong className="text-emerald-700 font-extrabold">
+                        {directExchangeRate.toFixed(directExchangeRate < 1 ? 4 : 2)} {toCurr.displayName}
+                      </strong>
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-slate-500">
+                    Live Interbank Mid-Market Exchange Rate
+                  </span>
                 </div>
               </div>
 
-              {/* Step 2: Target Destination */}
-              <div className="mb-8">
-                <label className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-3">
-                  <FaGlobe className="w-4 h-4 text-emerald-600" /> 2. Target Destination
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                  {destinations.map((d) => (
+              {/* Slider for Smooth Mobile Adjustment */}
+              {fromCurr.code !== "INR" && (
+                <div>
+                  <div className="flex justify-between items-center text-xs font-semibold text-slate-600 mb-2">
+                    <label htmlFor={sliderId}>Adjust Monthly Salary Range:</label>
                     <button
-                      key={d.id}
-                      onClick={() => setSelectedDest(d.id)}
-                      className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                        selectedDest === d.id
-                          ? "bg-slate-900 text-white shadow-md"
-                          : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80"
-                      }`}
+                      onClick={() => setFromAmount(fromCurr.defaultAmount)}
+                      className="text-emerald-700 font-bold hover:underline flex items-center gap-1 cursor-pointer"
                     >
-                      <CountryFlag code={d.code} size="xs" countryName={d.name} />
-                      <span className="truncate">{d.name}</span>
+                      <FaRotate className="w-2.5 h-2.5" /> Reset Default
                     </button>
-                  ))}
+                  </div>
+                  <input
+                    id={sliderId}
+                    type="range"
+                    min={fromCurr.minAmount}
+                    max={fromCurr.maxAmount}
+                    step={fromCurr.step}
+                    value={fromAmount}
+                    onChange={(e) => setFromAmount(Number(e.target.value))}
+                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  />
+                  <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-semibold">
+                    <span>{fromCurr.symbol} {fromCurr.minAmount.toLocaleString()}</span>
+                    <span>{fromCurr.symbol} {fromCurr.maxAmount.toLocaleString()}</span>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Step 3: Experience Level */}
-              <div>
-                <label className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-3">
-                  <FaGraduationCap className="w-4 h-4 text-emerald-600" /> 3. Total Work Experience
-                </label>
-                <div className="grid grid-cols-3 gap-3">
-                  {experienceLevels.map((exp, idx) => (
-                    <button
-                      key={exp.label}
-                      onClick={() => setSelectedExp(idx)}
-                      className={`p-3 rounded-xl text-xs font-bold text-center transition-all cursor-pointer ${
-                        selectedExp === idx
-                          ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md"
-                          : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80"
-                      }`}
-                    >
-                      {exp.label}
-                    </button>
-                  ))}
+              {/* 1-Click Popular Job Presets */}
+              {fromCurr.popularTrades && fromCurr.popularTrades.length > 0 && (
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
+                    Standard Job Benchmarks ({fromCurr.country}):
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {fromCurr.popularTrades.map((trade) => {
+                      const isActive = fromAmount === trade.amount;
+                      return (
+                        <button
+                          key={trade.title}
+                          onClick={() => setFromAmount(trade.amount)}
+                          className={`rounded-xl px-3 py-2 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+                            isActive
+                              ? "bg-emerald-100 text-emerald-900 border border-emerald-400 font-bold shadow-xs"
+                              : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span>{trade.title}:</span>
+                          <strong className={isActive ? "text-emerald-900" : "text-slate-900"}>
+                            {fromCurr.symbol} {trade.amount.toLocaleString()}
+                          </strong>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Employer Statutory Inclusions */}
+              {fromCurr.visaHighlights && fromCurr.visaHighlights.length > 0 && (
+                <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-4">
+                  <span className="text-xs font-bold text-slate-800 block mb-2 flex items-center gap-1.5">
+                    <FaShieldHalved className="text-emerald-600 w-3.5 h-3.5" />
+                    Statutory Contract Inclusions Guaranteed by Employer:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
+                    {fromCurr.visaHighlights.map((hl) => (
+                      <div key={hl} className="flex items-start gap-2">
+                        <FaCheck className="text-emerald-600 mt-0.5 shrink-0 w-3 h-3" />
+                        <span>{hl}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Live Indicator Footnote */}
-            <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
-              <span>⚡ Live Market Estimates Updated Monthly</span>
-              <span className="text-emerald-700 font-bold">100% Pre-Verified Data</span>
-            </div>
-          </motion.div>
+            {/* ========================================================= */}
+            {/* RIGHT COLUMN: FULLY OPTIMIZED HIGH-IMPACT RESULTS BOX     */}
+            {/* ========================================================= */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-3xl border border-emerald-200 bg-gradient-to-b from-white via-emerald-50/30 to-teal-50/20 p-6 sm:p-8 shadow-xl shadow-emerald-500/5">
+                
+                {/* Income Jump Multiplier Badge */}
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100/80 border border-emerald-300/80 px-3 py-1 text-xs font-bold text-emerald-900 mb-5">
+                  <FaArrowTrendUp className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>~{multiplier}x More Than India Average</span>
+                </div>
 
-          {/* Right Column: Calculated Results Display Card (5 cols) */}
-          <motion.div
-            className="lg:col-span-5 rounded-3xl border border-emerald-400/30 bg-gradient-to-br from-emerald-800 via-teal-800 to-slate-900 p-6 sm:p-8 text-white shadow-2xl flex flex-col justify-between relative overflow-hidden"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Ambient Lighting */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10">
-              {/* Card Header with Match Gauge */}
-              <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                    Calculated Result
+                {/* Primary Metric: Gross Monthly Take-Home */}
+                <div className="mb-6 pb-6 border-b border-slate-200">
+                  <span className="text-xs uppercase tracking-wider text-slate-500 font-bold block mb-1">
+                    Gross Monthly Take-Home in INR
                   </span>
-                  <h3 className="text-xl font-display font-bold text-white mt-0.5 flex items-center gap-2">
-                    <CountryFlag code={activeDestObj.code} size="sm" countryName={activeDestObj.name} />
-                    <span>{activeDestObj.name} Pathway</span>
-                  </h3>
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-slate-900 tracking-tight">
+                    <span className="text-emerald-600">₹</span>
+                    {primaryDisplayAmountINR.toLocaleString("en-IN")}
+                    <span className="text-base text-slate-500 font-normal ml-2">/ month</span>
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Calculated from {fromCurr.symbol} {fromAmount.toLocaleString()} {fromCurr.displayName} at live interbank rate.
+                  </p>
                 </div>
 
-                {/* Score Badge */}
-                <div className="flex flex-col items-center justify-center h-14 w-14 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-400">
-                  <span className="text-lg font-black leading-none">{result.matchScore}%</span>
-                  <span className="text-[9px] uppercase font-bold text-emerald-300">Match</span>
-                </div>
-              </div>
+                {/* Remittance & Savings Breakdown */}
+                <div className="space-y-3.5 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
+                    <span className="text-slate-700 flex items-center gap-2 font-medium">
+                      <FaPiggyBank className="text-emerald-600 w-4 h-4" />
+                      Est. Monthly Net Savings (Ghar Bhejne Layak):
+                    </span>
+                    <strong className="text-emerald-700 font-extrabold text-base">
+                      ₹{estimatedNetSavingsMonthlyINR.toLocaleString("en-IN")}
+                    </strong>
+                  </div>
 
-              {/* Salary Estimate Box */}
-              <div className="py-6">
-                <p className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">
-                  Est. Net Monthly Salary
-                </p>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl sm:text-4xl font-display font-black text-white tracking-tight">
-                    {result.salaryRange}
-                  </span>
-                </div>
-                <span className="text-xs font-bold text-emerald-400">{result.currency}</span>
-              </div>
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
+                    <span className="text-slate-700 flex items-center gap-2 font-medium">
+                      <FaCoins className="text-amber-600 w-4 h-4" />
+                      1 Year Total Savings Potential:
+                    </span>
+                    <strong className="text-amber-700 font-extrabold text-base">
+                      ₹{(estimatedAnnualSavingsINR / 100000).toFixed(2)} Lakh
+                    </strong>
+                  </div>
 
-              {/* Visa Route & Processing Time */}
-              <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-white/10 my-2">
-                <div>
-                  <p className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Fastest Visa Route</p>
-                  <p className="text-sm font-bold text-white mt-1">{result.visaRoute}</p>
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <FaHouseUser className="text-teal-600" />
+                      Room + Transport Provided Free:
+                    </span>
+                    <span className="text-teal-800 font-bold">Saves ₹15,000+/mo</span>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Est. Timeline</p>
-                  <p className="text-sm font-bold text-emerald-400 mt-1 flex items-center gap-1.5">
-                    <FaClock className="w-3.5 h-3.5" /> {result.processingTime}
+
+                {/* Action CTA Buttons */}
+                <div className="mt-8 space-y-3 pt-6 border-t border-slate-200">
+                  <a
+                    href="#consultation"
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 px-6 py-3.5 text-center text-sm font-extrabold text-white shadow-lg shadow-emerald-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <span>Apply for {targetCountryName} Jobs Now</span>
+                    <FaArrowRight className="text-xs" />
+                  </a>
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl border border-emerald-300 bg-emerald-50 px-6 py-3 text-center text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-all"
+                  >
+                    <FaWhatsapp className="w-4 h-4 text-emerald-600" />
+                    <span>WhatsApp Eligibility Check with this Salary</span>
+                  </a>
+
+                  <p className="text-center text-[10px] text-slate-400 mt-2">
+                    *Rates updated daily based on RBI &amp; foreign exchange benchmarks. Actual salary confirmed in legal MoHRE/Qiwa/Work Permit contracts.
                   </p>
                 </div>
               </div>
-
-              {/* Perks Checklist */}
-              <div className="pt-4">
-                <p className="text-[11px] text-slate-400 uppercase font-bold tracking-wider mb-3">
-                  Included Package Perks:
-                </p>
-                <ul className="space-y-2.5">
-                  {result.perks.map((perk) => (
-                    <li key={perk} className="flex items-center gap-2 text-xs font-semibold text-slate-200">
-                      <FaCircleCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>{perk}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="relative z-10 pt-8">
-              <a
-                href="#consultation"
-                onClick={scrollToForm}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 py-4 text-sm font-extrabold text-white shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              >
-                Claim This Route & Book Free Call
-                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import WhyUs from "@/components/WhyUs";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import Testimonials from "@/components/Testimonials";
 import FeaturedJobs from "@/components/FeaturedJobs";
+import SalaryCalculator from "@/components/SalaryCalculator";
 import ConsultationForm from "@/components/ConsultationForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -49,6 +50,7 @@ export default function Home() {
         <ProcessTimeline />
         <Testimonials />
         <FeaturedJobs />
+        <SalaryCalculator />
         <ConsultationForm />
         <FAQ />
       </main>
