@@ -186,10 +186,10 @@ export const countries: Country[] = [
     flag: "🇫🇷",
     region: "Schengen",
     description:
-      "High demand across hospitality, food processing, logistics, and workshop maintenance with guaranteed accommodation options.",
-    visaTypes: ["Salaried Employee Visa", "Seasonal Work Visa"],
-    processingTime: "4–8 weeks",
-    popularRoles: ["Hotel Housekeeper", "Meat Packer & Cutter", "Workshop Technician"],
+      "Statutory 35-hour work week, 5 weeks paid leave, €1,766+ SMIC wage floor, and fast-track DREETS work authorization across BTP construction, hospitality, culinary trades, IT, and aerospace.",
+    visaTypes: ["VLS-TS Salarié", "Passeport Talent", "Shortage (Métiers en Tension)", "Seasonal Work Visa"],
+    processingTime: "8–12 weeks",
+    popularRoles: ["Structural Welder (TIG/MIG)", "Chef de Partie & Cook", "Tower Crane Operator", "DevOps & Cloud Engineer"],
   },
   {
     name: "Canada",
@@ -197,10 +197,10 @@ export const countries: Country[] = [
     flag: "🇨🇦",
     region: "North America",
     description:
-      "Long-haul truck drivers, caregivers, and skilled trade workers enjoy fast-track work permits and permanent residency options.",
-    visaTypes: ["LMIA Work Permit", "Caregiver Program", "Provincial Trade Visa"],
-    processingTime: "8–14 weeks",
-    popularRoles: ["Heavy Truck Driver", "Caregiver & Nursing Aide", "Warehouse Packer"],
+      "Prevailing trade wages ($28–$45/hr), dual-intent LMIA work permits, Global Talent Stream (2-week processing), Red Seal certification, and fast-track PR transition via CEC and PNP trade streams.",
+    visaTypes: ["LMIA Work Permit (TFWP)", "Global Talent Stream (GTS)", "Provincial Nominee (PNP)", "Intra-Company Transfer (ICT)"],
+    processingTime: "10–16 weeks",
+    popularRoles: ["Long-Haul Truck Driver (Class 1/AZ)", "Red Seal Welder", "Heavy-Duty Mechanic", "Industrial Electrician"],
   },
   {
     name: "United States",
@@ -208,10 +208,10 @@ export const countries: Country[] = [
     flag: "🇺🇸",
     region: "North America",
     description:
-      "H-2B and technical work visas for specialized industrial welders, equipment technicians, and maintenance mechanics.",
-    visaTypes: ["H-2B Visa", "EB-3 Unskilled/Skilled"],
-    processingTime: "3–6 months",
-    popularRoles: ["Industrial Welder", "Machine Operator", "Equipment Technician"],
+      "Prevailing wage protections, USCIS Form I-129 petitions, H-1B specialty occupation lottery, L-1 intra-company transfers, H-2B non-agricultural labor, and direct EB-3 Green Card sponsorship pathways.",
+    visaTypes: ["H-1B Specialty Occupation", "L-1A/L-1B Intra-Company", "H-2B Non-Agricultural", "EB-3 Permanent Residency (Green Card)"],
+    processingTime: "2–6 months (15-day Premium)",
+    popularRoles: ["Cloud & Software Architect", "Industrial Automation Engineer", "CNC Precision Machinist", "Heavy Plant Maintenance Technician"],
   },
   {
     name: "United Kingdom",
@@ -219,10 +219,10 @@ export const countries: Country[] = [
     flag: "🇬🇧",
     region: "United Kingdom",
     description:
-      "Urgent recruitment for care home assistants, nursing aides, security guards, and commercial plumbers with fast UK visa approval.",
-    visaTypes: ["Health & Care Worker Visa", "Skilled Worker Visa"],
-    processingTime: "3–6 weeks",
-    popularRoles: ["Caregiver & Nursing Aide", "Security Guard", "Commercial Plumber"],
+      "Home Office 70-point system, Defined Certificate of Sponsorship (CoS), Health & Care fast-track (100% IHS exempt), Immigration Salary List (ISL), and 5-year Indefinite Leave to Remain (ILR) settlement.",
+    visaTypes: ["Skilled Worker Visa", "Health & Care Worker Visa", "Global Business Mobility (GBM)", "Scale-up & High Potential Individual"],
+    processingTime: "3–5 weeks (Priority: 5 Days)",
+    popularRoles: ["NHS Registered Nurse (Band 5/6)", "Cloud & DevOps Architect", "Civil & Structural Engineer", "Industrial 6G Welder"],
   },
   {
     name: "Russia",
@@ -234,6 +234,17 @@ export const countries: Country[] = [
     visaTypes: ["MVD Work Permit", "HQS 3-Year Visa (ВКС)", "Non-Quota Permit"],
     processingTime: "4–6 weeks",
     popularRoles: ["6G TIG/MIG Welder", "CNC Machine Operator", "Heavy Equipment Driver"],
+  },
+  {
+    name: "Luxembourg",
+    code: "LU",
+    flag: "🇱🇺",
+    region: "Schengen",
+    description:
+      "World's highest statutory minimum wage (€3,085/mo), 100% free nationwide public transport, fast-track EU Blue Cards, and critical hiring across IT, wealth management, construction engineering, and healthcare.",
+    visaTypes: ["Salaried Employee (Salarié)", "EU Blue Card", "Highly Qualified Worker", "Intra-Corporate Transfer (ICT)"],
+    processingTime: "8–14 weeks",
+    popularRoles: ["Cloud & DevOps Engineer", "Fund Accountant & AML Analyst", "BIM & Structural Engineer", "Registered Nurse & Caregiver"],
   },
 ];
 
@@ -248,6 +259,8 @@ export const targetCountryOptions = [
   "Kuwait",
   "Bahrain",
   // ── Europe & Schengen ──
+  "France",
+  "Luxembourg",
   "Poland",
   "Romania",
   "Croatia",
