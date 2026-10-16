@@ -29,11 +29,19 @@ interface PageProps {
 async function getBlog(slug: string) {
   const decodedSlug = decodeURIComponent(slug).trim().toLowerCase();
 
-  // Find corresponding rich fallback first
-  const staticFound = fallbackPosts.find(
+  // Find exact match first across all static fallback posts
+  const exactStatic = fallbackPosts.find(
     (p) =>
       (p.slug && p.slug.toLowerCase() === decodedSlug) ||
-      p.id.toLowerCase() === decodedSlug ||
+      p.id.toLowerCase() === decodedSlug
+  );
+  if (exactStatic) return exactStatic;
+
+  // Find corresponding rich fallback by keyword aliases
+  const staticFound = fallbackPosts.find(
+    (p) =>
+      (decodedSlug.includes("dubai-construction") && p.id === "blog-22") ||
+      (decodedSlug.includes("dubai-construction-work") && p.id === "blog-22") ||
       (decodedSlug.includes("luxembourg") && p.id === "blog-21") ||
       (decodedSlug.includes("salaried-worker") && p.id === "blog-21") ||
       (decodedSlug.includes("oman-bahrain") && p.id === "blog-20") ||
@@ -251,7 +259,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
   // 301 Permanent Redirect to canonical slug if accessed via old alias, ID, or variant
   if (blog.slug && slug !== blog.slug) {
-    redirect(`/blogs/${blog.slug}`, RedirectType.permanent);
+    redirect(`/blogs/${blog.slug}`, RedirectType.replace);
   }
 
   const publishTimestamp = parseBlogDate(blog.date, (blog as any).createdAt);
@@ -261,8 +269,10 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   const article = {
     ...blog,
     image:
-      !blog.image || blog.image.includes("photo-1541888946425-d0fbb18086f6")
-        ? "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
+      !blog.image ||
+      blog.image.includes("photo-1541888946425-d0fbb1861593") ||
+      blog.image.includes("photo-1541888946425-d0fbb18086f6")
+        ? "/images/dubai-construction-work.jpg"
         : blog.image,
   } as any;
 
@@ -377,7 +387,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               {/* Featured Cover Image */}
               <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-72 sm:h-96 w-full bg-slate-100">
                 <img
-                  src={article.image}
+                  src={article.image || "/images/dubai-construction-work.jpg"}
                   alt={article.title}
                   className="w-full h-full object-cover"
                 />
