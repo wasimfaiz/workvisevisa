@@ -45,12 +45,15 @@ export default function ConsultationForm() {
 
   const validate = (): boolean => {
     const errs: FormErrors = {};
-    if (!data.name.trim() || data.name.trim().length < 2) {
+    const trimmedName = data.name.trim();
+    if (!trimmedName || trimmedName.length < 2) {
       errs.name = "Please enter your full name (minimum 2 characters).";
+    } else if (!/^[a-zA-Z\s]+$/.test(trimmedName)) {
+      errs.name = "Name can only contain alphabets and spaces (no numbers).";
     }
     const digitsOnly = data.phone.replace(/\D/g, "");
-    if (!data.phone.trim() || digitsOnly.length < 7) {
-      errs.phone = "Please enter a valid phone or WhatsApp number (at least 7 digits).";
+    if (!data.phone.trim() || digitsOnly.length < 10) {
+      errs.phone = "Please enter a valid 10-digit mobile number.";
     }
     if (!data.country) {
       errs.country = "Please select your target country.";
@@ -101,7 +104,12 @@ export default function ConsultationForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    const finalVal = name === "phone" ? value.replace(/[^0-9+]/g, "") : value;
+    let finalVal = value;
+    if (name === "name") {
+      finalVal = value.replace(/[^a-zA-Z\s]/g, "");
+    } else if (name === "phone") {
+      finalVal = value.replace(/[^0-9]/g, "").slice(0, 10);
+    }
     setData((d) => ({ ...d, [name]: finalVal }));
     if (errors[name as keyof FormErrors])
       setErrors((prev) => ({ ...prev, [name]: undefined }));

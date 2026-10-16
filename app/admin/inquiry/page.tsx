@@ -593,10 +593,11 @@ export default function AdminInquiryPage() {
           const matchCountry = item.country?.toLowerCase().includes(q);
           const matchOcc = item.occupation?.toLowerCase().includes(q);
           const matchNotes = item.notes?.toLowerCase().includes(q);
+          const matchSource = item.source?.toLowerCase().includes(q);
           const matchAssignee =
             item.assignedTo?.name?.toLowerCase().includes(q) ||
             item.assignedTo?.role?.toLowerCase().includes(q);
-          if (!matchName && !matchPhone && !matchCountry && !matchOcc && !matchNotes && !matchAssignee) {
+          if (!matchName && !matchPhone && !matchCountry && !matchOcc && !matchNotes && !matchAssignee && !matchSource) {
             return false;
           }
         }
@@ -1010,8 +1011,15 @@ export default function AdminInquiryPage() {
                               hour12: true,
                             })}
                           </div>
+                          {inq.source && (
+                            <div className="mt-1">
+                              <span className="inline-block text-[10px] font-bold text-teal-800 bg-teal-50 border border-teal-200/80 rounded px-1.5 py-0.5 max-w-xs truncate" title={inq.source}>
+                                {inq.source}
+                              </span>
+                            </div>
+                          )}
                           {inq.notes && (
-                            <div className="mt-1.5 text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2 py-1 text-amber-900 max-w-xs truncate">
+                            <div className="mt-1.5 text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2 py-1 text-amber-900 max-w-xs truncate" title={inq.notes}>
                               <strong>Note:</strong> {inq.notes}
                             </div>
                           )}

@@ -33,8 +33,11 @@ export default function BranchConsultationForm({
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!formData.name.trim() || formData.name.trim().length < 2) {
+    const trimmedName = formData.name.trim();
+    if (!trimmedName || trimmedName.length < 2) {
       errs.name = "Please enter your full name.";
+    } else if (!/^[a-zA-Z\s]+$/.test(trimmedName)) {
+      errs.name = "Name can only contain alphabets and spaces (no numbers).";
     }
     const digitsOnly = formData.phone.replace(/\D/g, "");
     if (!formData.phone.trim() || digitsOnly.length < 10) {
@@ -84,7 +87,13 @@ export default function BranchConsultationForm({
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let finalVal = value;
+    if (name === "name") {
+      finalVal = value.replace(/[^a-zA-Z\s]/g, "");
+    } else if (name === "phone") {
+      finalVal = value.replace(/[^0-9]/g, "").slice(0, 10);
+    }
+    setFormData((prev) => ({ ...prev, [name]: finalVal }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }

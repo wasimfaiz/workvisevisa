@@ -83,6 +83,7 @@ export interface Translations {
     searchPlaceholder: string;
     filterAll: string;
     applyWhatsApp: string;
+    applyNowBtn: string;
     interviewDateLabel: string;
     dutyLabel: string;
     openingsLabel: string;
@@ -183,6 +184,7 @@ export const translations: Record<string, Translations> = {
       searchPlaceholder: "Search trade (e.g. Driver, Welder, Electrician, CNC)...",
       filterAll: "All Trade Demands",
       applyWhatsApp: "Apply via WhatsApp Now",
+      applyNowBtn: "Apply for this Job",
       interviewDateLabel: "Selection / Interview",
       dutyLabel: "Duty Hours",
       openingsLabel: "Vacancies Available",
@@ -281,6 +283,7 @@ export const translations: Record<string, Translations> = {
       searchPlaceholder: "ट्रेड खोजें (उदा. राजमिस्त्री, वेल्डर, भारी ड्राइवर, इलेक्ट्रिशियन)...",
       filterAll: "सभी ट्रेड डिमांड्स",
       applyWhatsApp: "व्हाट्सएप से आवेदन करें",
+      applyNowBtn: "इस पद के लिए आवेदन करें",
       interviewDateLabel: "चयन / इंटरव्यू तिथि",
       dutyLabel: "ड्यूटी घंटे",
       openingsLabel: "उपलब्ध पद",
