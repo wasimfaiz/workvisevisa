@@ -27,6 +27,7 @@ import {
   ShieldCheck,
   Compass,
   Newspaper,
+  Handshake,
 } from "lucide-react";
 import { EmployeePermissions } from "@/lib/types/rbac";
 
@@ -43,6 +44,7 @@ interface AdminSidebarProps {
   counts?: {
     applications?: number;
     jobs?: number;
+    partners?: number;
     blogs?: number;
     inquiries?: number;
     newInquiries?: number;
@@ -114,6 +116,7 @@ export default function AdminSidebar({
 
   const isSuper = user?.role === "superadmin" || user?.email === "wasim@yastudy.com";
   const canViewJobs = isSuper || Boolean(user?.permissions?.jobs?.view !== false);
+  const canViewPartners = isSuper || Boolean(user?.permissions?.partners?.view);
   const canViewBlogs = isSuper || Boolean(user?.permissions?.blogs?.view !== false);
   const canViewInquiries = isSuper || Boolean(user?.permissions?.inquiries?.view !== false);
   const canViewApplications = isSuper || Boolean(user?.permissions?.applications?.view !== false);
@@ -166,6 +169,16 @@ export default function AdminSidebar({
       badge: counts?.jobs !== undefined ? counts.jobs : null,
       badgeColor: "rgba(255,255,255,0.18)",
       isActive: pathname.startsWith("/admin/jobs"),
+    },
+    {
+      id: "partners",
+      label: "B2B Partners",
+      href: "/admin/partners",
+      icon: Handshake,
+      visible: canViewPartners,
+      badge: counts?.partners !== undefined ? counts.partners : null,
+      badgeColor: "#10b981",
+      isActive: pathname.startsWith("/admin/partners"),
     },
     {
       id: "blogs",

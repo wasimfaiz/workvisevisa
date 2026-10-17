@@ -9,6 +9,9 @@
     "lint": "eslint",
     "seed:admin": "tsx scripts/seed-admin.ts",
     "seed:jobs": "tsx scripts/seed-jobs.ts",
+    "seed:partners": "tsx scripts/seed-partners.ts",
+    "seed:b2b": "tsx scripts/seed-b2b-candidates.ts",
+    "seed:b2b-candidates": "tsx scripts/seed-b2b-candidates.ts",
     "submit:bing": "tsx scripts/submit-to-bing.ts"
   },
   "dependencies": {

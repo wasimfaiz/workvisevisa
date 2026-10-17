@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate mime type
+    // Validate mime type (Images and MoU/agreement documents: PDF, DOCX, DOC)
     const validMimes = [
       "image/jpeg",
       "image/png",
@@ -37,25 +37,31 @@ export async function POST(request: NextRequest) {
       "image/gif",
       "image/svg+xml",
       "image/avif",
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
 
-    if (!validMimes.includes(file.type)) {
+    const fileNameLower = file.name.toLowerCase();
+    const hasValidExt = /\.(jpe?g|png|webp|gif|svg|avif|pdf|docx?)$/i.test(fileNameLower);
+
+    if (!validMimes.includes(file.type) && !hasValidExt) {
       return Response.json(
         {
           success: false,
-          message: "Invalid file type. Please upload a valid image (JPEG, PNG, WebP, GIF, SVG).",
+          message: "Invalid file type. Please upload a valid document or image (PDF, DOCX, JPEG, PNG).",
         },
         { status: 400 }
       );
     }
 
-    // 10MB size limit
-    const MAX_SIZE = 10 * 1024 * 1024;
+    // 25MB size limit for documents & scans
+    const MAX_SIZE = 25 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
       return Response.json(
         {
           success: false,
-          message: "File size exceeds maximum limit of 10MB.",
+          message: "File size exceeds maximum limit of 25MB.",
         },
         { status: 400 }
       );

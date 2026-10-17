@@ -43,6 +43,12 @@ export interface EmployeePermissions {
     edit: boolean;
     delete: boolean;
   };
+  partners?: {
+    view: boolean;
+    create: boolean;
+    edit: boolean;
+    delete: boolean;
+  };
   employees: {
     view: boolean;
     manage: boolean;
@@ -57,6 +63,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: true, edit: true, delete: true },
     blogs: { view: true, create: true, edit: true, delete: true },
     applications: { view: true, create: true, edit: true, delete: true },
+    partners: { view: true, create: true, edit: true, delete: true },
     employees: { view: true, manage: true },
   },
   admin: {
@@ -65,6 +72,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: true, edit: true, delete: true },
     blogs: { view: true, create: true, edit: true, delete: true },
     applications: { view: true, create: true, edit: true, delete: true },
+    partners: { view: true, create: true, edit: true, delete: true },
     employees: { view: true, manage: true },
   },
   manager: {
@@ -73,6 +81,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: true, edit: true, delete: true },
     blogs: { view: true, create: true, edit: true, delete: true },
     applications: { view: true, create: true, edit: true, delete: false },
+    partners: { view: true, create: true, edit: true, delete: false },
     employees: { view: true, manage: false },
   },
   counselor: {
@@ -81,6 +90,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: false, edit: false, delete: false },
     blogs: { view: true, create: true, edit: true, delete: false },
     applications: { view: true, create: true, edit: true, delete: false },
+    partners: { view: true, create: true, edit: true, delete: false },
     employees: { view: false, manage: false },
   },
   accountant: {
@@ -89,6 +99,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: false, edit: false, delete: false },
     blogs: { view: true, create: false, edit: false, delete: false },
     applications: { view: true, create: false, edit: false, delete: false },
+    partners: { view: false, create: false, edit: false, delete: false },
     employees: { view: false, manage: false },
   },
   staff: {
@@ -97,6 +108,7 @@ export const DEFAULT_PERMISSIONS: Record<AdminRole, EmployeePermissions> = {
     jobs: { view: true, create: false, edit: false, delete: false },
     blogs: { view: true, create: false, edit: false, delete: false },
     applications: { view: true, create: false, edit: false, delete: false },
+    partners: { view: false, create: false, edit: false, delete: false },
     employees: { view: false, manage: false },
   },
 };

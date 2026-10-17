@@ -86,6 +86,12 @@ const AdminUserSchema = new Schema<IAdminUser>(
         edit: { type: Boolean, default: false },
         delete: { type: Boolean, default: false },
       },
+      partners: {
+        view: { type: Boolean, default: false },
+        create: { type: Boolean, default: false },
+        edit: { type: Boolean, default: false },
+        delete: { type: Boolean, default: false },
+      },
       employees: {
         view: { type: Boolean, default: false },
         manage: { type: Boolean, default: false },
@@ -108,6 +114,10 @@ const AdminUserSchema = new Schema<IAdminUser>(
     },
   }
 );
+
+if (mongoose.models && mongoose.models.AdminUser) {
+  delete (mongoose.models as Record<string, any>).AdminUser;
+}
 
 const AdminUser: Model<IAdminUser> =
   (mongoose.models.AdminUser as Model<IAdminUser>) ||

@@ -39,6 +39,7 @@ import {
   Sliders,
   Settings,
   MoreVertical,
+  Handshake,
 } from "lucide-react";
 import { EmployeePermissions, AdminRole, DEFAULT_PERMISSIONS } from "@/lib/types/rbac";
 import AdminSidebar from "@/components/AdminSidebar";
@@ -616,6 +617,7 @@ export default function AdminEmployeesPage() {
                     const hasInquiries = isSuper || p.inquiries?.view;
                     const hasJobs = isSuper || p.jobs?.view;
                     const hasApps = isSuper || p.applications?.view;
+                    const hasPartners = isSuper || Boolean(p.partners?.view);
                     const hasEmpMgmt = isSuper || p.employees?.view;
 
                     return (
@@ -709,6 +711,18 @@ export default function AdminEmployeesPage() {
                             >
                               <Briefcase className="w-3 h-3" />
                               <span>Jobs: {hasJobs ? "Yes" : "No"}</span>
+                            </span>
+
+                            {/* B2B Partners */}
+                            <span
+                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                hasPartners
+                                  ? "bg-teal-50 text-teal-700 border-teal-200"
+                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                              }`}
+                            >
+                              <Handshake className="w-3 h-3" />
+                              <span>Partners: {hasPartners ? "Yes" : "No"}</span>
                             </span>
 
                             {/* Staff admin */}
@@ -1066,6 +1080,45 @@ export default function AdminEmployeesPage() {
                       ))}
                     </div>
                   </div>
+
+                  {/* B2B Sourcing Partners */}
+                  <div className="bg-white p-3.5 rounded-xl border border-slate-200/80">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-xs font-bold text-teal-900 flex items-center gap-1.5">
+                        <Handshake className="w-4 h-4 text-teal-600" />
+                        <span>B2B Candidate Sourcing Partners &amp; MoUs</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                      {[
+                        { key: "view", label: "View Partners" },
+                        { key: "create", label: "Add Partners" },
+                        { key: "edit", label: "Edit & MoU" },
+                        { key: "delete", label: "Delete" },
+                      ].map((item) => (
+                        <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={Boolean(addForm.permissions.partners?.[item.key as keyof typeof addForm.permissions.partners])}
+                            onChange={(e) =>
+                              setAddForm((d) => ({
+                                ...d,
+                                permissions: {
+                                  ...d.permissions,
+                                  partners: {
+                                    ...(d.permissions.partners || { view: false, create: false, edit: false, delete: false }),
+                                    [item.key]: e.target.checked,
+                                  },
+                                },
+                              }))
+                            }
+                            className="w-4 h-4 text-teal-600 rounded border-slate-300 focus:ring-teal-500"
+                          />
+                          <span className="text-slate-700">{item.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Form Actions */}
@@ -1273,6 +1326,44 @@ export default function AdminEmployeesPage() {
                             )
                           }
                           className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500"
+                        />
+                        <span className="text-slate-700">{item.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* B2B Sourcing Partners */}
+                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="text-xs font-bold text-teal-900 mb-2.5 flex items-center gap-1.5">
+                    <Handshake className="w-4 h-4 text-teal-600" />
+                    <span>B2B Candidate Sourcing Partners &amp; MoUs</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    {[
+                      { key: "view", label: "View Partners" },
+                      { key: "create", label: "Add Partners" },
+                      { key: "edit", label: "Edit & MoU" },
+                      { key: "delete", label: "Delete" },
+                    ].map((item) => (
+                      <label key={item.key} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(editPermissionsForm.partners?.[item.key as keyof typeof editPermissionsForm.partners])}
+                          onChange={(e) =>
+                            setEditPermissionsForm((prev) =>
+                              prev
+                                ? {
+                                    ...prev,
+                                    partners: {
+                                      ...(prev.partners || { view: false, create: false, edit: false, delete: false }),
+                                      [item.key]: e.target.checked,
+                                    },
+                                  }
+                                : null
+                            )
+                          }
+                          className="w-4 h-4 text-teal-600 rounded border-slate-300 focus:ring-teal-500"
                         />
                         <span className="text-slate-700">{item.label}</span>
                       </label>

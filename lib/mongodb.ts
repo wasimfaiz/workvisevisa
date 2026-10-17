@@ -7,6 +7,14 @@
 import dns from "node:dns";
 import { promises as dnsPromises } from "node:dns";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+import { resolve } from "path";
+
+// Auto-load .env.local if running outside Next.js runtime (e.g. scripts, worker tasks)
+if (!process.env.MONGODB_URI) {
+  dotenv.config({ path: resolve(process.cwd(), ".env.local") });
+  dotenv.config();
+}
 
 // Set reliable public DNS servers for Node DNS queries
 try {
