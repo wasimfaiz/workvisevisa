@@ -45,18 +45,29 @@ const blog23Object = `  {
 
 let dataTs = fs.readFileSync(dataTsPath, 'utf8');
 
-// Check if blog-23 already exists
-if (dataTs.includes('id: "blog-23"')) {
-  console.log('blog-23 already present in data.ts. Skipping append.');
-  process.exit(0);
-}
-
-const target = '];\n\nexport const blogPosts: BlogPost[] = sortBlogsByDate(rawBlogPosts);';
-if (!dataTs.includes(target)) {
-  console.error('Target hook not found in data.ts!');
+const exportMarker = 'export const blogPosts: BlogPost[]';
+const exportIdx = dataTs.indexOf(exportMarker);
+if (exportIdx === -1) {
+  console.error('Could not find export const blogPosts in data.ts!');
   process.exit(1);
 }
 
-dataTs = dataTs.replace(target, blog23Object + target);
+const lastBracketIdx = dataTs.lastIndexOf('];', exportIdx);
+if (lastBracketIdx === -1) {
+  console.error('Could not find closing bracket before export in data.ts!');
+  process.exit(1);
+}
+
+const blog23Marker = 'id: "blog-23"';
+if (dataTs.includes(blog23Marker)) {
+  const blogIdx = dataTs.indexOf(blog23Marker);
+  const startIdx = dataTs.lastIndexOf('  {', blogIdx);
+  dataTs = dataTs.substring(0, startIdx) + blog23Object + dataTs.substring(lastBracketIdx);
+  fs.writeFileSync(dataTsPath, dataTs, 'utf8');
+  console.log('Successfully updated blog-23 in lib/data.ts!');
+  process.exit(0);
+}
+
+dataTs = dataTs.substring(0, lastBracketIdx) + blog23Object + dataTs.substring(lastBracketIdx);
 fs.writeFileSync(dataTsPath, dataTs, 'utf8');
 console.log('Successfully added blog-23 into lib/data.ts!');

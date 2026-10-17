@@ -204,14 +204,16 @@ Full-time students admitted to accredited universities, design colleges, and hig
 
 Submitting un-attested or improperly legalized documents is the single leading cause of Dubai residence visa rejections. If your visa category requires educational degrees, marriage certificates, or birth certificates, you must complete the multi-jurisdictional attestation chain:
 
-\`\`\`mermaid
-flowchart LR
-    A[Home Country Notary & HRD/SDM] --> B[Ministry of External Affairs MEA]
-    B --> C[UAE Embassy in Home Country]
-    C --> D[UAE MoFA Digital e-DAS Portal]
-    D --> E[Legal Arabic Translation by MOJ]
-    E --> F[GDRFA / MOHRE Final Acceptance]
-\`\`\`
+> 🔄 **The Official 5-Step Cross-Border Legalization Flow:**  
+> **1. Home Country Authentication** (Notary & State HRD/SDM) &rarr; **2. MEA Attestation** (Ministry of External Affairs) &rarr; **3. UAE Consular Legalization** (UAE Embassy) &rarr; **4. Digital MoFA Verification** (e-DAS QR Code) &rarr; **5. Sworn Arabic Translation** (Ministry of Justice) &rarr; **Final Acceptance by GDRFA & MOHRE**
+
+| Stage | Responsible Authority | Mandatory Legal Action Performed | Official Fee | Standard Timeline |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 1** | Local Notary & State HRD / Home Department | Verification of authenticity against university/state birth registry records | Varies by state (₹500 – ₹1,500) | 3 – 7 Working Days |
+| **Stage 2** | Ministry of External Affairs (MEA) | Federal government verification seal or apostille endorsement | Govt fee / VFS charges (~₹500) | 2 – 4 Working Days |
+| **Stage 3** | UAE Embassy in Country of Origin | Official consular seal certifying sovereign MEA verification | ~AED 150 – 200 (~₹3,500 – ₹4,500) | 3 – 5 Working Days |
+| **Stage 4** | UAE Ministry of Foreign Affairs ([MoFA e-DAS](https://www.mofa.gov.ae)) | Digital certificate generation with verifiable government QR code | **AED 150** (~₹3,420 INR) | 24 Hours (Instant digital) |
+| **Stage 5** | Ministry of Justice (MOJ) Certified Translators | Sworn, certified legal translation of certificates into formal Arabic | AED 70 – 120 per page | Same Day / 24 Hours |
 
 ### Phase 1: Home Country Authentication (e.g., India, Pakistan, UK, Philippines)
 1. **Notary Public:** Verification of original certificates.
@@ -236,26 +238,18 @@ Under UAE civil procedure rules, all documents drafted in languages other than A
 
 Navigating a Dubai residence permit involves a precise sequential lifecycle. Deviating from this order can result in application freezes or financial overstay penalties:
 
-\`\`\`mermaid
-sequenceDiagram
-    autonumber
-    actor Candidate as Applicant / Employee
-    participant Gov as MOHRE / Free Zone / DET
-    participant GDRFA as GDRFA Dubai / Amer
-    participant DHA as DHA Medical Center
-    participant ICP as ICP Biometrics Center
-    participant Post as Emirates Post Courier
+> 🧭 **High-Level 7-Stage Residence Lifecycle Snapshot:**  
+> **Stage 1: Quota & Contract Approval** *(MOHRE/Free Zone)* &rarr; **Stage 2: 60-Day Entry Permit** *(GDRFA Pink Visa)* &rarr; **Stage 3: Port Entry OR Status Modification** *(Amer)* &rarr; **Stage 4: Medical Fitness Test** *(DHA)* &rarr; **Stage 5: Biometrics & Emirates ID** *(ICP)* &rarr; **Stage 6: Health Insurance Activation** *(DHA Basmah)* &rarr; **Stage 7: Digital Residence Permit & Smart Card Delivery** *(Emirates Post)*
 
-    Gov->>Candidate: Stage 1: Initial Quota & Offer Approval
-    Gov->>GDRFA: Stage 2: Issue 60-Day Entry Permit (Pink Visa)
-    Candidate->>GDRFA: Stage 3: Port Entry OR In-Country Status Change
-    Candidate->>DHA: Stage 4: Medical Fitness Test (Blood & X-Ray)
-    DHA-->>GDRFA: Electronic Fit Result Sync
-    Candidate->>ICP: Stage 5: Emirates ID Biometrics & Photo Capture
-    Candidate->>Gov: Stage 6: Health Insurance Policy Activation
-    GDRFA->>Candidate: Stage 7: Digital Residence Permit Issuance
-    ICP->>Post: Dispatch Biometric Emirates ID Card
-\`\`\`
+| Stage # | Milestone Designation | Responsible Authority | Core Action & Key Digital Deliverable | Standard Turnaround |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 1** | **Quota & Offer Approval** | [MOHRE](https://www.mohre.gov.ae) / Free Zone / DET | Employer secures electronic quota; candidate signs standard bilingual job offer contract | 24 – 48 Hours |
+| **Stage 2** | **Entry Permit Issuance** | [GDRFA Dubai](https://www.gdrfad.gov.ae) / Amer | Electronic 60-Day Entry Permit (e-Visa / "Pink Visa") generated with verifiable QR code | 24 – 48 Hours |
+| **Stage 3** | **Port Entry / Status Change** | GDRFA Immigration / Amer | Port entry at airport e-gates OR in-country status modification without leaving the UAE | Instant at border / 24 hrs |
+| **Stage 4** | **Medical Fitness Screening** | [Dubai Health Authority (DHA)](https://www.dha.gov.ae) | Venous blood test (HIV/Hep B/Syphilis) & digital chest X-ray for pulmonary tuberculosis | 30 Mins (VIP) to 48 Hrs |
+| **Stage 5** | **Emirates ID Biometrics** | [ICP UAE](https://www.icp.gov.ae) | 10-digit digital fingerprint scan, iris recognition & biometric facial photograph capture | 1 Business Day |
+| **Stage 6** | **Health Insurance Policy** | Licensed UAE Insurer / DHA Basmah | Mandatory insurance policy issued and electronically synced with the DHA health database | 24 Hours |
+| **Stage 7** | **Digital Residency & Card** | GDRFA Dubai & Emirates Post | Digital residence permit generated on GDRFA/ICP apps; physical smart card delivered by courier | 24 Hrs (Digital) / 3-5 Days (Card) |
 
 ---
 
