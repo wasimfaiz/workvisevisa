@@ -15,6 +15,7 @@ import {
   FaMagnifyingGlass,
   FaWhatsapp,
   FaXmark,
+  FaUser,
 } from "react-icons/fa6";
 
 const DEFAULT_CATEGORIES = [
@@ -195,17 +196,27 @@ export default function BlogsPage() {
 
                     {/* Content Section */}
                     <div className="p-5">
-                      {/* Meta: Date & Read Time */}
-                      <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-400 mb-2.5">
-                        <span className="flex items-center gap-1">
-                          <FaCalendarDays className="w-3 h-3 text-emerald-600" />
-                          {post.date}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <FaClock className="w-3 h-3 text-emerald-600" />
-                          {post.readTime}
-                        </span>
+                      {/* Author & Meta */}
+                      <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500 mb-3 pb-2.5 border-b border-slate-100">
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-extrabold ring-1 ring-emerald-300">
+                            {(post.author || "Wasim Faiz").charAt(0)}
+                          </span>
+                          <span className="text-slate-800 font-bold truncate">
+                            {post.author || "Wasim Faiz"}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-slate-400 shrink-0">
+                          <span className="flex items-center gap-1">
+                            <FaCalendarDays className="w-3 h-3 text-emerald-600" />
+                            {post.date}
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1">
+                            <FaClock className="w-3 h-3 text-emerald-600" />
+                            {post.readTime}
+                          </span>
+                        </div>
                       </div>
 
                       {/* Title */}

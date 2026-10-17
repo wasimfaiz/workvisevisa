@@ -646,7 +646,7 @@ async function seedMongo() {
       readTime: "40 min read",
       excerpt: "The authoritative 2026 master guide to obtaining a Dubai Residence Permit and UAE Residence Visa. Complete coverage of 10 official pathways (Employment, 10-Yr Golden Visa, 5-Yr Green Visa, Investor LLC, Real Estate DLD, Remote Work, Family Sponsorship), prerequisite document attestation (MoFA/MEA), 7-stage application lifecycle, DHA medical fitness testing (TB, HIV, Hep B), line-by-line government fee schedules in AED & INR, overstay grace periods, and direct links to official GDRFA, ICP, and MOHRE portals.",
       image: "/images/dubai-residence-permit-guide.jpg",
-      author: "WorkWise UAE Legal Immigration & Overseas Placement Desk",
+      author: "Wasim Faiz",
       tags: [
         "Dubai Residence Visa",
         "Dubai Residence Permit",

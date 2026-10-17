@@ -240,7 +240,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: isoPublishedDate,
       modifiedTime: isoPublishedDate,
-      authors: [blog.author || "WorkWise Editorial Team"],
+      authors: [blog.author || "Wasim Faiz"],
     },
     twitter: {
       card: "summary_large_image",
@@ -287,8 +287,8 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     "datePublished": isoPublishedDate,
     "dateModified": isoPublishedDate,
     "author": {
-      "@type": "Organization",
-      "name": article.author || "WorkWise Editorial Team",
+      "@type": "Person",
+      "name": article.author || "Wasim Faiz",
       "url": "https://www.workwisevisa.com",
     },
     "publisher": {
@@ -361,11 +361,21 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             </h1>
 
             {/* Author & Meta Bar */}
-            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 mt-4 pb-6 border-b border-slate-200">
-              <span className="flex items-center gap-1.5 text-slate-800 font-bold">
-                <FaUserCheck className="w-3.5 h-3.5 text-emerald-600" />
-                {article.author || "WorkWise Editorial Team"}
-              </span>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-semibold text-slate-500 mt-4 pb-6 border-b border-slate-200">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xs ring-2 ring-emerald-200 shadow-2xs">
+                  {(article.author || "Wasim Faiz").charAt(0)}
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-slate-900 font-extrabold text-sm">
+                    {article.author || "Wasim Faiz"}
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200">
+                    <FaUserCheck className="w-2.5 h-2.5 text-emerald-600" />
+                    Verified Author
+                  </span>
+                </div>
+              </div>
               <span>•</span>
               <span className="flex items-center gap-1.5">
                 <FaCalendarDays className="w-3.5 h-3.5 text-emerald-600" />
@@ -433,6 +443,39 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                   </div>
                 )}
 
+                {/* Author Profile Box */}
+                <div className="rounded-2xl bg-gradient-to-br from-slate-50 via-white to-emerald-50/40 p-6 sm:p-7 border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                  <div className="relative shrink-0">
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-700 flex items-center justify-center text-white text-2xl font-black shadow-md shadow-emerald-600/20 ring-4 ring-white">
+                      {(article.author || "Wasim Faiz").charAt(0)}
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1 shadow-xs ring-2 ring-white" title="Verified Author">
+                      <FaUserCheck className="w-3 h-3" />
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center sm:text-left">
+                    <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                      <h3 className="text-lg font-display font-extrabold text-slate-900">
+                        {article.author || "Wasim Faiz"}
+                      </h3>
+                      <span className="rounded-full bg-emerald-100/90 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800 border border-emerald-200">
+                        Author &amp; Overseas Visa Specialist
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                      Senior consultant and overseas mobility expert at WorkWise Visa. Specializing in Gulf employment permits, UAE residency pathways, European recruitment, and consular document attestation.
+                    </p>
+                    <div className="mt-3.5 flex flex-wrap items-center justify-center sm:justify-start gap-3 text-xs font-semibold text-slate-500">
+                      <span className="flex items-center gap-1 text-emerald-700 font-bold">
+                        <FaUserCheck className="w-3.5 h-3.5 text-emerald-600" />
+                        Verified Immigration Advisor
+                      </span>
+                      <span>•</span>
+                      <span>WorkWise Visa Global Mobility Desk</span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* WhatsApp Consultation Action Box */}
                 <div className="rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
                   <div>
@@ -461,6 +504,27 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
             {/* ── Right Column / Sticky Sidebar (lg:col-span-4) ── */}
             <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+              {/* Author Sidebar Card */}
+              <div className="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-sm">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-700 flex items-center justify-center text-white text-lg font-black shadow-sm shrink-0">
+                    {(article.author || "Wasim Faiz").charAt(0)}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1">
+                      <FaUserCheck className="w-2.5 h-2.5" />
+                      Article Author
+                    </span>
+                    <h4 className="text-sm font-extrabold text-slate-900 truncate">
+                      {article.author || "Wasim Faiz"}
+                    </h4>
+                    <p className="text-[11px] text-slate-500 truncate font-medium">
+                      Overseas Visa &amp; Career Specialist
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Recent & Trending Guides Widget */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm">
                 <div className="flex items-center gap-2.5 mb-5 pb-3.5 border-b border-slate-100">

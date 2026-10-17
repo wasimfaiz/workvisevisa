@@ -692,7 +692,7 @@ const rawBlogPosts: BlogPost[] = [
     excerpt:
       "Comprehensive 2026 manual on UAE & Saudi Arabia blue-collar work permits. Detailed breakdown of GAMCA/Wafid medical exams, Qiwa contracts, Takamol PVP trade testing, Iqama & Emirates ID issuance, WPS salary scales, and legal worker protections.",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Immigration Editorial Team",
+    author: "Wasim Faiz",
     tags: ["Gulf Visas", "Work Permits", "GAMCA Medical", "Qiwa KSA", "MOHRE UAE", "Blue Collar Jobs", "Overseas Employment"],
     metaTitle: "UAE & Saudi Arabia Blue-Collar Work Permits 2026: Complete Guide",
     metaDescription:
@@ -889,7 +889,7 @@ Connect with certified overseas recruitment specialists at WorkWise Visa for upc
     excerpt:
       "Comprehensive 2026 manual on the German Opportunity Card (Chancenkarte) for technicians, mechanics, welders, and skilled tradesmen. Detailed breakdown of the 6-point eligibility matrix, ZAB recognition, Goethe language certs, blocked account funds, and EU Blue Card transition.",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise European Relocation Desk",
+    author: "Wasim Faiz",
     tags: ["Germany", "Opportunity Card", "Chancenkarte", "Skilled Trades", "EU Blue Card", "Schengen Visa"],
     metaTitle: "Germany Opportunity Card (Chancenkarte) 2026: Trade Worker Guide",
     metaDescription:
@@ -1060,7 +1060,7 @@ Connect with certified European immigration specialists at WorkWise Visa for ZAB
     excerpt:
       "Comprehensive 2026 handbook on the UK Health and Care Worker Visa for overseas caregivers, senior care assistants, and healthcare support workers. Detailed breakdown of CQC sponsorship, SOC codes 6135/6136, SELT B1 English, TB testing, and 5-year ILR settlement.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise UK Immigration Desk",
+    author: "Wasim Faiz",
     tags: ["UK Visa", "Health and Care Worker", "Caregiver Jobs", "CQC Sponsorship", "NHS Careers", "UK Relocation"],
     metaTitle: "UK Health & Care Worker Visa 2026: Complete Caregiver Guide",
     metaDescription:
@@ -1268,7 +1268,7 @@ WorkWise Visa assists qualified healthcare aides, certified nursing assistants, 
     metaKeywords:
       "GCC heavy driver license transfer, Dubai heavy bus driver jobs, Saudi Arabia trailer driver vacancy, RTA Dubai license conversion, Dallah driving school Riyadh, Gulf heavy driver salary 2026, UAE employment visa for drivers, WorkWise Visa driver recruitment",
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
-    author: "Logistics & Transport Desk — WorkWise Visa",
+    author: "Wasim Faiz",
     tags: ["Heavy Driver", "GCC License", "Dubai Jobs", "Riyadh Logistics", "RTA License", "Work Permits"],
     published: true,
     featured: true,
@@ -1454,7 +1454,7 @@ WorkWise Visa organizes direct employer practical driving interviews, trade test
     excerpt:
       "Complete 2026 manual for electricians, plumbers, HVAC mechanics, 6G welders, and civil trades in Dubai. Detailed breakdown of MOHRE skill classifications, Dubai Municipality trade cards, basic vs overtime pay scales, and visa processing steps.",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
-    author: "WorkWise Gulf Technical Recruitment Desk",
+    author: "Wasim Faiz",
     tags: [
       "Gulf Visas",
       "Dubai Construction",
@@ -1683,7 +1683,7 @@ WorkWise Visa partners directly with top-tier UAE contracting groups to conduct 
     excerpt:
       "In-depth 2026 relocation guide for hotel stewards, room attendants, restaurant captains, commis chefs, and baristas in Dubai. Breakdown of luxury hotel sponsorships, service charge distributions, food hygiene cards, and career growth.",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Hospitality Relocation Team",
+    author: "Wasim Faiz",
     tags: ["Gulf Visas", "Dubai Hospitality", "Hotel Jobs Dubai", "Waiter Jobs UAE", "Chef Recruitment", "Housekeeping Dubai", "Luxury Resort Visas", "MOHRE UAE"],
     metaTitle: "Dubai Hotel & Hospitality Work Visa 2026: Waiters, Chefs & Housekeepers Guide",
     metaDescription:
@@ -1847,7 +1847,7 @@ WorkWise Visa conducts direct hospitality recruitment campaigns for leading inte
     excerpt:
       "Comprehensive 2026 roadmap for motorcycle delivery riders, warehouse packers, and forklift operators in Dubai. Details on RTA motorcycle license conversion, Talabat/Noon 3PL contracts, earnings per order, and safety regulations.",
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Logistics & Transport Desk",
+    author: "Wasim Faiz",
     tags: ["Driver Recruitment", "Dubai Delivery Rider", "Talabat Rider Visa", "RTA Motorcycle License", "Warehouse Jobs Dubai", "Forklift Operator UAE", "Logistics Work Permit", "MOHRE UAE"],
     metaTitle: "Dubai Delivery Rider & Logistics Work Permit 2026: RTA License & Salary Guide",
     metaDescription:
@@ -2013,7 +2013,7 @@ WorkWise Visa assists aspiring riders and warehouse workers with direct employer
     excerpt:
       "Comprehensive 2026 master guide to securing high-paying technical, construction, and plant trade jobs in Saudi Arabia's NEOM, Red Sea, and Qiddiya megaprojects. Detailed coverage of Takamol PVP verification, Qiwa digital contracts, remote camp allowances, Iqama processing, and salary scales.",
     image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Gulf Megaprojects Editorial Desk",
+    author: "Wasim Faiz",
     tags: [
       "Gulf Visas",
       "Saudi Arabia",
@@ -2174,7 +2174,7 @@ WorkWise Visa partners directly with premier Tier-1 EPC contractors and giga-pro
     excerpt:
       "Definitive 2026 handbook for oil & gas shutdown technicians, pipe fabricators, instrument fitters, and refinery maintenance workers in Qatar and Kuwait. Includes QVC biometric processing, Kuwait MOFA work visas, hazard allowances, 12-hour overtime earnings, and safety protocols.",
     image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Industrial & Petrochemical Desk",
+    author: "Wasim Faiz",
     tags: [
       "Work Permits",
       "Qatar Work Visa",
@@ -2337,7 +2337,7 @@ WorkWise Visa connects certified trade craftsmen and technicians with premier pe
     excerpt:
       "Breaking 2026 update on the GCC Unified Tourist Visa (GCC Grand Tours). Full breakdown of single-visa access across UAE, Saudi Arabia, Qatar, Oman, Kuwait, and Bahrain, 30-day multi-entry validity, online application portal, eligibility for GCC residents, and impact on overseas job hunting and interviews.",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Gulf Policy & Immigration Desk",
+    author: "Wasim Faiz",
     tags: [
       "Gulf Visas",
       "GCC Unified Visa",
@@ -2478,7 +2478,7 @@ WorkWise Visa provides end-to-end guidance for Gulf career opportunities, multi-
     excerpt:
       "Breaking 2026 update on Kuwait's work visa reopening and PAM labor regulations. In-depth analysis of mandatory university and technical diploma attestation, minimum KD 800 salary rules for family sponsorship, biometric fingerprint registration deadlines, and Wafid medical fitness clearance.",
     image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Gulf Regulatory & Labor Affairs Desk",
+    author: "Wasim Faiz",
     tags: [
       "Work Permits",
       "Kuwait Work Visa",
@@ -2622,7 +2622,7 @@ WorkWise Visa works directly with accredited Kuwait corporate employers and Tier
     excerpt:
       "Comprehensive 2026 master manual on the Wafid (formerly GAMCA) medical examination for Gulf employment visas. Complete breakdown of online appointment generation, mandatory diagnostic blood & X-ray parameters, temporary vs permanent unfit conditions, TB scar re-testing protocols, and status checking.",
     image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Gulf Medical & Regulatory Affairs Desk",
+    author: "Wasim Faiz",
     tags: [
       "GAMCA Medical",
       "Wafid Medical",
@@ -2810,7 +2810,7 @@ WorkWise Visa provides end-to-end recruitment support, document attestation, and
     excerpt:
       "Authoritative 2026 master manual on securing a Qatar Employment Residence Visa and completing the Qatar Visa Center (QVC) process. Step-by-step breakdown of online appointment scheduling, mandatory diagnostic medical tests & X-ray parameters, biometric enrollment, electronic digital contract signing, non-discriminatory minimum wage standards, exit permit rules, and post-arrival Qatar ID (QID) stamping.",
     image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Qatar Immigration & Legal Compliance Desk",
+    author: "Wasim Faiz",
     tags: [
       "Qatar Work Visa",
       "QVC Process",
@@ -3090,7 +3090,7 @@ WorkWise Visa partners directly with government-approved Qatari EPC contractors,
     excerpt:
       "Definitive 2026 master guide to the Saudi Arabia Takamol Skill Verification Program (SVP / PVP). Complete breakdown of theoretical computer tests, practical workshop assessments for 23+ trade classifications, exam fees, accredited test centers in India & Pakistan, Qiwa platform linking, and certificate validity.",
     image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Gulf Trade Verification & Technical Affairs Desk",
+    author: "Wasim Faiz",
     tags: [
       "Takamol SVP",
       "Skill Verification Program",
@@ -3290,7 +3290,7 @@ WorkWise Visa provides pre-assessment trade training, documentation assistance, 
     excerpt:
       "Exhaustive 2026 manual on obtaining a Police Clearance Certificate (PCC) for overseas employment across Gulf and European nations. Detailed walkthrough of Passport Seva Kendra (PSK) online application, local police station physical verification, MEA Apostille stamping, embassy consular attestation, validity rules, and urgent Tatkal clearance.",
     image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Consular Documentation & Attestation Desk",
+    author: "Wasim Faiz",
     tags: [
       "Police Clearance Certificate",
       "PCC Passport Seva",
@@ -3480,7 +3480,7 @@ WorkWise Visa provides end-to-end embassy attestation, MEA Apostille legalizatio
     excerpt:
       "Comprehensive 2026/2027 guide to Germany's Opportunity Card (Chancenkarte) and the reformed EU Blue Card. Detailed breakdown of the 6-point qualification grid, Anabin/ZAB credential evaluation, €12,324 blocked account proof, 20 hr/week part-time work rights, and fast-track permanent residency.",
     image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise European Relocation Desk",
+    author: "Wasim Faiz",
     tags: [
       "Germany Visa",
       "Opportunity Card",
@@ -3711,7 +3711,7 @@ WorkWise Visa provides complete credential evaluation assistance, ZAB comparabil
     excerpt:
       "The definitive 2026/2027 strategic manual comparing Australia's newly enacted Skills in Demand (SID) Visa (replacing TSS 482) against the UK Skilled Worker Visa overhaul. In-depth analysis of AUD $135k Specialist and AUD $73,150 Core pathways, the UK £38,700 baseline, New Entrant salary discounts, skills assessments, and direct permanent residency trajectories.",
     image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80",
-    author: "WorkWise Global Skilled Migration Desk",
+    author: "Wasim Faiz",
     tags: [
       "Australia Work Visa",
       "Skills in Demand Visa",
@@ -3921,7 +3921,7 @@ WorkWise Visa provides complete profile evaluations, Australian Skills Assessmen
     readTime: "13 min read",
     excerpt: "Authoritative 2026 master guide on European work permits for Indian skilled trade workers and technicians. In-depth analysis of Poland Voivodeship Type A, Croatia MUP Single Permit, Romania IGI Aviz de Muncă, VFS Global appointments, MEA Apostille PCC, Euro salary scales, and legal employer verification.",
     image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80",
-    author: "WorkWise European Placement & Consular Legal Team",
+    author: "Wasim Faiz",
     tags: [
       "Europe Work Visa",
       "Poland Work Permit",
@@ -4163,7 +4163,7 @@ Stop risking your career with unauthorized middlemen and unverified promises. Co
     excerpt:
       "Authoritative 2026 master guide on Oman and Bahrain work visas for Indian trade workers and technicians. Breakdown of Oman Ministry of Labour (MOL) permits, Royal Oman Police (ROP) eVisas, Bahrain LMRA Expatriate Management System (EMS), Duqm & Bapco refinery jobs, Wafid medical fitness, and tax-free OMR/BHD salary benchmarks.",
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
-    author: "WorkWise Gulf Placement & Legal Immigration Team",
+    author: "Wasim Faiz",
     tags: [
       "Oman Work Visa",
       "Bahrain Work Visa",
@@ -4411,7 +4411,7 @@ Avoid unverified intermediaries and false promises. Connect directly with WorkWi
     excerpt:
       "Definitive 5,000+ word master guide to Luxembourg work visas for Indian and international professionals. Exhaustive breakdown of Salaried Worker permits, EU Blue Card thresholds, ADEM labor market clearances, the world's highest minimum wage (€3,180+), housing crisis navigation, free public transit, trilingual culture, and the 6-phase deployment roadmap.",
     image: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=1200&q=80",
-    author: "WorkWise European Placement & Legal Immigration Team",
+    author: "Wasim Faiz",
     tags: [
       "Luxembourg Work Visa",
       "European Work Visa",
@@ -4960,7 +4960,7 @@ Do not let bureaucratic complexity or unverified intermediaries derail your inte
     readTime: "45 min read",
     excerpt: "Comprehensive guide to Dubai construction work for Indian and overseas tradesmen. Complete breakdown of 25+ trades, verified salary matrices in AED & INR, UAE Labour Law (Decree-Law 33/2021), Midday Work Ban, End-of-Service Gratuity, 6-phase employment visa roadmap, GAMCA medicals, eMigrate ECR clearance, labour camp living (Sonapur, Al Quoz, Jebel Ali), safety protocols, top Tier-1 contractors (AFGC Holding, ALEC, ASGC, Shapoorji, Six Construct), and fraud prevention.",
     image: "/images/dubai-construction-work.jpg",
-    author: "WorkWise UAE Recruitment & Legal Immigration Desk",
+    author: "Wasim Faiz",
     tags: [
       "Dubai Construction Work",
       "Dubai Construction Jobs",
@@ -5894,7 +5894,7 @@ Candidates, returning Gulf veterans, and families seeking authentic contract ver
     readTime: "40 min read",
     excerpt: "The authoritative 2026 master guide to obtaining a Dubai Residence Permit and UAE Residence Visa. Complete coverage of 10 official pathways (Employment, 10-Yr Golden Visa, 5-Yr Green Visa, Investor LLC, Real Estate DLD, Remote Work, Family Sponsorship), prerequisite document attestation (MoFA/MEA), 7-stage application lifecycle, DHA medical fitness testing (TB, HIV, Hep B), line-by-line government fee schedules in AED & INR, overstay grace periods, and direct links to official GDRFA, ICP, and MOHRE portals.",
     image: "/images/dubai-residence-permit-guide.jpg",
-    author: "WorkWise UAE Legal Immigration & Overseas Placement Desk",
+    author: "Wasim Faiz",
     tags: [
       "Dubai Residence Visa",
       "Dubai Residence Permit",

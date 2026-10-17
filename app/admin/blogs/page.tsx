@@ -163,7 +163,7 @@ const DEFAULT_BLOG_FORM: Omit<BlogItem, "id" | "views" | "createdAt" | "updatedA
   excerpt: "",
   content: "",
   image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-  author: "WorkWise Editorial Team",
+  author: "Wasim Faiz",
   readTime: "5 min read",
   tags: ["Gulf Visas", "Work Permits"],
   metaTitle: "",
@@ -293,7 +293,7 @@ export default function AdminBlogsPage() {
     setEditingBlog(null);
     setForm({
       ...DEFAULT_BLOG_FORM,
-      author: currentUser?.name || "WorkWise Editorial Team",
+      author: currentUser?.name || "Wasim Faiz",
       date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
     });
     setTagInput("");
@@ -1104,6 +1104,7 @@ export default function AdminBlogsPage() {
                     <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       <th className="py-3.5 px-4">Article</th>
                       <th className="py-3.5 px-4">Category</th>
+                      <th className="py-3.5 px-4">Author</th>
                       <th className="py-3.5 px-4">SEO Meta Title</th>
                       <th className="py-3.5 px-4">Status</th>
                       <th className="py-3.5 px-4">Views</th>
@@ -1137,6 +1138,14 @@ export default function AdminBlogsPage() {
                         <td className="py-3.5 px-4">
                           <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700">
                             {blog.category}
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 whitespace-nowrap">
+                          <span className="flex items-center gap-1.5 font-bold text-slate-800">
+                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black">
+                              {(blog.author || "Wasim Faiz").charAt(0)}
+                            </span>
+                            <span>{blog.author || "Wasim Faiz"}</span>
                           </span>
                         </td>
                         <td className="py-3.5 px-4 font-mono text-[11px] text-indigo-700 max-w-xs truncate">
