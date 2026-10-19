@@ -40,6 +40,9 @@ async function getBlog(slug: string) {
   // Find corresponding rich fallback by keyword aliases
   const staticFound = fallbackPosts.find(
     (p) =>
+      (decodedSlug.includes("europe-schengen") && p.id === "blog-24") ||
+      (decodedSlug.includes("opportunity-card") && p.id === "blog-24") ||
+      (decodedSlug.includes("chancenkarte") && p.id === "blog-24") ||
       (decodedSlug.includes("dubai-residence") && p.id === "blog-23") ||
       (decodedSlug.includes("residence-permit") && p.id === "blog-23") ||
       (decodedSlug.includes("dubai-construction") && p.id === "blog-22") ||
@@ -504,27 +507,6 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
             {/* ── Right Column / Sticky Sidebar (lg:col-span-4) ── */}
             <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
-              {/* Author Sidebar Card */}
-              <div className="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-sm">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-700 flex items-center justify-center text-white text-lg font-black shadow-sm shrink-0">
-                    {(article.author || "Wasim Faiz").charAt(0)}
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1">
-                      <FaUserCheck className="w-2.5 h-2.5" />
-                      Article Author
-                    </span>
-                    <h4 className="text-sm font-extrabold text-slate-900 truncate">
-                      {article.author || "Wasim Faiz"}
-                    </h4>
-                    <p className="text-[11px] text-slate-500 truncate font-medium">
-                      Overseas Visa &amp; Career Specialist
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* Recent & Trending Guides Widget */}
               <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm">
                 <div className="flex items-center gap-2.5 mb-5 pb-3.5 border-b border-slate-100">
