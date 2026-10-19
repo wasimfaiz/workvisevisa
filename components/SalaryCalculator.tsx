@@ -639,6 +639,33 @@ export default function SalaryCalculator() {
             </div>
 
           </div>
+
+          {/* Destination Work Visa Portals: Direct High-Priority Internal Links for Fast Crawl & Indexing */}
+          <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+            <span className="font-bold text-slate-800 shrink-0">
+              Explore Official Destination Guides:
+            </span>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 font-semibold text-emerald-700">
+              <a href="/countries/uae" className="hover:underline">🇦🇪 UAE Guide</a>
+              <span className="text-slate-300">•</span>
+              <a href="/countries/saudi-arabia" className="hover:underline">🇸🇦 Saudi Arabia Guide</a>
+              <span className="text-slate-300">•</span>
+              <a href="/countries/qatar" className="hover:underline">🇶🇦 Qatar Guide</a>
+              <span className="text-slate-300">•</span>
+              <a href="/countries/oman" className="hover:underline">🇴🇲 Oman Guide</a>
+              <span className="text-slate-300">•</span>
+              <a href="/countries/bahrain" className="hover:underline">🇧🇭 Bahrain Guide</a>
+              <span className="text-slate-300">•</span>
+              <a href="/countries/germany" className="hover:underline">🇩🇪 Germany Guide</a>
+              <span className="text-slate-300">•</span>
+              <a
+                href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
+                className="text-teal-800 font-extrabold hover:underline"
+              >
+                🌟 GCC Grand Tours Visa 2026
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

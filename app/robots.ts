@@ -20,8 +20,6 @@ export default function robots(): MetadataRoute.Robots {
           "/invoice",
           "/invoice/*",
           "/_next/",
-          "/llms.txt",
-          "/llms-full.txt",
         ],
       },
       {
@@ -35,8 +33,6 @@ export default function robots(): MetadataRoute.Robots {
           "/invoice",
           "/invoice/*",
           "/_next/",
-          "/llms.txt",
-          "/llms-full.txt",
         ],
       },
       {
@@ -50,8 +46,6 @@ export default function robots(): MetadataRoute.Robots {
           "/invoice",
           "/invoice/*",
           "/_next/",
-          "/llms.txt",
-          "/llms-full.txt",
         ],
       },
     ],

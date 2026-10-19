@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
   FaClock,
@@ -8,10 +9,26 @@ import {
   FaLocationDot,
   FaWandMagicSparkles,
   FaCompass,
+  FaArrowRight,
 } from "react-icons/fa6";
 import { countries, type Country } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+
+const countryUrlMap: Record<string, string> = {
+  AE: "/countries/uae",
+  SA: "/countries/saudi-arabia",
+  QA: "/countries/qatar",
+  OM: "/countries/oman",
+  BH: "/countries/bahrain",
+  DE: "/countries/germany",
+  RU: "/countries/russia",
+  LU: "/countries/luxembourg",
+  FR: "/countries/france",
+  CA: "/countries/canada",
+  US: "/countries/usa",
+  GB: "/countries/uk",
+};
 
 const regions = [
   "All",
@@ -182,6 +199,41 @@ function CountryCard({
             <FaLocationDot className="w-3 h-3 text-teal-600" />
             {country.visaTypes.length} Visa Options
           </span>
+        </div>
+
+        {/* Direct Navigation to Comprehensive Country Guide */}
+        <div className="pt-3.5 mt-3.5 border-t border-slate-100 flex items-center justify-between gap-2">
+          {countryUrlMap[country.code] ? (
+            <Link
+              href={countryUrlMap[country.code]}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 hover:underline group/link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span>Explore {country.name} Guide</span>
+              <FaArrowRight className="w-2.5 h-2.5 group-hover/link:translate-x-0.5 transition-transform" />
+            </Link>
+          ) : (
+            <Link
+              href="/countries"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span>View Requirements</span>
+              <FaArrowRight className="w-2.5 h-2.5" />
+            </Link>
+          )}
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggle();
+            }}
+            className="text-[11px] font-bold text-slate-500 hover:text-slate-800 inline-flex items-center gap-1 cursor-pointer"
+          >
+            <span>{isExpanded ? "Hide" : "Trades"}</span>
+            <FaChevronDown className={`w-2.5 h-2.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+          </button>
         </div>
 
         <AnimatePresence>

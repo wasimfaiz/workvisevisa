@@ -15,6 +15,7 @@ export async function GET() {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400",
+        "X-Robots-Tag": "noindex, noarchive",
       },
     });
   } catch (error) {
@@ -23,6 +24,7 @@ export async function GET() {
       status: 200,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": "noindex, noarchive",
       },
     });
   }
