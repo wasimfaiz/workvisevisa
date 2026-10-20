@@ -124,6 +124,22 @@ export async function ensureSeedData() {
         pattern: /Luxembourg Work Visa|Salaried Worker.*Luxembourg|ADEM.*Luxembourg/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-21"),
       },
+      {
+        pattern: /Dubai Construction.*MEP|Building Trade Jobs Dubai/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-22"),
+      },
+      {
+        pattern: /Dubai Residence Permit|UAE Residence Visa Master Guide/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-23"),
+      },
+      {
+        pattern: /Europe & Schengen Work Visa Master Guide|Chancenkarte.*Opportunity Card/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-24"),
+      },
+      {
+        pattern: /Gulf Work Visa & Labour Law Updates|UAE MoHRE Zero Bureaucracy|Saudi Qiwa Regularization/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-25"),
+      },
     ];
 
     for (const item of seedMatchers) {
