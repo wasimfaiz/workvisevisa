@@ -1302,6 +1302,119 @@ export const locationsList: LocationData[] = [
       },
     ],
   },
+
+  // ==========================================
+  // 11. BHAGALPUR (Service Area - Anga Division)
+  // ==========================================
+  {
+    slug: "bhagalpur",
+    name: "Bhagalpur",
+    state: "Bihar",
+    type: "service-area",
+    heroBadge: "Candidate Facilitation Hub • Anga Division",
+    metaTitle: "Work Visa Consultancy in Bhagalpur | WorkWise Visa Bihar",
+    metaDescription:
+      "Premier overseas job consultancy for candidates in Bhagalpur, Naugachia, Kahalgaon & Banka. Verified Gulf & Europe work permits via Patna branch.",
+    keywords: [
+      "work visa consultancy in bhagalpur",
+      "gulf job consultancy in bhagalpur",
+      "visa agency in bhagalpur bihar",
+      "overseas recruitment agency bhagalpur",
+      "saudi work visa bhagalpur",
+      "dubai job placement bhagalpur",
+      "gamca medical test bhagalpur",
+      "takamol test center bihar",
+      "workwise visa bhagalpur",
+    ],
+    districtIntro:
+      "Bhagalpur (Silk City of Bihar) aur Anga region (Naugachia, Kahalgaon, Sultanganj, Banka) ke mehanti skilled technicians, industrial welders, drivers aur healthcare professionals ke liye WorkWise Visa 100% authentic employment visas arrange karta hai. Patna hamare Boring Road office se express trains (Vande Bharat / Intercity Express) ke zariye seedha connectivity hai.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa - Patna Branch (Varma Centre)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress: "Office No. 606, 6th Floor, Varma Centre, Boring Road Crossing, Patna, Bihar",
+      distanceFromCity: "220 KM",
+      travelDuration: "3.5 - 4 Hours",
+      recommendedTrains: [
+        "Bhagalpur - Danapur Intercity Express (Daily)",
+        "Vikramshila Express & Jan Shatabdi Express",
+        "Vande Bharat Express & Express Trains via Kiul",
+      ],
+      roadRoute: "Bhagalpur → Sultanganj → Munger / Mokama → Bakhtiyarpur → Patna (NH-80 & NH-31)",
+      howCandidatesApply: [
+        {
+          step: "1",
+          title: "Online Document Review",
+          description: "WhatsApp par apna trade experience, ITI/Diploma aur passport details share karein.",
+        },
+        {
+          step: "2",
+          title: "Patna Center Walk-in Interview",
+          description: "Varma Centre Boring Road par direct client interview attend karein.",
+        },
+      ],
+      onlineBenefits: [
+        "Direct guidance for Bhagalpur, Kahalgaon, Naugachia & Banka candidates.",
+        "Free Saudi Takamol preparation & trade test scheduling.",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial, MEP & Power Trades",
+        roles: ["6G Pipe Welder", "Industrial Electrician", "Fitter", "Scaffolder"],
+        monthlySalary: "₹48,000 - ₹82,000",
+        countries: "Saudi Arabia, UAE, Qatar, Oman",
+        overtime: "Guaranteed OT & Inclusions",
+      },
+      {
+        category: "Heavy Logistics & Driving",
+        roles: ["Heavy Trailer Driver", "Dump Truck Driver", "Bus Driver"],
+        monthlySalary: "₹55,000 - ₹95,000",
+        countries: "Saudi Arabia, UAE, Kuwait",
+        overtime: "Trip Allowance Included",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Transparent & Direct Process",
+        desc: "Kisi local unverified middleman ke bina seedha government Qiwa aur MoHRE approved company contracts.",
+      },
+      {
+        title: "Direct Connectivity to Patna",
+        desc: "Bhagalpur Junction se direct daily express trains se 4 ghante me hamare Varma Centre Patna office pahuchein.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Md. Tarique Alam",
+        cityOrDistrict: "Bhagalpur (Nathnagar)",
+        jobRole: "6G TIG & ARC Welder",
+        destinationCountry: "Jubail, Saudi Arabia",
+        monthlySalary: "SAR 2,700 (₹60,000)",
+        quote: "Bhagalpur me local dalal 1.5 lakh maang rahe the. WorkWise Visa se Patna office aakar interview diya aur 35 din me visa aa gaya.",
+        rating: 5,
+      },
+      {
+        name: "Rajnish Kumar Singh",
+        cityOrDistrict: "Bhagalpur (Kahalgaon)",
+        jobRole: "Industrial Electrician",
+        destinationCountry: "Dubai, UAE",
+        monthlySalary: "AED 2,500 (₹57,000)",
+        quote: "NTPC area me contract par kaam karta tha. WorkWise Visa ke zariye Dubai MEP contractor me permanent 2-year job mil gayi.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Bhagalpur se Patna office kaise pahuchein?",
+        a: "Bhagalpur Junction se subah Intercity Express ya Jan Shatabdi se 3.5 se 4 ghante me Patna Junction pahunch kar Boring Road Crossing auto se 15 minute me Varma Centre office pahuchein.",
+      },
+      {
+        q: "Kya Bhagalpur ke candidates online apply kar sakte hain?",
+        a: "Haan, candidate WhatsApp ya online form ke zariye apna resume aur passport bhej kar shortlisting karwa sakte hain, document processing 100% digital hai.",
+      },
+    ],
+  },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {

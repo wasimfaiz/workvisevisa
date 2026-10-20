@@ -44,6 +44,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const dedicatedDirectories = new Set([
+    "bhagalpur",
     "chhapra",
     "darbhanga",
     "delhi",
@@ -755,6 +756,10 @@ export default async function LocationCityPage({ params }: PageProps) {
               <span>•</span>
               <Link href="/locations/gaya" className="hover:text-emerald-700">
                 Gaya Desk
+              </Link>
+              <span>•</span>
+              <Link href="/locations/bhagalpur" className="hover:text-emerald-700 font-bold text-emerald-800">
+                Bhagalpur Desk
               </Link>
               <span>•</span>
               <Link href="/locations" className="hover:text-emerald-700 font-bold text-emerald-700">

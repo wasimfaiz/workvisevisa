@@ -2261,6 +2261,10 @@ export default function PatnaLocationPage() {
                   Gaya Desk
                 </Link>
                 <span>•</span>
+                <Link href="/locations/bhagalpur" className="hover:text-emerald-700 font-bold text-emerald-800">
+                  Bhagalpur Desk
+                </Link>
+                <span>•</span>
                 <Link href="/locations" className="hover:text-emerald-700 font-bold text-emerald-700">
                   View All Locations &rarr;
                 </Link>
