@@ -395,12 +395,12 @@ export default function AdminDashboardPage() {
       />
 
       {/* ── MAIN EXECUTIVE DASHBOARD ── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-6">
+      <main className="flex-1 min-w-0 p-3 sm:p-6 lg:p-8 overflow-x-hidden lg:overflow-y-auto lg:max-h-screen space-y-4 sm:space-y-6">
         
         {/* 1. Header Banner & Quick Actions */}
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
               <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 Welcome back, {admin.name}! 👋
               </h1>
@@ -421,11 +421,11 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Quick Action Buttons */}
-          <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap w-full md:w-auto">
             <button
               onClick={() => loadDashboardData(true)}
               disabled={refreshing || loading}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 transition-all border border-slate-200 cursor-pointer disabled:opacity-50 shrink-0"
               title="Sync Live Data"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
@@ -435,7 +435,7 @@ export default function AdminDashboardPage() {
             {canCreateApplications && (
               <Link
                 href="/admin/applications"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all shrink-0"
               >
                 <Compass className="w-3.5 h-3.5" />
                 <span>+ Enroll Candidate</span>
@@ -445,7 +445,7 @@ export default function AdminDashboardPage() {
             {canCreateInquiries && (
               <Link
                 href="/admin/inquiry"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all shrink-0"
               >
                 <UserPlus className="w-3.5 h-3.5" />
                 <span>Add Lead</span>
@@ -455,7 +455,7 @@ export default function AdminDashboardPage() {
             {canCreateJobs && (
               <Link
                 href="/admin/jobs"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-sm transition-all shrink-0"
               >
                 <Briefcase className="w-3.5 h-3.5" />
                 <span>Post Job</span>
@@ -465,7 +465,7 @@ export default function AdminDashboardPage() {
             {canCreateInvoices && (
               <Link
                 href="/admin/invoice"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all shrink-0"
               >
                 <FileText className="w-3.5 h-3.5 text-slate-500" />
                 <span>Invoice</span>
@@ -475,7 +475,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* 2. Primary KPI Cards Grid (Compact & Role-Aware) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {/* Card 1: Applications Tracker */}
           {canViewApplications && (
             <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
@@ -614,26 +614,26 @@ export default function AdminDashboardPage() {
 
               {/* Selector Tabs if user has both permissions */}
               {canViewApplications && canViewInquiries && (
-                <div className="inline-flex rounded-xl bg-slate-100 p-1 self-start">
+                <div className="flex w-full sm:w-auto rounded-xl bg-slate-100 p-1">
                   <button
                     onClick={() => setPipelineTab("leads")}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    className={`flex-1 sm:flex-initial text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       pipelineTab === "leads"
                         ? "bg-white text-emerald-700 shadow-xs"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    Candidate Leads Pipeline
+                    Candidate Leads
                   </button>
                   <button
                     onClick={() => setPipelineTab("milestones")}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    className={`flex-1 sm:flex-initial text-center px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       pipelineTab === "milestones"
                         ? "bg-white text-purple-700 shadow-xs"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    Visa Milestones (Stages 1-7)
+                    Visa Milestones (1-7)
                   </button>
                 </div>
               )}
@@ -693,10 +693,10 @@ export default function AdminDashboardPage() {
               <div className="p-4 sm:px-5 sm:py-4 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50/50">
                 <div className="flex items-center gap-2">
                   {canViewInquiries && canViewApplications ? (
-                    <div className="inline-flex rounded-xl bg-slate-200/70 p-1">
+                    <div className="flex w-full sm:w-auto rounded-xl bg-slate-200/70 p-1">
                       <button
                         onClick={() => setLeftTab("inquiries")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        className={`flex-1 sm:flex-initial text-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer truncate ${
                           leftTab === "inquiries"
                             ? "bg-white text-emerald-700 shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
@@ -706,13 +706,13 @@ export default function AdminDashboardPage() {
                       </button>
                       <button
                         onClick={() => setLeftTab("applications")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        className={`flex-1 sm:flex-initial text-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer truncate ${
                           leftTab === "applications"
                             ? "bg-white text-purple-700 shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
-                        Active Visa Cases ({applications.length})
+                        Active Cases ({applications.length})
                       </button>
                     </div>
                   ) : (
@@ -882,26 +882,26 @@ export default function AdminDashboardPage() {
               <div className="p-4 sm:px-5 sm:py-4 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50/50">
                 <div className="flex items-center gap-2">
                   {canViewJobs && canViewInvoices ? (
-                    <div className="inline-flex rounded-xl bg-slate-200/70 p-1">
+                    <div className="flex w-full sm:w-auto rounded-xl bg-slate-200/70 p-1">
                       <button
                         onClick={() => setRightTab("jobs")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        className={`flex-1 sm:flex-initial text-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer truncate ${
                           rightTab === "jobs"
                             ? "bg-white text-blue-700 shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
-                        Active Demands ({jobs.length})
+                        Demands ({jobs.length})
                       </button>
                       <button
                         onClick={() => setRightTab("invoices")}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        className={`flex-1 sm:flex-initial text-center px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer truncate ${
                           rightTab === "invoices"
                             ? "bg-white text-pink-700 shadow-xs"
                             : "text-slate-600 hover:text-slate-900"
                         }`}
                       >
-                        Recent Invoices ({invoices.length})
+                        Invoices ({invoices.length})
                       </button>
                     </div>
                   ) : (

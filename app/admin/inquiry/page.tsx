@@ -738,10 +738,10 @@ export default function AdminInquiryPage() {
       />
 
       {/* ── MAIN CONTENT AREA ── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-5">
+      <main className="flex-1 min-w-0 p-3 sm:p-6 lg:p-8 overflow-x-hidden lg:overflow-y-auto lg:max-h-screen space-y-4 sm:space-y-5">
         
         {/* Header Bar */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
@@ -759,11 +759,11 @@ export default function AdminInquiryPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap w-full md:w-auto">
             {canEditInquiry && (
               <button
                 onClick={() => setShowAddModal(true)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm transition-all cursor-pointer shrink-0"
                 title="Add New Lead Manually"
               >
                 <UserPlus className="w-3.5 h-3.5" />
@@ -774,7 +774,7 @@ export default function AdminInquiryPage() {
             <button
               onClick={() => fetchInquiries(true)}
               disabled={refreshing || loading}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50 shrink-0"
               title="Sync Latest Leads"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
@@ -785,7 +785,7 @@ export default function AdminInquiryPage() {
               <button
                 onClick={handleExportCSV}
                 disabled={inquiries.length === 0}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all cursor-pointer disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all cursor-pointer disabled:opacity-50 shrink-0"
                 title="Export to Excel CSV"
               >
                 <Download className="w-3.5 h-3.5 text-slate-500" />
@@ -796,7 +796,7 @@ export default function AdminInquiryPage() {
         </div>
 
         {/* ── Compact Stat Highlights ── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3">
           {[
             { label: "Total Leads", value: stats.total, color: "text-slate-900", bg: "bg-white" },
             { label: "New Leads", value: stats.newCount, color: "text-emerald-700", bg: "bg-emerald-50/70" },
@@ -820,7 +820,7 @@ export default function AdminInquiryPage() {
         </div>
 
         {/* ── Search & Filter Controls ── */}
-        <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm space-y-3">
+        <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-sm space-y-3">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -843,12 +843,12 @@ export default function AdminInquiryPage() {
             </div>
 
             {/* Dropdown Filters */}
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
               {/* Destination Filter */}
               <select
                 value={countryFilter}
                 onChange={(e) => setCountryFilter(e.target.value)}
-                className="px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+                className="w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
               >
                 <option value="all">All Destinations ({uniqueCountries.length})</option>
                 {uniqueCountries.map((c) => (
@@ -862,10 +862,10 @@ export default function AdminInquiryPage() {
               <select
                 value={assignedFilter}
                 onChange={(e) => setAssignedFilter(e.target.value)}
-                className="px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+                className="w-full sm:w-auto px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 outline-none cursor-pointer"
               >
-                <option value="all">All Staff Leads ({inquiries.length})</option>
-                <option value="unassigned">Unassigned Leads ({stats.unassignedCount})</option>
+                <option value="all">All Staff ({inquiries.length})</option>
+                <option value="unassigned">Unassigned ({stats.unassignedCount})</option>
                 {employees.map((emp) => {
                   const count = inquiries.filter(
                     (i) => i.assignedTo?.id === emp.id || i.assignedTo?.name === emp.name || i.assignedTo?.email === emp.email
@@ -881,10 +881,10 @@ export default function AdminInquiryPage() {
               {/* Sort Toggle */}
               <button
                 onClick={() => setSortBy((prev) => (prev === "newest" ? "oldest" : "newest"))}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer"
+                className="col-span-2 sm:col-span-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer"
               >
                 <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-                <span>{sortBy === "newest" ? "Newest First" : "Oldest First"}</span>
+                <span>{sortBy === "newest" ? "Newest" : "Oldest"}</span>
               </button>
             </div>
           </div>
@@ -948,49 +948,49 @@ export default function AdminInquiryPage() {
               )}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
-                    <th className="py-3.5 px-4 w-12 text-center">#</th>
-                    <th className="py-3.5 px-4">Candidate &amp; Submission</th>
-                    <th className="py-3.5 px-4">Phone &amp; Connect</th>
-                    <th className="py-3.5 px-4">Destination &amp; Trade</th>
-                    <th className="py-3.5 px-4">Status</th>
-                    <th className="py-3.5 px-4">Assigned Counselor</th>
-                    <th className="py-3.5 px-4 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {filteredInquiries.map((inq, idx) => {
-                    const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
-                    const waPhone = cleanPhone.startsWith("+")
-                      ? cleanPhone.replace("+", "")
-                      : cleanPhone.length === 10
-                      ? `91${cleanPhone}`
-                      : cleanPhone;
+            <>
+              {/* Mobile Card List (< lg) */}
+              <div className="block lg:hidden divide-y divide-slate-100">
+                {filteredInquiries.map((inq, idx) => {
+                  const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
+                  const waPhone = cleanPhone.startsWith("+")
+                    ? cleanPhone.replace("+", "")
+                    : cleanPhone.length === 10
+                    ? `91${cleanPhone}`
+                    : cleanPhone;
 
-                    const waMessage = encodeURIComponent(
-                      `Hello ${inq.name}, greetings from WorkWise Visa! Thank you for requesting an overseas work visa consultation for ${inq.country}. We would love to assess your profile for ${inq.occupation}.`
-                    );
+                  const waMessage = encodeURIComponent(
+                    `Hello ${inq.name}, greetings from WorkWise Visa! Thank you for requesting an overseas work visa consultation for ${inq.country}. We would love to assess your profile for ${inq.occupation}.`
+                  );
 
-                    const badge = getStatusStyle(inq.status);
+                  const badge = getStatusStyle(inq.status);
 
-                    return (
-                      <tr
-                        key={inq.id}
-                        className={`transition-all hover:bg-slate-50/80 ${
-                          inq.status === "new" ? "bg-emerald-50/30" : ""
-                        }`}
-                      >
-                        {/* Index */}
-                        <td className="py-3.5 px-4 text-center font-bold text-slate-400">
-                          {idx + 1}
-                        </td>
+                  let selectedVal = "unassigned";
+                  if (inq.assignedTo) {
+                    if (inq.assignedTo.id && employees.some((e) => e.id === inq.assignedTo?.id)) {
+                      selectedVal = inq.assignedTo.id;
+                    } else if (inq.assignedTo.name) {
+                      const foundByName = employees.find(
+                        (e) => e.name.trim().toLowerCase() === inq.assignedTo?.name?.trim().toLowerCase()
+                      );
+                      selectedVal = foundByName ? foundByName.id : (inq.assignedTo.id || inq.assignedTo.name);
+                    } else if (inq.assignedTo.id) {
+                      selectedVal = inq.assignedTo.id;
+                    }
+                  }
+                  const hasAssignee = selectedVal !== "unassigned";
 
-                        {/* Candidate Name & Submission Date */}
-                        <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-2">
+                  return (
+                    <div
+                      key={inq.id}
+                      className={`p-3.5 sm:p-4 space-y-3 transition-colors ${
+                        inq.status === "new" ? "bg-emerald-50/30" : "bg-white"
+                      }`}
+                    >
+                      {/* Header: Name + Badge + Date */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-extrabold text-sm text-slate-900">
                               {inq.name}
                             </span>
@@ -999,79 +999,108 @@ export default function AdminInquiryPage() {
                                 NEW
                               </span>
                             )}
+                            <span className="text-[10px] font-bold text-slate-400">
+                              #{idx + 1}
+                            </span>
                           </div>
                           <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-slate-400" />
-                            {new Date(inq.createdAt).toLocaleString("en-IN", {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                              hour12: true,
-                            })}
+                            <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                            <span>
+                              {new Date(inq.createdAt).toLocaleString("en-IN", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                hour12: true,
+                              })}
+                            </span>
                           </div>
-                          {inq.source && (
-                            <div className="mt-1">
-                              <span className="inline-block text-[10px] font-bold text-teal-800 bg-teal-50 border border-teal-200/80 rounded px-1.5 py-0.5 max-w-xs truncate" title={inq.source}>
-                                {inq.source}
-                              </span>
-                            </div>
-                          )}
-                          {inq.notes && (
-                            <div className="mt-1.5 text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2 py-1 text-amber-900 max-w-xs truncate" title={inq.notes}>
-                              <strong>Note:</strong> {inq.notes}
-                            </div>
-                          )}
-                        </td>
+                        </div>
 
-                        {/* Phone & 1-Click WhatsApp / Call */}
-                        <td className="py-3.5 px-4">
-                          <div className="font-mono font-bold text-slate-800">
-                            {inq.phone}
-                          </div>
-                          <div className="flex items-center gap-1.5 mt-1">
-                            <a
-                              href={`https://wa.me/${waPhone}?text=${waMessage}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-2xs transition-all"
-                              title="Chat on WhatsApp"
+                        {/* Note & Delete Actions */}
+                        <div className="flex items-center gap-1 shrink-0">
+                          <button
+                            onClick={() => {
+                              setActiveNoteInquiry(inq);
+                              setNoteText(inq.notes || "");
+                            }}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer"
+                            title="View & Edit Notes"
+                          >
+                            <Edit3 className="w-3 h-3 text-slate-500" />
+                            <span>{inq.notes ? "Note" : "+ Note"}</span>
+                          </button>
+                          {canDeleteInquiry && (
+                            <button
+                              onClick={() => setDeletingId(inq.id)}
+                              className="p-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all cursor-pointer"
+                              title="Delete Lead"
                             >
-                              <MessageCircle className="w-3 h-3" />
-                              <span>WhatsApp</span>
-                            </a>
-                            <a
-                              href={`tel:${cleanPhone}`}
-                              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-all"
-                              title="Direct Phone Call"
-                            >
-                              <Phone className="w-3 h-3" />
-                              <span>Call</span>
-                            </a>
-                          </div>
-                        </td>
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
 
-                        {/* Country & Occupation */}
-                        <td className="py-3.5 px-4">
-                          <div className="inline-flex items-center gap-1 font-bold text-slate-800">
-                            <MapPin className="w-3 h-3 text-emerald-600 shrink-0" />
-                            <span>{inq.country || "General Destination"}</span>
-                          </div>
-                          <div className="text-[11px] text-slate-500 mt-0.5">
-                            {inq.occupation || "General / Unspecified"}
-                          </div>
-                        </td>
+                      {/* Phone & Direct 1-Tap Connect Buttons */}
+                      <div className="flex items-center justify-between gap-2 bg-slate-50 p-2 rounded-xl">
+                        <span className="font-mono text-xs font-bold text-slate-800 truncate">
+                          {inq.phone}
+                        </span>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <a
+                            href={`https://wa.me/${waPhone}?text=${waMessage}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-2xs transition-all"
+                          >
+                            <MessageCircle className="w-3 h-3" />
+                            <span>WhatsApp</span>
+                          </a>
+                          <a
+                            href={`tel:${cleanPhone}`}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold text-blue-700 bg-white border border-blue-200 hover:bg-blue-50 transition-all"
+                          >
+                            <Phone className="w-3 h-3" />
+                            <span>Call</span>
+                          </a>
+                        </div>
+                      </div>
 
-                        {/* Status Select Badge */}
-                        <td className="py-3.5 px-4">
+                      {/* Destination & Occupation */}
+                      <div className="flex items-center justify-between text-xs gap-2">
+                        <div className="inline-flex items-center gap-1 text-slate-800 font-bold min-w-0">
+                          <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <span className="truncate">{inq.country || "General Destination"}</span>
+                        </div>
+                        <span className="text-slate-500 text-[11px] bg-slate-100 px-2 py-0.5 rounded-md truncate max-w-[150px]">
+                          {inq.occupation || "General"}
+                        </span>
+                      </div>
+
+                      {/* Source tag if present */}
+                      {inq.source && (
+                        <div>
+                          <span className="inline-block text-[10px] font-bold text-teal-800 bg-teal-50 border border-teal-200/80 rounded px-1.5 py-0.5 max-w-full truncate">
+                            Source: {inq.source}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Status + Counselor Selectors */}
+                      <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+                        <div>
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Status
+                          </label>
                           <select
                             value={inq.status}
                             disabled={statusUpdatingId === inq.id}
                             onChange={(e) =>
                               handleStatusChange(inq.id, e.target.value as InquiryItem["status"])
                             }
-                            className={`px-2.5 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer ${badge.bg} ${badge.text} ${badge.border}`}
+                            className={`w-full px-2 py-1.5 rounded-lg text-xs font-bold border outline-none cursor-pointer ${badge.bg} ${badge.text} ${badge.border}`}
                           >
                             <option value="new">New Lead</option>
                             <option value="interested">Interested</option>
@@ -1083,94 +1112,273 @@ export default function AdminInquiryPage() {
                             <option value="not_interested">Not Interested</option>
                             <option value="closed">Closed</option>
                           </select>
-                        </td>
+                        </div>
 
-                        {/* Assigned Counselor */}
-                        <td className="py-3.5 px-4">
-                          {(() => {
-                            let selectedVal = "unassigned";
-                            if (inq.assignedTo) {
-                              if (inq.assignedTo.id && employees.some((e) => e.id === inq.assignedTo?.id)) {
-                                selectedVal = inq.assignedTo.id;
-                              } else if (inq.assignedTo.name) {
-                                const foundByName = employees.find(
-                                  (e) => e.name.trim().toLowerCase() === inq.assignedTo?.name?.trim().toLowerCase()
-                                );
-                                selectedVal = foundByName ? foundByName.id : (inq.assignedTo.id || inq.assignedTo.name);
-                              } else if (inq.assignedTo.id) {
-                                selectedVal = inq.assignedTo.id;
-                              }
-                            }
-
-                            const hasAssignee = selectedVal !== "unassigned";
-
-                            return (
-                              <div className="flex items-center gap-1.5">
-                                <select
-                                  value={selectedVal}
-                                  disabled={assigningId === inq.id}
-                                  onChange={(e) => handleAssignChange(inq.id, e.target.value)}
-                                  className={`px-2 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer max-w-[150px] ${
-                                    hasAssignee
-                                      ? "bg-purple-50 text-purple-800 border-purple-200"
-                                      : "bg-slate-50 text-slate-500 border-dashed border-slate-300"
-                                  }`}
-                                >
-                                  <option value="unassigned">Unassigned</option>
-                                  {employees.map((emp) => (
-                                    <option key={emp.id} value={emp.id}>
-                                      {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
-                                    </option>
-                                  ))}
-                                </select>
-                                {assigningId === inq.id && (
-                                  <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-600" />
-                                )}
-                              </div>
-                            );
-                          })()}
-                        </td>
-
-                        {/* Actions (Notes / Delete) */}
-                        <td className="py-3.5 px-4 text-right">
-                          <div className="flex items-center justify-end gap-1.5">
-                            <button
-                              onClick={() => {
-                                setActiveNoteInquiry(inq);
-                                setNoteText(inq.notes || "");
-                              }}
-                              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer"
-                              title="View & Edit Notes"
+                        <div>
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Assigned Counselor
+                          </label>
+                          <div className="flex items-center gap-1">
+                            <select
+                              value={selectedVal}
+                              disabled={assigningId === inq.id}
+                              onChange={(e) => handleAssignChange(inq.id, e.target.value)}
+                              className={`w-full px-2 py-1.5 rounded-lg text-xs font-bold border outline-none cursor-pointer truncate ${
+                                hasAssignee
+                                  ? "bg-purple-50 text-purple-800 border-purple-200"
+                                  : "bg-slate-50 text-slate-500 border-dashed border-slate-300"
+                              }`}
                             >
-                              <Edit3 className="w-3 h-3 text-slate-500" />
-                              <span>{inq.notes ? "Note" : "+ Note"}</span>
-                            </button>
-
-                            {canDeleteInquiry && (
-                              <button
-                                onClick={() => setDeletingId(inq.id)}
-                                className="p-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all cursor-pointer"
-                                title="Delete Lead"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
+                              <option value="unassigned">Unassigned</option>
+                              {employees.map((emp) => (
+                                <option key={emp.id} value={emp.id}>
+                                  {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                                </option>
+                              ))}
+                            </select>
+                            {assigningId === inq.id && (
+                              <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-600 shrink-0" />
                             )}
                           </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                        </div>
+                      </div>
+
+                      {/* Notes snippet if present */}
+                      {inq.notes && (
+                        <div className="text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2.5 py-1.5 text-amber-900 leading-snug">
+                          <strong>Note:</strong> {inq.notes}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Desktop Table (lg+) */}
+              <div className="hidden lg:block overflow-x-auto">
+                <table className="w-full text-left text-xs border-collapse">
+                  <thead>
+                    <tr className="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
+                      <th className="py-3.5 px-4 w-12 text-center">#</th>
+                      <th className="py-3.5 px-4">Candidate &amp; Submission</th>
+                      <th className="py-3.5 px-4">Phone &amp; Connect</th>
+                      <th className="py-3.5 px-4">Destination &amp; Trade</th>
+                      <th className="py-3.5 px-4">Status</th>
+                      <th className="py-3.5 px-4">Assigned Counselor</th>
+                      <th className="py-3.5 px-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {filteredInquiries.map((inq, idx) => {
+                      const cleanPhone = inq.phone.replace(/[^\d+]/g, "");
+                      const waPhone = cleanPhone.startsWith("+")
+                        ? cleanPhone.replace("+", "")
+                        : cleanPhone.length === 10
+                        ? `91${cleanPhone}`
+                        : cleanPhone;
+
+                      const waMessage = encodeURIComponent(
+                        `Hello ${inq.name}, greetings from WorkWise Visa! Thank you for requesting an overseas work visa consultation for ${inq.country}. We would love to assess your profile for ${inq.occupation}.`
+                      );
+
+                      const badge = getStatusStyle(inq.status);
+
+                      return (
+                        <tr
+                          key={inq.id}
+                          className={`transition-all hover:bg-slate-50/80 ${
+                            inq.status === "new" ? "bg-emerald-50/30" : ""
+                          }`}
+                        >
+                          {/* Index */}
+                          <td className="py-3.5 px-4 text-center font-bold text-slate-400">
+                            {idx + 1}
+                          </td>
+
+                          {/* Candidate Name & Submission Date */}
+                          <td className="py-3.5 px-4">
+                            <div className="flex items-center gap-2">
+                              <span className="font-extrabold text-sm text-slate-900">
+                                {inq.name}
+                              </span>
+                              {inq.status === "new" && (
+                                <span className="bg-emerald-100 text-emerald-800 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
+                                  NEW
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
+                              <Clock className="w-3 h-3 text-slate-400" />
+                              {new Date(inq.createdAt).toLocaleString("en-IN", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                hour12: true,
+                              })}
+                            </div>
+                            {inq.source && (
+                              <div className="mt-1">
+                                <span className="inline-block text-[10px] font-bold text-teal-800 bg-teal-50 border border-teal-200/80 rounded px-1.5 py-0.5 max-w-xs truncate" title={inq.source}>
+                                  {inq.source}
+                                </span>
+                              </div>
+                            )}
+                            {inq.notes && (
+                              <div className="mt-1.5 text-[11px] bg-amber-50 border border-amber-200/80 rounded-lg px-2 py-1 text-amber-900 max-w-xs truncate" title={inq.notes}>
+                                <strong>Note:</strong> {inq.notes}
+                              </div>
+                            )}
+                          </td>
+
+                          {/* Phone & 1-Click WhatsApp / Call */}
+                          <td className="py-3.5 px-4">
+                            <div className="font-mono font-bold text-slate-800">
+                              {inq.phone}
+                            </div>
+                            <div className="flex items-center gap-1.5 mt-1">
+                              <a
+                                href={`https://wa.me/${waPhone}?text=${waMessage}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-white bg-[#25d366] hover:bg-[#20ba59] shadow-2xs transition-all"
+                                title="Chat on WhatsApp"
+                              >
+                                <MessageCircle className="w-3 h-3" />
+                                <span>WhatsApp</span>
+                              </a>
+                              <a
+                                href={`tel:${cleanPhone}`}
+                                className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 hover:bg-blue-100 transition-all"
+                                title="Direct Phone Call"
+                              >
+                                <Phone className="w-3 h-3" />
+                                <span>Call</span>
+                              </a>
+                            </div>
+                          </td>
+
+                          {/* Country & Occupation */}
+                          <td className="py-3.5 px-4">
+                            <div className="inline-flex items-center gap-1 font-bold text-slate-800">
+                              <MapPin className="w-3 h-3 text-emerald-600 shrink-0" />
+                              <span>{inq.country || "General Destination"}</span>
+                            </div>
+                            <div className="text-[11px] text-slate-500 mt-0.5">
+                              {inq.occupation || "General / Unspecified"}
+                            </div>
+                          </td>
+
+                          {/* Status Select Badge */}
+                          <td className="py-3.5 px-4">
+                            <select
+                              value={inq.status}
+                              disabled={statusUpdatingId === inq.id}
+                              onChange={(e) =>
+                                handleStatusChange(inq.id, e.target.value as InquiryItem["status"])
+                              }
+                              className={`px-2.5 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer ${badge.bg} ${badge.text} ${badge.border}`}
+                            >
+                              <option value="new">New Lead</option>
+                              <option value="interested">Interested</option>
+                              <option value="dnp">DNP (No Answer)</option>
+                              <option value="contacted">Contacted</option>
+                              <option value="in_progress">In Progress</option>
+                              <option value="payment_mode">Payment Mode</option>
+                              <option value="converted">Converted</option>
+                              <option value="not_interested">Not Interested</option>
+                              <option value="closed">Closed</option>
+                            </select>
+                          </td>
+
+                          {/* Assigned Counselor */}
+                          <td className="py-3.5 px-4">
+                            {(() => {
+                              let selectedVal = "unassigned";
+                              if (inq.assignedTo) {
+                                if (inq.assignedTo.id && employees.some((e) => e.id === inq.assignedTo?.id)) {
+                                  selectedVal = inq.assignedTo.id;
+                                } else if (inq.assignedTo.name) {
+                                  const foundByName = employees.find(
+                                    (e) => e.name.trim().toLowerCase() === inq.assignedTo?.name?.trim().toLowerCase()
+                                  );
+                                  selectedVal = foundByName ? foundByName.id : (inq.assignedTo.id || inq.assignedTo.name);
+                                } else if (inq.assignedTo.id) {
+                                  selectedVal = inq.assignedTo.id;
+                                }
+                              }
+
+                              const hasAssignee = selectedVal !== "unassigned";
+
+                              return (
+                                <div className="flex items-center gap-1.5">
+                                  <select
+                                    value={selectedVal}
+                                    disabled={assigningId === inq.id}
+                                    onChange={(e) => handleAssignChange(inq.id, e.target.value)}
+                                    className={`px-2 py-1 rounded-lg text-xs font-bold border outline-none cursor-pointer max-w-[150px] ${
+                                      hasAssignee
+                                        ? "bg-purple-50 text-purple-800 border-purple-200"
+                                        : "bg-slate-50 text-slate-500 border-dashed border-slate-300"
+                                    }`}
+                                  >
+                                    <option value="unassigned">Unassigned</option>
+                                    {employees.map((emp) => (
+                                      <option key={emp.id} value={emp.id}>
+                                        {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                                      </option>
+                                    ))}
+                                  </select>
+                                  {assigningId === inq.id && (
+                                    <RefreshCw className="w-3.5 h-3.5 animate-spin text-indigo-600" />
+                                  )}
+                                </div>
+                              );
+                            })()}
+                          </td>
+
+                          {/* Actions (Notes / Delete) */}
+                          <td className="py-3.5 px-4 text-right">
+                            <div className="flex items-center justify-end gap-1.5">
+                              <button
+                                onClick={() => {
+                                  setActiveNoteInquiry(inq);
+                                  setNoteText(inq.notes || "");
+                                }}
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all cursor-pointer"
+                                title="View & Edit Notes"
+                              >
+                                <Edit3 className="w-3 h-3 text-slate-500" />
+                                <span>{inq.notes ? "Note" : "+ Note"}</span>
+                              </button>
+
+                              {canDeleteInquiry && (
+                                <button
+                                  onClick={() => setDeletingId(inq.id)}
+                                  className="p-1.5 rounded-lg text-rose-600 bg-rose-50 hover:bg-rose-100 transition-all cursor-pointer"
+                                  title="Delete Lead"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
       </main>
 
       {/* ── Follow-up Notes Modal ── */}
       {activeNoteInquiry && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-5 sm:p-6 border border-slate-200">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-4 sm:p-6 border border-slate-200">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
                 <h3 className="text-base font-extrabold text-slate-900">Follow-up Notes</h3>
@@ -1223,8 +1431,8 @@ export default function AdminInquiryPage() {
 
       {/* ── Delete Confirmation Modal ── */}
       {deletingId && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 text-center border border-slate-200">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-sm w-full p-5 sm:p-6 text-center border border-slate-200">
             <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-3">
               <Trash2 className="w-6 h-6" />
             </div>
@@ -1256,11 +1464,11 @@ export default function AdminInquiryPage() {
 
       {/* ── Add New Lead Modal ── */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 border border-slate-200">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[92vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6 border border-slate-200">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                   <UserPlus className="w-5 h-5" />
                 </div>
                 <div>
@@ -1270,7 +1478,7 @@ export default function AdminInquiryPage() {
               </div>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="text-slate-400 hover:text-slate-600"
+                className="text-slate-400 hover:text-slate-600 p-1"
               >
                 <X className="w-5 h-5" />
               </button>

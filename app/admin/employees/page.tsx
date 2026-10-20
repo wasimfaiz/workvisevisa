@@ -424,11 +424,11 @@ export default function AdminEmployeesPage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
+      <main className="flex-1 min-w-0 p-3 sm:p-6 lg:p-8 overflow-x-hidden lg:overflow-y-auto lg:max-h-screen space-y-4 sm:space-y-6">
         {/* Header Bar */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3.5 sm:gap-4 mb-4 sm:mb-5">
           <div>
-            <div className="flex items-center gap-2.5 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 Employees &amp; Access Control
               </h1>
@@ -443,11 +443,11 @@ export default function AdminEmployeesPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
             <button
               onClick={() => fetchEmployees(true)}
               disabled={refreshing || loading}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
               title="Sync latest staff roster"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
@@ -457,7 +457,7 @@ export default function AdminEmployeesPage() {
             {canManageEmployees && (
               <button
                 onClick={() => setIsAddModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
               >
                 <UserPlus className="w-3.5 h-3.5" />
                 <span>Add Employee</span>
@@ -467,64 +467,64 @@ export default function AdminEmployeesPage() {
         </div>
 
         {/* 4 KPI Metric Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Staff</span>
-              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                <Users className="w-4 h-4" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-4 sm:mb-6">
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Total Staff</span>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-slate-900">{stats.total}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">Registered staff profiles</div>
+            <div className="text-xl sm:text-3xl font-black text-slate-900">{stats.total}</div>
+            <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Registered staff profiles</div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Active Logins</span>
-              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                <UserCheck className="w-4 h-4" />
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Active Logins</span>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-emerald-600">{stats.active}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">Authorized for sign-in</div>
+            <div className="text-xl sm:text-3xl font-black text-emerald-600">{stats.active}</div>
+            <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Authorized for sign-in</div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Super Admins</span>
-              <div className="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-                <ShieldCheck className="w-4 h-4" />
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Super Admins</span>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-purple-600">{stats.superCount}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">Unrestricted tier</div>
+            <div className="text-xl sm:text-3xl font-black text-purple-600">{stats.superCount}</div>
+            <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Unrestricted tier</div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Invoice Access</span>
-              <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-                <FileText className="w-4 h-4" />
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+            <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Invoice Access</span>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
             </div>
-            <div className="text-2xl sm:text-3xl font-black text-amber-600">{stats.invoiceAccess}</div>
-            <div className="text-[11px] text-slate-500 font-medium mt-1">Financial billing allowed</div>
+            <div className="text-xl sm:text-3xl font-black text-amber-600">{stats.invoiceAccess}</div>
+            <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Financial billing allowed</div>
           </div>
         </div>
 
         {/* Search & Filter Bar */}
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 mb-4">
-          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 justify-between">
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-3.5 sm:p-4 mb-4">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 justify-between">
             {/* Search */}
-            <div className="relative flex-1 min-w-[260px]">
+            <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search staff by name, email, or phone..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
               />
               {search && (
                 <button
@@ -537,7 +537,7 @@ export default function AdminEmployeesPage() {
             </div>
 
             {/* Role Filter Chips */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
               {[
                 { id: "all", label: "All Staff" },
                 { id: "superadmin", label: "Super Admin" },
@@ -549,7 +549,7 @@ export default function AdminEmployeesPage() {
                 <button
                   key={tab.id}
                   onClick={() => setRoleFilter(tab.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex-shrink-0 ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex-shrink-0 cursor-pointer ${
                     roleFilter === tab.id
                       ? "bg-indigo-600 text-white shadow-sm shadow-indigo-500/20"
                       : "bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200/60"
@@ -562,15 +562,15 @@ export default function AdminEmployeesPage() {
           </div>
         </div>
 
-        {/* Staff Table */}
+        {/* Staff Table / Mobile Card List */}
         <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           {loading ? (
-            <div className="p-12 text-center text-slate-500">
+            <div className="p-8 sm:p-12 text-center text-slate-500">
               <div className="w-10 h-10 border-4 border-indigo-500/20 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4" />
               <p className="text-sm font-semibold text-slate-700">Loading staff accounts &amp; permissions...</p>
             </div>
           ) : filteredEmployees.length === 0 ? (
-            <div className="p-12 text-center">
+            <div className="p-8 sm:p-12 text-center">
               <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8" />
               </div>
@@ -593,228 +593,400 @@ export default function AdminEmployeesPage() {
               )}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                    <th className="py-3.5 px-4 w-12 text-center">#</th>
-                    <th className="py-3.5 px-4">Employee Details</th>
-                    <th className="py-3.5 px-4">Role</th>
-                    <th className="py-3.5 px-4">Allowed Sections (RBAC)</th>
-                    <th className="py-3.5 px-4 text-center">Status</th>
-                    <th className="py-3.5 px-4 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {filteredEmployees.map((emp, idx) => {
-                    const roleBadge = getRoleBadge(emp.role);
-                    const isSelf = currentUser.id === emp.id;
-                    const isSuper = emp.role === "superadmin" || emp.email === "wasim@yastudy.com";
+            <>
+              {/* Mobile Employee Cards (< lg) */}
+              <div className="block lg:hidden divide-y divide-slate-100">
+                {filteredEmployees.map((emp, idx) => {
+                  const roleBadge = getRoleBadge(emp.role);
+                  const isSelf = currentUser?.id === emp.id;
+                  const isSuper = emp.role === "superadmin" || emp.email === "wasim@yastudy.com";
 
-                    // Calculate permission tags
-                    const p = emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff;
-                    const hasInvoices = isSuper || p.invoices?.view;
-                    const hasInquiries = isSuper || p.inquiries?.view;
-                    const hasJobs = isSuper || p.jobs?.view;
-                    const hasApps = isSuper || p.applications?.view;
-                    const hasPartners = isSuper || Boolean(p.partners?.view);
-                    const hasEmpMgmt = isSuper || p.employees?.view;
+                  const p = emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff;
+                  const hasInvoices = isSuper || p.invoices?.view;
+                  const hasInquiries = isSuper || p.inquiries?.view;
+                  const hasJobs = isSuper || p.jobs?.view;
+                  const hasApps = isSuper || p.applications?.view;
+                  const hasPartners = isSuper || Boolean(p.partners?.view);
+                  const hasEmpMgmt = isSuper || p.employees?.view;
 
-                    return (
-                      <tr key={emp.id} className="hover:bg-slate-50/70 transition-colors">
-                        {/* Index */}
-                        <td className="py-3.5 px-4 text-center font-bold text-xs text-slate-400">
-                          {idx + 1}
-                        </td>
-
-                        {/* Name & Contact */}
-                        <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center flex-shrink-0 text-sm border border-indigo-100">
-                              {emp.name.charAt(0).toUpperCase()}
+                  return (
+                    <div key={emp.id} className="p-3.5 sm:p-4 space-y-3">
+                      {/* Row 1: Avatar + Name + Role + Status */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center shrink-0 text-sm border border-indigo-100">
+                            {emp.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="font-extrabold text-sm text-slate-900 truncate">
+                                {emp.name}
+                              </span>
+                              {isSelf && (
+                                <span className="px-1.5 py-0.2 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md">
+                                  You
+                                </span>
+                              )}
+                              <span className="text-[10px] font-bold text-slate-400">
+                                #{idx + 1}
+                              </span>
                             </div>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="font-bold text-slate-900">{emp.name}</span>
-                                {isSelf && (
-                                  <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md">
-                                    You
-                                  </span>
+                            <div className="text-xs text-slate-500 truncate">{emp.email}</div>
+                          </div>
+                        </div>
+
+                        {/* Status button */}
+                        <button
+                          onClick={() => !isSuper && handleToggleStatus(emp)}
+                          disabled={isSuper || !canManageEmployees}
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-bold inline-flex items-center gap-1 shrink-0 ${
+                            emp.status === "active"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                              : "bg-slate-100 text-slate-500 border border-slate-200"
+                          } ${isSuper || !canManageEmployees ? "cursor-default" : "cursor-pointer"}`}
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              emp.status === "active" ? "bg-emerald-500" : "bg-slate-400"
+                            }`}
+                          />
+                          <span>{emp.status === "active" ? "Active" : "Inactive"}</span>
+                        </button>
+                      </div>
+
+                      {/* Role & Phone */}
+                      <div className="flex items-center justify-between text-xs gap-2">
+                        <span className={`px-2 py-0.5 rounded-md text-[11px] font-bold border ${roleBadge.bg}`}>
+                          {roleBadge.label}
+                        </span>
+                        {emp.phone && (
+                          <div className="text-slate-500 flex items-center gap-1 font-mono text-[11px]">
+                            <Phone className="w-3 h-3 text-slate-400" />
+                            <span>{emp.phone}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* RBAC Allowed Badges */}
+                      <div className="bg-slate-50 p-2.5 rounded-xl space-y-1.5">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                          Module Permissions
+                        </span>
+                        <div className="flex items-center gap-1 flex-wrap">
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                              hasApps ? "bg-purple-50 text-purple-700 border-purple-200" : "bg-slate-100 text-slate-400 border-slate-200"
+                            }`}
+                          >
+                            Tracker: {hasApps ? "Yes" : "No"}
+                          </span>
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                              hasInvoices ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-slate-100 text-slate-400 border-slate-200"
+                            }`}
+                          >
+                            Invoices: {hasInvoices ? "Yes" : "No"}
+                          </span>
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                              hasInquiries ? "bg-blue-50 text-blue-700 border-blue-200" : "bg-slate-100 text-slate-400 border-slate-200"
+                            }`}
+                          >
+                            Leads: {hasInquiries ? "Yes" : "No"}
+                          </span>
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                              hasJobs ? "bg-indigo-50 text-indigo-700 border-indigo-200" : "bg-slate-100 text-slate-400 border-slate-200"
+                            }`}
+                          >
+                            Jobs: {hasJobs ? "Yes" : "No"}
+                          </span>
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border ${
+                              hasPartners ? "bg-teal-50 text-teal-700 border-teal-200" : "bg-slate-100 text-slate-400 border-slate-200"
+                            }`}
+                          >
+                            Partners: {hasPartners ? "Yes" : "No"}
+                          </span>
+                          {hasEmpMgmt && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold border bg-amber-50 text-amber-800 border-amber-200">
+                              Staff Admin
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Actions Footer */}
+                      {canManageEmployees && (
+                        <div className="flex items-center justify-end gap-2 pt-1">
+                          <button
+                            onClick={() => {
+                              setEditingEmployee(emp);
+                              setEditPermissionsForm(
+                                JSON.parse(
+                                  JSON.stringify(
+                                    emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff
+                                  )
+                                )
+                              );
+                            }}
+                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all flex items-center gap-1 cursor-pointer"
+                          >
+                            <Shield className="w-3.5 h-3.5 text-indigo-600" />
+                            <span>Permissions</span>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              setResetTargetEmployee(emp);
+                              setNewPassword("");
+                            }}
+                            className="p-1.5 text-slate-500 hover:text-amber-600 hover:bg-amber-50 border border-amber-200 rounded-xl transition-all cursor-pointer"
+                            title="Reset Password"
+                          >
+                            <Key className="w-4 h-4" />
+                          </button>
+
+                          {!isSuper && !isSelf && (
+                            <button
+                              onClick={() => setDeletingEmployee(emp)}
+                              className="p-1.5 text-red-500 hover:bg-red-50 border border-red-200 rounded-xl transition-all cursor-pointer"
+                              title="Delete Account"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Desktop Table (lg+) */}
+              <div className="hidden lg:block overflow-x-auto">
+                <table className="w-full text-left text-sm">
+                  <thead>
+                    <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                      <th className="py-3.5 px-4 w-12 text-center">#</th>
+                      <th className="py-3.5 px-4">Employee Details</th>
+                      <th className="py-3.5 px-4">Role</th>
+                      <th className="py-3.5 px-4">Allowed Sections (RBAC)</th>
+                      <th className="py-3.5 px-4 text-center">Status</th>
+                      <th className="py-3.5 px-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {filteredEmployees.map((emp, idx) => {
+                      const roleBadge = getRoleBadge(emp.role);
+                      const isSelf = currentUser?.id === emp.id;
+                      const isSuper = emp.role === "superadmin" || emp.email === "wasim@yastudy.com";
+
+                      // Calculate permission tags
+                      const p = emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff;
+                      const hasInvoices = isSuper || p.invoices?.view;
+                      const hasInquiries = isSuper || p.inquiries?.view;
+                      const hasJobs = isSuper || p.jobs?.view;
+                      const hasApps = isSuper || p.applications?.view;
+                      const hasPartners = isSuper || Boolean(p.partners?.view);
+                      const hasEmpMgmt = isSuper || p.employees?.view;
+
+                      return (
+                        <tr key={emp.id} className="hover:bg-slate-50/70 transition-colors">
+                          {/* Index */}
+                          <td className="py-3.5 px-4 text-center font-bold text-xs text-slate-400">
+                            {idx + 1}
+                          </td>
+
+                          {/* Name & Contact */}
+                          <td className="py-3.5 px-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center flex-shrink-0 text-sm border border-indigo-100">
+                                {emp.name.charAt(0).toUpperCase()}
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-2">
+                                  <span className="font-bold text-slate-900">{emp.name}</span>
+                                  {isSelf && (
+                                    <span className="px-1.5 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-md">
+                                      You
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-xs text-slate-500">{emp.email}</div>
+                                {emp.phone && (
+                                  <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
+                                    <Phone className="w-3 h-3" />
+                                    <span>{emp.phone}</span>
+                                  </div>
                                 )}
                               </div>
-                              <div className="text-xs text-slate-500">{emp.email}</div>
-                              {emp.phone && (
-                                <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1">
-                                  <Phone className="w-3 h-3" />
-                                  <span>{emp.phone}</span>
-                                </div>
+                            </div>
+                          </td>
+
+                          {/* Role Badge */}
+                          <td className="py-3.5 px-4">
+                            <span
+                              className={`px-2.5 py-1 rounded-lg text-xs font-bold border inline-block ${roleBadge.bg}`}
+                            >
+                              {roleBadge.label}
+                            </span>
+                          </td>
+
+                          {/* Allowed Sections */}
+                          <td className="py-3.5 px-4">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              {/* Tracker */}
+                              <span
+                                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                  hasApps
+                                    ? "bg-purple-50 text-purple-700 border-purple-200"
+                                    : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                                }`}
+                              >
+                                <Compass className="w-3 h-3" />
+                                <span>Tracker: {hasApps ? "Yes" : "No"}</span>
+                              </span>
+
+                              {/* Invoices */}
+                              <span
+                                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                  hasInvoices
+                                    ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                    : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                                }`}
+                              >
+                                <FileText className="w-3 h-3" />
+                                <span>Invoices: {hasInvoices ? "Yes" : "No"}</span>
+                              </span>
+
+                              {/* Inquiries */}
+                              <span
+                                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                  hasInquiries
+                                    ? "bg-blue-50 text-blue-700 border-blue-200"
+                                    : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                                }`}
+                              >
+                                <MessageSquare className="w-3 h-3" />
+                                <span>Leads: {hasInquiries ? "Yes" : "No"}</span>
+                              </span>
+
+                              {/* Jobs */}
+                              <span
+                                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                  hasJobs
+                                    ? "bg-indigo-50 text-indigo-700 border-indigo-200"
+                                    : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                                }`}
+                              >
+                                <Briefcase className="w-3 h-3" />
+                                <span>Jobs: {hasJobs ? "Yes" : "No"}</span>
+                              </span>
+
+                              {/* B2B Partners */}
+                              <span
+                                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
+                                  hasPartners
+                                    ? "bg-teal-50 text-teal-700 border-teal-200"
+                                    : "bg-red-50 text-red-500 border-red-100 opacity-60"
+                                }`}
+                              >
+                                <Handshake className="w-3 h-3" />
+                                <span>Partners: {hasPartners ? "Yes" : "No"}</span>
+                              </span>
+
+                              {/* Staff admin */}
+                              {hasEmpMgmt && (
+                                <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold border bg-amber-50 text-amber-800 border-amber-200 flex items-center gap-1">
+                                  <Users className="w-3 h-3" />
+                                  <span>Staff Admin</span>
+                                </span>
                               )}
                             </div>
-                          </div>
-                        </td>
+                          </td>
 
-                        {/* Role Badge */}
-                        <td className="py-3.5 px-4">
-                          <span
-                            className={`px-2.5 py-1 rounded-lg text-xs font-bold border inline-block ${roleBadge.bg}`}
-                          >
-                            {roleBadge.label}
-                          </span>
-                        </td>
-
-                        {/* Allowed Sections */}
-                        <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-1.5 flex-wrap">
-                            {/* Tracker */}
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
-                                hasApps
-                                  ? "bg-purple-50 text-purple-700 border-purple-200"
-                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
-                              }`}
+                          {/* Status Toggle */}
+                          <td className="py-3.5 px-4 text-center">
+                            <button
+                              onClick={() => !isSuper && handleToggleStatus(emp)}
+                              disabled={isSuper || !canManageEmployees}
+                              className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 transition-all ${
+                                emp.status === "active"
+                                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                  : "bg-slate-100 text-slate-500 border border-slate-200"
+                              } ${isSuper || !canManageEmployees ? "cursor-default" : "cursor-pointer hover:opacity-80"}`}
                             >
-                              <Compass className="w-3 h-3" />
-                              <span>Tracker: {hasApps ? "Yes" : "No"}</span>
-                            </span>
+                              <span
+                                className={`w-2 h-2 rounded-full ${
+                                  emp.status === "active" ? "bg-emerald-500" : "bg-slate-400"
+                                }`}
+                              />
+                              <span>{emp.status === "active" ? "Active" : "Inactive"}</span>
+                            </button>
+                          </td>
 
-                            {/* Invoices */}
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
-                                hasInvoices
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
-                              }`}
-                            >
-                              <FileText className="w-3 h-3" />
-                              <span>Invoices: {hasInvoices ? "Yes" : "No"}</span>
-                            </span>
-
-                            {/* Inquiries */}
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
-                                hasInquiries
-                                  ? "bg-blue-50 text-blue-700 border-blue-200"
-                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
-                              }`}
-                            >
-                              <MessageSquare className="w-3 h-3" />
-                              <span>Leads: {hasInquiries ? "Yes" : "No"}</span>
-                            </span>
-
-                            {/* Jobs */}
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
-                                hasJobs
-                                  ? "bg-indigo-50 text-indigo-700 border-indigo-200"
-                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
-                              }`}
-                            >
-                              <Briefcase className="w-3 h-3" />
-                              <span>Jobs: {hasJobs ? "Yes" : "No"}</span>
-                            </span>
-
-                            {/* B2B Partners */}
-                            <span
-                              className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border flex items-center gap-1 ${
-                                hasPartners
-                                  ? "bg-teal-50 text-teal-700 border-teal-200"
-                                  : "bg-red-50 text-red-500 border-red-100 opacity-60"
-                              }`}
-                            >
-                              <Handshake className="w-3 h-3" />
-                              <span>Partners: {hasPartners ? "Yes" : "No"}</span>
-                            </span>
-
-                            {/* Staff admin */}
-                            {hasEmpMgmt && (
-                              <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold border bg-amber-50 text-amber-800 border-amber-200 flex items-center gap-1">
-                                <Users className="w-3 h-3" />
-                                <span>Staff Admin</span>
-                              </span>
-                            )}
-                          </div>
-                        </td>
-
-                        {/* Status Toggle */}
-                        <td className="py-3.5 px-4 text-center">
-                          <button
-                            onClick={() => !isSuper && handleToggleStatus(emp)}
-                            disabled={isSuper || !canManageEmployees}
-                            className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 transition-all ${
-                              emp.status === "active"
-                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                                : "bg-slate-100 text-slate-500 border border-slate-200"
-                            } ${isSuper || !canManageEmployees ? "cursor-default" : "cursor-pointer hover:opacity-80"}`}
-                          >
-                            <span
-                              className={`w-2 h-2 rounded-full ${
-                                emp.status === "active" ? "bg-emerald-500" : "bg-slate-400"
-                              }`}
-                            />
-                            <span>{emp.status === "active" ? "Active" : "Inactive"}</span>
-                          </button>
-                        </td>
-
-                        {/* Actions */}
-                        <td className="py-3.5 px-4 text-right">
-                          <div className="flex items-center justify-end gap-1.5">
-                            {canManageEmployees && (
-                              <>
-                                <button
-                                  onClick={() => {
-                                    setEditingEmployee(emp);
-                                    setEditPermissionsForm(
-                                      JSON.parse(
-                                        JSON.stringify(
-                                          emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff
+                          {/* Actions */}
+                          <td className="py-3.5 px-4 text-right">
+                            <div className="flex items-center justify-end gap-1.5">
+                              {canManageEmployees && (
+                                <>
+                                  <button
+                                    onClick={() => {
+                                      setEditingEmployee(emp);
+                                      setEditPermissionsForm(
+                                        JSON.parse(
+                                          JSON.stringify(
+                                            emp.permissions || DEFAULT_PERMISSIONS[emp.role] || DEFAULT_PERMISSIONS.staff
+                                          )
                                         )
-                                      )
-                                    );
-                                  }}
-                                  className="px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
-                                  title="Configure Granular Permissions"
-                                >
-                                  <Shield className="w-3.5 h-3.5 text-indigo-600" />
-                                  <span>Permissions</span>
-                                </button>
+                                      );
+                                    }}
+                                    className="px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer"
+                                    title="Configure Granular Permissions"
+                                  >
+                                    <Shield className="w-3.5 h-3.5 text-indigo-600" />
+                                    <span>Permissions</span>
+                                  </button>
 
+                                  <button
+                                    onClick={() => {
+                                      setResetTargetEmployee(emp);
+                                      setNewPassword("");
+                                    }}
+                                    className="p-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl transition-all shadow-sm cursor-pointer"
+                                    title="Reset Password"
+                                  >
+                                    <Key className="w-3.5 h-3.5 text-amber-500" />
+                                  </button>
+                                </>
+                              )}
+
+                              {!isSuper && !isSelf && canManageEmployees && (
                                 <button
-                                  onClick={() => {
-                                    setResetTargetEmployee(emp);
-                                    setNewPassword("");
-                                  }}
-                                  className="p-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl transition-all shadow-sm"
-                                  title="Reset Password"
+                                  onClick={() => setDeletingEmployee(emp)}
+                                  className="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl transition-all shadow-sm cursor-pointer"
+                                  title="Delete Employee Account"
                                 >
-                                  <Key className="w-3.5 h-3.5 text-amber-500" />
+                                  <Trash2 className="w-3.5 h-3.5" />
                                 </button>
-                              </>
-                            )}
-
-                            {!isSuper && !isSelf && canManageEmployees && (
-                              <button
-                                onClick={() => setDeletingEmployee(emp)}
-                                className="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl transition-all shadow-sm"
-                                title="Delete Employee Account"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
 
         {/* ── MODAL: ADD NEW EMPLOYEE ── */}
         {isAddModalOpen && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 max-w-2xl w-full shadow-2xl border border-slate-200 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
@@ -1155,8 +1327,8 @@ export default function AdminEmployeesPage() {
 
         {/* ── MODAL: EDIT PERMISSIONS ── */}
         {editingEmployee && editPermissionsForm && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 max-w-xl w-full shadow-2xl border border-slate-200 max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
@@ -1442,8 +1614,8 @@ export default function AdminEmployeesPage() {
 
         {/* ── MODAL: RESET PASSWORD ── */}
         {resetTargetEmployee && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200">
               <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-4">
                 <Key className="w-6 h-6" />
               </div>
@@ -1495,8 +1667,8 @@ export default function AdminEmployeesPage() {
 
         {/* ── MODAL: DELETE CONFIRMATION ── */}
         {deletingEmployee && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 text-center">
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 text-center">
               <div className="w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-4">
                 <Trash2 className="w-7 h-7" />
               </div>

@@ -44,34 +44,34 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div style={styles.page}>
+    <div className="admin-login-page" style={styles.page}>
       {/* Background gradient orbs */}
       <div style={styles.orb1} />
       <div style={styles.orb2} />
 
-      <div style={styles.card}>
+      <div className="admin-login-card" style={styles.card}>
         {/* Logo */}
-        <div style={styles.logoArea}>
+        <div className="admin-login-logo" style={styles.logoArea}>
           {/* Icon Badge */}
-          <div style={styles.iconBadge}>
+          <div className="admin-icon-badge" style={styles.iconBadge}>
             <Image
               src="/icon.png"
               alt="WorkWise Visa Icon"
               width={52}
               height={52}
-              style={{ objectFit: "contain", width: "52px", height: "52px" }}
+              style={{ objectFit: "contain", width: "100%", height: "100%" }}
               priority
             />
           </div>
           {/* Brand Text */}
           <div style={styles.brandTextBlock}>
-            <h1 style={styles.brand}>WorkWise Visa</h1>
+            <h1 className="admin-brand-title" style={styles.brand}>WorkWise Visa</h1>
             <span style={styles.brandSub}>Admin Control Panel</span>
           </div>
         </div>
 
-        <h2 style={styles.title}>Welcome back</h2>
-        <p style={styles.subtitle}>Sign in to manage job postings and content</p>
+        <h2 className="admin-login-title" style={styles.title}>Welcome back</h2>
+        <p className="admin-login-subtitle" style={styles.subtitle}>Sign in to manage job postings and content</p>
 
         {error && (
           <div style={styles.errorBox}>
@@ -172,6 +172,52 @@ export default function AdminLoginPage() {
         @keyframes spin { to { transform: rotate(360deg); } }
         * { box-sizing: border-box; }
         input::placeholder { color: rgba(255,255,255,0.3); }
+
+        @media (max-width: 640px) {
+          .admin-login-page {
+            padding: 16px 12px !important;
+          }
+          .admin-login-card {
+            padding: 28px 18px !important;
+            border-radius: 20px !important;
+            max-width: 100% !important;
+          }
+          .admin-login-logo {
+            margin-bottom: 22px !important;
+            padding-bottom: 20px !important;
+            gap: 12px !important;
+          }
+          .admin-icon-badge {
+            width: 52px !important;
+            height: 52px !important;
+            border-radius: 14px !important;
+            padding: 4px !important;
+          }
+          .admin-brand-title {
+            font-size: 18px !important;
+          }
+          .admin-login-title {
+            font-size: 22px !important;
+            margin-bottom: 6px !important;
+          }
+          .admin-login-subtitle {
+            font-size: 13px !important;
+            margin-bottom: 22px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .admin-login-card {
+            padding: 22px 14px !important;
+          }
+          .admin-icon-badge {
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .admin-brand-title {
+            font-size: 16px !important;
+          }
+        }
       `}</style>
     </div>
   );

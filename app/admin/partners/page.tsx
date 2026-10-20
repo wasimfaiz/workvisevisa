@@ -599,7 +599,7 @@ export default function AdminPartnersPage() {
       <AdminSidebar counts={{ partners: partners.length }} />
 
       {/* ── MAIN CONTENT CONTAINER ─────────────────────────── */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen space-y-6">
+      <main className="flex-1 min-w-0 p-3 sm:p-6 lg:p-8 overflow-x-hidden lg:overflow-y-auto lg:max-h-screen space-y-4 sm:space-y-6">
         {/* Floating Toast */}
         {toast && (
           <div
@@ -619,18 +619,18 @@ export default function AdminPartnersPage() {
         )}
 
         {/* ── HEADER BANNER ───────────────────────────────── */}
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
           <div>
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold">
-                <Handshake className="w-5 h-5" />
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold">
+                <Handshake className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 B2B Candidate Sourcing Partners
               </h1>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 <Users className="w-3.5 h-3.5 text-emerald-600" />
-                {partners.length} Partners Registered
+                {partners.length} Partners
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
@@ -640,11 +640,11 @@ export default function AdminPartnersPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={fetchPartners}
               disabled={refreshing}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50 active:scale-95"
               title="Refresh list"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin text-emerald-600" : ""}`} />
@@ -654,7 +654,7 @@ export default function AdminPartnersPage() {
             {canCreate && (
               <button
                 onClick={openCreateModal}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 transition-all shadow-md shadow-emerald-600/20 cursor-pointer hover:shadow-lg"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 transition-all shadow-md shadow-emerald-600/20 cursor-pointer hover:shadow-lg active:scale-95"
               >
                 <Plus className="w-4 h-4 stroke-[2.5]" />
                 <span>Add Sourcing Partner</span>
@@ -664,84 +664,84 @@ export default function AdminPartnersPage() {
         </div>
 
         {/* ── KPI METRICS CARDS ───────────────────────────── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {/* Card 1: Total Partners */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                Total Sourcing Partners
+          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                Total Partners
               </p>
-              <p className="text-2xl sm:text-3xl font-black text-slate-900 mt-1">
+              <p className="text-xl sm:text-3xl font-black text-slate-900 mt-1 truncate">
                 {stats.total || partners.length}
               </p>
-              <p className="text-[11px] font-semibold text-slate-400 mt-0.5">
-                {stats.companies} Agencies • {stats.individuals} Individuals
+              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-0.5 truncate">
+                {stats.companies} Agencies • {stats.individuals} Indiv.
               </p>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center">
-              <Users className="w-6 h-6" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+              <Users className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
 
           {/* Card 2: Signed MoUs */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                Signed MoUs Uploaded
+          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                Signed MoUs
               </p>
-              <p className="text-2xl sm:text-3xl font-black text-indigo-600 mt-1">
+              <p className="text-xl sm:text-3xl font-black text-indigo-600 mt-1 truncate">
                 {stats.signedMou}
               </p>
-              <p className="text-[11px] font-semibold text-amber-600 mt-0.5">
-                {stats.pendingMou} Pending Agreement
+              <p className="text-[10px] sm:text-[11px] font-semibold text-amber-600 mt-0.5 truncate">
+                {stats.pendingMou} Pending
               </p>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-              <FileCheck className="w-6 h-6" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+              <FileCheck className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
 
           {/* Card 3: Aadhaar & PAN KYC Verified */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                KYC &amp; Safety Verified
+          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                KYC Verified
               </p>
-              <p className="text-2xl sm:text-3xl font-black text-emerald-600 mt-1">
+              <p className="text-xl sm:text-3xl font-black text-emerald-600 mt-1 truncate">
                 {stats.kycVerified}
               </p>
-              <p className="text-[11px] font-semibold text-emerald-600/80 mt-0.5">
-                Aadhaar &amp; PAN verified
+              <p className="text-[10px] sm:text-[11px] font-semibold text-emerald-600/80 mt-0.5 truncate">
+                Aadhaar &amp; PAN OK
               </p>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <ShieldCheck className="w-6 h-6" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
 
           {/* Card 4: Candidates Referred */}
-          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                Total Candidates Referred
+          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
+                Total Candidates
               </p>
-              <p className="text-2xl sm:text-3xl font-black text-teal-600 mt-1">
+              <p className="text-xl sm:text-3xl font-black text-teal-600 mt-1 truncate">
                 {stats.totalCandidates}
               </p>
-              <p className="text-[11px] font-semibold text-slate-400 mt-0.5">
-                Across all associates
+              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-0.5 truncate">
+                Across all partners
               </p>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
         </div>
 
         {/* ── FILTERS & SEARCH BAR ─────────────────────────── */}
-        <div className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-sm flex flex-col gap-2.5">
           {/* Search Box */}
-          <div className="relative flex-1">
+          <div className="relative w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
@@ -753,62 +753,64 @@ export default function AdminPartnersPage() {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
 
-          {/* Filter Dropdowns */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Entity Type Filter */}
-            <select
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              <option value="All">All Types</option>
-              <option value="Individual">Individual Agents</option>
-              <option value="Company">Agencies / Companies</option>
-            </select>
+          {/* Sub-Filters: Type, MoU, KYC, Status + View Toggle */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 flex-1">
+              {/* Entity Type Filter */}
+              <select
+                value={typeFilter}
+                onChange={(e) => setTypeFilter(e.target.value)}
+                className="w-full px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
+              >
+                <option value="All">All Types</option>
+                <option value="Individual">Individuals</option>
+                <option value="Company">Agencies</option>
+              </select>
 
-            {/* MoU Status Filter */}
-            <select
-              value={mouFilter}
-              onChange={(e) => setMouFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              <option value="All">All MoU</option>
-              <option value="Signed">Signed MoU</option>
-              <option value="Pending">MoU Pending</option>
-            </select>
+              {/* MoU Status Filter */}
+              <select
+                value={mouFilter}
+                onChange={(e) => setMouFilter(e.target.value)}
+                className="w-full px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
+              >
+                <option value="All">All MoU</option>
+                <option value="Signed">Signed MoU</option>
+                <option value="Pending">Pending MoU</option>
+              </select>
 
-            {/* KYC Status Filter */}
-            <select
-              value={kycFilter}
-              onChange={(e) => setKycFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              <option value="All">All KYC</option>
-              <option value="Verified">KYC Verified (Aadhaar &amp; PAN)</option>
-              <option value="Pending">KYC Pending</option>
-            </select>
+              {/* KYC Status Filter */}
+              <select
+                value={kycFilter}
+                onChange={(e) => setKycFilter(e.target.value)}
+                className="w-full px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
+              >
+                <option value="All">All KYC</option>
+                <option value="Verified">KYC Verified</option>
+                <option value="Pending">KYC Pending</option>
+              </select>
 
-            {/* Partner Status */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              <option value="All">All Status</option>
-              <option value="Active">Active</option>
-              <option value="Pending Verification">Pending</option>
-              <option value="Inactive">Inactive</option>
-            </select>
+              {/* Partner Status */}
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500 cursor-pointer"
+              >
+                <option value="All">All Status</option>
+                <option value="Active">Active</option>
+                <option value="Pending Verification">Pending</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+            <div className="flex items-center justify-end bg-slate-100 p-0.5 rounded-xl border border-slate-200 self-end sm:self-auto shrink-0">
               <button
                 onClick={() => setViewMode("table")}
                 className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
@@ -864,9 +866,245 @@ export default function AdminPartnersPage() {
             )}
           </div>
         ) : viewMode === "table" ? (
-          /* ── TABLE VIEW ───────────────────────────────── */
+          /* ── TABLE VIEW WITH DUAL-MODE FOR MOBILE ─────── */
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
+            {/* ── MOBILE PARTNER CARDS (block lg:hidden) ── */}
+            <div className="block lg:hidden divide-y divide-slate-100">
+              {filteredPartners.map((partner) => {
+                const isCompany =
+                  partner.partnerType === "Company" ||
+                  partner.partnerType === "Agency" ||
+                  partner.partnerType === "Overseas Employer";
+
+                const isMouSigned =
+                  partner.mouStatus === "Signed" || Boolean(partner.mouDocumentUrl);
+
+                const hasAadhaar = Boolean(partner.aadhaarDocumentUrl);
+                const hasPan = Boolean(partner.panDocumentUrl);
+                const isKycComplete =
+                  partner.kycStatus === "Verified" || (hasAadhaar && hasPan);
+
+                const cleanPhone = partner.whatsapp
+                  ? partner.whatsapp.replace(/[^0-9]/g, "")
+                  : partner.phone.replace(/[^0-9]/g, "");
+
+                return (
+                  <div
+                    key={partner.id}
+                    className="p-3.5 sm:p-4 hover:bg-slate-50/60 transition-colors space-y-3"
+                  >
+                    {/* Header: Avatar, Name, Type, Status */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div
+                          className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${
+                            isCompany
+                              ? "bg-purple-100 text-purple-700 border border-purple-200"
+                              : "bg-blue-100 text-blue-700 border border-blue-200"
+                          }`}
+                        >
+                          {isCompany ? <Building2 className="w-4 h-4" /> : <User className="w-4 h-4" />}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-bold text-sm text-slate-900 truncate">
+                            {partner.name}
+                          </h4>
+                          <div className="flex items-center gap-1.5 mt-0.5">
+                            <span
+                              className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                                isCompany
+                                  ? "bg-purple-50 text-purple-700 border border-purple-200"
+                                  : "bg-blue-50 text-blue-700 border border-blue-200"
+                              }`}
+                            >
+                              {isCompany ? "Company" : "Individual"}
+                            </span>
+                            <span className="text-[11px] text-slate-500 font-medium truncate">
+                              {partner.city}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${
+                          partner.status === "Active"
+                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            : partner.status === "Pending Verification"
+                            ? "bg-amber-50 text-amber-700 border border-amber-200"
+                            : "bg-slate-100 text-slate-500 border border-slate-200"
+                        }`}
+                      >
+                        {partner.status}
+                      </span>
+                    </div>
+
+                    {/* Contact Person & Contact Details */}
+                    <div className="bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 text-xs space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-slate-500 text-[11px]">Contact Person:</span>
+                        <span className="font-bold text-slate-800">{partner.contactPerson}</span>
+                      </div>
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                        <a
+                          href={`tel:${partner.phone}`}
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 hover:text-emerald-700 font-mono"
+                        >
+                          <Phone className="w-3 h-3 text-slate-400" />
+                          <span>{partner.phone}</span>
+                        </a>
+                        {cleanPhone && (
+                          <a
+                            href={`https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(
+                              partner.contactPerson
+                            )},%20regarding%20candidate%20sourcing%20partnership%20with%20WorkWise%20Visa...`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100/70 text-emerald-800 text-[10px] font-bold border border-emerald-200"
+                          >
+                            <MessageSquare className="w-2.5 h-2.5" />
+                            <span>WhatsApp</span>
+                          </a>
+                        )}
+                      </div>
+                      {partner.commissionTerms && (
+                        <div className="flex items-center justify-between text-[11px] pt-1 border-t border-slate-200/60">
+                          <span className="text-slate-500">Terms:</span>
+                          <span className="text-slate-700 font-medium truncate max-w-[200px]">
+                            {partner.commissionTerms}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Candidates & Badges Grid */}
+                    <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
+                      {/* Candidates count */}
+                      <div className="flex items-center gap-1.5">
+                        <div className="inline-flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-lg font-bold text-slate-800 text-[11px]">
+                          <TrendingUp className="w-3 h-3 text-teal-600" />
+                          <span>{partner.totalCandidatesReferred || 0} Cand.</span>
+                        </div>
+                        {canEdit && (
+                          <button
+                            onClick={() => handleQuickAddCandidate(partner)}
+                            className="text-[10px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded"
+                            title="Click to increment candidates referred count by 1"
+                          >
+                            +1
+                          </button>
+                        )}
+                      </div>
+
+                      {/* MoU & KYC Pills */}
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {isMouSigned ? (
+                          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            <FileCheck className="w-3 h-3 text-emerald-600" />
+                            <span>MoU ✓</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
+                            <Clock className="w-3 h-3 text-amber-600" />
+                            <span>MoU Pending</span>
+                          </span>
+                        )}
+
+                        {isKycComplete ? (
+                          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                            <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                            <span>KYC ✓</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
+                            <span>KYC Partial</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Actions Bar */}
+                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                      {/* Document Viewer links */}
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {partner.mouDocumentUrl && (
+                          <button
+                            onClick={() =>
+                              setViewingDoc({
+                                title: "Signed Partnership MoU",
+                                partnerName: partner.name,
+                                url: partner.mouDocumentUrl!,
+                                fileName: partner.mouDocumentName,
+                                date: partner.mouSignedDate,
+                              })
+                            }
+                            className="text-[11px] font-bold text-indigo-600 hover:underline flex items-center gap-0.5"
+                          >
+                            <FileText className="w-3 h-3" /> MoU
+                          </button>
+                        )}
+                        {hasAadhaar && (
+                          <button
+                            onClick={() =>
+                              setViewingDoc({
+                                title: "Aadhaar Card",
+                                partnerName: partner.name,
+                                url: partner.aadhaarDocumentUrl!,
+                                fileName: partner.aadhaarDocumentName,
+                                date: partner.aadhaarNumber,
+                              })
+                            }
+                            className="text-[11px] font-bold text-emerald-700 hover:underline flex items-center gap-0.5"
+                          >
+                            <IdCard className="w-3 h-3" /> Aadhaar
+                          </button>
+                        )}
+                        {hasPan && (
+                          <button
+                            onClick={() =>
+                              setViewingDoc({
+                                title: "PAN Card",
+                                partnerName: partner.name,
+                                url: partner.panDocumentUrl!,
+                                fileName: partner.panDocumentName,
+                                date: partner.panNumber,
+                              })
+                            }
+                            className="text-[11px] font-bold text-indigo-700 hover:underline flex items-center gap-0.5"
+                          >
+                            <CreditCard className="w-3 h-3" /> PAN
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        {canEdit && (
+                          <button
+                            onClick={() => openEditModal(partner)}
+                            className="px-2.5 py-1 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg inline-flex items-center gap-1 active:scale-95"
+                          >
+                            <Edit3 className="w-3.5 h-3.5" />
+                            <span>Edit</span>
+                          </button>
+                        )}
+                        {canDelete && (
+                          <button
+                            onClick={() => setPartnerToDelete(partner)}
+                            className="p-1 text-rose-600 hover:bg-rose-50 rounded-lg active:scale-95"
+                            title="Delete"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* ── DESKTOP TABLE VIEW (hidden lg:block) ── */}
+            <div className="hidden lg:block overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200/90 text-slate-500 font-bold text-[11px] uppercase tracking-wider">
@@ -1424,28 +1662,28 @@ export default function AdminPartnersPage() {
 
         {/* ── ADD / EDIT PARTNER MODAL ─────────────────────── */}
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-2xl my-8 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl w-full max-w-2xl my-auto max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
               {/* Modal Header */}
-              <div className="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+              <div className="p-4 sm:p-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between shrink-0">
                 <div>
-                  <h2 className="text-lg sm:text-xl font-black text-slate-900">
+                  <h2 className="text-base sm:text-xl font-black text-slate-900">
                     {editingPartner ? "Edit Sourcing Partner & KYC" : "Add New Sourcing Partner"}
                   </h2>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
                     Configure details, commercial terms, signed MoU &amp; Aadhaar/PAN safety verification
                   </p>
                 </div>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="w-8 h-8 rounded-full bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center border border-slate-200 shadow-sm"
+                  className="w-8 h-8 rounded-full bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center border border-slate-200 shadow-sm shrink-0"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Modal Body Form */}
-              <form onSubmit={handleSavePartner} className="p-5 sm:p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+              <form onSubmit={handleSavePartner} className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
                 {/* 1. Entity Type Toggle */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
@@ -2127,30 +2365,30 @@ export default function AdminPartnersPage() {
 
         {/* ── UNIFIED DOCUMENT VIEWER MODAL (MOU / AADHAAR / PAN) ───────── */}
         {viewingDoc && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-4xl my-6 overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/70 backdrop-blur-sm">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl w-full max-w-4xl my-auto overflow-hidden flex flex-col max-h-[92vh]">
               {/* Header */}
-              <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
+              <div className="p-3.5 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold shrink-0">
                     <FileCheck className="w-5 h-5" />
                   </div>
-                  <div>
-                    <h3 className="text-base font-black text-slate-900 leading-tight">
+                  <div className="min-w-0">
+                    <h3 className="text-sm sm:text-base font-black text-slate-900 leading-tight truncate">
                       {viewingDoc.title}: {viewingDoc.partnerName}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5 truncate">
                       {viewingDoc.fileName || "Verified Document"}{" "}
                       {viewingDoc.date ? `• Ref/Date: ${viewingDoc.date}` : ""}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                   <a
                     href={viewingDoc.url}
                     download={viewingDoc.fileName || "Document.pdf"}
-                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 inline-flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 rounded-xl text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 inline-flex items-center gap-1"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download</span>
@@ -2159,14 +2397,14 @@ export default function AdminPartnersPage() {
                     href={viewingDoc.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 inline-flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 inline-flex items-center gap-1"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    <span>Open in New Tab</span>
+                    <span>Open Tab</span>
                   </a>
                   <button
                     onClick={() => setViewingDoc(null)}
-                    className="w-8 h-8 rounded-full bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center border border-slate-200 shadow-sm ml-1"
+                    className="w-8 h-8 rounded-full bg-white text-slate-400 hover:text-slate-700 flex items-center justify-center border border-slate-200 shadow-sm ml-auto sm:ml-1"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -2174,21 +2412,21 @@ export default function AdminPartnersPage() {
               </div>
 
               {/* Document Display */}
-              <div className="flex-1 bg-slate-100 p-4 overflow-y-auto min-h-[500px] flex items-center justify-center">
+              <div className="flex-1 bg-slate-100 p-2 sm:p-4 overflow-y-auto min-h-[300px] flex items-center justify-center">
                 {viewingDoc.url ? (
                   viewingDoc.url.toLowerCase().endsWith(".pdf") ? (
                     <iframe
                       src={viewingDoc.url}
-                      className="w-full h-[600px] rounded-2xl border border-slate-300 bg-white shadow-inner"
+                      className="w-full h-[500px] sm:h-[600px] rounded-xl sm:rounded-2xl border border-slate-300 bg-white shadow-inner"
                       title={viewingDoc.title}
                     />
                   ) : (
-                    <div className="max-w-2xl bg-white p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+                    <div className="max-w-2xl bg-white p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm text-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={viewingDoc.url}
                         alt="Document Preview"
-                        className="max-h-[550px] mx-auto rounded-xl object-contain border border-slate-100"
+                        className="max-h-[450px] sm:max-h-[550px] mx-auto rounded-xl object-contain border border-slate-100"
                       />
                     </div>
                   )
@@ -2205,8 +2443,8 @@ export default function AdminPartnersPage() {
 
         {/* ── DELETE CONFIRMATION MODAL ────────────────────── */}
         {partnerToDelete && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md p-6 animate-in fade-in zoom-in-95 duration-200">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md p-5 sm:p-6 max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
               <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-4">
                 <Trash2 className="w-6 h-6" />
               </div>

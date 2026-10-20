@@ -261,11 +261,11 @@ export default function AdminSidebar({
           ══════════════════════════════════════════════════════════ */}
       {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300 print:hidden"
+          className="lg:hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300 print:hidden touch-none"
           onClick={() => setMobileOpen(false)}
         >
           <aside
-            className="w-[280px] max-w-[85vw] h-full bg-gradient-to-b from-[#1e1b4b] to-[#312e81] text-white flex flex-col shadow-2xl overflow-y-auto animate-in slide-in-from-left duration-200"
+            className="w-[285px] max-w-[85vw] h-[100dvh] max-h-[100dvh] bg-gradient-to-b from-[#1e1b4b] to-[#312e81] text-white flex flex-col shadow-2xl overflow-y-auto overscroll-contain animate-in slide-in-from-left duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer Header */}
@@ -306,7 +306,7 @@ export default function AdminSidebar({
                       key={item.id}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium transition ${
+                      className={`min-h-[46px] flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition active:scale-[0.98] select-none touch-manipulation ${
                         item.isActive
                           ? "bg-white/15 text-white font-semibold shadow-sm"
                           : "text-white/70 hover:text-white hover:bg-white/10"
@@ -348,7 +348,7 @@ export default function AdminSidebar({
 
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 transition"
+                  className="w-full min-h-[42px] flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 active:scale-[0.98] border border-rose-500/20 transition touch-manipulation cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out

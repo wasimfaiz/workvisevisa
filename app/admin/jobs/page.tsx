@@ -120,20 +120,20 @@ function JobForm({
   onCancel,
 }: JobFormProps) {
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
+    <form onSubmit={onSubmit} className="space-y-5 sm:space-y-8">
       {/* Section 1: Basic Information */}
-      <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80 space-y-4">
+      <div className="bg-slate-50/70 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 space-y-3.5 sm:space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-          <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0">
             1
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">Basic Job & Employer Information</h4>
+            <h4 className="text-sm font-bold text-slate-800">Basic Job &amp; Employer Information</h4>
             <p className="text-xs text-slate-500">Destination country, job trade and sponsoring employer</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
           {/* Title */}
           <div className="md:col-span-2">
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -183,7 +183,7 @@ function JobForm({
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Country Flag / Code
             </label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 value={form.flag}
@@ -191,13 +191,13 @@ function JobForm({
                 placeholder="e.g. 🇵🇱 or PL"
                 className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
               />
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
                 {["🇵🇱", "🇷🇴", "🇭🇷", "🇦🇪", "🇸🇦", "🇶🇦"].map((emoji) => (
                   <button
                     key={emoji}
                     type="button"
                     onClick={() => setForm((f) => ({ ...f, flag: emoji }))}
-                    className="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-sm transition-colors"
+                    className="p-2 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-sm transition-colors shrink-0"
                   >
                     {emoji}
                   </button>
@@ -224,22 +224,22 @@ function JobForm({
       </div>
 
       {/* Section 2: Compensation & Terms */}
-      <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80 space-y-4">
+      <div className="bg-slate-50/70 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 space-y-3.5 sm:space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">
+          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm shrink-0">
             2
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">Compensation, Vacancies & Work Hours</h4>
+            <h4 className="text-sm font-bold text-slate-800">Compensation, Vacancies &amp; Work Hours</h4>
             <p className="text-xs text-slate-500">Salary structure, total openings and duty shift details</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
           {/* Salary */}
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              Salary & Currency <span className="text-red-500">*</span>
+              Salary &amp; Currency <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -288,7 +288,7 @@ function JobForm({
           {/* Duty Hours */}
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-              Duty Hours & Shift
+              Duty Hours &amp; Shift
             </label>
             <input
               type="text"
@@ -302,18 +302,18 @@ function JobForm({
       </div>
 
       {/* Section 3: Selection Process & Urgency */}
-      <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80 space-y-4">
+      <div className="bg-slate-50/70 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 space-y-3.5 sm:space-y-4">
         <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-          <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm">
+          <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm shrink-0">
             3
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-800">Selection Mode & Urgency Status</h4>
+            <h4 className="text-sm font-bold text-slate-800">Selection Mode &amp; Urgency Status</h4>
             <p className="text-xs text-slate-500">Interview mode, processing office location and priority flag</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
           {/* Interview Mode */}
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -343,7 +343,7 @@ function JobForm({
           </div>
 
           {/* Urgent Toggle Card */}
-          <div className="flex items-center">
+          <div className="flex items-center sm:col-span-2 lg:col-span-1">
             <label className={`w-full flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
               form.urgent
                 ? "bg-red-50/80 border-red-200 text-red-900 shadow-sm"
@@ -353,11 +353,11 @@ function JobForm({
                 type="checkbox"
                 checked={form.urgent}
                 onChange={(e) => setForm((f) => ({ ...f, urgent: e.target.checked }))}
-                className="w-5 h-5 rounded text-red-600 focus:ring-red-500 border-slate-300 accent-red-600"
+                className="w-5 h-5 rounded text-red-600 focus:ring-red-500 border-slate-300 accent-red-600 shrink-0"
               />
               <div>
                 <div className="text-xs font-bold flex items-center gap-1.5">
-                  <Flame className="w-4 h-4 text-red-500" />
+                  <Flame className="w-4 h-4 text-red-500 shrink-0" />
                   <span>Mark as Urgent Demand</span>
                 </div>
                 <div className="text-[11px] text-slate-500 mt-0.5">
@@ -370,11 +370,11 @@ function JobForm({
       </div>
 
       {/* Section 4: Perks & Requirements */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-5">
         {/* Perks */}
-        <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80 space-y-2">
+        <div className="bg-slate-50/70 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 space-y-2">
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-            Perks & Benefits <span className="text-slate-400 font-normal lowercase">(one per line)</span>
+            Perks &amp; Benefits <span className="text-slate-400 font-normal lowercase">(one per line)</span>
           </label>
           <textarea
             rows={4}
@@ -386,9 +386,9 @@ function JobForm({
         </div>
 
         {/* Requirements */}
-        <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/80 space-y-2">
+        <div className="bg-slate-50/70 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 space-y-2">
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
-            Requirements & Eligibility <span className="text-slate-400 font-normal lowercase">(one per line)</span>
+            Requirements &amp; Eligibility <span className="text-slate-400 font-normal lowercase">(one per line)</span>
           </label>
           <textarea
             rows={4}
@@ -403,7 +403,7 @@ function JobForm({
       {/* Feedback Messages */}
       {formMessage && (
         <div
-          className={`p-4 rounded-xl text-sm font-semibold flex items-center gap-2.5 border ${
+          className={`p-3.5 sm:p-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2.5 border ${
             formMessage.type === "success"
               ? "bg-emerald-50 border-emerald-200 text-emerald-800"
               : "bg-red-50 border-red-200 text-red-800"
@@ -419,12 +419,12 @@ function JobForm({
       )}
 
       {/* Actions */}
-      <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
+      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 pt-3.5 sm:pt-4 border-t border-slate-200">
         {(editingJob || onCancel) && (
           <button
             type="button"
             onClick={onCancel}
-            className="px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-sm font-semibold transition-all shadow-sm"
+            className="px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm text-center"
           >
             Cancel
           </button>
@@ -432,9 +432,9 @@ function JobForm({
         <button
           type="submit"
           disabled={formLoading}
-          className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl text-sm font-bold transition-all shadow-md shadow-indigo-500/20 disabled:opacity-50 flex items-center gap-2"
+          className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md shadow-indigo-500/20 disabled:opacity-50 flex items-center justify-center gap-2"
         >
-          {formLoading && <RefreshCw className="w-4 h-4 animate-spin" />}
+          {formLoading && <RefreshCw className="w-4 h-4 animate-spin shrink-0" />}
           <span>{formLoading ? "Saving…" : submitLabel}</span>
         </button>
       </div>
@@ -688,11 +688,11 @@ export default function AdminJobsPage() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
+      <main className="flex-1 min-w-0 p-3 sm:p-6 lg:p-8 overflow-x-hidden lg:overflow-y-auto lg:max-h-screen space-y-4 sm:space-y-6">
         {/* Header Bar */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3.5 sm:gap-4">
           <div>
-            <div className="flex items-center gap-2.5 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 {editingJob
                   ? "Edit Job Demand"
@@ -715,13 +715,13 @@ export default function AdminJobsPage() {
           </div>
 
           {/* Top Actions */}
-          <div className="flex items-center gap-2.5 flex-wrap">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
             {activeTab === "jobs" && !editingJob && (
               <>
                 <button
                   onClick={loadJobs}
                   disabled={loading}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer disabled:opacity-50"
                   title="Sync latest job listings"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-indigo-600" : "text-slate-600"}`} />
@@ -756,7 +756,7 @@ export default function AdminJobsPage() {
                 {canCreateJob && (
                   <button
                     onClick={openNewForm}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-sm transition-all cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>+ Post New Job</span>
@@ -768,7 +768,7 @@ export default function AdminJobsPage() {
             {activeTab === "new" && (
               <button
                 onClick={() => setActiveTab("jobs")}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all"
+                className="px-3.5 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all"
               >
                 ← Back to All Postings
               </button>
@@ -778,62 +778,62 @@ export default function AdminJobsPage() {
 
         {/* 4 KPI Metric Cards */}
         {activeTab === "jobs" && !editingJob && (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-4 sm:mb-6">
             {/* Total Demands */}
-            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Demands</span>
-                <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                  <Briefcase className="w-4 h-4" />
+            <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Total Demands</span>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl font-black text-slate-900">{jobs.length}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">Active overseas demands</div>
+              <div className="text-xl sm:text-3xl font-black text-slate-900">{jobs.length}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Active overseas demands</div>
             </div>
 
             {/* Total Openings */}
-            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Openings</span>
-                <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                  <Users className="w-4 h-4" />
+            <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Total Openings</span>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl font-black text-emerald-600">{totalOpenings}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">Verified vacancies open</div>
+              <div className="text-xl sm:text-3xl font-black text-emerald-600">{totalOpenings}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1">Verified vacancies open</div>
             </div>
 
             {/* Urgent Demands */}
             <div
               onClick={() => setUrgentOnly((prev) => !prev)}
-              className={`p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer ${
+              className={`p-3.5 sm:p-5 rounded-2xl border transition-all cursor-pointer ${
                 urgentOnly
                   ? "bg-red-50/90 border-red-300 ring-2 ring-red-500/20 shadow-sm"
                   : "bg-white border-slate-200/80 shadow-sm hover:shadow-md"
               }`}
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-red-500">Urgent Demands</span>
-                <div className="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-                  <Flame className="w-4 h-4" />
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-red-500">Urgent Demands</span>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                  <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl font-black text-red-600">{urgentCount}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">
-                {urgentOnly ? "✓ Filter active (Click to reset)" : "Click to view urgent only"}
+              <div className="text-xl sm:text-3xl font-black text-red-600">{urgentCount}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1 truncate">
+                {urgentOnly ? "✓ Filter active" : "View urgent only"}
               </div>
             </div>
 
             {/* Destination Countries */}
-            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Countries</span>
-                <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
-                  <Globe className="w-4 h-4" />
+            <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">Countries</span>
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+                  <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl font-black text-sky-600">{uniqueCountries.length}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-1">
+              <div className="text-xl sm:text-3xl font-black text-sky-600">{uniqueCountries.length}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-1 truncate">
                 {uniqueCountries.slice(0, 3).join(", ") || "Global destinations"}
               </div>
             </div>
@@ -842,14 +842,14 @@ export default function AdminJobsPage() {
 
         {/* Edit Modal / Inline Card */}
         {editingJob && (
-          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5 sm:p-8 mb-6">
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
+          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-8 mb-6">
+            <div className="flex items-center justify-between pb-4 mb-5 sm:mb-6 border-b border-slate-200">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
                   <Edit3 className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">Edit Job Demand Details</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Edit Job Demand Details</h3>
                   <p className="text-xs text-slate-500">Update salary, vacancies, country specs, or eligibility</p>
                 </div>
               </div>
@@ -880,14 +880,14 @@ export default function AdminJobsPage() {
 
         {/* Create New Job Card */}
         {activeTab === "new" && !editingJob && (
-          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5 sm:p-8 mb-6">
-            <div className="pb-4 mb-6 border-b border-slate-200">
+          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sm:p-8 mb-6">
+            <div className="pb-4 mb-5 sm:mb-6 border-b border-slate-200">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-500/20">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-500/20 shrink-0">
                   <Plus className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">Publish New Overseas Job Demand</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Publish New Overseas Job Demand</h3>
                   <p className="text-xs text-slate-500">
                     Provide accurate demand details to attract verified candidates
                   </p>
@@ -916,8 +916,8 @@ export default function AdminJobsPage() {
         {activeTab === "jobs" && !editingJob && (
           <div className="space-y-4">
             {/* Filter Bar */}
-            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
-              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-3.5 sm:p-4">
+              <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
                 {/* Search */}
                 <div className="relative flex-1">
                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -925,8 +925,8 @@ export default function AdminJobsPage() {
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search by job title, trade, country, employer..."
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
+                    placeholder="Search job title, trade, country, employer..."
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
                   />
                   {search && (
                     <button
@@ -938,37 +938,39 @@ export default function AdminJobsPage() {
                   )}
                 </div>
 
-                {/* Country Filter */}
-                <select
-                  value={countryFilter}
-                  onChange={(e) => setCountryFilter(e.target.value)}
-                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 font-medium focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all cursor-pointer"
-                >
-                  <option value="all">All Countries ({uniqueCountries.length})</option>
-                  {uniqueCountries.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full lg:w-auto">
+                  {/* Country Filter */}
+                  <select
+                    value={countryFilter}
+                    onChange={(e) => setCountryFilter(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-700 font-medium focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="all">All Countries ({uniqueCountries.length})</option>
+                    {uniqueCountries.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
 
-                {/* Category Filter */}
-                <select
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 font-medium focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all cursor-pointer"
-                >
-                  <option value="all">All Categories ({uniqueCategories.length})</option>
-                  {uniqueCategories.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                  {/* Category Filter */}
+                  <select
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-700 font-medium focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="all">All Categories ({uniqueCategories.length})</option>
+                    {uniqueCategories.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* Quick Filter Tags */}
-              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-slate-100 overflow-x-auto pb-1 text-xs">
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-3 pt-3 border-t border-slate-100 overflow-x-auto pb-1 text-xs">
                 <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px] flex-shrink-0">
                   Quick Filter:
                 </span>
@@ -1016,13 +1018,13 @@ export default function AdminJobsPage() {
 
             {/* Content Loading & Empty States */}
             {loading ? (
-              <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
+              <div className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 text-center">
                 <div className="w-10 h-10 border-4 border-indigo-500/20 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4" />
                 <p className="text-sm font-semibold text-slate-700">Loading overseas job listings...</p>
                 <p className="text-xs text-slate-400 mt-1">Fetching demands from database</p>
               </div>
             ) : filteredJobs.length === 0 ? (
-              <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
+              <div className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 text-center">
                 <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
                   <Briefcase className="w-8 h-8" />
                 </div>
@@ -1048,14 +1050,14 @@ export default function AdminJobsPage() {
               </div>
             ) : viewMode === "grid" ? (
               /* Grid View */
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4">
                 {filteredJobs.map((job) => (
                   <div
                     key={job.id}
                     className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group"
                   >
                     {/* Card Header */}
-                    <div className="p-5 pb-3">
+                    <div className="p-4 sm:p-5 pb-3">
                       <div className="flex items-start justify-between gap-3 mb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="text-xl" title={job.country}>
@@ -1077,7 +1079,7 @@ export default function AdminJobsPage() {
                         )}
                       </div>
 
-                      <h3 className="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors line-clamp-1">
+                      <h3 className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-indigo-600 transition-colors line-clamp-1">
                         {job.title}
                       </h3>
                       <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-1">
@@ -1087,14 +1089,14 @@ export default function AdminJobsPage() {
                     </div>
 
                     {/* Card Body / Specs */}
-                    <div className="px-5 py-3 bg-slate-50/60 border-y border-slate-100 grid grid-cols-2 gap-3 text-xs">
+                    <div className="px-4 sm:px-5 py-3 bg-slate-50/60 border-y border-slate-100 grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-400 block">Salary</span>
-                        <span className="font-bold text-emerald-600 text-sm">{job.salary}</span>
+                        <span className="font-bold text-emerald-600 text-xs sm:text-sm truncate block">{job.salary}</span>
                       </div>
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-400 block">Openings</span>
-                        <span className="font-bold text-indigo-600 text-sm">{job.totalOpenings || 1} Positions</span>
+                        <span className="font-bold text-indigo-600 text-xs sm:text-sm truncate block">{job.totalOpenings || 1} Positions</span>
                       </div>
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-400 block">Category</span>
@@ -1108,11 +1110,11 @@ export default function AdminJobsPage() {
 
                     {/* Perks Preview */}
                     {job.perks && job.perks.length > 0 && (
-                      <div className="px-5 py-2.5 flex flex-wrap gap-1.5">
+                      <div className="px-4 sm:px-5 py-2.5 flex flex-wrap gap-1.5">
                         {job.perks.slice(0, 2).map((p, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-medium rounded-md border border-emerald-100"
+                            className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-medium rounded-md border border-emerald-100 truncate max-w-[140px]"
                           >
                             ✓ {p}
                           </span>
@@ -1126,19 +1128,19 @@ export default function AdminJobsPage() {
                     )}
 
                     {/* Card Actions Footer */}
-                    <div className="p-3 px-5 bg-white flex items-center justify-between border-t border-slate-100">
+                    <div className="p-3 px-4 sm:px-5 bg-white flex items-center justify-between border-t border-slate-100">
                       <button
                         onClick={() => setPreviewJob(job)}
-                        className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+                        className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         <span>Preview</span>
                       </button>
 
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1">
                         <button
                           onClick={() => handleCopyShare(job)}
-                          className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+                          className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
                           title="Copy Shareable Job Summary"
                         >
                           {copiedId === job.id ? (
@@ -1151,7 +1153,7 @@ export default function AdminJobsPage() {
                         {canEditJob && (
                           <button
                             onClick={() => openEditModal(job)}
-                            className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                            className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
                             title="Edit Job Demand"
                           >
                             <Edit3 className="w-4 h-4" />
@@ -1161,7 +1163,7 @@ export default function AdminJobsPage() {
                         {canDeleteJob && (
                           <button
                             onClick={() => setShowDeleteConfirm(job.id)}
-                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                            className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                             title="Delete Demand"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -1173,89 +1175,158 @@ export default function AdminJobsPage() {
                 ))}
               </div>
             ) : (
-              /* Table View */
-              <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm">
-                    <thead>
-                      <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                        <th className="py-3.5 px-4">Job Title & Employer</th>
-                        <th className="py-3.5 px-4">Country</th>
-                        <th className="py-3.5 px-4">Category</th>
-                        <th className="py-3.5 px-4">Salary</th>
-                        <th className="py-3.5 px-4 text-center">Openings</th>
-                        <th className="py-3.5 px-4 text-center">Status</th>
-                        <th className="py-3.5 px-4">Posted Date</th>
-                        <th className="py-3.5 px-4 text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {filteredJobs.map((job) => (
-                        <tr key={job.id} className="hover:bg-slate-50/70 transition-colors">
-                          <td className="py-3.5 px-4">
-                            <div className="font-bold text-slate-900">{job.title}</div>
-                            <div className="text-xs text-slate-500">{job.company || "Direct Recruitment"}</div>
-                          </td>
-                          <td className="py-3.5 px-4">
-                            <div className="flex items-center gap-1.5">
-                              <span>{job.flag || "🌍"}</span>
-                              <span className="font-medium text-slate-700">{job.country}</span>
-                            </div>
-                          </td>
-                          <td className="py-3.5 px-4">
-                            <span className="px-2 py-0.5 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">
-                              {job.category}
-                            </span>
-                          </td>
-                          <td className="py-3.5 px-4 font-bold text-emerald-600">{job.salary}</td>
-                          <td className="py-3.5 px-4 text-center font-bold text-indigo-600">
-                            {job.totalOpenings || 1}
-                          </td>
-                          <td className="py-3.5 px-4 text-center">
-                            {job.urgent ? (
+              /* Table View with Mobile Fallback Cards */
+              <div>
+                {/* Mobile Cards for Table View (< lg) */}
+                <div className="block lg:hidden space-y-3">
+                  {filteredJobs.map((job) => (
+                    <div
+                      key={job.id}
+                      className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 space-y-3"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="text-base">{job.flag || "🌍"}</span>
+                            <span className="font-extrabold text-sm text-slate-900">{job.title}</span>
+                            {job.urgent && (
                               <span className="px-2 py-0.5 bg-red-50 text-red-600 border border-red-200 text-[10px] font-bold rounded-full">
                                 🔥 Urgent
                               </span>
-                            ) : (
-                              <span className="px-2 py-0.5 bg-slate-100 text-slate-500 text-[10px] font-medium rounded-full">
-                                Standard
-                              </span>
                             )}
-                          </td>
-                          <td className="py-3.5 px-4 text-xs text-slate-500">{job.postedDate}</td>
-                          <td className="py-3.5 px-4 text-right">
-                            <div className="flex items-center justify-end gap-1.5">
-                              <button
-                                onClick={() => setPreviewJob(job)}
-                                className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
-                                title="View Details"
-                              >
-                                <Eye className="w-4 h-4" />
-                              </button>
-                              {canEditJob && (
-                                <button
-                                  onClick={() => openEditModal(job)}
-                                  className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                                  title="Edit"
-                                >
-                                  <Edit3 className="w-4 h-4" />
-                                </button>
-                              )}
-                              {canDeleteJob && (
-                                <button
-                                  onClick={() => setShowDeleteConfirm(job.id)}
-                                  className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                  title="Delete"
-                                >
-                                  <Trash2 className="w-4 h-4" />
-                                </button>
-                              )}
-                            </div>
-                          </td>
+                          </div>
+                          <div className="text-xs text-slate-500 mt-0.5">
+                            {job.company || "Direct Recruitment"} · {job.country}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1 shrink-0">
+                          <button
+                            onClick={() => setPreviewJob(job)}
+                            className="p-1.5 text-slate-500 hover:text-slate-800 bg-slate-100 rounded-lg"
+                            title="View"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                          </button>
+                          {canEditJob && (
+                            <button
+                              onClick={() => openEditModal(job)}
+                              className="p-1.5 text-indigo-600 bg-indigo-50 rounded-lg"
+                              title="Edit"
+                            >
+                              <Edit3 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                          {canDeleteJob && (
+                            <button
+                              onClick={() => setShowDeleteConfirm(job.id)}
+                              className="p-1.5 text-red-500 bg-red-50 rounded-lg"
+                              title="Delete"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl">
+                        <div>
+                          <span className="text-[10px] text-slate-400 font-bold uppercase block">Salary</span>
+                          <span className="font-bold text-emerald-600">{job.salary}</span>
+                        </div>
+                        <div>
+                          <span className="text-[10px] text-slate-400 font-bold uppercase block">Openings</span>
+                          <span className="font-bold text-indigo-600">{job.totalOpenings || 1} Positions</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop Table (lg+) */}
+                <div className="hidden lg:block bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm">
+                      <thead>
+                        <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                          <th className="py-3.5 px-4">Job Title &amp; Employer</th>
+                          <th className="py-3.5 px-4">Country</th>
+                          <th className="py-3.5 px-4">Category</th>
+                          <th className="py-3.5 px-4">Salary</th>
+                          <th className="py-3.5 px-4 text-center">Openings</th>
+                          <th className="py-3.5 px-4 text-center">Status</th>
+                          <th className="py-3.5 px-4">Posted Date</th>
+                          <th className="py-3.5 px-4 text-right">Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {filteredJobs.map((job) => (
+                          <tr key={job.id} className="hover:bg-slate-50/70 transition-colors">
+                            <td className="py-3.5 px-4">
+                              <div className="font-bold text-slate-900">{job.title}</div>
+                              <div className="text-xs text-slate-500">{job.company || "Direct Recruitment"}</div>
+                            </td>
+                            <td className="py-3.5 px-4">
+                              <div className="flex items-center gap-1.5">
+                                <span>{job.flag || "🌍"}</span>
+                                <span className="font-medium text-slate-700">{job.country}</span>
+                              </div>
+                            </td>
+                            <td className="py-3.5 px-4">
+                              <span className="px-2 py-0.5 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">
+                                {job.category}
+                              </span>
+                            </td>
+                            <td className="py-3.5 px-4 font-bold text-emerald-600">{job.salary}</td>
+                            <td className="py-3.5 px-4 text-center font-bold text-indigo-600">
+                              {job.totalOpenings || 1}
+                            </td>
+                            <td className="py-3.5 px-4 text-center">
+                              {job.urgent ? (
+                                <span className="px-2 py-0.5 bg-red-50 text-red-600 border border-red-200 text-[10px] font-bold rounded-full">
+                                  🔥 Urgent
+                                </span>
+                              ) : (
+                                <span className="px-2 py-0.5 bg-slate-100 text-slate-500 text-[10px] font-medium rounded-full">
+                                  Standard
+                                </span>
+                              )}
+                            </td>
+                            <td className="py-3.5 px-4 text-xs text-slate-500">{job.postedDate}</td>
+                            <td className="py-3.5 px-4 text-right">
+                              <div className="flex items-center justify-end gap-1.5">
+                                <button
+                                  onClick={() => setPreviewJob(job)}
+                                  className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                                  title="View Details"
+                                >
+                                  <Eye className="w-4 h-4" />
+                                </button>
+                                {canEditJob && (
+                                  <button
+                                    onClick={() => openEditModal(job)}
+                                    className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
+                                    title="Edit"
+                                  >
+                                    <Edit3 className="w-4 h-4" />
+                                  </button>
+                                )}
+                                {canDeleteJob && (
+                                  <button
+                                    onClick={() => setShowDeleteConfirm(job.id)}
+                                    className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                                    title="Delete"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             )}
@@ -1265,12 +1336,12 @@ export default function AdminJobsPage() {
         {/* Job Detail Preview Slide-Over Drawer */}
         {previewJob && (
           <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex justify-end">
-            <div className="w-full max-w-xl bg-white h-full overflow-y-auto shadow-2xl flex flex-col justify-between">
+            <div className="w-full max-w-xl bg-white h-full max-h-[100dvh] overflow-y-auto overscroll-contain shadow-2xl flex flex-col justify-between">
               {/* Drawer Header */}
               <div>
-                <div className="p-6 border-b border-slate-200 bg-slate-50/70 flex items-start justify-between gap-4">
+                <div className="p-4 sm:p-6 border-b border-slate-200 bg-slate-50/70 flex items-start justify-between gap-3 sm:gap-4">
                   <div>
-                    <div className="flex items-center gap-2 mb-1.5">
+                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className="text-2xl">{previewJob.flag || "🌍"}</span>
                       <span className="px-2.5 py-0.5 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-md">
                         {previewJob.country}
@@ -1282,44 +1353,44 @@ export default function AdminJobsPage() {
                         </span>
                       )}
                     </div>
-                    <h2 className="text-xl font-black text-slate-900">{previewJob.title}</h2>
+                    <h2 className="text-lg sm:text-xl font-black text-slate-900">{previewJob.title}</h2>
                     <p className="text-xs text-slate-500 mt-0.5">
                       Employer: {previewJob.company || "WorkWise Direct Contracting"}
                     </p>
                   </div>
                   <button
                     onClick={() => setPreviewJob(null)}
-                    className="p-2 text-slate-400 hover:text-slate-700 bg-white border border-slate-200 rounded-xl transition-colors"
+                    className="p-2 text-slate-400 hover:text-slate-700 bg-white border border-slate-200 rounded-xl transition-colors shrink-0"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
                 {/* Drawer Body */}
-                <div className="p-6 space-y-6 text-sm">
+                <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 text-sm">
                   {/* Key Stats Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 p-3.5 sm:p-4 bg-slate-50 rounded-2xl border border-slate-200/80">
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Salary</span>
-                      <span className="font-black text-emerald-600 text-base">{previewJob.salary}</span>
+                      <span className="font-black text-emerald-600 text-sm sm:text-base">{previewJob.salary}</span>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Vacancies</span>
-                      <span className="font-black text-indigo-600 text-base">
+                      <span className="font-black text-indigo-600 text-sm sm:text-base">
                         {previewJob.totalOpenings || 1} Open
                       </span>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Visa Category</span>
-                      <span className="font-bold text-slate-800 text-xs">{previewJob.visaType}</span>
+                      <span className="font-bold text-slate-800 text-xs truncate block">{previewJob.visaType}</span>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Duty Hours</span>
-                      <span className="font-medium text-slate-800 text-xs">{previewJob.dutyHours}</span>
+                      <span className="font-medium text-slate-800 text-xs truncate block">{previewJob.dutyHours}</span>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Selection</span>
-                      <span className="font-medium text-slate-800 text-xs">{previewJob.interviewDate}</span>
+                      <span className="font-medium text-slate-800 text-xs truncate block">{previewJob.interviewDate}</span>
                     </div>
                     <div>
                       <span className="text-[10px] font-bold uppercase text-slate-400 block">Office Venue</span>
@@ -1331,7 +1402,7 @@ export default function AdminJobsPage() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2.5 flex items-center gap-1.5">
                       <Award className="w-4 h-4 text-emerald-600" />
-                      <span>Included Perks & Company Benefits</span>
+                      <span>Included Perks &amp; Company Benefits</span>
                     </h4>
                     {previewJob.perks && previewJob.perks.length > 0 ? (
                       <div className="space-y-1.5">
@@ -1354,7 +1425,7 @@ export default function AdminJobsPage() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2.5 flex items-center gap-1.5">
                       <Layers className="w-4 h-4 text-indigo-600" />
-                      <span>Requirements & Candidate Criteria</span>
+                      <span>Requirements &amp; Candidate Criteria</span>
                     </h4>
                     {previewJob.requirements && previewJob.requirements.length > 0 ? (
                       <div className="space-y-1.5">
@@ -1376,10 +1447,10 @@ export default function AdminJobsPage() {
               </div>
 
               {/* Drawer Footer */}
-              <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
+              <div className="p-3.5 sm:p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
                 <button
                   onClick={() => handleCopyShare(previewJob)}
-                  className="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+                  className="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5"
                 >
                   {copiedId === previewJob.id ? (
                     <>
@@ -1401,7 +1472,7 @@ export default function AdminJobsPage() {
                       setPreviewJob(null);
                       openEditModal(j);
                     }}
-                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/20 flex items-center gap-1.5"
+                    className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-500/20 flex items-center justify-center gap-1.5"
                   >
                     <Edit3 className="w-4 h-4" />
                     <span>Edit Demand</span>
@@ -1414,16 +1485,16 @@ export default function AdminJobsPage() {
 
         {/* Delete Confirmation Modal */}
         {showDeleteConfirm && (
-          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center border border-slate-200">
-              <div className="w-14 h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-4">
-                <Trash2 className="w-7 h-7" />
+          <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 max-w-md w-full shadow-2xl text-center border border-slate-200">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Trash2 className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
-              <h3 className="text-lg font-black text-slate-900 mb-1">Delete this Job Demand?</h3>
-              <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+              <h3 className="text-base sm:text-lg font-black text-slate-900 mb-1">Delete this Job Demand?</h3>
+              <p className="text-xs text-slate-500 mb-5 sm:mb-6 leading-relaxed">
                 This vacancy listing will be permanently removed from both the administrative console and the public overseas jobs portal.
               </p>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-3">
                 <button
                   onClick={() => setShowDeleteConfirm(null)}
                   className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
