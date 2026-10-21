@@ -34,6 +34,16 @@ export interface IApplication extends Document {
   visaNumber?: string;
   flightDate?: string;
   flightPnr?: string;
+  source?: string;
+  partnerId?: string | null;
+  partnerName?: string;
+  partnerCode?: string;
+  createdBy?: {
+    id?: string | null;
+    name?: string;
+    email?: string;
+    role?: string;
+  };
   notes?: string;
   stageHistory: IStageHistory[];
   createdAt: Date;
@@ -138,6 +148,30 @@ const ApplicationSchema = new Schema<IApplication>(
     notes: {
       type: String,
       default: "",
+    },
+    source: {
+      type: String,
+      default: "direct",
+    },
+    partnerId: {
+      type: String,
+      default: null,
+      index: true,
+    },
+    partnerName: {
+      type: String,
+      default: "",
+    },
+    partnerCode: {
+      type: String,
+      default: "",
+      index: true,
+    },
+    createdBy: {
+      id: { type: String, default: null },
+      name: { type: String, default: "" },
+      email: { type: String, default: "" },
+      role: { type: String, default: "" },
     },
     stageHistory: [
       {

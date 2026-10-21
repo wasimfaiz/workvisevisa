@@ -46,7 +46,7 @@ const AdminUserSchema = new Schema<IAdminUser>(
     },
     role: {
       type: String,
-      enum: ["superadmin", "admin", "manager", "counselor", "accountant", "staff"],
+      enum: ["superadmin", "admin", "manager", "counselor", "accountant", "staff", "b2b"],
       default: "staff",
     },
     status: {

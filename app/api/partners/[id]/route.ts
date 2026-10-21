@@ -7,6 +7,7 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Partner from "@/lib/models/Partner";
 import { requirePermission } from "@/lib/auth";
+import { hashPartnerPassword } from "@/lib/partnerAuth";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -115,6 +116,17 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
       agreementStatus: mouStatus === "Signed" ? "Signed MoU" : "None",
     };
+
+    // B2B Partner Portal Login access & password management
+    if (body.password && typeof body.password === "string" && body.password.trim().length >= 4) {
+      updatePayload.passwordHash = await hashPartnerPassword(body.password.trim());
+      if (body.isLoginEnabled === undefined) {
+        updatePayload.isLoginEnabled = true;
+      }
+    }
+    if (body.isLoginEnabled !== undefined) {
+      updatePayload.isLoginEnabled = Boolean(body.isLoginEnabled);
+    }
 
     // Remove undefined keys
     Object.keys(updatePayload).forEach(

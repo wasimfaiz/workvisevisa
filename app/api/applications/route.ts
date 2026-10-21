@@ -7,6 +7,7 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Application from "@/lib/models/Application";
+import Partner from "@/lib/models/Partner";
 import { PROCESSING_STAGES } from "@/lib/types/application";
 import AdminUser from "@/lib/models/AdminUser";
 import { requirePermission, getAuthUser } from "@/lib/auth";
@@ -76,7 +77,7 @@ async function resolveCounselor(assignedInput: unknown) {
   };
 }
 
-// GET /api/applications — List all applications with metrics
+// GET /api/applications — List applications with strict B2B scoping
 export async function GET(request: NextRequest) {
   try {
     const auth = await requirePermission(request, "applications", "view");
@@ -121,7 +122,7 @@ export async function GET(request: NextRequest) {
 
     if (search && search.trim()) {
       const q = search.trim();
-      query.$or = [
+      const searchConditions = [
         { candidateName: { $regex: q, $options: "i" } },
         { passportNumber: { $regex: q, $options: "i" } },
         { phone: { $regex: q, $options: "i" } },
@@ -130,6 +131,64 @@ export async function GET(request: NextRequest) {
         { workPermitNumber: { $regex: q, $options: "i" } },
         { visaNumber: { $regex: q, $options: "i" } },
       ];
+      if (query.$or) {
+        query.$and = [{ $or: query.$or }, { $or: searchConditions }];
+        delete query.$or;
+      } else {
+        query.$or = searchConditions;
+      }
+    }
+
+    // ── STRICT B2B PARTNER DATA ISOLATION ────────────────────────────
+    // If the authenticated user is a B2B partner, they MUST ONLY see
+    // candidates that belong to them (sourced by them or assigned to them).
+    // They must NEVER see other partners' candidates or direct self-applied cases.
+    const user = auth.user;
+    const isB2B = user?.role === "b2b";
+    let b2bOwnershipConditions: any[] = [];
+
+    if (isB2B && user) {
+      const userIds = [user._id.toString()];
+      const userEmails = [user.email.toLowerCase()];
+
+      // Check if there is an associated partner profile in the partners collection
+      const partnerDoc = await Partner.findOne({
+        $or: [
+          { email: { $regex: new RegExp(`^${user.email}$`, "i") } },
+          ...(user.phone ? [{ phone: user.phone }] : []),
+          { name: user.name },
+        ],
+      }).lean();
+
+      const partnerIds = partnerDoc ? [(partnerDoc._id as any).toString()] : [];
+      const partnerCodes = [
+        ...(partnerDoc?.partnerCode ? [partnerDoc.partnerCode] : []),
+        ...(partnerDoc?.agentCode ? [partnerDoc.agentCode] : []),
+      ];
+      const partnerNames = [user.name, ...(partnerDoc?.name ? [partnerDoc.name] : [])];
+
+      b2bOwnershipConditions = [
+        { "createdBy.id": { $in: userIds } },
+        { "createdBy.email": { $in: userEmails } },
+        { "assignedCounselor.id": { $in: [...userIds, ...partnerIds] } },
+        { "assignedCounselor.email": { $in: userEmails } },
+        { partnerId: { $in: [...userIds, ...partnerIds] } },
+        { agentId: { $in: [...userIds, ...partnerIds] } },
+        { partnerName: { $in: partnerNames } },
+      ];
+      if (partnerCodes.length > 0) {
+        b2bOwnershipConditions.push({ partnerCode: { $in: partnerCodes } });
+        b2bOwnershipConditions.push({ agentCode: { $in: partnerCodes } });
+      }
+
+      if (query.$and && Array.isArray(query.$and)) {
+        query.$and.push({ $or: b2bOwnershipConditions });
+      } else if (query.$or) {
+        query.$and = [{ $or: query.$or }, { $or: b2bOwnershipConditions }];
+        delete query.$or;
+      } else {
+        query.$or = b2bOwnershipConditions;
+      }
     }
 
     const applications = await Application.find(query).sort({ updatedAt: -1, createdAt: -1 }).lean();
@@ -141,8 +200,9 @@ export async function GET(request: NextRequest) {
       __v: undefined,
     }));
 
-    // Metrics summary
-    const allApps = await Application.find().lean();
+    // Metrics summary — strictly scoped to B2B's own candidates if role is B2B
+    const allAppsQuery = isB2B && b2bOwnershipConditions.length > 0 ? { $or: b2bOwnershipConditions } : {};
+    const allApps = await Application.find(allAppsQuery).lean();
     const totalCount = allApps.length;
     const inProgressCount = allApps.filter((a) => a.stageStatus === "in_progress").length;
     const visaApprovedCount = allApps.filter((a) => a.currentStage >= 6 && a.stageStatus !== "rejected").length;
@@ -155,6 +215,7 @@ export async function GET(request: NextRequest) {
         success: true,
         data: transformed,
         total: transformed.length,
+        isB2B,
         metrics: {
           totalCount,
           inProgressCount,
@@ -184,7 +245,7 @@ export async function POST(request: NextRequest) {
       return Response.json({ success: false, message: auth.error }, { status: auth.status });
     }
 
-    const user = getAuthUser(request);
+    const user = auth.user;
     const body = await request.json();
 
     const {
@@ -238,7 +299,49 @@ export async function POST(request: NextRequest) {
     const parsedStage = Number(currentStage) >= 1 && Number(currentStage) <= 7 ? Number(currentStage) : 1;
     const stageMeta = PROCESSING_STAGES.find((s) => s.step === parsedStage) || PROCESSING_STAGES[0];
 
-    const cleanCounselor = await resolveCounselor(assignedCounselor);
+    // B2B Partner detection
+    const isB2B = user?.role === "b2b";
+    let partnerDoc: any = null;
+    if (isB2B && user) {
+      partnerDoc = await Partner.findOne({
+        $or: [
+          { email: { $regex: new RegExp(`^${user.email}$`, "i") } },
+          ...(user.phone ? [{ phone: user.phone }] : []),
+          { name: user.name },
+        ],
+      }).lean();
+    }
+
+    const assignedPartnerId = isB2B
+      ? (partnerDoc ? (partnerDoc._id as any).toString() : user._id.toString())
+      : (body.partnerId || null);
+
+    const assignedPartnerName = isB2B
+      ? user.name
+      : (body.partnerName || "");
+
+    const assignedPartnerCode = isB2B
+      ? (partnerDoc?.partnerCode || partnerDoc?.agentCode || "")
+      : (body.partnerCode || "");
+
+    const finalSource = isB2B ? "b2b_partner" : (body.source || (assignedPartnerId ? "b2b_partner" : "direct"));
+
+    const createdByData = {
+      id: user?._id ? user._id.toString() : null,
+      name: user?.name || "Admin",
+      email: user?.email || "",
+      role: user?.role || "admin",
+    };
+
+    // If B2B, force assignedCounselor to the B2B user so they retain ownership
+    const cleanCounselor = isB2B
+      ? {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          role: "b2b",
+        }
+      : await resolveCounselor(assignedCounselor);
 
     const numPackage = Number(packageAmount) || 0;
     const numPaid = Number(paidAmount) || 0;
@@ -266,6 +369,11 @@ export async function POST(request: NextRequest) {
       currentStage: parsedStage,
       stageStatus: stageStatus || "in_progress",
       assignedCounselor: cleanCounselor,
+      source: finalSource,
+      partnerId: assignedPartnerId,
+      partnerName: assignedPartnerName,
+      partnerCode: assignedPartnerCode,
+      createdBy: createdByData,
       packageAmount: numPackage,
       paidAmount: numPaid,
       balanceAmount: numBalance,

@@ -378,6 +378,8 @@ export default function AdminEmployeesPage() {
         return { label: "Visa Counselor", bg: "bg-emerald-50 text-emerald-700 border-emerald-200" };
       case "accountant":
         return { label: "Accountant / Billing", bg: "bg-amber-50 text-amber-800 border-amber-200" };
+      case "b2b":
+        return { label: "B2B Partner", bg: "bg-teal-50 text-teal-700 border-teal-200" };
       default:
         return { label: "Staff", bg: "bg-slate-100 text-slate-700 border-slate-200" };
     }
@@ -544,6 +546,7 @@ export default function AdminEmployeesPage() {
                 { id: "manager", label: "Managers" },
                 { id: "counselor", label: "Counselors" },
                 { id: "accountant", label: "Accountants" },
+                { id: "b2b", label: "B2B Partners" },
                 { id: "staff", label: "Custom Staff" },
               ].map((tab) => (
                 <button
@@ -1085,6 +1088,7 @@ export default function AdminEmployeesPage() {
                     <option value="counselor">Visa Counselor (Inquiries &amp; Tracker Allowed · Invoices Blocked)</option>
                     <option value="accountant">Accountant / Billing (Invoices Full Access · Leads Blocked)</option>
                     <option value="manager">Branch Manager (Invoices, Leads &amp; Tracker Access)</option>
+                    <option value="b2b">B2B Partner (Candidate Sourcing, Partners &amp; Job Demands)</option>
                     <option value="staff">Custom Staff Member (Select Below)</option>
                     <option value="superadmin">Super Administrator (Unrestricted Full Access)</option>
                   </select>
@@ -1349,6 +1353,40 @@ export default function AdminEmployeesPage() {
                 >
                   <X className="w-5 h-5" />
                 </button>
+              </div>
+
+              {/* Quick Role Preset Picker */}
+              <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200 mb-4">
+                <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  Apply Preset Template:
+                </div>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {[
+                    { role: "counselor", label: "Counselor" },
+                    { role: "accountant", label: "Accountant" },
+                    { role: "manager", label: "Manager" },
+                    { role: "b2b", label: "B2B Partner" },
+                    { role: "staff", label: "Custom Staff" },
+                    { role: "superadmin", label: "Super Admin" },
+                  ].map((p) => (
+                    <button
+                      key={p.role}
+                      type="button"
+                      onClick={() => {
+                        const template = JSON.parse(
+                          JSON.stringify(
+                            DEFAULT_PERMISSIONS[p.role as AdminRole] || DEFAULT_PERMISSIONS.staff
+                          )
+                        );
+                        setEditPermissionsForm(template);
+                        showToast(`Loaded ${p.label} preset template!`);
+                      }}
+                      className="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm transition-all cursor-pointer"
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="space-y-4">

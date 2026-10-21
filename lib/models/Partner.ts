@@ -57,6 +57,11 @@ export interface IPartner extends Document {
   licenseNumber?: string;
   website?: string;
 
+  // B2B Partner Portal Login Access
+  passwordHash?: string;
+  isLoginEnabled?: boolean;
+  lastLoginAt?: Date;
+
   createdBy?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -239,6 +244,20 @@ const PartnerSchema = new Schema<IPartner>(
       type: String,
       default: "Pending",
       trim: true,
+    },
+
+    // B2B Partner Portal Login Access
+    passwordHash: {
+      type: String,
+      default: "",
+    },
+    isLoginEnabled: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
+    lastLoginAt: {
+      type: Date,
     },
 
     // Legacy fields

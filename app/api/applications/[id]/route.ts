@@ -8,12 +8,48 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Application from "@/lib/models/Application";
+import Partner from "@/lib/models/Partner";
 import { PROCESSING_STAGES } from "@/lib/types/application";
 import AdminUser from "@/lib/models/AdminUser";
 import { requirePermission, getAuthUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+// Helper to check B2B ownership
+async function isAuthorizedB2B(appDoc: any, user: any): Promise<boolean> {
+  if (!user || user.role !== "b2b") return true;
+
+  const userId = user._id ? user._id.toString() : (user.id || "");
+  const userEmail = (user.email || "").toLowerCase();
+
+  if (appDoc.createdBy?.id === userId || appDoc.createdBy?.email?.toLowerCase() === userEmail) {
+    return true;
+  }
+  if (appDoc.assignedCounselor?.id === userId || appDoc.assignedCounselor?.email?.toLowerCase() === userEmail) {
+    return true;
+  }
+  if (appDoc.partnerId === userId) {
+    return true;
+  }
+
+  const partner = await Partner.findOne({
+    $or: [
+      { email: { $regex: new RegExp(`^${user.email}$`, "i") } },
+      ...(user.phone ? [{ phone: user.phone }] : []),
+      { name: user.name },
+    ],
+  }).lean();
+
+  if (partner) {
+    const pId = (partner._id as any).toString();
+    if (appDoc.partnerId === pId || appDoc.agentId === pId) return true;
+    if (partner.partnerCode && (appDoc.partnerCode === partner.partnerCode || appDoc.agentCode === partner.partnerCode)) return true;
+    if (partner.name && appDoc.partnerName === partner.name) return true;
+  }
+
+  return false;
+}
 
 // Helper to resolve counselor details
 async function resolveCounselor(assignedInput: unknown) {
@@ -96,6 +132,18 @@ export async function GET(
       return Response.json({ success: false, message: "Application not found." }, { status: 404 });
     }
 
+    // Strict B2B isolation
+    const user = auth.user;
+    if (user?.role === "b2b") {
+      const allowed = await isAuthorizedB2B(application, user);
+      if (!allowed) {
+        return Response.json(
+          { success: false, message: "Access denied. You can only view your own candidate cases." },
+          { status: 403 }
+        );
+      }
+    }
+
     const transformed = {
       ...application,
       id: (application._id as unknown as { toString(): string }).toString(),
@@ -121,7 +169,7 @@ export async function PATCH(
       return Response.json({ success: false, message: auth.error }, { status: auth.status });
     }
 
-    const user = getAuthUser(request);
+    const user = auth.user;
     const { id } = await params;
     const body = await request.json();
 
@@ -130,6 +178,17 @@ export async function PATCH(
     const currentDoc = await Application.findById(id);
     if (!currentDoc) {
       return Response.json({ success: false, message: "Application not found." }, { status: 404 });
+    }
+
+    // Strict B2B isolation
+    if (user?.role === "b2b") {
+      const allowed = await isAuthorizedB2B(currentDoc, user);
+      if (!allowed) {
+        return Response.json(
+          { success: false, message: "Access denied. You can only modify your own candidate cases." },
+          { status: 403 }
+        );
+      }
     }
 
     const updates: Record<string, unknown> = {};
@@ -265,6 +324,14 @@ export async function DELETE(
     }
 
     const { id } = await params;
+    const user = auth.user;
+    if (user?.role === "b2b") {
+      return Response.json(
+        { success: false, message: "Permission denied. B2B partners cannot delete cases." },
+        { status: 403 }
+      );
+    }
+
     await connectDB();
 
     const deleted = await Application.findByIdAndDelete(id);

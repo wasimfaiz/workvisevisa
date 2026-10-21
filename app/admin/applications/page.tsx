@@ -55,6 +55,7 @@ import {
   Sparkles,
   ChevronDown,
   Layers,
+  Building2,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
 import { PROCESSING_STAGES, IStageHistory } from "@/lib/types/application";
@@ -74,6 +75,16 @@ export interface ApplicationItem {
   currentStage: number; // 1 to 7
   stageStatus: "in_progress" | "completed" | "on_hold" | "rejected";
   assignedCounselor?: {
+    id?: string | null;
+    name?: string;
+    email?: string;
+    role?: string;
+  };
+  source?: string;
+  partnerId?: string | null;
+  partnerName?: string;
+  partnerCode?: string;
+  createdBy?: {
     id?: string | null;
     name?: string;
     email?: string;
@@ -475,7 +486,7 @@ export default function AdminApplicationsPage() {
       jobTrade: "",
       currentStage: 1,
       stageStatus: "in_progress",
-      assignedCounselorId: "",
+      assignedCounselorId: admin?.role === "b2b" ? admin.id : "",
       packageAmount: 0,
       paidAmount: 0,
       workPermitNumber: "",
@@ -691,9 +702,10 @@ export default function AdminApplicationsPage() {
   }
 
   const isSuper = admin.role === "superadmin" || admin.email === "wasim@yastudy.com";
-  const canCreate = isSuper || Boolean(admin.permissions?.applications?.create !== false);
-  const canEdit = isSuper || Boolean(admin.permissions?.applications?.edit !== false);
-  const canDelete = isSuper || Boolean(admin.permissions?.applications?.delete !== false);
+  const isB2B = admin.role === "b2b";
+  const canCreate = isSuper || isB2B || Boolean(admin.permissions?.applications?.create !== false);
+  const canEdit = !isB2B && (isSuper || Boolean(admin.permissions?.applications?.edit !== false));
+  const canDelete = !isB2B && (isSuper || Boolean(admin.permissions?.applications?.delete !== false));
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#f8fafc] font-sans">
@@ -735,9 +747,17 @@ export default function AdminApplicationsPage() {
                 <Compass className="w-3.5 h-3.5 text-purple-600" />
                 {applications.length} Active Files
               </span>
+              {isB2B && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-teal-100 text-teal-800 border border-teal-200">
+                  <Building2 className="w-3.5 h-3.5 text-teal-600" />
+                  B2B Partner Sourced Cases
+                </span>
+              )}
             </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              End-to-end 7-stage work visa milestone management &amp; candidate passport tracking
+              {isB2B
+                ? "Track live status, milestones, and visa updates for your enrolled candidates"
+                : "End-to-end 7-stage work visa milestone management & candidate passport tracking"}
             </p>
           </div>
 
@@ -939,20 +959,27 @@ export default function AdminApplicationsPage() {
               ))}
             </select>
 
-            {/* Counselor Dropdown */}
-            <select
-              value={counselorFilter}
-              onChange={(e) => setCounselorFilter(e.target.value)}
-              className="w-full lg:w-auto px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
-            >
-              <option value="all">All Counselors</option>
-              <option value="unassigned">Unassigned</option>
-              {employees.map((emp) => (
-                <option key={emp.id} value={emp.id}>
-                  {emp.name}
-                </option>
-              ))}
-            </select>
+            {/* Counselor Dropdown / B2B Locked Scope */}
+            {isB2B ? (
+              <span className="w-full lg:w-auto px-3 py-2 bg-teal-50 border border-teal-200 text-teal-800 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 justify-center">
+                <Building2 className="w-3.5 h-3.5 text-teal-600" />
+                My Candidates Only
+              </span>
+            ) : (
+              <select
+                value={counselorFilter}
+                onChange={(e) => setCounselorFilter(e.target.value)}
+                className="w-full lg:w-auto px-3 py-2 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 bg-slate-50 cursor-pointer outline-none"
+              >
+                <option value="all">All Counselors</option>
+                <option value="unassigned">Unassigned</option>
+                {employees.map((emp) => (
+                  <option key={emp.id} value={emp.id}>
+                    {emp.name}
+                  </option>
+                ))}
+              </select>
+            )}
 
             {/* Reset Filters */}
             {(search || stageFilter !== "all" || statusFilter !== "all" || countryFilter !== "all" || counselorFilter !== "all") && (
@@ -1025,6 +1052,11 @@ export default function AdminApplicationsPage() {
                             <span className="bg-slate-100 text-slate-600 font-mono text-[10px] px-1.5 py-0.5 rounded border border-slate-200 font-bold">
                               {app.applicationNo}
                             </span>
+                            {app.partnerName && (
+                              <span className="bg-teal-50 text-teal-700 font-bold text-[10px] px-1.5 py-0.5 rounded border border-teal-200">
+                                B2B: {app.partnerName}
+                              </span>
+                            )}
                           </div>
                           <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5 flex-wrap">
                             {app.passportNumber ? (
@@ -1166,6 +1198,11 @@ export default function AdminApplicationsPage() {
                               <span className="bg-slate-100 text-slate-600 font-mono text-[10px] px-1.5 py-0.5 rounded border border-slate-200 font-bold">
                                 {app.applicationNo}
                               </span>
+                              {app.partnerName && (
+                                <span className="bg-teal-50 text-teal-700 font-bold text-[10px] px-1.5 py-0.5 rounded border border-teal-200">
+                                  B2B: {app.partnerName}
+                                </span>
+                              )}
                               {app.passportNumber ? (
                                 <span className="font-mono text-[11px] text-purple-700 font-bold">
                                   🛂 {app.passportNumber}
@@ -1351,6 +1388,15 @@ export default function AdminApplicationsPage() {
                         <span className="font-mono font-bold">Pass: {activeCase.passportNumber}</span>
                       </>
                     )}
+                    {activeCase.partnerName && (
+                      <>
+                        <span>·</span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-teal-700 bg-teal-50 border border-teal-200 px-1.5 py-0.5 rounded">
+                          <Building2 className="w-2.5 h-2.5" />
+                          B2B: {activeCase.partnerName}
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
                 <button
@@ -1499,12 +1545,14 @@ export default function AdminApplicationsPage() {
             {/* Drawer Footer */}
             <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
               <span className="text-slate-400">Created: {new Date(activeCase.createdAt).toLocaleDateString("en-IN")}</span>
-              <button
-                onClick={() => handleOpenEditModal(activeCase)}
-                className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg cursor-pointer"
-              >
-                Edit Details
-              </button>
+              {canEdit && (
+                <button
+                  onClick={() => handleOpenEditModal(activeCase)}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg cursor-pointer"
+                >
+                  Edit Details
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -1671,24 +1719,38 @@ export default function AdminApplicationsPage() {
                   </select>
                 </div>
 
-                {/* Assigned Counselor */}
-                <div>
-                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
-                    Assigned Counselor
-                  </label>
-                  <select
-                    value={formData.assignedCounselorId}
-                    onChange={(e) => setFormData({ ...formData, assignedCounselorId: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
-                  >
-                    <option value="">Unassigned (General Pool)</option>
-                    {employees.map((emp) => (
-                      <option key={emp.id} value={emp.id}>
-                        {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                {/* Assigned Counselor / Sourcing Partner */}
+                {isB2B ? (
+                  <div>
+                    <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Sourcing Partner / Channel
+                    </label>
+                    <div className="w-full px-3 py-2 rounded-xl text-xs bg-teal-50 border border-teal-200 text-teal-800 font-semibold flex items-center justify-between">
+                      <span className="truncate">{admin.name}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-teal-200/60 font-bold uppercase tracking-wider shrink-0">
+                        B2B Partner
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Assigned Counselor
+                    </label>
+                    <select
+                      value={formData.assignedCounselorId}
+                      onChange={(e) => setFormData({ ...formData, assignedCounselorId: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 border border-slate-200 outline-none cursor-pointer"
+                    >
+                      <option value="">Unassigned (General Pool)</option>
+                      {employees.map((emp) => (
+                        <option key={emp.id} value={emp.id}>
+                          {emp.name} ({emp.role ? emp.role.toUpperCase() : "STAFF"})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 {/* Total Package Amount */}
                 <div>

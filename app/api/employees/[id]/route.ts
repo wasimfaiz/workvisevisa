@@ -97,7 +97,7 @@ export async function PATCH(
       updates.phone = body.phone.trim();
     }
 
-    if (body.role && ["superadmin", "admin", "manager", "counselor", "accountant", "staff"].includes(body.role)) {
+    if (body.role && ["superadmin", "admin", "manager", "counselor", "accountant", "staff", "b2b"].includes(body.role)) {
       updates.role = body.role;
     }
 
