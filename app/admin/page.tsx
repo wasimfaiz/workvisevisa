@@ -57,9 +57,15 @@ export default function AdminLoginPage() {
             <Image
               src="/icon.png"
               alt="WorkWise Visa Icon"
-              width={52}
-              height={52}
-              style={{ objectFit: "contain", width: "100%", height: "100%" }}
+              width={64}
+              height={64}
+              style={{
+                objectFit: "contain",
+                width: "100%",
+                height: "100%",
+                transform: "scale(1.25)",
+                transformOrigin: "center",
+              }}
               priority
             />
           </div>
@@ -193,7 +199,8 @@ export default function AdminLoginPage() {
             width: 52px !important;
             height: 52px !important;
             border-radius: 14px !important;
-            padding: 4px !important;
+            padding: 0 !important;
+            overflow: hidden !important;
           }
           .admin-brand-title {
             font-size: 18px !important;
@@ -288,7 +295,8 @@ const styles: Record<string, React.CSSProperties> = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "6px",
+    padding: "0px",
+    overflow: "hidden",
     boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.15), inset 0 1px 0 rgba(255,255,255,1)",
     flexShrink: 0,
   },
