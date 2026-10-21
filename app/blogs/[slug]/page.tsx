@@ -40,6 +40,9 @@ async function getBlog(slug: string) {
   // Find corresponding rich fallback by keyword aliases
   const staticFound = fallbackPosts.find(
     (p) =>
+      (decodedSlug.includes("gulf-work-visa-complete") && p.id === "blog-26") ||
+      (decodedSlug.includes("gulf-master") && p.id === "blog-26") ||
+      (decodedSlug.includes("gcc-work-visa") && p.id === "blog-26") ||
       (decodedSlug.includes("gulf-work-visa-labour") && p.id === "blog-25") ||
       (decodedSlug.includes("gulf-news") && p.id === "blog-25") ||
       (decodedSlug.includes("zero-bureaucracy") && p.id === "blog-25") ||

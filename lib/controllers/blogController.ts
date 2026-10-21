@@ -140,6 +140,10 @@ export async function ensureSeedData() {
         pattern: /Gulf Work Visa & Labour Law Updates|UAE MoHRE Zero Bureaucracy|Saudi Qiwa Regularization/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-25"),
       },
+      {
+        pattern: /Gulf & GCC Work Visa Master Guide|Saudi Arabia.*UAE.*Qatar.*Kuwait.*Oman.*Bahrain|Wafid GAMCA Medical.*Takamol SVP/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-26"),
+      },
     ];
 
     for (const item of seedMatchers) {

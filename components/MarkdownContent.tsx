@@ -12,7 +12,7 @@
 
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import { Check, CheckSquare, Square } from "lucide-react";
+import { Check, CheckSquare, Square, Info, AlertCircle, AlertTriangle, Lightbulb, ShieldAlert } from "lucide-react";
 
 interface MarkdownContentProps {
   content: string;
@@ -23,7 +23,10 @@ interface MarkdownContentProps {
 function renderInline(text: string): ReactNode[] {
   // Regex to split by links, bold, italic, code, underline
   const parts: ReactNode[] = [];
-  let remaining = text;
+  let remaining = text
+    .replace(/&bull;/g, "•")
+    .replace(/&rarr;/g, "→")
+    .replace(/&nbsp;/g, " ");
   let keyIdx = 0;
 
   let safety = 0;
@@ -32,6 +35,15 @@ function renderInline(text: string): ReactNode[] {
       parts.push(remaining);
       break;
     }
+
+    // 0. Line break <br> or <br/>
+    const brMatch = remaining.match(/^<br\s*\/?>/i);
+    if (brMatch) {
+      parts.push(<br key={`br-${keyIdx++}`} />);
+      remaining = remaining.substring(brMatch[0].length);
+      continue;
+    }
+
     // 1. Image: ![alt](url)
     const imgMatch = remaining.match(/^!\[([^\]]*)\]\(([^)]+)\)/);
     if (imgMatch) {
@@ -249,6 +261,7 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
     // 3b. Code Blocks (``` or ~~~)
     if (line.startsWith("```") || line.startsWith("~~~")) {
       const fence = line.substring(0, 3);
+      const lang = line.substring(3).trim().toLowerCase();
       i++;
       const codeLines: string[] = [];
       while (i < lines.length && !lines[i].trim().startsWith(fence)) {
@@ -256,13 +269,52 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
         i++;
       }
       if (i < lines.length) i++; // consume closing fence
+
+      const codeText = codeLines.join("\n");
+      const isBoxOrDiagram = /[┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬─│]/.test(codeText);
+
+      if (isBoxOrDiagram) {
+        // Automatically sanitize ASCII box borders and render as a clean, elegant visual card
+        const cleanedLines = codeLines
+          .map((l) => l.replace(/[┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬─│]/g, " ").trim())
+          .filter((l) => l.length > 0);
+
+        elements.push(
+          <div
+            key={`boxcard-${elementKey++}`}
+            className="my-6 p-5 sm:p-6 rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50/70 via-white to-slate-50 text-slate-800 shadow-sm"
+          >
+            <div className="space-y-2 text-sm leading-relaxed font-sans">
+              {cleanedLines.map((cl, clIdx) => (
+                <div
+                  key={`cl-${clIdx}`}
+                  className={
+                    clIdx === 0
+                      ? "font-bold text-slate-900 text-base border-b border-emerald-100 pb-2 mb-3"
+                      : "text-slate-700"
+                  }
+                >
+                  {renderInline(cl)}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+        continue;
+      }
+
       elements.push(
         <div
           key={`codeblock-${elementKey++}`}
           className="my-5 rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 text-slate-100 shadow-xs"
         >
+          {lang && (
+            <div className="px-4 py-1.5 bg-slate-800 text-slate-400 text-xs font-mono border-b border-slate-700">
+              {lang}
+            </div>
+          )}
           <pre className="p-4 sm:p-5 overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed">
-            <code>{codeLines.join("\n")}</code>
+            <code>{codeText}</code>
           </pre>
         </div>
       );
@@ -335,10 +387,94 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
         quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
         i++;
       }
+
+      const firstLine = quoteLines[0] || "";
+      const alertMatch = firstLine.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i);
+
+      if (alertMatch) {
+        const type = alertMatch[1].toUpperCase();
+        const contentLines = [...quoteLines];
+        // Strip out the [!TYPE] marker
+        contentLines[0] = contentLines[0].replace(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i, "");
+        if (contentLines[0].length === 0) contentLines.shift();
+
+        let alertConfig = {
+          border: "border-blue-500",
+          bg: "bg-blue-50/80",
+          text: "text-blue-900",
+          badgeText: "text-blue-700",
+          badgeBg: "bg-blue-100",
+          label: "Note",
+          icon: <Info className="w-4 h-4 text-blue-600 shrink-0" />,
+        };
+
+        if (type === "TIP") {
+          alertConfig = {
+            border: "border-emerald-500",
+            bg: "bg-emerald-50/80",
+            text: "text-emerald-950",
+            badgeText: "text-emerald-700",
+            badgeBg: "bg-emerald-100",
+            label: "Tip",
+            icon: <Lightbulb className="w-4 h-4 text-emerald-600 shrink-0" />,
+          };
+        } else if (type === "IMPORTANT") {
+          alertConfig = {
+            border: "border-amber-500",
+            bg: "bg-amber-50/80",
+            text: "text-amber-950",
+            badgeText: "text-amber-700",
+            badgeBg: "bg-amber-100",
+            label: "Important",
+            icon: <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />,
+          };
+        } else if (type === "WARNING") {
+          alertConfig = {
+            border: "border-orange-500",
+            bg: "bg-orange-50/80",
+            text: "text-orange-950",
+            badgeText: "text-orange-700",
+            badgeBg: "bg-orange-100",
+            label: "Warning",
+            icon: <AlertTriangle className="w-4 h-4 text-orange-600 shrink-0" />,
+          };
+        } else if (type === "CAUTION") {
+          alertConfig = {
+            border: "border-rose-500",
+            bg: "bg-rose-50/80",
+            text: "text-rose-950",
+            badgeText: "text-rose-700",
+            badgeBg: "bg-rose-100",
+            label: "Caution",
+            icon: <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />,
+          };
+        }
+
+        elements.push(
+          <div
+            key={`alert-${elementKey++}`}
+            className={`my-5 p-4 sm:p-5 rounded-2xl ${alertConfig.bg} border-l-4 ${alertConfig.border} text-slate-800 text-sm leading-relaxed shadow-xs`}
+          >
+            <div className="flex items-center gap-2 mb-2 font-bold text-xs uppercase tracking-wider">
+              {alertConfig.icon}
+              <span className={`px-2 py-0.5 rounded-full ${alertConfig.badgeBg} ${alertConfig.badgeText}`}>
+                {alertConfig.label}
+              </span>
+            </div>
+            {contentLines.map((q, qIdx) => (
+              <p key={`ap-${qIdx}`} className={qIdx > 0 ? "mt-2" : ""}>
+                {renderInline(q)}
+              </p>
+            ))}
+          </div>
+        );
+        continue;
+      }
+
       elements.push(
         <div
           key={`quote-${elementKey++}`}
-          className="my-5 p-4 sm:p-5 rounded-2xl bg-emerald-50/80 border-l-4 border-emerald-500 text-slate-800 text-sm leading-relaxed"
+          className="my-5 p-4 sm:p-5 rounded-2xl bg-emerald-50/80 border-l-4 border-emerald-500 text-slate-800 text-sm leading-relaxed shadow-xs"
         >
           {quoteLines.map((q, qIdx) => (
             <p key={`qp-${qIdx}`} className={qIdx > 0 ? "mt-2" : ""}>
