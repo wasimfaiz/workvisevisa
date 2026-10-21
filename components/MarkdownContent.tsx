@@ -26,7 +26,12 @@ function renderInline(text: string): ReactNode[] {
   let remaining = text;
   let keyIdx = 0;
 
+  let safety = 0;
   while (remaining.length > 0) {
+    if (safety++ > 10000) {
+      parts.push(remaining);
+      break;
+    }
     // 1. Image: ![alt](url)
     const imgMatch = remaining.match(/^!\[([^\]]*)\]\(([^)]+)\)/);
     if (imgMatch) {
@@ -345,19 +350,16 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
       continue;
     }
 
+    const prevI = i;
+
     // 6. Checklists
-    if (line.startsWith("- [ ] ") || line.startsWith("- [x] ") || line.startsWith("* [ ] ") || line.startsWith("* [x] ")) {
+    const isChecklist = (l: string) => /^[-*]\s*\[[ xX]\]\s/.test(l);
+    if (isChecklist(line)) {
       const checkItems: { checked: boolean; text: string }[] = [];
-      while (
-        i < lines.length &&
-        (lines[i].trim().startsWith("- [ ] ") ||
-          lines[i].trim().startsWith("- [x] ") ||
-          lines[i].trim().startsWith("* [ ] ") ||
-          lines[i].trim().startsWith("* [x] "))
-      ) {
+      while (i < lines.length && isChecklist(lines[i].trim())) {
         const itemLine = lines[i].trim();
-        const checked = itemLine.includes("[x]");
-        const text = itemLine.replace(/^[-*]\s*\[[ x]\]\s*/, "");
+        const checked = /\[[xX]\]/.test(itemLine);
+        const text = itemLine.replace(/^[-*]\s*\[[ xX]\]\s*/, "");
         checkItems.push({ checked, text });
         i++;
       }
@@ -384,26 +386,27 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
     }
 
     // 7. Unordered Bullet Lists
-    if (line.startsWith("- ") || line.startsWith("* ")) {
+    const isBullet = (l: string) => (l.startsWith("- ") || l.startsWith("* ")) && !isChecklist(l);
+    if (isBullet(line)) {
       const listItems: string[] = [];
-      while (
-        i < lines.length &&
-        (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* ")) &&
-        !lines[i].trim().startsWith("- [")
-      ) {
+      while (i < lines.length && isBullet(lines[i].trim())) {
         listItems.push(lines[i].trim().substring(2));
         i++;
       }
 
-      elements.push(
-        <ul key={`ul-${elementKey++}`} className="my-4 space-y-2 list-disc pl-5 text-xs sm:text-sm text-slate-700">
-          {listItems.map((li, lIdx) => (
-            <li key={`li-${lIdx}`} className="leading-relaxed">
-              {renderInline(li)}
-            </li>
-          ))}
-        </ul>
-      );
+      if (listItems.length === 0) {
+        i++;
+      } else {
+        elements.push(
+          <ul key={`ul-${elementKey++}`} className="my-4 space-y-2 list-disc pl-5 text-xs sm:text-sm text-slate-700">
+            {listItems.map((li, lIdx) => (
+              <li key={`li-${lIdx}`} className="leading-relaxed">
+                {renderInline(li)}
+              </li>
+            ))}
+          </ul>
+        );
+      }
       continue;
     }
 
@@ -415,15 +418,19 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
         i++;
       }
 
-      elements.push(
-        <ol key={`ol-${elementKey++}`} className="my-4 space-y-2 list-decimal pl-5 text-xs sm:text-sm text-slate-700">
-          {numItems.map((ni, nIdx) => (
-            <li key={`ni-${nIdx}`} className="leading-relaxed">
-              {renderInline(ni)}
-            </li>
-          ))}
-        </ol>
-      );
+      if (numItems.length === 0) {
+        i++;
+      } else {
+        elements.push(
+          <ol key={`ol-${elementKey++}`} className="my-4 space-y-2 list-decimal pl-5 text-xs sm:text-sm text-slate-700">
+            {numItems.map((ni, nIdx) => (
+              <li key={`ni-${nIdx}`} className="leading-relaxed">
+                {renderInline(ni)}
+              </li>
+            ))}
+          </ol>
+        );
+      }
       continue;
     }
 
@@ -434,6 +441,11 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
       </p>
     );
     i++;
+
+    // Safety guard to guarantee progress
+    if (i === prevI) {
+      i++;
+    }
   }
 
   return <div className={`space-y-1 ${className}`}>{elements}</div>;
