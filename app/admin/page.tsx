@@ -66,12 +66,14 @@ export default function AdminLoginPage() {
           {/* Brand Text */}
           <div style={styles.brandTextBlock}>
             <h1 className="admin-brand-title" style={styles.brand}>WorkWise Visa</h1>
-            <span style={styles.brandSub}>Admin Control Panel</span>
+            <span style={styles.brandSub}>Admin, Staff &amp; Partner Portal</span>
           </div>
         </div>
 
         <h2 className="admin-login-title" style={styles.title}>Welcome back</h2>
-        <p className="admin-login-subtitle" style={styles.subtitle}>Sign in to manage job postings and content</p>
+        <p className="admin-login-subtitle" style={styles.subtitle}>
+          Sign in to access your dashboard, applications &amp; operations
+        </p>
 
         {error && (
           <div style={styles.errorBox}>
@@ -164,7 +166,7 @@ export default function AdminLoginPage() {
         </form>
 
         <p style={styles.footer}>
-          WorkWise Visa Admin Panel &nbsp;·&nbsp; Authorized Access Only
+          WorkWise Visa Portal &nbsp;·&nbsp; Authorized Access Only
         </p>
       </div>
 
