@@ -109,6 +109,7 @@ export default function CountryFlag({
         src={`https://flagcdn.com/w80/${isoCode}.png`}
         alt={`${countryName || code || "Country"} Flag`}
         loading="lazy"
+        decoding="async"
         onError={() => setHasError(true)}
         className={`object-cover border border-slate-200/80 shadow-xs ${sizeClass}`}
       />

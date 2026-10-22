@@ -201,6 +201,7 @@ export default function FAQ() {
                     onClick={() => toggle(i)}
                     className="flex w-full items-center justify-between gap-4 px-6 sm:px-7 py-5.5 text-left cursor-pointer"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${i}`}
                   >
                     <div className="flex items-center gap-3.5">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-800 font-display">
@@ -228,6 +229,9 @@ export default function FAQ() {
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
+                        id={`faq-answer-${i}`}
+                        role="region"
+                        aria-labelledby={`faq-question-${i}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}

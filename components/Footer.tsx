@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   FaGlobe,
   FaEnvelope,
@@ -56,13 +57,16 @@ export default function Footer() {
     <footer className="relative border-t border-slate-200 bg-slate-50 text-slate-700 pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Logo Image: /images/workwise_logo.png */}
+          {/* Logo Image: /images/workwise_logo.webp */}
           <div className="lg:col-span-1">
             <div className="mb-4">
               <a href="/" className="inline-block group">
-                <img
-                  src="/images/workwise_logo.png"
+                <Image
+                  src="/images/workwise_logo.webp"
                   alt="WorkWise Visa Logo"
+                  width={230}
+                  height={77}
+                  loading="lazy"
                   className="h-12 sm:h-14 md:h-16 max-w-[200px] sm:max-w-[230px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
                 />
               </a>

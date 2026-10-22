@@ -224,7 +224,7 @@ function PhotorealisticWorldMap() {
         <div className="relative w-full flex-1 my-3 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950">
           {/* Photorealistic Satellite Map Background Image */}
           <Image
-            src="/images/world_map_satellite.png"
+            src="/images/world_map_satellite.webp"
             alt="Photorealistic Satellite World Map"
             fill
             sizes="(max-width: 768px) 100vw, 620px"
@@ -242,6 +242,10 @@ function PhotorealisticWorldMap() {
                 <img
                   src={`https://flagcdn.com/w80/${activePinData.code}.png`}
                   alt={activePinData.name}
+                  width={20}
+                  height={14}
+                  loading="lazy"
+                  decoding="async"
                   className="w-5 h-3.5 object-cover rounded shadow-2xs shrink-0 border border-white/20"
                 />
                 <div>
@@ -316,6 +320,10 @@ function PhotorealisticWorldMap() {
               <img
                 src="https://flagcdn.com/w80/in.png"
                 alt="India"
+                width={14}
+                height={10}
+                loading="lazy"
+                decoding="async"
                 className="w-3.5 h-2.5 object-cover rounded shadow-2xs shrink-0"
               />
               <span>India Hub</span>
@@ -347,6 +355,10 @@ function PhotorealisticWorldMap() {
                       <img
                         src={`https://flagcdn.com/w80/${pin.code}.png`}
                         alt={pin.name}
+                        width={32}
+                        height={32}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover rounded-full"
                       />
                     </div>
@@ -411,8 +423,12 @@ export default function Hero() {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
                   <img
-                    src={`https://flagcdn.com/w80/${alert.code}.png`}
+                    src={`https://flagcdn.com/w40/${alert.code}.png`}
                     alt={`${alert.country} work visa destination flag`}
+                    width={16}
+                    height={12}
+                    loading="lazy"
+                    decoding="async"
                     className="w-4 h-3 object-cover rounded shadow-2xs shrink-0 border border-slate-200"
                   />
                   <span className="text-xs font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
@@ -464,9 +480,8 @@ export default function Hero() {
 
             <motion.h1
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight tracking-tight text-slate-900 mb-5"
-              initial={{ opacity: 0, y: 25 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
             >
               {t.titleLine1}
               <br className="hidden sm:block" />{" "}

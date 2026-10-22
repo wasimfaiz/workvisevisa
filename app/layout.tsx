@@ -235,6 +235,9 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="preconnect" href="https://flagcdn.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://flagcdn.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         {/* Schema.org Structured Data */}
         <script
           type="application/ld+json"
@@ -243,9 +246,9 @@ export default function RootLayout({
         {/* Google Tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-92V3VTHDM6"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-tag-manager" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -253,7 +256,7 @@ export default function RootLayout({
             gtag('config', 'G-92V3VTHDM6');
           `}
         </Script>
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

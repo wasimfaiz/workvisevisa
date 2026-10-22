@@ -7,6 +7,17 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  compress: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "flagcdn.com",
+      },
+    ],
+  },
   experimental: {
     cpus: 1,
   },
@@ -18,6 +29,15 @@ const nextConfig: NextConfig = {
           {
             key: "X-Robots-Tag",
             value: "noindex, nofollow",
+          },
+        ],
+      },
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

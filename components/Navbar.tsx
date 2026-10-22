@@ -9,6 +9,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { FaBars, FaXmark, FaEnvelope } from "react-icons/fa6";
+import Image from "next/image";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -61,11 +62,14 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo Image: /images/workwise_logo.png */}
+          {/* Logo Image: /images/workwise_logo.webp */}
           <a href="/" className="flex items-center group notranslate shrink-0" translate="no">
-            <img
-              src="/images/workwise_logo.png"
+            <Image
+              src="/images/workwise_logo.webp"
               alt="WorkWise Visa Logo"
+              width={360}
+              height={120}
+              priority
               className="h-14 sm:h-[76px] max-w-[320px] sm:max-w-[420px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-200"
             />
           </a>

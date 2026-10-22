@@ -217,7 +217,11 @@ export default function FeaturedJobs() {
                     <div className="flex items-center gap-2 rounded-xl bg-slate-50 border border-slate-200/90 px-3 py-1 text-xs font-bold text-slate-800">
                       <img
                         src={`https://flagcdn.com/w40/${getCountryCode(job.country)}.png`}
-                        alt={job.country}
+                        alt={`${job.country} flag`}
+                        width={20}
+                        height={14}
+                        loading="lazy"
+                        decoding="async"
                         className="h-3.5 w-5 object-cover rounded shadow-xs"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";

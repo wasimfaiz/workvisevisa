@@ -91,6 +91,7 @@ export default function Testimonials() {
                     setCurrent(idx);
                     resetTimer();
                   }}
+                  aria-label={`View testimonial from ${item.name}`}
                   className={`absolute z-20 flex items-center gap-2 rounded-full p-1.5 pr-3 border transition-all duration-200 cursor-pointer ${
                     active
                       ? "bg-emerald-600 border-emerald-600 text-white scale-105 shadow-md"

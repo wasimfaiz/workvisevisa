@@ -407,6 +407,8 @@ export default function SalaryCalculator() {
                         {fromCurr.symbol}
                       </span>
                       <input
+                        id="salary-amount-input"
+                        aria-label="Monthly salary amount"
                         type="number"
                         min={1}
                         placeholder="Enter salary amount..."
@@ -430,6 +432,8 @@ export default function SalaryCalculator() {
                     {/* From Currency Selector Dropdown */}
                     <div className="sm:w-64 relative">
                       <select
+                        id="salary-from-currency"
+                        aria-label="Select source country and currency"
                         value={fromCode}
                         onChange={(e) => handleFromChange(e.target.value)}
                         className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-2.5 pl-3.5 pr-8 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
@@ -455,6 +459,7 @@ export default function SalaryCalculator() {
                   <button
                     onClick={handleSwap}
                     title="Swap Currencies"
+                    aria-label="Swap source and target currencies"
                     className="mx-3 inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 transition-all hover:scale-105 active:scale-95 shadow-2xs cursor-pointer"
                   >
                     <FaArrowRightArrowLeft className="w-2.5 h-2.5 text-emerald-600" />
@@ -492,6 +497,8 @@ export default function SalaryCalculator() {
                     {/* To Currency Selector Dropdown */}
                     <div className="sm:w-64 relative">
                       <select
+                        id="salary-to-currency"
+                        aria-label="Select target conversion currency"
                         value={toCode}
                         onChange={(e) => setToCode(e.target.value)}
                         className="w-full appearance-none rounded-xl border border-slate-300 bg-white py-2.5 pl-3.5 pr-8 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
