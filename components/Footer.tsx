@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   FaGlobe,
   FaEnvelope,
@@ -22,6 +23,7 @@ const quickLinks = [
   { label: "Our Locations", href: "/locations" },
   { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
 ];
 
@@ -115,21 +117,34 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a
-                    href={l.href}
-                    className={`text-sm transition-colors font-medium inline-flex items-center gap-1.5 ${
-                      l.highlight
-                        ? "text-emerald-600 font-bold hover:text-emerald-700"
-                        : "text-slate-600 hover:text-emerald-600"
-                    }`}
-                  >
-                    <span>{l.label}</span>
-                    {l.highlight && (
-                      <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-300">
-                        Live Status
-                      </span>
-                    )}
-                  </a>
+                  {l.href.startsWith("mailto:") ? (
+                    <a
+                      href={l.href}
+                      className={`text-sm transition-colors font-medium inline-flex items-center gap-1.5 ${
+                        l.highlight
+                          ? "text-emerald-600 font-bold hover:text-emerald-700"
+                          : "text-slate-600 hover:text-emerald-600"
+                      }`}
+                    >
+                      <span>{l.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      href={l.href}
+                      className={`text-sm transition-colors font-medium inline-flex items-center gap-1.5 ${
+                        l.highlight
+                          ? "text-emerald-600 font-bold hover:text-emerald-700"
+                          : "text-slate-600 hover:text-emerald-600"
+                      }`}
+                    >
+                      <span>{l.label}</span>
+                      {l.highlight && (
+                        <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-300">
+                          Live Status
+                        </span>
+                      )}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -214,7 +229,9 @@ export default function Footer() {
             All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-slate-500 font-medium">
-            <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
+            <Link href="/privacy-policy" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-600">
+              Privacy Policy
+            </Link>
             <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-slate-900 transition-colors">Refund Policy</a>
           </div>
