@@ -4971,7 +4971,7 @@ Do not let bureaucratic complexity or unverified intermediaries derail your inte
     date: "Oct 17, 2026",
     readTime: "45 min read",
     excerpt: "Comprehensive guide to Dubai construction work for Indian and overseas tradesmen. Complete breakdown of 25+ trades, verified salary matrices in AED & INR, UAE Labour Law (Decree-Law 33/2021), Midday Work Ban, End-of-Service Gratuity, 6-phase employment visa roadmap, GAMCA medicals, eMigrate ECR clearance, labour camp living (Sonapur, Al Quoz, Jebel Ali), safety protocols, top Tier-1 contractors (AFGC Holding, ALEC, ASGC, Shapoorji, Six Construct), and fraud prevention.",
-    image: "/images/dubai-construction-work.jpg",
+    image: "/images/dubai-construction-work.webp",
     author: "Wasim Faiz",
     tags: [
       "Dubai Construction Work",
@@ -5905,7 +5905,7 @@ Candidates, returning Gulf veterans, and families seeking authentic contract ver
     date: "Oct 18, 2026",
     readTime: "40 min read",
     excerpt: "The authoritative 2026 master guide to obtaining a Dubai Residence Permit and UAE Residence Visa. Complete coverage of 10 official pathways (Employment, 10-Yr Golden Visa, 5-Yr Green Visa, Investor LLC, Real Estate DLD, Remote Work, Family Sponsorship), prerequisite document attestation (MoFA/MEA), 7-stage application lifecycle, DHA medical fitness testing (TB, HIV, Hep B), line-by-line government fee schedules in AED & INR, overstay grace periods, and direct links to official GDRFA, ICP, and MOHRE portals.",
-    image: "/images/dubai-residence-permit-guide.jpg",
+    image: "/images/dubai-residence-permit-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Dubai Residence Visa",
@@ -5940,7 +5940,7 @@ Candidates, returning Gulf veterans, and families seeking authentic contract ver
     date: "Oct 19, 2026",
     readTime: "45 min read",
     excerpt: "The authoritative 2026 master guide to securing a European work visa and Schengen residence permit across Germany (Opportunity Card Chancenkarte & EU Blue Card), Poland (Voivodeship Type A Permit), Croatia (HZZ & MUP Permit), Luxembourg (ADEM Salaried Worker), Malta (Identità Single Permit), and Czechia (Employee Card). Featuring official immigration portal directories, Hague Apostille and PCC certification, 8-stage application lifecycle, line-by-line government fee tables in EUR (€) and INR (₹), statutory minimum wage benchmarks, EES/SIS border rules, and fast-track PR roadmaps.",
-    image: "/images/europe-work-visa-guide.jpg",
+    image: "/images/europe-work-visa-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Europe Work Visa",
@@ -6007,7 +6007,7 @@ Candidates, returning Gulf veterans, and families seeking authentic contract ver
     date: "Oct 21, 2026",
     readTime: "45 min read",
     excerpt: "The authoritative 2026 master guide to securing a Gulf & GCC work visa across Saudi Arabia (Qiwa & Iqama), UAE (MOHRE & Emirates ID), Qatar (QVC & MoI), Kuwait (Article 18 & PAM), Oman (ROP & MoL), and Bahrain (LMRA). Featuring official immigration portal directories, Wafid GAMCA medical criteria, Takamol SVP trade testing, Indian Emigration Act eMigrate ECR clearance, 5-stage degree attestation, line-by-line fee schedules in local currencies and INR (₹), statutory minimum wage scales, Wage Protection System (WPS) rules, and anti-scam verification protocols.",
-    image: "/images/gulf-work-visa-guide.jpg",
+    image: "/images/gulf-work-visa-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Gulf Work Visa",
@@ -6042,7 +6042,7 @@ Candidates, returning Gulf veterans, and families seeking authentic contract ver
     date: "Oct 22, 2026",
     readTime: "24 min read",
     excerpt: "Official 22 October 2026 overseas recruitment demand: 460+ vacancies at AFGC Holding (Dubai, UAE). Direct client selection for Construction Helpers (150), Masons (100), Shuttering Carpenters (100), Scaffolders (60), and Steel Fixers (50). Full salary matrix, 100 AED attendance bonus, free accommodation, transport & 2-year UAE MOHRE work visa.",
-    image: "/images/afgc-dubai-construction-recruitment.jpg",
+    image: "/images/afgc-dubai-construction-recruitment.webp",
     author: "Wasim Faiz",
     tags: [
       "Dubai Jobs",
@@ -6659,7 +6659,7 @@ Because recruitment quotas are strictly capped at 460 total openings, applicatio
     date: "Oct 23, 2026",
     readTime: "26 min read",
     excerpt: "Definitive 2026 statutory roadmap for Oman employment visas under the modernized Oman Labour Law (Royal Decree No. 52/2023). Complete breakdown of the 2025/2026 Omanization prohibited professions list vs open expat trades, verified salary scales in OMR & INR, 30-day annual leave, full gratuity calculation, job mobility without an NOC, Wafid GAMCA medical protocols, eMigrate ECR clearance, and the dual-tier MoL Maak & ROP Sanad workflow.",
-    image: "/images/oman-work-visa-guide.jpg",
+    image: "/images/oman-work-visa-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Oman Work Visa",

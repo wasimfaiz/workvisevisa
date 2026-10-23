@@ -225,6 +225,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   let image = blog.image || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
   if (!image || image.includes("photo-1541888946425-d0fbb18086f6")) {
     image = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
+  } else if (image.startsWith("/images/")) {
+    image = image.replace(/\.jpg$/, ".webp");
   }
 
   const canonicalUrl = `https://www.workwisevisa.com/blogs/${blog.slug || slug}`;
@@ -289,17 +291,19 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     blog.id === "blog-27" ||
     (blog.slug && (blog.slug.includes("afgc") || blog.slug.includes("460-vacancies") || blog.slug.includes("urgent-dubai-construction")));
 
+  const rawImage =
+    isAfgcPost ||
+    blog.image?.includes("photo-1541888946425-d0fbb1862448")
+      ? "/images/afgc-dubai-construction-recruitment.webp"
+      : !blog.image ||
+        blog.image.includes("photo-1541888946425-d0fbb1861593") ||
+        blog.image.includes("photo-1541888946425-d0fbb18086f6")
+      ? "/images/dubai-construction-work.webp"
+      : blog.image;
+
   const article = {
     ...blog,
-    image:
-      isAfgcPost ||
-      blog.image?.includes("photo-1541888946425-d0fbb1862448")
-        ? "/images/afgc-dubai-construction-recruitment.jpg"
-        : !blog.image ||
-          blog.image.includes("photo-1541888946425-d0fbb1861593") ||
-          blog.image.includes("photo-1541888946425-d0fbb18086f6")
-        ? "/images/dubai-construction-work.jpg"
-        : blog.image,
+    image: rawImage?.startsWith("/images/") ? rawImage.replace(/\.jpg$/, ".webp") : rawImage,
   } as any;
 
   const articleJsonLd = {
@@ -423,8 +427,12 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               {/* Featured Cover Image */}
               <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-72 sm:h-96 w-full bg-slate-100">
                 <img
-                  src={article.image || "/images/dubai-construction-work.jpg"}
+                  src={article.image || "/images/dubai-construction-work.webp"}
                   alt={article.title}
+                  width={1280}
+                  height={720}
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -554,7 +562,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                       <div className="relative h-18 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 border border-slate-200">
                         <img
                           src={
-                            item.image ||
+                            (item.image?.startsWith("/images/")
+                              ? item.image.replace(/\.jpg$/, ".webp")
+                              : item.image) ||
                             "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=300&q=80"
                           }
                           alt={item.title}
