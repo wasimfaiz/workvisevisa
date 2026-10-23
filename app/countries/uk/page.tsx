@@ -464,7 +464,7 @@ export default function UKCountryPage() {
                   </div>
                 </div>
 
-                {/* Direct Action Buttons */}
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-wrap items-center gap-4 pt-4">
                   <Link
                     href="/jobs?country=United Kingdom"
@@ -483,13 +483,6 @@ export default function UKCountryPage() {
                     <FaWhatsapp className="w-4 h-4 text-emerald-300" />
                     WhatsApp UK Desk
                   </a>
-
-                  <Link
-                    href="/track-application"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white underline underline-offset-4"
-                  >
-                    Track Existing UK File <FaArrowRight className="w-3 h-3" />
-                  </Link>
                 </div>
               </div>
 
@@ -546,17 +539,14 @@ export default function UKCountryPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl bg-emerald-900/40 border border-emerald-500/30 p-4 text-center">
-                    <p className="text-xs font-medium text-emerald-200 mb-2">
-                      Ready to start your British career in healthcare, engineering, IT, hospitality, or certified trades?
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Home Office Licensed Sponsors (A-Rated)</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      CoS Assigned Directly • VFS Biometrics Stamping • Zero Hidden Agency Charges
                     </p>
-                    <a
-                      href="mailto:workwisevisa@gmail.com?subject=UK%20Job%20Application&body=Hello%20WorkWise%20Visa%20Team,%0A%0AI%20am%20applying%20for%20a%20UK%20Work%20Visa%20(Skilled%20Worker%20/%20Health%20and%20Care%20/%20GBM).%0A%0AFull%20Name:%0APhone%20Number:%0ATrade/Designation:%0AHighest%20Degree/Diploma:%0ATotal%20Experience%20(Years):%0AEnglish%20Level%20(IELTS/PTE/None):%0APreferred%20UK%20Region:"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-sm"
-                    >
-                      <FaEnvelope className="w-3.5 h-3.5 text-emerald-600" />
-                      Submit Profile for UK Evaluation
-                    </a>
                   </div>
                 </div>
               </div>

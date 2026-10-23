@@ -326,7 +326,7 @@ export default function QatarCountryPage() {
                   </div>
                 </div>
 
-                {/* Direct Action Buttons */}
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-wrap items-center gap-4 pt-4">
                   <Link
                     href="/jobs?country=Qatar"
@@ -345,13 +345,6 @@ export default function QatarCountryPage() {
                     <FaWhatsapp className="w-4 h-4 text-emerald-300" />
                     WhatsApp Qatar Desk
                   </a>
-
-                  <Link
-                    href="/track-application"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white underline underline-offset-4"
-                  >
-                    Track Existing Qatar Application <FaArrowRight className="w-3 h-3" />
-                  </Link>
                 </div>
               </div>
 
@@ -407,17 +400,14 @@ export default function QatarCountryPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl bg-emerald-900/40 border border-emerald-500/30 p-4 text-center">
-                    <p className="text-xs font-medium text-emerald-200 mb-2">
-                      Ready to apply for high-paying Qatar energy, construction, or transport jobs?
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>QVC Biometric Verified • MADLSA Compliant</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      WPS Electronic Salary • Employer-Funded Air Tickets • Zero Hidden Agency Charges
                     </p>
-                    <a
-                      href="mailto:workwisevisa@gmail.com?subject=Qatar%20Job%20Application&body=Hello%20WorkWise%20Visa%20Team,%0A%0AI%20am%20applying%20for%20a%20job%20in%20Qatar.%0A%0AFull%20Name:%0APhone%20Number:%0ATrade/Designation:%0APassport%20Number:%0AExperience%20(Years):%0ANearest%20QVC%20City:"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-sm"
-                    >
-                      <FaEnvelope className="w-3.5 h-3.5 text-emerald-600" />
-                      Submit CV for Qatar Recruitment
-                    </a>
                   </div>
                 </div>
               </div>

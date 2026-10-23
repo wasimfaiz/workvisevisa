@@ -438,40 +438,25 @@ export default function BulgariaCountryPage() {
                   </div>
                 </div>
 
-                {/* Direct Action Buttons */}
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-wrap items-center gap-4 pt-3">
                   <a
                     href="#consultation-form"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-sm font-bold text-slate-950 shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
                   >
-                    <span>Check Bulgaria Eligibility</span>
+                    <span>Check Eligibility &amp; Apply</span>
                     <FaArrowRight className="w-4 h-4" />
                   </a>
-
-                  <Link
-                    href="/jobs?country=Bulgaria"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-700 bg-slate-800/80 px-6 py-3.5 text-sm font-bold text-white hover:border-emerald-500 hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-                  >
-                    <FaBriefcase className="w-4 h-4 text-emerald-400" />
-                    <span>Browse Bulgaria Jobs</span>
-                  </Link>
 
                   <a
                     href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20Bulgaria%20Work%20Permit%20and%20Jobs%20for%202026."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-5 py-3.5 text-sm font-bold text-white transition-all shadow-md"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-slate-700 bg-slate-800/80 hover:border-emerald-500 hover:bg-slate-800 px-6 py-3.5 text-sm font-bold text-white transition-all shadow-md"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-300" />
-                    <span>WhatsApp European Desk</span>
+                    <FaWhatsapp className="w-4 h-4 text-emerald-400" />
+                    <span>WhatsApp Overseas Desk</span>
                   </a>
-
-                  <Link
-                    href="/track"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white underline underline-offset-4"
-                  >
-                    Track Existing File <FaArrowRight className="w-3 h-3" />
-                  </Link>
                 </div>
               </div>
 
@@ -534,17 +519,14 @@ export default function BulgariaCountryPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl bg-emerald-900/40 border border-emerald-500/30 p-4 text-center">
-                    <p className="text-xs font-medium text-emerald-200 mb-2">
-                      Ready to launch your European career in the Schengen Area?
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>100% Verified Sponsoring Employers</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      Direct Embassy Stamping • Full Schengen Work Rights • Zero Hidden Agency Charges
                     </p>
-                    <a
-                      href="mailto:workwisevisa@gmail.com?subject=Bulgaria%20Work%20Permit%20Application&body=Hello%20WorkWise%20Visa%20Team,%0A%0AI%20am%20applying%20for%20a%20Bulgaria%20Work%20Visa%20/%20Single%20Permit%20(SWRP).%0A%0AFull%20Name:%0APhone%20Number:%0ATrade/Designation:%0APassport%20Number:%0AExperience%20(Years):%0AHighest%20Qualification:"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-sm"
-                    >
-                      <FaEnvelope className="w-3.5 h-3.5 text-emerald-600" />
-                      Submit Profile for Bulgaria Evaluation
-                    </a>
                   </div>
                 </div>
               </div>

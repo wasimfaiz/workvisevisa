@@ -360,7 +360,7 @@ export default function OmanCountryPage() {
                   </div>
                 </div>
 
-                {/* Direct Action Buttons */}
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-wrap items-center gap-4 pt-4">
                   <Link
                     href="/jobs?country=Oman"
@@ -379,13 +379,6 @@ export default function OmanCountryPage() {
                     <FaWhatsapp className="w-4 h-4 text-emerald-300" />
                     WhatsApp Oman Desk
                   </a>
-
-                  <Link
-                    href="/track-application"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white underline underline-offset-4"
-                  >
-                    Track Existing Oman Application <FaArrowRight className="w-3 h-3" />
-                  </Link>
                 </div>
               </div>
 
@@ -442,17 +435,14 @@ export default function OmanCountryPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl bg-emerald-900/40 border border-emerald-500/30 p-4 text-center">
-                    <p className="text-xs font-medium text-emerald-200 mb-2">
-                      Looking for industrial jobs in Duqm Refinery or Sohar Port?
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>MOL Clearance • ROP Biometrics Verified</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      WPS Electronic Salary • Employer-Paid Accommodation • Zero Hidden Agency Charges
                     </p>
-                    <a
-                      href="mailto:workwisevisa@gmail.com?subject=Oman%20Job%20Application&body=Hello%20WorkWise%20Visa%20Team,%0A%0AI%20am%20applying%20for%20a%20job%20in%20Oman.%0A%0AFull%20Name:%0APhone%20Number:%0ATrade/Designation:%0APassport%20Number:%0AExperience%20(Years):"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-sm"
-                    >
-                      <FaEnvelope className="w-3.5 h-3.5 text-emerald-600" />
-                      Submit CV for Oman Recruitment
-                    </a>
                   </div>
                 </div>
               </div>
