@@ -1293,7 +1293,7 @@ export default function BahrainCountryPage() {
                 <ul className="space-y-2.5 text-xs text-slate-700">
                   <li className="flex items-start gap-2.5">
                     <FaCheck className="w-3.5 h-3.5 text-teal-600 shrink-0 mt-0.5" />
-                    <span><strong>Attested Degree/Diploma:</strong> Certified through State HRD ➔ MEA ➔ Bahrain Embassy.</span>
+                    <span><strong>Attested Degree/Diploma:</strong> Certified through State HRD → MEA → Bahrain Embassy.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <FaCheck className="w-3.5 h-3.5 text-teal-600 shrink-0 mt-0.5" />

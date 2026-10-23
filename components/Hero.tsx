@@ -10,6 +10,7 @@ import {
   FaCalendarDays,
   FaWandMagicSparkles,
   FaPlaneDeparture,
+  FaCheck,
 } from "react-icons/fa6";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
@@ -101,56 +102,56 @@ const placementMilestones = [
   {
     name: "Amit P.",
     role: "Heavy Vehicle Driver",
-    dest: "Riyadh, Saudi 🇸🇦",
+    dest: "Riyadh, Saudi Arabia",
     time: "Visa Approved in 10 Days",
     tag: "Verified Placement",
   },
   {
     name: "Sunil K.",
     role: "Store Manager",
-    dest: "Dubai, UAE 🇦🇪",
+    dest: "Dubai, UAE",
     time: "Employment Visa Stamp",
     tag: "Free Accommodation",
   },
   {
     name: "Deepak M.",
     role: "Executive Chef",
-    dest: "Doha, Qatar 🇶🇦",
+    dest: "Doha, Qatar",
     time: "Work Permit Cleared",
     tag: "Flight Provided",
   },
   {
     name: "Ritu S.",
     role: "Retail Cashier",
-    dest: "Abu Dhabi, UAE 🇦🇪",
+    dest: "Abu Dhabi, UAE",
     time: "Visa Issued in 7 Days",
     tag: "Joined Last Week",
   },
   {
     name: "Manish G.",
     role: "Site Supervisor",
-    dest: "Toronto, Canada 🇨🇦",
+    dest: "Toronto, Canada",
     time: "Work Permit Approved",
     tag: "Relocation Package",
   },
   {
     name: "Rajesh V.",
     role: "General Accountant",
-    dest: "Frankfurt, Germany 🇩🇪",
+    dest: "Frankfurt, Germany",
     time: "Opportunity Card Granted",
     tag: "Job Offer Direct",
   },
   {
     name: "Suresh T.",
     role: "Warehouse Helper",
-    dest: "Dubai, UAE 🇦🇪",
+    dest: "Dubai, UAE",
     time: "Visa Stamped in 5 Days",
     tag: "Company Transport",
   },
   {
     name: "Vikas N.",
     role: "Hospitality Waiter",
-    dest: "London, UK 🇬🇧",
+    dest: "London, UK",
     time: "Tier 2 Sponsor Approved",
     tag: "Work Visa",
   },
@@ -579,7 +580,7 @@ export default function Hero() {
                 key={i}
                 className="flex items-center gap-2.5 rounded-full bg-white border border-slate-200/90 px-4 py-1.5 hover:border-emerald-500 hover:shadow-md transition-all duration-200 shadow-2xs shrink-0 group cursor-pointer"
               >
-                <span className="text-xs">🎉</span>
+                <FaCheck className="w-3 h-3 text-emerald-500" />
                 <span className="text-xs font-extrabold text-slate-900 whitespace-nowrap">
                   {m.name}
                 </span>
@@ -587,7 +588,7 @@ export default function Hero() {
                   ({m.role})
                 </span>
                 <span className="text-xs font-extrabold text-emerald-800 whitespace-nowrap">
-                  ➔ {m.dest}
+                  → {m.dest}
                 </span>
                 <span className="h-3.5 w-[1px] bg-slate-300" />
                 <span className="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300/60 whitespace-nowrap">

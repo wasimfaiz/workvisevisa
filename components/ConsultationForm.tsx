@@ -221,7 +221,7 @@ export default function ConsultationForm() {
                     Book Free Consultation
                   </h3>
                   <p className="text-xs text-emerald-700 mt-0.5 font-bold">
-                    ⚡ Free 30-Min Session · Response within 24h
+                    Free 30-Min Session · Response within 24h
                   </p>
                 </div>
                 <span className="flex h-3 w-3 rounded-full bg-emerald-500 animate-pulse" />

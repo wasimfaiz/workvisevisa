@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import {
   FaCheck,
+  FaXmark,
   FaArrowRight,
   FaWhatsapp,
   FaEnvelope,
@@ -1489,25 +1490,25 @@ export default function CanadaCountryPage() {
 
               <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Paying for an LMIA:</strong> Under Canadian federal law, employers and recruitment agents are strictly prohibited from selling or charging candidates for an LMIA. Demands for &quot;LMIA security deposits&quot; are a hallmark of fraudulent operations.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Visitor Visa to Work Permit Scams:</strong> Unscrupulous agents mislead applicants into believing they can travel on a tourist visa and &quot;convert&quot; it to an open work permit inside Canada. The temporary public policy allowing visitor-to-work permit applications has been terminated by IRCC.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Unlicensed Ghost Consultants:</strong> Only members in good standing of the <strong>College of Immigration and Citizenship Consultants (CICC)</strong> or provincial law societies can legally represent clients before IRCC for a fee.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Guaranteed Visa Approvals:</strong> Only authorized IRCC visa officers possess the statutory power to grant or deny a Canadian visa. No private agency can &quot;guarantee&quot; approval.
                   </span>

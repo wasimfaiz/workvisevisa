@@ -1012,7 +1012,7 @@ export default function SaudiArabiaCountryPage() {
             </div>
 
             <div className="rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 leading-relaxed">
-              <strong>💡 Currency Conversion Note:</strong> Exchange rates hover around 1 SAR ≈ ₹22.40 to ₹22.60 INR / 74 to 76 PKR. Under Saudi law, earnings are 100% free of income tax with direct Wage Protection System (WPS) bank monitoring.
+              <strong>Currency Conversion Note:</strong> Exchange rates hover around 1 SAR ≈ ₹22.40 to ₹22.60 INR / 74 to 76 PKR. Under Saudi law, earnings are 100% free of income tax with direct Wage Protection System (WPS) bank monitoring.
             </div>
           </section>
 

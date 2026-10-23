@@ -246,6 +246,17 @@ export const countries: Country[] = [
     processingTime: "8–14 weeks",
     popularRoles: ["Cloud & DevOps Engineer", "Fund Accountant & AML Analyst", "BIM & Structural Engineer", "Registered Nurse & Caregiver"],
   },
+  {
+    name: "Bulgaria",
+    code: "BG",
+    flag: "",
+    region: "Schengen",
+    description:
+      "Full Schengen member state offering Single Work & Residence Permits (SWRP), flat 10% income tax, employer-provided accommodation, and high-volume demand across construction, manufacturing, welding, logistics, and automotive sectors.",
+    visaTypes: ["Single Work and Residence Permit (SWRP)", "EU Blue Card", "Seasonal Work Permit", "Intra-Corporate Transfer (ICT)"],
+    processingTime: "6–10 weeks",
+    popularRoles: ["Structural Welder (6G TIG/MIG)", "CNC Operator & Machinist", "Construction Trades (Mason/Carpenter)", "Heavy Commercial Driver (CE)"],
+  },
 ];
 
 // ── Target Country Options for Form ──────────────────────────────
@@ -259,6 +270,7 @@ export const targetCountryOptions = [
   "Kuwait",
   "Bahrain",
   // ── Europe & Schengen ──
+  "Bulgaria",
   "France",
   "Luxembourg",
   "Poland",
@@ -6855,6 +6867,36 @@ export const jobDemands: JobDemand[] = [
       "Age: 21–40 Years, Medically fit as per UAE employment norms",
     ],
     postedDate: "Oct 16, 2026",
+    urgent: true,
+  },
+  {
+    id: "bg-welder-cnc-35",
+    title: "6G TIG/MIG Welder & CNC Machinist",
+    company: "Bulgaria Industrial Metalworks Corp",
+    country: "Bulgaria (Plovdiv)",
+    flag: "",
+    category: "Factory & Manufacturing Workers",
+    salary: "2,000 – 2,400 BGN / mo",
+    totalOpenings: 35,
+    visaType: "Single Work & Residence Permit (SWRP / ЕРПР)",
+    interviewDate: "Direct Selection & Trade Bench Test",
+    venue: "WorkWise Visa Testing Centre (Noida / Patna)",
+    dutyHours: "8 Hours/Day (40 Hrs/Wk) + Paid Overtime",
+    perks: [
+      "100% Free Company Accommodation & Utilities",
+      "Free Daily Factory Transport Provided",
+      "Full Schengen 29-Nation Free Mobility",
+      "Europe's Lowest 10% Flat Income Tax",
+      "State Health Insurance & 20 Paid Vacation Days",
+    ],
+    requirements: [
+      "35 Vacancies for Industrial Welders & CNC Operators",
+      "Valid Indian Passport with minimum 18 months validity",
+      "Minimum 2+ years experience in welding or CNC milling/turning",
+      "RPO Police Clearance Certificate (PCC) with MEA Apostille",
+      "Age: 21–45 Years, Medically fit as per European standards",
+    ],
+    postedDate: "Oct 22, 2026",
     urgent: true,
   },
 ];

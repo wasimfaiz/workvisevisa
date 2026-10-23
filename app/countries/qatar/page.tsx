@@ -982,7 +982,7 @@ export default function QatarCountryPage() {
             </div>
 
             <div className="rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs text-amber-900 leading-relaxed">
-              <strong>💡 Currency Conversion Note:</strong> Exchange rates hover around 1 QAR ≈ ₹23.00 to ₹23.20 INR / 76 to 78 PKR. Under Qatar law, earnings are 100% tax-free and monitored by the Qatar Central Bank Wage Protection System (WPS).
+              <strong>Currency Conversion Note:</strong> Exchange rates hover around 1 QAR ≈ ₹23.00 to ₹23.20 INR / 76 to 78 PKR. Under Qatar law, earnings are 100% tax-free and monitored by the Qatar Central Bank Wage Protection System (WPS).
             </div>
           </section>
 

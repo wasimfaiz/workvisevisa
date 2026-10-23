@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import {
   FaCheck,
+  FaXmark,
   FaArrowRight,
   FaWhatsapp,
   FaEnvelope,
@@ -1446,25 +1447,25 @@ export default function FranceCountryPage() {
 
               <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Tourist Visa to Work Permit Scams:</strong> Unscrupulous agents claim they can send you on a Schengen tourist visa and &quot;convert&quot; it into a work visa inside France. <em>This is strictly illegal under French law.</em> Work visas must be stamped in your home country at VFS Global prior to travel.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Fake DREETS Work Authorizations:</strong> Genuine work authorizations are generated on the official Ministry portal (<code>interieur.gouv.fr</code>) and contain a verifiable digital barcode. Never pay for unauthorized &quot;offer letters&quot; typed on forged letterheads.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Employer Visa Charges:</strong> Under French labor regulations, employers are strictly prohibited from demanding that the employee reimburse the employer&apos;s administrative hiring taxes.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Unregulated Third-Party Agents:</strong> WorkWise Visa only partners with verified French corporate entities holding active SIRET business registration records.
                   </span>

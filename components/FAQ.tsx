@@ -22,11 +22,11 @@ function OrbitalGlobe() {
   ];
 
   const floatingFlags = [
-    { f: "🇦🇪", x: -35, y: -80, d: 0 },
-    { f: "🇩🇪", x: 100, y: -40, d: 0.8 },
-    { f: "🇨🇦", x: 110, y: 70, d: 1.6 },
-    { f: "🇬🇧", x: -60, y: 90, d: 0.4 },
-    { f: "🇺🇸", x: -110, y: 10, d: 1.2 },
+    { code: "ae", x: -35, y: -80, d: 0 },
+    { code: "de", x: 100, y: -40, d: 0.8 },
+    { code: "ca", x: 110, y: 70, d: 1.6 },
+    { code: "gb", x: -60, y: 90, d: 0.4 },
+    { code: "us", x: -110, y: 10, d: 1.2 },
   ];
 
   return (
@@ -95,7 +95,7 @@ function OrbitalGlobe() {
 
       {/* floating flag bubbles */}
       {mounted &&
-        floatingFlags.map(({ f, x, y, d }, i) => (
+        floatingFlags.map(({ code, x, y, d }, i) => (
           <motion.div
             key={i}
             className="absolute left-1/2 top-1/2"
@@ -108,8 +108,8 @@ function OrbitalGlobe() {
               delay: d,
             }}
           >
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md text-base">
-              {f}
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md overflow-hidden p-1">
+              <img src={`https://flagcdn.com/w40/${code}.png`} alt="Flag" className="w-5 h-3.5 object-cover rounded-[2px]" />
             </div>
           </motion.div>
         ))}

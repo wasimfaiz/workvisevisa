@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import {
   FaCheck,
+  FaXmark,
   FaArrowRight,
   FaWhatsapp,
   FaEnvelope,
@@ -1559,25 +1560,25 @@ export default function UKCountryPage() {
 
               <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Buying or Paying for a Certificate of Sponsorship (CoS):</strong> Under statutory British law and Home Office Sponsor Guidance, employers and recruitment agents are strictly prohibited from charging candidates for a Certificate of Sponsorship. Any agent demanding ₹5 Lakhs to ₹15 Lakhs for a &quot;UK Work Visa CoS&quot; is operating an illegal scam resulting in visa refusal and a 10-year ban under General Grounds for Refusal.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Visitor / Tourist (Standard Visitor Visa) to Work Conversions:</strong> You cannot convert a tourist or visitor visa into a Skilled Worker Visa from inside the UK. Sponsoring jobs must be initiated via an official Defined CoS while lawfully residing in India or through legitimate in-country switching from an authorized residence visa (such as Graduate or Student).
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Bogus Care Home Agencies &amp; Shell Companies:</strong> Scammers frequently forge fake CoS letters bearing logos of care homes whose sponsor licences were revoked by the Home Office. Always verify that the employer actively holds an &quot;A-rating&quot; on the official Home Office Register of Licensed Sponsors on GOV.UK.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Direct Bank Wire Requests for &quot;Security Deposits&quot;:</strong> Legitimate UK corporate sponsors never ask overseas applicants to transfer recruitment fee deposits via UPI or personal bank accounts. All genuine Home Office visa and IHS payments are made exclusively through the official <code>gov.uk</code> payment gateway.
                   </span>

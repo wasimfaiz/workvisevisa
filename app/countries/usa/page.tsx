@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import {
   FaCheck,
+  FaXmark,
   FaArrowRight,
   FaWhatsapp,
   FaEnvelope,
@@ -1654,25 +1655,25 @@ export default function USACountryPage() {
 
               <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Paying for H-1B Sponsoring Fees:</strong> Under federal regulations (20 CFR § 655.731), US employers are strictly prohibited from passing statutory H-1B petition filing fees or attorney costs onto the employee. Any agent demanding $5,000–$10,000 for &quot;H-1B lottery entry&quot; is operating a fraudulent scheme.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Tourist (B-1/B-2) to Work Visa Conversions:</strong> Traveling on a tourist visa with the preconceived intent to seek employment or engage in unauthorized work is a federal violation under INA § 214(b) resulting in immediate expedited removal and a 10-year bar.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Bench Consulting &amp; Fake Client Letters:</strong> USCIS rigorously verifies bona fide end-client worksite agreements. Filing speculative H-1B petitions without genuine project work leads to petition revocation and permanent fraud findings under INA § 212(a)(6)(C)(i).
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-red-600 font-bold">✕</span>
+                  <FaXmark className="w-3.5 h-3.5 text-red-600 shrink-0 mt-0.5" />
                   <span>
                     <strong>Unverifiable I-797 Notices:</strong> Genuine USCIS Form I-797 approvals carry official receipt numbers that can be independently audited on the official USCIS Case Status portal (<code>uscis.gov</code>).
                   </span>

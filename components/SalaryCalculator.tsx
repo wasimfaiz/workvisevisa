@@ -37,7 +37,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "AED",
     displayName: "United Arab Emirates Dirham",
     country: "United Arab Emirates",
-    flag: "🇦🇪",
+    flag: "",
     symbol: "AED",
     guideUrl: "/countries/uae",
     rateToINR: 22.9,
@@ -63,7 +63,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "SAR",
     displayName: "Saudi Riyal",
     country: "Saudi Arabia",
-    flag: "🇸🇦",
+    flag: "",
     symbol: "SAR",
     guideUrl: "/countries/saudi-arabia",
     rateToINR: 22.5,
@@ -89,7 +89,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "QAR",
     displayName: "Qatari Riyal",
     country: "Qatar",
-    flag: "🇶🇦",
+    flag: "",
     symbol: "QAR",
     guideUrl: "/countries/qatar",
     rateToINR: 23.1,
@@ -115,7 +115,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "OMR",
     displayName: "Omani Rial",
     country: "Oman",
-    flag: "🇴🇲",
+    flag: "",
     symbol: "OMR",
     guideUrl: "/countries/oman",
     rateToINR: 218.5,
@@ -141,7 +141,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "KWD",
     displayName: "Kuwaiti Dinar",
     country: "Kuwait",
-    flag: "🇰🇼",
+    flag: "",
     symbol: "KWD",
     guideUrl: "/blogs/kuwait-work-visa-reopening-labor-law-reforms-degree-attestation-2026",
     rateToINR: 274.5,
@@ -167,7 +167,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "BHD",
     displayName: "Bahraini Dinar",
     country: "Bahrain",
-    flag: "🇧🇭",
+    flag: "",
     symbol: "BHD",
     guideUrl: "/countries/bahrain",
     rateToINR: 223.0,
@@ -193,7 +193,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "EUR",
     displayName: "Euro",
     country: "Europe",
-    flag: "🇪🇺",
+    flag: "",
     symbol: "€",
     guideUrl: "/countries/germany",
     rateToINR: 91.2,
@@ -219,7 +219,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "PLN",
     displayName: "Polish Zloty",
     country: "Poland",
-    flag: "🇵🇱",
+    flag: "",
     symbol: "zł",
     rateToINR: 21.4,
     defaultAmount: 5200,
@@ -241,10 +241,36 @@ const CURRENCIES: CurrencyItem[] = [
     ],
   },
   {
+    code: "BGN",
+    displayName: "Bulgarian Lev",
+    country: "Bulgaria",
+    flag: "",
+    symbol: "лв",
+    guideUrl: "/countries/bulgaria",
+    rateToINR: 46.5,
+    defaultAmount: 2000,
+    minAmount: 1100,
+    maxAmount: 6000,
+    step: 50,
+    monthlyFoodEstimateINR: 13000,
+    averageIndiaSalaryINR: 18000,
+    popularTrades: [
+      { title: "Civil Helper", amount: 1300 },
+      { title: "Mason / Carpenter", amount: 1800 },
+      { title: "6G Welder / CNC", amount: 2300 },
+      { title: "Trailer Driver (CE)", amount: 2600 },
+    ],
+    visaHighlights: [
+      "Full Schengen 29-Nation Free Mobility",
+      "100% Free Employer Accommodation & Transport",
+      "Europe's Lowest 10% Flat Personal Income Tax",
+    ],
+  },
+  {
     code: "GBP",
     displayName: "British Pound",
     country: "United Kingdom",
-    flag: "🇬🇧",
+    flag: "",
     symbol: "£",
     rateToINR: 109.5,
     defaultAmount: 2000,
@@ -269,7 +295,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "USD",
     displayName: "United States Dollar",
     country: "United States",
-    flag: "🇺🇸",
+    flag: "",
     symbol: "$",
     rateToINR: 84.1,
     defaultAmount: 1800,
@@ -294,7 +320,7 @@ const CURRENCIES: CurrencyItem[] = [
     code: "INR",
     displayName: "Indian Rupee",
     country: "India",
-    flag: "🇮🇳",
+    flag: "",
     symbol: "₹",
     rateToINR: 1.0,
     defaultAmount: 60000,
@@ -653,23 +679,23 @@ export default function SalaryCalculator() {
               Explore Official Destination Guides:
             </span>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 font-semibold text-emerald-700">
-              <a href="/countries/uae" className="hover:underline">🇦🇪 UAE Guide</a>
+              <a href="/countries/uae" className="hover:underline">UAE Guide</a>
               <span className="text-slate-300">•</span>
-              <a href="/countries/saudi-arabia" className="hover:underline">🇸🇦 Saudi Arabia Guide</a>
+              <a href="/countries/saudi-arabia" className="hover:underline">Saudi Arabia Guide</a>
               <span className="text-slate-300">•</span>
-              <a href="/countries/qatar" className="hover:underline">🇶🇦 Qatar Guide</a>
+              <a href="/countries/qatar" className="hover:underline">Qatar Guide</a>
               <span className="text-slate-300">•</span>
-              <a href="/countries/oman" className="hover:underline">🇴🇲 Oman Guide</a>
+              <a href="/countries/oman" className="hover:underline">Oman Guide</a>
               <span className="text-slate-300">•</span>
-              <a href="/countries/bahrain" className="hover:underline">🇧🇭 Bahrain Guide</a>
+              <a href="/countries/bahrain" className="hover:underline">Bahrain Guide</a>
               <span className="text-slate-300">•</span>
-              <a href="/countries/germany" className="hover:underline">🇩🇪 Germany Guide</a>
+              <a href="/countries/germany" className="hover:underline">Germany Guide</a>
               <span className="text-slate-300">•</span>
               <a
                 href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
                 className="text-teal-800 font-extrabold hover:underline"
               >
-                🌟 GCC Grand Tours Visa 2026
+                GCC Grand Tours Visa 2026
               </a>
             </div>
           </div>

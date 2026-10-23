@@ -23,8 +23,6 @@ const quickLinks = [
   { label: "Our Locations", href: "/locations" },
   { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Drop CV", href: "mailto:workwisevisa@gmail.com" },
 ];
 
 const offices = [

@@ -18,6 +18,7 @@ import {
   FaWhatsapp,
   FaIdCard,
   FaSuitcase,
+  FaCheck,
 } from "react-icons/fa6";
 import { JobDemand, jobDemands as fallbackDemands } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -85,6 +86,8 @@ export default function FeaturedJobs() {
     if (c.includes("croatia") || c.includes("zagreb")) return "hr";
     if (c.includes("kuwait")) return "kw";
     if (c.includes("oman") || c.includes("muscat")) return "om";
+    if (c.includes("bulgaria") || c.includes("sofia") || c.includes("plovdiv")) return "bg";
+    if (c.includes("luxembourg")) return "lu";
     if (c.includes("poland")) return "pl";
     if (c.includes("romania")) return "ro";
     if (c.includes("canada")) return "ca";
@@ -374,7 +377,7 @@ export default function FeaturedJobs() {
                   </div>
 
                   <div className="mt-6 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                    📞 Our overseas recruitment team will contact you within <strong>2–4 working hours</strong> to verify your passport &amp; schedule trade test.
+                    Our overseas recruitment team will contact you within <strong>2–4 working hours</strong> to verify your passport &amp; schedule trade test.
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -422,7 +425,7 @@ export default function FeaturedJobs() {
 
                   {submitError && (
                     <div className="mb-4 rounded-xl bg-red-50 border border-red-200 p-3 text-xs text-red-700 font-medium">
-                      ⚠️ {submitError}
+                      {submitError}
                     </div>
                   )}
 
@@ -522,9 +525,9 @@ export default function FeaturedJobs() {
                     <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-3 text-xs text-slate-600 space-y-1">
                       <div className="font-semibold text-slate-800">Verified Benefits:</div>
                       <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-slate-600">
-                        <span>✓ Company Accommodation</span>
-                        <span>✓ Company Transportation</span>
-                        <span>✓ Overtime Paid</span>
+                        <span className="inline-flex items-center gap-1"><FaCheck className="w-2.5 h-2.5 text-emerald-600" /> Company Accommodation</span>
+                        <span className="inline-flex items-center gap-1"><FaCheck className="w-2.5 h-2.5 text-emerald-600" /> Company Transportation</span>
+                        <span className="inline-flex items-center gap-1"><FaCheck className="w-2.5 h-2.5 text-emerald-600" /> Overtime Paid</span>
                       </div>
                     </div>
 
