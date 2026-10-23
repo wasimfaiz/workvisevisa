@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Industries from "@/components/Industries";
-import WhyUs from "@/components/WhyUs";
-import ProcessTimeline from "@/components/ProcessTimeline";
-import Testimonials from "@/components/Testimonials";
-import FeaturedJobs from "@/components/FeaturedJobs";
-import SalaryCalculator from "@/components/SalaryCalculator";
-import ConsultationForm from "@/components/ConsultationForm";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+
+// Dynamically code-split below-the-fold sections so the mobile browser loads the initial hero instantly
+const Services = dynamic(() => import("@/components/Services"));
+const Industries = dynamic(() => import("@/components/Industries"));
+const WhyUs = dynamic(() => import("@/components/WhyUs"));
+const ProcessTimeline = dynamic(() => import("@/components/ProcessTimeline"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const FeaturedJobs = dynamic(() => import("@/components/FeaturedJobs"));
+const SalaryCalculator = dynamic(() => import("@/components/SalaryCalculator"));
+const ConsultationForm = dynamic(() => import("@/components/ConsultationForm"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const FloatingWhatsApp = dynamic(() => import("@/components/FloatingWhatsApp"));
 
 export const metadata: Metadata = {
   applicationName: "WorkWise Visa",

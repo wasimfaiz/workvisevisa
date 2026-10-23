@@ -230,7 +230,6 @@ function PhotorealisticWorldMap() {
             fill
             sizes="(max-width: 768px) 100vw, 620px"
             className="object-cover opacity-90 hover:scale-105 transition-transform duration-700"
-            priority
           />
 
           {/* Map Overlay Gradients */}
@@ -467,44 +466,25 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
           {/* left text */}
           <div className="text-center lg:text-left">
-            <motion.div
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 mb-8 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 mb-8 shadow-sm">
               <FaWandMagicSparkles className="w-4 h-4 text-emerald-600" />
               <span className="text-sm text-emerald-800 font-semibold">
                 {t.badge}
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight tracking-tight text-slate-900 mb-5"
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight tracking-tight text-slate-900 mb-5">
               {t.titleLine1}
               <br className="hidden sm:block" />{" "}
               <span className="gradient-text">{t.titleLine2}</span>{" "}
               {t.titleHighlight}
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              className="max-w-xl text-sm sm:text-base leading-relaxed text-slate-600 mb-8 mx-auto lg:mx-0 font-medium"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <p className="max-w-xl text-sm sm:text-base leading-relaxed text-slate-600 mb-8 mx-auto lg:mx-0 font-medium">
               {t.description}
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10">
               <a
                 href="#consultation"
                 className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-6 sm:px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-lg shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/35 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
@@ -518,15 +498,10 @@ export default function Hero() {
               >
                 {t.ctaExploreServices}
               </a>
-            </motion.div>
+            </div>
 
             {/* stats row - clean aligned grid on mobile, horizontal flex on desktop */}
-            <motion.div
-              className="grid grid-cols-3 gap-2 sm:gap-6 pt-5 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <div className="grid grid-cols-3 gap-2 sm:gap-6 pt-5 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0">
               {[
                 { Icon: FaCalendarDays, val: "5+", sub: t.yearsLabel },
                 { Icon: FaUsers, val: "5,000+", sub: t.placementsLabel },
@@ -549,18 +524,13 @@ export default function Hero() {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* right - Photorealistic Satellite Motion World Map Component */}
-          <motion.div
-            className="relative flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
+          <div className="relative flex items-center justify-center">
             <PhotorealisticWorldMap />
-          </motion.div>
+          </div>
         </div>
       </div>
 
