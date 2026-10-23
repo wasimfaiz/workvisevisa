@@ -363,7 +363,7 @@ export default function BulgariaCountryPage() {
       <Navbar />
 
       <main className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
-        {/* ── Hero Section ───────────────────────────────────── */}
+        {/* ── Hero Section (Strict Emerald/Teal/Slate UI Continuity) ── */}
         <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950 text-white pt-24 sm:pt-28 pb-16 md:pb-24">
           <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -384,10 +384,10 @@ export default function BulgariaCountryPage() {
 
             <div className="grid lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
-                {/* Authority & Schengen Badge */}
+                {/* Government & Authority Badge */}
                 <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 backdrop-blur-md shadow-lg shadow-emerald-950/50">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-                  Full Schengen Member State • Official Employment Agency (АЗ) Gateway
+                  Official 2026 Bulgaria Schengen &amp; Employment Agency (АЗ) Gateway
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15]">
@@ -404,125 +404,136 @@ export default function BulgariaCountryPage() {
                   <strong className="font-bold text-white">10% flat personal tax rate</strong>, employer-funded accommodation, and consular stamping through the Embassy of Bulgaria in New Delhi.
                 </p>
 
-                {/* Key Quick Value Highlights */}
+                {/* Key Benefits Pill Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">Schengen Accession</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">Full Member</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">29-Nation Free Travel</div>
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaMoneyBillWave className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">1,400–2,400+ BGN</div>
+                      <div className="text-[10px] text-slate-400">₹65k–₹1.1L Monthly Pay</div>
+                    </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">Flat Income Tax</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">10% Flat Rate</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">Max In-Hand Take Home</div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaCoins className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">10% Flat Tax Rate</div>
+                      <div className="text-[10px] text-slate-400">Lowest Income Tax in EU</div>
+                    </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">Processing Time</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">6 – 10 Weeks</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">Direct Embassy Visa D</div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaPlaneArrival className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Full Schengen Member</div>
+                      <div className="text-[10px] text-slate-400">29 Nations Visa-Free Travel</div>
+                    </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">Housing Benefit</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">100% Free</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">Company Flat + Utilities</div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaAward className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Single Permit (ЕРПР)</div>
+                      <div className="text-[10px] text-slate-400">1 to 3 Years Renewable</div>
+                    </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">Net Savings / Mo</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">₹55k – ₹1.1L+</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">Clean Remittance</div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaHouseUser className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">100% Free Housing</div>
+                      <div className="text-[10px] text-slate-400">Company Flat &amp; Utilities</div>
+                    </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-3.5 backdrop-blur-xs">
-                    <div className="text-xs text-slate-400 font-medium">EU Settlement</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">5 Years PR</div>
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-1">EU Passport Pathway</div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaClock className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">6–10 Wks Processing</div>
+                      <div className="text-[10px] text-slate-400">Direct Visa D Stamping</div>
+                    </div>
                   </div>
                 </div>
 
                 {/* Direct Action Buttons - Clean 2-CTA Layout */}
-                <div className="flex flex-wrap items-center gap-4 pt-3">
-                  <a
-                    href="#consultation-form"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-sm font-bold text-slate-950 shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                <div className="flex flex-wrap items-center gap-4 pt-4">
+                  <Link
+                    href="/jobs?country=Bulgaria"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
                   >
-                    <span>Check Eligibility &amp; Apply</span>
-                    <FaArrowRight className="w-4 h-4" />
-                  </a>
+                    <FaBriefcase className="w-4 h-4" />
+                    Browse Active Bulgaria Vacancies
+                  </Link>
 
                   <a
                     href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20Bulgaria%20Work%20Permit%20and%20Jobs%20for%202026."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-slate-700 bg-slate-800/80 hover:border-emerald-500 hover:bg-slate-800 px-6 py-3.5 text-sm font-bold text-white transition-all shadow-md"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3.5 text-sm font-bold text-white transition-all shadow-md"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-400" />
-                    <span>WhatsApp Overseas Desk</span>
+                    <FaWhatsapp className="w-4 h-4 text-emerald-300" />
+                    WhatsApp Bulgaria Desk
                   </a>
                 </div>
               </div>
 
-              {/* Right Hero Card: Sovereign Snapshot */}
+              {/* Quick Country Snapshot Card */}
               <div className="lg:col-span-5">
-                <div className="rounded-3xl border border-slate-700/80 bg-slate-800/90 p-6 sm:p-8 backdrop-blur-md shadow-2xl space-y-6">
-                  <div className="flex items-center justify-between border-b border-slate-700/80 pb-4">
+                <div className="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="flex items-center gap-3.5">
                       <img
                         src="https://flagcdn.com/w160/bg.png"
                         alt="Bulgaria Flag"
-                        className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/20 shrink-0"
+                        className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/25 shrink-0"
                       />
                       <div>
-                        <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">
-                          European Sovereign Profile
-                        </div>
-                        <div className="text-lg font-bold text-white">Republic of Bulgaria</div>
-                        <div className="text-[11px] text-emerald-300 font-medium">Sofia • Plovdiv • Varna • Burgas • Ruse</div>
+                        <h2 className="text-xl font-display font-extrabold text-white">Republic of Bulgaria</h2>
+                        <p className="text-xs text-emerald-300 font-medium">Sofia • Plovdiv • Varna • Burgas • Ruse</p>
                       </div>
                     </div>
-                    <span className="text-xs font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full">
-                      EU &amp; SCHENGEN
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3 py-1 text-xs font-bold text-emerald-300">
+                      <FaShieldHalved className="w-3 h-3 text-emerald-400" />
+                      EU &amp; Schengen
                     </span>
                   </div>
 
-                  {/* Fact List */}
-                  <div className="space-y-3 text-xs text-slate-300">
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Capital City</span>
-                      <span className="font-bold text-white">Sofia (София)</span>
+                  <div className="space-y-3 text-xs sm:text-sm">
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Primary Work Permit:</span>
+                      <span className="font-bold text-white">Single Permit (SWRP / ЕРПР)</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Currency &amp; Fixed Peg</span>
-                      <span className="font-bold text-emerald-300">1 EUR = 1.95583 BGN (Lev)</span>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Labor Market Authority:</span>
+                      <span className="font-bold text-emerald-300">Employment Agency (АЗ)</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Primary Work Permit</span>
-                      <span className="font-bold text-white">SWRP / ЕРПР (1 to 3 Years)</span>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Consular Processing Time:</span>
+                      <span className="font-bold text-white">6–10 Weeks (New Delhi Embassy)</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Labor Market Regulator</span>
-                      <span className="font-bold text-white">Employment Agency (АЗ - az.government.bg)</span>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Statutory Tax Rate:</span>
+                      <span className="font-bold text-amber-300">10% Flat Personal Income Tax</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Immigration Directorate</span>
-                      <span className="font-bold text-white">Ministry of Interior (МВР - mvr.bg)</span>
-                    </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Consular Authority in India</span>
-                      <span className="font-bold text-white">Embassy of Bulgaria, New Delhi &amp; VFS</span>
-                    </div>
-                    <div className="flex justify-between items-center py-1.5 border-b border-slate-700/40">
-                      <span className="text-slate-400 font-medium">Average Monthly In-Hand</span>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Average Monthly In-Hand:</span>
                       <span className="font-bold text-emerald-300">1,400 – 2,400+ BGN (₹65k – ₹1.1L)</span>
                     </div>
-                    <div className="flex justify-between items-center py-1.5">
-                      <span className="text-slate-400 font-medium">Company Accommodations</span>
-                      <span className="font-bold text-emerald-300">100% Free / Employer Paid</span>
+
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400 font-medium">Permanent European Settlement:</span>
+                      <span className="font-bold text-emerald-300">5 Continuous Years (EU PR / Passport)</span>
                     </div>
                   </div>
 
                   <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
                     <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
                       <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>100% Verified Sponsoring Employers</span>
+                      <span>AZ &amp; Migration Directorate Approved</span>
                     </div>
                     <p className="text-[11px] text-slate-400">
                       Direct Embassy Stamping • Full Schengen Work Rights • Zero Hidden Agency Charges
