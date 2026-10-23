@@ -269,7 +269,6 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
         i++;
       }
       if (i < lines.length) i++; // consume closing fence
-
       const codeText = codeLines.join("\n");
       const isBoxOrDiagram = /[┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬─│]/.test(codeText);
 
@@ -302,6 +301,87 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
         );
         continue;
       }
+
+      if (lang === "mermaid") {
+        // Parse mermaid flowchart nodes into a visual interactive stepper
+        const steps: { id: string; label: string }[] = [];
+        const seenLabels = new Set<string>();
+
+        // Matches A[Text...] or A(Text...) or A{Text...}
+        const nodeRegex = /([A-Za-z0-9_]+)\s*(\[|\(|\{)([^\]\)\}]*)(\]|\)|\})/g;
+        let m;
+        while ((m = nodeRegex.exec(codeText)) !== null) {
+          const label = m[3].trim();
+          if (label && !seenLabels.has(label.toLowerCase())) {
+            seenLabels.add(label.toLowerCase());
+            steps.push({ id: m[1], label });
+          }
+        }
+
+        // If regex didn't extract structured nodes, fallback to non-empty lines
+        if (steps.length === 0) {
+          const rawLines = codeLines
+            .map((l) => l.trim())
+            .filter((l) => l && !l.startsWith("flowchart") && !l.startsWith("graph") && !l.startsWith("subgraph"));
+          rawLines.forEach((rl, rIdx) => {
+            const cleaned = rl.replace(/-->/g, "→").replace(/[\{\}\[\]\(\)]/g, "").trim();
+            if (cleaned) {
+              steps.push({ id: `step-${rIdx}`, label: cleaned });
+            }
+          });
+        }
+
+        elements.push(
+          <div
+            key={`mermaid-roadmap-${elementKey++}`}
+            className="my-8 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 p-6 sm:p-8 text-white shadow-xl overflow-hidden"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-800 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-lg">
+                  🧭
+                </div>
+                <div>
+                  <h4 className="text-base sm:text-lg font-bold text-white tracking-wide">
+                    Official Step-by-Step Process Roadmap
+                  </h4>
+                  <p className="text-xs text-slate-400">Verified Deployment Pipeline & Milestone Sequence</p>
+                </div>
+              </div>
+              <span className="self-start sm:self-auto inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                {steps.length} Milestones
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {steps.map((st, idx) => (
+                <div key={st.id || idx} className="relative group">
+                  <div className="flex items-center gap-4 p-3.5 sm:p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-emerald-500/50 hover:bg-slate-800 transition duration-200">
+                    <div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shadow-md shadow-emerald-900/30">
+                      {idx + 1}
+                    </div>
+                    <div className="flex-1 text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-white transition">
+                      {renderInline(st.label)}
+                    </div>
+                    {idx < steps.length - 1 && (
+                      <div className="hidden sm:flex items-center text-emerald-400/60 font-bold text-sm">
+                        ↓
+                      </div>
+                    )}
+                  </div>
+                  {idx < steps.length - 1 && (
+                    <div className="sm:hidden flex justify-center py-1 text-emerald-400/50 font-bold text-xs">
+                      ↓
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+        continue;
+      }
+
 
       elements.push(
         <div

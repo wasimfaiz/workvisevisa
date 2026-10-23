@@ -144,6 +144,10 @@ export async function ensureSeedData() {
         pattern: /Gulf & GCC Work Visa Master Guide|Saudi Arabia.*UAE.*Qatar.*Kuwait.*Oman.*Bahrain|Wafid GAMCA Medical.*Takamol SVP/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-26"),
       },
+      {
+        pattern: /AFGC Holding|460.*Vacancies|Urgent Dubai Construction Recruitment/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-27"),
+      },
     ];
 
     for (const item of seedMatchers) {

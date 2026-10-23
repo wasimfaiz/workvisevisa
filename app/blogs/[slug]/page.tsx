@@ -40,6 +40,9 @@ async function getBlog(slug: string) {
   // Find corresponding rich fallback by keyword aliases
   const staticFound = fallbackPosts.find(
     (p) =>
+      (decodedSlug.includes("afgc") && p.id === "blog-27") ||
+      (decodedSlug.includes("460-vacancies") && p.id === "blog-27") ||
+      (decodedSlug.includes("urgent-dubai-construction") && p.id === "blog-27") ||
       (decodedSlug.includes("gulf-work-visa-complete") && p.id === "blog-26") ||
       (decodedSlug.includes("gulf-master") && p.id === "blog-26") ||
       (decodedSlug.includes("gcc-work-visa") && p.id === "blog-26") ||
@@ -279,12 +282,19 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   const isoPublishedDate = publishTimestamp > 0 ? new Date(publishTimestamp).toISOString() : new Date().toISOString();
 
   const recentBlogs = await getRecentBlogs(slug);
+  const isAfgcPost =
+    blog.id === "blog-27" ||
+    (blog.slug && (blog.slug.includes("afgc") || blog.slug.includes("460-vacancies") || blog.slug.includes("urgent-dubai-construction")));
+
   const article = {
     ...blog,
     image:
-      !blog.image ||
-      blog.image.includes("photo-1541888946425-d0fbb1861593") ||
-      blog.image.includes("photo-1541888946425-d0fbb18086f6")
+      isAfgcPost ||
+      blog.image?.includes("photo-1541888946425-d0fbb1862448")
+        ? "/images/afgc-dubai-construction-recruitment.jpg"
+        : !blog.image ||
+          blog.image.includes("photo-1541888946425-d0fbb1861593") ||
+          blog.image.includes("photo-1541888946425-d0fbb18086f6")
         ? "/images/dubai-construction-work.jpg"
         : blog.image,
   } as any;
