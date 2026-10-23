@@ -148,6 +148,10 @@ export async function ensureSeedData() {
         pattern: /AFGC Holding|460.*Vacancies|Urgent Dubai Construction Recruitment/i,
         post: fallbackInitialPosts.find((p) => p.id === "blog-27"),
       },
+      {
+        pattern: /Oman Work Visa|Oman Labour Law|Royal Decree 52\/2023|Omanization.*Allowed Trades/i,
+        post: fallbackInitialPosts.find((p) => p.id === "blog-28"),
+      },
     ];
 
     for (const item of seedMatchers) {

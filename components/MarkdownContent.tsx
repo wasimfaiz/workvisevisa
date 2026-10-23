@@ -95,8 +95,20 @@ function renderInline(text: string): ReactNode[] {
       continue;
     }
 
-    // 3. Bold: **text**
-    const boldMatch = remaining.match(/^\*\*([^*]+)\*\*/);
+    // 2.5. Bold & Italic: ***text***
+    const boldItalicMatch = remaining.match(/^\*\*\*(.+?)\*\*\*(?!\*)/);
+    if (boldItalicMatch) {
+      parts.push(
+        <strong key={`bi-${keyIdx++}`} className="font-bold text-slate-900">
+          <em className="italic text-slate-900">{renderInline(boldItalicMatch[1])}</em>
+        </strong>
+      );
+      remaining = remaining.substring(boldItalicMatch[0].length);
+      continue;
+    }
+
+    // 3. Bold: **text** (handles nested *italic* such as **Text (*Arabic*)**)
+    const boldMatch = remaining.match(/^\*\*(.+?)\*\*(?!\*)/);
     if (boldMatch) {
       parts.push(
         <strong key={`b-${keyIdx++}`} className="font-bold text-slate-900">
@@ -107,8 +119,8 @@ function renderInline(text: string): ReactNode[] {
       continue;
     }
 
-    // 4. Italic: *text* or _text_
-    const italicMatch = remaining.match(/^\*([^*]+)\*/) || remaining.match(/^_([^_]+)_/);
+    // 4. Italic: *text* (single asterisk, not part of **) or _text_
+    const italicMatch = remaining.match(/^\*(?!\*)([^*]+)\*/) || remaining.match(/^_([^_]+)_/);
     if (italicMatch) {
       parts.push(
         <em key={`em-${keyIdx++}`} className="italic text-slate-800">
@@ -159,7 +171,7 @@ function renderInline(text: string): ReactNode[] {
     }
 
     // Regular plain text character up to next special syntax
-    const nextSpecial = remaining.search(/(\!\[|\[|\*\*|\*|_|`|<u>|~~)/);
+    const nextSpecial = remaining.search(/(\!\[|\[|\*\*\*|\*\*|\*|_|`|<u>|~~)/);
     if (nextSpecial === -1) {
       parts.push(remaining);
       break;
