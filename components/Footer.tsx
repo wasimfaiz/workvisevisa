@@ -234,6 +234,9 @@ export default function Footer() {
             <Link href="/terms-of-service" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-600">
               Terms of Service
             </Link>
+            <Link href="/refund-policy" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-600">
+              Refund Policy
+            </Link>
           </div>
         </div>
       </div>
