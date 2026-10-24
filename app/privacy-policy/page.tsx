@@ -65,9 +65,9 @@ export default function PrivacyPolicyPage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       <Navbar />
 
-      <main className="pt-24 sm:pt-28 pb-20">
+      <main className="pb-20">
         {/* ── Page Header / Hero ── */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-950 via-slate-950 to-slate-900 text-white py-16 sm:py-20 border-b border-white/10">
+        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-950 via-slate-950 to-slate-900 text-white pt-24 sm:pt-28 pb-16 sm:pb-20 border-b border-white/10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-emerald-500/15 via-transparent to-transparent pointer-events-none" />
 
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
