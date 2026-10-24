@@ -35,6 +35,22 @@ const regions = [
   "Russia & CIS",
 ];
 
+const COUNTRY_PAGES: Record<string, string> = {
+  AE: "/countries/uae",
+  SA: "/countries/saudi-arabia",
+  QA: "/countries/qatar",
+  OM: "/countries/oman",
+  BH: "/countries/bahrain",
+  DE: "/countries/germany",
+  FR: "/countries/france",
+  LU: "/countries/luxembourg",
+  BG: "/countries/bulgaria",
+  CA: "/countries/canada",
+  US: "/countries/usa",
+  GB: "/countries/uk",
+  RU: "/countries/russia",
+};
+
 const countryFaqs = [
   {
     q: "What is the difference between Gulf (UAE, Saudi, Qatar) and European (Germany, France) work permits?",
@@ -153,228 +169,137 @@ export default function CountriesPage() {
               </button>
             </div>
           ) : (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredCountries.map((country) => (
-                <div
-                  key={country.code}
-                  className="group relative flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-emerald-500/60 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
-                >
-                  {/* Subtle Flag Overlay Watermark */}
-                  <div className="absolute -right-4 -top-4 w-28 h-20 opacity-[0.05] group-hover:opacity-[0.12] transition-opacity duration-300 pointer-events-none select-none overflow-hidden rounded-2xl">
-                    <img
-                      src={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png`}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+            <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredCountries.map((country) => {
+                const countryHref = COUNTRY_PAGES[country.code];
+                return (
+                  <div
+                    key={country.code}
+                    className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-xs transition-all duration-300 hover:border-emerald-500/60 hover:shadow-lg hover:-translate-y-1 overflow-hidden"
+                  >
+                    {/* Subtle Flag Overlay Watermark */}
+                    <div className="absolute -right-3 -top-3 w-24 h-16 opacity-[0.04] group-hover:opacity-[0.10] transition-opacity duration-300 pointer-events-none select-none overflow-hidden rounded-xl">
+                      <img
+                        src={`https://flagcdn.com/w160/${country.code.toLowerCase()}.png`}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-                  <div className="relative z-10">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-5">
-                      <div className="flex items-center gap-3.5">
-                        <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-slate-50 border border-slate-200 p-1 group-hover:border-emerald-400 group-hover:bg-emerald-50/50 transition-all shadow-xs">
-                          <img
-                            src={`https://flagcdn.com/w80/${country.code.toLowerCase()}.png`}
-                            alt={`${country.name} flag`}
-                            className="h-7 w-10 object-cover rounded shadow-xs border border-slate-200/50"
-                          />
-                          <span className="text-[10px] font-black tracking-widest text-slate-700 uppercase mt-0.5 font-display">
-                            {country.code}
-                          </span>
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-11 w-11 shrink-0 flex-col items-center justify-center rounded-xl bg-slate-50 border border-slate-200 p-0.5 group-hover:border-emerald-400 group-hover:bg-emerald-50/50 transition-all shadow-2xs">
+                            <img
+                              src={`https://flagcdn.com/w80/${country.code.toLowerCase()}.png`}
+                              alt={`${country.name} flag`}
+                              className="h-5 w-7.5 object-cover rounded shadow-2xs border border-slate-200/50"
+                            />
+                            <span className="text-[9px] font-black tracking-widest text-slate-700 uppercase font-display leading-none mt-0.5">
+                              {country.code}
+                            </span>
+                          </div>
+
+                          <div>
+                            <h2 className="font-display font-bold text-slate-900 text-base sm:text-lg leading-snug group-hover:text-emerald-700 transition-colors">
+                              {country.name}
+                            </h2>
+                            <span className="inline-block text-[11px] font-bold text-emerald-700 uppercase tracking-wider">
+                              {country.region}
+                            </span>
+                          </div>
                         </div>
 
-                        <div>
-                          <h2 className="font-display font-extrabold text-slate-900 text-xl leading-tight group-hover:text-emerald-700 transition-colors">
-                            {country.name}
-                          </h2>
-                          <span className="inline-block mt-0.5 text-xs font-bold text-emerald-700 uppercase tracking-wider">
-                            {country.region}
+                        {/* Processing Time Mini Pill */}
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800 shrink-0">
+                          <FaClock className="w-2.5 h-2.5 text-emerald-600" />
+                          {country.processingTime}
+                        </span>
+                      </div>
+
+                      {/* Compact Description (2 lines clamp) */}
+                      <p className="text-xs text-slate-600 leading-relaxed mb-3 line-clamp-2">
+                        {country.description}
+                      </p>
+
+                      {/* Structured Info Box: Visas & Top Trades */}
+                      <div className="space-y-1.5 mb-3.5 bg-slate-50/80 rounded-xl p-2.5 border border-slate-100/90 text-xs">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0">
+                            Visas:
                           </span>
+                          {country.visaTypes.slice(0, 2).map((v) => (
+                            <span
+                              key={v}
+                              className="rounded-md bg-emerald-50/90 border border-emerald-200/80 px-2 py-0.5 text-[11px] font-semibold text-emerald-900 shadow-2xs"
+                            >
+                              {v}
+                            </span>
+                          ))}
+                          {country.visaTypes.length > 2 && (
+                            <span className="text-[10px] text-slate-400 font-semibold">
+                              +{country.visaTypes.length - 2} more
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0">
+                            Roles:
+                          </span>
+                          {country.popularRoles.slice(0, 2).map((r) => (
+                            <span
+                              key={r}
+                              className="rounded-md bg-white border border-slate-200 px-2 py-0.5 text-[11px] font-medium text-slate-700 shadow-2xs"
+                            >
+                              {r}
+                            </span>
+                          ))}
+                          {country.popularRoles.length > 2 && (
+                            <span className="text-[10px] text-slate-400 font-semibold">
+                              +{country.popularRoles.length - 2} more
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
-                      {country.description}
-                    </p>
+                    {/* Card Actions Footer */}
+                    <div className="relative z-10 pt-3 border-t border-slate-100 flex items-center gap-2">
+                      {countryHref ? (
+                        <Link
+                          href={countryHref}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-3 py-2 text-xs font-bold text-white shadow-2xs hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
+                        >
+                          <span>Explore {country.name}</span>
+                          <FaArrowRight className="w-3 h-3" />
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => setSelectedCountry(country)}
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-3 py-2 text-xs font-bold text-white shadow-2xs hover:bg-emerald-600 transition-colors cursor-pointer"
+                        >
+                          <span>View Details</span>
+                          <FaArrowRight className="w-3 h-3" />
+                        </button>
+                      )}
 
-                    {/* Timeline & Options */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
-                        <FaClock className="w-3 h-3 text-emerald-600" />
-                        {country.processingTime}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700">
-                        <FaLocationDot className="w-3 h-3 text-teal-600" />
-                        {country.visaTypes.length} Visa Options
-                      </span>
-                    </div>
-
-                    {/* Visa Types Tags */}
-                    <div className="mb-6">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                        Available Visa Categories:
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {country.visaTypes.map((v) => (
-                          <span
-                            key={v}
-                            className="rounded-lg bg-emerald-50/80 border border-emerald-200/80 px-2.5 py-1 text-xs font-bold text-emerald-900 shadow-2xs"
-                          >
-                            {v}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Popular Roles */}
-                    <div className="mb-6">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                        In-Demand Trade Roles:
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {country.popularRoles.map((r) => (
-                          <span
-                            key={r}
-                            className="rounded-md bg-slate-100 border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-700"
-                          >
-                            {r}
-                          </span>
-                        ))}
-                      </div>
+                      <a
+                        href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20applying%20for%20a%20work%20visa%20in%20${encodeURIComponent(
+                          country.name
+                        )}!`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500 text-white shadow-2xs hover:bg-emerald-600 transition-colors shrink-0 cursor-pointer"
+                        title={`Apply for ${country.name} via WhatsApp`}
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                      </a>
                     </div>
                   </div>
-
-                  {/* Card Actions */}
-                  <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center gap-2.5">
-                    {country.code === "AE" ? (
-                      <Link
-                        href="/countries/uae"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore UAE Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "SA" ? (
-                      <Link
-                        href="/countries/saudi-arabia"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Saudi Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "QA" ? (
-                      <Link
-                        href="/countries/qatar"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Qatar Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "OM" ? (
-                      <Link
-                        href="/countries/oman"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Oman Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "BH" ? (
-                      <Link
-                        href="/countries/bahrain"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Bahrain Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "DE" ? (
-                      <Link
-                        href="/countries/germany"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Germany Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "RU" ? (
-                      <Link
-                        href="/countries/russia"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Russia Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "LU" ? (
-                      <Link
-                        href="/countries/luxembourg"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Luxembourg Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "FR" ? (
-                      <Link
-                        href="/countries/france"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore France Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "CA" ? (
-                      <Link
-                        href="/countries/canada"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Canada Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "US" ? (
-                      <Link
-                        href="/countries/usa"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore USA Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "GB" ? (
-                      <Link
-                        href="/countries/uk"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore UK Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : country.code === "BG" ? (
-                      <Link
-                        href="/countries/bulgaria"
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:from-emerald-500 hover:to-teal-500 transition-all cursor-pointer"
-                      >
-                        <span>Explore Bulgaria Full Guide</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => setSelectedCountry(country)}
-                        className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-600 transition-colors cursor-pointer"
-                      >
-                        <span>View Program Details</span>
-                        <FaArrowRight className="w-3 h-3" />
-                      </button>
-                    )}
-
-                    <a
-                      href={`https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20applying%20for%20a%20work%20visa%20in%20${encodeURIComponent(
-                        country.name
-                      )}!`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500 text-white shadow-sm hover:bg-emerald-600 transition-colors shrink-0"
-                      title={`Apply for ${country.name} via WhatsApp`}
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                    </a>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
 
