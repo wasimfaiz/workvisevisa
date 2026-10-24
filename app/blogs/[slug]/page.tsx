@@ -40,6 +40,8 @@ async function getBlog(slug: string) {
   // Find corresponding rich fallback by keyword aliases
   const staticFound = fallbackPosts.find(
     (p) =>
+      (decodedSlug.includes("russia-work-visa") && p.id === "blog-29") ||
+      (decodedSlug.includes("russia") && p.id === "blog-29") ||
       (decodedSlug.includes("oman-work-visa") && p.id === "blog-28") ||
       (decodedSlug.includes("oman-labour-law") && p.id === "blog-28") ||
       (decodedSlug.includes("omanization") && p.id === "blog-28") ||
@@ -290,11 +292,16 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   const isAfgcPost =
     blog.id === "blog-27" ||
     (blog.slug && (blog.slug.includes("afgc") || blog.slug.includes("460-vacancies") || blog.slug.includes("urgent-dubai-construction")));
+  const isRussiaPost =
+    blog.id === "blog-29" ||
+    (blog.slug && blog.slug.includes("russia"));
 
   const rawImage =
     isAfgcPost ||
     blog.image?.includes("photo-1541888946425-d0fbb1862448")
       ? "/images/afgc-dubai-construction-recruitment.webp"
+      : isRussiaPost
+      ? "/images/russia-work-visa-guide.webp"
       : !blog.image ||
         blog.image.includes("photo-1541888946425-d0fbb1861593") ||
         blog.image.includes("photo-1541888946425-d0fbb18086f6")
