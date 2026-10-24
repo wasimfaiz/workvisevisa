@@ -70,6 +70,15 @@ export interface B2BPartner {
   country: string;
   address?: string;
   status: "Active" | "Pending Verification" | "Inactive" | string;
+  onboardingStage?:
+    | "New Inquiry"
+    | "In Discussion"
+    | "KYC & MoU Pending"
+    | "Partnership Active"
+    | "Inactive"
+    | string;
+  source?: string;
+  sourcingCapacity?: string;
   commissionTerms?: string;
   totalCandidatesReferred: number;
   totalSelected?: number;
@@ -105,6 +114,10 @@ export interface B2BPartner {
 interface PartnerStats {
   total: number;
   active: number;
+  pipelineLeads: number;
+  newInquiries: number;
+  inDiscussion: number;
+  mouReview: number;
   companies: number;
   individuals: number;
   signedMou: number;
@@ -135,6 +148,9 @@ const DEFAULT_FORM: Omit<B2BPartner, "id" | "createdAt"> = {
   country: "India",
   address: "",
   status: "Active",
+  onboardingStage: "New Inquiry",
+  source: "Admin Portal",
+  sourcingCapacity: "10-25 candidates / month",
   commissionTerms: "₹5,000 per selected candidate",
   totalCandidatesReferred: 0,
   rating: 5,
@@ -183,6 +199,10 @@ export default function AdminPartnersPage() {
   const [stats, setStats] = useState<PartnerStats>({
     total: 0,
     active: 0,
+    pipelineLeads: 0,
+    newInquiries: 0,
+    inDiscussion: 0,
+    mouReview: 0,
     companies: 0,
     individuals: 0,
     signedMou: 0,
@@ -228,6 +248,24 @@ export default function AdminPartnersPage() {
     }
     checkAuth();
   }, [router]);
+
+  // Interactive KPI Cards Quick Filter: 'all' | 'kyc_mou' | 'active' | 'mobilized'
+  const [kpiFilter, setKpiFilter] = useState<"all" | "kyc_mou" | "active" | "mobilized">("all");
+  const [stageFilter, setStageFilter] = useState<string>("All");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const stageParam = params.get("stage");
+      if (stageParam) {
+        setStageFilter(stageParam);
+      }
+      const kpiParam = params.get("kpi");
+      if (kpiParam === "kyc_mou" || kpiParam === "active" || kpiParam === "mobilized") {
+        setKpiFilter(kpiParam);
+      }
+    }
+  }, []);
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState("");
@@ -301,55 +339,176 @@ export default function AdminPartnersPage() {
   }, [authLoading, canView]);
 
   // ================================================================
+  // Stage Transition Handlers
+  // ================================================================
+
+  const handleUpdateStage = async (partner: B2BPartner, newStage: string) => {
+    if (!canEdit) {
+      showToast("error", "You do not have permission to edit partners.");
+      return;
+    }
+    if (newStage === "Partnership Active") {
+      await handleFinalizePartnership(partner);
+      return;
+    }
+    try {
+      const body: any = { onboardingStage: newStage };
+      const res = await fetch(`/api/partners/${partner.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setPartners((prev) =>
+          prev.map((p) =>
+            p.id === partner.id
+              ? {
+                  ...p,
+                  onboardingStage: newStage,
+                }
+              : p
+          )
+        );
+        showToast("success", `Partner phase updated to: ${newStage}`);
+        fetchPartners();
+      } else {
+        showToast("error", json.message || "Failed to update phase.");
+      }
+    } catch {
+      showToast("error", "Network error updating partner phase.");
+    }
+  };
+
+  const handleFinalizePartnership = async (partner: B2BPartner) => {
+    if (!canEdit) {
+      showToast("error", "You do not have permission to edit partners.");
+      return;
+    }
+    try {
+      const generatedCode = partner.partnerCode || `WWP-${Math.floor(1000 + Math.random() * 9000)}`;
+      const res = await fetch(`/api/partners/${partner.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          onboardingStage: "Partnership Active",
+          status: "Active",
+          partnerCode: generatedCode,
+          isLoginEnabled: true,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        const updated = {
+          ...partner,
+          onboardingStage: "Partnership Active",
+          status: "Active",
+          partnerCode: generatedCode,
+          isLoginEnabled: true,
+        };
+        setPartners((prev) =>
+          prev.map((p) => (p.id === partner.id ? updated : p))
+        );
+        showToast("success", `🎉 Partnership finalized & activated with ${partner.name}!`);
+        openLoginModal(updated);
+        fetchPartners();
+      } else {
+        showToast("error", json.message || "Failed to finalize partnership.");
+      }
+    } catch {
+      showToast("error", "Network error finalizing partnership.");
+    }
+  };
+
+  // ================================================================
   // Filtered Partners
   // ================================================================
 
   const filteredPartners = useMemo(() => {
-    return partners.filter((p) => {
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        q === "" ||
-        p.name.toLowerCase().includes(q) ||
-        p.contactPerson.toLowerCase().includes(q) ||
-        p.city.toLowerCase().includes(q) ||
-        (p.state && p.state.toLowerCase().includes(q)) ||
-        p.phone.includes(q) ||
-        (p.partnerCode && p.partnerCode.toLowerCase().includes(q)) ||
-        (p.panNumber && p.panNumber.toLowerCase().includes(q)) ||
-        (p.aadhaarNumber && p.aadhaarNumber.includes(q));
+    return partners
+      .filter((p) => {
+        // 1. Interactive KPI Filter
+        if (kpiFilter === "active") {
+          const isActive = p.status === "Active" || p.onboardingStage === "Partnership Active";
+          if (!isActive) return false;
+        } else if (kpiFilter === "kyc_mou") {
+          const isKycVerified =
+            p.kycStatus === "Verified" ||
+            (Boolean(p.aadhaarDocumentUrl) && Boolean(p.panDocumentUrl));
+          const isMouSigned =
+            p.mouStatus === "Signed" || Boolean(p.mouDocumentUrl);
+          if (isKycVerified && isMouSigned) return false;
+        } else if (kpiFilter === "mobilized") {
+          if ((p.totalCandidatesReferred || 0) <= 0) return false;
+        }
 
-      const matchesType =
-        typeFilter === "All" ||
-        (typeFilter === "Individual" &&
-          (p.partnerType === "Individual" || p.partnerType === "Sourcing Sub-Agent")) ||
-        (typeFilter === "Company" &&
-          (p.partnerType === "Company" ||
-            p.partnerType === "Agency" ||
-            p.partnerType === "Overseas Employer"));
+        // 2. Stage Filter
+        if (stageFilter !== "All") {
+          if (p.onboardingStage !== stageFilter) return false;
+        }
 
-      const matchesMou =
-        mouFilter === "All" ||
-        (mouFilter === "Signed" &&
-          (p.mouStatus === "Signed" || Boolean(p.mouDocumentUrl))) ||
-        (mouFilter === "Pending" &&
-          (!p.mouStatus || p.mouStatus === "Pending" || p.mouStatus === "None") &&
-          !p.mouDocumentUrl) ||
-        (mouFilter === "Under Review" && p.mouStatus === "Under Review");
+        // 3. Search Box Query
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch =
+          q === "" ||
+          p.name.toLowerCase().includes(q) ||
+          p.contactPerson.toLowerCase().includes(q) ||
+          p.city.toLowerCase().includes(q) ||
+          (p.state && p.state.toLowerCase().includes(q)) ||
+          p.phone.includes(q) ||
+          (p.partnerCode && p.partnerCode.toLowerCase().includes(q)) ||
+          (p.panNumber && p.panNumber.toLowerCase().includes(q)) ||
+          (p.aadhaarNumber && p.aadhaarNumber.includes(q)) ||
+          (p.source && p.source.toLowerCase().includes(q));
 
-      const isVerified =
-        p.kycStatus === "Verified" ||
-        (Boolean(p.aadhaarDocumentUrl) && Boolean(p.panDocumentUrl));
+        // 4. Sub Filters
+        const matchesType =
+          typeFilter === "All" ||
+          (typeFilter === "Individual" &&
+            (p.partnerType === "Individual" || p.partnerType === "Sourcing Sub-Agent")) ||
+          (typeFilter === "Company" &&
+            (p.partnerType === "Company" ||
+              p.partnerType === "Agency" ||
+              p.partnerType === "Overseas Employer"));
 
-      const matchesKyc =
-        kycFilter === "All" ||
-        (kycFilter === "Verified" && isVerified) ||
-        (kycFilter === "Pending" && !isVerified);
+        const matchesMou =
+          mouFilter === "All" ||
+          (mouFilter === "Signed" &&
+            (p.mouStatus === "Signed" || Boolean(p.mouDocumentUrl))) ||
+          (mouFilter === "Pending" &&
+            (!p.mouStatus || p.mouStatus === "Pending" || p.mouStatus === "None") &&
+            !p.mouDocumentUrl) ||
+          (mouFilter === "Under Review" && p.mouStatus === "Under Review");
 
-      const matchesStatus = statusFilter === "All" || p.status === statusFilter;
+        const isVerified =
+          p.kycStatus === "Verified" ||
+          (Boolean(p.aadhaarDocumentUrl) && Boolean(p.panDocumentUrl));
 
-      return matchesSearch && matchesType && matchesMou && matchesKyc && matchesStatus;
-    });
-  }, [partners, searchQuery, typeFilter, mouFilter, kycFilter, statusFilter]);
+        const matchesKyc =
+          kycFilter === "All" ||
+          (kycFilter === "Verified" && isVerified) ||
+          (kycFilter === "Pending" && !isVerified);
+
+        const matchesStatus = statusFilter === "All" || p.status === statusFilter;
+
+        return matchesSearch && matchesType && matchesMou && matchesKyc && matchesStatus;
+      })
+      .sort((a, b) => {
+        if (kpiFilter === "mobilized") {
+          return (b.totalCandidatesReferred || 0) - (a.totalCandidatesReferred || 0);
+        }
+        return 0;
+      });
+  }, [
+    partners,
+    kpiFilter,
+    stageFilter,
+    searchQuery,
+    typeFilter,
+    mouFilter,
+    kycFilter,
+    statusFilter,
+  ]);
 
   // ================================================================
   // File Upload Helper
@@ -453,6 +612,9 @@ export default function AdminPartnersPage() {
       country: partner.country || "India",
       address: partner.address || "",
       status: partner.status || "Active",
+      onboardingStage: partner.onboardingStage || "New Inquiry",
+      source: partner.source || "Admin Portal",
+      sourcingCapacity: partner.sourcingCapacity || "10-25 candidates / month",
       commissionTerms: partner.commissionTerms || "₹5,000 per selected candidate",
       totalCandidatesReferred: partner.totalCandidatesReferred || 0,
       rating: partner.rating || 5,
@@ -640,6 +802,45 @@ Best regards,
     }
   };
 
+  const renderStageBadge = (stage?: string) => {
+    switch (stage) {
+      case "New Inquiry":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-800 border border-blue-200">
+            <Sparkles className="w-2.5 h-2.5 text-blue-600" />
+            <span>New Inquiry</span>
+          </span>
+        );
+      case "In Discussion":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-200">
+            <MessageSquare className="w-2.5 h-2.5 text-amber-600" />
+            <span>In Discussion</span>
+          </span>
+        );
+      case "KYC & MoU Pending":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-100 text-purple-800 border border-purple-200">
+            <FileText className="w-2.5 h-2.5 text-purple-600" />
+            <span>KYC &amp; MoU Pending</span>
+          </span>
+        );
+      case "Partnership Active":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+            <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600" />
+            <span>Partnership Active</span>
+          </span>
+        );
+      default:
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-slate-100 text-slate-700 border border-slate-200">
+            <span>{stage || "Inquiry"}</span>
+          </span>
+        );
+    }
+  };
+
   if (authLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
@@ -713,13 +914,16 @@ Best regards,
                 B2B Candidate Sourcing Partners
               </h1>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
-                <Users className="w-3.5 h-3.5 text-emerald-600" />
-                {partners.length} Partners
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                {stats.active} Active
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                <TrendingUp className="w-3.5 h-3.5 text-amber-600" />
+                {stats.pipelineLeads} In Pipeline
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
-              Directory for individuals &amp; companies who supply job candidates. Manage contact
-              details, commercial terms, signed MoU agreements &amp; Aadhaar/PAN safety verification.
+              Manage agencies, sub-agents, and candidate sourcing partners. Track inbound B2B inquiries through discussion, KYC &amp; MoU signing, to active partner mobilization.
             </p>
           </div>
 
@@ -747,79 +951,182 @@ Best regards,
           </div>
         </div>
 
+
+
         {/* ── KPI METRICS CARDS ───────────────────────────── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-          {/* Card 1: Total Partners */}
-          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
-                Total Partners
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
+          {/* Card 1: Pipeline Funnel (All Partners) */}
+          <button
+            type="button"
+            onClick={() => {
+              setKpiFilter("all");
+              setStageFilter("All");
+            }}
+            className={`text-left rounded-2xl p-3 sm:p-5 border shadow-sm flex flex-col justify-between cursor-pointer transition-all group active:scale-[0.98] ${
+              kpiFilter === "all" && stageFilter === "All"
+                ? "bg-gradient-to-br from-amber-500/10 via-white to-amber-50/30 border-amber-400 ring-2 ring-amber-400/40 shadow-md"
+                : "bg-white border-slate-200/80 hover:border-amber-300 hover:shadow-md"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-1.5 w-full">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate ${
+                  kpiFilter === "all" && stageFilter === "All" ? "text-amber-700" : "text-slate-500 group-hover:text-amber-700"
+                }`}>
+                  Pipeline Funnel
+                </p>
+                {kpiFilter === "all" && stageFilter === "All" && (
+                  <span className="text-[9px] font-black text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded-full shrink-0">
+                    All
+                  </span>
+                )}
+              </div>
+              <div className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                kpiFilter === "all" && stageFilter === "All"
+                  ? "bg-amber-500 text-white shadow-sm shadow-amber-500/30"
+                  : "bg-amber-50 text-amber-600"
+              }`}>
+                <TrendingUp className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+              </div>
+            </div>
+            <div className="mt-1 sm:mt-2 min-w-0">
+              <p className="text-xl sm:text-3xl font-black text-amber-600 leading-none">
+                {partners.length}
               </p>
-              <p className="text-xl sm:text-3xl font-black text-slate-900 mt-1 truncate">
-                {stats.total || partners.length}
-              </p>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-0.5 truncate">
-                {stats.companies} Agencies • {stats.individuals} Indiv.
+              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-1 truncate">
+                {stats.active} Active • {stats.newInquiries} New
               </p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
-              <Users className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-          </div>
+          </button>
 
-          {/* Card 2: Signed MoUs */}
-          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
-                Signed MoUs
+          {/* Card 2: KYC & MoU Review */}
+          <button
+            type="button"
+            onClick={() => {
+              setKpiFilter(kpiFilter === "kyc_mou" ? "all" : "kyc_mou");
+            }}
+            className={`text-left rounded-2xl p-3 sm:p-5 border shadow-sm flex flex-col justify-between cursor-pointer transition-all group active:scale-[0.98] ${
+              kpiFilter === "kyc_mou"
+                ? "bg-gradient-to-br from-indigo-500/10 via-white to-indigo-50/30 border-indigo-400 ring-2 ring-indigo-400/40 shadow-md"
+                : "bg-white border-slate-200/80 hover:border-indigo-300 hover:shadow-md"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-1.5 w-full">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate ${
+                  kpiFilter === "kyc_mou" ? "text-indigo-700" : "text-slate-500 group-hover:text-indigo-700"
+                }`}>
+                  KYC &amp; MoU
+                </p>
+                {kpiFilter === "kyc_mou" && (
+                  <span className="text-[9px] font-black text-indigo-700 bg-indigo-100 px-1.5 py-0.5 rounded-full shrink-0">
+                    Filtered
+                  </span>
+                )}
+              </div>
+              <div className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                kpiFilter === "kyc_mou"
+                  ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/30"
+                  : "bg-indigo-50 text-indigo-600"
+              }`}>
+                <FileCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+              </div>
+            </div>
+            <div className="mt-1 sm:mt-2 min-w-0">
+              <p className="text-xl sm:text-3xl font-black text-indigo-600 leading-none">
+                {stats.mouReview || stats.pendingMou}
               </p>
-              <p className="text-xl sm:text-3xl font-black text-indigo-600 mt-1 truncate">
-                {stats.signedMou}
-              </p>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-amber-600 mt-0.5 truncate">
-                {stats.pendingMou} Pending
+              <p className="text-[10px] sm:text-[11px] font-semibold text-indigo-600/80 mt-1 truncate">
+                {stats.signedMou} Signed • {stats.kycVerified} KYC
               </p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-              <FileCheck className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-          </div>
+          </button>
 
-          {/* Card 3: Aadhaar & PAN KYC Verified */}
-          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
-                KYC Verified
+          {/* Card 3: Active Partners */}
+          <button
+            type="button"
+            onClick={() => {
+              setKpiFilter(kpiFilter === "active" ? "all" : "active");
+            }}
+            className={`text-left rounded-2xl p-3 sm:p-5 border shadow-sm flex flex-col justify-between cursor-pointer transition-all group active:scale-[0.98] ${
+              kpiFilter === "active"
+                ? "bg-gradient-to-br from-emerald-500/10 via-white to-emerald-50/30 border-emerald-400 ring-2 ring-emerald-400/40 shadow-md"
+                : "bg-white border-slate-200/80 hover:border-emerald-300 hover:shadow-md"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-1.5 w-full">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate ${
+                  kpiFilter === "active" ? "text-emerald-700" : "text-slate-500 group-hover:text-emerald-700"
+                }`}>
+                  Active Partners
+                </p>
+                {kpiFilter === "active" && (
+                  <span className="text-[9px] font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded-full shrink-0">
+                    Active
+                  </span>
+                )}
+              </div>
+              <div className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                kpiFilter === "active"
+                  ? "bg-emerald-600 text-white shadow-sm shadow-emerald-600/30"
+                  : "bg-emerald-50 text-emerald-600"
+              }`}>
+                <Handshake className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+              </div>
+            </div>
+            <div className="mt-1 sm:mt-2 min-w-0">
+              <p className="text-xl sm:text-3xl font-black text-emerald-600 leading-none">
+                {stats.active}
               </p>
-              <p className="text-xl sm:text-3xl font-black text-emerald-600 mt-1 truncate">
-                {stats.kycVerified}
-              </p>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-emerald-600/80 mt-0.5 truncate">
-                Aadhaar &amp; PAN OK
+              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-1 truncate">
+                {stats.companies} Co. • {stats.individuals} Indiv.
               </p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-          </div>
+          </button>
 
-          {/* Card 4: Candidates Referred */}
-          <div className="bg-white rounded-2xl p-3.5 sm:p-5 border border-slate-200/80 shadow-sm flex items-center justify-between">
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider truncate">
-                Total Candidates
-              </p>
-              <p className="text-xl sm:text-3xl font-black text-teal-600 mt-1 truncate">
+          {/* Card 4: Candidates Mobilized */}
+          <button
+            type="button"
+            onClick={() => {
+              setKpiFilter(kpiFilter === "mobilized" ? "all" : "mobilized");
+            }}
+            className={`text-left rounded-2xl p-3 sm:p-5 border shadow-sm flex flex-col justify-between cursor-pointer transition-all group active:scale-[0.98] ${
+              kpiFilter === "mobilized"
+                ? "bg-gradient-to-br from-teal-500/10 via-white to-teal-50/30 border-teal-400 ring-2 ring-teal-400/40 shadow-md"
+                : "bg-white border-slate-200/80 hover:border-teal-300 hover:shadow-md"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-1.5 w-full">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <p className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate ${
+                  kpiFilter === "mobilized" ? "text-teal-700" : "text-slate-500 group-hover:text-teal-700"
+                }`}>
+                  Mobilized
+                </p>
+                {kpiFilter === "mobilized" && (
+                  <span className="text-[9px] font-black text-teal-700 bg-teal-100 px-1.5 py-0.5 rounded-full shrink-0">
+                    Mobilized
+                  </span>
+                )}
+              </div>
+              <div className={`w-7 h-7 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 ${
+                kpiFilter === "mobilized"
+                  ? "bg-teal-600 text-white shadow-sm shadow-teal-600/30"
+                  : "bg-teal-50 text-teal-600"
+              }`}>
+                <Users className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+              </div>
+            </div>
+            <div className="mt-1 sm:mt-2 min-w-0">
+              <p className="text-xl sm:text-3xl font-black text-teal-600 leading-none">
                 {stats.totalCandidates}
               </p>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-0.5 truncate">
-                Across all partners
+              <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-1 truncate">
+                Total candidates
               </p>
             </div>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
-              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-          </div>
+          </button>
         </div>
 
         {/* ── FILTERS & SEARCH BAR ─────────────────────────── */}
@@ -844,9 +1151,29 @@ Best regards,
             )}
           </div>
 
-          {/* Sub-Filters: Type, MoU, KYC, Status + View Toggle */}
+          {/* Sub-Filters: Phase, Type, MoU, KYC, Status + View Toggle & Reset */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 flex-1">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 flex-1">
+              {/* Pipeline Phase Filter */}
+              <select
+                value={stageFilter}
+                onChange={(e) => {
+                  setStageFilter(e.target.value);
+                  if (e.target.value !== "All") setKpiFilter("all");
+                }}
+                className={`w-full px-2.5 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
+                  stageFilter !== "All"
+                    ? "bg-amber-50 text-amber-900 border-amber-300 ring-1 ring-amber-400/40"
+                    : "bg-slate-50 border-slate-200 text-slate-700 focus:outline-none focus:border-emerald-500"
+                }`}
+              >
+                <option value="All">All Phases ({partners.length})</option>
+                <option value="New Inquiry">🟡 Phase 1: New Inquiry ({stats.newInquiries || 0})</option>
+                <option value="In Discussion">🔵 Phase 2: In Discussion ({stats.inDiscussion || 0})</option>
+                <option value="KYC & MoU Pending">🟣 Phase 3: KYC & MoU ({stats.mouReview || stats.pendingMou || 0})</option>
+                <option value="Partnership Active">🟢 Phase 4: Active 🤝 ({stats.active || 0})</option>
+              </select>
+
               {/* Entity Type Filter */}
               <select
                 value={typeFilter}
@@ -893,30 +1220,60 @@ Best regards,
               </select>
             </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center justify-end bg-slate-100 p-0.5 rounded-xl border border-slate-200 self-end sm:self-auto shrink-0">
-              <button
-                onClick={() => setViewMode("table")}
-                className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
-                  viewMode === "table"
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-500 hover:text-slate-800"
-                }`}
-                title="Table View"
-              >
-                <List className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setViewMode("cards")}
-                className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
-                  viewMode === "cards"
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-500 hover:text-slate-800"
-                }`}
-                title="Grid Cards View"
-              >
-                <LayoutGrid className="w-4 h-4" />
-              </button>
+            {/* Actions: Reset Filter & View Mode Toggle */}
+            <div className="flex items-center justify-end gap-1.5 self-end sm:self-auto shrink-0">
+              {(kpiFilter !== "all" ||
+                stageFilter !== "All" ||
+                typeFilter !== "All" ||
+                mouFilter !== "All" ||
+                kycFilter !== "All" ||
+                statusFilter !== "All" ||
+                searchQuery.trim() !== "") && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setKpiFilter("all");
+                    setStageFilter("All");
+                    setTypeFilter("All");
+                    setMouFilter("All");
+                    setKycFilter("All");
+                    setStatusFilter("All");
+                    setSearchQuery("");
+                  }}
+                  className="px-2.5 py-1.5 rounded-xl text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-all flex items-center gap-1 cursor-pointer active:scale-95"
+                  title="Reset all filters"
+                >
+                  <X className="w-3.5 h-3.5" />
+                  <span>Reset ({filteredPartners.length}/{partners.length})</span>
+                </button>
+              )}
+
+              <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("table")}
+                  className={`p-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === "table"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-500 hover:text-slate-800"
+                  }`}
+                  title="Table View"
+                >
+                  <List className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("cards")}
+                  className={`p-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === "cards"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-500 hover:text-slate-800"
+                  }`}
+                  title="Grid Cards View"
+                >
+                  <LayoutGrid className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -953,7 +1310,7 @@ Best regards,
           /* ── TABLE VIEW WITH DUAL-MODE FOR MOBILE ─────── */
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
             {/* ── MOBILE PARTNER CARDS (block lg:hidden) ── */}
-            <div className="block lg:hidden divide-y divide-slate-100">
+            <div className="block lg:hidden space-y-3 p-3 bg-slate-50/60">
               {filteredPartners.map((partner) => {
                 const isCompany =
                   partner.partnerType === "Company" ||
@@ -972,28 +1329,32 @@ Best regards,
                   ? partner.whatsapp.replace(/[^0-9]/g, "")
                   : partner.phone.replace(/[^0-9]/g, "");
 
+                const isPipelineLead =
+                  partner.status !== "Active" &&
+                  partner.onboardingStage !== "Partnership Active";
+
                 return (
                   <div
                     key={partner.id}
-                    className="p-3.5 sm:p-4 hover:bg-slate-50/60 transition-colors space-y-3"
+                    className="bg-white rounded-2xl border border-slate-200/90 shadow-xs p-3.5 sm:p-4 space-y-3 hover:border-emerald-300 transition-all"
                   >
-                    {/* Header: Avatar, Name, Type, Status */}
+                    {/* Header: Avatar, Name, Type, Status & Pipeline Phase */}
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2.5 min-w-0">
                         <div
-                          className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${
+                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${
                             isCompany
                               ? "bg-purple-100 text-purple-700 border border-purple-200"
                               : "bg-blue-100 text-blue-700 border border-blue-200"
                           }`}
                         >
-                          {isCompany ? <Building2 className="w-4 h-4" /> : <User className="w-4 h-4" />}
+                          {isCompany ? <Building2 className="w-4 h-4 sm:w-5 sm:h-5" /> : <User className="w-4 h-4 sm:w-5 sm:h-5" />}
                         </div>
                         <div className="min-w-0">
                           <h4 className="font-bold text-sm text-slate-900 truncate">
                             {partner.name}
                           </h4>
-                          <div className="flex items-center gap-1.5 mt-0.5">
+                          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
                             <span
                               className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
                                 isCompany
@@ -1006,55 +1367,104 @@ Best regards,
                             <span className="text-[11px] text-slate-500 font-medium truncate">
                               {partner.city}
                             </span>
+                            {partner.partnerCode && (
+                              <span className="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                                {partner.partnerCode}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
 
-                      <span
-                        className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${
-                          partner.status === "Active"
-                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                            : partner.status === "Pending Verification"
-                            ? "bg-amber-50 text-amber-700 border border-amber-200"
-                            : "bg-slate-100 text-slate-500 border border-slate-200"
-                        }`}
-                      >
-                        {partner.status}
-                      </span>
+                      <div className="flex flex-col items-end gap-1 shrink-0">
+                        {renderStageBadge(partner.onboardingStage)}
+                        <span
+                          className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                            partner.status === "Active"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                              : partner.status === "Pending Verification"
+                              ? "bg-amber-50 text-amber-700 border border-amber-200"
+                              : "bg-slate-100 text-slate-500 border border-slate-200"
+                          }`}
+                        >
+                          {partner.status}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Stage Quick Selector & Sourcing Capacity */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200/70">
+                      <div className="flex items-center gap-1.5 min-w-0 w-full sm:w-auto">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">Phase:</span>
+                        {canEdit ? (
+                          <select
+                            value={
+                              partner.onboardingStage ||
+                              (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
+                            }
+                            onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                            className="w-full sm:w-auto text-xs font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-800 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                          >
+                            <option value="New Inquiry">🟡 1. New Inquiry</option>
+                            <option value="In Discussion">🔵 2. In Discussion</option>
+                            <option value="KYC & MoU Pending">🟣 3. KYC &amp; MoU Pending</option>
+                            <option value="Partnership Active">🟢 4. Partnership Active 🤝</option>
+                            <option value="Inactive">⚪ Inactive</option>
+                          </select>
+                        ) : (
+                          <span className="text-xs font-bold text-slate-700">
+                            {partner.onboardingStage || "Inquiry"}
+                          </span>
+                        )}
+                      </div>
+
+                      {partner.sourcingCapacity && (
+                        <span className="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 shrink-0 self-start sm:self-auto truncate max-w-full">
+                          Cap: {partner.sourcingCapacity}
+                        </span>
+                      )}
                     </div>
 
                     {/* Contact Person & Contact Details */}
-                    <div className="bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 text-xs space-y-1.5">
+                    <div className="bg-slate-50/90 p-3 rounded-xl border border-slate-100 text-xs space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-slate-500 text-[11px]">Contact Person:</span>
                         <span className="font-bold text-slate-800">{partner.contactPerson}</span>
                       </div>
-                      <div className="flex items-center justify-between gap-2 flex-wrap">
+
+                      {/* Touch-Friendly Action Buttons: Phone & WhatsApp */}
+                      <div className="grid grid-cols-2 gap-2 pt-1">
                         <a
                           href={`tel:${partner.phone}`}
-                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 hover:text-emerald-700 font-mono"
+                          className="py-1.5 px-2.5 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 font-mono text-xs font-bold text-slate-700 flex items-center justify-center gap-1.5 transition-colors active:scale-95"
                         >
-                          <Phone className="w-3 h-3 text-slate-400" />
-                          <span>{partner.phone}</span>
+                          <Phone className="w-3.5 h-3.5 text-slate-500" />
+                          <span className="truncate">{partner.phone}</span>
                         </a>
-                        {cleanPhone && (
+
+                        {cleanPhone ? (
                           <a
                             href={`https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(
                               partner.contactPerson
                             )},%20regarding%20candidate%20sourcing%20partnership%20with%20WorkWise%20Visa...`}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100/70 text-emerald-800 text-[10px] font-bold border border-emerald-200"
+                            className="py-1.5 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-xs transition-colors active:scale-95"
                           >
-                            <MessageSquare className="w-2.5 h-2.5" />
+                            <MessageSquare className="w-3.5 h-3.5" />
                             <span>WhatsApp</span>
                           </a>
+                        ) : (
+                          <div className="py-1.5 px-2.5 rounded-xl bg-slate-100 text-slate-400 text-xs font-medium text-center">
+                            No WhatsApp
+                          </div>
                         )}
                       </div>
+
                       {partner.commissionTerms && (
-                        <div className="flex items-center justify-between text-[11px] pt-1 border-t border-slate-200/60">
-                          <span className="text-slate-500">Terms:</span>
-                          <span className="text-slate-700 font-medium truncate max-w-[200px]">
+                        <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-200/60">
+                          <span className="text-slate-500 shrink-0">Terms:</span>
+                          <span className="text-slate-700 font-medium truncate ml-2">
                             {partner.commissionTerms}
                           </span>
                         </div>
@@ -1072,7 +1482,7 @@ Best regards,
                         {canEdit && (
                           <button
                             onClick={() => handleQuickAddCandidate(partner)}
-                            className="text-[10px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded"
+                            className="text-[10px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded active:scale-95 cursor-pointer"
                             title="Click to increment candidates referred count by 1"
                           >
                             +1
@@ -1110,7 +1520,7 @@ Best regards,
                     {/* Actions Bar */}
                     <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
                       {/* Document Viewer links */}
-                      <div className="flex items-center gap-1.5 flex-wrap">
+                      <div className="flex items-center gap-2 flex-wrap">
                         {partner.mouDocumentUrl && (
                           <button
                             onClick={() =>
@@ -1122,7 +1532,7 @@ Best regards,
                                 date: partner.mouSignedDate,
                               })
                             }
-                            className="text-[11px] font-bold text-indigo-600 hover:underline flex items-center gap-0.5"
+                            className="text-[11px] font-bold text-indigo-600 hover:underline flex items-center gap-0.5 cursor-pointer"
                           >
                             <FileText className="w-3 h-3" /> MoU
                           </button>
@@ -1138,7 +1548,7 @@ Best regards,
                                 date: partner.aadhaarNumber,
                               })
                             }
-                            className="text-[11px] font-bold text-emerald-700 hover:underline flex items-center gap-0.5"
+                            className="text-[11px] font-bold text-emerald-700 hover:underline flex items-center gap-0.5 cursor-pointer"
                           >
                             <IdCard className="w-3 h-3" /> Aadhaar
                           </button>
@@ -1154,27 +1564,42 @@ Best regards,
                                 date: partner.panNumber,
                               })
                             }
-                            className="text-[11px] font-bold text-indigo-700 hover:underline flex items-center gap-0.5"
+                            className="text-[11px] font-bold text-indigo-700 hover:underline flex items-center gap-0.5 cursor-pointer"
                           >
                             <CreditCard className="w-3 h-3" /> PAN
                           </button>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {canEdit && (
+                          <button
+                            onClick={() => openLoginModal(partner)}
+                            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
+                              partner.isLoginEnabled
+                                ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
+                                : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
+                            }`}
+                            title="Partner Portal Login Credentials"
+                          >
+                            <Key className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+
                         {canEdit && (
                           <button
                             onClick={() => openEditModal(partner)}
-                            className="px-2.5 py-1 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg inline-flex items-center gap-1 active:scale-95"
+                            className="px-2.5 py-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl inline-flex items-center gap-1 active:scale-95 cursor-pointer"
                           >
                             <Edit3 className="w-3.5 h-3.5" />
                             <span>Edit</span>
                           </button>
                         )}
+
                         {canDelete && (
                           <button
                             onClick={() => setPartnerToDelete(partner)}
-                            className="p-1 text-rose-600 hover:bg-rose-50 rounded-lg active:scale-95"
+                            className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-xl active:scale-95 cursor-pointer"
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -1192,15 +1617,12 @@ Best regards,
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200/90 text-slate-500 font-bold text-[11px] uppercase tracking-wider">
-                    <th className="py-3.5 px-4">Partner / Entity</th>
-                    <th className="py-3.5 px-4">Contact Person</th>
-                    <th className="py-3.5 px-4">Location</th>
-                    <th className="py-3.5 px-4">Commercial Terms</th>
-                    <th className="py-3.5 px-4 text-center">Candidates</th>
-                    <th className="py-3.5 px-4">Signed MoU</th>
-                    <th className="py-3.5 px-4">Safety &amp; KYC (Aadhaar / PAN)</th>
-                    <th className="py-3.5 px-4 text-center">Status</th>
-                    <th className="py-3.5 px-4 text-right">Actions</th>
+                    <th className="py-3.5 px-4 w-[28%]">Partner &amp; Location</th>
+                    <th className="py-3.5 px-3.5 w-[20%]">Contact Person</th>
+                    <th className="py-3.5 px-3.5 w-[18%]">Pipeline Phase</th>
+                    <th className="py-3.5 px-3.5 w-[20%]">Compliance (MoU &amp; KYC)</th>
+                    <th className="py-3.5 px-2 w-[7%] text-center">Candidates</th>
+                    <th className="py-3.5 px-4 w-[7%] text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -1227,11 +1649,11 @@ Best regards,
                         key={partner.id}
                         className="hover:bg-slate-50/80 transition-colors group"
                       >
-                        {/* 1. Partner Name & Entity Badge */}
+                        {/* 1. Partner Name, Entity & Location */}
                         <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-start gap-2.5">
                             <div
-                              className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${
+                              className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold flex-shrink-0 mt-0.5 ${
                                 isCompany
                                   ? "bg-purple-100 text-purple-700 border border-purple-200"
                                   : "bg-blue-100 text-blue-700 border border-blue-200"
@@ -1243,13 +1665,13 @@ Best regards,
                                 <User className="w-4 h-4" />
                               )}
                             </div>
-                            <div>
-                              <div className="flex items-center gap-2">
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
                                 <span className="font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
                                   {partner.name}
                                 </span>
                                 <span
-                                  className={`px-2 py-0.5 rounded-md text-[10px] font-extrabold ${
+                                  className={`px-1.5 py-0.2 rounded text-[10px] font-extrabold ${
                                     isCompany
                                       ? "bg-purple-50 text-purple-700 border border-purple-200"
                                       : "bg-blue-50 text-blue-700 border border-blue-200"
@@ -1257,24 +1679,34 @@ Best regards,
                                 >
                                   {isCompany ? "Company" : "Individual"}
                                 </span>
+                                {partner.partnerCode && (
+                                  <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">
+                                    {partner.partnerCode}
+                                  </span>
+                                )}
                               </div>
-                              <div className="text-[11px] text-slate-500 font-semibold mt-0.5">
-                                B2B Partner
+                              <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-500 font-semibold flex-wrap">
+                                <span className="flex items-center gap-1 text-slate-600">
+                                  <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                                  <span>{partner.city}{partner.state ? `, ${partner.state}` : ""}</span>
+                                </span>
+                                {partner.sourcingCapacity && (
+                                  <span className="text-[10px] text-amber-800 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">
+                                    {partner.sourcingCapacity}
+                                  </span>
+                                )}
                               </div>
                             </div>
                           </div>
                         </td>
 
                         {/* 2. Contact Person & WhatsApp */}
-                        <td className="py-3.5 px-4">
-                          <div className="font-semibold text-slate-800">
+                        <td className="py-3.5 px-3.5">
+                          <div className="font-bold text-slate-800">
                             {partner.contactPerson}
                           </div>
-                          <div className="text-[11px] text-slate-400">
-                            {partner.designation || "Representative"}
-                          </div>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-[11px] font-medium text-slate-600 flex items-center gap-1">
+                          <div className="flex items-center gap-2 mt-1 flex-wrap">
+                            <span className="text-[11px] font-semibold text-slate-600 flex items-center gap-1 font-mono">
                               <Phone className="w-3 h-3 text-slate-400" />
                               {partner.phone}
                             </span>
@@ -1285,7 +1717,7 @@ Best regards,
                                 )},%20regarding%20candidate%20sourcing%20partnership%20with%20WorkWise%20Visa...`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-[10px] font-bold border border-emerald-200 transition-colors"
+                                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-[10px] font-bold border border-emerald-200 transition-colors"
                                 title="Chat on WhatsApp"
                               >
                                 <MessageSquare className="w-2.5 h-2.5" />
@@ -1295,118 +1727,90 @@ Best regards,
                           </div>
                         </td>
 
-                        {/* 3. Location */}
-                        <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-1 font-semibold text-slate-700">
-                            <MapPin className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
-                            <span>{partner.city}</span>
-                          </div>
-                          {partner.state && (
-                            <div className="text-[11px] text-slate-400 pl-4.5">
-                              {partner.state}, {partner.country || "India"}
-                            </div>
-                          )}
-                        </td>
-
-                        {/* 4. Commercial Terms */}
-                        <td className="py-3.5 px-4 max-w-[180px]">
-                          <div className="text-xs font-medium text-slate-800 line-clamp-2">
-                            {partner.commissionTerms || "Standard Sourcing Commission"}
-                          </div>
-                        </td>
-
-                        {/* 5. Candidates Referred */}
-                        <td className="py-3.5 px-4 text-center">
-                          <div className="inline-flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-xl font-bold text-slate-800">
-                            <TrendingUp className="w-3.5 h-3.5 text-teal-600" />
-                            <span>{partner.totalCandidatesReferred || 0}</span>
-                          </div>
-                          {canEdit && (
-                            <div className="mt-1">
-                              <button
-                                onClick={() => handleQuickAddCandidate(partner)}
-                                className="text-[10px] font-bold text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
-                                title="Click to increment candidates referred count by 1"
+                        {/* 3. Pipeline Phase & Stage Selector */}
+                        <td className="py-3.5 px-3.5">
+                          <div className="space-y-1 max-w-[180px]">
+                            <div>{renderStageBadge(partner.onboardingStage)}</div>
+                            {canEdit && (
+                              <select
+                                value={
+                                  partner.onboardingStage ||
+                                  (partner.status === "Active"
+                                    ? "Partnership Active"
+                                    : "New Inquiry")
+                                }
+                                onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                                className="w-full text-[10px] font-bold py-1 px-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                               >
-                                +1 Candidate
-                              </button>
-                            </div>
-                          )}
-                        </td>
-
-                        {/* 6. Signed MoU Document */}
-                        <td className="py-3.5 px-4">
-                          {isMouSigned ? (
-                            <div className="space-y-1">
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
-                                <FileCheck className="w-3.5 h-3.5 text-emerald-600" />
-                                <span>MoU Signed</span>
-                              </span>
-                              {partner.mouDocumentUrl ? (
-                                <div>
-                                  <button
-                                    onClick={() =>
-                                      setViewingDoc({
-                                        title: "Signed Partnership MoU",
-                                        partnerName: partner.name,
-                                        url: partner.mouDocumentUrl!,
-                                        fileName: partner.mouDocumentName,
-                                        date: partner.mouSignedDate,
-                                      })
-                                    }
-                                    className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer mt-0.5"
-                                  >
-                                    <FileText className="w-3 h-3" />
-                                    <span>View MoU</span>
-                                  </button>
-                                </div>
-                              ) : (
-                                <div className="text-[10px] text-slate-400 italic">
-                                  Physical MoU signed
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <div className="space-y-1">
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
-                                <Clock className="w-3.5 h-3.5 text-amber-600" />
-                                <span>{partner.mouStatus || "Pending MoU"}</span>
-                              </span>
-                              {canEdit && (
-                                <div>
-                                  <button
-                                    onClick={() => openEditModal(partner)}
-                                    className="text-[11px] font-bold text-emerald-600 hover:text-emerald-800 hover:underline cursor-pointer"
-                                  >
-                                    + Upload MoU
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </td>
-
-                        {/* 7. Safety & KYC (Aadhaar / PAN) */}
-                        <td className="py-3.5 px-4">
-                          <div className="space-y-1">
-                            {isKycComplete ? (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
-                                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                                <span>KYC Verified</span>
-                              </span>
-                            ) : hasAadhaar || hasPan ? (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
-                                <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                                <span>Partial KYC</span>
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-slate-100 text-slate-500 border border-slate-200">
-                                <span>KYC Pending</span>
-                              </span>
+                                <option value="New Inquiry">1. New Inquiry</option>
+                                <option value="In Discussion">2. In Discussion</option>
+                                <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending</option>
+                                <option value="Partnership Active">4. Partnership Active 🤝</option>
+                                <option value="Inactive">Inactive</option>
+                              </select>
                             )}
+                          </div>
+                        </td>
 
-                            {/* Clickable document preview badges */}
-                            <div className="flex items-center gap-2 pt-0.5 flex-wrap">
+                        {/* 4. Compliance: MoU & KYC */}
+                        <td className="py-3.5 px-3.5">
+                          <div className="space-y-1.5">
+                            {/* MoU Status Row */}
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              {isMouSigned ? (
+                                <>
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                    <FileCheck className="w-3 h-3 text-emerald-600" />
+                                    <span>MoU Signed</span>
+                                  </span>
+                                  {partner.mouDocumentUrl && (
+                                    <button
+                                      onClick={() =>
+                                        setViewingDoc({
+                                          title: "Signed Partnership MoU",
+                                          partnerName: partner.name,
+                                          url: partner.mouDocumentUrl!,
+                                          fileName: partner.mouDocumentName,
+                                          date: partner.mouSignedDate,
+                                        })
+                                      }
+                                      className="text-[10px] font-bold text-indigo-600 hover:underline cursor-pointer"
+                                    >
+                                      View
+                                    </button>
+                                  )}
+                                </>
+                              ) : (
+                                <>
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
+                                    <Clock className="w-3 h-3 text-amber-600" />
+                                    <span>MoU Pending</span>
+                                  </span>
+                                  {canEdit && (
+                                    <button
+                                      onClick={() => openEditModal(partner)}
+                                      className="text-[10px] font-bold text-emerald-600 hover:underline cursor-pointer"
+                                    >
+                                      +Upload
+                                    </button>
+                                  )}
+                                </>
+                              )}
+                            </div>
+
+                            {/* KYC Documents Row */}
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              {isKycComplete ? (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                  <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                                  <span>KYC Verified</span>
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500 border border-slate-200">
+                                  <span>KYC Pending</span>
+                                </span>
+                              )}
+
                               {hasAadhaar ? (
                                 <button
                                   onClick={() =>
@@ -1418,11 +1822,10 @@ Best regards,
                                       date: partner.aadhaarNumber,
                                     })
                                   }
-                                  className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-1.5 py-0.5 rounded border border-slate-200 cursor-pointer"
-                                  title={`View Aadhaar (${partner.aadhaarNumber || "Uploaded"})`}
+                                  className="text-[10px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-1 py-0.2 rounded border border-emerald-200 cursor-pointer"
+                                  title="View Aadhaar"
                                 >
-                                  <IdCard className="w-3 h-3 text-emerald-600" />
-                                  <span>Aadhaar ✓</span>
+                                  Aadhaar ✓
                                 </button>
                               ) : (
                                 <span className="text-[10px] text-slate-400">Aadhaar ✕</span>
@@ -1439,11 +1842,10 @@ Best regards,
                                       date: partner.panNumber,
                                     })
                                   }
-                                  className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-1.5 py-0.5 rounded border border-slate-200 cursor-pointer"
-                                  title={`View PAN (${partner.panNumber || "Uploaded"})`}
+                                  className="text-[10px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-1 py-0.2 rounded border border-indigo-200 cursor-pointer"
+                                  title="View PAN"
                                 >
-                                  <CreditCard className="w-3 h-3 text-indigo-600" />
-                                  <span>PAN ✓</span>
+                                  PAN ✓
                                 </button>
                               ) : (
                                 <span className="text-[10px] text-slate-400">PAN ✕</span>
@@ -1452,35 +1854,39 @@ Best regards,
                           </div>
                         </td>
 
-                        {/* 8. Status */}
-                        <td className="py-3.5 px-4 text-center">
-                          <span
-                            className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-extrabold ${
-                              partner.status === "Active"
-                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                                : partner.status === "Pending Verification"
-                                ? "bg-amber-50 text-amber-700 border border-amber-200"
-                                : "bg-slate-100 text-slate-500 border border-slate-200"
-                            }`}
-                          >
-                            {partner.status}
-                          </span>
+                        {/* 5. Candidates Referred */}
+                        <td className="py-3.5 px-2 text-center">
+                          <div className="inline-flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-lg font-bold text-slate-800 text-xs">
+                            <TrendingUp className="w-3 h-3 text-teal-600" />
+                            <span>{partner.totalCandidatesReferred || 0}</span>
+                          </div>
+                          {canEdit && (
+                            <div className="mt-0.5">
+                              <button
+                                onClick={() => handleQuickAddCandidate(partner)}
+                                className="text-[10px] font-bold text-emerald-700 hover:underline cursor-pointer"
+                                title="+1 Candidate referred"
+                              >
+                                +1
+                              </button>
+                            </div>
+                          )}
                         </td>
 
-                        {/* 9. Actions */}
+                        {/* 6. Actions */}
                         <td className="py-3.5 px-4 text-right">
-                          <div className="flex items-center justify-end gap-1.5">
+                          <div className="flex items-center justify-end gap-1">
                             {canEdit && (
                               <button
                                 onClick={() => openLoginModal(partner)}
-                                className={`p-1.5 rounded-lg border transition-colors ${
+                                className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                                   partner.isLoginEnabled
                                     ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
                                     : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
                                 }`}
                                 title={
                                   partner.isLoginEnabled
-                                    ? "Portal Login Active — Click to manage / reset password"
+                                    ? "Portal Login Active — Manage"
                                     : "Enable Partner Portal Login"
                                 }
                               >
@@ -1490,7 +1896,7 @@ Best regards,
                             {canEdit && (
                               <button
                                 onClick={() => openEditModal(partner)}
-                                className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+                                className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
                                 title="Edit Details, MoU & KYC"
                               >
                                 <Edit3 className="w-4 h-4" />
@@ -1499,7 +1905,7 @@ Best regards,
                             {canDelete && (
                               <button
                                 onClick={() => setPartnerToDelete(partner)}
-                                className="p-1.5 rounded-lg text-slate-500 hover:text-rose-700 hover:bg-rose-50 transition-colors"
+                                className="p-1.5 rounded-lg text-slate-500 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
                                 title="Delete Partner"
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -1571,27 +1977,65 @@ Best regards,
                             >
                               {isCompany ? "Company" : "Individual"}
                             </span>
-                            <span className="text-[11px] text-slate-500 font-semibold">
-                              B2B Partner
-                            </span>
+                            {partner.partnerCode && (
+                              <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">
+                                {partner.partnerCode}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1.5 mt-1 text-[11px] text-slate-500 font-semibold flex-wrap">
+                            {partner.sourcingCapacity && (
+                              <span className="text-[10px] text-amber-800 bg-amber-50 px-1.5 rounded border border-amber-200">
+                                Cap: {partner.sourcingCapacity}
+                              </span>
+                            )}
+                            {partner.source && (
+                              <span className="text-[10px] text-slate-400">
+                                via {partner.source}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
 
-                      {/* Status */}
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${
-                          partner.status === "Active"
-                            ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                            : "bg-amber-50 text-amber-700 border border-amber-200"
-                        }`}
-                      >
-                        {partner.status}
-                      </span>
+                      {/* Status & Stage */}
+                      <div className="flex flex-col items-end gap-1 shrink-0">
+                        {renderStageBadge(partner.onboardingStage)}
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold ${
+                            partner.status === "Active"
+                              ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                              : "bg-amber-50 text-amber-700 border border-amber-200"
+                          }`}
+                        >
+                          {partner.status}
+                        </span>
+                      </div>
                     </div>
 
+                    {/* Quick Stage Selector */}
+                    {canEdit && (
+                      <div className="mt-3 flex items-center justify-between gap-2 p-2 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                        <span className="text-slate-400 font-semibold text-[11px]">Phase:</span>
+                        <select
+                          value={
+                            partner.onboardingStage ||
+                            (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
+                          }
+                          onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                          className="text-[10px] font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500"
+                        >
+                          <option value="New Inquiry">1. New Inquiry</option>
+                          <option value="In Discussion">2. In Discussion</option>
+                          <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending</option>
+                          <option value="Partnership Active">4. Partnership Active 🤝</option>
+                          <option value="Inactive">Inactive</option>
+                        </select>
+                      </div>
+                    )}
+
                     {/* Contact Details */}
-                    <div className="mt-4 space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs">
+                    <div className="mt-3 space-y-2 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs">
                       <div className="flex items-center justify-between text-slate-700 font-semibold">
                         <span>{partner.contactPerson}</span>
                         <span className="text-slate-400 text-[11px]">
@@ -1688,7 +2132,7 @@ Best regards,
                   </div>
 
                   {/* Card Footer: MoU & Actions */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between flex-wrap gap-2">
                     <div>
                       {isMouSigned ? (
                         <div className="flex items-center gap-1.5">
@@ -1721,46 +2165,46 @@ Best regards,
                       )}
                     </div>
 
-                      <div className="flex items-center gap-1">
-                        {canEdit && (
-                          <button
-                            onClick={() => openLoginModal(partner)}
-                            className={`p-1.5 rounded-lg border transition-colors ${
-                              partner.isLoginEnabled
-                                ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
-                                : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
-                            }`}
-                            title={
-                              partner.isLoginEnabled
-                                ? "Portal Login Active — Manage"
-                                : "Enable Partner Portal Login"
-                            }
-                          >
-                            <Key className="w-4 h-4" />
-                          </button>
-                        )}
-                        {cleanPhone && (
-                          <a
-                            href={`https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(
-                              partner.contactPerson
-                            )},%20regarding%20candidate%20sourcing%20partnership%20with%20WorkWise%20Visa...`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
-                            title="WhatsApp"
-                          >
-                            <MessageSquare className="w-4 h-4" />
-                          </a>
-                        )}
-                        {canEdit && (
-                          <button
-                            onClick={() => openEditModal(partner)}
-                            className="p-1.5 rounded-lg text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 border border-slate-200"
-                            title="Edit Details, MoU & KYC"
-                          >
-                            <Edit3 className="w-4 h-4" />
-                          </button>
-                        )}
+                    <div className="flex items-center gap-1 flex-wrap">
+                      {canEdit && (
+                        <button
+                          onClick={() => openLoginModal(partner)}
+                          className={`p-1.5 rounded-lg border transition-colors ${
+                            partner.isLoginEnabled
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
+                              : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
+                          }`}
+                          title={
+                            partner.isLoginEnabled
+                              ? "Portal Login Active — Manage"
+                              : "Enable Partner Portal Login"
+                          }
+                        >
+                          <Key className="w-4 h-4" />
+                        </button>
+                      )}
+                      {cleanPhone && (
+                        <a
+                          href={`https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(
+                            partner.contactPerson
+                          )},%20regarding%20candidate%20sourcing%20partnership%20with%20WorkWise%20Visa...`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
+                          title="WhatsApp"
+                        >
+                          <MessageSquare className="w-4 h-4" />
+                        </a>
+                      )}
+                      {canEdit && (
+                        <button
+                          onClick={() => openEditModal(partner)}
+                          className="p-1.5 rounded-lg text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 border border-slate-200"
+                          title="Edit Details, MoU & KYC"
+                        >
+                          <Edit3 className="w-4 h-4" />
+                        </button>
+                      )}
                       {canDelete && (
                         <button
                           onClick={() => setPartnerToDelete(partner)}
@@ -1925,7 +2369,31 @@ Best regards,
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Status
+                      Onboarding Phase / Lead Stage *
+                    </label>
+                    <select
+                      value={form.onboardingStage || "New Inquiry"}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          onboardingStage: e.target.value,
+                          status:
+                            e.target.value === "Partnership Active" ? "Active" : form.status,
+                        })
+                      }
+                      className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-500 focus:outline-none text-slate-800 font-bold"
+                    >
+                      <option value="New Inquiry">1. New Inquiry (Nayi Lead)</option>
+                      <option value="In Discussion">2. In Discussion (Baat chal rahi hai)</option>
+                      <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending (Under Verification)</option>
+                      <option value="Partnership Active">4. Partnership Active (Signed &amp; Live)</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Account Status
                     </label>
                     <select
                       value={form.status}
@@ -1936,6 +2404,32 @@ Best regards,
                       <option value="Pending Verification">Pending Verification</option>
                       <option value="Inactive">Inactive</option>
                     </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Lead / Inquiry Source
+                    </label>
+                    <input
+                      type="text"
+                      value={form.source || ""}
+                      onChange={(e) => setForm({ ...form, source: e.target.value })}
+                      placeholder="e.g. Website B2B Partner Form, Direct WhatsApp, Referral"
+                      className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-500 focus:outline-none text-slate-800"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Monthly Sourcing Capacity
+                    </label>
+                    <input
+                      type="text"
+                      value={form.sourcingCapacity || ""}
+                      onChange={(e) => setForm({ ...form, sourcingCapacity: e.target.value })}
+                      placeholder="e.g. 10-25 candidates / month"
+                      className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-500 focus:outline-none text-slate-800"
+                    />
                   </div>
                 </div>
 

@@ -115,6 +115,9 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       kycStatus: kycStatus !== undefined ? kycStatus : undefined,
 
       agreementStatus: mouStatus === "Signed" ? "Signed MoU" : "None",
+      ...(body.onboardingStage !== undefined ? { onboardingStage: body.onboardingStage } : {}),
+      ...(body.source !== undefined ? { source: body.source?.trim() } : {}),
+      ...(body.sourcingCapacity !== undefined ? { sourcingCapacity: body.sourcingCapacity?.trim() } : {}),
     };
 
     // B2B Partner Portal Login access & password management

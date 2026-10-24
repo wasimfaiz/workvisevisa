@@ -10,6 +10,12 @@ export type PartnerType = "Individual" | "Company" | "Agency" | string;
 export type PartnerStatus = "Active" | "Pending Verification" | "Inactive" | string;
 export type MouStatus = "Signed" | "Pending" | "Under Review" | "Expired" | "None";
 export type KycStatus = "Verified" | "Pending" | "Incomplete" | string;
+export type OnboardingStage =
+  | "New Inquiry"
+  | "In Discussion"
+  | "KYC & MoU Pending"
+  | "Partnership Active"
+  | "Inactive";
 
 export interface IPartner extends Document {
   partnerCode?: string;
@@ -25,6 +31,9 @@ export interface IPartner extends Document {
   country: string;
   address?: string;
   status: string;
+  onboardingStage?: OnboardingStage | string;
+  source?: string;
+  sourcingCapacity?: string;
   commissionTerms?: string;
   totalCandidatesReferred: number;
   totalSelected: number;
@@ -139,6 +148,22 @@ const PartnerSchema = new Schema<IPartner>(
       type: String,
       default: "Active",
       trim: true,
+    },
+    onboardingStage: {
+      type: String,
+      default: "Partnership Active",
+      trim: true,
+      index: true,
+    },
+    source: {
+      type: String,
+      default: "Manual Admin Entry",
+      trim: true,
+    },
+    sourcingCapacity: {
+      type: String,
+      trim: true,
+      default: "",
     },
     commissionTerms: {
       type: String,

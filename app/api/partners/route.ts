@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get("status")?.trim() || "";
     const mouStatus = searchParams.get("mouStatus")?.trim() || "";
     const kycStatus = searchParams.get("kycStatus")?.trim() || "";
+    const onboardingStage = searchParams.get("onboardingStage")?.trim() || "";
 
     const query: Record<string, any> = {};
 
@@ -38,6 +39,10 @@ export async function GET(request: NextRequest) {
 
     if (status && status !== "All") {
       query.status = status;
+    }
+
+    if (onboardingStage && onboardingStage !== "All") {
+      query.onboardingStage = onboardingStage;
     }
 
     if (mouStatus && mouStatus !== "All") {
@@ -59,6 +64,7 @@ export async function GET(request: NextRequest) {
         { partnerCode: { $regex: search, $options: "i" } },
         { panNumber: { $regex: search, $options: "i" } },
         { aadhaarNumber: { $regex: search, $options: "i" } },
+        { source: { $regex: search, $options: "i" } },
       ];
     }
 
@@ -68,7 +74,21 @@ export async function GET(request: NextRequest) {
     const allPartners = await Partner.find({}).lean();
     const stats = {
       total: allPartners.length,
-      active: allPartners.filter((p) => p.status === "Active").length,
+      active: allPartners.filter(
+        (p) => p.status === "Active" || p.onboardingStage === "Partnership Active"
+      ).length,
+      pipelineLeads: allPartners.filter(
+        (p) =>
+          p.onboardingStage === "New Inquiry" ||
+          p.onboardingStage === "In Discussion" ||
+          p.onboardingStage === "KYC & MoU Pending" ||
+          p.status === "Pending Verification"
+      ).length,
+      newInquiries: allPartners.filter((p) => p.onboardingStage === "New Inquiry").length,
+      inDiscussion: allPartners.filter((p) => p.onboardingStage === "In Discussion").length,
+      mouReview: allPartners.filter(
+        (p) => p.onboardingStage === "KYC & MoU Pending" || p.mouStatus === "Under Review"
+      ).length,
       companies: allPartners.filter(
         (p) => p.partnerType === "Company" || p.partnerType === "Agency" || p.partnerType === "Overseas Employer"
       ).length,
@@ -171,6 +191,11 @@ export async function POST(request: NextRequest) {
       country: body.country?.trim() || "India",
       address: body.address?.trim() || "",
       status: body.status || "Active",
+      onboardingStage:
+        body.onboardingStage ||
+        (body.status === "Pending Verification" ? "New Inquiry" : "Partnership Active"),
+      source: body.source?.trim() || "Manual Admin Entry",
+      sourcingCapacity: body.sourcingCapacity?.trim() || "",
       commissionTerms: body.commissionTerms?.trim() || "Standard Sourcing Commission",
       totalCandidatesReferred: Number(body.totalCandidatesReferred) || 0,
       totalSelected: Number(body.totalSelected) || 0,

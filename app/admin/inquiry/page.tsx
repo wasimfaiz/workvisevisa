@@ -48,6 +48,7 @@ import {
   ShieldCheck,
   ChevronRight,
   Sparkles,
+  Handshake,
 } from "lucide-react";
 import AdminSidebar from "@/components/AdminSidebar";
 import { EmployeePermissions } from "@/lib/types/rbac";
@@ -792,6 +793,38 @@ export default function AdminInquiryPage() {
                 <span>Export CSV</span>
               </button>
             )}
+          </div>
+        </div>
+
+        {/* ── Category Switcher: Candidate Job Leads vs B2B Partner Inquiries ── */}
+        <div className="bg-white p-2.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 text-white shadow-xs flex items-center gap-2">
+              <User className="w-4 h-4 text-emerald-400" />
+              <span>Candidate Job Leads</span>
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-white/20 text-white">
+                {inquiries.length}
+              </span>
+            </div>
+
+            <Link
+              href="/admin/partners"
+              className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200/80 hover:border-emerald-300 transition-all flex items-center gap-2 group cursor-pointer"
+            >
+              <Handshake className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
+              <span>B2B Sourcing Partners</span>
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-amber-100 text-amber-900 border border-amber-200">
+                23 in Pipeline
+              </span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="text-[11px] font-semibold text-slate-500 hidden md:flex items-center gap-1.5 px-2">
+            <span>B2B agencies &amp; sourcing partners are managed in</span>
+            <Link href="/admin/partners" className="text-emerald-700 font-bold underline hover:text-emerald-800">
+              B2B Partners Portal →
+            </Link>
           </div>
         </div>
 

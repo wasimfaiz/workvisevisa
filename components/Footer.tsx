@@ -20,6 +20,7 @@ const quickLinks = [
   { label: "Track Application", href: "/track", highlight: true },
   { label: "Jobs & Openings", href: "/jobs" },
   { label: "Countries", href: "/countries" },
+  { label: "B2B Partner Program", href: "/b2b-partner" },
   { label: "Our Locations", href: "/locations" },
   { label: "About Us", href: "/about" },
   { label: "Blogs", href: "/blogs" },
