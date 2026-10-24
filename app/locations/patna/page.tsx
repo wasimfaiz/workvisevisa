@@ -472,8 +472,8 @@ export default function PatnaLocationPage() {
                   service fees.
                 </p>
                 <div className="rounded-xl border border-blue-100 bg-blue-50/70 p-4">
-                  <p className="text-sm font-semibold text-blue-900">
-                    🏛️ Official Compliance Advice:
+                  <p className="text-sm font-bold text-blue-900">
+                    Statutory Compliance Advisory:
                   </p>
                   <p className="mt-1 text-xs text-blue-800">
                     Always confirm an agency&apos;s valid Registration

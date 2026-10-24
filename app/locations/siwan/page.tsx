@@ -439,8 +439,8 @@ export default function SiwanLocationPage() {
                   Visa Center (QVC) protocols.
                 </p>
                 <div className="rounded-xl border border-blue-100 bg-blue-50/70 p-4">
-                  <p className="text-sm font-semibold text-blue-900">
-                    💡 Authoritative Insight for Siwan Job Seekers:
+                  <p className="text-sm font-bold text-blue-900">
+                    Important Advisory for Siwan Candidates:
                   </p>
                   <p className="mt-1 text-xs text-blue-800">
                     Never hand over your original passport or cash down payment

@@ -434,8 +434,8 @@ export default function GopalganjLocationPage() {
                   (POE).
                 </p>
                 <div className="rounded-xl border border-blue-100 bg-blue-50/70 p-4">
-                  <p className="text-sm font-semibold text-blue-900">
-                    💡 Crucial Advice for Gopalganj Candidates:
+                  <p className="text-sm font-bold text-blue-900">
+                    Important Advisory for Gopalganj Candidates:
                   </p>
                   <p className="mt-1 text-xs text-blue-800">
                     Never surrender your original passport or make cash payments

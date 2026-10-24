@@ -529,7 +529,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                      Schengen Europe 🇵🇱
+                      Schengen Europe • Poland
                     </span>
                     <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
                       High Demand
@@ -562,7 +562,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-teal-700">
-                      Schengen Europe 🇭🇷 🇷🇴
+                      Schengen Europe • Croatia &amp; Romania
                     </span>
                     <span className="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-800">
                       Fast Track
@@ -595,7 +595,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                      Gulf GCC 🇸🇦
+                      Gulf GCC • Saudi Arabia
                     </span>
                     <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
                       Bulk Demands
@@ -628,7 +628,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-cyan-700">
-                      Gulf GCC 🇦🇪
+                      Gulf GCC • UAE
                     </span>
                     <span className="rounded-full bg-cyan-50 px-2.5 py-0.5 text-xs font-semibold text-cyan-800">
                       Immediate Flight
@@ -661,7 +661,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-700">
-                      Gulf GCC 🇶🇦 🇰🇼
+                      Gulf GCC • Qatar &amp; Kuwait
                     </span>
                     <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-800">
                       Turnaround Hiring
@@ -694,7 +694,7 @@ export default function DelhiLocationPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                      Gulf GCC 🇴🇲 🇧🇭
+                      Gulf GCC • Oman &amp; Bahrain
                     </span>
                     <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
                       High Currency Value

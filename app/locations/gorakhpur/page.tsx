@@ -477,8 +477,8 @@ export default function GorakhpurLocationPage() {
                   biometric skill verification.
                 </p>
                 <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
-                  <p className="text-sm font-semibold text-emerald-950">
-                    💡 Authoritative Advisory for Gorakhpur Aspirants:
+                  <p className="text-sm font-bold text-emerald-950">
+                    Important Advisory for Gorakhpur Candidates:
                   </p>
                   <p className="mt-1 text-xs text-emerald-800">
                     Never surrender your original passport or hand over cash to

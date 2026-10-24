@@ -471,8 +471,8 @@ export default function NoidaLocationPage() {
                   agreements, and comprehensive pre-departure briefings.
                 </p>
                 <div className="rounded-xl border border-blue-100 bg-blue-50/70 p-4">
-                  <p className="text-sm font-semibold text-blue-900">
-                    🏛️ Corporate Compliance Standard:
+                  <p className="text-sm font-bold text-blue-900">
+                    Corporate Compliance Standards:
                   </p>
                   <p className="mt-1 text-xs text-blue-800">
                     WorkWise Visa complies strictly with the Emigration Act 1983

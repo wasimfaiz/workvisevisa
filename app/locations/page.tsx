@@ -226,8 +226,9 @@ export default function LocationsHubPage() {
             {/* Delhi NCR Section */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
-                <span className="text-lg font-black text-slate-900">
-                  📍 Delhi NCR Candidate Placement Desk
+                <span className="text-lg font-black text-slate-900 flex items-center gap-2">
+                  <FaLocationDot className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Delhi NCR Candidate Placement Desk</span>
                 </span>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-100 text-cyan-800">
                   Connected to Noida Corporate HQ &amp; Central Consulates
@@ -267,8 +268,9 @@ export default function LocationsHubPage() {
             {/* Bihar Section */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
-                <span className="text-lg font-black text-slate-900">
-                  📍 Bihar Candidate Districts
+                <span className="text-lg font-black text-slate-900 flex items-center gap-2">
+                  <FaLocationDot className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Bihar Candidate Districts</span>
                 </span>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                   Connected to Patna Varma Centre
@@ -308,8 +310,9 @@ export default function LocationsHubPage() {
             {/* Uttar Pradesh Section */}
             <div>
               <div className="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
-                <span className="text-lg font-black text-slate-900">
-                  📍 Uttar Pradesh Candidate Districts
+                <span className="text-lg font-black text-slate-900 flex items-center gap-2">
+                  <FaLocationDot className="w-4 h-4 text-teal-600 shrink-0" />
+                  <span>Uttar Pradesh Candidate Districts</span>
                 </span>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800">
                   Connected to Noida HQ & Patna Branch

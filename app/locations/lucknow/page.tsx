@@ -446,8 +446,8 @@ export default function LucknowLocationPage() {
                   Every worker travels on a verifiable electronic visa with full government contract registration.
                 </p>
                 <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
-                  <p className="text-sm font-semibold text-emerald-950">
-                    💡 Authoritative Advisory for Lucknow Job Seekers:
+                  <p className="text-sm font-bold text-emerald-950">
+                    Important Advisory for Lucknow Candidates:
                   </p>
                   <p className="mt-1 text-xs text-emerald-800">
                     Never surrender your original passport or hand over cash to unauthorized intermediaries
