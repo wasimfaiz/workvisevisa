@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -19,6 +20,9 @@ import {
   FaCheck,
   FaBuildingColumns,
   FaCircleInfo,
+  FaCircleQuestion,
+  FaPlus,
+  FaMinus,
   FaPassport,
   FaPlaneDeparture,
   FaBriefcase,
@@ -68,12 +72,37 @@ const countryFaqs = [
     q: "Can I convert my GCC driving license when moving to Dubai or Saudi Arabia?",
     a: "Yes! Holders of valid GCC heavy vehicle licenses can fast-track their license transfer in Dubai, Abu Dhabi, or Riyadh with minimal refresher testing.",
   },
+  {
+    q: "How long is a Gulf employment visa valid, and can it be renewed?",
+    a: "Most GCC employment residence permits (UAE, Saudi Arabia, Qatar) are issued for an initial duration of 2 years (or up to 3 years in certain free zones). They are 100% renewable by the employer upon completion as long as the employment contract continues.",
+  },
+  {
+    q: "Can I bring my family on an overseas work visa?",
+    a: "Yes. Once your primary employment residency permit (such as an Emirates ID or Saudi Iqama) is stamped and you meet the host country's designated minimum salary threshold, you can legally sponsor dependent residence visas for your spouse and children.",
+  },
 ];
 
 export default function CountriesPage() {
   const [activeRegion, setActiveRegion] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const toggleFaq = (i: number) =>
+    setOpenFaqIndex((prev) => (prev === i ? null : i));
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: countryFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
 
   const filteredCountries = countries.filter((c) => {
     const matchesRegion =
@@ -328,31 +357,123 @@ export default function CountriesPage() {
           </div>
 
           {/* Country Visa FAQs */}
-          <div className="mt-12 rounded-3xl bg-white p-8 sm:p-12 border border-slate-200/90 shadow-sm">
-            <div className="max-w-3xl mb-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800 mb-3">
-                <FaCircleInfo className="w-3.5 h-3.5 text-emerald-600" />
-                Frequently Asked Questions
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900">
-                Overseas Visa & Destination FAQs
-              </h2>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2">
-              {countryFaqs.map((faq, i) => (
-                <div key={i} className="rounded-2xl bg-slate-50 border border-slate-200 p-6">
-                  <h3 className="font-bold text-slate-900 text-base mb-2 flex items-start gap-2">
-                    <span className="text-emerald-600">Q.</span>
-                    {faq.q}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal pl-5">
-                    {faq.a}
-                  </p>
+          <section id="faq" className="mt-16 rounded-3xl bg-white p-8 sm:p-12 border border-slate-200/90 shadow-sm overflow-hidden">
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+              {/* Left Column: Heading, Subheading & Quick Assistance Card */}
+              <div className="lg:col-span-5 lg:sticky lg:top-28 text-left">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-4 shadow-xs">
+                  <FaCircleQuestion className="w-3.5 h-3.5 text-emerald-600" />
+                  Frequently Asked Questions
                 </div>
-              ))}
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+                  Overseas Visa &amp; Destination FAQs
+                </h2>
+                <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
+                  Got questions about international work permits, GAMCA medical clearance, or embassy stamping? Here are clear, authentic answers for candidates.
+                </p>
+
+                {/* Quick Consultation Box */}
+                <div className="mt-8 rounded-2xl bg-slate-50 border border-slate-200 p-5 shadow-xs">
+                  <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider mb-1.5">
+                    <FaCircleInfo className="w-3.5 h-3.5" /> Need Country Advice?
+                  </div>
+                  <h3 className="text-sm font-bold text-slate-900 font-display">
+                    Have specific destination queries?
+                  </h3>
+                  <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
+                    Our licensed destination advisors can guide you on attested documentation, trade testing, and current visa processing times.
+                  </p>
+                  <a
+                    href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20have%20a%20question%20about%20country%20work%20visas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 text-xs font-bold transition-all shadow-xs"
+                  >
+                    <FaWhatsapp className="w-4 h-4" />
+                    <span>Ask Our Visa Desk</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Column: Accordion Questions */}
+              <div className="lg:col-span-7 space-y-4">
+                {countryFaqs.map((faq, i) => {
+                  const isOpen = openFaqIndex === i;
+                  return (
+                    <motion.div
+                      key={i}
+                      className={`relative rounded-2xl border transition-all duration-200 overflow-hidden ${
+                        isOpen
+                          ? "border-emerald-500/50 bg-white shadow-md"
+                          : "border-slate-200/90 bg-white/80 hover:border-slate-300 shadow-xs"
+                      }`}
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: i * 0.04 }}
+                    >
+                      {isOpen && (
+                        <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-500 to-teal-600" />
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => toggleFaq(i)}
+                        className="flex w-full items-center justify-between gap-4 px-6 sm:px-7 py-5.5 text-left cursor-pointer"
+                        aria-expanded={isOpen}
+                        aria-controls={`country-faq-answer-${i}`}
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-emerald-100 border border-emerald-200 text-xs font-bold text-emerald-800 font-display">
+                            0{i + 1}
+                          </span>
+                          <span className="text-base font-bold font-display text-slate-900">
+                            {faq.q}
+                          </span>
+                        </div>
+                        <div
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${
+                            isOpen
+                              ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+                              : "border-slate-200 bg-slate-100 text-slate-500"
+                          }`}
+                        >
+                          {isOpen ? (
+                            <FaMinus className="w-3.5 h-3.5" />
+                          ) : (
+                            <FaPlus className="w-3.5 h-3.5" />
+                          )}
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            id={`country-faq-answer-${i}`}
+                            role="region"
+                            aria-labelledby={`country-faq-question-${i}`}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-6 sm:px-7 pb-6 pl-16 sm:pl-17 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4 font-normal">
+                              {faq.a}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </section>
 
           {/* Bottom Consultation Banner */}
           <div className="mt-16 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 text-center text-white shadow-xl relative overflow-hidden">
