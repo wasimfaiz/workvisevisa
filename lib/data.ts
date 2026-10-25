@@ -257,6 +257,17 @@ export const countries: Country[] = [
     processingTime: "6–10 weeks",
     popularRoles: ["Structural Welder (6G TIG/MIG)", "CNC Operator & Machinist", "Construction Trades (Mason/Carpenter)", "Heavy Commercial Driver (CE)"],
   },
+  {
+    name: "Croatia",
+    code: "HR",
+    flag: "",
+    region: "Schengen",
+    description:
+      "Full Schengen member state and Eurozone economy offering up to 3-year Stay and Work Permits (Dozvola za boravak i rad), employer-provided housing, and high-volume demand across construction, 6G welding, heavy driving, hospitality, and manufacturing.",
+    visaTypes: ["Stay and Work Permit (Dozvola za boravak i rad)", "EU Blue Card (EU Plava karta)", "Seasonal Work Permit", "Shortage Occupation Quota Exemption"],
+    processingTime: "8–12 weeks",
+    popularRoles: ["6G Pipe & Structural Welder", "Heavy Commercial Driver (CE)", "Civil Construction (Mason/Carpenter/Steel Fixer)", "Hospitality Chef & Hotel Staff"],
+  },
 ];
 
 // ── Target Country Options for Form ──────────────────────────────

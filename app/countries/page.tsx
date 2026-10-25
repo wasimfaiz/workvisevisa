@@ -49,6 +49,7 @@ const COUNTRY_PAGES: Record<string, string> = {
   FR: "/countries/france",
   LU: "/countries/luxembourg",
   BG: "/countries/bulgaria",
+  HR: "/countries/croatia",
   CA: "/countries/canada",
   US: "/countries/usa",
   GB: "/countries/uk",
