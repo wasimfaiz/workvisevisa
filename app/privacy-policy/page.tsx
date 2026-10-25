@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacy Policy | WorkWise Visa — Overseas Job Placement & Visa Consultancy",
   description:
-    "Official Privacy Policy of WorkWise Visa (A Unit of Europass Immigration Pvt Ltd). Learn how we protect your personal information, candidate documents, and comply with Meta Advertising and global privacy regulations.",
+    "Official Privacy Policy of WorkWise Visa. Learn how we safeguard candidate documents, passport details, and CV data under strict global privacy laws.",
   alternates: {
     canonical: "https://www.workwisevisa.com/privacy-policy",
   },

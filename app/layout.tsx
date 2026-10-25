@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
   description:
-    "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
+    "Trusted work visa consultancy & overseas job placement. Secure verified Gulf & Europe jobs for trade workers & drivers. Book your free consultation now!",
   keywords: [
     "work visa consultancy",
     "overseas job placement",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
     description:
-      "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
+      "Trusted work visa consultancy & overseas job placement. Secure verified Gulf & Europe jobs for trade workers & drivers. Book your free consultation now!",
     url: "https://www.workwisevisa.com",
     siteName: "WorkWise Visa",
     images: [
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WorkWise Visa | Overseas Job Placement & Work Visa Agency",
     description:
-      "Trusted overseas job placement & work visa consultancy. Secure verified jobs for trade workers, drivers & welders across Gulf & Europe. 5,000+ happy clients.",
+      "Trusted work visa consultancy & overseas job placement. Secure verified Gulf & Europe jobs for trade workers & drivers. Book your free consultation now!",
     images: ["/images/workwise_logo.png"],
   },
   robots: {

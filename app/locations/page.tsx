@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   applicationName: "WorkWise Visa",
   title: "Our Locations & Branches in India | WorkWise Visa Network",
   description:
-    "Explore WorkWise Visa branch offices and regional candidate service hubs across Bihar, Uttar Pradesh and Delhi NCR. Visit our Patna & Noida branches or apply online from Siwan, Gopalganj, Gorakhpur, Lucknow and more.",
+    "Find WorkWise Visa branch offices & service hubs in UP, Bihar & Delhi NCR. Visit our Patna & Noida offices or apply online from Siwan, Gorakhpur & Lucknow.",
   keywords: [
     "workwise visa branches",
     "visa consultancy locations india",

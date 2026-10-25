@@ -25,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | WorkWise Visa",
   description:
-    "Official Refund & Cancellation Policy of WorkWise Visa (A Unit of Europass Immigration Pvt Ltd). Transparent milestone guidelines, non-refundable statutory fees, employer demand cancellation refunds, and audit timelines.",
+    "Official Refund & Cancellation Policy of WorkWise Visa. Transparent milestone guidelines, non-refundable statutory fees & employer default refund rules.",
   alternates: {
     canonical: "https://www.workwisevisa.com/refund-policy",
   },

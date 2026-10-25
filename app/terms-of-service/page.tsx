@@ -27,7 +27,7 @@ import {
 export const metadata: Metadata = {
   title: "Terms of Service & Candidate Agreement | WorkWise Visa",
   description:
-    "Official Terms of Service of WorkWise Visa (A Unit of Europass Immigration Pvt Ltd). Compliant with the Indian Emigration Act 1983, MEA regulations, GCC Labour Laws, and Consumer Protection standards.",
+    "Official Terms of Service of WorkWise Visa. Compliant with Indian Emigration Act 1983, MEA regulations, GCC labour rules & ethical recruitment standards.",
   alternates: {
     canonical: "https://www.workwisevisa.com/terms-of-service",
   },
