@@ -464,23 +464,23 @@ export default function USACountryPage() {
                 </div>
 
                 {/* Direct Action Buttons - Clean 2-CTA Layout */}
-                <div className="flex flex-wrap items-center gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                   <Link
                     href="/jobs?country=United States"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                   >
-                    <FaBriefcase className="w-4 h-4" />
-                    Browse Active US Vacancies
+                    <FaBriefcase className="w-4 h-4 shrink-0" />
+                    <span>Explore Jobs</span>
                   </Link>
 
                   <a
                     href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20USA%20Work%20Visas,%20H-1B,%20L-1%20and%20Green%20Card%20Sponsorship!"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3.5 text-sm font-bold text-white transition-all shadow-md"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3 text-sm font-bold text-white transition-all shadow-md text-center w-full sm:w-auto"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-300" />
-                    WhatsApp USA Desk
+                    <FaWhatsapp className="w-4 h-4 text-emerald-300 shrink-0" />
+                    <span>WhatsApp Us</span>
                   </a>
                 </div>
               </div>
