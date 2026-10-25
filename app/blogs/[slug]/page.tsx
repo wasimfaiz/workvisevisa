@@ -19,8 +19,29 @@ import {
   FaChevronRight,
 } from "react-icons/fa6";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const slugs = new Set<string>();
+
+  fallbackPosts.forEach((post) => {
+    if (post.slug) slugs.add(post.slug);
+    if (post.id) slugs.add(post.id);
+  });
+
+  try {
+    await connectDB();
+    const dbBlogs = await Blog.find({ published: { $ne: false } }).select("slug").lean();
+    (dbBlogs || []).forEach((b: any) => {
+      if (b.slug) slugs.add(b.slug);
+      if (b._id) slugs.add(b._id.toString());
+    });
+  } catch (err) {
+    console.error("Error generating static params for blogs:", err);
+  }
+
+  return Array.from(slugs).map((slug) => ({ slug }));
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;

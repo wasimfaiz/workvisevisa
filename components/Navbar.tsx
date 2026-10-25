@@ -25,6 +25,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: t.jobs || "Jobs", href: "/jobs" },
+    { label: currentLang === "hi" ? "शाखाएं" : "Locations", href: "/locations" },
     { label: currentLang === "hi" ? "स्टेटस ट्रैक करें" : "Track Status", href: "/track" },
     { label: t.countries, href: "/countries" },
     { label: t.aboutUs, href: "/about" },
