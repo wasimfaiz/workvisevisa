@@ -2,7 +2,7 @@ const fs = require('fs');
 const content = fs.readFileSync('lib/data.ts', 'utf8');
 
 // Find all slugs
-const slugMatches = [...content.matchAll(/slug:\s*"([^"]+)"/g)].map(m => m[1]);
+const slugMatches = [...content.matchAll(/["']?slug["']?\s*:\s*"([^"]+)"/g)].map(m => m[1]);
 const validSlugs = new Set(slugMatches);
 
 console.log('Valid canonical slugs in data.ts:', validSlugs.size);
