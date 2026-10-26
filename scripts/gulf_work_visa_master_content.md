@@ -40,12 +40,12 @@ Before lodging your application, scheduling your trade test, or undergoing your 
   - [Dubai Residence Visa & Permit Master Guide 2026: 10 Official Pathways](/blogs/dubai-residence-permit-complete-guide-2026-pathways-application-fees-rules)
   - [Dubai Construction & MEP Building Trade Jobs Guide 2026: Vacancies & Salaries](/blogs/dubai-construction-work-complete-guide-jobs-salaries-visas-recruitment-2026)
   - [Saudi Arabia NEOM Work Visa & Megaproject Recruitment Guide 2026](/blogs/saudi-arabia-neom-work-visa-recruitment-guide-2026)
-  - [Wafid (GAMCA) Medical Examination Master Guide for Gulf Visas 2026](/blogs/wafid-gamca-medical-test-gulf-visa-complete-guide-2026)
-  - [Qatar Visa Center (QVC) Biometrics & Medical Examination Guide 2026](/blogs/qatar-visa-center-qvc-biometrics-medical-guide-2026)
-  - [Saudi Arabia Skill Verification Program (Takamol SVP) Trade Test Guide 2026](/blogs/saudi-arabia-skill-verification-program-takamol-trade-test-guide-2026)
-  - [Kuwait Work Visa Reopening & Degree Attestation Complete Guide 2026](/blogs/kuwait-work-visa-reopening-degree-attestation-guide-2026)
+  - [Wafid (GAMCA) Medical Examination Master Guide for Gulf Visas 2026](/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria)
+  - [Qatar Visa Center (QVC) Biometrics & Medical Examination Guide 2026](/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-contract-qid)
+  - [Saudi Arabia Skill Verification Program (Takamol SVP) Trade Test Guide 2026](/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026)
+  - [Kuwait Work Visa Reopening & Degree Attestation Complete Guide 2026](/blogs/kuwait-work-visa-reopening-labor-law-reforms-degree-attestation-2026)
   - [GCC Heavy Vehicle License Transfer & Driving Jobs in Dubai & Riyadh](/blogs/gcc-heavy-vehicle-license-transfer-driving-jobs-dubai-riyadh)
-  - [Police Clearance Certificate (PCC) Guide for Gulf & Overseas Work Visas](/blogs/police-clearance-certificate-pcc-gulf-work-visas-passport-office-guide-2026)
+  - [Police Clearance Certificate (PCC) Guide for Gulf & Overseas Work Visas](/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026)
   - [Europe & Schengen Work Visa Master Guide 2026: Germany, Poland, Croatia, Luxembourg](/blogs/europe-schengen-work-visa-complete-guide-2026-germany-poland-croatia-luxembourg-malta-czechia)
   - [Latest Gulf Work Visa & Labour Law Updates (20 October 2026)](/blogs/gulf-work-visa-labour-law-updates-october-2026-uae-mohre-saudi-qiwa-qatar-kuwait)
 
@@ -171,7 +171,7 @@ Qatar's employment infrastructure is famous for its groundbreaking pre-departure
 6. **Kafala Freedom:** Under Qatari Law No. 19 of 2020, workers do not require an Exit Permit to depart Qatar and are legally permitted to change employers after completing their probation period by submitting an electronic notification via the MoL portal.
 
 > [!TIP]
-> Read our step-by-step [Qatar Visa Center (QVC) Biometrics & Medical Examination Guide 2026](/blogs/qatar-visa-center-qvc-biometrics-medical-guide-2026) for appointment booking checklists and medical standards.
+> Read our step-by-step [Qatar Visa Center (QVC) Biometrics & Medical Examination Guide 2026](/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-contract-qid) for appointment booking checklists and medical standards.
 
 ---
 
@@ -189,7 +189,7 @@ Kuwait maintains one of the highest currency valuation regimes in the world (1 K
 7. **Civil ID via PACI & Sahel Kuwait App:** Within 60 days, the candidate completes local fingerprint registration at the General Department of Criminal Evidence, activates health insurance, and receives their physical **Kuwait Civil ID Card** from the **[Public Authority for Civil Information (PACI)](https://www.paci.gov.kw)** while registering on the sovereign **Sahel Kuwait App**.
 
 > [!IMPORTANT]
-> For complete degree legalization procedures and technical requirements, explore our [Kuwait Work Visa Reopening & Degree Attestation Complete Guide 2026](/blogs/kuwait-work-visa-reopening-degree-attestation-guide-2026).
+> For complete degree legalization procedures and technical requirements, explore our [Kuwait Work Visa Reopening & Degree Attestation Complete Guide 2026](/blogs/kuwait-work-visa-reopening-labor-law-reforms-degree-attestation-2026).
 
 ---
 
@@ -266,7 +266,7 @@ Every candidate undergoes three diagnostic tiers:
   - **Never use forged medical slips:** Border authorities verify Wafid QR codes live at immigration. Traveling with a forged medical slip results in immediate arrest, deportation, and a lifetime criminal ban.
 
 > [!TIP]
-> Always undergo a **pre-medical checkup** (private chest X-ray and blood tests) at a standard local diagnostic lab *before* generating your official Wafid slip. If an infection is detected, you can treat it prior to official GCC logging. Read our [Wafid (GAMCA) Medical Test Complete Guide 2026](/blogs/wafid-gamca-medical-test-gulf-visa-complete-guide-2026) for complete prevention protocols.
+> Always undergo a **pre-medical checkup** (private chest X-ray and blood tests) at a standard local diagnostic lab *before* generating your official Wafid slip. If an infection is detected, you can treat it prior to official GCC logging. Read our [Wafid (GAMCA) Medical Test Complete Guide 2026](/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria) for complete prevention protocols.
 
 ---
 
@@ -303,7 +303,7 @@ Takamol SVP applies to 23+ specialized technical occupations, including:
 - **Passing Benchmark & Validity:** Candidates must score **50% or higher** to pass. The digital certificate is issued directly on the Qiwa platform, valid for **5 years**, and is required before the Saudi Embassy stamps the employment visa.
 
 > [!NOTE]
-> WorkWise Visa provides specialized practical trade test training and orientation at our testing centers in **[Patna](/locations/patna)**, **[Siwan](/locations/siwan)**, **[Gorakhpur](/locations/gorakhpur)**, and **[Delhi](/locations/delhi)**. Explore our full [Saudi Arabia Skill Verification Program (Takamol SVP) Guide 2026](/blogs/saudi-arabia-skill-verification-program-takamol-trade-test-guide-2026).
+> WorkWise Visa provides specialized practical trade test training and orientation at our testing centers in **[Patna](/locations/patna)**, **[Siwan](/locations/siwan)**, **[Gorakhpur](/locations/gorakhpur)**, and **[Delhi](/locations/delhi)**. Explore our full [Saudi Arabia Skill Verification Program (Takamol SVP) Guide 2026](/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026).
 
 ---
 
@@ -564,7 +564,7 @@ Navigating the intricacies of Gulf overseas recruitment requires an accredited, 
 The total gratuity amount cannot exceed two full years' worth of basic salary.
 
 ### Q15: Is a Police Clearance Certificate (PCC) required for all Gulf work visas?
-**Answer:** A PCC from the **Passport Seva Kendra (PSK)** is strictly mandatory for **Kuwait work visas (Article 18)**. It is also required for select security, banking, healthcare, and educational categories in the **UAE** and **Saudi Arabia**, and for Indian candidates seeking eMigrate clearance under specific occupational codes. Consult our [PCC Master Guide](/blogs/police-clearance-certificate-pcc-gulf-work-visas-passport-office-guide-2026) for complete booking protocols.
+**Answer:** A PCC from the **Passport Seva Kendra (PSK)** is strictly mandatory for **Kuwait work visas (Article 18)**. It is also required for select security, banking, healthcare, and educational categories in the **UAE** and **Saudi Arabia**, and for Indian candidates seeking eMigrate clearance under specific occupational codes. Consult our [PCC Master Guide](/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026) for complete booking protocols.
 
 ### Q16: Can I apply for a Gulf work visa if I have a tattoo or healed surgical scars?
 **Answer:** Tattoos generally do not disqualify blue-collar or technical candidates during the Wafid medical exam unless they are infected or located in sensitive professional areas (e.g., flight crew, luxury hospitality). Surgical scars are evaluated during the physical exam to ensure full abdominal wall healing without active hernia risks. If you had prior lung surgery, obtain a certified hospital discharge summary before taking your Wafid chest X-ray.
