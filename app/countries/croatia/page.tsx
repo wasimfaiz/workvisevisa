@@ -826,11 +826,11 @@ export default function CroatiaCountryPage() {
                 {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                   <Link
-                    href="/jobs?country=Croatia"
+                    href="/jobs"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                   >
                     <FaBriefcase className="w-4 h-4 shrink-0" />
-                    <span>Explore Jobs</span>
+                    <span>Browse Jobs</span>
                   </Link>
 
                   <a

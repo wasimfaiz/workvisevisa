@@ -363,11 +363,11 @@ export default function BahrainCountryPage() {
                 {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                   <Link
-                    href="/jobs?country=Bahrain"
+                    href="/jobs"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                   >
                     <FaBriefcase className="w-4 h-4 shrink-0" />
-                    <span>Explore Jobs</span>
+                    <span>Browse Jobs</span>
                   </Link>
 
                   <a
@@ -1622,11 +1622,11 @@ export default function BahrainCountryPage() {
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                 <Link
-                  href="/jobs?country=Bahrain"
+                  href="/jobs"
                   className="inline-flex items-center gap-2.5 rounded-full bg-emerald-500 px-7 py-3.5 text-sm font-bold text-slate-950 shadow-xl shadow-emerald-500/25 hover:bg-emerald-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
                   <FaBriefcase className="w-4 h-4" />
-                  View Active Bahrain Vacancies
+                  Browse Job Vacancies
                 </Link>
 
                 <a

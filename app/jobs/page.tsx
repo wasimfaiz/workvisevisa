@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -32,23 +31,14 @@ import {
   FaCircleExclamation,
 } from "react-icons/fa6";
 
-function JobsPageContent() {
+export default function JobsPage() {
   const { currentLang } = useLanguage();
   const t = translations[currentLang]?.jobsPage || translations.en.jobsPage;
-  const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDemand, setSelectedDemand] = useState<JobDemand | null>(null);
   const [liveJobs, setLiveJobs] = useState<JobDemand[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Sync search query from URL ?country= param
-  useEffect(() => {
-    const country = searchParams.get("country");
-    if (country) {
-      setSearchQuery(country);
-    }
-  }, [searchParams]);
 
   // Apply Modal & Lead Submission state
   const [applyJob, setApplyJob] = useState<JobDemand | null>(null);
@@ -869,19 +859,5 @@ function JobsPageContent() {
       <Footer />
       <FloatingWhatsApp />
     </>
-  );
-}
-
-export default function JobsPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-          <FaSpinner className="w-8 h-8 text-emerald-600 animate-spin" />
-        </div>
-      }
-    >
-      <JobsPageContent />
-    </Suspense>
   );
 }
