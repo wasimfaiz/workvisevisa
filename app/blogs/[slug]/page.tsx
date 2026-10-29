@@ -248,8 +248,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   let image = blog.image || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
-  if (!image || image.includes("photo-1541888946425-d0fbb18086f6")) {
-    image = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
+  if (
+    !image ||
+    image.includes("photo-1541888946425-d0fbb1861593") ||
+    image.includes("photo-1541888946425-d0fbb1862448") ||
+    image.includes("photo-1541888946425-d0fbb18086f6")
+  ) {
+    if (blog.id === "blog-30" || (blog.slug && blog.slug.includes("bihar"))) {
+      image = "/images/bihar-up-gulf-work-visa-guide.webp";
+    } else {
+      image = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
+    }
   } else if (image.startsWith("/images/")) {
     image = image.replace(/\.jpg$/, ".webp");
   }
@@ -318,6 +327,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   const isRussiaPost =
     blog.id === "blog-29" ||
     (blog.slug && blog.slug.includes("russia"));
+  const isBiharPost =
+    blog.id === "blog-30" ||
+    (blog.slug && blog.slug.includes("bihar"));
 
   const rawImage =
     isAfgcPost ||
@@ -325,9 +337,11 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       ? "/images/afgc-dubai-construction-recruitment.webp"
       : isRussiaPost
       ? "/images/russia-work-visa-guide.webp"
-      : !blog.image ||
-        blog.image.includes("photo-1541888946425-d0fbb1861593") ||
-        blog.image.includes("photo-1541888946425-d0fbb18086f6")
+      : isBiharPost ||
+        blog.image?.includes("photo-1541888946425-d0fbb1861593") ||
+        blog.image?.includes("photo-1541888946425-d0fbb18086f6")
+      ? "/images/bihar-up-gulf-work-visa-guide.webp"
+      : !blog.image
       ? "/images/dubai-construction-work.webp"
       : blog.image;
 
@@ -592,7 +606,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                       <div className="relative h-18 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 border border-slate-200">
                         <img
                           src={
-                            (item.image?.startsWith("/images/")
+                            (item.slug?.includes("bihar") || item.id === "blog-30" || item.image?.includes("photo-1541888946425-d0fbb1861593"))
+                              ? "/images/bihar-up-gulf-work-visa-guide.webp"
+                              : (item.image?.startsWith("/images/")
                               ? item.image.replace(/\.jpg$/, ".webp")
                               : item.image) ||
                             "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=300&q=80"

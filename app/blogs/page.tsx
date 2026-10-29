@@ -179,13 +179,18 @@ export default function BlogsPage() {
                     {/* Image Header with Category Badge */}
                     <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100">
                       <img
-                        src={post.image?.startsWith("/images/") ? post.image.replace(/\.jpg$/, ".webp") : post.image}
+                        src={
+                          (post.slug?.includes("bihar") || post.id === "blog-30" || post.image?.includes("photo-1541888946425-d0fbb1861593"))
+                            ? "/images/bihar-up-gulf-work-visa-guide.webp"
+                            : post.image?.startsWith("/images/")
+                            ? post.image.replace(/\.jpg$/, ".webp")
+                            : post.image
+                        }
                         alt={post.title}
                         loading="lazy"
                         decoding="async"
                         onError={(e) => {
-                          e.currentTarget.src =
-                            "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80";
+                          e.currentTarget.src = "/images/bihar-up-gulf-work-visa-guide.webp";
                         }}
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

@@ -135,7 +135,7 @@ const PRESET_IMAGES = [
   },
   {
     label: "Construction & Engineering",
-    url: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=800&q=80",
+    url: "/images/dubai-construction-work.webp",
   },
   {
     label: "Hospitality & Hotel",
