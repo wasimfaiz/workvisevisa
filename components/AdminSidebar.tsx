@@ -341,7 +341,7 @@ export default function AdminSidebar({
                     <div className="text-xs font-semibold text-white truncate">{user.name}</div>
                     <div className="text-[10px] text-white/50 flex items-center gap-1 mt-0.5">
                       <ShieldCheck className="w-3 h-3 text-indigo-400" />
-                      <span className="capitalize">{user.role || "Admin"}</span>
+                      <span className="capitalize">{user.role === "b2b" ? "B2B Partner" : user.role || "Admin"}</span>
                     </div>
                   </div>
                 </div>
@@ -498,7 +498,7 @@ export default function AdminSidebar({
                     <div className="text-xs font-semibold text-white truncate">{user.name}</div>
                     <div className="text-[10px] text-white/50 flex items-center gap-1 mt-0.5">
                       <ShieldCheck className="w-3 h-3 text-indigo-400" />
-                      <span className="capitalize">{user.role || "Admin"}</span>
+                      <span className="capitalize">{user.role === "b2b" ? "B2B Partner" : user.role || "Admin"}</span>
                     </div>
                   </div>
                 </div>

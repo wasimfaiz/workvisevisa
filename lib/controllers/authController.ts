@@ -33,12 +33,25 @@ export async function login(request: NextRequest): Promise<Response> {
       );
     }
 
-    // Find admin user
-    const admin = await AdminUser.findOne({ email: email.toLowerCase().trim() });
+    // Find admin user by email or phone
+    const cleanId = String(email).trim();
+    const admin = await AdminUser.findOne({
+      $or: [
+        { email: cleanId.toLowerCase() },
+        { phone: cleanId },
+      ],
+    });
     if (!admin) {
       return Response.json(
         { success: false, message: "Invalid email or password." },
         { status: 401 }
+      );
+    }
+
+    if (admin.status === "inactive") {
+      return Response.json(
+        { success: false, message: "This account has been deactivated. Please contact administrator." },
+        { status: 403 }
       );
     }
 

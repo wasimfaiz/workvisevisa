@@ -6,8 +6,10 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Partner from "@/lib/models/Partner";
-import { requirePermission } from "@/lib/auth";
+import AdminUser from "@/lib/models/AdminUser";
+import { requirePermission, hashPassword } from "@/lib/auth";
 import { hashPartnerPassword } from "@/lib/partnerAuth";
+import { DEFAULT_PERMISSIONS } from "@/lib/types/rbac";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -154,6 +156,36 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         { success: false, message: "Partner not found." },
         { status: 404 }
       );
+    }
+
+    // Unified RBAC AdminUser Synchronization for /admin login
+    const targetEmail = (updated.email || body.email || "").toLowerCase().trim();
+    if (targetEmail) {
+      const adminUpdate: Record<string, any> = {
+        name: updated.contactPerson || updated.name,
+        phone: updated.phone || "",
+        role: "b2b",
+        permissions: DEFAULT_PERMISSIONS.b2b,
+      };
+
+      if (body.password && typeof body.password === "string" && body.password.trim().length >= 4) {
+        adminUpdate.passwordHash = await hashPassword(body.password.trim());
+      }
+      if (body.isLoginEnabled !== undefined) {
+        adminUpdate.status = body.isLoginEnabled ? "active" : "inactive";
+      }
+
+      // If updating password or isLoginEnabled, upsert the AdminUser record
+      if (adminUpdate.passwordHash || body.isLoginEnabled !== undefined) {
+        if (!adminUpdate.status) {
+          adminUpdate.status = updated.isLoginEnabled !== false ? "active" : "inactive";
+        }
+        await AdminUser.findOneAndUpdate(
+          { email: targetEmail },
+          { $set: adminUpdate },
+          { upsert: Boolean(adminUpdate.passwordHash), new: true }
+        );
+      }
     }
 
     return Response.json({

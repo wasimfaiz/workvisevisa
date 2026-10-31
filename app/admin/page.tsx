@@ -32,7 +32,11 @@ export default function AdminLoginPage() {
       const data = await res.json();
 
       if (data.success) {
-        router.push("/admin/dashboard");
+        if (data.user?.role === "b2b") {
+          router.push("/admin/applications");
+        } else {
+          router.push("/admin/dashboard");
+        }
       } else {
         setError(data.message || "Invalid credentials.");
       }
@@ -93,9 +97,9 @@ export default function AdminLoginPage() {
         )}
 
         <form onSubmit={handleSubmit} style={styles.form}>
-          {/* Email */}
+          {/* Email or Phone */}
           <div style={styles.fieldGroup}>
-            <label style={styles.label} htmlFor="admin-email">Email Address</label>
+            <label style={styles.label} htmlFor="admin-email">Email or Registered Phone</label>
             <div style={styles.inputWrapper}>
               <svg style={styles.inputIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -103,10 +107,10 @@ export default function AdminLoginPage() {
               </svg>
               <input
                 id="admin-email"
-                type="email"
+                type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                placeholder="Enter email or registered phone"
                 required
                 style={styles.input}
                 onFocus={(e) => Object.assign(e.target.style, styles.inputFocus)}

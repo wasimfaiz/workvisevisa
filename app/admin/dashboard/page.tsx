@@ -377,6 +377,8 @@ export default function AdminDashboardPage() {
 
   const roleName = isSuper
     ? "Super Admin"
+    : admin.role === "b2b"
+    ? "B2B Partner"
     : admin.role.charAt(0).toUpperCase() + admin.role.slice(1);
 
   return (

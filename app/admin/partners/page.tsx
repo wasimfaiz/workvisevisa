@@ -751,21 +751,20 @@ export default function AdminPartnersPage() {
   const handleCopyWhatsAppCredentials = () => {
     if (!loginModalPartner) return;
     const origin = typeof window !== "undefined" ? window.location.origin : "https://workwisevisa.com";
-    const loginUrl = `${origin}/partner/login`;
+    const loginUrl = `${origin}/admin`;
     const message = `🌟 *WorkWise Visa — B2B Partner Portal Access*
 
 Hello *${loginModalPartner.contactPerson || loginModalPartner.name}*,
-Your official WorkWise Visa Sourcing Partner Portal access has been activated!
+Your official WorkWise Visa Sourcing Partner access has been activated!
 
 🔗 *Portal URL:* ${loginUrl}
-👤 *Login ID / Code:* ${loginModalPartner.partnerCode || loginModalPartner.phone}
+👤 *Login Email / Phone:* ${loginModalPartner.email || loginModalPartner.phone}
 🔑 *Password:* ${loginPasswordInput}
 
-Through your portal, you can:
+Through your portal at ${loginUrl}, you can:
 ✅ View live urgent Gulf & Europe hiring demands
-✅ Submit candidate passport copies & documents directly
-✅ Track candidate pipeline status in real-time
-✅ View your referral commission ledger & payouts
+✅ Submit & enroll candidates with documents directly
+✅ Track candidate visa milestones in real-time
 
 Best regards,
 *WorkWise Visa Partner Operations Team*`;
@@ -3127,7 +3126,7 @@ Best regards,
                   </span>
                   <span className="text-[11px] text-slate-500">
                     {loginEnabledInput
-                      ? "Partner can log in at /partner/login"
+                      ? "Partner can log in at /admin"
                       : "Login is currently disabled for this partner"}
                   </span>
                 </div>
@@ -3177,7 +3176,7 @@ Best regards,
                 <p className="text-[11px] text-slate-500">
                   Login ID:{" "}
                   <span className="font-mono font-bold text-slate-800">
-                    {loginModalPartner.partnerCode || loginModalPartner.phone}
+                    {loginModalPartner.email || loginModalPartner.partnerCode || loginModalPartner.phone}
                   </span>{" "}
                   or phone <span className="font-bold text-slate-800">{loginModalPartner.phone}</span>
                 </p>
@@ -3204,8 +3203,8 @@ Best regards,
 Hello ${loginModalPartner.contactPerson || loginModalPartner.name},
 Your Sourcing Partner Portal is ready!
 
-Portal: https://workwisevisa.com/partner/login
-ID: ${loginModalPartner.partnerCode || loginModalPartner.phone}
+Portal: https://workwisevisa.com/admin
+Login: ${loginModalPartner.email || loginModalPartner.phone}
 Password: ${loginPasswordInput}
 
 Submit & track candidates live!`}

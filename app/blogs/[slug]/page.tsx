@@ -254,7 +254,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     image.includes("photo-1541888946425-d0fbb1862448") ||
     image.includes("photo-1541888946425-d0fbb18086f6")
   ) {
-    if (blog.id === "blog-30" || (blog.slug && blog.slug.includes("bihar"))) {
+    if (blog.id === "blog-33" || (blog.slug && blog.slug.includes("japan"))) {
+      image = "/images/japan-work-visa-guide.webp";
+    } else if (blog.id === "blog-30" || (blog.slug && blog.slug.includes("bihar"))) {
       image = "/images/bihar-up-gulf-work-visa-guide.webp";
     } else {
       image = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80";
@@ -331,12 +333,18 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     blog.id === "blog-30" ||
     (blog.slug && blog.slug.includes("bihar"));
 
+  const isJapanPost =
+    blog.id === "blog-33" ||
+    (blog.slug && blog.slug.includes("japan"));
+
   const rawImage =
     isAfgcPost ||
     blog.image?.includes("photo-1541888946425-d0fbb1862448")
       ? "/images/afgc-dubai-construction-recruitment.webp"
       : isRussiaPost
       ? "/images/russia-work-visa-guide.webp"
+      : isJapanPost
+      ? "/images/japan-work-visa-guide.webp"
       : isBiharPost ||
         blog.image?.includes("photo-1541888946425-d0fbb1861593") ||
         blog.image?.includes("photo-1541888946425-d0fbb18086f6")
@@ -606,7 +614,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                       <div className="relative h-18 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 border border-slate-200">
                         <img
                           src={
-                            (item.slug?.includes("bihar") || item.id === "blog-30" || item.image?.includes("photo-1541888946425-d0fbb1861593"))
+                            (item.slug?.includes("japan") || item.id === "blog-33")
+                              ? "/images/japan-work-visa-guide.webp"
+                              : (item.slug?.includes("bihar") || item.id === "blog-30" || item.image?.includes("photo-1541888946425-d0fbb1861593"))
                               ? "/images/bihar-up-gulf-work-visa-guide.webp"
                               : (item.image?.startsWith("/images/")
                               ? item.image.replace(/\.jpg$/, ".webp")
