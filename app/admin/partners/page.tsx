@@ -49,6 +49,8 @@ import {
   Lock,
   Copy,
   Sparkles,
+  ThumbsUp,
+  ThumbsDown,
 } from "lucide-react";
 
 // ================================================================
@@ -69,14 +71,17 @@ export interface B2BPartner {
   state?: string;
   country: string;
   address?: string;
-  status: "Active" | "Pending Verification" | "Inactive" | string;
+  status: "Active" | "Pending Verification" | "Interested" | "Not Interested" | "Inactive" | string;
   onboardingStage?:
     | "New Inquiry"
+    | "Interested"
     | "In Discussion"
     | "KYC & MoU Pending"
     | "Partnership Active"
+    | "Not Interested"
     | "Inactive"
     | string;
+  leadInterestStatus?: "Interested" | "Not Interested" | "Pending" | string;
   source?: string;
   sourcingCapacity?: string;
   commissionTerms?: string;
@@ -115,6 +120,8 @@ interface PartnerStats {
   total: number;
   active: number;
   pipelineLeads: number;
+  interestedLeads: number;
+  notInterestedLeads: number;
   newInquiries: number;
   inDiscussion: number;
   mouReview: number;
@@ -149,6 +156,7 @@ const DEFAULT_FORM: Omit<B2BPartner, "id" | "createdAt"> = {
   address: "",
   status: "Active",
   onboardingStage: "New Inquiry",
+  leadInterestStatus: "Pending",
   source: "Admin Portal",
   sourcingCapacity: "10-25 candidates / month",
   commissionTerms: "₹5,000 per selected candidate",
@@ -200,6 +208,8 @@ export default function AdminPartnersPage() {
     total: 0,
     active: 0,
     pipelineLeads: 0,
+    interestedLeads: 0,
+    notInterestedLeads: 0,
     newInquiries: 0,
     inDiscussion: 0,
     mouReview: 0,
@@ -301,6 +311,50 @@ export default function AdminPartnersPage() {
   const [savingLogin, setSavingLogin] = useState(false);
   const [copiedWhatsApp, setCopiedWhatsApp] = useState(false);
 
+  // B2B Candidate Leads Modal State (Referred candidates)
+  const [candidateModalPartner, setCandidateModalPartner] = useState<B2BPartner | null>(null);
+  const [partnerCandidates, setPartnerCandidates] = useState<any[]>([]);
+  const [loadingCandidates, setLoadingCandidates] = useState(false);
+
+  const openCandidateModal = async (partner: B2BPartner) => {
+    setCandidateModalPartner(partner);
+    setLoadingCandidates(true);
+    try {
+      const res = await fetch(`/api/b2b-candidates?agentId=${partner.id}`);
+      const json = await res.json();
+      if (json.success) {
+        setPartnerCandidates(json.data || []);
+      } else {
+        setPartnerCandidates([]);
+      }
+    } catch {
+      setPartnerCandidates([]);
+    } finally {
+      setLoadingCandidates(false);
+    }
+  };
+
+  const handleUpdateCandidateStage = async (candidateId: string, newStage: string) => {
+    try {
+      const res = await fetch(`/api/b2b-candidates/${candidateId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ stage: newStage }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setPartnerCandidates((prev) =>
+          prev.map((c) => (c.id === candidateId ? { ...c, stage: newStage } : c))
+        );
+        showToast("success", `Candidate status updated to: ${newStage}`);
+      } else {
+        showToast("error", json.message || "Failed to update candidate status");
+      }
+    } catch {
+      showToast("error", "Error updating candidate status");
+    }
+  };
+
   // Toast
   const [toast, setToast] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
@@ -352,7 +406,21 @@ export default function AdminPartnersPage() {
       return;
     }
     try {
-      const body: any = { onboardingStage: newStage };
+      const body: any = {
+        onboardingStage: newStage,
+        leadInterestStatus:
+          newStage === "Interested"
+            ? "Interested"
+            : newStage === "Not Interested"
+            ? "Not Interested"
+            : partner.leadInterestStatus || "Pending",
+      };
+      if (newStage === "Not Interested") {
+        body.status = "Inactive";
+      } else if (newStage === "Interested" && partner.status === "Inactive") {
+        body.status = "Pending Verification";
+      }
+
       const res = await fetch(`/api/partners/${partner.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -366,11 +434,19 @@ export default function AdminPartnersPage() {
               ? {
                   ...p,
                   onboardingStage: newStage,
+                  leadInterestStatus: body.leadInterestStatus,
+                  ...(body.status ? { status: body.status } : {}),
                 }
               : p
           )
         );
-        showToast("success", `Partner phase updated to: ${newStage}`);
+        const label =
+          newStage === "Interested"
+            ? "Marked as Interested 👍"
+            : newStage === "Not Interested"
+            ? "Marked as Not Interested ✕"
+            : `Phase updated to: ${newStage}`;
+        showToast("success", `${partner.name}: ${label}`);
         fetchPartners();
       } else {
         showToast("error", json.message || "Failed to update phase.");
@@ -444,7 +520,21 @@ export default function AdminPartnersPage() {
 
         // 2. Stage Filter
         if (stageFilter !== "All") {
-          if (p.onboardingStage !== stageFilter) return false;
+          if (stageFilter === "Interested") {
+            const isInterested =
+              p.onboardingStage === "Interested" ||
+              p.leadInterestStatus === "Interested" ||
+              p.status === "Interested";
+            if (!isInterested) return false;
+          } else if (stageFilter === "Not Interested") {
+            const isNotInterested =
+              p.onboardingStage === "Not Interested" ||
+              p.leadInterestStatus === "Not Interested" ||
+              p.status === "Not Interested";
+            if (!isNotInterested) return false;
+          } else if (p.onboardingStage !== stageFilter) {
+            return false;
+          }
         }
 
         // 3. Search Box Query
@@ -489,7 +579,17 @@ export default function AdminPartnersPage() {
           (kycFilter === "Verified" && isVerified) ||
           (kycFilter === "Pending" && !isVerified);
 
-        const matchesStatus = statusFilter === "All" || p.status === statusFilter;
+        const matchesStatus =
+          statusFilter === "All" ||
+          p.status === statusFilter ||
+          (statusFilter === "Interested" &&
+            (p.status === "Interested" ||
+              p.onboardingStage === "Interested" ||
+              p.leadInterestStatus === "Interested")) ||
+          (statusFilter === "Not Interested" &&
+            (p.status === "Not Interested" ||
+              p.onboardingStage === "Not Interested" ||
+              p.leadInterestStatus === "Not Interested"));
 
         return matchesSearch && matchesType && matchesMou && matchesKyc && matchesStatus;
       })
@@ -613,6 +713,13 @@ export default function AdminPartnersPage() {
       address: partner.address || "",
       status: partner.status || "Active",
       onboardingStage: partner.onboardingStage || "New Inquiry",
+      leadInterestStatus:
+        partner.leadInterestStatus ||
+        (partner.onboardingStage === "Interested"
+          ? "Interested"
+          : partner.onboardingStage === "Not Interested"
+          ? "Not Interested"
+          : "Pending"),
       source: partner.source || "Admin Portal",
       sourcingCapacity: partner.sourcingCapacity || "10-25 candidates / month",
       commissionTerms: partner.commissionTerms || "₹5,000 per selected candidate",
@@ -810,6 +917,13 @@ Best regards,
             <span>New Inquiry</span>
           </span>
         );
+      case "Interested":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs">
+            <ThumbsUp className="w-2.5 h-2.5 text-emerald-600" />
+            <span>Interested 👍</span>
+          </span>
+        );
       case "In Discussion":
         return (
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-200">
@@ -829,6 +943,13 @@ Best regards,
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
             <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600" />
             <span>Partnership Active</span>
+          </span>
+        );
+      case "Not Interested":
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-800 border border-rose-300">
+            <ThumbsDown className="w-2.5 h-2.5 text-rose-600" />
+            <span>Not Interested ✕</span>
           </span>
         );
       default:
@@ -916,10 +1037,20 @@ Best regards,
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 {stats.active} Active
               </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-300">
+                <ThumbsUp className="w-3.5 h-3.5 text-emerald-600" />
+                {stats.interestedLeads || 0} Interested
+              </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200">
                 <TrendingUp className="w-3.5 h-3.5 text-amber-600" />
                 {stats.pipelineLeads} In Pipeline
               </span>
+              {(stats.notInterestedLeads || 0) > 0 && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                  <ThumbsDown className="w-3.5 h-3.5 text-rose-500" />
+                  {stats.notInterestedLeads} Not Interested
+                </span>
+              )}
             </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
               Manage agencies, sub-agents, and candidate sourcing partners. Track inbound B2B inquiries through discussion, KYC &amp; MoU signing, to active partner mobilization.
@@ -993,7 +1124,7 @@ Best regards,
                 {partners.length}
               </p>
               <p className="text-[10px] sm:text-[11px] font-semibold text-slate-400 mt-1 truncate">
-                {stats.active} Active • {stats.newInquiries} New
+                {stats.interestedLeads || 0} Interested • {stats.newInquiries || 0} New • {stats.active || 0} Active
               </p>
             </div>
           </button>
@@ -1129,7 +1260,122 @@ Best regards,
         </div>
 
         {/* ── FILTERS & SEARCH BAR ─────────────────────────── */}
-        <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-sm flex flex-col gap-2.5">
+        <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-sm flex flex-col gap-3">
+          {/* Quick Lead Status Pill Bar */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("All");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer ${
+                stageFilter === "All" && kpiFilter === "all" && statusFilter === "All"
+                  ? "bg-slate-900 text-white shadow-xs"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              All Partners ({partners.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("Interested");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "Interested"
+                  ? "bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-500/30"
+                  : "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200"
+              }`}
+            >
+              <ThumbsUp className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Interested ({stats.interestedLeads || 0})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("New Inquiry");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "New Inquiry"
+                  ? "bg-blue-600 text-white shadow-xs ring-2 ring-blue-500/30"
+                  : "bg-blue-50 text-blue-800 hover:bg-blue-100 border border-blue-200"
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>New Inquiries ({stats.newInquiries || 0})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("In Discussion");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "In Discussion"
+                  ? "bg-amber-600 text-white shadow-xs ring-2 ring-amber-500/30"
+                  : "bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-200"
+              }`}
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-amber-600" />
+              <span>In Discussion ({stats.inDiscussion || 0})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("KYC & MoU Pending");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "KYC & MoU Pending"
+                  ? "bg-purple-600 text-white shadow-xs ring-2 ring-purple-500/30"
+                  : "bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-200"
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5 text-purple-600" />
+              <span>KYC &amp; MoU ({stats.mouReview || stats.pendingMou || 0})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("Partnership Active");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "Partnership Active"
+                  ? "bg-emerald-700 text-white shadow-xs ring-2 ring-emerald-600/30"
+                  : "bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200"
+              }`}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Active 🤝 ({stats.active || 0})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setStageFilter("Not Interested");
+                setKpiFilter("all");
+                setStatusFilter("All");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
+                stageFilter === "Not Interested"
+                  ? "bg-rose-600 text-white shadow-xs ring-2 ring-rose-500/30"
+                  : "bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200"
+              }`}
+            >
+              <ThumbsDown className="w-3.5 h-3.5 text-rose-500" />
+              <span>Not Interested ({stats.notInterestedLeads || 0})</span>
+            </button>
+          </div>
+
           {/* Search Box */}
           <div className="relative w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -1167,10 +1413,12 @@ Best regards,
                 }`}
               >
                 <option value="All">All Phases ({partners.length})</option>
+                <option value="Interested">🟢 Interested ({stats.interestedLeads || 0})</option>
                 <option value="New Inquiry">🟡 Phase 1: New Inquiry ({stats.newInquiries || 0})</option>
                 <option value="In Discussion">🔵 Phase 2: In Discussion ({stats.inDiscussion || 0})</option>
                 <option value="KYC & MoU Pending">🟣 Phase 3: KYC & MoU ({stats.mouReview || stats.pendingMou || 0})</option>
                 <option value="Partnership Active">🟢 Phase 4: Active 🤝 ({stats.active || 0})</option>
+                <option value="Not Interested">🔴 Not Interested ({stats.notInterestedLeads || 0})</option>
               </select>
 
               {/* Entity Type Filter */}
@@ -1214,7 +1462,9 @@ Best regards,
               >
                 <option value="All">All Status</option>
                 <option value="Active">Active</option>
+                <option value="Interested">Interested Lead</option>
                 <option value="Pending Verification">Pending</option>
+                <option value="Not Interested">Not Interested</option>
                 <option value="Inactive">Inactive</option>
               </select>
             </div>
@@ -1391,36 +1641,73 @@ Best regards,
                       </div>
                     </div>
 
-                    {/* Stage Quick Selector & Sourcing Capacity */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200/70">
-                      <div className="flex items-center gap-1.5 min-w-0 w-full sm:w-auto">
-                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">Phase:</span>
-                        {canEdit ? (
-                          <select
-                            value={
-                              partner.onboardingStage ||
-                              (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
-                            }
-                            onChange={(e) => handleUpdateStage(partner, e.target.value)}
-                            className="w-full sm:w-auto text-xs font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-800 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
-                          >
-                            <option value="New Inquiry">🟡 1. New Inquiry</option>
-                            <option value="In Discussion">🔵 2. In Discussion</option>
-                            <option value="KYC & MoU Pending">🟣 3. KYC &amp; MoU Pending</option>
-                            <option value="Partnership Active">🟢 4. Partnership Active 🤝</option>
-                            <option value="Inactive">⚪ Inactive</option>
-                          </select>
-                        ) : (
-                          <span className="text-xs font-bold text-slate-700">
-                            {partner.onboardingStage || "Inquiry"}
-                          </span>
+                    {/* Stage Quick Selector & 1-Click Interest Toggles */}
+                    <div className="flex flex-col gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200/70">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5 min-w-0 w-full sm:w-auto">
+                          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">Phase:</span>
+                          {canEdit ? (
+                            <select
+                              value={
+                                partner.onboardingStage ||
+                                (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
+                              }
+                              onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                              className="w-full sm:w-auto text-xs font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-800 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            >
+                              <option value="New Inquiry">🟡 1. New Inquiry (Nayi Lead)</option>
+                              <option value="Interested">🟢 2. Interested 👍</option>
+                              <option value="In Discussion">🔵 3. In Discussion</option>
+                              <option value="KYC & MoU Pending">🟣 4. KYC &amp; MoU Pending</option>
+                              <option value="Partnership Active">🟢 5. Partnership Active 🤝</option>
+                              <option value="Not Interested">🔴 6. Not Interested ✕</option>
+                              <option value="Inactive">⚪ Inactive</option>
+                            </select>
+                          ) : (
+                            <span className="text-xs font-bold text-slate-700">
+                              {partner.onboardingStage || "Inquiry"}
+                            </span>
+                          )}
+                        </div>
+
+                        {canEdit && (
+                          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                            <button
+                              type="button"
+                              onClick={() => handleUpdateStage(partner, "Interested")}
+                              disabled={partner.onboardingStage === "Interested"}
+                              className={`px-2 py-1 rounded-lg text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                                partner.onboardingStage === "Interested"
+                                  ? "bg-emerald-600 text-white shadow-xs cursor-default"
+                                  : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 active:scale-95"
+                              }`}
+                              title="Mark as Interested"
+                            >
+                              <ThumbsUp className="w-2.5 h-2.5" />
+                              <span>Interested</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleUpdateStage(partner, "Not Interested")}
+                              disabled={partner.onboardingStage === "Not Interested"}
+                              className={`px-2 py-1 rounded-lg text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                                partner.onboardingStage === "Not Interested"
+                                  ? "bg-rose-600 text-white shadow-xs cursor-default"
+                                  : "bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 active:scale-95"
+                              }`}
+                              title="Mark as Not Interested"
+                            >
+                              <ThumbsDown className="w-2.5 h-2.5" />
+                              <span>Not Int.</span>
+                            </button>
+                          </div>
                         )}
                       </div>
 
                       {partner.sourcingCapacity && (
-                        <span className="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 shrink-0 self-start sm:self-auto truncate max-w-full">
+                        <div className="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200 self-start truncate max-w-full">
                           Cap: {partner.sourcingCapacity}
-                        </span>
+                        </div>
                       )}
                     </div>
 
@@ -1474,10 +1761,15 @@ Best regards,
                     <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
                       {/* Candidates count */}
                       <div className="flex items-center gap-1.5">
-                        <div className="inline-flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-lg font-bold text-slate-800 text-[11px]">
+                        <button
+                          type="button"
+                          onClick={() => openCandidateModal(partner)}
+                          className="inline-flex items-center gap-1 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 px-2 py-0.5 rounded-lg font-bold text-[11px] transition-all cursor-pointer active:scale-95"
+                          title="Click to view candidate leads sourced by this partner"
+                        >
                           <TrendingUp className="w-3 h-3 text-teal-600" />
-                          <span>{partner.totalCandidatesReferred || 0} Cand.</span>
-                        </div>
+                          <span>{partner.totalCandidatesReferred || 0} Cand. Leads</span>
+                        </button>
                         {canEdit && (
                           <button
                             onClick={() => handleQuickAddCandidate(partner)}
@@ -1728,25 +2020,61 @@ Best regards,
 
                         {/* 3. Pipeline Phase & Stage Selector */}
                         <td className="py-3.5 px-3.5">
-                          <div className="space-y-1 max-w-[180px]">
+                          <div className="space-y-1.5 max-w-[200px]">
                             <div>{renderStageBadge(partner.onboardingStage)}</div>
                             {canEdit && (
-                              <select
-                                value={
-                                  partner.onboardingStage ||
-                                  (partner.status === "Active"
-                                    ? "Partnership Active"
-                                    : "New Inquiry")
-                                }
-                                onChange={(e) => handleUpdateStage(partner, e.target.value)}
-                                className="w-full text-[10px] font-bold py-1 px-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                              >
-                                <option value="New Inquiry">1. New Inquiry</option>
-                                <option value="In Discussion">2. In Discussion</option>
-                                <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending</option>
-                                <option value="Partnership Active">4. Partnership Active 🤝</option>
-                                <option value="Inactive">Inactive</option>
-                              </select>
+                              <div className="space-y-1">
+                                <select
+                                  value={
+                                    partner.onboardingStage ||
+                                    (partner.status === "Active"
+                                      ? "Partnership Active"
+                                      : "New Inquiry")
+                                  }
+                                  onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                                  className="w-full text-[10px] font-bold py-1 px-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                                >
+                                  <option value="New Inquiry">🟡 1. New Inquiry (Nayi Lead)</option>
+                                  <option value="Interested">🟢 2. Interested 👍</option>
+                                  <option value="In Discussion">🔵 3. In Discussion</option>
+                                  <option value="KYC & MoU Pending">🟣 4. KYC &amp; MoU Pending</option>
+                                  <option value="Partnership Active">🟢 5. Partnership Active 🤝</option>
+                                  <option value="Not Interested">🔴 6. Not Interested ✕</option>
+                                  <option value="Inactive">⚪ Inactive</option>
+                                </select>
+
+                                {/* 1-Click Quick Toggle Buttons */}
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleUpdateStage(partner, "Interested")}
+                                    disabled={partner.onboardingStage === "Interested"}
+                                    className={`px-1.5 py-0.5 rounded text-[9px] font-extrabold flex items-center gap-0.5 transition-all cursor-pointer ${
+                                      partner.onboardingStage === "Interested"
+                                        ? "bg-emerald-600 text-white shadow-xs cursor-default"
+                                        : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 active:scale-95"
+                                    }`}
+                                    title="Quick Mark: Interested"
+                                  >
+                                    <ThumbsUp className="w-2.5 h-2.5" />
+                                    <span>Interested</span>
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleUpdateStage(partner, "Not Interested")}
+                                    disabled={partner.onboardingStage === "Not Interested"}
+                                    className={`px-1.5 py-0.5 rounded text-[9px] font-extrabold flex items-center gap-0.5 transition-all cursor-pointer ${
+                                      partner.onboardingStage === "Not Interested"
+                                        ? "bg-rose-600 text-white shadow-xs cursor-default"
+                                        : "bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 active:scale-95"
+                                    }`}
+                                    title="Quick Mark: Not Interested"
+                                  >
+                                    <ThumbsDown className="w-2.5 h-2.5" />
+                                    <span>Not Int.</span>
+                                  </button>
+                                </div>
+                              </div>
                             )}
                           </div>
                         </td>
@@ -1855,10 +2183,16 @@ Best regards,
 
                         {/* 5. Candidates Referred */}
                         <td className="py-3.5 px-2 text-center">
-                          <div className="inline-flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-lg font-bold text-slate-800 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => openCandidateModal(partner)}
+                            className="inline-flex items-center gap-1 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 px-2 py-1 rounded-lg font-bold text-xs transition-all cursor-pointer active:scale-95"
+                            title="Click to view candidate leads sourced by this partner"
+                          >
                             <TrendingUp className="w-3 h-3 text-teal-600" />
                             <span>{partner.totalCandidatesReferred || 0}</span>
-                          </div>
+                            <span className="text-[10px] text-teal-600 underline font-normal ml-0.5">Leads</span>
+                          </button>
                           {canEdit && (
                             <div className="mt-0.5">
                               <button
@@ -2012,24 +2346,58 @@ Best regards,
                       </div>
                     </div>
 
-                    {/* Quick Stage Selector */}
+                    {/* Quick Stage Selector & 1-Click Action Buttons */}
                     {canEdit && (
-                      <div className="mt-3 flex items-center justify-between gap-2 p-2 bg-slate-50 rounded-xl border border-slate-100 text-xs">
-                        <span className="text-slate-400 font-semibold text-[11px]">Phase:</span>
-                        <select
-                          value={
-                            partner.onboardingStage ||
-                            (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
-                          }
-                          onChange={(e) => handleUpdateStage(partner, e.target.value)}
-                          className="text-[10px] font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500"
-                        >
-                          <option value="New Inquiry">1. New Inquiry</option>
-                          <option value="In Discussion">2. In Discussion</option>
-                          <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending</option>
-                          <option value="Partnership Active">4. Partnership Active 🤝</option>
-                          <option value="Inactive">Inactive</option>
-                        </select>
+                      <div className="mt-3 flex flex-col gap-1.5 p-2 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-slate-400 font-bold text-[11px] uppercase tracking-wider">Phase:</span>
+                          <select
+                            value={
+                              partner.onboardingStage ||
+                              (partner.status === "Active" ? "Partnership Active" : "New Inquiry")
+                            }
+                            onChange={(e) => handleUpdateStage(partner, e.target.value)}
+                            className="text-[10px] font-bold py-1 px-2 rounded-lg border border-slate-200 bg-white text-slate-700 cursor-pointer hover:border-emerald-500"
+                          >
+                            <option value="New Inquiry">🟡 1. New Inquiry (Nayi Lead)</option>
+                            <option value="Interested">🟢 2. Interested 👍</option>
+                            <option value="In Discussion">🔵 3. In Discussion</option>
+                            <option value="KYC & MoU Pending">🟣 4. KYC &amp; MoU Pending</option>
+                            <option value="Partnership Active">🟢 5. Partnership Active 🤝</option>
+                            <option value="Not Interested">🔴 6. Not Interested ✕</option>
+                            <option value="Inactive">⚪ Inactive</option>
+                          </select>
+                        </div>
+                        <div className="flex items-center justify-end gap-1 pt-1 border-t border-slate-200/50">
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateStage(partner, "Interested")}
+                            disabled={partner.onboardingStage === "Interested"}
+                            className={`px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                              partner.onboardingStage === "Interested"
+                                ? "bg-emerald-600 text-white shadow-xs cursor-default"
+                                : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 active:scale-95"
+                            }`}
+                            title="Mark as Interested"
+                          >
+                            <ThumbsUp className="w-2.5 h-2.5" />
+                            <span>Interested</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateStage(partner, "Not Interested")}
+                            disabled={partner.onboardingStage === "Not Interested"}
+                            className={`px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                              partner.onboardingStage === "Not Interested"
+                                ? "bg-rose-600 text-white shadow-xs cursor-default"
+                                : "bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 active:scale-95"
+                            }`}
+                            title="Mark as Not Interested"
+                          >
+                            <ThumbsDown className="w-2.5 h-2.5" />
+                            <span>Not Int.</span>
+                          </button>
+                        </div>
                       </div>
                     )}
 
@@ -2115,14 +2483,27 @@ Best regards,
 
                     {/* Candidates count */}
                     <div className="mt-3 flex items-center justify-between p-2.5 bg-teal-50/60 rounded-xl border border-teal-100 text-xs">
-                      <span className="text-teal-900 font-semibold">Candidates Referred:</span>
+                      <button
+                        type="button"
+                        onClick={() => openCandidateModal(partner)}
+                        className="text-teal-900 font-semibold hover:underline flex items-center gap-1 cursor-pointer text-left"
+                        title="Click to view candidate leads sourced by this partner"
+                      >
+                        <TrendingUp className="w-3.5 h-3.5 text-teal-600" />
+                        <span>View Candidate Leads</span>
+                      </button>
                       <div className="flex items-center gap-2">
-                        <span className="font-black text-teal-800 text-sm">
+                        <button
+                          type="button"
+                          onClick={() => openCandidateModal(partner)}
+                          className="font-black text-teal-800 text-sm hover:underline cursor-pointer"
+                        >
                           {partner.totalCandidatesReferred || 0}
-                        </span>
+                        </button>
                         <button
                           onClick={() => handleQuickAddCandidate(partner)}
                           className="px-2 py-0.5 rounded bg-teal-600 text-white font-bold text-[10px] hover:bg-teal-700 cursor-pointer"
+                          title="+1 Candidate referred"
                         >
                           +1
                         </button>
@@ -2372,20 +2753,33 @@ Best regards,
                     </label>
                     <select
                       value={form.onboardingStage || "New Inquiry"}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const newStage = e.target.value;
                         setForm({
                           ...form,
-                          onboardingStage: e.target.value,
+                          onboardingStage: newStage,
+                          leadInterestStatus:
+                            newStage === "Interested"
+                              ? "Interested"
+                              : newStage === "Not Interested"
+                              ? "Not Interested"
+                              : form.leadInterestStatus || "Pending",
                           status:
-                            e.target.value === "Partnership Active" ? "Active" : form.status,
-                        })
-                      }
+                            newStage === "Partnership Active"
+                              ? "Active"
+                              : newStage === "Not Interested"
+                              ? "Inactive"
+                              : form.status,
+                        });
+                      }}
                       className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-500 focus:outline-none text-slate-800 font-bold"
                     >
                       <option value="New Inquiry">1. New Inquiry (Nayi Lead)</option>
-                      <option value="In Discussion">2. In Discussion (Baat chal rahi hai)</option>
-                      <option value="KYC & MoU Pending">3. KYC &amp; MoU Pending (Under Verification)</option>
-                      <option value="Partnership Active">4. Partnership Active (Signed &amp; Live)</option>
+                      <option value="Interested">2. Interested 👍 (Partner Interested hai)</option>
+                      <option value="In Discussion">3. In Discussion (Baat chal rahi hai)</option>
+                      <option value="KYC & MoU Pending">4. KYC &amp; MoU Pending (Under Verification)</option>
+                      <option value="Partnership Active">5. Partnership Active (Signed &amp; Live)</option>
+                      <option value="Not Interested">6. Not Interested ✕ (Not Interested / Drop)</option>
                       <option value="Inactive">Inactive</option>
                     </select>
                   </div>
@@ -2400,7 +2794,9 @@ Best regards,
                       className="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 border border-slate-200 focus:bg-white focus:border-emerald-500 focus:outline-none text-slate-800"
                     >
                       <option value="Active">Active (Mobilizing Candidates)</option>
+                      <option value="Interested">Interested Lead</option>
                       <option value="Pending Verification">Pending Verification</option>
+                      <option value="Not Interested">Not Interested</option>
                       <option value="Inactive">Inactive</option>
                     </select>
                   </div>
@@ -3237,6 +3633,218 @@ Submit & track candidates live!`}
                       <span>Save Login Credentials</span>
                     </>
                   )}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── B2B CANDIDATE LEADS MODAL ───────────────────────── */}
+        {candidateModalPartner && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in">
+            <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]">
+              {/* Modal Header */}
+              <div className="p-4 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-2xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300 font-bold flex-shrink-0">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-base sm:text-lg font-black truncate">
+                        {candidateModalPartner.name}
+                      </h3>
+                      {candidateModalPartner.partnerCode && (
+                        <span className="font-mono text-xs font-bold bg-teal-400/20 text-teal-300 px-2 py-0.5 rounded-md border border-teal-400/30">
+                          {candidateModalPartner.partnerCode}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-slate-300 mt-0.5">
+                      Candidate Leads sourced by {candidateModalPartner.contactPerson} ({candidateModalPartner.city}) • {partnerCandidates.length} enrolled
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setCandidateModalPartner(null)}
+                  className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
+                {loadingCandidates ? (
+                  <div className="py-16 text-center">
+                    <RefreshCw className="w-8 h-8 text-teal-600 animate-spin mx-auto mb-3" />
+                    <p className="text-sm font-bold text-slate-700">Loading Candidate Leads...</p>
+                    <p className="text-xs text-slate-400">Fetching records from MongoDB</p>
+                  </div>
+                ) : partnerCandidates.length === 0 ? (
+                  <div className="py-12 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200 p-6">
+                    <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-3 font-bold">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-sm font-bold text-slate-800">No Candidate Leads Found Yet</h4>
+                    <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 mb-4">
+                      Candidates referred or mobilized by this partner will appear here with full skill, visa &amp; interest tracking.
+                    </p>
+                    <Link
+                      href="/b2b-partner/submit"
+                      target="_blank"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-teal-600 hover:bg-teal-700 transition-all shadow-sm"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Enroll Candidate for this Partner</span>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between text-xs text-slate-500 font-bold">
+                      <span>Total: {partnerCandidates.length} candidate leads</span>
+                      <Link
+                        href="/b2b-partner/submit"
+                        target="_blank"
+                        className="text-teal-700 hover:underline flex items-center gap-1 font-bold"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Enroll New Candidate</span>
+                      </Link>
+                    </div>
+
+                    <div className="divide-y divide-slate-100 border border-slate-200/90 rounded-2xl overflow-hidden bg-white shadow-xs">
+                      {partnerCandidates.map((c) => {
+                        const cleanPhone = (c.whatsapp || c.phone || "").replace(/[^0-9]/g, "");
+                        const isInterested = c.stage === "interested";
+                        const isNotInterested = c.stage === "not_interested";
+
+                        return (
+                          <div
+                            key={c.id}
+                            className="p-3.5 sm:p-4 hover:bg-slate-50/80 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                          >
+                            <div className="min-w-0 space-y-1">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="font-bold text-sm text-slate-900">
+                                  {c.candidateName}
+                                </span>
+                                {c.candidateRefNo && (
+                                  <span className="font-mono text-[10px] font-bold text-indigo-800 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">
+                                    {c.candidateRefNo}
+                                  </span>
+                                )}
+                                <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                                  {c.trade || "Skilled Trade"}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-3 text-xs text-slate-500 flex-wrap">
+                                <a
+                                  href={`tel:${c.phone}`}
+                                  className="flex items-center gap-1 hover:text-emerald-700 font-mono"
+                                >
+                                  <Phone className="w-3 h-3 text-slate-400" />
+                                  <span>{c.phone}</span>
+                                </a>
+                                {cleanPhone && (
+                                  <a
+                                    href={`https://wa.me/${cleanPhone}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-1 text-emerald-700 hover:underline"
+                                  >
+                                    <MessageSquare className="w-3 h-3" />
+                                    <span>WhatsApp</span>
+                                  </a>
+                                )}
+                                {c.targetCountry && (
+                                  <span className="flex items-center gap-1 text-slate-600 font-medium">
+                                    <MapPin className="w-3 h-3 text-slate-400" />
+                                    <span>Target: {c.targetCountry}</span>
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Candidate Status Selector & 1-Click Buttons */}
+                            <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap shrink-0">
+                              <select
+                                value={c.stage}
+                                onChange={(e) => handleUpdateCandidateStage(c.id, e.target.value)}
+                                className={`text-xs font-bold py-1.5 px-2.5 rounded-xl border transition-colors cursor-pointer ${
+                                  isInterested
+                                    ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                                    : isNotInterested
+                                    ? "bg-rose-50 text-rose-800 border-rose-300"
+                                    : "bg-slate-50 text-slate-800 border-slate-200"
+                                }`}
+                              >
+                                <option value="agent_submitted">1. Agent Submitted</option>
+                                <option value="interested">2. Interested 👍</option>
+                                <option value="not_interested">3. Not Interested ✕</option>
+                                <option value="document_verified">4. Documents Verified</option>
+                                <option value="trade_test">5. Trade Test</option>
+                                <option value="client_interview">6. Client Interview</option>
+                                <option value="selected">7. Selected / Offer</option>
+                                <option value="medical_fit">8. Medical Fit</option>
+                                <option value="visa_processing">9. Visa Processing</option>
+                                <option value="visa_issued">10. Visa Issued</option>
+                                <option value="deployed">11. Deployed Abroad</option>
+                                <option value="rejected">Rejected / Unfit</option>
+                                <option value="on_hold">On Hold</option>
+                              </select>
+
+                              {/* 1-Click Quick Toggle */}
+                              <div className="flex items-center gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() => handleUpdateCandidateStage(c.id, "interested")}
+                                  disabled={isInterested}
+                                  className={`px-2 py-1 rounded-lg text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                                    isInterested
+                                      ? "bg-emerald-600 text-white shadow-xs cursor-default"
+                                      : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 active:scale-95"
+                                  }`}
+                                  title="Mark Candidate as Interested"
+                                >
+                                  <ThumbsUp className="w-2.5 h-2.5" />
+                                  <span>Int.</span>
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleUpdateCandidateStage(c.id, "not_interested")}
+                                  disabled={isNotInterested}
+                                  className={`px-2 py-1 rounded-lg text-[10px] font-extrabold flex items-center gap-1 transition-all cursor-pointer ${
+                                    isNotInterested
+                                      ? "bg-rose-600 text-white shadow-xs cursor-default"
+                                      : "bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 active:scale-95"
+                                  }`}
+                                  title="Mark Candidate as Not Interested"
+                                >
+                                  <ThumbsDown className="w-2.5 h-2.5" />
+                                  <span>Not Int.</span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Modal Footer */}
+              <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between text-xs">
+                <span className="text-slate-500 font-semibold">
+                  Partner Code: <span className="font-mono font-bold text-slate-800">{candidateModalPartner.partnerCode || "N/A"}</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setCandidateModalPartner(null)}
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 cursor-pointer shadow-xs"
+                >
+                  Close Leads
                 </button>
               </div>
             </div>

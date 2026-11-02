@@ -118,6 +118,13 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
       agreementStatus: mouStatus === "Signed" ? "Signed MoU" : "None",
       ...(body.onboardingStage !== undefined ? { onboardingStage: body.onboardingStage } : {}),
+      ...(body.leadInterestStatus !== undefined
+        ? { leadInterestStatus: body.leadInterestStatus }
+        : body.onboardingStage === "Interested"
+        ? { leadInterestStatus: "Interested" }
+        : body.onboardingStage === "Not Interested"
+        ? { leadInterestStatus: "Not Interested" }
+        : {}),
       ...(body.source !== undefined ? { source: body.source?.trim() } : {}),
       ...(body.sourcingCapacity !== undefined ? { sourcingCapacity: body.sourcingCapacity?.trim() } : {}),
     };

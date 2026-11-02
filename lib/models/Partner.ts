@@ -7,15 +7,24 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export type PartnerType = "Individual" | "Company" | "Agency" | string;
-export type PartnerStatus = "Active" | "Pending Verification" | "Inactive" | string;
+export type PartnerStatus =
+  | "Active"
+  | "Pending Verification"
+  | "Interested"
+  | "Not Interested"
+  | "Inactive"
+  | string;
 export type MouStatus = "Signed" | "Pending" | "Under Review" | "Expired" | "None";
 export type KycStatus = "Verified" | "Pending" | "Incomplete" | string;
 export type OnboardingStage =
   | "New Inquiry"
+  | "Interested"
   | "In Discussion"
   | "KYC & MoU Pending"
   | "Partnership Active"
+  | "Not Interested"
   | "Inactive";
+export type LeadInterestStatus = "Interested" | "Not Interested" | "Pending" | "Callback" | string;
 
 export interface IPartner extends Document {
   partnerCode?: string;
@@ -32,6 +41,7 @@ export interface IPartner extends Document {
   address?: string;
   status: string;
   onboardingStage?: OnboardingStage | string;
+  leadInterestStatus?: LeadInterestStatus;
   source?: string;
   sourcingCapacity?: string;
   commissionTerms?: string;
@@ -152,6 +162,12 @@ const PartnerSchema = new Schema<IPartner>(
     onboardingStage: {
       type: String,
       default: "Partnership Active",
+      trim: true,
+      index: true,
+    },
+    leadInterestStatus: {
+      type: String,
+      default: "Pending",
       trim: true,
       index: true,
     },

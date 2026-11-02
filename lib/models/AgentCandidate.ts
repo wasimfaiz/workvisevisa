@@ -15,16 +15,18 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 export type AgentCandidateStage =
   | "agent_submitted"    // 1. Agent dwara recruit karke bheja gaya
-  | "document_verified"  // 2. Passport & Documents verified by WorkWise
-  | "trade_test"         // 3. Trade Test / Skill Verification
-  | "client_interview"   // 4. Overseas Employer Interview (e.g. AFGC Dubai)
-  | "selected"           // 5. Selected / Offer Letter Issued
-  | "medical_fit"        // 6. GAMCA / Fit Medical Report
-  | "visa_processing"    // 7. Visa Application Submitted
-  | "visa_issued"        // 8. Visa Stamped / Work Permit Received
-  | "deployed"           // 9. Flight Done & Deployed Abroad
-  | "rejected"           // 10. Rejected / Unfit
-  | "on_hold";           // 11. On Hold
+  | "interested"         // 2. Candidate Interested in Job Offer
+  | "not_interested"     // 3. Candidate Not Interested / Dropped
+  | "document_verified"  // 4. Passport & Documents verified by WorkWise
+  | "trade_test"         // 5. Trade Test / Skill Verification
+  | "client_interview"   // 6. Overseas Employer Interview (e.g. AFGC Dubai)
+  | "selected"           // 7. Selected / Offer Letter Issued
+  | "medical_fit"        // 8. GAMCA / Fit Medical Report
+  | "visa_processing"    // 9. Visa Application Submitted
+  | "visa_issued"        // 10. Visa Stamped / Work Permit Received
+  | "deployed"           // 11. Flight Done & Deployed Abroad
+  | "rejected"           // 12. Rejected / Unfit
+  | "on_hold";           // 13. On Hold
 
 export type CommissionStatus = "pending" | "approved" | "paid";
 
@@ -170,6 +172,8 @@ const AgentCandidateSchema = new Schema<IAgentCandidate>(
       type: String,
       enum: [
         "agent_submitted",
+        "interested",
+        "not_interested",
         "document_verified",
         "trade_test",
         "client_interview",

@@ -30,6 +30,7 @@ export async function GET(request: NextRequest) {
     const mouStatus = searchParams.get("mouStatus")?.trim() || "";
     const kycStatus = searchParams.get("kycStatus")?.trim() || "";
     const onboardingStage = searchParams.get("onboardingStage")?.trim() || "";
+    const interestStatus = searchParams.get("interestStatus")?.trim() || "";
 
     const query: Record<string, any> = {};
 
@@ -43,6 +44,13 @@ export async function GET(request: NextRequest) {
 
     if (onboardingStage && onboardingStage !== "All") {
       query.onboardingStage = onboardingStage;
+    }
+
+    if (interestStatus && interestStatus !== "All") {
+      query.$or = [
+        { leadInterestStatus: interestStatus },
+        { onboardingStage: interestStatus },
+      ];
     }
 
     if (mouStatus && mouStatus !== "All") {
@@ -80,9 +88,22 @@ export async function GET(request: NextRequest) {
       pipelineLeads: allPartners.filter(
         (p) =>
           p.onboardingStage === "New Inquiry" ||
+          p.onboardingStage === "Interested" ||
           p.onboardingStage === "In Discussion" ||
           p.onboardingStage === "KYC & MoU Pending" ||
           p.status === "Pending Verification"
+      ).length,
+      interestedLeads: allPartners.filter(
+        (p) =>
+          p.onboardingStage === "Interested" ||
+          p.leadInterestStatus === "Interested" ||
+          p.status === "Interested"
+      ).length,
+      notInterestedLeads: allPartners.filter(
+        (p) =>
+          p.onboardingStage === "Not Interested" ||
+          p.leadInterestStatus === "Not Interested" ||
+          p.status === "Not Interested"
       ).length,
       newInquiries: allPartners.filter((p) => p.onboardingStage === "New Inquiry").length,
       inDiscussion: allPartners.filter((p) => p.onboardingStage === "In Discussion").length,
@@ -194,6 +215,13 @@ export async function POST(request: NextRequest) {
       onboardingStage:
         body.onboardingStage ||
         (body.status === "Pending Verification" ? "New Inquiry" : "Partnership Active"),
+      leadInterestStatus:
+        body.leadInterestStatus ||
+        (body.onboardingStage === "Interested"
+          ? "Interested"
+          : body.onboardingStage === "Not Interested"
+          ? "Not Interested"
+          : "Pending"),
       source: body.source?.trim() || "Manual Admin Entry",
       sourcingCapacity: body.sourcingCapacity?.trim() || "",
       commissionTerms: body.commissionTerms?.trim() || "Standard Sourcing Commission",
