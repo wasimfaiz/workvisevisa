@@ -3,7 +3,6 @@ const path = require('path');
 const sharp = require('sharp');
 
 const srcPath = 'C:\\Users\\win\\.gemini\\antigravity-ide\\brain\\b56f9add-6a3a-4199-b448-d007c106f904\\neom_project_recruitment_guide_1793720211205.jpg';
-const destJpg = path.join(process.cwd(), 'public', 'images', 'neom-project-recruitment-guide.jpg');
 const destWebp = path.join(process.cwd(), 'public', 'images', 'neom-project-recruitment-guide.webp');
 
 async function processImage() {
@@ -12,11 +11,7 @@ async function processImage() {
     return;
   }
   
-  // Copy to jpg
-  fs.copyFileSync(srcPath, destJpg);
-  console.log('Saved JPG to:', destJpg);
-
-  // Convert to webp with high quality
+  // Convert directly to webp with high quality
   await sharp(srcPath)
     .webp({ quality: 85 })
     .toFile(destWebp);
