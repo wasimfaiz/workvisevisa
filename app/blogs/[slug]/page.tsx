@@ -61,9 +61,25 @@ async function getBlog(slug: string) {
   // Find corresponding rich fallback by keyword aliases
   const staticFound = fallbackPosts.find(
     (p) =>
+      (decodedSlug.includes("neom-project-latest") && p.id === "blog-36") ||
+      (decodedSlug.includes("neom-recruitment") && p.id === "blog-36") ||
+      (decodedSlug.includes("the-line") && p.id === "blog-36") ||
+      (decodedSlug.includes("oxagon") && p.id === "blog-36") ||
+      (decodedSlug.includes("trojena") && p.id === "blog-36") ||
+      (decodedSlug.includes("singapore") && p.id === "blog-35") ||
+      (decodedSlug.includes("s-pass") && p.id === "blog-35") ||
+      (decodedSlug.includes("bca-trade") && p.id === "blog-35") ||
+      (decodedSlug.includes("mom-ipa") && p.id === "blog-35") ||
       (decodedSlug.includes("korea") && p.id === "blog-34") ||
       (decodedSlug.includes("e-9") && p.id === "blog-34") ||
       (decodedSlug.includes("topik") && p.id === "blog-34") ||
+      (decodedSlug.includes("japan") && p.id === "blog-33") ||
+      (decodedSlug.includes("ssw") && p.id === "blog-33") ||
+      (decodedSlug.includes("titp") && p.id === "blog-33") ||
+      (decodedSlug.includes("malta") && p.id === "blog-32") ||
+      (decodedSlug.includes("identita") && p.id === "blog-32") ||
+      (decodedSlug.includes("greece") && p.id === "blog-31") ||
+      (decodedSlug.includes("metaklisi") && p.id === "blog-31") ||
       (decodedSlug.includes("bihar-up") && p.id === "blog-30") ||
       (decodedSlug.includes("bihar-gulf") && p.id === "blog-30") ||
       (decodedSlug.includes("russia-work-visa") && p.id === "blog-29") ||
@@ -106,8 +122,8 @@ async function getBlog(slug: string) {
       (decodedSlug.includes("gcc-unified") && p.id === "blog-10") ||
       (decodedSlug.includes("shutdown") && p.id === "blog-9") ||
       (decodedSlug.includes("plant-turnaround") && p.id === "blog-9") ||
-      (decodedSlug.includes("neom") && p.id === "blog-8") ||
-      (decodedSlug.includes("megaprojects") && p.id === "blog-8") ||
+      (decodedSlug.includes("neom-megaprojects") && p.id === "blog-8") ||
+      (decodedSlug.includes("vision-2030-megaprojects") && p.id === "blog-8") ||
       (decodedSlug.includes("delivery") && p.id === "blog-7") ||
       (decodedSlug.includes("rider") && p.id === "blog-7") ||
       (decodedSlug.includes("warehouse") && p.id === "blog-7") ||

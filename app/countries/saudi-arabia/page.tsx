@@ -1285,16 +1285,16 @@ export default function SaudiArabiaCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/saudi-arabia-neom-megaprojects-recruitment-work-visa-guide-2026"
+                href="/blogs/neom-project-latest-updates-mega-recruitment-2026-jobs-salary-qiwa-epc"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-teal-600">Vision 2030 &amp; NEOM</span>
+                  <span className="text-[10px] font-bold uppercase text-teal-600">Vision 2030 &amp; NEOM 2026/2027</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Saudi Blue-Collar &amp; Construction Recruitment Guide
+                    NEOM Project Latest Updates &amp; Mega Recruitment Guide
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
-                    NEOM, Red Sea, Riyadh Metro, Qiwa digital contracts, and Iqama issuance rules.
+                    The Line, Oxagon &amp; Trojena jobs, SAR 3,000–8,500+ tax-free wages, Qiwa contracts, and EPC hiring.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
