@@ -2747,16 +2747,16 @@ export default function UAECountryPage() {
               </Link>
 
               <Link
-                href="/blogs/dubai-delivery-rider-warehouse-logistics-work-permit-2026"
+                href="/blogs/gulf-bike-delivery-rider-jobs-2026-dubai-saudi-visa-license-salary-guide"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase text-teal-600">Logistics &amp; Transport</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Dubai Delivery Rider Jobs &amp; RTA Motorcycle License
+                    Gulf Delivery Rider Jobs 2026: Dubai &amp; Saudi RTA License &amp; Salary Guide
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
-                    Onboarding for Talabat, Noon, Careem, RTA driving school lessons, and commission pay structures.
+                    Onboarding for Talabat, Deliveroo, Noon, RTA &amp; Dallah motorcycle school lessons, and commission earnings.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
