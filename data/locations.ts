@@ -1415,6 +1415,161 @@ export const locationsList: LocationData[] = [
       },
     ],
   },
+
+  // ==========================================
+  // 13. FARIDABAD (Haryana / Delhi NCR Candidate Hub)
+  // ==========================================
+  {
+    slug: "faridabad",
+    name: "Faridabad",
+    state: "Haryana (Delhi NCR)",
+    type: "service-area",
+    heroBadge: "Industrial & Automotive Hub • Dedicated Candidate Placement Desk",
+    metaTitle: "Work Visa Consultancy in Faridabad | Overseas Jobs & Recruitment",
+    metaDescription:
+      "Top work visa consultancy & overseas recruitment agency serving Faridabad, Haryana. Verified Gulf & Europe work permits, MEA Apostille & embassy stamping support.",
+    keywords: [
+      "work visa consultancy in faridabad",
+      "visa consultancy in faridabad",
+      "overseas recruitment agency faridabad",
+      "gulf job consultancy in faridabad",
+      "europe work visa consultant faridabad",
+      "best immigration consultant faridabad",
+      "dubai work visa agent in faridabad",
+      "saudi arabia visa processing faridabad",
+      "manpower consultancy in faridabad for gulf",
+      "takamol trade test guidance faridabad",
+      "gamca medical appointment center faridabad",
+      "mea apostille attestation faridabad",
+      "nit faridabad job consultancy abroad",
+      "ballabhgarh work visa agency",
+      "licensed overseas manpower agency faridabad",
+    ],
+    districtIntro:
+      "As Haryana's largest industrial manufacturing, automotive tooling, and heavy engineering corridor, Faridabad is home to thousands of experienced CNC machinists, mechanical fabricators, structural 6G welders, heavy fleet drivers, and electromechanical engineers. WorkWise Visa provides candidates across NIT Faridabad, Ballabhgarh, Old Faridabad, Greater Faridabad (Neharpar), and Sectors 15/16/21 direct access to verified, employer-backed work permits across Europe (Poland, Croatia, Romania, Germany) and the Gulf (Saudi Arabia, UAE, Qatar, Oman, Kuwait). Backed by our Corporate Regional Headquarters in Sector 132, Noida (just 25-35 minutes away via Kalindi Kunj or Faridabad-Noida Road), we ensure 100% scam-free recruitment, authentic Qiwa digital contracts, Wafid GAMCA medical clearances, and MEA Apostille support.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Corporate Headquarters (Urbtech Trade Centre, Sector 132, Noida)",
+      nearestBranchSlug: "noida",
+      nearestBranchAddress: "Urbtech Trade Centre, D-701 C, Sector 132, Noida-Greater Noida Expressway, Uttar Pradesh 201304 (Approx. 25-35 Mins from Faridabad)",
+      distanceFromCity: "22-26 KM from Faridabad",
+      travelDuration: "25–35 Mins via Kalindi Kunj / Faridabad-Noida Road",
+      recommendedTrains: [
+        "Delhi Metro Violet Line (Raja Nahar Singh / Bata Chowk / Old Faridabad to Kalkaji Mandir Interchange) → Magenta Line to Botanical Garden",
+        "Direct Road Drive via Kalindi Kunj Bypass / Faridabad-Noida Link Road to Noida-Greater Noida Expressway (Sector 132)",
+        "Auto / Cab from Badarpur Border / Sarita Vihar directly via Okhla Bird Sanctuary",
+      ],
+      roadRoute: "Take Mathura Road (NH-44) towards Badarpur, turn right towards Kalindi Kunj onto Noida-Greater Noida Expressway, take Sector 132 exit directly at Urbtech Trade Centre.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile & Trade Evaluation",
+          description: "Submit your resume, trade certificates (ITI/Diploma), and passport via our online portal or WhatsApp for instant employer eligibility matching.",
+        },
+        {
+          step: "02",
+          title: "In-Person Consultation at Noida Regional HQ",
+          description: "Visit our Corporate HQ at Urbtech Trade Centre, Sector 132, Noida for physical document verification, trade interview briefing, and contract signing.",
+        },
+        {
+          step: "03",
+          title: "Takamol SVP / Wafid Medical / MEA Apostille",
+          description: "Complete your biometric trade tests, Gulf medical fitness slips, or European MEA Apostille with direct assistance from our operational team.",
+        },
+        {
+          step: "04",
+          title: "Consular Stamping & Departure Flight",
+          description: "Receive your genuine sovereign work permit (Qiwa, MOHRE, Voivodeship), consular visa stamping, and flight ticket with guaranteed on-site camp accommodation.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job quotas across Europe & the Gulf",
+        "Direct 25-minute expressway connectivity to our Noida Corporate Headquarters",
+        "Free guidance for Saudi Takamol SVP exams & Wafid GAMCA medical bookings",
+        "Strict anti-scam protection with zero advance charges before authentic job selection",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial Manufacturing, CNC & Automotive",
+        roles: ["CNC Milling / Lathe Operator", "VMC Programmer", "Tool & Die Maker", "Mechanical Fitter", "QA/QC Inspector"],
+        monthlySalary: "₹85,000 - ₹1,65,000",
+        countries: "Poland, Croatia, Germany, Saudi Arabia, UAE",
+        overtime: "2-3 Hours daily paid OT + free accommodation",
+      },
+      {
+        category: "Welding, Heavy Fabrication & Plant Engineering",
+        roles: ["6G TIG & SMAW Pipe Welder", "Structural Steel Fabricator", "Pipe Rigger", "Millwright Fitter", "Hydraulic Mechanic"],
+        monthlySalary: "₹68,000 - ₹1,25,000",
+        countries: "Saudi Arabia (NEOM), Qatar, UAE, Romania",
+        overtime: "1.5x basic rate (statutory overtime) + medical cover",
+      },
+      {
+        category: "Construction, MEP & Commercial Transport",
+        roles: ["Industrial Electrician", "HVAC Chiller Technician", "Heavy Trailer Driver", "Mobile Crane Operator", "Forklift Driver"],
+        monthlySalary: "₹60,000 - ₹1,40,000",
+        countries: "Dubai (UAE), Saudi Arabia, Kuwait, Poland",
+        overtime: "2 hours daily + trip allowances + free transport",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Proximity to Noida Corporate HQ",
+        desc: "Located just 25 to 35 minutes from Faridabad via Kalindi Kunj or Delhi Metro, candidates can visit our official office in Sector 132 for transparent in-person consultations.",
+      },
+      {
+        title: "Direct Employer Recruitment (Zero Sub-Agents)",
+        desc: "All vacancies are authenticated directly with Tier-1 overseas conglomerates and European manufacturing plants, completely bypassing local fraudulent middlemen.",
+      },
+      {
+        title: "Comprehensive Compliance & Stamping",
+        desc: "End-to-end management of Takamol SVP trade testing, Wafid GAMCA medicals, MEA Apostille attestation at Patiala House, and VFS biometrics at Shivaji Stadium.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Gurpreet Singh",
+        cityOrDistrict: "NIT Faridabad (Sector 1)",
+        jobRole: "CNC Machine Operator",
+        destinationCountry: "Poznań, Poland",
+        monthlySalary: "€1,250 (₹1,12,000/mo)",
+        quote: "Faridabad industrial area me 8 saal CNC par kaam karne ke baad bhi salary ₹24,000 thi. WorkWise Visa ke Noida office jakar Poland Type-D visa ke liye apply kiya. 3 mahine me Voivodeship permit aur visa stamp ho gaya.",
+        rating: 5,
+      },
+      {
+        name: "Amit Sharma",
+        cityOrDistrict: "Ballabhgarh, Faridabad",
+        jobRole: "6G Argon Welder",
+        destinationCountry: "NEOM Green Hydrogen, Saudi Arabia",
+        monthlySalary: "SAR 3,600 (₹82,000/mo)",
+        quote: "Local agents NEOM ke naam par ₹1.5 lakh fraud kar rahe the. WorkWise Visa se direct client interview diya, Takamol test clear kiya aur bina kisi fake promise ke legal Qiwa contract par flight hui.",
+        rating: 5,
+      },
+      {
+        name: "Rahul Verma",
+        cityOrDistrict: "Old Faridabad (Sector 19)",
+        jobRole: "Heavy Trailer Driver",
+        destinationCountry: "Dubai, UAE",
+        monthlySalary: "AED 4,800 (₹1,08,000/mo)",
+        quote: "Mathura Road par container chala raha tha. WorkWise team ne Dubai logistics company me direct driver vacancy dilwayi. RTA license test ki guidance bhi mili.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Faridabad se WorkWise Visa office kaise pahuchein?",
+        a: "Faridabad se hamara Corporate Headquarters Urbtech Trade Centre, Sector 132, Noida me sthit hai. Aap Mathura Road se Kalindi Kunj hokar Noida Expressway par 25-35 minute me pahunch sakte hain, ya Violet Line Metro se Kalkaji Mandir interchange karke Botanical Garden/Noida aa sakte hain.",
+      },
+      {
+        q: "Kya Faridabad ke industrial trade workers ke liye Europe me vacancies hain?",
+        a: "Haan, Poland, Croatia, aur Romania ke manufacturing plants me Faridabad ke CNC operators, tool & die makers, 6G welders, aur maintenance mechanics ki continuous demand rehti hai jahan monthly take-home salary ₹95,000 se ₹1,50,000+ tak hoti hai.",
+      },
+      {
+        q: "Kya initial profile assessment ke liye koi charge lagta hai?",
+        a: "Bilkul nahi. WorkWise Visa par initial resume evaluation aur trade eligibility review 100% free of charge hai.",
+      },
+    ],
+  },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {

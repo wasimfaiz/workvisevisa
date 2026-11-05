@@ -48,6 +48,7 @@ export async function generateStaticParams() {
     "chhapra",
     "darbhanga",
     "delhi",
+    "faridabad",
     "gaya",
     "gopalganj",
     "gorakhpur",

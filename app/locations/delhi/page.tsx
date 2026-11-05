@@ -439,7 +439,7 @@ export default function DelhiLocationPage() {
                   As the National Capital of India, Delhi houses the country&apos;s central diplomatic, consular, and credential-authentication infrastructure. Candidates applying from Delhi—from the industrial hubs of Okhla, Mayapuri, and Patparganj to residential belts across South, East, West, and Central Delhi—benefit from unparalleled logistical speed that regional applicants simply cannot match.
                 </p>
                 <p>
-                  WorkWise Visa capitalizes on this unique geographic advantage. All major foreign diplomatic missions—such as the **Royal Embassy of Saudi Arabia**, **Embassy of the UAE**, **Embassy of Qatar**, **Embassy of the Republic of Poland**, **Embassy of Romania**, and **Embassy of Croatia**—are concentrated in Chanakyapuri and Vasant Vihar. Furthermore, the central **VFS Global Joint Visa Application Centre at Shivaji Stadium Metro Station (Connaught Place)** and the **Ministry of External Affairs (MEA) CPV Division at Patiala House** allow us to resolve biometric scheduling, consular queries, and Hague Apostille stamping with unmatched precision.
+                  WorkWise Visa capitalizes on this unique geographic advantage. All major foreign diplomatic missions—such as the <strong>Royal Embassy of Saudi Arabia</strong>, <strong>Embassy of the UAE</strong>, <strong>Embassy of Qatar</strong>, <strong>Embassy of the Republic of Poland</strong>, <strong>Embassy of Romania</strong>, and <strong>Embassy of Croatia</strong>—are concentrated in Chanakyapuri and Vasant Vihar. Furthermore, the central <strong>VFS Global Joint Visa Application Centre at Shivaji Stadium Metro Station (Connaught Place)</strong> and the <strong>Ministry of External Affairs (MEA) CPV Division at Patiala House</strong> allow us to resolve biometric scheduling, consular queries, and Hague Apostille stamping with unmatched precision.
                 </p>
               </div>
 
@@ -448,7 +448,7 @@ export default function DelhiLocationPage() {
                   Operating from our primary corporate headquarters at Urbtech Trade Centre, Sector 132 (directly connected to South Delhi via the DND Flyway and Kalindi Kunj Expressway in under 20 minutes), WorkWise Visa provides complete institutional transparency. We protect Delhi candidates from the rampant exploitation of unlicensed sub-agents operating around Paharganj, Laxmi Nagar, or Jamia Nagar who make fraudulent promises of &ldquo;tourist-to-work visa conversions&rdquo;.
                 </p>
                 <p>
-                  Every overseas position managed by WorkWise Visa carries a verified employer labor authorization, legally binding digital contracts under **eMigrate** and host-nation labor ministries (such as Saudi Qiwa, UAE MOHRE, and European Voivodeship offices), and guaranteed statutory wage protections.
+                  Every overseas position managed by WorkWise Visa carries a verified employer labor authorization, legally binding digital contracts under <strong>eMigrate</strong> and host-nation labor ministries (such as Saudi Qiwa, UAE MOHRE, and European Voivodeship offices), and guaranteed statutory wage protections.
                 </p>
               </div>
             </div>
@@ -1275,6 +1275,10 @@ export default function DelhiLocationPage() {
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
                 <Link href="/locations/noida" className="hover:text-emerald-700 font-semibold underline">
                   Noida Corporate HQ
+                </Link>
+                <span>•</span>
+                <Link href="/locations/faridabad" className="hover:text-emerald-700 font-semibold underline">
+                  Faridabad Desk
                 </Link>
                 <span>•</span>
                 <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">

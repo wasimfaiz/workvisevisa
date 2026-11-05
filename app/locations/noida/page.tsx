@@ -2050,6 +2050,10 @@ export default function NoidaLocationPage() {
                   Delhi NCR Placement Desk
                 </Link>
                 <span>•</span>
+                <Link href="/locations/faridabad" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
+                  Faridabad Placement Desk
+                </Link>
+                <span>•</span>
                 <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">
                   Patna Regional Branch
                 </Link>
