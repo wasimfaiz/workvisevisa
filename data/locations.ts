@@ -1570,6 +1570,449 @@ export const locationsList: LocationData[] = [
       },
     ],
   },
+
+  // ==========================================
+  // 14. MEERUT (Uttar Pradesh / Western UP Candidate Hub)
+  // ==========================================
+  {
+    slug: "meerut",
+    name: "Meerut",
+    state: "Uttar Pradesh (Delhi NCR)",
+    type: "service-area",
+    heroBadge: "Sports Capital & Industrial Tooling Hub • Dedicated Candidate Placement Desk",
+    metaTitle: "Work Visa Consultancy in Meerut | Overseas Jobs & Recruitment",
+    metaDescription:
+      "Top overseas job consultancy in Meerut, Western UP. Verified Europe & Gulf work permits for CNC machinists, sports equipment artisans, toolmakers, welders & drivers.",
+    keywords: [
+      "work visa consultancy in meerut",
+      "visa consultancy in meerut",
+      "overseas recruitment agency meerut",
+      "gulf job consultancy in meerut",
+      "europe work visa consultant meerut",
+      "best immigration consultant meerut",
+      "dubai work visa agent in meerut",
+      "saudi arabia visa processing meerut",
+      "partapur industrial area job consultancy abroad",
+      "mohkampur work visa agency",
+      "sports goods craftsman jobs europe",
+      "cnc machinist jobs abroad meerut",
+      "6g welder gulf vacancy meerut",
+      "delhi meerut expressway visa office",
+    ],
+    districtIntro:
+      "As India's sporting goods manufacturing capital and Western Uttar Pradesh's prominent metallurgical engineering center, Meerut is home to thousands of experienced CNC machinists, precision tool & die makers, sports goods craftsmen, structural 6G welders, heavy commercial drivers, and electromechanical technicians. WorkWise Visa provides candidates across Partapur Industrial Area, Mohkampur, Suraj Kund, Begum Bridge, Modipuram, and Shastri Nagar direct access to verified, employer-backed work permits across Europe (Poland, Croatia, Romania, Germany) and the Gulf (Saudi Arabia, UAE, Qatar, Oman, Kuwait). Backed by our Corporate Regional Headquarters in Sector 132, Noida (just 45-55 minutes away via the Delhi-Meerut Expressway / DME), we ensure 100% scam-free recruitment, authentic Qiwa digital contracts, Wafid GAMCA medical clearances, and MEA Apostille support.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Corporate Headquarters (Urbtech Trade Centre, Sector 132, Noida)",
+      nearestBranchSlug: "noida",
+      nearestBranchAddress: "Urbtech Trade Centre, D-701 C, Sector 132, Noida-Greater Noida Expressway, Uttar Pradesh 201304 (Approx. 45-55 Mins from Meerut via DME)",
+      distanceFromCity: "62-68 KM from Meerut",
+      travelDuration: "45–55 Mins via Delhi-Meerut Expressway (NE-3)",
+      recommendedTrains: [
+        "Delhi-Meerut Expressway (NE-3 / DME): Direct 45-55 min drive from Partapur Bypass straight to Sector 132 Noida",
+        "Namo Bharat Rapid Rail (RRTS): Meerut South / Shatabdi Nagar to Anand Vihar RRTS (35 mins) → Metro to Noida",
+        "UPSRTC Express AC Buses & Cabs from Bhainsali Bus Stand / Begum Bridge directly to Noida Expressway",
+      ],
+      roadRoute: "Take the Delhi-Meerut Expressway (NE-3) south from Partapur Bypass past Bhojpur and Dasna, exit towards Indirapuram onto the Noida Link Road, and join the Noida-Greater Noida Expressway straight to Urbtech Trade Centre at Sector 132.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile & Trade Evaluation",
+          description: "Submit your resume, trade certificates (ITI/Diploma/Experience), and passport via our online portal or WhatsApp for instant employer eligibility matching.",
+        },
+        {
+          step: "02",
+          title: "Visit Noida HQ or Attend Client Drives",
+          description: "Visit our Corporate Headquarters in Sector 132 Noida (45 mins via DME) for physical document vetting, trade assessment, and client interviews.",
+        },
+        {
+          step: "03",
+          title: "Sovereign Work Permit & Visa Stamping",
+          description: "We handle your Wafid medical, MEA Apostille at Patiala House, VFS biometrics at Shivaji Stadium, eMigrate POE clearance, and IGI Airport flight mobilization.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job quotas across Europe & the Gulf",
+        "Direct 45-minute expressway connectivity to our Noida Corporate Headquarters",
+        "Specialized European placements for sports goods, leather, and precision tooling artisans",
+        "Strict anti-scam protection with zero advance charges before authentic job selection",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial Tooling, CNC & Precision Machining",
+        roles: ["CNC Milling / VMC 4-Axis Operator", "Tool & Die Maker", "Bench Fitter", "Industrial Surface Grinder", "QA/QC Inspector"],
+        monthlySalary: "₹85,000 - ₹1,55,000",
+        countries: "Poland, Germany, Romania, Czechia",
+        overtime: "2-3 Hours daily paid OT + free accommodation",
+      },
+      {
+        category: "Sports Goods & Leather Craftsmanship",
+        roles: ["Cricket Bat Willow Carver", "Sports Gear Stitcher", "Leather Fabricator", "Composite Materials Tech", "Quality Checker"],
+        monthlySalary: "₹80,000 - ₹1,30,000",
+        countries: "Poland, Romania, Portugal, UAE",
+        overtime: "Clean factory conditions + subsidized meals",
+      },
+      {
+        category: "Welding, Heavy Transport & Electrical",
+        roles: ["6G TIG & SMAW Pipe Welder", "Heavy Trailer / Container Driver", "HT/LT Panel Wireman", "Transformer Winder", "Diesel Mechanic"],
+        monthlySalary: "₹72,000 - ₹1,65,000",
+        countries: "Saudi Arabia (NEOM), Dubai (UAE), Qatar, Kuwait",
+        overtime: "Statutory 1.5x OT + free camp & flights",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Fast 45-Min Expressway Proximity to Noida HQ",
+        desc: "Located just 45 to 55 minutes from Meerut via the Delhi-Meerut Expressway, candidates can visit our official office in Sector 132 for transparent in-person consultations.",
+      },
+      {
+        title: "Direct Employer Recruitment (Zero Sub-Agents)",
+        desc: "All vacancies are authenticated directly with Tier-1 overseas conglomerates and European manufacturing plants, completely bypassing local fraudulent middlemen.",
+      },
+      {
+        title: "Comprehensive Compliance & Stamping",
+        desc: "End-to-end management of Takamol SVP trade testing, Wafid GAMCA medicals, MEA Apostille attestation at Patiala House, and VFS biometrics at Shivaji Stadium.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Vikas Chaudhary",
+        cityOrDistrict: "Partapur Industrial Area, Meerut",
+        jobRole: "CNC Lathe Operator",
+        destinationCountry: "Wrocław, Poland",
+        monthlySalary: "€1,300 (₹1,18,000/mo)",
+        quote: "Partapur me 7 saal CNC par kaam karne ke baad bhi salary ₹22,000 thi. Delhi-Meerut Expressway se WorkWise Visa office gaya. Direct interview ke baad Poland Type-D visa mila. Aaj monthly ₹1,18,000 bachat bhej raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Mohammad Rizwan",
+        cityOrDistrict: "Suraj Kund, Meerut",
+        jobRole: "Sports Equipment Leather Craftsman",
+        destinationCountry: "Romania Sporting Goods Plant",
+        monthlySalary: "€950 (₹88,000/mo)",
+        quote: "Suraj Kund me leather sports gear banata tha. WorkWise team ne Romania me direct sports equipment manufacturing company me vacancy dilwayi. Zero advance charge aur genuine single permit mila.",
+        rating: 5,
+      },
+      {
+        name: "Sandeep Tyagi",
+        cityOrDistrict: "Modipuram, Meerut",
+        jobRole: "Heavy Commercial Trailer Driver",
+        destinationCountry: "Dubai, UAE",
+        monthlySalary: "AED 4,600 (₹1,05,000/mo)",
+        quote: "NH-334 par heavy container chala raha tha. WorkWise Visa ke through Dubai logistics firm me direct trailer driver vacancy mili. RTA license test ki guidance bhi mili.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Meerut se WorkWise Visa office kaise pahuchein?",
+        a: "Meerut se hamara Corporate Headquarters Urbtech Trade Centre, Sector 132, Noida me sthit hai. Aap Delhi-Meerut Expressway (NE-3) se sirf 45-55 minute me Partapur Bypass se Noida Expressway pahunch sakte hain, ya Namo Bharat RRTS se Anand Vihar aakar metro le sakte hain.",
+      },
+      {
+        q: "Kya Meerut ke sports goods aur tooling artisans ke liye Europe me jobs hain?",
+        a: "Haan, Poland, Romania, aur Czechia ke manufacturing plants me Meerut ke sports goods craftsmen, precision tool & die makers, CNC operators, aur 6G welders ki continuous demand rehti hai jahan monthly net salary ₹85,000 se ₹1,55,000+ tak hoti hai.",
+      },
+      {
+        q: "Kya initial profile assessment ke liye koi charge lagta hai?",
+        a: "Bilkul nahi. WorkWise Visa par initial resume evaluation aur trade eligibility review 100% free of charge hai.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 15. VARANASI (Eastern UP / Purvanchal Candidate Hub)
+  // ==========================================
+  {
+    slug: "varanasi",
+    name: "Varanasi",
+    state: "Uttar Pradesh",
+    type: "service-area",
+    heroBadge: "Purvanchal Industrial & Railway Engineering Hub • Dedicated Candidate Placement Desk",
+    metaTitle: "Work Visa Consultancy in Varanasi | Overseas Jobs & Recruitment",
+    metaDescription:
+      "Top overseas job consultancy in Varanasi, Purvanchal. Verified Europe & Gulf work permits for locomotive machinists, 6G welders, heavy drivers, MEP & trade artisans.",
+    keywords: [
+      "work visa consultancy in varanasi",
+      "visa consultancy in varanasi",
+      "overseas recruitment agency varanasi",
+      "gulf job consultancy in varanasi",
+      "europe work visa consultant varanasi",
+      "best immigration consultant varanasi",
+      "dubai work visa agent in varanasi",
+      "saudi arabia visa processing varanasi",
+      "banaras locomotive works job abroad",
+      "ramnagar industrial area visa consultant",
+      "mughal sarai heavy driver jobs gulf",
+      "6g welder vacancy europe varanasi",
+    ],
+    districtIntro:
+      "Serving as the spiritual and industrial nerve center of Eastern Uttar Pradesh (Purvanchal), Varanasi and the surrounding Chandauli-Mughal Sarai corridor host a premier workforce of precision locomotive technicians, heavy mechanical fitters, structural 6G pipe welders, commercial trailer drivers, and electromechanical MEP specialists. WorkWise Visa provides skilled and technical candidates across DLW/BLW, Ramnagar Industrial Area, Sigra, Shivpur, Lahartara, and Pt. Deen Dayal Upadhyaya Junction (Mughal Sarai) transparent, employer-backed overseas employment across Europe (Poland, Romania, Croatia, Germany) and the Arabian Gulf (Saudi Arabia, UAE, Qatar, Kuwait, Oman). Candidates are fully assisted by our Patna Regional Branch (Varma Centre, Boring Road — just 3.5 hours via Vande Bharat / NH-19) and our Corporate Headquarters in Noida.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Regional Branch Office (Varma Centre, Boring Road, Patna)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress: "Varma Centre, Boring Road, Patna, Bihar 800001 (Approx. 3.5 Hours via Vande Bharat Express / NH-19)",
+      distanceFromCity: "220–240 KM from Varanasi",
+      travelDuration: "3 Hours 20 Mins via Vande Bharat / 4.5 Hours via NH-19",
+      recommendedTrains: [
+        "Vande Bharat Express (22346 / 20888): Varanasi Jn (BSB) to Patna Jn (PNBE) in just 3 hrs 20 mins",
+        "Jan Shatabdi Express (15126): Daily morning train connecting Pt. Deen Dayal Upadhyaya / Varanasi to Patna",
+        "Purvanchal Expressway & NH-19 Direct Road Connectivity: 4.5 hours by direct express bus or taxi",
+      ],
+      roadRoute: "Take NH-19 / Grand Trunk Road eastward past Mohania, Sasaram, and Dehri-on-Sone, connecting via Ara straight into Patna Boring Road, or board the direct high-speed Vande Bharat from Varanasi Cantt.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile & Trade Evaluation",
+          description: "Submit your CV, trade certificates (ITI/Diploma/Experience), and passport via our online portal or WhatsApp for instant employer eligibility matching.",
+        },
+        {
+          step: "02",
+          title: "Visit Patna Branch or Attend Client Drives",
+          description: "Visit our Patna Regional Branch (Varma Centre, Boring Road) for physical document vetting, trade assessment, and client interviews.",
+        },
+        {
+          step: "03",
+          title: "Sovereign Work Permit & Visa Stamping",
+          description: "We handle your Wafid medical, MEA Apostille, VFS biometrics, eMigrate POE clearance, and flight mobilization.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job quotas across Europe & the Gulf",
+        "Convenient 3.5-hour Vande Bharat rail connectivity to our Patna Regional Branch",
+        "Specialized overseas placements for railway fitters, 6G welders, and heavy transport drivers",
+        "Strict anti-scam protection with zero advance charges before authentic job selection",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial Fitting, Heavy Machinery & Locomotive Trades",
+        roles: ["DLW Locomotive Fitter", "Hydraulic Press Maintenance", "Industrial Machinist", "Diesel Engine Mechanic"],
+        monthlySalary: "₹85,000 - ₹1,60,000",
+        countries: "Poland, Germany, Czechia, Romania",
+        overtime: "2-3 Hours daily OT + employer lodging",
+      },
+      {
+        category: "6G Welding, Fabrication & Structural Rigging",
+        roles: ["6G TIG/SMAW Pipe Welder", "Structural Steel Fabricator", "Pipe Fitter", "Industrial Rigging Rigger"],
+        monthlySalary: "₹75,000 - ₹1,50,000",
+        countries: "Saudi Arabia (NEOM/Aramco), UAE, Qatar",
+        overtime: "1.5x statutory OT + food & camp",
+      },
+      {
+        category: "Commercial Heavy Transport & Heavy Equipment",
+        roles: ["Heavy Trailer / Container Driver", "Articulated Dump Truck Operator", "Mobile Crane Operator"],
+        monthlySalary: "₹70,000 - ₹1,40,000",
+        countries: "UAE, Saudi Arabia, Kuwait, Poland",
+        overtime: "Fixed allowance + performance trip bonus",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Direct Proximity to Patna Branch & Varanasi Assistance",
+        desc: "Candidates across Varanasi and Mughal Sarai have seamless access to our Patna Regional Branch in Boring Road via 3.5-hour high-speed Vande Bharat trains for safe in-person onboarding.",
+      },
+      {
+        title: "Zero Sub-Agent Verification (Direct Sovereign Visas)",
+        desc: "All vacancies are validated directly with multinational European corporations and Tier-1 Gulf EPC contractors, completely bypassing local fraudulent middlemen.",
+      },
+      {
+        title: "Complete GAMCA, Apostille & Emigration Support",
+        desc: "End-to-end processing including Takamol SVP trade testing, Wafid GAMCA medical appointments, MEA Apostille attestation, and eMigrate POE clearance.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Rajesh Kumar Yadav",
+        cityOrDistrict: "DLW Colony / Shivpur, Varanasi",
+        jobRole: "Locomotive Mechanical Fitter",
+        destinationCountry: "Katowice, Poland",
+        monthlySalary: "€1,450 (₹1,32,000/mo)",
+        quote: "DLW me apprenticeship ke baad contract par kaam karta tha. WorkWise Visa ke guidance se Patna branch jakar interview diya. Poland me railway rolling stock unit me direct visa mila.",
+        rating: 5,
+      },
+      {
+        name: "Arvind Bind",
+        cityOrDistrict: "Mughal Sarai / Chandauli",
+        jobRole: "6G Pipe Welder",
+        destinationCountry: "Saudi Aramco Project, KSA",
+        monthlySalary: "SAR 4,800 (₹1,08,000/mo)",
+        quote: "Purvanchal me local dalalo ne do baar thaga tha. WorkWise Visa ke digital process se genuine Qiwa contract mila. Aaj Saudi Aramco project me kaam kar raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Mohammad Shakeel",
+        cityOrDistrict: "Ramnagar Industrial Area, Varanasi",
+        jobRole: "Heavy Commercial Trailer Driver",
+        destinationCountry: "Dubai Logistics Hub, UAE",
+        monthlySalary: "AED 4,500 (₹1,02,000/mo)",
+        quote: "Ramnagar industrial corridor me container chalata tha. WorkWise team ne Dubai me MNC transport firm me placement dilwayi. RTA license test me bhi poori help mili.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Varanasi se WorkWise Visa office kaise pahuchein?",
+        a: "Varanasi ke candidates ke liye hamara nearest Regional Branch Office Varma Centre, Boring Road, Patna me hai, jo Varanasi Jn se Vande Bharat Express ke zariye sirf 3 ghante 20 minute ki doori par hai. Saath hi Noida Corporate Headquarters bhi direct trains ke through connected hai.",
+      },
+      {
+        q: "Kya DLW/BLW ke trained fitters aur machinists ke liye Europe me vacancies hain?",
+        a: "Haan, Poland, Germany, aur Czechia ke railway engineering aur heavy machinery plants me Indian locomotive fitters aur machinists ki bhari demand rehti hai jahan monthly salary ₹85,000 se ₹1,60,000 tak milti hai.",
+      },
+      {
+        q: "Kya initial profile assessment ke liye koi fees deni hoti hai?",
+        a: "Nahi, WorkWise Visa par initial CV evaluation aur trade eligibility review bilkul free of cost hai.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 16. ALIGARH (Uttar Pradesh / Western UP Candidate Hub)
+  // ==========================================
+  {
+    slug: "aligarh",
+    name: "Aligarh",
+    state: "Uttar Pradesh (Delhi NCR)",
+    type: "service-area",
+    heroBadge: "Tala Nagri & Precision Metallurgy Hub • Dedicated Candidate Placement Desk",
+    metaTitle: "Work Visa Consultancy in Aligarh | Overseas Jobs & Recruitment",
+    metaDescription:
+      "Top overseas job consultancy in Aligarh, Western UP. Verified Europe & Gulf work permits for die-casting artisans, toolmakers, CNC machinists, welders & drivers.",
+    keywords: [
+      "work visa consultancy in aligarh",
+      "visa consultancy in aligarh",
+      "overseas recruitment agency aligarh",
+      "gulf job consultancy in aligarh",
+      "europe work visa consultant aligarh",
+      "best immigration consultant aligarh",
+      "dubai work visa agent in aligarh",
+      "saudi arabia visa processing aligarh",
+      "tala nagri industrial area job abroad",
+      "amu polytechnic overseas placement",
+      "die casting mold maker jobs europe",
+      "electroplating technician gulf vacancy",
+    ],
+    districtIntro:
+      "Celebrated globally as India's 'Tala Nagri' (City of Locks) and a prominent metallurgical hardware manufacturing powerhouse, Aligarh boasts a dense ecosystem of precision mold makers, die-casting artisans, electroplating technicians, CNC lathe programmers, sheet metal fabricators, and AMU-trained polytechnic engineers. WorkWise Visa provides skilled artisans and technical workforce across Tala Nagri Industrial Area, ITI Road, Sasni Gate, University Road, G.T. Road, and Khair direct, authenticated access to government-sanctioned work permits across Europe (Poland, Romania, Croatia, Germany) and the GCC (Saudi Arabia, UAE, Qatar, Kuwait, Oman). Located merely 115-125 KM (approx. 90-110 minutes via the Yamuna Expressway / NH-34) from our Corporate Regional Headquarters in Sector 132, Noida, Aligarh candidates enjoy seamless in-person document verification, genuine Qiwa electronic contracts, GAMCA medical coordination, and 100% scam-free career progression.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Corporate Headquarters (Urbtech Trade Centre, Sector 132, Noida)",
+      nearestBranchSlug: "noida",
+      nearestBranchAddress: "Urbtech Trade Centre, D-701 C, Sector 132, Noida-Greater Noida Expressway, Uttar Pradesh 201304 (Approx. 90-110 Mins from Aligarh via Yamuna Expressway / NH-34)",
+      distanceFromCity: "115–125 KM from Aligarh",
+      travelDuration: "90–110 Mins via Yamuna Expressway or NH-34",
+      recommendedTrains: [
+        "Yamuna Expressway / Tappal Route: 90-110 min direct drive from Aligarh via Khair/Tappal straight to Noida Expressway",
+        "Northern Railway Express Trains: Aligarh Jn (ALJN) to New Delhi / Ghaziabad (1.5-2 hrs) → Blue/Aqua Line Metro to Sector 132 Noida",
+        "UPSRTC AC Janrath & Volvo Buses: Direct continuous bus service from Aligarh Old/New Bus Stand to Anand Vihar & Noida Pari Chowk",
+      ],
+      roadRoute: "Take the Aligarh-Palwal road through Khair and Tappal directly onto the Yamuna Expressway northbound towards Greater Noida, transitioning smoothly onto the Noida-Greater Noida Expressway directly to Urbtech Trade Centre at Sector 132.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile & Trade Evaluation",
+          description: "Submit your resume, trade certificates (ITI/Diploma/Experience), and passport via our online portal or WhatsApp for instant employer eligibility matching.",
+        },
+        {
+          step: "02",
+          title: "Visit Noida HQ or Attend Client Drives",
+          description: "Visit our Corporate Headquarters in Sector 132 Noida (90-110 mins) for physical document vetting, trade assessment, and client interviews.",
+        },
+        {
+          step: "03",
+          title: "Sovereign Work Permit & Visa Stamping",
+          description: "We handle your Wafid medical, MEA Apostille at Patiala House, VFS biometrics at Shivaji Stadium, eMigrate POE clearance, and IGI Airport flight mobilization.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job quotas across Europe & the Gulf",
+        "Direct 90-minute expressway connectivity to our Noida Corporate Headquarters",
+        "Specialized overseas placements for die-casting, electroplating, and precision tooling artisans",
+        "Strict anti-scam protection with zero advance charges before authentic job selection",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Precision Mold Making, Die-Casting & Tooling",
+        roles: ["High-Pressure Die Casting Operator", "Mold Maker", "EDM Wire-Cut Operator", "CNC Milling / Lathe Programmer"],
+        monthlySalary: "₹85,000 - ₹1,65,000",
+        countries: "Poland, Germany, Romania, Czechia",
+        overtime: "2-3 Hours daily OT + free furnished accommodation",
+      },
+      {
+        category: "Electroplating, Powder Coating & Metal Finishing",
+        roles: ["Automated Electroplating Line Operator", "Powder Coating Specialist", "Metal Polishing Craftsman", "Anodizing Technician"],
+        monthlySalary: "₹78,000 - ₹1,35,000",
+        countries: "Poland, Slovakia, UAE, Saudi Arabia",
+        overtime: "Paid OT + safety-standard working environment",
+      },
+      {
+        category: "Welding, Electrical MEP & Heavy Commercial Transport",
+        roles: ["6G TIG/MIG Welder", "Industrial Electrician", "Heavy Trailer / Tipper Driver", "HVAC Duct Fabricator"],
+        monthlySalary: "₹72,000 - ₹1,50,000",
+        countries: "Saudi Arabia (NEOM), UAE, Qatar, Kuwait",
+        overtime: "1.5x statutory OT + food & camp",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Direct 90-Min Connectivity to Noida Corporate HQ",
+        desc: "Located just 90 to 110 minutes from Aligarh via the Yamuna Expressway, candidates can visit our official headquarters in Sector 132 Noida for transparent in-person onboarding.",
+      },
+      {
+        title: "Direct Employer Recruitment (Zero Sub-Agents)",
+        desc: "All vacancies are authenticated directly with Tier-1 overseas conglomerates and European manufacturing plants, completely bypassing local fraudulent middlemen.",
+      },
+      {
+        title: "End-to-End Embassies, GAMCA & Apostille Handling",
+        desc: "Comprehensive management of Takamol SVP trade testing, Wafid GAMCA medicals, MEA Apostille attestation at Patiala House, and VFS biometrics at Shivaji Stadium.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Farhan Khan",
+        cityOrDistrict: "Tala Nagri Industrial Area, Aligarh",
+        jobRole: "Die-Casting Mold Maker",
+        destinationCountry: "Poznań, Poland",
+        monthlySalary: "€1,350 (₹1,22,000/mo)",
+        quote: "Tala Nagri me lock die casting mold banata tha. WorkWise Visa ke Noida office jakar interview diya. Poland me European single work permit mila. Monthly ₹1,22,000 kamata hoon.",
+        rating: 5,
+      },
+      {
+        name: "Dinesh Chandra Sharma",
+        cityOrDistrict: "Sasni Gate, Aligarh",
+        jobRole: "CNC Milling Operator",
+        destinationCountry: "Brașov, Romania",
+        monthlySalary: "€1,100 (₹1,00,000/mo)",
+        quote: "Sasni Gate hardware cluster me 8 saal CNC par kaam kiya. WorkWise team ne Romania engineering plant me direct selection karwaya. Zero advance fee policy bilkul sach thi.",
+        rating: 5,
+      },
+      {
+        name: "Tariq Anwar",
+        cityOrDistrict: "Dodhpur / AMU Area, Aligarh",
+        jobRole: "6G TIG/MIG Pipe Welder",
+        destinationCountry: "Jubail Industrial City, KSA",
+        monthlySalary: "SAR 4,500 (₹1,01,000/mo)",
+        quote: "AMU Polytechnic se ITI pass out hoon. WorkWise Visa ne authentic Qiwa contract aur Takamol test clear karwake Saudi Arabia me direct visa stamp karwaya.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Aligarh se WorkWise Visa office kaise pahuchein?",
+        a: "Aligarh se hamara Corporate Headquarters Urbtech Trade Centre, Sector 132, Noida me sthit hai. Aap Yamuna Expressway se sirf 90-110 minute me drive karke direct hamare office pahunch sakte hain, ya Aligarh Jn se train lekar New Delhi/Ghaziabad se metro pakad sakte hain.",
+      },
+      {
+        q: "Kya Aligarh ke die-casting aur mold makers ke liye Europe me vacancies hain?",
+        a: "Haan, Poland, Germany, Romania, aur Czechia ke precision hardware aur automotive components plants me Aligarh ke experienced mold makers, die-casting operators, aur electroplaters ki bhari demand rehti hai.",
+      },
+      {
+        q: "Kya initial trade evaluation ke koi charges hain?",
+        a: "Bilkul nahi. WorkWise Visa par initial CV evaluation aur trade eligibility review 100% free of charge hai.",
+      },
+    ],
+  },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {

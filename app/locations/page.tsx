@@ -70,13 +70,19 @@ export default function LocationsHubPage() {
 
   const ncrHubs = serviceAreas.filter(
     (loc) =>
-      loc.state.includes("Delhi NCR") ||
-      loc.state.includes("Haryana") ||
       loc.slug === "delhi" ||
-      loc.slug === "faridabad"
+      loc.slug === "faridabad" ||
+      loc.slug === "meerut" ||
+      loc.slug === "aligarh"
   );
   const biharHubs = serviceAreas.filter((loc) => loc.state === "Bihar");
-  const upHubs = serviceAreas.filter((loc) => loc.state === "Uttar Pradesh");
+  const upHubs = serviceAreas.filter(
+    (loc) =>
+      loc.state.includes("Uttar Pradesh") &&
+      loc.slug !== "noida" &&
+      loc.slug !== "meerut" &&
+      loc.slug !== "aligarh"
+  );
 
   return (
     <>
@@ -114,7 +120,7 @@ export default function LocationsHubPage() {
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaUsers className="text-teal-400 w-4 h-4" />
-                <span>12+ Candidate Assistance Hubs</span>
+                <span>14+ Candidate Assistance Hubs</span>
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaShieldHalved className="text-emerald-400 w-4 h-4" />

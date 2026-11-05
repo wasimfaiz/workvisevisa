@@ -1273,6 +1273,18 @@ export default function FaridabadLocationPage() {
                   Faridabad Desk
                 </Link>
                 <span>•</span>
+                <Link href="/locations/meerut" className="hover:text-emerald-700 font-semibold underline">
+                  Meerut Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/aligarh" className="hover:text-emerald-700 font-semibold underline">
+                  Aligarh Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/varanasi" className="hover:text-emerald-700 font-semibold underline">
+                  Varanasi Desk
+                </Link>
+                <span>•</span>
                 <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">
                   Patna Regional Branch
                 </Link>

@@ -44,6 +44,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const dedicatedDirectories = new Set([
+    "aligarh",
     "bhagalpur",
     "chhapra",
     "darbhanga",
@@ -53,10 +54,12 @@ export async function generateStaticParams() {
     "gopalganj",
     "gorakhpur",
     "lucknow",
+    "meerut",
     "muzaffarpur",
     "noida",
     "patna",
     "siwan",
+    "varanasi",
   ]);
   return getAllLocationSlugs()
     .filter((slug) => !dedicatedDirectories.has(slug.toLowerCase()))
