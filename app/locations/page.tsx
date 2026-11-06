@@ -72,6 +72,7 @@ export default function LocationsHubPage() {
     (loc) =>
       loc.slug === "delhi" ||
       loc.slug === "faridabad" ||
+      loc.slug === "ghaziabad" ||
       loc.slug === "meerut" ||
       loc.slug === "aligarh"
   );
@@ -81,7 +82,8 @@ export default function LocationsHubPage() {
       loc.state.includes("Uttar Pradesh") &&
       loc.slug !== "noida" &&
       loc.slug !== "meerut" &&
-      loc.slug !== "aligarh"
+      loc.slug !== "aligarh" &&
+      loc.slug !== "ghaziabad"
   );
 
   return (
@@ -120,7 +122,7 @@ export default function LocationsHubPage() {
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaUsers className="text-teal-400 w-4 h-4" />
-                <span>14+ Candidate Assistance Hubs</span>
+                <span>15+ Candidate Assistance Hubs</span>
               </div>
               <div className="bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700 font-medium flex items-center gap-2">
                 <FaShieldHalved className="text-emerald-400 w-4 h-4" />

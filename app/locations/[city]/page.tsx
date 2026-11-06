@@ -51,6 +51,7 @@ export async function generateStaticParams() {
     "delhi",
     "faridabad",
     "gaya",
+    "ghaziabad",
     "gopalganj",
     "gorakhpur",
     "lucknow",

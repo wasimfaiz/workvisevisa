@@ -1271,6 +1271,10 @@ export default function VaranasiLocationPage() {
                   Faridabad Desk
                 </Link>
                 <span>•</span>
+                <Link href="/locations/ghaziabad" className="hover:text-emerald-700 font-semibold underline">
+                  Ghaziabad Desk
+                </Link>
+                <span>•</span>
                 <Link href="/locations/meerut" className="hover:text-emerald-700 font-semibold underline">
                   Meerut Desk
                 </Link>

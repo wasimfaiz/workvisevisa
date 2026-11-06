@@ -2013,6 +2013,156 @@ export const locationsList: LocationData[] = [
       },
     ],
   },
+
+  // ==========================================
+  // 17. GHAZIABAD (Uttar Pradesh / Delhi NCR Candidate Hub)
+  // ==========================================
+  {
+    slug: "ghaziabad",
+    name: "Ghaziabad",
+    state: "Uttar Pradesh (Delhi NCR)",
+    type: "service-area",
+    heroBadge: "Western UP's Industrial Heavyweight • Dedicated Candidate Placement Desk",
+    metaTitle: "Work Visa Consultancy in Ghaziabad | Overseas Jobs & Recruitment",
+    metaDescription:
+      "Top overseas job consultancy in Ghaziabad, NCR. Verified Europe & Gulf work permits for Sahibabad & Kavi Nagar machinists, 6G welders, heavy drivers & electricians.",
+    keywords: [
+      "work visa consultancy in ghaziabad",
+      "visa consultancy in ghaziabad",
+      "overseas recruitment agency ghaziabad",
+      "gulf job consultancy in ghaziabad",
+      "europe work visa consultant ghaziabad",
+      "best immigration consultant ghaziabad",
+      "dubai work visa agent in ghaziabad",
+      "saudi arabia visa processing ghaziabad",
+      "sahibabad industrial area job abroad",
+      "kavi nagar industrial area visa agency",
+      "bulandshahr road industrial area recruitment",
+      "6g welder vacancy europe ghaziabad",
+      "cnc lathe operator jobs abroad ghaziabad",
+      "heavy commercial driver gulf job ghaziabad",
+      "delhi meerut expressway visa consultant",
+    ],
+    districtIntro:
+      "Renowned as the industrial gateway of Uttar Pradesh and an indispensable manufacturing pillar of the Delhi National Capital Region (NCR), Ghaziabad boasts vast engineering clusters across Sahibabad Industrial Area (Site 4, Site 1/2), Kavi Nagar, Bulandshahr Road, Mohan Nagar, Meerut Road, Loni, and Dasna. The city is home to thousands of experienced CNC lathe & VMC operators, structural 6G pipe welders, industrial maintenance electricians, transformer technicians, mechanical fitters, and commercial container drivers. WorkWise Visa connects Ghaziabad artisans and technical talent directly with verified, employer-backed work permits across Europe (Poland, Romania, Croatia, Germany) and the Gulf (Saudi Arabia, UAE, Qatar, Kuwait, Oman). Located just 18 to 28 kilometers (approx. 20–35 minutes via the Hindon Elevated Road, Delhi-Meerut Expressway, or Noida Expressway) from our Corporate Regional Headquarters in Sector 132, Noida, Ghaziabad candidates enjoy rapid in-person document vetting, genuine Qiwa electronic contracts, GAMCA medical coordination, and 100% scam-free international career placement.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "WorkWise Visa Corporate Headquarters (Urbtech Trade Centre, Sector 132, Noida)",
+      nearestBranchSlug: "noida",
+      nearestBranchAddress: "Urbtech Trade Centre, D-701 C, Sector 132, Noida-Greater Noida Expressway, Uttar Pradesh 201304 (Approx. 20–35 Mins from Ghaziabad)",
+      distanceFromCity: "18–28 KM from Ghaziabad",
+      travelDuration: "20–35 Mins via Hindon Elevated Road / DME / Noida Expressway",
+      recommendedTrains: [
+        "Hindon Elevated Road & Noida Expressway: Direct 20–35 min drive from Raj Nagar Extension / Kavi Nagar / Mohan Nagar straight to Sector 132 Noida",
+        "Delhi-Meerut Expressway (NE-3): 20 min drive past Indirapuram and Noida Link Road directly onto the Noida Expressway",
+        "Delhi Metro Blue Line / Red Line: Metro from Vaishali / Kaushambi to Botanical Garden (15 mins) → quick 10 min taxi down the expressway to Urbtech Trade Centre",
+      ],
+      roadRoute: "From Mohan Nagar or Sahibabad, take the Link Road to NH-9 / Delhi-Meerut Expressway past Indirapuram, exit onto the Noida Link Road, and join the signal-free Noida-Greater Noida Expressway straight to Urbtech Trade Centre at Sector 132.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Profile & Trade Evaluation",
+          description: "Submit your resume, trade certificates (ITI/Diploma/Experience), and passport via our online portal or WhatsApp for instant employer eligibility matching.",
+        },
+        {
+          step: "02",
+          title: "Visit Noida HQ or Attend Client Drives",
+          description: "Visit our Corporate Headquarters in Sector 132 Noida (20-35 mins drive) for physical document vetting, trade assessment, and client interviews.",
+        },
+        {
+          step: "03",
+          title: "Sovereign Work Permit & Visa Stamping",
+          description: "We handle your Wafid medical, MEA Apostille at Patiala House, VFS biometrics at Shivaji Stadium, eMigrate POE clearance, and IGI Airport flight mobilization.",
+        },
+      ],
+      onlineBenefits: [
+        "100% verified employer-backed job quotas across Europe & the Gulf",
+        "Direct 20-35 minute proximity to our Noida Corporate Regional Headquarters",
+        "Specialized overseas placements for steel fabrication, CNC tooling, and electrical switchgear technicians",
+        "Strict anti-scam protection with zero advance charges before authentic job selection",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial Machinery, Steel Fabrication & Heavy Equipment",
+        roles: ["CNC Lathe / VMC Machinist", "Structural 6G TIG/MIG Welder", "Heavy Mechanical Fitter", "Industrial Pipe Fabricator", "Hydraulic Maintenance Tech"],
+        monthlySalary: "₹85,000 - ₹1,65,000",
+        countries: "Poland, Germany, Czechia, Romania",
+        overtime: "2-3 Hours daily OT + employer lodging",
+      },
+      {
+        category: "Electro-Mechanical, Transformers & Switchgear Maintenance",
+        roles: ["HT/LT Panel Wireman", "Transformer Winder", "Industrial Maintenance Electrician", "Motor Rewinder", "Instrumentation Tech"],
+        monthlySalary: "₹75,000 - ₹1,45,000",
+        countries: "Saudi Arabia (NEOM/Aramco), UAE, Qatar, Kuwait",
+        overtime: "1.5x statutory OT + food & accommodation",
+      },
+      {
+        category: "Heavy Commercial Transport & Container Logistics",
+        roles: ["Heavy Commercial Trailer Driver", "Tipper / Dumper Driver", "Warehouse Reach Truck Operator", "Heavy Equipment Mechanic"],
+        monthlySalary: "₹72,000 - ₹1,55,000",
+        countries: "UAE (Dubai Logistics), Saudi Arabia, Poland, Croatia",
+        overtime: "Fixed trip allowances + safety incentives",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Ultra-Fast 20-35 Min Proximity to Noida Corporate HQ",
+        desc: "Located just 20 to 35 minutes from Ghaziabad via the Hindon Elevated Road and DME, candidates can visit our official office in Sector 132 Noida for transparent in-person consultations.",
+      },
+      {
+        title: "Direct Employer Recruitment (Zero Sub-Agents)",
+        desc: "All vacancies are authenticated directly with Tier-1 overseas conglomerates and European manufacturing plants, completely bypassing local fraudulent middlemen.",
+      },
+      {
+        title: "End-to-End Embassies, GAMCA & Apostille Handling",
+        desc: "Comprehensive management of Takamol SVP trade testing, Wafid GAMCA medicals, MEA Apostille attestation at Patiala House, and VFS biometrics at Shivaji Stadium.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Sumit Rawat",
+        cityOrDistrict: "Sahibabad Industrial Area Site 4, Ghaziabad",
+        jobRole: "CNC Milling & VMC Operator",
+        destinationCountry: "Katowice, Poland",
+        monthlySalary: "€1,350 (₹1,22,000/mo)",
+        quote: "Sahibabad Site 4 me 6 saal VMC machine par kaam kiya par salary ₹24,000 par atki thi. Sahibabad se sirf 25 minute me WorkWise Visa Noida office gaya. Inhone direct European single work permit dilwaya. Aaj Poland me monthly ₹1.22 Lakh kamata hoon.",
+        rating: 5,
+      },
+      {
+        name: "Anas Qureshi",
+        cityOrDistrict: "Kavi Nagar Industrial Area, Ghaziabad",
+        jobRole: "Structural 6G TIG/MIG Pipe Welder",
+        destinationCountry: "Jubail Industrial City, Saudi Arabia",
+        monthlySalary: "SAR 4,600 (₹1,04,000/mo)",
+        quote: "Kavi Nagar me fabrication workshop me kaam karta tha. Local agents ne do baar tourist visa bolkar fraud kiya. WorkWise Visa se direct Qiwa verified contract mila. Takamol trade test bhi Delhi center me clear karwaya.",
+        rating: 5,
+      },
+      {
+        name: "Devendra Yadav",
+        cityOrDistrict: "Bulandshahr Road / Dasna, Ghaziabad",
+        jobRole: "Heavy Commercial Container Driver",
+        destinationCountry: "Dubai Logistics Hub, UAE",
+        monthlySalary: "AED 4,700 (₹1,06,000/mo)",
+        quote: "DME aur Eastern Peripheral Expressway par 8 saal trailer chalaya. WorkWise team ne Dubai me MNC transport firm me placement dilwayi. RTA license test aur MOHRE visa poori imaandari se hua.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Ghaziabad se WorkWise Visa Noida office kaise pahuchein?",
+        a: "Ghaziabad se hamara Corporate Regional Headquarters Urbtech Trade Centre, Sector 132, Noida me sthit hai. Aap Hindon Elevated Road ya Delhi-Meerut Expressway se sirf 20-35 minute me drive karke pahunch sakte hain, ya Vaishali/Kaushambi metro se Botanical Garden aakar direct taxi le sakte hain.",
+      },
+      {
+        q: "Kya Sahibabad aur Kavi Nagar ke factory workers ke liye Europe me vacancies hain?",
+        a: "Haan, Poland, Germany, Romania, aur Czechia ke manufacturing plants me Ghaziabad ke precision CNC/VMC operators, press tool makers, 6G welders, aur maintenance electricians ki continuous demand rehti hai jahan monthly salary ₹85,000 se ₹1,65,000+ tak hoti hai.",
+      },
+      {
+        q: "Kya initial resume evaluation ke liye koi charge lagta hai?",
+        a: "Bilkul nahi. WorkWise Visa par initial profile assessment aur trade eligibility review 100% free of charge hai.",
+      },
+    ],
+  },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {

@@ -2054,6 +2054,10 @@ export default function NoidaLocationPage() {
                   Faridabad Placement Desk
                 </Link>
                 <span>•</span>
+                <Link href="/locations/ghaziabad" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
+                  Ghaziabad Placement Desk
+                </Link>
+                <span>•</span>
                 <Link href="/locations/meerut" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
                   Meerut Placement Desk
                 </Link>
