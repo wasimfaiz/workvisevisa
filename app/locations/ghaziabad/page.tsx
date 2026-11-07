@@ -299,68 +299,129 @@ export default function GhaziabadLocationPage() {
 
       <main>
         {/* ==================================================================== */}
-        {/* SECTION 1: HERO BANNER (TARGETED GHAZIABAD NCR PLACEMENT DESK)        */}
+        {/* SECTION 1: HERO SECTION                                             */}
         {/* ==================================================================== */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white pt-24 sm:pt-28 pb-16 sm:pb-20 border-b border-emerald-950/40">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(16,185,129,0.25),rgba(255,255,255,0))]" />
+        <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-blue-950 pt-24 sm:pt-28 pb-16 sm:pb-24 text-white">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 shadow-xs">
-                <FaLocationDot className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Western UP&apos;s Industrial Heavyweight • Dedicated Candidate Placement Desk</span>
+            {/* Breadcrumb Navigation */}
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-6 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-400 font-medium"
+            >
+              <Link href="/" className="transition-colors hover:text-emerald-400">
+                Home
+              </Link>
+              <span>/</span>
+              <Link href="/locations" className="transition-colors hover:text-emerald-400">
+                Locations
+              </Link>
+              <span>/</span>
+              <span className="font-semibold text-emerald-400">Ghaziabad</span>
+            </nav>
+
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+              {/* Left Column: Semantic Headline & Value Proposition */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-300">
+                  <FaShieldHalved className="text-emerald-400" />
+                  Western UP&apos;s Industrial Heavyweight • Dedicated Candidate Placement Desk
+                </div>
+
+                <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
+                  Work Visa &amp; Overseas Employment Consultancy in{" "}
+                  <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
+                    Ghaziabad
+                  </span>
+                </h1>
+
+                <p className="mt-5 text-base sm:text-lg leading-relaxed text-slate-300">
+                  Connecting skilled trade technicians, CNC lathe machinists, structural 6G welders, heavy commercial drivers, and electromechanical artisans across <strong>Sahibabad (Site 4), Kavi Nagar, Bulandshahr Road, Mohan Nagar, and Loni</strong> directly with verified employer work permits across Europe (Poland, Germany, Romania, Croatia) and the Gulf (Saudi Arabia, UAE, Qatar). Located just <strong>20 to 35 minutes via Hindon Elevated Road &amp; DME</strong> from our Corporate Regional Headquarters in Sector 132, Noida.
+                </p>
+
+                {/* Key Legal Trust Metrics */}
+                <div className="mt-8 grid grid-cols-2 gap-4 border-t border-slate-800/80 pt-6 sm:grid-cols-4">
+                  <div>
+                    <div className="text-2xl font-bold text-emerald-400">20–35 Mins</div>
+                    <div className="text-xs text-slate-400">To Noida Corporate HQ</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">100%</div>
+                    <div className="text-xs text-slate-400">Verified Work Permits</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-emerald-400">Takamol &amp; Wafid</div>
+                    <div className="text-xs text-slate-400">Direct Test Center Booking</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">Zero</div>
+                    <div className="text-xs text-slate-400">Sub-Agent Exploitation</div>
+                  </div>
+                </div>
               </div>
 
-              {/* H1 Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight text-white leading-tight">
-                Work Visa Consultancy in{" "}
-                <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-200 bg-clip-text text-transparent">
-                  Ghaziabad
-                </span>
-                <br className="hidden sm:inline" />
-                {" "}— Verified Europe &amp; Gulf Jobs
-              </h1>
+              {/* Right Column: Fast-Track Candidate Career Card */}
+              <div className="lg:col-span-5">
+                <div className="relative rounded-2xl border border-slate-700/80 bg-gradient-to-b from-slate-800/90 to-slate-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+                  <div className="flex items-center justify-between border-b border-slate-700 pb-4">
+                    <div>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+                        Ghaziabad Candidate Desk
+                      </span>
+                      <h2 className="text-lg font-display font-bold text-white">
+                        Western UP Placement Hub
+                      </h2>
+                    </div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
+                      <FaPassport className="text-xl" />
+                    </div>
+                  </div>
 
-              {/* Sub-paragraph */}
-              <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl font-normal">
-                Connecting skilled trade technicians, CNC lathe machinists, structural 6G welders, heavy commercial drivers, and electromechanical artisans across <strong>Sahibabad (Site 4), Kavi Nagar, Bulandshahr Road, Mohan Nagar, and Loni</strong> directly with verified employer work permits across Europe (Poland, Germany, Romania, Croatia) and the Gulf (Saudi Arabia, UAE, Qatar). Located just <strong>20 to 35 minutes via Hindon Elevated Road &amp; DME</strong> from our Corporate Regional Headquarters in Sector 132, Noida.
-              </p>
+                  <div className="mt-5 space-y-3.5 text-sm">
+                    <div className="flex items-start gap-3 text-slate-300">
+                      <FaLocationDot className="mt-0.5 text-emerald-400 shrink-0" />
+                      <div>
+                        <strong className="text-white">Corporate Access:</strong>{" "}
+                        Urbtech Trade Centre, Sector 132, Noida (20–35 mins via Hindon Elevated Road &amp; DME from Ghaziabad).
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 text-slate-300">
+                      <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
+                      <div>
+                        <strong className="text-white">Active Destinations:</strong>{" "}
+                        Poland, Croatia, Romania, Germany, Saudi Arabia (NEOM), UAE (Dubai), Qatar, and Kuwait.
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 text-slate-300">
+                      <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
+                      <div>
+                        <strong className="text-white">Monthly Packages:</strong>{" "}
+                        €950 – €1,800 (Europe) | SAR/AED 2,800 – 6,500+ (Gulf) with free bachelor accommodation &amp; medical.
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 text-slate-300">
+                      <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
+                      <div>
+                        <strong className="text-white">Deployment Timelines:</strong>{" "}
+                        25 – 45 Days for GCC visas; 60 to 90 Days for European Type-D single permits.
+                      </div>
+                    </div>
+                  </div>
 
-              {/* Key Badges */}
-              <div className="mt-8 flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm text-slate-200">
-                <div className="flex items-center gap-2 rounded-xl bg-slate-800/80 px-3.5 py-2 border border-slate-700/80 backdrop-blur-xs">
-                  <FaShieldHalved className="text-emerald-400 w-4 h-4" />
-                  <span>100% Direct Sovereign Work Permits</span>
+                  <div className="mt-6 border-t border-slate-700 pt-5">
+                    <a
+                      href="#consultation"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-600/25 transition-all hover:from-emerald-500 hover:to-teal-500 hover:shadow-emerald-600/40 hover:scale-[1.01]"
+                    >
+                      Book Free Profile Evaluation in Ghaziabad
+                      <FaArrowRight className="text-xs" />
+                    </a>
+                    <p className="mt-2 text-center text-xs text-slate-400">
+                      Online candidate registration &amp; office consultations • 100% free resume review
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 rounded-xl bg-slate-800/80 px-3.5 py-2 border border-slate-700/80 backdrop-blur-xs">
-                  <FaBuildingUser className="text-teal-400 w-4 h-4" />
-                  <span>20–35 Mins to Noida Corporate HQ</span>
-                </div>
-                <div className="flex items-center gap-2 rounded-xl bg-slate-800/80 px-3.5 py-2 border border-slate-700/80 backdrop-blur-xs">
-                  <FaHandHoldingDollar className="text-amber-400 w-4 h-4" />
-                  <span>Zero Advance Processing Fees</span>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="mt-8 flex flex-wrap gap-4 pt-2">
-                <a
-                  href="#consultation"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-950/40 hover:from-emerald-600 hover:to-teal-700 transition-all transform hover:-translate-y-0.5"
-                >
-                  <FaBriefcase className="w-4 h-4" />
-                  <span>Book Free Trade Consultation</span>
-                </a>
-                <a
-                  href="https://wa.me/918130161603?text=Hello%20WorkWise%20Visa%20Ghaziabad%20Desk%2C%20I%20am%20interested%20in%20overseas%20job%20vacancies."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-800 px-6 py-3.5 text-sm font-bold text-white border border-slate-700 hover:bg-slate-700/90 transition-all"
-                >
-                  <FaWhatsapp className="w-4 h-4 text-emerald-400" />
-                  <span>Chat with Ghaziabad Desk</span>
-                </a>
               </div>
             </div>
           </div>
