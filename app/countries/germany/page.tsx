@@ -1286,15 +1286,92 @@ export default function GermanyCountryPage() {
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">Western &amp; Central Europe Career Paths</span>
                 <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
-                  Explore Related European Work Visa Master Guides
+                  Explore Essential German &amp; European Work Visa Master Guides
                 </h2>
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Card 1: EU Blue Card & Chancenkarte Masterclass */}
+              <Link
+                href="/blogs/germany-opportunity-card-chancenkarte-eu-blue-card-complete-guide-2026"
+                className="group rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-white bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block">Featured High-Skilled Guide</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Germany EU Blue Card &amp; Opportunity Card 2026 Masterclass
+                  </h3>
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    €45,300/€41,041 salary thresholds, 6-point scoring calculator, Sperrkonto escrow &amp; fast-track 21-month Permanent Residency.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              {/* Card 2: Trade Workers & Technicians Chancenkarte */}
+              <Link
+                href="/blogs/germany-opportunity-card-chancenkarte-guide-trade-workers-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full inline-block">Vocational Trades &amp; Technicians</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Germany Chancenkarte for Trade Workers &amp; Mechanics
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Anerkennung trade equivalence, ITI diplomas, industrial welders, CNC machinists, electricians &amp; 20 hr/wk work rights.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
+                  Read Trade Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              {/* Card 3: France Work Visa */}
+              <Link
+                href="/countries/france"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full inline-block">Western Europe Peer</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    France Work Visa &amp; Passeport Talent Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Statutory 35-hr work week, €1,766+ SMIC wage floor, DREETS approvals, shortage occupations &amp; VFS consular processing.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 mt-4">
+                  Explore France Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              {/* Card 4: Bulgaria Single Work Permit */}
+              <Link
+                href="/countries/bulgaria"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Fast Schengen Work Permit</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Bulgaria Single Work &amp; Residence Permit (SWRP)
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Flat 10% tax rate, Schengen member mobility, employer-provided housing &amp; high demand for welders, drivers &amp; builders.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Explore Bulgaria Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              {/* Card 5: Luxembourg Work Visa */}
               <Link
                 href="/blogs/luxembourg-work-visa-guide-2026-salaried-worker-adem-salaries-culture-guide"
-                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Grand Duchy of Luxembourg</span>
@@ -1306,28 +1383,11 @@ export default function GermanyCountryPage() {
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read Luxembourg Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
-              <Link
-                href="/blogs/europe-work-visa-for-indian-workers-poland-croatia-romania-guide-2026"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full inline-block">Central &amp; Eastern Europe</span>
-                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Poland, Croatia &amp; Romania Work Visa Guide
-                  </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">
-                    Vocational trades, factory assembly, weld testing, VFS National Type-D stamping, and legal EU deployment.
-                  </p>
-                </div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-
+              {/* Card 6: Police Clearance PCC */}
               <Link
                 href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
@@ -1342,7 +1402,7 @@ export default function GermanyCountryPage() {
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read PCC Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
             </div>

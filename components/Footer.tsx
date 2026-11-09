@@ -212,6 +212,41 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Destination Country Hubs Row (SEO Link Authority for Bulgaria, France, Germany, Gulf) */}
+        <div className="mt-10 pt-6 border-t border-slate-200">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-900 shrink-0">
+              Popular Work Destinations:
+            </span>
+            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2 text-xs font-medium text-slate-600">
+              <Link href="/countries/uae" className="hover:text-emerald-700 hover:underline transition-colors">UAE (Dubai)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/saudi-arabia" className="hover:text-emerald-700 hover:underline transition-colors">Saudi Arabia</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/qatar" className="hover:text-emerald-700 hover:underline transition-colors">Qatar</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/germany" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Germany (EU Blue Card)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/france" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">France (SMIC &amp; Talent)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/bulgaria" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Bulgaria (SWRP Schengen)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/croatia" className="hover:text-emerald-700 hover:underline transition-colors">Croatia</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/oman" className="hover:text-emerald-700 hover:underline transition-colors">Oman</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/bahrain" className="hover:text-emerald-700 hover:underline transition-colors">Bahrain</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/luxembourg" className="hover:text-emerald-700 hover:underline transition-colors">Luxembourg</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/russia" className="hover:text-emerald-700 hover:underline transition-colors">Russia</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/uk" className="hover:text-emerald-700 hover:underline transition-colors">United Kingdom</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/canada" className="hover:text-emerald-700 hover:underline transition-colors">Canada</Link>
+            </div>
+          </div>
+        </div>
 
         {/* bottom bar */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-8">

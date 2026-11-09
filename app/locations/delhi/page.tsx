@@ -547,12 +547,19 @@ export default function DelhiLocationPage() {
                     <div><strong>Perks:</strong> Free Accommodation &amp; Overtime @ 1.5x</div>
                   </div>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                   <Link
                     href="/blogs/europe-work-visa-for-indian-workers-poland-croatia-romania-guide-2026"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800"
                   >
-                    Read Poland Master Guide <FaArrowRight className="w-3 h-3" />
+                    Poland Guide <FaArrowRight className="w-2.5 h-2.5" />
+                  </Link>
+                  <span className="text-slate-300">•</span>
+                  <Link
+                    href="/countries/france"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-800"
+                  >
+                    France Work Visa <FaArrowRight className="w-2.5 h-2.5" />
                   </Link>
                 </div>
               </div>
@@ -580,12 +587,19 @@ export default function DelhiLocationPage() {
                     <div><strong>Perks:</strong> Provided Accommodation, Food &amp; TRC Card</div>
                   </div>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                   <Link
-                    href="/blogs/europe-work-visa-for-indian-workers-poland-croatia-romania-guide-2026"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:text-teal-800"
+                    href="/countries/croatia"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-teal-700 hover:text-teal-800"
                   >
-                    Read Europe Master Guide <FaArrowRight className="w-3 h-3" />
+                    Croatia Guide <FaArrowRight className="w-2.5 h-2.5" />
+                  </Link>
+                  <span className="text-slate-300">•</span>
+                  <Link
+                    href="/countries/bulgaria"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                  >
+                    Bulgaria SWRP <FaArrowRight className="w-2.5 h-2.5" />
                   </Link>
                 </div>
               </div>

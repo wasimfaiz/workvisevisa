@@ -25,6 +25,8 @@ const countryUrlMap: Record<string, string> = {
   RU: "/countries/russia",
   LU: "/countries/luxembourg",
   FR: "/countries/france",
+  BG: "/countries/bulgaria",
+  HR: "/countries/croatia",
   CA: "/countries/canada",
   US: "/countries/usa",
   GB: "/countries/uk",

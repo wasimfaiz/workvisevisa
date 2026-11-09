@@ -645,6 +645,29 @@ export default function NoidaLocationPage() {
                       </span>
                     </li>
                   </ul>
+
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <Link
+                      href="/countries/croatia"
+                      className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-800"
+                    >
+                      Croatia Hub <FaArrowRight className="w-2.5 h-2.5" />
+                    </Link>
+                    <span className="text-slate-300">•</span>
+                    <Link
+                      href="/countries/bulgaria"
+                      className="inline-flex items-center gap-1 font-bold text-teal-700 hover:text-teal-800"
+                    >
+                      Bulgaria SWRP <FaArrowRight className="w-2.5 h-2.5" />
+                    </Link>
+                    <span className="text-slate-300">•</span>
+                    <Link
+                      href="/countries/france"
+                      className="inline-flex items-center gap-1 font-bold text-blue-700 hover:text-blue-800"
+                    >
+                      France Guide <FaArrowRight className="w-2.5 h-2.5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

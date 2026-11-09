@@ -1681,22 +1681,22 @@ export default function BulgariaCountryPage() {
               </Link>
 
               <Link
-                href="/countries"
+                href="/countries/france"
                 className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2.5">
-                  <span className="text-[10px] font-bold uppercase text-slate-700 bg-slate-100 px-2.5 py-1 rounded-full inline-block">
-                    Global Destinations
+                  <span className="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full inline-block">
+                    Western Europe Peer
                   </span>
                   <h3 className="font-display font-bold text-slate-900 text-base group-hover:text-emerald-700 transition-colors">
-                    All Countries Directory (Europe, Gulf &amp; West)
+                    France Work Visa &amp; Passeport Talent 2026
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
-                    Compare work visa options, processing timelines, and minimum wages across Germany, UAE, Saudi Arabia, Qatar, Canada &amp; UK.
+                    Statutory 35-hr work week, €1,766+ SMIC wage floor, DREETS approvals, shortage occupations &amp; VFS consular processing.
                   </p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 mt-4">
-                  Explore Directory <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 mt-4">
+                  Explore France Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
