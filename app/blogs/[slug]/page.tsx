@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { notFound, redirect, RedirectType } from "next/navigation";
+import { notFound, redirect, permanentRedirect, RedirectType } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -349,9 +349,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // 301 Permanent Redirect to canonical slug if accessed via old alias, ID, or variant
+  // 308/301 Permanent Redirect to canonical slug if accessed via old alias, ID, or variant
   if (blog.slug && slug !== blog.slug) {
-    redirect(`/blogs/${blog.slug}`, RedirectType.replace);
+    permanentRedirect(`/blogs/${blog.slug}`);
   }
 
   const publishTimestamp = parseBlogDate(blog.date, (blog as any).createdAt);
