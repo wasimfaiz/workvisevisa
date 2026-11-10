@@ -14,28 +14,13 @@ This definitive 2026 master guide, authored by the specialized technical recruit
 
 The most urgent requirement for candidates who have completed their examination—or whose visa processing is pending with overseas employers—is confirming whether their test result has been evaluated and successfully uploaded to the central Saudi database.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            DIGITAL TAKAMOL VERIFICATION & RESULT PIPELINE                        |
-+--------------------------------------------------------------------------------------------------+
-  [Step 1] Candidate Completes Computer Theory (Stage 1) & Workshop Practical (Stage 2)
-     |
-     v
-  [Step 2] Accredited Test Center Evaluators Upload Practical Rubric to TVTC Server (24 to 72 hrs)
-     |
-     v
-  [Step 3] Candidate Accesses Official International Verification Engine (svp-international.com)
-     |
-     v
-  [Step 4] Query Submitted via Passport Number + Nationality (India)
-     |
-     v
-  [Step 5] Digital Certificate Rendered with Secure Cryptographic QR Code & 5-Year Expiry
-     |
-     v
-  [Step 6] Automated API Synchronization: Score Relayed Directly to Qiwa.sa & MOFA Visa System
-+--------------------------------------------------------------------------------------------------+
-```
+> [!NOTE]
+> **Digital Takamol Verification & Result Pipeline at a Glance**
+> 1. **Step 1: Assessment Completion**: Candidate completes Computer Theory (Stage 1) and Workshop Practical (Stage 2) at an accredited center.
+> 2. **Step 2: Score Upload**: Evaluators upload the practical rubric and video logs to the TVTC central server in Riyadh (24 to 72 hours).
+> 3. **Step 3: Online Portal Query**: Candidate checks status on `https://svp-international.com` using Passport Number and Nationality (India).
+> 4. **Step 4: Digital Certificate Issuance**: Portal renders the authenticated certificate with a 5-year validity date and secure QR code.
+> 5. **Step 5: Qiwa & MOFA Sync**: Automated API pushes verification directly to Qiwa.sa, unfreezing contract signing and MOFA embassy visa stamping.
 
 ### Official Direct Portal for Result & Certificate Verification
 
@@ -92,23 +77,11 @@ A common concern for Indian candidates is whether they must physically deliver t
 
 To understand why the Takamol SVP examination is strictly enforced, candidates must appreciate the regulatory architecture governing expatriate employment in the Kingdom of Saudi Arabia.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              SAUDI VOCATIONAL REGULATORY TRIAD                                   |
-+--------------------------------------------------------------------------------------------------+
-                                                 |
-         +---------------------------------------+---------------------------------------+
-         |                                       |                                       |
-         v                                       v                                       v
-+----------------------------------+ +----------------------------------+ +----------------------------------+
-|   MINISTRY OF HUMAN RESOURCES    | |     TECHNICAL AND VOCATIONAL     | |     TAKAMOL HOLDING COMPANY    |
-|   & SOCIAL DEVELOPMENT (MHRSD)   | |  TRAINING CORPORATION (TVTC)     | |        (OPERATIONAL DESK)      |
-+----------------------------------+ +----------------------------------+ +----------------------------------+
-| Sets national labor quotas,      | Defines occupational standards,    | Executes international testing,  |
-| profession categorizations, and  | assessment rubrics, exam syllabi,  | manages accredited test centers, |
-| Qiwa digital contract mandates.  | and issues trade certifications.   | and operates verification portal.|
-+----------------------------------+ +----------------------------------+ +----------------------------------+
-```
+| Institutional Body | Regulatory Role | Key Mandate for Indian Workers |
+| :--- | :--- | :--- |
+| **Ministry of Human Resources & Social Development (MHRSD)** | Sovereign Labor Authority | Sets national recruitment quotas, profession classifications, and Qiwa digital contract mandates. |
+| **Technical and Vocational Training Corporation (TVTC)** | Standards & Certification Body | Defines occupational rubrics, sets examination syllabi, audits test bays, and issues accredited certificates. |
+| **Takamol Holding Company** | Global Operational Executive | Operates the international testing network, accredits testing centers across India, and manages svp-international.com. |
 
 ### Why Saudi Arabia Enforced the Skill Verification Program
 
@@ -171,26 +144,10 @@ _Important Note: If the profession stamped on your Saudi visa authorization or Q
 
 The Takamol SVP examination is structured as a **rigorous two-tier assessment model** designed to evaluate both theoretical comprehension and hands-on operational craftsmanship under strict standardized conditions.
 
-```
-       [ TAKAMOL EVALUATION ARCHITECTURE ]
-                         |
-      +------------------+------------------+
-      |                                     |
-      v                                     v
-STAGE 1: COMPUTER THEORY              STAGE 2: WORKSHOP PRACTICAL
-- 30% Aggregate Weightage             - 70% Aggregate Weightage
-- 20 to 30 Multiple Choice (MCQs)     - 90 to 180 Minutes Live Testing
-- Hindi, Urdu, English, Tagalog       - Conducted in Accredited Lab
-- Basic Safety, Symbols, Tool ID      - Evaluated on Workmanship & Speed
-      |                                     |
-      +------------------+------------------+
-                         |
-                         v
-              [ PASSING BENCHMARK ]
-         Theory: Minimum 50% Marks
-         Practical: Minimum 50% - 60% Marks
-         Aggregate: Successful Certification
-```
+| Examination Component | Weightage | Format & Duration | Language Options | Passing Benchmark |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 1: Computer Theoretical Exam** | **30% of total score** | 20 to 30 Multiple Choice Questions (MCQs) in 30–45 minutes | Hindi, Urdu, English, Arabic, Bengali, Tagalog | **Minimum 50% score** (e.g. 15/30 correct) |
+| **Stage 2: Workshop Practical Assessment** | **70% of total score** | Hands-on trade tasks in accredited testing bay (90–180 minutes) | Monitored by certified TVTC evaluators | **Minimum 50% – 60% score** (depending on trade) |
 
 ### Stage 1: Computer-Based Theoretical Examination (30% Weightage)
 
@@ -236,17 +193,13 @@ To be awarded a Takamol Certificate of Professional Competence, a candidate must
 
 To give candidates an authentic competitive edge, the following technical breakdowns detail the precise theoretical topics, practical bench tasks, and actual sample questions encountered across the five most frequently tested trades.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              TOP 5 TESTED TRADES OVERVIEW                                        |
-+--------------------------------------------------------------------------------------------------+
-| 1. BUILDING ELECTRICIAN: Single/3-Phase, MCB/ELCB, Conduit Bending, Motor Starters               |
-| 2. PIPE & STRUCTURAL WELDER: 3G/4G SMAW, 6G TIG Root, Bevel Prep, Defect Elimination             |
-| 3. PLUMBER & PIPEFITTER: PPR Fusion Welding, Pressure Testing (10 Bar), Drainage Slopes           |
-| 4. HVAC & REFRIGERATION: R410A Charging, Deep Vacuum (<500 Micron), Flaring, Cap Testing        |
-| 5. AUTOMOTIVE & DIESEL: CRDi Fuel Injection, Starter Motor Testing, Valve Clearances             |
-+--------------------------------------------------------------------------------------------------+
-```
+| Regulated Trade | Primary Theoretical Focus | Core Hands-On Practical Examination Task |
+| :--- | :--- | :--- |
+| **Building Electrician** | Ohm's law, circuit breakers, conduit wiring, color codes | Two-way switch circuit wiring, 20mm PVC conduit bending, DB box termination |
+| **Pipe & Structural Welder** | Electrode AWS codes (E6010, E7018), bevel angles, polarities | 3G vertical-up groove weld or 6G TIG root pass on Schedule 40 carbon pipe |
+| **Plumber & Pipefitter** | Hydrostatic pressure, trap seals, drainage slopes (1:50) | PPR socket thermal fusion at 260°C, GI threading, 10-bar hydrostatic hold |
+| **HVAC & Refrigeration** | Vapor compression cycle, R410A/R32 charging, superheat | 45° copper flaring, nitrogen-purged silver brazing, vacuum evacuation (<500 microns) |
+| **Automotive & Diesel Mechanic** | CRDi fuel injection, 4-stroke cycle, starter circuits | Starter motor teardown/testing, feeler gauge valve lash adjustment, fuel air bleed |
 
 ### Trade 1: Building Electrician (كهربائي تمديدات مباني)
 
@@ -381,16 +334,12 @@ _Question 2_: When measuring diesel engine cylinder valve clearance with a feele
 
 The Ministry of Human Resources and Social Development and Takamol Holding operate an extensive network of accredited technical testing partners throughout India. These partner centers feature standardized workshops audited by TVTC inspectors.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              ACCREDITED INDIAN TEST CENTER CLUSTERS                              |
-+--------------------------------------------------------------------------------------------------+
-| NORTH INDIA: New Delhi (Okhla / Mohan), Lucknow (Transport Nagar), Gorakhpur (GIDA)              |
-| EAST INDIA:  Patna (Patliputra), Siwan (Bypass), Kolkata (Salt Lake / Topsia)                    |
-| WEST INDIA:  Mumbai (Andheri East / Kurla), Navi Mumbai, Ahmedabad (Sanand)                      |
-| SOUTH INDIA: Hyderabad (Santosh Nagar / Mehdipatnam), Bengaluru (Peenya), Chennai (Guindy)       |
-+--------------------------------------------------------------------------------------------------+
-```
+| Region in India | Key Testing Hubs | Major Candidate Belts Served |
+| :--- | :--- | :--- |
+| **North India** | New Delhi (Okhla / Mohan Cooperative), Lucknow (Transport Nagar), Gorakhpur (GIDA) | Delhi NCR, Haryana, Western & Central Uttar Pradesh |
+| **East India** | Patna (Patliputra Industrial Area), Siwan (Bypass), Kolkata (Salt Lake / Topsia) | Bihar (Siwan, Gopalganj, Chhapra, Patna), West Bengal, Jharkhand |
+| **West India** | Mumbai (Andheri East / Kurla MIDC), Navi Mumbai (Turbhe), Ahmedabad | Maharashtra, Gujarat, Rajasthan, Western Madhya Pradesh |
+| **South India** | Hyderabad (Santosh Nagar / Chandrayangutta), Bengaluru (Peenya), Chennai (Guindy) | Telangana, Andhra Pradesh, Karnataka, Tamil Nadu, Kerala |
 
 ### Major Accredited Examination Centers Network
 
@@ -438,19 +387,12 @@ When reporting to the accredited examination center, you must carry:
 
 Understanding official fee regulations protects Indian job seekers from predatory brokers who inflate government examination costs.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            TAKAMOL FEE & RETEST FRAMEWORK (2026)                                 |
-+--------------------------------------------------------------------------------------------------+
-| Parameter                   | Statutory Fee (USD / SAR)              | Equivalent in INR (₹)     |
-+-----------------------------+----------------------------------------+---------------------------+
-| Initial Full Examination    | $45 – $55 USD (~160 – 200 SAR)         | ₹3,800 – ₹4,800 INR       |
-| Theory Retest Fee (Only)    | $18 – $22 USD (~65 – 80 SAR)           | ₹1,500 – ₹1,850 INR       |
-| Practical Retest Fee (Only) | $30 – $38 USD (~110 – 140 SAR)         | ₹2,500 – ₹3,200 INR       |
-| Certificate Online Download | FREE (Zero government fee on portal)   | ₹0 INR                    |
-| Certificate Validity Period | 5 Calendar Years                       | 5 Calendar Years          |
-+-----------------------------+----------------------------------------+---------------------------+
-```
+> [!TIP]
+> **Takamol Official Fee Transparency Benchmark (2026)**
+> - **Initial Full Examination**: $45 to $55 USD (~160 to 200 SAR / ₹3,800 to ₹4,800 INR)
+> - **Theory Retest Only**: $18 to $22 USD (~65 to 80 SAR / ₹1,500 to ₹1,850 INR)
+> - **Practical Retest Only**: $30 to $38 USD (~110 to 140 SAR / ₹2,500 to ₹3,200 INR)
+> - **Certificate Online Download**: 100% Free on the official portal with 5-year validity.
 
 ### Official Examination Fees
 
@@ -481,19 +423,11 @@ If you fail one or both exam components, the following statutory re-examination 
 
 Due to the mandatory nature of the Skill Verification Program, unscrupulous visa brokers and unlicensed recruiting agents operate lucrative counterfeiting rackets across India.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            AUTHENTIC TAKAMOL CERTIFICATE VS. FAKE SCAM                           |
-+--------------------------------------------------------------------------------------------------+
-| Feature                     | GENUINE TAKAMOL CERTIFICATE            | FORGED COUNTERFEIT SCAM   |
-+-----------------------------+----------------------------------------+---------------------------+
-| Source Portal               | Official svp-international.com portal  | Printed paper / PDF file  |
-| QR Code Destination         | Direct authenticated government URL    | Static text or dummy site |
-| Qiwa Platform Integration   | Instant automatic API synchronization  | Does not appear on Qiwa   |
-| Embassy Stamping Status     | Approved by Saudi Consulates instantly | Visa rejected / Blacklist |
-| Candidate Examination       | Must sit live in accredited center     | Offered "without test"    |
-+-----------------------------+----------------------------------------+---------------------------+
-```
+> [!WARNING]
+> **Authentic Takamol Certificate vs. Fraudulent Broker Scam**
+> - **Official Source**: Real certificates are retrieved live from `https://svp-international.com`. Counterfeit ones are static PDFs or printed paper sold by brokers.
+> - **QR Code Verification**: Legitimate QR codes resolve strictly to `https://svp-international.com` showing matching candidate details. Forged ones lead to dummy domains or unencrypted text.
+> - **Qiwa Integration**: Authentic results reflect automatically in the Saudi employer's Qiwa portal within 48 hours. Fake ones are flagged by MOFA, triggering a **5-year entry ban for document forgery**.
 
 ### The "Guaranteed Certificate Without Test" Scam
 

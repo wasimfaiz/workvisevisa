@@ -18,28 +18,10 @@ This definitive 2026 master guide, compiled by the international employment and 
 
 To successfully obtain a work permit in Canada, Indian candidates must understand the division of authority between Canada’s federal departments and the statutory instruments governing foreign labor.
 
-```
-+------------------------------------------------------------------------------------------------+
-|                                CANADIAN WORK AUTHORIZATION ARCHITECTURE                        |
-+------------------------------------------------------------------------------------------------+
-                                                 |
-         +---------------------------------------+---------------------------------------+
-         |                                                                               |
-         v                                                                               v
-+----------------------------------+                            +----------------------------------+
-| TEMPORARY FOREIGN WORKER PROGRAM |                            |  INTERNATIONAL MOBILITY PROGRAM  |
-|             (TFWP)               |                            |              (IMP)               |
-+----------------------------------+                            +----------------------------------+
-         |                                                                               |
-         v                                                                               v
-Requires Labour Market Impact                                   LMIA-Exempt Work Authorizations
-Assessment (LMIA) issued by ESDC                                Issued directly by IRCC
-         |                                                                               |
-         +--> High-Wage LMIA Stream                                      +--> Intra-Company Transfers (ICT)
-         +--> Low-Wage LMIA Stream                                       +--> Post-Graduation Work Permits (PGWP)
-         +--> Agricultural & Seasonal Stream                             +--> Spousal Open Work Permits (SOWP)
-         +--> Global Talent Stream (GTS)                                 +--> Free Trade Agreements (CUSMA/CPTPP)
-```
+| Program Stream | Work Authorization Type | LMIA Requirement | Key Sub-Streams |
+| :--- | :--- | :--- | :--- |
+| **Temporary Foreign Worker Program (TFWP)** | Employer-Specific (Closed) Work Permit | Mandatory ESDC LMIA | High-Wage Stream, Low-Wage Stream, Agricultural Stream, Global Talent Stream (GTS) |
+| **International Mobility Program (IMP)** | Open or Closed LMIA-Exempt Work Permit | Exempt from LMIA | Intra-Company Transfers (ICT), Post-Graduation Work Permits (PGWP), Spousal Open Work Permits (SOWP), CUSMA |
 
 ### Understanding the Temporary Foreign Worker Program (TFWP)
 The **Temporary Foreign Worker Program (TFWP)** is administered jointly by **Employment and Social Development Canada (ESDC)** and **Immigration, Refugees and Citizenship Canada (IRCC)**. Its primary legislative purpose is to assist Canadian employers in filling immediate labor shortages when qualified Canadian citizens or permanent residents are unavailable, while ensuring that the entry of foreign personnel does not negatively distort Canadian wages or working conditions.
@@ -63,21 +45,12 @@ Under Canadian federal law (**Section 200 of the Immigration and Refugee Protect
 
 In Canada’s TFWP framework, work permit applications are not divided by white-collar or blue-collar titles, but by the **hourly wage offered relative to the provincial median hourly wage**. This dividing line dictates the operational rules, employer compliance burdens, duration of the issued work permit, and foreign worker caps.
 
-```
-       [ Offered Hourly Wage ]
-                 |
-      +----------+----------+
-      |                     |
-      v                     v
-< Provincial Median   >= Provincial Median
-      |                     |
-      v                     v
-LOW-WAGE LMIA STREAM  HIGH-WAGE LMIA STREAM
-- 10% / 20% Employer Cap  - No Employer Cap
-- Max 1-Year Permit   - Up to 2-Year Permit
-- Mandatory Housing Support - Transition Plan Required
-- Return Airfare by Employer - Fast-track via GTS if eligible
-```
+| Parameter | Low-Wage LMIA Stream (< Median) | High-Wage LMIA Stream (≥ Median) |
+| :--- | :--- | :--- |
+| **Provincial Wage Floor** | Offered hourly wage is below provincial median | Offered hourly wage meets or exceeds provincial median |
+| **Permit Duration** | Maximum 1 year duration (annual renewal) | Up to 2 years duration |
+| **Workforce Cap** | 10% to 20% foreign worker employer cap | No employer workforce cap |
+| **Employer Mandates** | Mandatory round-trip airfare & affordable housing support | Mandatory statutory Transition Plan |
 
 ### 2026 Provincial and Territorial Median Hourly Wage Benchmarks
 The table below illustrates the official provincial median wage thresholds established by ESDC. If an employer offers an hourly wage **at or above** the provincial median, the application is processed under the **High-Wage Stream**. If the offered wage is **below** the provincial median, it falls under the **Low-Wage Stream**.
@@ -128,18 +101,14 @@ To apply for a Canadian work permit, every job role must be categorized using Ca
 - **TEER 4**: Intermediate occupations requiring secondary school completion and several weeks of job-specific training.
 - **TEER 5**: Entry-level and labor-intensive occupations requiring short work demonstrations and no formal education credentials.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              NOC 2021 / TEER CLASSIFICATION HIERARCHY                           |
-+--------------------------------------------------------------------------------------------------+
-| TEER 0: Management Occupations (Legislators, Senior Managers, Department Heads)                 |
-| TEER 1: Professional Occupations (Degree Holders: Software Engineers, Civil Engineers, Doctors)  |
-| TEER 2: Technical Occupations (2-3 Yr Diploma/Apprenticeships: Electricians, Welders, Operators)|
-| TEER 3: Skilled Trades & Intermediate (ITI/Certificates: Long-Haul Truck Drivers, Line Cooks)   |
-| TEER 4: Intermediate Support (Secondary School: Home Support Workers, Food & Beverage Servers)  |
-| TEER 5: Laborers & Entry-Level (On-the-job training: Farm Hands, Construction Helpers)          |
-+--------------------------------------------------------------------------------------------------+
-```
+| TEER Category | Education & Credential Benchmark | Typical Eligible Occupations |
+| :--- | :--- | :--- |
+| **TEER 0** | Management & Executive Roles | Construction Managers, Engineering Directors |
+| **TEER 1** | University Degree (Bachelor / Master) | Civil Engineers, Software Developers, Physicians |
+| **TEER 2** | 2–3 Year Technical Diploma or Apprenticeship | Industrial Electricians, Welders, Heavy Equipment Mechanics |
+| **TEER 3** | 1–2 Year Vocational Certificate or ITI | Commercial Truck Drivers, Line Cooks, Bakers |
+| **TEER 4** | Secondary School & Several Weeks Training | Home Support Workers, Health Care Aides |
+| **TEER 5** | Short Work Demonstration (No formal education) | Construction Helpers, Farm Laborers, Material Handlers |
 
 ### Comprehensive 2026 Canada In-Demand Trade & Skilled Roles Salary Matrix
 
@@ -183,21 +152,15 @@ With an aging demographic, Canada's federal government prioritizes international
 
 A critical legal distinction under the Canadian **Immigration and Refugee Protection Act (IRPA)** is whether an applicant holds an **Employer-Specific (Closed) Work Permit** or an **Open Work Permit**.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            CLOSED VS. OPEN WORK PERMIT COMPARISON                                |
-+--------------------------------------------------------------------------------------------------+
-| Feature                     | Closed (Employer-Specific) Work Permit | Open Work Permit          |
-+-----------------------------+----------------------------------------+---------------------------+
-| Governing Section           | Section 200 IRPR                       | Section 205 / 207 IRPR    |
-| LMIA Requirement            | Mandatory (unless IMP code exempt)     | Exempt                    |
-| Permitted Employer          | Named Employer Only                    | Any authorized employer   |
-| Designated Job Title        | Specific NOC Code on Permit            | Unrestricted              |
-| Work Location               | Defined Province / City                | Anywhere in Canada        |
-| Spousal Eligibility         | Qualified TEER 0, 1, 2, 3 streams      | Dependent on primary visa |
-| Freedom to Change Employer  | Requires new LMIA & permit amendment   | Immediate & unrestricted  |
-+-----------------------------+----------------------------------------+---------------------------+
-```
+| Feature | Closed (Employer-Specific) Work Permit | Open Work Permit |
+| :--- | :--- | :--- |
+| **Governing Section** | Section 200 IRPR | Section 205 / 207 IRPR |
+| **LMIA Requirement** | Mandatory (unless IMP code exempt) | Exempt |
+| **Permitted Employer** | Named Employer Only | Any authorized employer |
+| **Designated Job Title** | Specific NOC Code on Permit | Unrestricted |
+| **Work Location** | Defined Province / City | Anywhere in Canada |
+| **Spousal Eligibility** | Qualified TEER 0, 1, 2, 3 streams | Dependent on primary visa |
+| **Freedom to Change Employer** | Requires new LMIA & permit amendment | Immediate & unrestricted |
 
 ### Conditions of a Closed Work Permit
 When an Indian applicant is recruited through an LMIA, IRCC issues a work permit bearing strict legal conditions:
@@ -226,21 +189,10 @@ This means an applicant can legitimately aspire to permanent residency through E
 
 One of Canada's most attractive immigration benefits is the ability for primary work permit holders to bring their legally married spouse or common-law partner and dependent children to Canada.
 
-```
-       [ Primary Worker's NOC / TEER Level ]
-                         |
-      +------------------+------------------+
-      |                                     |
-      v                                     v
-TEER 0, 1, 2, or 3                    TEER 4 or 5
-      |                                     |
-      v                                     v
-Spouse ELIGIBLE for                   Spousal Permit RESTRICTED
-Spousal Open Work Permit (SOWP)       (Unless exempted under special
-- Valid for primary permit duration   construction, healthcare, or
-- Unrestricted Canadian employer      agriculture bilateral pilots)
-- No job offer needed for spouse
-```
+| Primary Worker's TEER Category | Spousal Work Permit (SOWP) Status | Key Conditions & Exemptions |
+| :--- | :--- | :--- |
+| **TEER 0, 1, 2, or 3** | **Fully Eligible for Open Work Permit** | Valid for identical duration as primary worker; no employer sponsorship required |
+| **TEER 4 or 5 (General)** | Restricted / Non-Eligible | Exemptions apply for industrial construction, healthcare support, and agriculture pilots |
 
 ### Updated 2026 SOWP Eligibility Framework
 Under current IRCC policy directives, the eligibility of a spouse to receive an open work permit is linked to the primary worker’s occupational category:
@@ -263,34 +215,16 @@ Under current IRCC policy directives, the eligibility of a spouse to receive an 
 
 Navigating a Canada Work Permit from India requires methodical execution across eight distinct chronological milestones. Skipping steps or presenting non-compliant documentation will trigger procedural fairness letters or outright visa refusals under Section 200(1)(b) of the IRPR.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            CHRONOLOGICAL WORK PERMIT ROADMAP                                     |
-+--------------------------------------------------------------------------------------------------+
-  [Step 1] Canadian Employer Advertises Job & Obtains Positive LMIA from ESDC (4 to 12 weeks)
-     |
-     v
-  [Step 2] Employer Issues Formal Job Offer & LMIA Approval Number to Candidate
-     |
-     v
-  [Step 3] Candidate Gathers Documents (PCC, Work Experience, Education, Funds)
-     |
-     v
-  [Step 4] Online Submission on IRCC Portal & Payment of Statutory Fees ($155 + $85 CAD)
-     |
-     v
-  [Step 5] Biometrics Appointment at VFS Global India (New Delhi, Jalandhar, Chandigarh, etc.)
-     |
-     v
-  [Step 6] Upfront Medical Exam at Empanelled eMedical Panel Physician Clinic
-     |
-     v
-  [Step 7] Passport Submission Request (PPR) -> VFS Two-Way Courier -> Counterfoil Visa Stamped
-     |
-     v
-  [Step 8] Port of Entry (POE) Border Arrival: CBSA Officer Validates Docs & Prints Actual Permit
-+--------------------------------------------------------------------------------------------------+
-```
+> [!NOTE]
+> **Chronological Canada Work Permit Roadmap (2026)**
+> 1. **Step 1: LMIA Approval**: Canadian employer completes 4-week Job Bank advertising and obtains positive LMIA from ESDC (4 to 12 weeks).
+> 2. **Step 2: Formal Contract**: Employer issues formal Job Offer and ESDC 7-digit LMIA approval number to candidate.
+> 3. **Step 3: Dossier Assembly**: Candidate compiles PSK Police Clearance (PCC), verified work experience, and financial funds.
+> 4. **Step 4: Online IRCC Lodgement**: Application submitted on the IRCC Secure Portal with statutory fees ($155 + $85 CAD).
+> 5. **Step 5: VFS Biometrics**: Biometric capture at an authorized VFS Global VAC in India (Delhi, Jalandhar, Chandigarh, etc.).
+> 6. **Step 6: eMedical Exam**: Medical screening conducted by an empanelled IRCC panel physician clinic.
+> 7. **Step 7: Passport Request (PPR)**: TRV counterfoil visa stamped via VFS secure two-way courier.
+> 8. **Step 8: Port of Entry Landing**: CBSA border officer inspects documents at Toronto/Vancouver airport and prints the official Work Permit.
 
 ### Step 1: Canadian Employer Obtains Positive LMIA
 Before an Indian worker can initiate a visa application, the Canadian employer must execute mandatory domestic recruitment:
@@ -373,21 +307,10 @@ The counterfoil visa in the passport is solely an entry document allowing the wo
 
 For Indian workers, a Canadian work permit is rarely the end goal—it is the strategic gateway to obtaining **Canadian Permanent Resident (PR)** status. Unlike immigration systems in other global destinations that leave temporary foreign workers stranded indefinitely on short-term visas, Canada’s economic immigration architecture actively awards foreign workers for completing sovereign Canadian work experience.
 
-```
-       [ 12 Months Canadian Skilled Work Experience ]
-                             |
-         +-------------------+-------------------+
-         |                                       |
-         v                                       v
-EXPRESS ENTRY SYSTEM                    PROVINCIAL NOMINEE PROGRAMS
-(Federal Level)                         (Provincial Level)
-         |                                       |
-         +--> Canadian Experience Class (CEC)    +--> Ontario (OINP In-Demand Skills)
-         +--> Category-Based Trades Draws        +--> British Columbia (BC PNP Skills)
-         +--> Category-Based Transport Draws     +--> Alberta (AAIP Rural & Tourism)
-         +--> Extra 50-200 CRS Points for Job    +--> Saskatchewan (SINP Hard-to-Fill)
-                                                 +--> Atlantic Immigration Program (AIP)
-```
+| Immigration Level | Program Pathway | Transition Advantage |
+| :--- | :--- | :--- |
+| **Federal (Express Entry)** | Canadian Experience Class (CEC) & Category Draws | Up to 80+ CRS points for Canadian experience; lower cutoffs for Trade and Transport draws |
+| **Provincial (PNP)** | OINP In-Demand Skills, AAIP Rural, SINP Hard-to-Fill, AIP | Direct provincial nominations bypassing high Express Entry score competitions |
 
 ### 1. Canadian Experience Class (CEC) via Express Entry
 Under the federal **Express Entry** pool, foreign nationals who accumulate **12 months of full-time Canadian skilled work experience** (or equivalent part-time hours totaling 1,560 hours) in occupations classified under **TEER 0, 1, 2, or 3** within the previous 36 months qualify for the **Canadian Experience Class (CEC)**.
@@ -424,20 +347,14 @@ Covers the four Atlantic provinces: **Nova Scotia**, **New Brunswick**, **Prince
 
 Due to the intense global demand for Canadian work permits, fraudulent recruitment operations and unregulated agents operate widely throughout South Asia. Thousands of aspiring Indian workers lose life savings to deceptive scams every year.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              RED FLAGS VS. VERIFIED CANADIAN HIRING                              |
-+--------------------------------------------------------------------------------------------------+
-| Indicator                   | FRAUDULENT SCAM PATTERN                | GENUINE CANADIAN HIRING   |
-+-----------------------------+----------------------------------------+---------------------------+
-| Upfront Cost Demands        | Demands ₹10 to ₹25 Lakhs for "LMIA Fee"| ZERO fee charged to candidate|
-| Employer Communication      | Free Gmail, Yahoo, or Outlook address   | Verified corporate domain |
-| LMIA Documentation          | Refuses to share ESDC 7-digit file #   | Official ESDC letter provided|
-| Interview Process           | Offer letter issued without interview  | Technical video interview |
-| Visa Stamping Promise       | "100% Guaranteed Visa Without VFS"     | Requires in-person VFS appt|
-| Representative Licensing    | Unlicensed self-proclaimed "Agent"     | Licensed RCIC or Law Firm |
-+-----------------------------+----------------------------------------+---------------------------+
-```
+| Indicator | Fraudulent Scam Pattern | Genuine Canadian Hiring |
+| :--- | :--- | :--- |
+| **Upfront Cost Demands** | Demands ₹10 to ₹25 Lakhs for "LMIA Fee" | ZERO fee charged to candidate |
+| **Employer Communication** | Free Gmail, Yahoo, or Outlook address | Verified corporate domain |
+| **LMIA Documentation** | Refuses to share ESDC 7-digit file # | Official ESDC letter provided |
+| **Interview Process** | Offer letter issued without interview | Technical video interview |
+| **Visa Stamping Promise** | "100% Guaranteed Visa Without VFS" | Requires in-person VFS appointment |
+| **Representative Licensing** | Unlicensed self-proclaimed "Agent" | Licensed RCIC or Law Firm |
 
 ### The Anatomy of Common Canada Work Visa Scams
 

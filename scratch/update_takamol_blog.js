@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { MongoClient } = require('mongodb');
 
-// 1. Read Expanded Markdown Content
+// 1. Read Cleaned Expanded Markdown Content
 const contentPath = path.join(__dirname, 'takamol_svp_expanded_blog.md');
 const markdownContent = fs.readFileSync(contentPath, 'utf8');
 
@@ -42,21 +42,28 @@ const updatedBlog14 = {
 const dataFilePath = path.join(__dirname, '..', 'lib', 'data.ts');
 let dataContent = fs.readFileSync(dataFilePath, 'utf8');
 
-const startIdx = dataContent.indexOf('id: "blog-14"');
-if (startIdx === -1) {
-  throw new Error('Could not find id: "blog-14" in lib/data.ts');
+// Find blog-14 regardless of quotes around id
+const targetStr = '"blog-14"';
+const idIdx = dataContent.indexOf(targetStr);
+if (idIdx === -1) {
+  throw new Error('Could not find "blog-14" in lib/data.ts');
 }
 
-const braceIdx = dataContent.lastIndexOf('{', startIdx);
-const nextIdIdx = dataContent.indexOf('id: "blog-', startIdx + 20);
-const nextBraceIdx = dataContent.lastIndexOf('{', nextIdIdx);
+const braceIdx = dataContent.lastIndexOf('{', idIdx);
+
+// Find next blog entry
+let nextBlogIdx = dataContent.indexOf('"blog-', idIdx + 20);
+if (nextBlogIdx === -1) {
+  nextBlogIdx = dataContent.indexOf('id: "blog-', idIdx + 20);
+}
+const nextBraceIdx = dataContent.lastIndexOf('{', nextBlogIdx);
 
 // The slice to replace is from braceIdx up to nextBraceIdx
 const jsonSnippet = JSON.stringify(updatedBlog14, null, 2) + ',\n  ';
 const newDataContent = dataContent.slice(0, braceIdx) + jsonSnippet + dataContent.slice(nextBraceIdx);
 
 fs.writeFileSync(dataFilePath, newDataContent, 'utf8');
-console.log('Successfully updated blog-14 in lib/data.ts!');
+console.log('Successfully updated blog-14 without ASCII in lib/data.ts!');
 
 // 3. Update in MongoDB Atlas
 let env = '';
@@ -83,4 +90,3 @@ if (match) {
 } else {
   console.log('No MONGODB_URI found, skipped MongoDB Atlas update.');
 }
-

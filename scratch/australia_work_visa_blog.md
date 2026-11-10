@@ -19,24 +19,12 @@ This definitive 2026 master guide, curated by the international migration and te
 
 To successfully navigate an Australian employment visa, Indian applicants must understand the legislative architecture governing employer sponsorship under the Australian **Migration Act 1958** and the updated **Migration Regulations 1994**.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            AUSTRALIAN SKILLED EMPLOYMENT ARCHITECTURE                            |
-+--------------------------------------------------------------------------------------------------+
-                                                 |
-         +---------------------------------------+---------------------------------------+
-         |                                                                               |
-         v                                                                               v
-+----------------------------------+                            +----------------------------------+
-|      SKILLS IN DEMAND VISA       |                            |   PERMANENT RESIDENCE STREAMS    |
-|   (Subclass 482 SID Framework)   |                            |   (Direct & Transitional PR)     |
-+----------------------------------+                            +----------------------------------+
-         |                                                                               |
-         +--> Tier 1: Specialist Skills Stream ($135,000+ AUD)                           +--> Subclass 186 (ENS Direct Entry)
-         +--> Tier 2: Core Skills Stream ($73,150+ AUD TSMIT)                            +--> Subclass 186 (TRT Stream - 2 Yrs)
-         +--> Tier 3: Essential Skills Stream (Targeted / Capped)                        +--> Subclass 190 (State Nominated PR)
-                                                                                         +--> Subclass 491 (Skilled Regional)
-```
+| Pathway Tier | Visa Classification | Salary Benchmark | Primary Target Occupations |
+| :--- | :--- | :--- | :--- |
+| **Tier 1: Specialist Skills Stream** | Skills in Demand Visa | $135,000+ AUD / year | High-income executives, technology innovators, green energy specialists (7-day processing) |
+| **Tier 2: Core Skills Stream** | Skills in Demand Visa | $73,150+ AUD (TSMIT floor) | Core vocational trades, mechanics, electricians, welders, chefs, engineers, nurses (CSOL List) |
+| **Tier 3: Essential Skills Stream** | Skills in Demand Visa | Below $73,150 AUD | Regulated critical shortage sectors, aged care, agriculture (Union labor agreements) |
+| **Permanent Residence (PR)** | Subclass 186 ENS / Subclass 190 | Prevailing market wage | 2 years on SID visa leads directly to permanent residency via ENS TRT stream |
 
 ### The End of the Legacy TSS 482 & Rise of Skills in Demand (SID)
 For nearly a decade, the Temporary Skill Shortage (Subclass 482) visa governed employer-sponsored temporary migration in Australia. However, structural criticisms regarding multi-tiered occupation lists (where short-term list occupations were arbitrarily blocked from permanent residency) prompted the federal government to establish the **Skills in Demand (SID) Visa**.
@@ -76,19 +64,11 @@ Under Australian migration law, the sponsorship process is strictly employer-dri
 
 To qualify under the Core Skills Stream of the Skills in Demand Visa, the candidate’s nominated role must appear on the **Core Skills Occupations List (CSOL)**, classified under Australia’s **ANZSCO (Australian and New Zealand Standard Classification of Occupations)** taxonomy.
 
-```
-       [ Australian Minimum Wage Floor ]
-            $24.10 AUD / hr (National Fair Work Minimum)
-                        |
-                        v
-       [ TSMIT Statutory Work Visa Floor ]
-            $73,150 AUD / yr (~$37.02 AUD / hr)
-                        |
-                        v
-       [ Actual Market Trade & Skilled Earnings ]
-            $78,000 – $130,000+ AUD / yr
-            (₹43.6 Lakhs – ₹72.8 Lakhs INR / yr)
-```
+| Wage Category | Rate in Australian Dollars (AUD) | Rate in Indian Rupees (INR Equivalent) |
+| :--- | :--- | :--- |
+| **National Minimum Wage** | $24.10 AUD / hr | ~₹1,350 INR / hr |
+| **TSMIT Statutory Work Visa Floor** | $73,150 AUD / yr (~$37.02 AUD / hr) | ~₹41.0 Lakhs INR / yr |
+| **Actual Market Trade & Skilled Earnings** | $78,000 – $130,000+ AUD / yr | ~₹43.6 Lakhs – ₹72.8 Lakhs INR / yr |
 
 ### Comprehensive 2026 In-Demand Trade & Skilled Occupations Salary Matrix
 
@@ -131,31 +111,12 @@ For Indian trade professionals—including welders, motor mechanics, electrician
 
 Unlike casual recruitment in unregulated overseas destinations, the Australian Government will not accept an Indian CV or unverified recommendation letter at face value. A positive TRA assessment legally certifies that the applicant possesses technical vocational training, safety competency, and hands-on diagnostic abilities identical to an Australian Certificate III or Certificate IV trade qualification.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                          TRA OFFSHORE SKILLS ASSESSMENT (OSAP) ROADMAP                           |
-+--------------------------------------------------------------------------------------------------+
-  [Stage 1: Documentary Verification]
-  - Submit National Trade Certificate (NTC) / National Apprenticeship Certificate (NAC) / ITI
-  - 3 to 5 years verified employment evidence (EPFO passbooks, bank statements, Form 16/ITR)
-  - Detailed employer job descriptions mapped to ANZSCO duty statements
-     |
-     v
-  [Stage 2: Technical Interview (Video / In-Person)]
-  - Conducted in English by Australian certified trade assessors
-  - Deep-dive into trade theory, Australian safety codes (WHS), blueprint reading & calculations
-     |
-     v
-  [Stage 3: Practical Trade Demonstration / Skills Test]
-  - Live technical test at an accredited Australian RTO trade center in India
-  - Practical welding (SMAW/GTAW), engine teardown/diagnosis, wiring circuits, or culinary tests
-     |
-     v
-  [Outcome: TRA Offshore Skills Assessment Outcome Letter]
-  - Successful candidate receives Australian Equivalent Certificate III/IV Qualification
-  - Unlocks eligibility for Skills in Demand Visa nomination and State PR pathways
-+--------------------------------------------------------------------------------------------------+
-```
+> [!NOTE]
+> **TRA Offshore Skills Assessment (OSAP) Roadmap for Indian Trades**
+> 1. **Stage 1: Documentary Verification**: Submission of ITI/NTC certificates, 3 to 5 years verified employment (EPFO, bank statements, ITR), and detailed reference letters.
+> 2. **Stage 2: Technical Video Interview**: In-depth 1-to-2 hour interview in English by certified Australian trade assessors evaluating trade theory, safety (WHS), and blueprint reading.
+> 3. **Stage 3: Practical Trade Demonstration**: Live workshop skills test at an accredited RTO testing facility in Delhi, Jalandhar, Mumbai, or Bengaluru.
+> 4. **Outcome: TRA Certificate III/IV Equivalency**: Unlocks legal eligibility for Skills in Demand employer sponsorship and State PR nominations.
 
 ### Key TRA Assessment Programs for Indian Candidates
 
@@ -183,16 +144,11 @@ The MSA pathway applies to occupations and nationalities not governed under mand
 
 Under Australian immigration legislation, an employer cannot sponsor an overseas worker to underbid domestic labor. Two foundational statutory barriers ensure market parity:
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            STATUTORY FAIR WORK & SPONSORSHIP SAFEGUARDS                          |
-+--------------------------------------------------------------------------------------------------+
-| 1. LABOUR MARKET TESTING (LMT)       | 2. ANNUAL MARKET SALARY RATE (AMSR) | 3. TSMIT STATUTORY FLOOR    |
-| - 2 ads on approved national portals | - Must pay exact prevailing rate    | - Minimum $73,150 AUD / yr  |
-| - Active for minimum 4 weeks         |   earned by Australian equivalents  |   base salary               |
-| - Valid for 4 months preceding nom   | - Eliminates foreign wage dumping   | - Superannuation extra (12%)|
-+--------------------------------------------------------------------------------------------------+
-```
+| Safeguard Area | Statutory Mandate | Legal Protection for Overseas Workers |
+| :--- | :--- | :--- |
+| **Labour Market Testing (LMT)** | 2 ads on approved national portals (4 weeks) | Ensures foreign worker is filling a genuine vacancy without undercutting local jobs |
+| **Annual Market Salary Rate (AMSR)** | Must match or exceed prevailing Australian pay | Eliminates wage exploitation; guarantees identical pay as Australian citizens |
+| **TSMIT Statutory Floor** | Minimum $73,150 AUD per annum base salary | Strict baseline below which no standard skilled work visa can be approved |
 
 ### 1. Mandatory Labour Market Testing (LMT)
 Before lodging a visa nomination for an Indian candidate, the Australian sponsoring company must prove they made genuine, exhaustive efforts to hire locally:
@@ -217,34 +173,16 @@ Under the 2026 Migration Regulations, **Visa Condition 8107, 8607, and 8608** we
 
 Navigating an Australian employer-sponsored work visa from India is a structured, multi-tier legal process requiring seamless coordination between the Australian employer, registered migration specialists, and the Department of Home Affairs.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                                CHRONOLOGICAL AUSTRALIAN VISA ROADMAP                             |
-+--------------------------------------------------------------------------------------------------+
-  [Step 1] Skills Assessment (TRA OSAP / VETASSESS) & English Language Test (IELTS / PTE)
-     |
-     v
-  [Step 2] Australian Employer Completes 4-Week Labour Market Testing (LMT) on SEEK / Workforce
-     |
-     v
-  [Step 3] Employer Lodges Standard Business Sponsorship (SBS) & Nomination via ImmiAccount
-     |
-     v
-  [Step 4] Candidate Gathers Documents (Indian PCC from PSK, Work Experience, Financial Proof)
-     |
-     v
-  [Step 5] Visa Application Lodged Online on DHA ImmiAccount & Payment of Statutory Fees ($3,115 AUD)
-     |
-     v
-  [Step 6] Biometrics Appointment at VFS Australian Biometric Collection Centre (ABCC) in India
-     |
-     v
-  [Step 7] Immigration Medical Examination (HAP ID) at Empanelled Bupa / Panel Physician Clinic
-     |
-     v
-  [Step 8] Visa Grant Notice Issued Digitally -> Flight Booking & Direct Port of Entry Landing
-+--------------------------------------------------------------------------------------------------+
-```
+> [!NOTE]
+> **Chronological Australian Work Visa Roadmap (2026)**
+> 1. **Step 1: Skills Assessment & English**: Complete TRA OSAP trade assessment and achieve IELTS 5.0+ or PTE 36+.
+> 2. **Step 2: Employer Labour Market Testing**: Sponsoring employer runs 4-week LMT advertising on SEEK or Workforce Australia.
+> 3. **Step 3: Business Sponsorship & Nomination**: Employer lodges Standard Business Sponsorship and pays the SAF levy via ImmiAccount.
+> 4. **Step 4: Statutory Clearances**: Candidate compiles PSK Police Clearance (PCC), work experience proof, and financial statements.
+> 5. **Step 5: Online Visa Lodgement**: Visa application lodged on DHA ImmiAccount with primary fee ($3,115 AUD).
+> 6. **Step 6: VFS Biometrics**: 10-digit fingerprinting and live facial capture at an authorized VFS Global ABCC in India.
+> 7. **Step 7: eMedical Screening**: Chest X-ray and blood pathology completed at an empanelled Bupa panel hospital.
+> 8. **Step 8: Digital Visa Grant**: Official Visa Grant Notice issued via VEVO; no physical passport sticker required.
 
 ### Step 1: Secure Skills Assessment & English Proficiency
 Before lodging the formal visa, the candidate must possess:
@@ -318,20 +256,11 @@ Australia utilizes a completely paperless, digital immigration verification syst
 
 For Indian workers, an Australian Skills in Demand work visa is not a temporary dead-end—it is the direct statutory springboard to **Australian Permanent Resident (PR)** status and eventual Australian citizenship.
 
-```
-       [ 2 Years Full-Time Employment on Skills in Demand Visa ]
-                                  |
-         +------------------------+------------------------+
-         |                                                 |
-         v                                                 v
-EMPLOYER NOMINATION SCHEME (ENS)                 STATE NOMINATED PR PATHWAYS
-(Subclass 186 TRT Stream)                        (Subclass 190 / Subclass 491)
-         |                                                 |
-         +--> No Point Test Required                       +--> 5 Extra Points for Subclass 190
-         +--> Sponsored directly by current employer       +--> 15 Extra Points for Subclass 491
-         +--> Full Permanent Resident Status               +--> Fast-track for regional shortages
-         +--> Universal Medicare & PR Card                 +--> Independent of single employer
-```
+| Permanent Residency Pathway | Sponsoring Authority | Key Requirements & Benefits |
+| :--- | :--- | :--- |
+| **Subclass 186 ENS (TRT Stream)** | Current Sponsoring Employer | 2 years completed on SID visa; no points test required; direct Australian PR card |
+| **Subclass 190 (State Nominated PR)** | Australian State / Territory Government | Points-tested; grants 5 bonus points; independent of single employer; immediate PR |
+| **Subclass 491 (Skilled Work Regional)** | Regional State Governments | Grants 15 bonus points; 5-year provisional visa leading to Subclass 191 PR |
 
 ### 1. Subclass 186 Employer Nomination Scheme (ENS) – TRT Stream
 Under landmark migration reforms, the pathway to Permanent Residency has been streamlined for temporary visa holders:
@@ -351,19 +280,13 @@ Candidates who prefer independent permanent residency without ongoing employer s
 
 One of Australia's greatest migration advantages is its comprehensive, family-inclusive legal framework. When an Indian candidate secures a Skills in Demand work visa, their legal family receives immediate, robust statutory benefits.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                            FAMILY ENTITLEMENTS ON AN AUSTRALIAN WORK VISA                        |
-+--------------------------------------------------------------------------------------------------+
-| Benefit Area               | Primary Work Visa Holder              | Dependent Spouse / Partner  |
-+----------------------------+---------------------------------------+-----------------------------+
-| Employment Authorization   | Sponsored Sponsoring Employer Only    | 100% UNRESTRICTED WORK RIGHTS|
-| Permitted Industry Sectors | Approved ANZSCO Occupation            | Any Sector (Corporate/Trade)|
-| Working Hours Limit        | Full-Time (Minimum 38 hrs/week)       | Full-Time or Part-Time      |
-| Children Schooling         | Subsidized / Tuition-Free Public K-12 | Dependent Student Status    |
-| Healthcare Protections     | OVHC Private Cover + Reciprocal Laws  | Identical Family Coverage   |
-+----------------------------+---------------------------------------+-----------------------------+
-```
+| Benefit Area | Primary Work Visa Holder | Dependent Spouse / Partner |
+| :--- | :--- | :--- |
+| **Employment Authorization** | Sponsored Sponsoring Employer Only | 100% UNRESTRICTED WORK RIGHTS |
+| **Permitted Industry Sectors** | Approved ANZSCO Occupation | Any Sector (Corporate/Trade/Business) |
+| **Working Hours Limit** | Full-Time (Minimum 38 hrs/week) | Full-Time or Part-Time |
+| **Children Schooling** | Subsidized / Tuition-Free Public K-12 | Dependent Student Status |
+| **Healthcare Protections** | OVHC Private Cover + Reciprocal Laws | Identical Family Coverage |
 
 ### Unrestricted Spousal Open Work Rights
 - **Total Employment Freedom**: Unlike systems in certain Gulf nations or secondary European permits where dependents are legally prohibited from working, the spouse or de facto partner of an Australian Skills in Demand visa holder receives **Condition 8101 (Work Permitted)** on their visa.
@@ -384,24 +307,13 @@ While temporary visa holders initially hold **Overseas Visitor Health Cover (OVH
 
 Due to the exceptional earning potential and permanent residency allure of Australia, fraudulent recruitment rings and unlicensed "ghost agents" actively operate throughout Punjab, Haryana, Delhi NCR, and online social media platforms. Thousands of innocent Indian workers lose their life savings to deceptive migration rackets every year.
 
-```
-+--------------------------------------------------------------------------------------------------+
-|                              RED FLAGS VS. VERIFIED AUSTRALIAN HIRING                            |
-+--------------------------------------------------------------------------------------------------+
-| Indicator                   | FRAUDULENT SCAM PATTERN                | GENUINE AUSTRALIAN HIRING |
-+-----------------------------+----------------------------------------+---------------------------+
-| Representative Authority    | "Authorized Agent" without MARA license| OMARA Registered Migration|
-|                             | or unverified local broker             | Agent (RMA) or Legal Firm |
-| Upfront Sponsorship Charges | Demands ₹15 to ₹30 Lakhs for "Job Visa"| ZERO sponsorship fee      |
-|                             | or "482 Sponsorship Allotment"         | charged to foreign worker |
-| Technical Verification      | Issues job offer without TRA trade test| Mandatory TRA Skills      |
-|                             | or formal employer interview           | Assessment & video test   |
-| Communication Domain        | Free Gmail, Yahoo, or WhatsApp accounts| Verified Australian ABN/  |
-|                             | (e.g., `australiajobs482@gmail.com`)   | Corporate company domain  |
-| Visa Delivery Promise       | Promises "Direct Stamping" or "Airport | Digital ImmiAccount TRN   |
-|                             | Visa Sticker without Biometrics"       | & VFS ABCC Biometrics     |
-+-----------------------------+----------------------------------------+---------------------------+
-```
+| Indicator | Fraudulent Scam Pattern | Genuine Australian Hiring |
+| :--- | :--- | :--- |
+| **Representative Authority** | "Authorized Agent" without MARA license | OMARA Registered Migration Agent (RMA) or Legal Firm |
+| **Upfront Sponsorship Charges** | Demands ₹15 to ₹30 Lakhs for "Job Visa" | ZERO sponsorship fee charged to foreign worker |
+| **Technical Verification** | Issues job offer without TRA trade test | Mandatory TRA Skills Assessment & video test |
+| **Communication Domain** | Free Gmail, Yahoo, or WhatsApp accounts | Verified Australian ABN & Corporate company domain |
+| **Visa Delivery Promise** | Promises "Airport Sticker without Biometrics" | Digital ImmiAccount TRN & VFS ABCC Biometrics |
 
 ### Common Australian Migration Scams Targeting Indian Workers
 
