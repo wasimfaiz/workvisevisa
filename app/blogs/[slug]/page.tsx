@@ -133,6 +133,9 @@ async function getBlog(slug: string) {
       (decodedSlug.includes("police-clearance") && p.id === "blog-15") ||
       (decodedSlug.includes("pcc") && p.id === "blog-15") ||
       (decodedSlug.includes("takamol") && p.id === "blog-14") ||
+      (decodedSlug.includes("svp-takamol") && p.id === "blog-14") ||
+      (decodedSlug.includes("takamol-certificate") && p.id === "blog-14") ||
+      (decodedSlug.includes("svp-test-result") && p.id === "blog-14") ||
       (decodedSlug.includes("skill-verification") && p.id === "blog-14") ||
       (decodedSlug.includes("qvc") && p.id === "blog-13") ||
       (decodedSlug.includes("qatar-work-visa") && p.id === "blog-13") ||

@@ -1899,7 +1899,7 @@ export default function SiwanLocationPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Link
                 href="/blogs/complete-guide-uae-saudi-arabia-blue-collar-work-permits-2026"
                 className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
@@ -1911,6 +1911,24 @@ export default function SiwanLocationPage() {
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 line-clamp-2">
                     MOHRE contracts, Qiwa portal, Takamol trade tests, and WPS wage protection.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Saudi Trade Testing</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Takamol SVP Test Result &amp; Certificate Check Online 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    Official svp-international.com result check, exam syllabus, Indian test centers &amp; Qiwa verification.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
