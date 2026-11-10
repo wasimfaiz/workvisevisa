@@ -1542,6 +1542,76 @@ export default function CanadaCountryPage() {
             </div>
           </section>
 
+          {/* ── Section 13.5: Featured Canada Work Visa & LMIA Master Guides ── */}
+          <section className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                  Official Research & Field Intelligence
+                </span>
+                <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 mt-1">
+                  Authoritative Canadian Work Permit & LMIA Master Guides
+                </h2>
+              </div>
+              <Link
+                href="/blogs"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
+              >
+                Browse All Guides <FaArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Link
+                href="/blogs/canada-work-permit-lmia-process-guide-2026-tfwp-jobs-salary-pr"
+                className="group flex flex-col justify-between rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/60 to-white p-6 shadow-sm hover:shadow-md hover:border-emerald-400 transition-all"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-emerald-600 text-white text-[10px] font-bold uppercase px-2.5 py-0.5 tracking-wider">
+                      Flagship Master Guide
+                    </span>
+                    <span className="text-xs text-slate-500">35 min read</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug">
+                    Canada Work Permit & LMIA Complete Guide 2026: TFWP Streams, Low vs High-Wage Caps, In-Demand Jobs, Salaries (CAD & INR), VFS Process & PR Pathways
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                    Exhaustive manual covering ESDC positive LMIA approvals, 2026 provincial median wage thresholds, commercial truck driver licensing, trade wages, VFS Global biometrics, and CEC / PNP permanent residency transition blueprints.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-emerald-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+                  <span>Read Complete Blueprint</span>
+                  <FaArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <Link
+                href="/blogs/global-work-visa-pr-rules-overhaul-2026-canada-australia-uk-europe-guide"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition-all"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-slate-100 text-slate-700 text-[10px] font-bold uppercase px-2.5 py-0.5 tracking-wider">
+                      Policy Analysis
+                    </span>
+                    <span className="text-xs text-slate-500">22 min read</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-700 transition-colors leading-snug">
+                    Global Work Visa & PR Policy Overhaul 2026: Canada LMIA Caps, Australia NOM Cuts & UK B2 Rules
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                    Compare Canada&apos;s revised 10% / 20% low-wage temporary foreign worker caps with immigration reforms across Australia, the United Kingdom, and the European Union.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-emerald-700">
+                  <span>Read Comparative Analysis</span>
+                  <FaArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </section>
+
           {/* ── Section 14: Bottom Strategic CTA Banner ── */}
           <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-xl border border-emerald-900/50 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
