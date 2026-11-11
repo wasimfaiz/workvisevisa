@@ -768,6 +768,28 @@ function TrackerContent() {
               </p>
             </div>
           </div>
+
+          <div className="mt-8 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-emerald-800">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                Official Portal Directory &amp; Fraud Protection
+              </span>
+              <h4 className="text-base sm:text-lg font-extrabold text-slate-900 mt-2">
+                Want to Verify Your Work Visa Directly on Government Portals?
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
+                Step-by-step instructions to check Saudi MOFA/Enjaz, UAE Dubai GDRFA &amp; ICP, MOHRE offer letters, Qatar MOI/QVC, Kuwait, Oman, Bahrain &amp; Europe work visas online using your passport number.
+              </p>
+            </div>
+            <Link
+              href="/blogs/work-visa-check-online-by-passport-number-2026-saudi-dubai-qatar-kuwait-europe"
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 px-5 py-3 text-xs font-bold text-white shadow-md transition shrink-0"
+            >
+              <span>Check Visa Verification Guide</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

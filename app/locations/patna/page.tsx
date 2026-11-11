@@ -2235,6 +2235,24 @@ export default function PatnaLocationPage() {
               </Link>
             </div>
 
+            <Link
+              href="/blogs/work-visa-check-online-by-passport-number-2026-saudi-dubai-qatar-kuwait-europe"
+              className="mt-6 group rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-teal-50 p-5 sm:p-6 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">2026 Fraud-Proof Official Portal Directory</span>
+                <h3 className="font-extrabold text-slate-900 text-sm sm:text-base mt-1 group-hover:text-emerald-700 transition-colors">
+                  Work Visa Check Online by Passport Number 2026: Saudi MOFA, Dubai ICP/GDRFA, Qatar MOI &amp; Europe
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">
+                  Verify original vs fake work visas, MOHRE job offers, Wafid medical fitness, and India eMigrate clearance directly on official government websites.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 group-hover:bg-emerald-800 px-4 py-2.5 text-xs font-bold text-white shrink-0 transition">
+                Verify Visa Online <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+
             {/* Complete Cross-City Network Links */}
             <div className="mt-8 pt-6 border-t border-slate-200">
               <span className="font-bold text-slate-700 text-xs block mb-3">WorkWise Visa Pan-India Network:</span>
