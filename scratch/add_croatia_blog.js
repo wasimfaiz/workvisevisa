@@ -47,7 +47,7 @@ const blogObject = {
   title: TITLE,
   slug: SLUG,
   category: 'Work Permits',
-  date: 'Nov 12, 2026',
+  date: 'Nov 13, 2026',
   readTime: '22 min read',
   excerpt: EXCERPT,
   image: IMAGE,
