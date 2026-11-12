@@ -232,7 +232,7 @@ export default function AlbaniaCountryPage() {
         name: "Does the Albanian employer provide free food and accommodation?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "In nearly all licensed manufacturing, civil construction, heavy engineering, and resort hospitality contracts, employers provide 100% free furnished company apartments (2 to 4 workers per room with heating, clean bathrooms, and kitchen facilities) plus free daily transport to the job site. Food is generally self-cooked or subsidized through on-site canteens, costing approximately 15,000 to 18,000 ALL (~€150 to €180 / ₹13,500 to ₹16,000 INR) monthly.",
+          text: "In nearly all licensed manufacturing, civil construction, heavy engineering, and resort hospitality contracts, employers provide 100% free furnished company apartments (2 to 4 workers per room with heating, clean bathrooms, and kitchen facilities) plus free daily transport to the job site. Food is generally self-cooked or subsidized through on-site canteens, costing approximately 14,000 to 18,000 ALL (~€140 to €180 / ₹12,700 to ₹16,300 INR) monthly.",
         },
       },
       {
@@ -345,53 +345,68 @@ export default function AlbaniaCountryPage() {
 
       <Navbar />
 
-      <main className="pt-16 sm:pt-20 pb-20 bg-slate-50 min-h-screen">
-        {/* ── Page Hero Header ────────────────────────────────── */}
-        <section className="relative pt-12 sm:pt-16 pb-20 sm:pb-24 bg-gradient-to-br from-slate-950 via-slate-900 to-red-950 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
+      <main className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+        {/* ── Hero Section (Strict Emerald / Teal / Slate UI Continuity) ── */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950 text-white pt-24 sm:pt-28 pb-16 md:pb-24">
+          <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Breadcrumb inside Hero */}
+            <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6 sm:mb-8">
+              <Link href="/" className="hover:text-emerald-400 transition-colors">
+                Home
+              </Link>
+              <span className="text-slate-600">/</span>
+              <Link href="/countries" className="hover:text-emerald-400 transition-colors">
+                Countries
+              </Link>
+              <span className="text-slate-600">/</span>
+              <span className="text-emerald-300 font-bold">Republic of Albania (Republika e Shqipërisë)</span>
+            </nav>
+
+            <div className="grid lg:grid-cols-12 gap-12 items-center">
               {/* Left Column: Headlines & Key Stats */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-red-950/70 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-red-300 backdrop-blur-xs">
-                  <FaGlobe className="w-3.5 h-3.5 text-red-400" />
-                  Adriatic European Gateway • 2026 Statutory Manual
+                {/* Government & Authority Badge */}
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                  Official 2026 Albania e-Albania &amp; Unique Permit (Leje Unike) Gateway
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
-                  Albania Work Visa &amp; Jobs Authority Guide 2026:{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-amber-300 to-emerald-400">
-                    Unique Permit (Leje Unike), e-Visa D &amp; Salaries
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15]">
+                  Albania Work Visa &amp; Skilled Jobs Guide{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">
+                    2026
                   </span>
                 </h1>
 
-                <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-2xl">
-                  Comprehensive 2026 deployment roadmap for Indian technicians, 6G welders, civil trades, hotel chefs, heavy drivers, and factory machine operators migrating to the Republic of Albania under Law No. 79/2021 &quot;On Foreigners&quot;. Discover official e-Albania Unique Permits (*Leje Unike*), 50,000 ALL statutory minimum wage, 4–8 week expedited processing, and 100% free employer-funded housing.
+                <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+                  The definitive, legally verified statutory master guide for Indian professionals, 6G welders, civil trades, hotel chefs, heavy commercial drivers, and factory machine operators migrating to Southeast Europe&apos;s fast-growing Adriatic economy. Explore official{" "}
+                  <strong className="font-bold text-white">Unique Permits (Leje Unike)</strong> under Law No. 79/2021 &quot;On Foreigners&quot;,{" "}
+                  <strong className="font-bold text-emerald-300">50,000 ALL statutory minimum wage</strong>, fast-track 4–8 week e-visa processing, employer-provided accommodation, and consular stamping through the Embassy of the Republic of Albania in New Delhi.
                 </p>
 
-                {/* Micro Badges Grid */}
+                {/* Key Benefits Pill Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                   <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
                     <FaMoneyBillWave className="w-4 h-4 text-emerald-400 shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-white leading-tight">50,000 ALL Min Wage</div>
-                      <div className="text-[10px] text-slate-400">~€500 / ₹45,500 Gross</div>
+                      <div className="text-[10px] text-slate-400">~€500 / ₹45.5k Base Pay</div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
-                    <FaPercent className="w-4 h-4 text-amber-400 shrink-0" />
+                    <FaCoins className="w-4 h-4 text-teal-400 shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-white leading-tight">13% Tax Floor</div>
-                      <div className="text-[10px] text-slate-400">Competitive Europe Tax</div>
+                      <div className="text-[10px] text-slate-400">Low European Tax Bracket</div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
-                    <FaAward className="w-4 h-4 text-red-400 shrink-0" />
+                    <FaAward className="w-4 h-4 text-emerald-400 shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-white leading-tight">Unique Permit (Leje Unike)</div>
                       <div className="text-[10px] text-slate-400">1 to 5 Years Renewable</div>
@@ -402,15 +417,15 @@ export default function AlbaniaCountryPage() {
                     <FaHouseUser className="w-4 h-4 text-teal-400 shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-white leading-tight">100% Free Housing</div>
-                      <div className="text-[10px] text-slate-400">Furnished Flat &amp; Utilities</div>
+                      <div className="text-[10px] text-slate-400">Company Flat &amp; Utilities</div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
                     <FaClock className="w-4 h-4 text-amber-400 shrink-0" />
                     <div>
-                      <div className="text-xs font-bold text-white leading-tight">4–8 Wks Fast Track</div>
-                      <div className="text-[10px] text-slate-400">e-Visa D &amp; Embassy Stamping</div>
+                      <div className="text-xs font-bold text-white leading-tight">4–8 Wks Processing</div>
+                      <div className="text-[10px] text-slate-400">e-Visa D &amp; Fast Stamping</div>
                     </div>
                   </div>
 
@@ -423,13 +438,13 @@ export default function AlbaniaCountryPage() {
                   </div>
                 </div>
 
-                {/* Direct Action Buttons */}
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                   <Link
                     href="/jobs"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-amber-500 to-emerald-500 px-6 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-red-600/25 hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                   >
-                    <FaBriefcase className="w-4 h-4 shrink-0 text-slate-950" />
+                    <FaBriefcase className="w-4 h-4 shrink-0" />
                     <span>Browse Albania Jobs</span>
                   </Link>
 
@@ -437,9 +452,9 @@ export default function AlbaniaCountryPage() {
                     href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20Albania%20Work%20Permit%20(Leje%20Unike)%20and%20Jobs%20for%202026."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-red-950/80 hover:bg-red-900 border border-red-600/50 px-6 py-3 text-sm font-bold text-white transition-all shadow-md text-center w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3 text-sm font-bold text-white transition-all shadow-md text-center w-full sm:w-auto"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <FaWhatsapp className="w-4 h-4 text-emerald-300 shrink-0" />
                     <span>WhatsApp Consultation</span>
                   </a>
                 </div>
@@ -457,11 +472,11 @@ export default function AlbaniaCountryPage() {
                       />
                       <div>
                         <h2 className="text-xl font-display font-extrabold text-white">Republic of Albania</h2>
-                        <p className="text-xs text-red-300 font-medium">Tirana • Durrës • Vlorë • Shkodër • Fier</p>
+                        <p className="text-xs text-emerald-300 font-medium">Tirana • Durrës • Vlorë • Shkodër • Fier</p>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/20 border border-red-400/40 px-3 py-1 text-xs font-bold text-red-300">
-                      <FaShieldHalved className="w-3 h-3 text-red-400" />
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3 py-1 text-xs font-bold text-emerald-300">
+                      <FaShieldHalved className="w-3 h-3 text-emerald-400" />
                       EU Candidate
                     </span>
                   </div>
@@ -498,9 +513,9 @@ export default function AlbaniaCountryPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl bg-red-950/50 border border-red-500/30 p-3.5 text-center text-xs text-slate-300">
-                    <div className="flex items-center justify-center gap-2 text-red-300 font-semibold mb-0.5">
-                      <FaShieldHalved className="w-3.5 h-3.5 text-red-400" />
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
                       <span>AKPA &amp; Migration Directorate Approved</span>
                     </div>
                     <p className="text-[11px] text-slate-400">
@@ -513,48 +528,48 @@ export default function AlbaniaCountryPage() {
           </div>
         </section>
 
-        {/* ── Directory Anchors ─────────────────────────────────── */}
+        {/* ── Table of Contents & Quick Navigation ────────────── */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/50">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-              <FaMagnifyingGlass className="w-3 h-3 text-red-600" />
+              <FaMagnifyingGlass className="w-3 h-3 text-emerald-600" />
               Albania Comprehensive Master Guide Directory:
             </div>
             <div className="flex flex-wrap gap-2 text-xs font-bold">
-              <a href="#overview" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#overview" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 1. Macro Economy &amp; Adriatic Hub
               </a>
-              <a href="#government-portals" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#government-portals" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 2. Official Government Verification Portals
               </a>
-              <a href="#visa-pathways" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#visa-pathways" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 3. Unique Permit (Leje Unike) Pathways
               </a>
-              <a href="#salary-matrix" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#salary-matrix" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 4. 2026 Salary &amp; INR Remittance Matrix
               </a>
-              <a href="#deployment-pipeline" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#deployment-pipeline" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 5. 6-Stage Statutory Deployment Pipeline
               </a>
-              <a href="#document-checklist" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#document-checklist" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 6. Document Checklist &amp; Hague Apostille
               </a>
-              <a href="#fee-schedule" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#fee-schedule" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 7. Official Government Fee Schedule
               </a>
-              <a href="#living-housing" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#living-housing" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 8. Free Housing, Living Costs &amp; Savings
               </a>
-              <a href="#labour-law-tax" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#labour-law-tax" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 9. Labour Code &amp; 13% Income Tax
               </a>
-              <a href="#scam-warning" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#scam-warning" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 10. Anti-Scam Shield &amp; Schengen Warnings
               </a>
-              <a href="#faqs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#faqs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 11. Frequently Asked Questions (12 FAQs)
               </a>
-              <a href="#consultation-form" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+              <a href="#consultation-form" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
                 12. Free Profile Evaluation &amp; Offices
               </a>
             </div>
@@ -566,8 +581,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 1: Macro Economy & Adriatic Gateway ── */}
           <section id="overview" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaGlobe className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaGlobe className="w-3.5 h-3.5 text-emerald-600" />
               Section 1: Strategic Balkan Overview &amp; Adriatic Expansion
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -578,8 +593,8 @@ export default function AlbaniaCountryPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 pt-2">
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-red-400 hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-red-100 border border-red-200 flex items-center justify-center text-red-700 mb-5">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-emerald-400 hover:shadow-md transition-all">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 mb-5">
                   <FaBuildingColumns className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
@@ -590,8 +605,8 @@ export default function AlbaniaCountryPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-red-400 hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-red-100 border border-red-200 flex items-center justify-center text-red-700 mb-5">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-emerald-400 hover:shadow-md transition-all">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 mb-5">
                   <FaCoins className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
@@ -602,8 +617,8 @@ export default function AlbaniaCountryPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-red-400 hover:shadow-md transition-all">
-                <div className="w-12 h-12 rounded-xl bg-red-100 border border-red-200 flex items-center justify-center text-red-700 mb-5">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7 shadow-xs hover:border-emerald-400 hover:shadow-md transition-all">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 mb-5">
                   <FaPlaneArrival className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
@@ -618,8 +633,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 2: Sovereign Government Verification Portals ── */}
           <section id="government-portals" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaShieldHalved className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaShieldHalved className="w-3.5 h-3.5 text-emerald-600" />
               Section 2: Official Government Portals &amp; Sovereign Verification
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -644,7 +659,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">e-Albania Governmental Portal</td>
                     <td className="p-4">Central national digital public services portal</td>
                     <td className="p-4">
-                      <a href="https://e-albania.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
+                      <a href="https://e-albania.al" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-bold hover:underline">
                         e-albania.al
                       </a>
                     </td>
@@ -654,7 +669,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">Albanian e-Visa Portal</td>
                     <td className="p-4">Ministry for Europe and Foreign Affairs (MEFA)</td>
                     <td className="p-4">
-                      <a href="https://e-visa.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
+                      <a href="https://e-visa.al" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-bold hover:underline">
                         e-visa.al
                       </a>
                     </td>
@@ -664,7 +679,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">National Employment &amp; Skills Agency (AKPA)</td>
                     <td className="p-4">Labour market evaluations and corporate hiring quotas</td>
                     <td className="p-4">
-                      <a href="https://akpa.gov.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
+                      <a href="https://akpa.gov.al" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-bold hover:underline">
                         akpa.gov.al
                       </a>
                     </td>
@@ -674,7 +689,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">State Police &amp; Border Migration (ASP)</td>
                     <td className="p-4">Department for Border &amp; Migration (Policia e Shtetit)</td>
                     <td className="p-4">
-                      <a href="https://asp.gov.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
+                      <a href="https://asp.gov.al" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-bold hover:underline">
                         asp.gov.al
                       </a>
                     </td>
@@ -684,7 +699,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">General Tax Directorate (DPT)</td>
                     <td className="p-4">Ministry of Finance and Economy corporate registry</td>
                     <td className="p-4">
-                      <a href="https://www.tatime.gov.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
+                      <a href="https://www.tatime.gov.al" target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-bold hover:underline">
                         tatime.gov.al
                       </a>
                     </td>
@@ -694,9 +709,7 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 font-bold text-slate-900">Embassy of Albania in New Delhi</td>
                     <td className="p-4">Sovereign diplomatic mission in India</td>
                     <td className="p-4">
-                      <a href="https://punetejashtme.gov.al" target="_blank" rel="noopener noreferrer" className="text-red-600 font-bold hover:underline">
-                        B-2, West End, New Delhi
-                      </a>
+                      <span className="text-slate-800 font-medium">B-2, West End, New Delhi</span>
                     </td>
                     <td className="p-4 text-slate-600">Consular interviews, PCC attestation &amp; passport stickers</td>
                   </tr>
@@ -707,8 +720,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 3: 4 Legal Work Visa Pathways ── */}
           <section id="visa-pathways" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaFileContract className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaFileContract className="w-3.5 h-3.5 text-emerald-600" />
               Section 3: Statutory Work Visa Classifications
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -717,7 +730,7 @@ export default function AlbaniaCountryPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-red-100 text-red-800 px-3 py-1 text-xs font-bold">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-emerald-100 text-emerald-800 px-3 py-1 text-xs font-bold">
                   Pathway 1: Primary Track
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
@@ -734,7 +747,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-amber-100 text-amber-800 px-3 py-1 text-xs font-bold">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-teal-100 text-teal-800 px-3 py-1 text-xs font-bold">
                   Pathway 2: Seasonal Track
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
@@ -751,7 +764,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-emerald-100 text-emerald-800 px-3 py-1 text-xs font-bold">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-blue-100 text-blue-800 px-3 py-1 text-xs font-bold">
                   Pathway 3: Skilled Technical
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
@@ -768,7 +781,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-blue-100 text-blue-800 px-3 py-1 text-xs font-bold">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-amber-100 text-amber-800 px-3 py-1 text-xs font-bold">
                   Pathway 4: Corporate Mobility
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
@@ -788,8 +801,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 4: 2026 Master Salary Matrix ── */}
           <section id="salary-matrix" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaMoneyBillWave className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaMoneyBillWave className="w-3.5 h-3.5 text-emerald-600" />
               Section 4: Verified 2026 Salary Matrix &amp; Remittance Math
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -888,8 +901,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 5: 6-Stage Statutory Deployment Pipeline ── */}
           <section id="deployment-pipeline" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaPlaneArrival className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaPlaneArrival className="w-3.5 h-3.5 text-emerald-600" />
               Section 5: End-to-End Application Lifecycle (Zero Guesswork)
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -898,7 +911,7 @@ export default function AlbaniaCountryPage() {
 
             <div className="space-y-4">
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   1
                 </div>
                 <div className="space-y-2">
@@ -912,7 +925,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   2
                 </div>
                 <div className="space-y-2">
@@ -926,7 +939,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   3
                 </div>
                 <div className="space-y-2">
@@ -940,7 +953,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   4
                 </div>
                 <div className="space-y-2">
@@ -954,7 +967,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   5
                 </div>
                 <div className="space-y-2">
@@ -968,7 +981,7 @@ export default function AlbaniaCountryPage() {
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
-                <div className="w-10 h-10 rounded-xl bg-red-100 text-red-800 font-extrabold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center shrink-0">
                   6
                 </div>
                 <div className="space-y-2">
@@ -985,8 +998,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 6: Document Checklist & Apostille ── */}
           <section id="document-checklist" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaCertificate className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaCertificate className="w-3.5 h-3.5 text-emerald-600" />
               Section 6: Document Checklist &amp; Legalization Protocol
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1019,7 +1032,7 @@ export default function AlbaniaCountryPage() {
                   <FaCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   Bilingual Employment Contract (*Kontratë Pune*)
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Executed dual-column Albanian-English contract detailing exact salary in ALL, 40-hour work schedule, overtime multipliers, and company housing terms.
                 </p>
               </div>
@@ -1058,8 +1071,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 7: Statutory Fees ── */}
           <section id="fee-schedule" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaCoins className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaCoins className="w-3.5 h-3.5 text-emerald-600" />
               Section 7: Official Government Fees &amp; Zero Hidden Charges
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1120,8 +1133,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 8: Free Housing & Cost of Living ── */}
           <section id="living-housing" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaHouseUser className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaHouseUser className="w-3.5 h-3.5 text-emerald-600" />
               Section 8: Free Housing, Cost of Living &amp; Net Monthly Savings
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1196,8 +1209,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 9: Labour Code & Tax ── */}
           <section id="labour-law-tax" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaScaleUnbalanced className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaScaleUnbalanced className="w-3.5 h-3.5 text-emerald-600" />
               Section 9: Albanian Labour Code &amp; Taxation Standards
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1230,8 +1243,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 10: Anti-Scam Advisory & Schengen Warning ── */}
           <section id="scam-warning" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaTriangleExclamation className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaTriangleExclamation className="w-3.5 h-3.5 text-emerald-600" />
               Section 10: CRITICAL ANTI-SCAM ADVISORY &amp; Illegal Transit Warning
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1265,8 +1278,8 @@ export default function AlbaniaCountryPage() {
 
           {/* ── Section 11: FAQs ── */}
           <section id="faqs" className="scroll-mt-28 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-red-800">
-              <FaCircleQuestion className="w-3.5 h-3.5 text-red-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaCircleQuestion className="w-3.5 h-3.5 text-emerald-600" />
               Section 11: Frequently Asked Questions (Albania Work Permits 2026)
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
@@ -1296,33 +1309,33 @@ export default function AlbaniaCountryPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
                 href="/countries/croatia"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-red-500 hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-red-700 bg-red-50 px-2 py-0.5 rounded-md inline-block">
+                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md inline-block">
                     Adriatic Neighbor
                   </span>
-                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-red-700 transition-colors">
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
                     Croatia Work Visa &amp; Jobs Guide 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
                     3-Year Stay &amp; Work Permits, €1,050 gross minimum wage &amp; full Schengen access.
                   </p>
                 </div>
-                <span className="text-xs font-bold text-red-700 mt-3 inline-flex items-center gap-1">
+                <span className="text-xs font-bold text-emerald-700 mt-3 inline-flex items-center gap-1">
                   Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
               <Link
                 href="/countries/bulgaria"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-red-500 hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md inline-block">
                     Balkan Schengen Peer
                   </span>
-                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-red-700 transition-colors">
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
                     Bulgaria Work Visa &amp; Single Permit 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
@@ -1336,13 +1349,13 @@ export default function AlbaniaCountryPage() {
 
               <Link
                 href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-red-500 hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md inline-block">
                     Mandatory Legalization
                   </span>
-                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-red-700 transition-colors">
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
                     PCC &amp; MEA Apostille Guide 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
@@ -1356,20 +1369,20 @@ export default function AlbaniaCountryPage() {
 
               <Link
                 href="/jobs"
-                className="group rounded-2xl border border-red-300 bg-gradient-to-br from-red-50 to-amber-50 p-5 shadow-xs hover:border-red-500 hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-50 to-teal-50 p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-red-800 bg-red-100 px-2 py-0.5 rounded-md inline-block">
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md inline-block">
                     Active Hiring 2026
                   </span>
-                  <h3 className="font-bold text-red-950 text-sm group-hover:text-red-700 transition-colors">
+                  <h3 className="font-bold text-emerald-950 text-sm group-hover:text-emerald-700 transition-colors">
                     View Live Albania Vacancies
                   </h3>
-                  <p className="text-xs text-red-800/80 line-clamp-2">
+                  <p className="text-xs text-emerald-800/80 line-clamp-2">
                     Verified client demands for civil masons, welders, chefs, and machine operators.
                   </p>
                 </div>
-                <span className="text-xs font-bold text-red-800 mt-3 inline-flex items-center gap-1">
+                <span className="text-xs font-bold text-emerald-800 mt-3 inline-flex items-center gap-1">
                   Browse Openings <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
@@ -1377,13 +1390,13 @@ export default function AlbaniaCountryPage() {
           </section>
 
           {/* ── Section 13: Free Profile Evaluation & Form ── */}
-          <section id="consultation-form" className="scroll-mt-28 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-red-950 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
+          <section id="consultation-form" className="scroll-mt-28 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-red-950/70 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-red-400">
-                  <FaUserTie className="w-3.5 h-3.5 text-red-400" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-950/70 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400">
+                  <FaUserTie className="w-3.5 h-3.5 text-emerald-400" />
                   European Placement Desk
                 </div>
 
@@ -1397,19 +1410,19 @@ export default function AlbaniaCountryPage() {
 
                 <div className="space-y-3 text-xs sm:text-sm text-slate-300">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                       <FaCheck className="w-4 h-4" />
                     </div>
                     <span>Government-vetted Albanian construction, hospitality, and manufacturing employers</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                       <FaCheck className="w-4 h-4" />
                     </div>
                     <span>End-to-end guidance: Trade testing, MEA Apostille, and New Delhi Embassy stamping</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                       <FaCheck className="w-4 h-4" />
                     </div>
                     <span>Free employer-provided housing, transport, and 50,000+ ALL monthly remuneration</span>
@@ -1422,14 +1435,14 @@ export default function AlbaniaCountryPage() {
                     Physical Branch Offices:
                   </div>
                   <div className="grid sm:grid-cols-2 gap-3">
-                    <Link href="/locations/noida" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-red-500 transition-colors">
-                      <div className="font-bold text-red-400 flex items-center gap-1.5">
+                    <Link href="/locations/noida" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500 transition-colors">
+                      <div className="font-bold text-emerald-400 flex items-center gap-1.5">
                         <FaLocationDot className="w-3.5 h-3.5" /> Noida Corporate HQ
                       </div>
                       <div className="text-[11px] text-slate-400 mt-1">Urbtech Trade Centre, Sector 132</div>
                     </Link>
-                    <Link href="/locations/patna" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-red-500 transition-colors">
-                      <div className="font-bold text-red-400 flex items-center gap-1.5">
+                    <Link href="/locations/patna" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500 transition-colors">
+                      <div className="font-bold text-emerald-400 flex items-center gap-1.5">
                         <FaLocationDot className="w-3.5 h-3.5" /> Patna Regional Branch
                       </div>
                       <div className="text-[11px] text-slate-400 mt-1">Varma Centre, Boring Rd Crossing</div>
@@ -1439,13 +1452,13 @@ export default function AlbaniaCountryPage() {
 
                 <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
-                    <FaPhone className="w-3.5 h-3.5 text-red-400" />
+                    <FaPhone className="w-3.5 h-3.5 text-emerald-400" />
                     <a href="tel:+918130161603" className="hover:text-white transition-colors">
                       +91 81301 61603
                     </a>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FaEnvelope className="w-3.5 h-3.5 text-red-400" />
+                    <FaEnvelope className="w-3.5 h-3.5 text-emerald-400" />
                     <a href="mailto:workwisevisa@gmail.com" className="hover:text-white transition-colors">
                       workwisevisa@gmail.com
                     </a>
@@ -1475,7 +1488,7 @@ export default function AlbaniaCountryPage() {
                         name="name"
                         required
                         placeholder="e.g. Wasim Akram"
-                        className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-red-500 focus:outline-none"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
                       />
                     </div>
 
@@ -1489,7 +1502,7 @@ export default function AlbaniaCountryPage() {
                           name="phone"
                           required
                           placeholder="+91 98765 43210"
-                          className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-red-500 focus:outline-none"
+                          className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
                         />
                       </div>
                       <div>
@@ -1501,7 +1514,7 @@ export default function AlbaniaCountryPage() {
                           name="profession"
                           required
                           placeholder="e.g. 6G Welder, Mason, Chef"
-                          className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-red-500 focus:outline-none"
+                          className="w-full rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
                         />
                       </div>
                     </div>
@@ -1515,14 +1528,14 @@ export default function AlbaniaCountryPage() {
                         name="destination"
                         readOnly
                         value="Albania (Balkans & Europe)"
-                        className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-red-400 font-bold focus:outline-none cursor-not-allowed"
+                        className="w-full rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-emerald-400 font-bold focus:outline-none cursor-not-allowed"
                       />
                     </div>
 
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-600 via-amber-500 to-emerald-500 py-3.5 text-sm font-bold text-slate-950 shadow-md hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-3.5 text-sm font-bold text-slate-950 shadow-md hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
                       >
                         <span>Submit Albania Profile For Free Audit</span>
                         <FaArrowRight className="w-4 h-4" />
@@ -1546,22 +1559,3 @@ export default function AlbaniaCountryPage() {
     </>
   );
 }
-
-// Micro sub-component for percent icon to avoid missing export
-function FaPercent(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      stroke="currentColor"
-      fill="currentColor"
-      strokeWidth="0"
-      viewBox="0 0 448 512"
-      height="1em"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path d="M448 400c0 44.18-35.82 80-80 80s-80-35.82-80-80 35.82-80 80-80 80 35.82 80 80zm-80-48c-26.47 0-48 21.53-48 48s21.53 48 48 48 48-21.53 48-48-21.53-48-48-48zm-192-224c0 44.18-35.82 80-80 80S16 172.18 16 128s35.82-80 80-80 80 35.82 80 80zm-80-48c-26.47 0-48 21.53-48 48s21.53 48 48 48 48-21.53 48-48-21.53-48-48-48zm347.31-75.31c9.37 9.37 9.37 24.56 0 33.94l-352 352c-9.37 9.37-24.56 9.37-33.94 0s-9.37-24.56 0-33.94l352-352c9.37-9.37 24.56-9.37 33.94 0z" />
-    </svg>
-  );
-}
-
