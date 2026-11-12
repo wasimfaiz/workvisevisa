@@ -1991,6 +1991,17 @@ export default function CroatiaCountryPage() {
                   </div>
                 </div>
 
+                {/* Cross-link to Detailed 2026 Execution Guide */}
+                <div className="pt-2">
+                  <Link
+                    href="/blogs/croatia-work-visa-for-indian-workers-2026-mup-permit-vfs-jobs-salary"
+                    className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-xs sm:text-sm font-semibold text-emerald-300 hover:bg-emerald-500/20 hover:text-emerald-200 transition-colors"
+                  >
+                    <span>Read 2026 Croatia 3-Year MUP Permit &amp; VFS Process Manual</span>
+                    <FaArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+
                 {/* Office Directory Highlights */}
                 <div className="pt-2 border-t border-slate-800 space-y-2 text-xs text-slate-300">
                   <div className="font-bold text-white uppercase tracking-wider text-[11px]">
