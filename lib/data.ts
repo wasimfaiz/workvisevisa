@@ -279,6 +279,17 @@ export const countries: Country[] = [
     processingTime: "4–8 weeks",
     popularRoles: ["Civil Mason & Steel Fixer", "Hotel Chef & Hospitality Staff", "Industrial Welder & Electrician", "Garment & Warehouse Operator"],
   },
+  {
+    name: "Georgia",
+    code: "GE",
+    flag: "",
+    region: "Caucasus & Europe",
+    description:
+      "Fast-developing Eurasian economy offering D1 Immigration Work Visas, Work Residence Permits (Binaadroba) via Public Service Hall, 20% flat tax, free company housing, and surging hiring across construction, Black Sea resort hospitality, and logistics.",
+    visaTypes: ["D1 Immigration Work Visa", "Work Residence Permit (Binaadroba)", "Short-Term Employment Visa", "Investor & Entrepreneur Residence"],
+    processingTime: "4–8 weeks",
+    popularRoles: ["Civil Construction (Mason/Carpenter/Steel Fixer)", "Structural & 6G Pipe Welder", "Heavy Commercial Driver (Cat C/CE)", "Resort Chef & Hospitality Staff"],
+  },
 ];
 
 // ── Target Country Options for Form ──────────────────────────────
@@ -299,6 +310,7 @@ export const targetCountryOptions = [
   "Romania",
   "Croatia",
   "Albania",
+  "Georgia",
   "Hungary",
   "Malta",
   "Czech Republic",
