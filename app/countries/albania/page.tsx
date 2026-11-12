@@ -53,6 +53,7 @@ import {
   FaIdCard,
   FaPiggyBank,
   FaCalculator,
+  FaCloudSun,
 } from "react-icons/fa6";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.workwisevisa.com";
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   applicationName: "WorkWise Visa",
   title: "Albania Work Visa & Jobs Guide 2026: Unique Permit (Leje Unike), e-Visa & Salaries | WorkWise Visa",
   description:
-    "Definitive 2026 statutory master guide to Albania work visas for Indian skilled workers, civil trades, 6G welders, hotel chefs, heavy drivers, and factory technicians. Learn e-Albania Unique Permit (Leje Unike) approvals, 50,000 ALL minimum wage, Type D visa stamping at New Delhi Embassy, free housing, and scam verification.",
+    "Complete 2026 ground-reality guide to Albania work visas for Indian skilled workers, civil trades, 6G welders, hotel chefs, heavy drivers, and factory technicians. Learn e-Albania Unique Permit (Leje Unike) approvals, 50,000 ALL minimum wage, Type D visa stamping at New Delhi Embassy, free housing, and scam verification.",
   keywords: [
     "Albania work visa 2026",
     "Albania work visa for Indian citizens",
@@ -192,7 +193,7 @@ export default function AlbaniaCountryPage() {
         name: "What is the statutory minimum wage and typical salary for Indian workers in Albania in 2026?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Effective 2026, Albania's statutory national gross minimum wage is 50,000 Albanian Lek (ALL) per month (~€500 EUR / ~₹45,500 INR). Skilled trade roles command higher wages: 6G pipe welders earn 75,000 to 110,000 ALL (€750 to €1,100 / ₹68,000 to ₹1,00,000 INR), civil construction trades (masons, carpenters, steel fixers) earn 65,000 to 95,000 ALL (€650 to €950 / ₹59,000 to ₹86,000 INR), heavy commercial drivers earn 80,000 to 120,000 ALL (€800 to €1,200), and hotel chefs earn 70,000 to 105,000 ALL. Reputable employers provide 100% free furnished accommodation and site transport.",
+          text: "Effective 2026, Albania's statutory national gross minimum wage is 50,000 Albanian Lek (ALL) per month (~€500 EUR / ~₹45,500 INR). Skilled trade roles command higher wages: 6G pipe welders earn 75,000 to 110,000 ALL (€750 to €1,100 / ₹68,000 to ₹1,00,000 INR), civil construction trades (masons, carpenters, steel fixers) earn 65,000 to 95,000 ALL (€650 to €950 / ₹59,000 to ₹86,000 INR), heavy commercial drivers earn 80,000 to 125,000 ALL (€800 to €1,250), and hotel chefs earn 70,000 to 110,000 ALL. Reputable employers provide 100% free furnished accommodation and site transport.",
         },
       },
       {
@@ -200,7 +201,7 @@ export default function AlbaniaCountryPage() {
         name: "Is Albania part of the European Schengen Area, and can I travel across Europe with an Albanian work visa?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. The Republic of Albania is an official candidate country for European Union accession and an active NATO member, but it is NOT yet a member of the Schengen Area. An Albanian Unique Permit (Leje Unike) authorizes legal residency and salaried employment strictly within Albanian sovereign territory. Traveling to Greece, Italy, or Montenegro for unauthorized employment is illegal and triggers criminal deportation and permanent European bans.",
+          text: "No. The Republic of Albania is an official candidate country for European Union accession and an active NATO member, but it is NOT a member of the Schengen Area. An Albanian Unique Permit (Leje Unike) authorizes legal residency and salaried employment strictly within Albanian sovereign territory. Traveling to Greece, Italy, or Montenegro for unauthorized employment is illegal and triggers criminal deportation and permanent European entry bans.",
         },
       },
       {
@@ -224,7 +225,7 @@ export default function AlbaniaCountryPage() {
         name: "Is Police Clearance Certificate (PCC) with MEA Apostille mandatory for Albania?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Applicants must obtain a Police Clearance Certificate (PCC) issued by the Regional Passport Office (PSK) in India, legalized with a Hague Apostille sticker from the Ministry of External Affairs (MEA), and officially translated into Albanian for final residence card issuance by the Border & Migration Department.",
+          text: "Yes. Applicants must obtain a Police Clearance Certificate (PCC) issued by the Regional Passport Office (PSK/RPO) in India, legalized with a Hague Apostille sticker from the Ministry of External Affairs (MEA), and officially translated into Albanian for final residence card issuance by the Border & Migration Department.",
         },
       },
       {
@@ -272,7 +273,39 @@ export default function AlbaniaCountryPage() {
         name: "How can Indian workers send their monthly salary home from Albania?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Workers receive legal salary deposits directly into their personal Albanian bank accounts (such as Banka Kombëtare Tregtare - BKT, Raiffeisen Bank Albania, or Credins Bank). Monthly remittances to Indian family accounts (SBI, HDFC, PNB) are processed smoothly via international SWIFT bank transfers or authorized foreign exchange wire desks at competitive exchange rates.",
+          text: "Workers receive legal salary deposits directly into their personal Albanian bank accounts (such as Banka Kombëtare Tregtare - BKT, Raiffeisen Bank Albania, or Credins Bank). Monthly remittances to Indian family accounts (SBI, HDFC, PNB) are processed smoothly via international SWIFT bank transfers, Western Union, or authorized exchange wire desks at competitive exchange rates.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can my family join me in Albania on a dependent visa?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under Law No. 79/2021, foreign workers who hold a valid Unique Permit for at least 1 continuous year and meet the statutory income threshold (demonstrating adequate living space and health coverage) are legally eligible to sponsor their spouse and minor children for Family Reunification residence permits.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is an Indian driving license valid for commercial driving in Albania?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "An Indian commercial driving license (Heavy Transport Vehicle / HTV) accompanied by an International Driving Permit (IDP) is valid for the initial period. Employers sponsor the conversion to an Albanian official driving license (Category C or CE) through local driving authority examinations upon residence registration.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What happens if my Albanian employer delays or fails to pay my salary?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Under the Albanian Labour Code (Kodi i Punës), all salaries must be deposited via bank transfer by the 5th to 10th of every month. The State Labour Inspectorate (Inspektorati Shtetëror i Punës) strictly enforces wage payments. Non-payment gives the worker legal grounds to terminate the contract without penalty and legally transfer to another company with the assistance of the Migration Directorate.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the weather like in Albania, and do workers need winter clothing?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Albania enjoys a comfortable Mediterranean climate. Summers in Tirana, Durrës, and Vlorë are sunny and warm (28°C to 36°C), while winters are mild and wet (6°C to 14°C) with occasional cold spells. Unlike northern or eastern European countries with extreme sub-zero snowstorms, standard winter jackets and waterproof thermal boots are sufficient.",
         },
       },
     ],
@@ -382,9 +415,9 @@ export default function AlbaniaCountryPage() {
                 </h1>
 
                 <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-                  The definitive, legally verified statutory master guide for Indian professionals, 6G welders, civil trades, hotel chefs, heavy commercial drivers, and factory machine operators migrating to Southeast Europe&apos;s fast-growing Adriatic economy. Explore official{" "}
-                  <strong className="font-bold text-white">Unique Permits (Leje Unike)</strong> under Law No. 79/2021 &quot;On Foreigners&quot;,{" "}
-                  <strong className="font-bold text-emerald-300">50,000 ALL statutory minimum wage</strong>, fast-track 4–8 week e-visa processing, employer-provided accommodation, and consular stamping through the Embassy of the Republic of Albania in New Delhi.
+                  The complete, practical ground-reality manual for Indian skilled tradesmen, 6G welders, civil workers, resort chefs, commercial drivers, and factory mechanics moving to Southeast Europe&apos;s fastest-growing Adriatic economy. Real facts on official{" "}
+                  <strong className="font-bold text-white">Unique Permits (Leje Unike)</strong> under Law No. 79/2021, the{" "}
+                  <strong className="font-bold text-emerald-300">50,000 ALL gross minimum wage</strong>, 4 to 8 week processing, free employer apartments, and visa stamping at the Embassy of Albania in New Delhi.
                 </p>
 
                 {/* Key Benefits Pill Grid */}
@@ -537,40 +570,46 @@ export default function AlbaniaCountryPage() {
             </div>
             <div className="flex flex-wrap gap-2 text-xs font-bold">
               <a href="#overview" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                1. Macro Economy &amp; Adriatic Hub
+                1. Adriatic Economy &amp; Job Demand
+              </a>
+              <a href="#industrial-hubs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                2. Cities &amp; Industrial Clusters
               </a>
               <a href="#government-portals" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                2. Official Government Verification Portals
+                3. Official Government Portals
               </a>
               <a href="#visa-pathways" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                3. Unique Permit (Leje Unike) Pathways
+                4. Unique Permit (Leje Unike) Pathways
               </a>
               <a href="#salary-matrix" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                4. 2026 Salary &amp; INR Remittance Matrix
+                5. 2026 Salary &amp; INR Remittance
               </a>
               <a href="#deployment-pipeline" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                5. 6-Stage Statutory Deployment Pipeline
+                6. 6-Stage Application Roadmap
               </a>
               <a href="#document-checklist" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                6. Document Checklist &amp; Hague Apostille
+                7. RPO PCC &amp; MEA Apostille
               </a>
               <a href="#fee-schedule" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                7. Official Government Fee Schedule
+                8. Official Fee Schedule
               </a>
-              <a href="#living-housing" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                8. Free Housing, Living Costs &amp; Savings
+              <a href="#daily-life-groceries" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                9. Food, Groceries &amp; Indian Life
+              </a>
+              <a href="#banking-remittance" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                10. Bank Accounts &amp; Sending Money
               </a>
               <a href="#labour-law-tax" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                9. Labour Code &amp; 13% Income Tax
+                11. Labour Code, Overtime &amp; Tax
+              </a>
+              <a href="#airport-immigration" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                12. Airport Arrival &amp; TIA Border Check
               </a>
               <a href="#scam-warning" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                10. Anti-Scam Shield &amp; Schengen Warnings
+                13. Anti-Scam Shield &amp; Schengen Warnings
               </a>
               <a href="#faqs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                11. Frequently Asked Questions (12 FAQs)
-              </a>
-              <a href="#consultation-form" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                12. Free Profile Evaluation &amp; Offices
+                14. Frequently Asked Questions (16 FAQs)
               </a>
             </div>
           </div>
@@ -579,17 +618,20 @@ export default function AlbaniaCountryPage() {
         {/* ── Main Content Container ─────────────────────────── */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
 
-          {/* ── Section 1: Macro Economy & Adriatic Gateway ── */}
+          {/* ── Section 1: Strategic Balkan Overview ── */}
           <section id="overview" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaGlobe className="w-3.5 h-3.5 text-emerald-600" />
               Section 1: Strategic Balkan Overview &amp; Adriatic Expansion
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
-              Why Albania Has Become Southeast Europe&apos;s Fastest-Growing Overseas Employment Corridor
+              Why Albania Is Hiring Skilled Indian Craftsmen &amp; Technicians in 2026
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Facing sweeping economic modernization, massive infrastructure expansion along the Adriatic and Ionian coastlines, and a significant outward migration of domestic labor toward Western Europe, the **Republic of Albania** has decisively opened its legal labor market to international skilled craftsmen, engineers, and hospitality personnel. In 2026, major infrastructure hubs in Tirana, the new Durrës Yacht &amp; Commercial Marina, coastal resort corridors in Vlorë and Sarandë, and sprawling light-industrial zones in Fier and Elbasan are actively recruiting tens of thousands of foreign tradespeople.
+              For Indian skilled workers, certified 6G pipe welders, civil tradesmen, heavy commercial drivers, and hotel chefs, the <strong className="font-semibold text-slate-900">Republic of Albania</strong> has become one of the most accessible and practical work destinations in Europe. Because a large number of domestic Albanian youth have migrated to Western Europe, and billions of Euros in international funding are flowing into ports, luxury marinas, tunnels, and highways, licensed Albanian companies are actively turning to India for reliable, disciplined manpower.
+            </p>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Unlike the complex, year-long visa waits in Poland, Germany, or Malta, the Albanian government simplified foreign hiring under <strong className="font-semibold text-slate-900">Law No. 79/2021 &quot;On Foreigners&quot;</strong>. The modern digital application system allows genuine employers to secure government permit clearances within 3 to 4 weeks, with consular visa stamping completed in another 2 to 3 weeks at the Embassy in New Delhi.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 pt-2">
@@ -598,10 +640,10 @@ export default function AlbaniaCountryPage() {
                   <FaBuildingColumns className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Unified Digital Permit (*Leje Unike*)
+                  Unified Digital Permit (Leje Unike)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Under Law No. 79/2021 &quot;On Foreigners&quot;, Albania completely eliminated cumbersome dual bureaucracy. The unified **Unique Permit (*Leje Unike*)** merges the work permit and residence card into one digital clearance managed entirely through **e-Albania**, drastically compressing processing timelines down to 4–8 weeks.
+                  Albania merged separate work permits and police residence cards into one single document: the <strong className="font-semibold text-slate-900">Unique Permit (Leje Unike)</strong>. Sponsoring companies file it directly online on the <strong className="font-semibold text-slate-900">e-Albania</strong> portal, cutting bureaucratic delay down to just 4 to 8 weeks.
                 </p>
               </div>
 
@@ -613,7 +655,7 @@ export default function AlbaniaCountryPage() {
                   50,000 ALL Minimum Wage &amp; High Savings
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Effective 2026, Albania established a statutory national minimum wage of 50,000 ALL/month (~€500 EUR), while certified welders, heavy drivers, and chefs earn 75,000 to 110,000+ ALL. Combined with 100% employer-funded furnished housing, workers save over 70% of their net paycheck.
+                  The statutory legal minimum wage is set at <strong className="font-semibold text-slate-900">50,000 ALL per month (approx. €500 EUR / ₹45,500 INR)</strong> for basic roles, while experienced welders, drivers, and chefs earn 75,000 to 125,000 ALL. Because companies provide free furnished accommodation, workers save 70% or more of their earnings.
                 </p>
               </div>
 
@@ -625,23 +667,99 @@ export default function AlbaniaCountryPage() {
                   ECR Eligible &amp; No IELTS Barrier
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Unlike traditional GCC routes that require cumbersome PoE clearances for ECR passport holders, Albania welcomes both ECR and ECNR Indian passport holders without mandatory English IELTS certifications, relying purely on verified trade competence and clean criminal records.
+                  Both ECR (non-matriculation) and ECNR Indian passport holders can apply. Albania does not require any English IELTS scores or local language exams for tradesmen. Selection is based purely on verified hands-on trade skills, genuine experience, and a clean police record.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* ── Section 2: Sovereign Government Verification Portals ── */}
+          {/* ── Section 2: Cities & Industrial Clusters ── */}
+          <section id="industrial-hubs" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaLocationDot className="w-3.5 h-3.5 text-emerald-600" />
+              Section 2: Major Hiring Cities &amp; Economic Hubs
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Where the Jobs Are: Key Employment Hubs in Albania
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              WorkWise Visa places skilled Indian tradespeople directly into vetted Albanian enterprises located in these main industrial and economic corridors:
+            </p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Tirana (Capital)</span>
+                  <span className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Metropolitan Hub</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Major demand for commercial high-rise construction workers, MEP building electricians, plumbers, HVAC technicians, warehouse logistics staff, and international hotel kitchen teams.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Durrës (Adriatic Coast)</span>
+                  <span className="text-[10px] font-bold uppercase bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full">Port &amp; Mega Marina</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Home to Albania&apos;s primary seaport and the massive $2.5B Durrës Yachts &amp; Marina project. Strong hiring for 6G welders, structural steel fabricators, crane operators, and heavy truck drivers.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Vlorë &amp; Sarandë</span>
+                  <span className="text-[10px] font-bold uppercase bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">Riviera Tourism</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Fast-growing luxury Mediterranean tourist destination with high demand for resort chefs, line cooks, hotel maintenance staff, and coastal highway tunnel infrastructure builders.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Elbasan &amp; Fier</span>
+                  <span className="text-[10px] font-bold uppercase bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">Heavy Industry &amp; Energy</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Center of Albania&apos;s metallurgical, oil refinery, and heavy industrial fabrication sectors. Sponsoring pipe welders, machine operators, hydraulic mechanics, and industrial electricians.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Shkodër (North)</span>
+                  <span className="text-[10px] font-bold uppercase bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full">Manufacturing &amp; Apparel</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Northern manufacturing center specializing in textile processing, footwear factories, and automotive assembly lines seeking industrial pattern cutters, stitchers, and mechanics.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base">Korçë &amp; Lushnjë</span>
+                  <span className="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Agro-Processing</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Modern greenhouse agriculture, food packaging, and cold-storage distribution centers actively hiring agricultural equipment mechanics, tractor operators, and packaging technicians.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 3: Official Government Portals ── */}
           <section id="government-portals" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaShieldHalved className="w-3.5 h-3.5 text-emerald-600" />
-              Section 2: Official Government Portals &amp; Sovereign Verification
+              Section 3: Official Government Portals &amp; Sovereign Verification
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Master Directory of Official Albanian State Authorities &amp; Verification Gateways
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Always verify your job offer, unique permit filing, electronic visa, and employer credentials directly against official Albanian state databases ending in **`.gov.al`** or **`.al`**:
+              Every genuine job offer, Unique Permit approval, electronic visa, and employer credential can be checked directly through official Albanian state websites ending in <strong className="font-semibold text-slate-900">.gov.al</strong> or <strong className="font-semibold text-slate-900">.al</strong>. Never trust unofficial paper documents that cannot be verified on these official portals:
             </p>
 
             <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
@@ -663,7 +781,7 @@ export default function AlbaniaCountryPage() {
                         e-albania.al
                       </a>
                     </td>
-                    <td className="p-4 text-slate-600">Filing &amp; tracking of the Unique Permit (*Leje Unike*)</td>
+                    <td className="p-4 text-slate-600">Filing &amp; tracking of the Unique Permit (Leje Unike)</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-4 font-bold text-slate-900">Albanian e-Visa Portal</td>
@@ -718,11 +836,11 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 3: 4 Legal Work Visa Pathways ── */}
+          {/* ── Section 4: 4 Legal Work Visa Pathways ── */}
           <section id="visa-pathways" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaFileContract className="w-3.5 h-3.5 text-emerald-600" />
-              Section 3: Statutory Work Visa Classifications
+              Section 4: Statutory Work Visa Classifications
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               The 4 Legal Work &amp; Residence Pathways Under Law No. 79/2021
@@ -734,10 +852,10 @@ export default function AlbaniaCountryPage() {
                   Pathway 1: Primary Track
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
-                  Standard Unique Permit for Employment (*Leje Unike për Punësim*)
+                  Standard Unique Permit for Employment (Leje Unike për Punësim)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  The primary statutory permit for skilled trade workers, welders, machine operators, civil tradesmen, and commercial drivers. Issued initially for **1 year** and renewable for **2 years** and **5 years**. Grants full legal residence and employment rights tied to the sponsoring Albanian enterprise.
+                  The primary statutory permit for skilled trade workers, welders, machine operators, civil tradesmen, and commercial drivers. Issued initially for <strong className="font-semibold text-slate-900">1 year</strong> and renewable for <strong className="font-semibold text-slate-900">2 years</strong> and <strong className="font-semibold text-slate-900">5 years</strong>. Grants full legal residence and employment rights tied to the sponsoring Albanian enterprise.
                 </p>
                 <div className="pt-2 text-xs font-bold text-slate-700 space-y-1">
                   <div>• Processing Time: 4 to 8 Weeks</div>
@@ -751,10 +869,10 @@ export default function AlbaniaCountryPage() {
                   Pathway 2: Seasonal Track
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
-                  Seasonal Work Permit (*Leje Pune Sezonale*)
+                  Seasonal Work Permit (Leje Pune Sezonale)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Tailored for coastal hospitality, tourism resorts (Sarandë, Vlorë, Durrës), and seasonal agriculture. Valid for up to **6 months within a 12-month period**. Offers fast-track 2–4 week processing with lower state administrative duties, often transitioning into year-round Unique Permits.
+                  Tailored for coastal hospitality, tourism resorts (Sarandë, Vlorë, Durrës), and seasonal agriculture. Valid for up to <strong className="font-semibold text-slate-900">6 months within a 12-month period</strong>. Offers fast-track 2 to 4 week processing with lower state administrative duties, often transitioning into year-round Unique Permits.
                 </p>
                 <div className="pt-2 text-xs font-bold text-slate-700 space-y-1">
                   <div>• Processing Time: 2 to 4 Weeks</div>
@@ -768,7 +886,7 @@ export default function AlbaniaCountryPage() {
                   Pathway 3: Skilled Technical
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
-                  Highly Qualified Specialist (*Punonjës i Kualifikuar*)
+                  Highly Qualified Specialist (Punonjës i Kualifikuar)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Reserved for degree-holding civil engineers, electromechanical project managers, IT software architects, and clinical medical directors. Requires a minimum gross salary of at least 1.5 times the national average wage, granting 2-year permits with immediate family reunification rights.
@@ -785,7 +903,7 @@ export default function AlbaniaCountryPage() {
                   Pathway 4: Corporate Mobility
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">
-                  Intra-Corporate Transfer (*Transferim Brenda Ndërmarrjes*)
+                  Intra-Corporate Transfer (Transferim Brenda Ndërmarrjes)
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   For multinational engineering and construction contractors transferring specialized senior technicians, quality inspectors, or site foremen from Indian parent entities to registered Albanian branch operations. Valid for up to 3 years without local labour market testing.
@@ -799,17 +917,17 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 4: 2026 Master Salary Matrix ── */}
+          {/* ── Section 5: 2026 Master Salary Matrix ── */}
           <section id="salary-matrix" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaMoneyBillWave className="w-3.5 h-3.5 text-emerald-600" />
-              Section 4: Verified 2026 Salary Matrix &amp; Remittance Math
+              Section 5: Verified 2026 Salary Matrix &amp; Remittance Math
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Master Albania Salary Schedule (ALL, EUR &amp; INR Equivalents)
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Salaries in Albania are paid in **Albanian Lek (ALL)** or benchmarked in **Euros (€)**. Benchmark conversion rates: **100 ALL ≈ €1.00 EUR ≈ ₹91.00 INR** (approximate market rates as of late 2026).
+              Salaries in Albania are paid in <strong className="font-semibold text-slate-900">Albanian Lek (ALL)</strong> or pegged directly in <strong className="font-semibold text-slate-900">Euros (€)</strong>. Realistic benchmark conversion rates: <strong className="font-semibold text-slate-900">100 ALL ≈ €1.00 EUR ≈ ₹91.00 INR</strong> (market rates as of 2026).
             </p>
 
             <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
@@ -874,6 +992,13 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 text-slate-500">Trip Allowance, Fuel Cards, Base Room</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
+                    <td className="p-4 font-bold text-slate-900">Hydraulic Excavator / JCB Operator</td>
+                    <td className="p-4 font-mono font-bold text-slate-800">80,000 – 115,000 ALL</td>
+                    <td className="p-4 font-mono">€800 – €1,150</td>
+                    <td className="p-4 font-bold text-emerald-700">₹65,000 – ₹94,000 net</td>
+                    <td className="p-4 text-slate-500">Site Accommodation, Free Lunch, Overtime</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
                     <td className="p-4 font-bold text-slate-900">Hotel Chef / Line Cook (Resorts)</td>
                     <td className="p-4 font-mono font-bold text-slate-800">70,000 – 110,000 ALL</td>
                     <td className="p-4 font-mono">€700 – €1,100</td>
@@ -888,6 +1013,20 @@ export default function AlbaniaCountryPage() {
                     <td className="p-4 text-slate-500">Factory Hostel, Production Incentive Bonuses</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
+                    <td className="p-4 font-bold text-slate-900">Auto Denter &amp; Spray Painter</td>
+                    <td className="p-4 font-mono font-bold text-slate-800">70,000 – 95,000 ALL</td>
+                    <td className="p-4 font-mono">€700 – €950</td>
+                    <td className="p-4 font-bold text-emerald-700">₹57,000 – ₹77,500 net</td>
+                    <td className="p-4 text-slate-500">Free Housing, Safety Respirators, Overtime</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-4 font-bold text-slate-900">Greenhouse Agricultural Technician</td>
+                    <td className="p-4 font-mono font-bold text-slate-800">55,000 – 75,000 ALL</td>
+                    <td className="p-4 font-mono">€550 – €750</td>
+                    <td className="p-4 font-bold text-emerald-700">₹45,000 – ₹61,000 net</td>
+                    <td className="p-4 text-slate-500">Farm Accommodation, Free Fresh Produce</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
                     <td className="p-4 font-bold text-slate-900">Civil / MEP Site Foreman</td>
                     <td className="p-4 font-mono font-bold text-slate-800">110,000 – 160,000 ALL</td>
                     <td className="p-4 font-mono">€1,100 – €1,600</td>
@@ -899,11 +1038,11 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 5: 6-Stage Statutory Deployment Pipeline ── */}
+          {/* ── Section 6: 6-Stage Statutory Deployment Pipeline ── */}
           <section id="deployment-pipeline" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaPlaneArrival className="w-3.5 h-3.5 text-emerald-600" />
-              Section 5: End-to-End Application Lifecycle (Zero Guesswork)
+              Section 6: End-to-End Application Lifecycle (Zero Guesswork)
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               The 6-Stage Legal Roadmap from India to Your Albanian Biometric Residence Card
@@ -919,7 +1058,7 @@ export default function AlbaniaCountryPage() {
                     Trade Bench Testing &amp; Bilingual Employment Contract
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Candidate completes practical skill evaluation (pipe welding coupons, rebar tying, heavy vehicle driving trial) at authorized WorkWise Visa centers in Patna or Noida. Upon selection, the Albanian company issues a legally binding bilingual **Albanian-English Employment Contract (*Kontratë Pune*)** specifying exact wage in ALL, working hours, and employer housing provisions.
+                    Candidate completes practical skill evaluation (pipe welding coupons, rebar tying, heavy vehicle driving trial) at authorized WorkWise Visa centers in Patna or Noida. Upon selection, the Albanian company issues a legally binding bilingual <strong className="font-semibold text-slate-900">Albanian-English Employment Contract (Kontratë Pune)</strong> specifying exact wage in ALL, working hours, and employer housing provisions.
                   </p>
                 </div>
               </div>
@@ -930,10 +1069,10 @@ export default function AlbaniaCountryPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-base font-bold text-slate-900">
-                    Digital Unique Permit (*Leje Unike*) Pre-Approval on e-Albania
+                    Digital Unique Permit (Leje Unike) Pre-Approval on e-Albania
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    The sponsoring employer uploads the candidate&apos;s notarized passport copy, trade credentials, and job vacancy notice onto the **[e-Albania](https://e-albania.al)** portal. The National Employment Agency (AKPA) and State Police Border &amp; Migration Directorate review the file and issue the official digital **Preliminary Unique Permit Approval (*Miratim Paraprak i Lejes Unike*)** within 2 to 3 weeks.
+                    The sponsoring employer uploads the candidate&apos;s notarized passport copy, trade credentials, and job vacancy notice onto the official <a href="https://e-albania.al" target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:underline">e-Albania portal</a>. The National Employment Agency (AKPA) and State Police Border &amp; Migration Directorate review the file and issue the official digital <strong className="font-semibold text-slate-900">Preliminary Unique Permit Approval (Miratim Paraprak i Lejes Unike)</strong> within 2 to 3 weeks.
                   </p>
                 </div>
               </div>
@@ -947,7 +1086,7 @@ export default function AlbaniaCountryPage() {
                     Police Clearance Certificate (PCC) &amp; MEA Hague Apostille in India
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Candidate secures a Police Clearance Certificate (PCC) strictly from their Regional Passport Office / PSK in India. The original PCC must have a **Ministry of External Affairs (MEA) Hague Apostille sticker** affixed. WorkWise Visa arranges certified translation of the apostilled document into Albanian.
+                    Candidate secures a Police Clearance Certificate (PCC) strictly from their Regional Passport Office / PSK in India. The original PCC must have a <strong className="font-semibold text-slate-900">Ministry of External Affairs (MEA) Hague Apostille sticker</strong> affixed. WorkWise Visa arranges certified translation of the apostilled document into Albanian.
                   </p>
                 </div>
               </div>
@@ -961,7 +1100,7 @@ export default function AlbaniaCountryPage() {
                     National Type D Employment Visa Issuance via e-visa.al &amp; Embassy
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Using the digital Unique Permit pre-approval, the candidate submits an electronic application on **[e-visa.al](https://e-visa.al)** under **Type D Visa (Employment)**. The Ministry for Europe and Foreign Affairs and the **Embassy of Albania in New Delhi** review the file, approve the electronic visa, or stamp the official visa foil into the passport.
+                    Using the digital Unique Permit pre-approval, the candidate submits an electronic application on the official <a href="https://e-visa.al" target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:underline">e-visa.al portal</a> under <strong className="font-semibold text-slate-900">Type D Visa (Employment)</strong>. The Ministry for Europe and Foreign Affairs and the <strong className="font-semibold text-slate-900">Embassy of Albania in New Delhi</strong> review the file, approve the electronic visa, or stamp the official visa foil into the passport.
                   </p>
                 </div>
               </div>
@@ -975,7 +1114,7 @@ export default function AlbaniaCountryPage() {
                     Flight to Tirana International Airport (TIA - Nënë Tereza)
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Worker boards a flight landing at Tirana International Airport. At border control, the candidate presents their passport with Type D visa, printed Unique Permit pre-approval, and employer accommodation voucher. Sponsoring company HR receives the worker directly at the arrival hall.
+                    Worker boards a flight landing at Tirana International Airport (usually transit via Istanbul on Pegasus/Turkish Airlines, or via Sharjah on Air Arabia). At border control, the candidate presents their passport with Type D visa, printed Unique Permit pre-approval, and employer accommodation voucher. Sponsoring company HR receives the worker directly at the arrival hall.
                   </p>
                 </div>
               </div>
@@ -989,22 +1128,25 @@ export default function AlbaniaCountryPage() {
                     Local Police Registration &amp; Biometric Unique Permit Card Issue
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Within 30 calendar days of arrival, employer HR accompanies the worker to the regional **Border &amp; Migration Department (Drejtoria e Kufirit dhe Migracionit)** to register local residence address, capture digital fingerprints and biometric photos, and receive the official laminated plastic **Unique Permit (*Kartë e Lejes Unike*)**.
+                    Within 30 calendar days of arrival, employer HR accompanies the worker to the regional <strong className="font-semibold text-slate-900">Border &amp; Migration Department (Drejtoria e Kufirit dhe Migracionit)</strong> to register local residence address, capture digital fingerprints and biometric photos, and receive the official laminated plastic <strong className="font-semibold text-slate-900">Unique Permit card (Kartë e Lejes Unike)</strong>.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* ── Section 6: Document Checklist & Apostille ── */}
+          {/* ── Section 7: Document Checklist & Apostille ── */}
           <section id="document-checklist" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaCertificate className="w-3.5 h-3.5 text-emerald-600" />
-              Section 6: Document Checklist &amp; Legalization Protocol
+              Section 7: Document Checklist &amp; Legalization Protocol
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Mandatory Documentation Dossier for Indian Candidates
             </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              To avoid visa rejection or delays, candidates must prepare documents strictly according to sovereign consular standards. Here is the verified document checklist:
+            </p>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
@@ -1023,14 +1165,14 @@ export default function AlbaniaCountryPage() {
                   PSK Police Clearance (PCC) + MEA Apostille
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Issued strictly by Passport Seva Kendra (PSK) within the last 3 to 6 months, bearing an authentic Hague Apostille sticker from MEA New Delhi.
+                  Issued strictly by Passport Seva Kendra (PSK/RPO) within the last 3 to 6 months, bearing an authentic Hague Apostille sticker from CPV Division, MEA New Delhi. Local thana certificates are rejected.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
                 <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
                   <FaCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                  Bilingual Employment Contract (*Kontratë Pune*)
+                  Bilingual Employment Contract (Kontratë Pune)
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Executed dual-column Albanian-English contract detailing exact salary in ALL, 40-hour work schedule, overtime multipliers, and company housing terms.
@@ -1053,7 +1195,7 @@ export default function AlbaniaCountryPage() {
                   Proof of Registered Accommodation
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Notarized residential lease agreement (*Kontratë Qiraje*) or official employer housing declaration guaranteeing clean living quarters in Albania.
+                  Notarized residential lease agreement (Kontratë Qiraje) or official employer housing declaration guaranteeing clean living quarters in Albania.
                 </p>
               </div>
 
@@ -1066,14 +1208,34 @@ export default function AlbaniaCountryPage() {
                   ITI diplomas, welding test records, commercial HTV driving licenses, or previous Gulf/domestic experience letters translated into English or Albanian.
                 </p>
               </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
+                  <FaCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  Pre-Departure Medical Fitness Certificate
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Standard blood profile, Chest X-Ray for Tuberculosis clearance, Hepatitis B/C, and HIV screenings from an accredited pathology lab.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="flex items-center gap-2 font-bold text-slate-900 text-sm">
+                  <FaCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  Passport Size Photographs
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  6 recent color photographs (35mm x 45mm, matte finish, 80% face coverage, white background, neutral expression without colored glasses).
+                </p>
+              </div>
             </div>
           </section>
 
-          {/* ── Section 7: Statutory Fees ── */}
+          {/* ── Section 8: Statutory Fees ── */}
           <section id="fee-schedule" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaCoins className="w-3.5 h-3.5 text-emerald-600" />
-              Section 7: Official Government Fees &amp; Zero Hidden Charges
+              Section 8: Official Government Fees &amp; Zero Hidden Charges
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Transparent Breakdown of Statutory Albanian Immigration Fees
@@ -1131,87 +1293,112 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 8: Free Housing & Cost of Living ── */}
-          <section id="living-housing" className="scroll-mt-28 space-y-6">
+          {/* ── Section 9: Food, Groceries & Indian Daily Life ── */}
+          <section id="daily-life-groceries" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
-              <FaHouseUser className="w-3.5 h-3.5 text-emerald-600" />
-              Section 8: Free Housing, Cost of Living &amp; Net Monthly Savings
+              <FaUtensils className="w-3.5 h-3.5 text-emerald-600" />
+              Section 9: Daily Life, Indian Kitchens &amp; Real Grocery Prices
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
-              Real Monthly Living Costs &amp; Disposable Savings in Albania
+              Ground Reality: Food, Accommodation &amp; Day-to-Day Life in Albania
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              One of the greatest advantages of working in Albania compared to domestic Indian jobs or Western Europe is that **almost all industrial and civil trade contracts include free company apartment housing and site transport**, drastically reducing living expenses.
+              Workers moving to Albania often ask: <em className="text-slate-700 font-medium">&quot;Can we cook our own Indian food? Are Indian spices available? How are the rooms?&quot;</em> Here is the ground reality from workers currently deployed in Tirana, Durrës, and Fier:
             </p>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <h3 className="text-lg font-bold text-slate-900">Skilled Tradesman (Welder / Mason / Driver)</h3>
-                <div className="space-y-2 text-xs sm:text-sm">
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Gross Monthly Remuneration:</span>
-                    <span className="font-bold text-slate-900">80,000 ALL (~€800 / ₹72,800 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Net Salary After Tax &amp; Social (13% + 11.2%):</span>
-                    <span className="font-bold text-emerald-700">~65,000 ALL (~₹59,150 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Furnished Apartment &amp; Utilities:</span>
-                    <span className="font-bold text-emerald-600">FREE (Provided by Employer)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Self-Cooked Indian Groceries (Rice, Atta, Daal):</span>
-                    <span className="font-bold text-red-600">-14,000 ALL (~₹12,740 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Mobile SIM 5G &amp; Personal Essentials:</span>
-                    <span className="font-bold text-red-600">-2,500 ALL (~₹2,275 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-2 bg-emerald-50 rounded-xl px-3 font-bold text-emerald-900">
-                    <span>Clean Monthly Savings Remitted Home:</span>
-                    <span>48,500 ALL (~₹44,000+ INR Clean)</span>
-                  </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-4">
+                <div className="flex items-center gap-2 text-emerald-800 font-bold text-base">
+                  <FaBed className="w-5 h-5 text-emerald-600" />
+                  Company Apartment Reality
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Almost all manufacturing and civil construction employers provide <strong className="font-semibold text-slate-900">free shared company flats or residential complexes</strong> (typically 2 to 4 workers per room). Apartments include clean western bathrooms, hot water heaters, washing machines, and winter heating radiators. Water, electricity, and heating bills are covered 100% by the sponsoring company.
+                </p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs text-slate-700 space-y-1">
+                  <div>• Daily transport: Free company buses to and from construction sites and factories.</div>
+                  <div>• Bedding &amp; linen: Provided by employer on arrival.</div>
+                  <div>• WiFi internet: Available in most modern company worker residences.</div>
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
-                <h3 className="text-lg font-bold text-slate-900">Senior Technician / Resort Chef / 6G Welder</h3>
-                <div className="space-y-2 text-xs sm:text-sm">
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Gross Monthly Remuneration (Basic + OT):</span>
-                    <span className="font-bold text-slate-900">110,000 ALL (~€1,100 / ₹1,00,100 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Net Take-Home Salary:</span>
-                    <span className="font-bold text-emerald-700">~89,000 ALL (~₹81,000 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Company Accommodation &amp; Resort Food:</span>
-                    <span className="font-bold text-emerald-600">FREE (Included in Contract)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Personal Groceries &amp; Leisure:</span>
-                    <span className="font-bold text-red-600">-10,000 ALL (~₹9,100 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-600">Mobile Data &amp; Local Transit:</span>
-                    <span className="font-bold text-red-600">-3,000 ALL (~₹2,730 INR)</span>
-                  </div>
-                  <div className="flex justify-between py-2 bg-emerald-50 rounded-xl px-3 font-bold text-emerald-900">
-                    <span>Clean Monthly Savings Remitted Home:</span>
-                    <span>76,000 ALL (~₹69,000+ INR Clean)</span>
-                  </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-4">
+                <div className="flex items-center gap-2 text-emerald-800 font-bold text-base">
+                  <FaUtensils className="w-5 h-5 text-emerald-600" />
+                  Self-Cooking &amp; Supermarket Costs
                 </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Apartments have fully functioning gas or induction kitchens. Indian workers cook in groups of 3 to 4, sharing kitchen chores and grocery bills. Common Indian staples are widely available at supermarkets like Conad, Spar, Big Market, or local street vegetable vendors (<em className="text-slate-700">dyqan fruta-perime</em>):
+                </p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs text-slate-700 space-y-1">
+                  <div>• White Basmati/Round Rice: ~140 – 170 ALL/kg (₹127 – ₹155)</div>
+                  <div>• Wheat Flour (Atta / Miell): ~90 – 110 ALL/kg (₹82 – ₹100)</div>
+                  <div>• Lentils / Dal (Thjerrëza): ~220 – 280 ALL/kg (₹200 – ₹255)</div>
+                  <div>• Fresh Chicken: ~420 – 500 ALL/kg (₹380 – ₹455)</div>
+                  <div>• Eggs: ~220 – 260 ALL for 10 eggs (₹200 – ₹235)</div>
+                  <div>• Cooking Oil: ~180 – 220 ALL/litre (₹164 – ₹200)</div>
+                  <div>• Fresh Tomatoes &amp; Onions: ~70 – 110 ALL/kg (₹64 – ₹100)</div>
+                </div>
+                <p className="text-[11px] text-emerald-800 font-bold">
+                  Realistic Grocery Cost: Approximately 14,000 to 18,000 ALL (~₹12,700 to ₹16,300 INR) per person monthly for rich, healthy home-cooked meals.
+                </p>
+              </div>
+            </div>
+
+            {/* Weather & Climate Reality */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base">
+                <FaCloudSun className="w-5 h-5 text-amber-500" />
+                Albania Weather: Mediterranean Climate
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Albania has over 300 sunny days a year. Coastal and central cities like Tirana, Durrës, and Vlorë experience hot, pleasant summers (28°C to 36°C) and mild, rainy winters (6°C to 14°C). Unlike Russia or Scandinavia, coastal Albania does not experience freezing sub-zero blizzards. A standard warm jacket, thermal inner wear, and waterproof boots during December and January are all that is needed.
+              </p>
+            </div>
+          </section>
+
+          {/* ── Section 10: Banking & Remittance ── */}
+          <section id="banking-remittance" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaPiggyBank className="w-3.5 h-3.5 text-emerald-600" />
+              Section 10: Bank Accounts, Salaries &amp; Sending Money to India
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Banking, Salary Deposits &amp; Sending Remittances Home
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              In Albania, cash salaries are illegal under strict banking compliance rules. All employers must pay employees directly via official bank transfer into personal bank accounts registered under the worker&apos;s name.
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-5">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="font-bold text-slate-900 text-sm">Opening Your Bank Account</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Within your first 2 weeks, employer HR takes you to open an account at major banks like <strong className="font-semibold text-slate-900">BKT (Banka Kombëtare Tregtare)</strong>, <strong className="font-semibold text-slate-900">Credins Bank</strong>, or <strong className="font-semibold text-slate-900">Raiffeisen Bank Albania</strong>. You receive an international Visa/Mastercard debit card and a personal IBAN number starting with <strong className="font-mono text-slate-800">AL...</strong>.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="font-bold text-slate-900 text-sm">Monthly Salary Crediting</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Salaries are credited between the 5th and 10th of every month in Albanian Lek (ALL). You receive an official printed pay slip (<em className="text-slate-700">Fletëpagesë</em>) showing gross earnings, basic hours, overtime hours, 13% tax deduction, and 11.2% social security contributions.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
+                <div className="font-bold text-slate-900 text-sm">Sending Money to India</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Workers transfer money directly to their family accounts in India (SBI, HDFC, PNB, Bank of Baroda) through international bank SWIFT wire transfers or authorized wire counters like Western Union and MoneyGram located in every major market. The money arrives in Indian bank accounts within 24 to 48 hours.
+                </p>
               </div>
             </div>
           </section>
 
-          {/* ── Section 9: Labour Code & Tax ── */}
+          {/* ── Section 11: Labour Code & Tax ── */}
           <section id="labour-law-tax" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaScaleUnbalanced className="w-3.5 h-3.5 text-emerald-600" />
-              Section 9: Albanian Labour Code &amp; Taxation Standards
+              Section 11: Albanian Labour Code &amp; Taxation Standards
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Worker Protections Under the Labour Code of the Republic of Albania
@@ -1221,7 +1408,7 @@ export default function AlbaniaCountryPage() {
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
                 <div className="font-bold text-slate-900 text-sm">40-Hour Standard Work Week</div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Under the Albanian Labour Code (Kodi i Punës), standard working hours are 8 hours per day, 5 days per week (40 hours weekly). Overtime is capped and legally paid at a 25% to 50% premium above standard hourly rates.
+                  Under the Albanian Labour Code (Kodi i Punës), standard working hours are 8 hours per day, 5 days per week (40 hours weekly). Overtime is legally paid at a 25% premium (1.25x) on regular working days and 50% premium (1.5x) on rest days and public holidays.
                 </p>
               </div>
 
@@ -1235,17 +1422,58 @@ export default function AlbaniaCountryPage() {
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs space-y-2">
                 <div className="font-bold text-slate-900 text-sm">Comprehensive Health Coverage</div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Monthly social health contributions (11.2% employee / 16.7% employer) cover free medical treatment in state hospitals, occupational disease coverage, and workplace accident compensation across Albania.
+                  Monthly social health contributions (11.2% employee / 16.7% employer) cover free medical treatment in state hospitals, occupational disease coverage, and workplace accident compensation across Albania with a health booklet (Librezë Shëndetësore).
                 </p>
               </div>
             </div>
           </section>
 
-          {/* ── Section 10: Anti-Scam Advisory & Schengen Warning ── */}
+          {/* ── Section 12: Airport Arrival & TIA Border Check ── */}
+          <section id="airport-immigration" className="scroll-mt-28 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <FaPlaneArrival className="w-3.5 h-3.5 text-emerald-600" />
+              Section 12: Flight Travel, Airport Immigration &amp; First 48 Hours
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+              Arriving at Tirana International Airport (TIA): What to Expect
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              To ensure a smooth journey from India to Albania without border hold-ups, follow these verified travel tips:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="font-bold text-slate-900 text-base">Flight Routes &amp; Transit Rules</div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Most flights from Delhi, Mumbai, or Lucknow connect through <strong className="font-semibold text-slate-900">Istanbul (IST or SAW)</strong> via Turkish Airlines or Pegasus, or via <strong className="font-semibold text-slate-900">Sharjah/Dubai (SHJ/DXB)</strong> via Air Arabia or Flydubai.
+                </p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs text-slate-700 space-y-1">
+                  <div>• Transit in Istanbul: No transit visa needed if your layover is under 24 hours and you remain inside the international transit hall.</div>
+                  <div>• Transit in UAE: No transit visa needed if luggage is checked through to Tirana.</div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-3">
+                <div className="font-bold text-slate-900 text-base">Documents to Carry in Hand Luggage</div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Never pack these critical documents in your checked luggage. Keep them in your hand backpack for the Border Police officer at Tirana Airport:
+                </p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 text-xs text-slate-700 space-y-1">
+                  <div>1. Original Passport with stamped Type D Visa.</div>
+                  <div>2. Printed copy of your e-Albania Unique Permit Pre-Approval (Miratim Paraprak).</div>
+                  <div>3. Signed bilingual employment contract.</div>
+                  <div>4. Employer company guarantee &amp; accommodation letter.</div>
+                  <div>5. €200 to €300 in Euro cash for immediate personal expenses.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section 13: Anti-Scam Advisory & Schengen Warning ── */}
           <section id="scam-warning" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaTriangleExclamation className="w-3.5 h-3.5 text-emerald-600" />
-              Section 10: CRITICAL ANTI-SCAM ADVISORY &amp; Illegal Transit Warning
+              Section 13: CRITICAL ANTI-SCAM ADVISORY &amp; Illegal Transit Warning
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Protect Yourself from Fake Albanian Visas &amp; Illegal Border-Crossing Syndicates
@@ -1257,30 +1485,30 @@ export default function AlbaniaCountryPage() {
                 WARNING: The &quot;Albania as a Shortcut to Germany/Italy&quot; Scam
               </div>
               <p className="leading-relaxed">
-                Unscrupulous local sub-agents across Punjab, Haryana, UP, and Bihar frequently charge ₹6 to ₹10 Lakhs promising: *&quot;Take an Albania work visa, land in Tirana, and our handlers will take you across the border into Italy, Greece, or Germany by car/boat.&quot;*
+                Unscrupulous local sub-agents across Punjab, Haryana, UP, and Bihar frequently charge ₹6 to ₹10 Lakhs promising: <em className="text-red-950 font-medium">&quot;Take an Albania work visa, land in Tirana, and our handlers will take you across the border into Italy, Greece, or Germany by car/boat.&quot;</em>
               </p>
               <div className="font-bold text-red-950">
-                THIS IS A HIGH-RISK HUMAN TRAFFICKING TRAP. UNDERSTAND THE REALITY:
+                THIS IS A DANGEROUS HUMAN TRAFFICKING TRAP. UNDERSTAND THE REALITY:
               </div>
-              <ul className="list-disc pl-5 space-y-1.5 text-slate-700">
+              <ul className="list-disc pl-5 space-y-2 text-slate-700">
                 <li>
-                  **Albania is NOT a Schengen Country:** You cannot legally cross into Greece, Italy, Montenegro, or Germany with an Albanian visa.
+                  <strong className="font-bold text-red-950">Albania is NOT a Schengen Country:</strong> You cannot legally cross into Greece, Italy, Montenegro, or Germany with an Albanian visa.
                 </li>
                 <li>
-                  **Aggressive Border Enforcement:** Albanian and EU FRONTEX border police heavily patrol mountain and maritime borders with thermal drones and canine units. Attempting illegal crossings leads to immediate arrest, prison sentences, deportation to India, and a **10-Year Schengen SIS Blacklist**.
+                  <strong className="font-bold text-red-950">Aggressive Border Enforcement:</strong> Albanian and EU FRONTEX border police heavily patrol mountain and maritime borders with thermal drones and canine units. Attempting illegal crossings leads to immediate arrest, prison sentences, deportation to India, and a <strong className="font-bold text-red-950">10-Year Schengen SIS Blacklist</strong>.
                 </li>
                 <li>
-                  **Work Legally in Albania:** Albania is a prosperous, safe, and beautiful Adriatic nation with rapid European modernization. Work legally, build your international trade experience, earn in Euros/Lek, and apply for genuine Schengen or EU visas legally through official consular channels.
+                  <strong className="font-bold text-emerald-900">Work Legally in Albania:</strong> Albania is a prosperous, safe, and beautiful Adriatic nation with rapid European modernization. Work legally, build your international trade experience, earn in Euros/Lek, and apply for genuine Schengen or EU visas legally through official consular channels.
                 </li>
               </ul>
             </div>
           </section>
 
-          {/* ── Section 11: FAQs ── */}
+          {/* ── Section 14: FAQs ── */}
           <section id="faqs" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
               <FaCircleQuestion className="w-3.5 h-3.5 text-emerald-600" />
-              Section 11: Frequently Asked Questions (Albania Work Permits 2026)
+              Section 14: Frequently Asked Questions (Albania Work Permits 2026)
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
               Essential Answers for Indian Candidates Migrating to Albania
@@ -1300,7 +1528,7 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 12: Related Master Guides ── */}
+          {/* ── Related Guides ── */}
           <section id="related-guides" className="scroll-mt-28 space-y-6 border-t border-slate-200 pt-12">
             <h2 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900">
               Explore Related European &amp; Mediterranean Work Visa Playbooks
@@ -1389,7 +1617,7 @@ export default function AlbaniaCountryPage() {
             </div>
           </section>
 
-          {/* ── Section 13: Free Profile Evaluation & Form ── */}
+          {/* ── Consultation Form ── */}
           <section id="consultation-form" className="scroll-mt-28 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -1400,57 +1628,30 @@ export default function AlbaniaCountryPage() {
                   European Placement Desk
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
-                  Start Your Albania Work Visa Assessment Today
+                <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
+                  Verify Your Trade Profile for Albania Employment 2026
                 </h2>
 
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-                  Connect with certified European counselors at WorkWise Visa. We evaluate your trade credentials, verify employer demand in Tirana, Durrës, and Vlorë, and guide you through Ministry of External Affairs (MEA) Apostille and consular visa stamping with zero hidden charges.
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  Submit your passport copy and trade credentials to our European desk. We verify sponsor legitimacy, e-Albania vacancy quotas, and process direct employment contracts with 100% employer-funded housing.
                 </p>
 
                 <div className="space-y-3 text-xs sm:text-sm text-slate-300">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                      <FaCheck className="w-4 h-4" />
-                    </div>
-                    <span>Government-vetted Albanian construction, hospitality, and manufacturing employers</span>
+                    <FaCircleCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Free Evaluation for Welders, Drivers, Masons, Cooks &amp; Technicians</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                      <FaCheck className="w-4 h-4" />
-                    </div>
-                    <span>End-to-end guidance: Trade testing, MEA Apostille, and New Delhi Embassy stamping</span>
+                    <FaCircleCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Authorized e-Visa &amp; New Delhi Embassy Stamping Support</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                      <FaCheck className="w-4 h-4" />
-                    </div>
-                    <span>Free employer-provided housing, transport, and 50,000+ ALL monthly remuneration</span>
+                    <FaCircleCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Physical Walk-in Offices in Delhi, Noida, Patna, and Gopalganj</span>
                   </div>
                 </div>
 
-                {/* Office Highlights */}
-                <div className="pt-2 border-t border-slate-800 space-y-2 text-xs text-slate-300">
-                  <div className="font-bold text-white uppercase tracking-wider text-[11px]">
-                    Physical Branch Offices:
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    <Link href="/locations/noida" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500 transition-colors">
-                      <div className="font-bold text-emerald-400 flex items-center gap-1.5">
-                        <FaLocationDot className="w-3.5 h-3.5" /> Noida Corporate HQ
-                      </div>
-                      <div className="text-[11px] text-slate-400 mt-1">Urbtech Trade Centre, Sector 132</div>
-                    </Link>
-                    <Link href="/locations/patna" className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500 transition-colors">
-                      <div className="font-bold text-emerald-400 flex items-center gap-1.5">
-                        <FaLocationDot className="w-3.5 h-3.5" /> Patna Regional Branch
-                      </div>
-                      <div className="text-[11px] text-slate-400 mt-1">Varma Centre, Boring Rd Crossing</div>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-slate-400">
+                <div className="pt-2 flex flex-col sm:flex-row gap-4 text-xs font-semibold text-slate-300">
                   <div className="flex items-center gap-2">
                     <FaPhone className="w-3.5 h-3.5 text-emerald-400" />
                     <a href="tel:+918130161603" className="hover:text-white transition-colors">
@@ -1466,22 +1667,17 @@ export default function AlbaniaCountryPage() {
                 </div>
               </div>
 
-              {/* Consultation Box Card */}
+              {/* Consultation Form Component */}
               <div className="lg:col-span-6">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-                  <h3 className="text-xl font-bold text-white mb-2">Book Free Consultation</h3>
-                  <p className="text-xs text-slate-300 mb-6">
-                    Fill in your details below and an overseas European advisor will call you within 24 hours.
-                  </p>
-
+                <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 sm:p-8 backdrop-blur-xl shadow-xl">
                   <form
-                    action="/contact"
-                    method="GET"
-                    className="space-y-4 text-xs sm:text-sm text-slate-800"
+                    action="/api/inquiries"
+                    method="POST"
+                    className="space-y-4"
                   >
                     <div>
-                      <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                        Full Name (as per Passport)
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                        Full Name (As on Passport)
                       </label>
                       <input
                         type="text"
@@ -1494,7 +1690,7 @@ export default function AlbaniaCountryPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
                           WhatsApp Mobile Number
                         </label>
                         <input
@@ -1506,7 +1702,7 @@ export default function AlbaniaCountryPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
                           Trade / Profession
                         </label>
                         <input
@@ -1520,7 +1716,7 @@ export default function AlbaniaCountryPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
                         Target Country Destination
                       </label>
                       <input
@@ -1542,20 +1738,19 @@ export default function AlbaniaCountryPage() {
                       </button>
                     </div>
 
-                    <p className="text-[11px] text-slate-400 text-center pt-2">
-                      Your information is strictly protected under our Data Privacy Policy. No spam guaranteed.
+                    <p className="text-[11px] text-slate-500 text-center">
+                      100% confidential. No spam. A WorkWise European counselor will call you within 24 working hours.
                     </p>
                   </form>
                 </div>
               </div>
             </div>
           </section>
-
         </div>
       </main>
 
-      <FloatingWhatsApp />
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }
