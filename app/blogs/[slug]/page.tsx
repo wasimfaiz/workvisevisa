@@ -460,6 +460,38 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     ],
   };
 
+  // Extract structured FAQ items automatically when present in markdown content
+  const faqMatches = Array.from(
+    (article.content || "").matchAll(
+      /###\s*Q\d+\s*[:.]\s*([^\n]+)\n+\*\*Answer\s*[:.]?\*\*\s*[:.]?\s*([\s\S]+?)(?=\n###\s*Q\d+|\n---|\n##\s|$)/gi
+    )
+  ) as RegExpMatchArray[];
+
+  const cleanPlainText = (md: string) =>
+    md
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/\*\*([^*]+)\*\*/g, "$1")
+      .replace(/\*([^*]+)\*/g, "$1")
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const faqJsonLd =
+    faqMatches.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqMatches.slice(0, 15).map((m) => ({
+            "@type": "Question",
+            "name": cleanPlainText(m[1]),
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": cleanPlainText(m[2]),
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
       <script
@@ -470,6 +502,12 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <Navbar />
       <main className="pt-20 sm:pt-24 pb-20 bg-slate-50 min-h-screen">
         {/* Article Breadcrumb & Category Bar */}

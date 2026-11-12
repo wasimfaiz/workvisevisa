@@ -476,6 +476,83 @@ export default function CountriesPage() {
             </div>
           </section>
 
+          {/* Featured Global Work Visa Master Guides */}
+          <section className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-emerald-700">
+                  Deep-Dive Country &amp; Verification Manuals
+                </span>
+                <h3 className="text-xl sm:text-2xl font-display font-extrabold text-slate-900 mt-1">
+                  Essential 2026 Work Permit &amp; PR Guides
+                </h3>
+              </div>
+              <Link
+                href="/blogs"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+              >
+                <span>Browse All 41 Guides</span>
+                <FaArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Link
+                href="/blogs/canada-work-permit-lmia-process-guide-2026-tfwp-jobs-salary-pr"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:bg-emerald-50/40 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-rose-700">North America • Canada</span>
+                  <h4 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Canada Work Permit &amp; LMIA Complete Guide 2026
+                  </h4>
+                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    Provincial Low vs High-Wage thresholds, NOC TEER salaries in CAD &amp; INR, net savings math, VFS biometrics &amp; PR pathways.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Read Canada Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/australia-skills-in-demand-visa-subclass-482-complete-guide-2026-jobs-salary-tra-pr"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:bg-emerald-50/40 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">Oceania • Australia</span>
+                  <h4 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Australia Skills in Demand (Subclass 482) Guide 2026
+                  </h4>
+                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    CSOL shortage list, $73,150 TSMIT floor, TRA OSAP practical test prep in India, AUD net pay &amp; Subclass 186 PR route.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Read Australia Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/work-visa-check-online-by-passport-number-2026-saudi-dubai-qatar-kuwait-europe"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:border-emerald-500 hover:bg-emerald-50/40 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Official Verification</span>
+                  <h4 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Work Visa Check Online by Passport Number 2026
+                  </h4>
+                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    Verify genuine vs fake visas on Saudi MOFA, UAE ICP/GDRFA, Qatar MOI, Kuwait, Oman, VEVO, IRCC &amp; Wafid portals.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Verify Visa Online <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </section>
+
           {/* Bottom Consultation Banner */}
           <div className="mt-16 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 text-center text-white shadow-xl relative overflow-hidden">
             <div className="relative z-10 max-w-3xl mx-auto">
