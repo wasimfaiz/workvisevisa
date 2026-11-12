@@ -268,6 +268,17 @@ export const countries: Country[] = [
     processingTime: "8–12 weeks",
     popularRoles: ["6G Pipe & Structural Welder", "Heavy Commercial Driver (CE)", "Civil Construction (Mason/Carpenter/Steel Fixer)", "Hospitality Chef & Hotel Staff"],
   },
+  {
+    name: "Albania",
+    code: "AL",
+    flag: "",
+    region: "Balkans & Europe",
+    description:
+      "Fast-growing Adriatic economy offering streamlined Unique Permits (Leje Unike) via e-Albania, 4–8 week processing, free company housing, and urgent hiring in construction, hospitality, textiles, and logistics.",
+    visaTypes: ["Unique Permit (Leje Unike)", "Type D Employment Visa", "Seasonal Work Permit (6 Months)", "Qualified Specialist Permit"],
+    processingTime: "4–8 weeks",
+    popularRoles: ["Civil Mason & Steel Fixer", "Hotel Chef & Hospitality Staff", "Industrial Welder & Electrician", "Garment & Warehouse Operator"],
+  },
 ];
 
 // ── Target Country Options for Form ──────────────────────────────
@@ -287,6 +298,7 @@ export const targetCountryOptions = [
   "Poland",
   "Romania",
   "Croatia",
+  "Albania",
   "Hungary",
   "Malta",
   "Czech Republic",
