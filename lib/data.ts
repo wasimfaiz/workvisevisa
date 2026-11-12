@@ -290,6 +290,28 @@ export const countries: Country[] = [
     processingTime: "4–8 weeks",
     popularRoles: ["Civil Construction (Mason/Carpenter/Steel Fixer)", "Structural & 6G Pipe Welder", "Heavy Commercial Driver (Cat C/CE)", "Resort Chef & Hospitality Staff"],
   },
+  {
+    name: "Romania",
+    code: "RO",
+    flag: "",
+    region: "Schengen",
+    description:
+      "Full Schengen member state offering streamlined Employment Authorizations (Aviz de Angajare) via IGI, 10% flat income tax, employer-provided accommodation, and urgent hiring in construction, welding, logistics, and hospitality.",
+    visaTypes: ["Employment Authorization (Aviz de Angajare)", "Type D/AM Long-Stay Visa", "Single Residence Permit (Permis de Ședere)", "EU Blue Card"],
+    processingTime: "6–10 weeks",
+    popularRoles: ["Civil Construction (Mason/Steel Fixer/Carpenter)", "Certified 6G Pipe & Structural Welder", "Commercial Heavy Truck Driver (Cat C/CE)", "Hotel Chef & Kitchen Team"],
+  },
+  {
+    name: "Poland",
+    code: "PL",
+    flag: "",
+    region: "Schengen",
+    description:
+      "Central Europe's industrial powerhouse and full Schengen member offering Voivodeship Work Permits (Zezwolenie Typ A), Karta Pobytu residence cards, and immense hiring in manufacturing, 6G welding, CNC machining, construction, and warehousing.",
+    visaTypes: ["Voivodeship Work Permit (Zezwolenie Typ A)", "National Type D05a/D06 Visa", "Temporary Residence & Work Card (Karta Pobytu)", "EU Blue Card"],
+    processingTime: "8–12 weeks",
+    popularRoles: ["6G Pipe & Structural Welder", "CNC Operator & Machinist", "Civil Construction Trades", "Warehouse Logistics & Heavy Driver"],
+  },
 ];
 
 // ── Target Country Options for Form ──────────────────────────────
