@@ -222,6 +222,7 @@ export default function RootLayout({
       lang="en"
       translate="no"
       className={`${inter.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <meta name="google" content="notranslate" />
@@ -242,7 +243,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
-      <body className="min-h-screen">
+      <body className="min-h-screen" suppressHydrationWarning>
         {/* Meta Pixel Fallback for No-JS Browsers (Official Meta Placement) */}
         <noscript>
           <img

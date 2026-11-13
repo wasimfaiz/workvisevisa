@@ -1,10 +1,19 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 export default function FloatingWhatsApp() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50" suppressHydrationWarning>
       <a
         href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20would%20like%20to%20book%20a%20free%20consultation!"
         target="_blank"
