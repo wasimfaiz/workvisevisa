@@ -212,8 +212,42 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Destination Country Hubs Row (SEO Link Authority for Bulgaria, France, Germany, Gulf) */}
+        {/* Candidate Hubs Row (High Local SEO Link Authority) */}
         <div className="mt-10 pt-6 border-t border-slate-200">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-900 shrink-0">
+              Regional Candidate Hubs:
+            </span>
+            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2 text-xs font-medium text-slate-600">
+              <Link href="/locations/patna" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Patna (Branch)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/noida" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Noida (HQ)</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/ranchi" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Ranchi</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/dhanbad" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Dhanbad</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/jamshedpur" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Jamshedpur</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/bokaro" className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800">Bokaro</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/siwan" className="hover:text-emerald-700 hover:underline transition-colors">Siwan</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/gopalganj" className="hover:text-emerald-700 hover:underline transition-colors">Gopalganj</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/gorakhpur" className="hover:text-emerald-700 hover:underline transition-colors">Gorakhpur</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/lucknow" className="hover:text-emerald-700 hover:underline transition-colors">Lucknow</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations/varanasi" className="hover:text-emerald-700 hover:underline transition-colors">Varanasi</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/locations" className="hover:text-emerald-700 hover:underline transition-colors font-bold text-emerald-700">View All Locations →</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Destination Country Hubs Row (SEO Link Authority for Bulgaria, France, Germany, Gulf) */}
+        <div className="mt-4 pt-4 border-t border-slate-200/70">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-900 shrink-0">
               Popular Work Destinations:

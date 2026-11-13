@@ -77,6 +77,7 @@ export default function LocationsHubPage() {
       loc.slug === "aligarh"
   );
   const biharHubs = serviceAreas.filter((loc) => loc.state === "Bihar");
+  const jharkhandHubs = serviceAreas.filter((loc) => loc.state === "Jharkhand");
   const upHubs = serviceAreas.filter(
     (loc) =>
       loc.state.includes("Uttar Pradesh") &&
@@ -314,6 +315,48 @@ export default function LocationsHubPage() {
 
                     <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:text-emerald-700">
                       <span>View Jobs & Guide</span>
+                      <FaArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Jharkhand Industrial & Mining Workforce Section */}
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6 pb-2 border-b border-slate-200">
+                <span className="text-lg font-black text-slate-900 flex items-center gap-2">
+                  <FaLocationDot className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Jharkhand Industrial &amp; Mining Candidate Desks</span>
+                </span>
+                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                  Connected to Patna Regional Hub via Vande Bharat &amp; Jan Shatabdi
+                </span>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {jharkhandHubs.map((hub) => (
+                  <Link
+                    key={hub.slug}
+                    href={`/locations/${hub.slug}`}
+                    className="group rounded-2xl bg-white border border-slate-200 p-6 shadow-sm hover:border-emerald-400 hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-xl font-display font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                          {hub.name}
+                        </h3>
+                        <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+                          {hub.serviceAreaDetails?.distanceFromCity}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                        {hub.districtIntro}
+                      </p>
+                    </div>
+
+                    <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:text-emerald-700">
+                      <span>View Jobs &amp; Guide</span>
                       <FaArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </div>
                   </Link>

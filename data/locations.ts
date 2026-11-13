@@ -2163,6 +2163,677 @@ export const locationsList: LocationData[] = [
       },
     ],
   },
+  // ==========================================
+  // 18. RANCHI CANDIDATE HUB (JHARKHAND CAPITAL)
+  // ==========================================
+  {
+    slug: "ranchi",
+    name: "Ranchi",
+    state: "Jharkhand",
+    type: "service-area",
+    heroBadge: "Jharkhand Capital Candidate Hub • Online & Walk-in Guidance",
+    metaTitle: "Work Visa Consultancy in Ranchi | WorkWise Visa Jharkhand",
+    metaDescription:
+      "Top work visa consultancy in Ranchi, Jharkhand. Verified Gulf & Europe jobs, Takamol testing, GAMCA medical & eMigrate POE guidance for skilled technicians.",
+    keywords: [
+      "work visa consultancy in ranchi",
+      "visa consultancy in ranchi",
+      "gulf job consultancy in ranchi jharkhand",
+      "overseas placement agency ranchi",
+      "saudi work visa ranchi",
+      "dubai jobs ranchi",
+      "europe work permit consultancy jharkhand",
+      "ranchi passport office visa agent",
+      "hec ranchi welder jobs abroad",
+      "iti diploma overseas recruitment ranchi",
+      "workwise visa ranchi",
+    ],
+    districtIntro:
+      "Jharkhand ki rajdhani Ranchi ke skilled technicians, ITI diploma holders, heavy equipment operators aur engineers ke liye WorkWise Visa ka dedicated facilitation desk. Ratu Road, Albert Ekka Chowk, Doranda, Lalpur aur Namkum se candidates hamare Patna Regional Branch (Varma Centre, Boring Road) ya direct online video interview ke zariye Saudi Arabia, UAE, Qatar aur Europe ke verified offers paate hain.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "Patna Regional Branch (Varma Centre, Boring Road)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress:
+        "6th Floor Office No 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001",
+      distanceFromCity: "~325 KM",
+      travelDuration: "5 to 6 Hours via Vande Bharat Express / Jan Shatabdi",
+      recommendedTrains: [
+        "Ranchi - Patna Vande Bharat Express (22350) - Dep: 04:15 PM, Arr: 10:05 PM (5h 50m)",
+        "Ranchi - Patna Jan Shatabdi Express (12366) - Dep: 02:25 PM, Arr: 10:20 PM (7h 55m)",
+        "Hatia - Patna Pataliputra Express (18622) - Daily Overnight Service",
+      ],
+      roadRoute:
+        "NH-33 (Ranchi → Ramgarh → Hazaribagh → Barhi) se judkar NH-20 aur NH-31 hokar Patna seedhe 6.5 ghante me.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Document Verification via WhatsApp",
+          description:
+            "Ranchi ke candidates apne passport, ITI/diploma certificate aur photo ko hamare official WhatsApp (+91 8130161603) par bhejkar 2 ghante me free eligibility audit karwa sakte hain.",
+        },
+        {
+          step: "02",
+          title: "Direct Client Trade Interview / Video Call",
+          description:
+            "Shortlisted candidates Gulf ya European clients ke sath live video call interview me shamil hote hain ya Patna center aakar practical trade test dete hain.",
+        },
+        {
+          step: "03",
+          title: "Official Government Work Permit Issuance",
+          description:
+            "Selection ke baad foreign labor portal (Saudi Qiwa, UAE MoHRE, Poland Voivodeship) par direct computerized work permit generate hota hai.",
+        },
+        {
+          step: "04",
+          title: "GAMCA Medical, MEA Apostille & POE Stamping",
+          description:
+            "Kolkata ya Patna center se Wafid GAMCA medical fitness, RPO Ranchi police clearance attestation aur direct eMigrate clearance ke baad flight ticket issue hoti hai.",
+        },
+      ],
+      onlineBenefits: [
+        "100% Free WhatsApp Profile Assessment & Trade Eligibility Review",
+        "Direct Client Trade Interviews via Video Conference / Patna Trade Center",
+        "Regional Passport Office (RPO) Ranchi PCC & MEA Apostille Guidance",
+        "Wafid (GAMCA) Medical Appointment Booking in Kolkata or Patna Centers",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Civil & Construction",
+        roles: ["Shuttering Carpenter", "Steel Fixer", "Tile Mason", "Scaffolder"],
+        monthlySalary: "₹45,000 - ₹68,000",
+        countries: "Saudi Arabia (NEOM / Red Sea), UAE, Qatar",
+        overtime: "2-4 Hours Daily Guaranteed",
+      },
+      {
+        category: "Heavy Equipment & Mining",
+        roles: ["Excavator Operator", "Tower Crane Operator", "Heavy Trailer Driver", "Bulldozer Operator"],
+        monthlySalary: "₹65,000 - ₹1,15,000",
+        countries: "Saudi Arabia, UAE, Kuwait, Oman",
+        overtime: "Regular Overtime + Production Bonus",
+      },
+      {
+        category: "Mechanical & Technical",
+        roles: ["6G Pipe Welder (TIG/MIG)", "Industrial Electrician", "HVAC Chiller Tech", "Mechanical Fitter"],
+        monthlySalary: "₹55,000 - ₹95,000",
+        countries: "Poland, Romania, Croatia, Saudi Aramco Projects",
+        overtime: "1.5x Hourly Rate as per Labor Law",
+      },
+      {
+        category: "European Factory & Logistics",
+        roles: ["CNC Machine Operator", "Warehouse Picker/Packer", "Auto Mechanic", "Hospitality Chef"],
+        monthlySalary: "₹95,000 - ₹1,65,000",
+        countries: "Poland, Romania, Croatia, Germany, Malta",
+        overtime: "Full Schengen Worker Protections + Free Accommodation",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "100% Government Registered & POE Compliant",
+        desc: "All overseas recruitments operate strictly under Ministry of External Affairs (MEA) eMigrate framework with zero illegal routing.",
+      },
+      {
+        title: "Direct Digital Labor Contracts",
+        desc: "Verified employment letters directly issued on Saudi Qiwa, UAE MoHRE, or European Voivodeship portals with zero fake job promises.",
+      },
+      {
+        title: "Convenient Connectivity to Patna Regional Hub",
+        desc: "Direct Vande Bharat and Jan Shatabdi trains connect Ranchi to our fully-equipped Patna branch in just 5-6 hours.",
+      },
+      {
+        title: "Transparent & Zero Sub-Agent Charges",
+        desc: "Direct corporate hiring with fixed fees, free accommodation and transport benefits, and clear refund policies.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Vikram Kumar Munda",
+        cityOrDistrict: "Ratu Road, Ranchi",
+        jobRole: "Heavy Excavator Operator",
+        destinationCountry: "NEOM Infrastructure Project, Saudi Arabia",
+        monthlySalary: "SAR 3,800 (₹86,000/mo)",
+        quote: "Ranchi me local dukaano ke agents ne mujhe do baar fake visa offer diya tha. WorkWise Visa Patna branch se connect hua. Inhone direct Saudi Qiwa contract diya aur Takamol test clear karwaya. Aaj NEOM me safely kaam kar raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Ravi Shankar Mahto",
+        cityOrDistrict: "HEC Dhurwa, Ranchi",
+        jobRole: "6G TIG Pipe Welder",
+        destinationCountry: "Gdańsk Shipyard, Poland",
+        monthlySalary: "€1,350 (₹1,22,000/mo)",
+        quote: "HEC Ranchi me fabrication workshop me kaam karta tha. WorkWise Visa ke zariye Poland ka Type-D work permit mila. Housing aur medical free hai, har mahine ghar ₹95,000 bhej raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Amit Tirkey",
+        cityOrDistrict: "Namkum, Ranchi",
+        jobRole: "Industrial Electrician",
+        destinationCountry: "Dubai Logistics Park, UAE",
+        monthlySalary: "AED 3,600 (₹82,000/mo)",
+        quote: "Government ITI Ranchi se diploma ke baad Gulf jana chahta tha. WorkWise Visa ne online video interview organize karwaya aur direct MOHRE visa stamp karwaya bina kisi jhanjhat ke.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Ranchi ke candidates WorkWise Visa service kaise avail kar sakte hain?",
+        a: "Ranchi ke candidate ghar baithe WhatsApp (+91 8130161603) par apne documents bhejkar 100% free eligibility audit karwa sakte hain. Final client trade test ya document submission ke liye Ranchi-Patna Vande Bharat Express se sirf 5.5 ghante me hamare Varma Centre, Boring Road Patna office visit kar sakte hain.",
+      },
+      {
+        q: "Ranchi me Passport Seva Kendra (PSK) se PCC kaise banwayein?",
+        a: "Regional Passport Office (RPO) Ranchi (Galaxia Mall, Ratu Road) se Police Clearance Certificate (PCC) online passportindia.gov.in portal se book hota hai. WorkWise team appointment slot booking aur MEA Apostille attestation me poori guidance deti hai.",
+      },
+      {
+        q: "Ranchi ke workers ke liye GAMCA / Wafid medical center kahan allot hota hai?",
+        a: "Wafid portal (wafid.com) par online slip generate karne par Ranchi ke candidates ko Kolkata ya Patna ke authorized GCC diagnostic centers allot hote hain. Dono shehron ke liye Ranchi se direct trains available hain.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 19. DHANBAD CANDIDATE HUB (COAL CAPITAL)
+  // ==========================================
+  {
+    slug: "dhanbad",
+    name: "Dhanbad",
+    state: "Jharkhand",
+    type: "service-area",
+    heroBadge: "Coal Capital Candidate Hub • Heavy Machinery & Mining Trade Desk",
+    metaTitle: "Work Visa Consultancy in Dhanbad | WorkWise Visa Jharkhand",
+    metaDescription:
+      "Premier overseas job consultancy in Dhanbad, Jharkhand. Verified Gulf & Europe work visas for heavy excavator operators, mining fitters, welders & drivers.",
+    keywords: [
+      "work visa consultancy in dhanbad",
+      "gulf job consultancy in dhanbad",
+      "visa consultancy in dhanbad jharkhand",
+      "overseas placement agency dhanbad",
+      "excavator operator jobs abroad dhanbad",
+      "bccl mining technicians gulf jobs",
+      "saudi work visa dhanbad",
+      "dubai work permit koyla nagri",
+      "bank more visa consultancy",
+      "europe work visa dhanbad",
+      "workwise visa dhanbad",
+    ],
+    districtIntro:
+      "Koyla Nagri Dhanbad ke heavy earthmoving machinery (HEMM) operators, excavator & dumper drivers, mining mechanical fitters, aur certified 6G welders ke liye verified overseas gateway. Bank More, Hirapur, Saraidhela, Jharia, Katras aur Govindpur ke technical workers ko Saudi Aramco, NEOM, UAE, Qatar aur Europe ke verified corporate employment contracts provide kiye jaate hain.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "Patna Regional Branch (Varma Centre, Boring Road)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress:
+        "6th Floor Office No 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001",
+      distanceFromCity: "~290 KM",
+      travelDuration: "5.5 Hours via Ganga Damodar Express / Patliputra Express",
+      recommendedTrains: [
+        "Dhanbad - Patna Ganga Damodar Express (13329) - Dep: 11:20 PM, Arr: 05:15 AM (Overnight 5h 55m)",
+        "Dhanbad - Patna Intercity Express (13331) - Daily Morning Service",
+        "Ranchi - Patna Jan Shatabdi (via Bokaro/Gomoh nearby)",
+      ],
+      roadRoute:
+        "GT Road NH-19 se Barhi aur Dobhi hokar NH-22 se seedhe Patna 6 ghante me accessible hai.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Document Verification via WhatsApp",
+          description:
+            "Dhanbad ke HEMM operators aur technicians apne heavy license, ITI certificate aur passport ki photo (+91 8130161603) par bhejkar trade eligibility confirm karein.",
+        },
+        {
+          step: "02",
+          title: "Client Trade Selection & Video Interview",
+          description:
+            "Direct foreign companies ke interview me shamil hon ya Patna branch me verified practical trade evaluation complete karein.",
+        },
+        {
+          step: "03",
+          title: "Digital Visa & Contract Verification",
+          description:
+            "Saudi Qiwa, UAE MoHRE ya Qatar MOI portal par authenticated work permit aur government approved wage sheet verify karwayein.",
+        },
+        {
+          step: "04",
+          title: "Wafid Medical, POE Clearance & Direct Flight",
+          description:
+            "Approved clinic se GAMCA medical fitness, PSK Dhanbad police clearance aur Ministry of External Affairs eMigrate approval ke baad ticket milti hai.",
+        },
+      ],
+      onlineBenefits: [
+        "Specialized HEMM Operator & Heavy Commercial Driver Assessment",
+        "Direct Gulf Mining, Earthmoving & Petrochemical Vacancies",
+        "Overnight Direct Train Connection (Ganga Damodar) to Patna Center",
+        "100% Legal eMigrate POE Clearance with Pravasi Bima Policy",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Heavy Machinery & Earthmoving (HEMM)",
+        roles: ["Excavator Operator (20T-50T)", "Wheel Loader Operator", "Dumper / Tipper Driver", "Bulldozer Operator"],
+        monthlySalary: "₹65,000 - ₹1,10,000",
+        countries: "Saudi Arabia (NEOM/Aramco), UAE, Oman, Kuwait",
+        overtime: "2-4 Hours Daily Guaranteed + Free Camp",
+      },
+      {
+        category: "Mechanical & Mining Trades",
+        roles: ["Mining Mechanical Fitter", "Hydraulic Technician", "Diesel Mechanic", "Structural Rigger"],
+        monthlySalary: "₹55,000 - ₹85,000",
+        countries: "Saudi Arabia, Qatar, UAE, Bahrain",
+        overtime: "Overtime + Site Allowances",
+      },
+      {
+        category: "Welding & Fabrication",
+        roles: ["6G Pipe Welder (SMAW/GTAW)", "MIG Welder", "Plate Fabricator", "Gas Cutter"],
+        monthlySalary: "₹60,000 - ₹1,05,000",
+        countries: "Poland, Romania, Croatia, Saudi Arabia",
+        overtime: "Full Overtime as per Statutory Code",
+      },
+      {
+        category: "European Logistics & Civil",
+        roles: ["Forklift Driver", "Warehouse Associate", "Steel Fixer", "Shuttering Carpenter"],
+        monthlySalary: "₹95,000 - ₹1,60,000",
+        countries: "Poland, Romania, Croatia, Germany",
+        overtime: "Free Employer Accommodation & Transport",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Pioneering HEMM Operator Recruitment",
+        desc: "Dhanbad ke heavy machinery operators ke liye Gulf ke sabse bade mega-projects (NEOM, Red Sea, Al-Zour) me high-salary opportunities.",
+      },
+      {
+        title: "Overnight Train Accessibility to Patna",
+        desc: "Ganga Damodar Express se Dhanbad ke candidates raat me train pakad kar subah 5 baje seedhe Patna branch pahunch sakte hain.",
+      },
+      {
+        title: "Direct Digital Qiwa & MoHRE Contracts",
+        desc: "Har contract direct foreign government labor portal par digitally authenticated hota hai jisme fixed salary aur overtime terms darj hote hain.",
+      },
+      {
+        title: "Zero Sub-Agent Risk",
+        desc: "Dhanbad me local dalalon se bachein—WorkWise Visa direct MEA-registered institutional placement provide karta hai.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Mohammad Shamim Ansari",
+        cityOrDistrict: "Bank More, Dhanbad",
+        jobRole: "Hydraulic Excavator Operator",
+        destinationCountry: "Al-Ahsa Oilfield Project, Saudi Arabia",
+        monthlySalary: "SAR 3,700 (₹84,000/mo)",
+        quote: "BCCL mining area me 7 saal JCB aur excavator chalaya tha. Local agents ne Qatar bolkar dhokha diya tha. WorkWise Visa se judkar Ganga Damodar se Patna gaya. 45 din me Saudi Qiwa ka verified visa mila. Aaj wahan AC cabin excavator chala raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Rajesh Kumar Mahato",
+        cityOrDistrict: "Govindpur Industrial Belt, Dhanbad",
+        jobRole: "6G Pipe Welder",
+        destinationCountry: "Constanța Port Industrial Zone, Romania",
+        monthlySalary: "€1,200 (₹1,09,000/mo)",
+        quote: "Govindpur ke welding garage se European visa milna sapna lagta tha. WorkWise Visa ne mere trade test documents verify kiye aur Romania ka Type-D work permit dilwaya. Salary har mahine account me aati hai.",
+        rating: 5,
+      },
+      {
+        name: "Sunil Soren",
+        cityOrDistrict: "Katras, Dhanbad",
+        jobRole: "Heavy Trailer Driver",
+        destinationCountry: "Abu Dhabi Logistics Park, UAE",
+        monthlySalary: "AED 4,200 (₹95,000/mo)",
+        quote: "Indian heavy commercial license tha. WorkWise team ne direct UAE corporate placement dilwaya aur Abu Dhabi me RTA testing me guidance di. Ab wahan company flat aur medical sab free hai.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Dhanbad ke candidates WorkWise Visa office kaise pahunch sakte hain?",
+        a: "Dhanbad Junction se rozana raat 11:20 baje chalne wali Ganga Damodar Express (13329) subah 5:15 baje Patna Junction pahunchati hai. Wahan se Boring Road Crossing par Varma Centre hamara office sirf 15 minute ki doori par hai.",
+      },
+      {
+        q: "Kya Dhanbad ke heavy equipment operators ke liye GCC me special vacancy aati hai?",
+        a: "Haan, Saudi Arabia ke NEOM, Red Sea, aur Aramco refinery projects me 20T-50T hydraulic excavator, wheel loader, grader, aur heavy dumper operators ki continuous demand rehti hai jahan monthly package ₹70,000 se ₹1,15,000+ tak hota hai.",
+      },
+      {
+        q: "Dhanbad me Passport Office se PCC nikalwane ka kya tarika hai?",
+        a: "Post Office Passport Seva Kendra (POPSK) Dhanbad (near Head Post Office) se online appointment lekar Police Clearance Certificate generate hota hai. WorkWise team documents upload aur verification me poora support karti hai.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 20. JAMSHEDPUR CANDIDATE HUB (STEEL CITY)
+  // ==========================================
+  {
+    slug: "jamshedpur",
+    name: "Jamshedpur",
+    state: "Jharkhand",
+    type: "service-area",
+    heroBadge: "Steel City Industrial Desk • Precision Machining & 6G Welder Hub",
+    metaTitle: "Work Visa Consultancy in Jamshedpur | WorkWise Visa Jharkhand",
+    metaDescription:
+      "Leading overseas job consultancy in Jamshedpur (Tatanagar). Verified Europe & Gulf work permits for CNC machinists, Tata vendor welders, toolmakers & fitters.",
+    keywords: [
+      "work visa consultancy in jamshedpur",
+      "gulf job consultancy in jamshedpur",
+      "visa consultancy tatanagar",
+      "overseas recruitment agency jamshedpur",
+      "adityapur industrial area jobs europe",
+      "tata steel welder jobs abroad",
+      "cnc machinist jobs poland romania jamshedpur",
+      "bistupur visa agency",
+      "sakchi overseas consultancy",
+      "saudi work visa jamshedpur",
+      "workwise visa jamshedpur",
+    ],
+    districtIntro:
+      "Steel City Jamshedpur (Tatanagar) aur Adityapur Industrial Area ke precision CNC milling operators, tool & die makers, certified 6G pipe welders (TIG/MIG/SMAW), aur automobile component mechanics ke liye premium European aur GCC recruitment gateway. Bistupur, Sakchi, Mango, Kadma aur Telco ke skilled artisans ko direct Poland, Romania, Croatia, Saudi Arabia aur UAE ke corporate visas dilwaye jaate hain.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "Patna Regional Branch (Varma Centre, Boring Road)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress:
+        "6th Floor Office No 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001",
+      distanceFromCity: "~420 KM",
+      travelDuration: "5.5 Hours via Tatanagar - Patna Vande Bharat Express",
+      recommendedTrains: [
+        "Tatanagar - Patna Vande Bharat Express (20893) - Dep: 05:30 AM, Arr: 11:00 AM (Superfast 5h 30m)",
+        "South Bihar Express (13287) - Daily Overnight Service",
+        "Tata - Danapur Superfast Express (18183) - Daily Direct Connectivity",
+      ],
+      roadRoute:
+        "NH-33 (Jamshedpur → Chandil → Ranchi) se hokar NH-20 aur NH-31 ke raste Patna accessible hai.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Technical Profile Evaluation",
+          description:
+            "Adityapur aur Jamshedpur ke machinists aur welders apne technical certifications aur resume ko WhatsApp (+91 8130161603) par bhejkar 100% free audit karwayein.",
+        },
+        {
+          step: "02",
+          title: "Direct Client Selection via Video or Trade Test",
+          description:
+            "European manufacturing firms ya GCC energy conglomerates ke sath client interviews me qualify karein.",
+        },
+        {
+          step: "03",
+          title: "Legal Work Permit & Statutory Contract",
+          description:
+            "Poland Voivodeship permit (Typ A), Romanian IGI approval, ya Saudi Qiwa digital contract directly verified generate hota hai.",
+        },
+        {
+          step: "04",
+          title: "VFS Global Stamping, Apostille & Departure",
+          description:
+            "Passport Seva Kendra Jamshedpur PCC, MEA Hague Apostille, aur VFS Global visa stamping ke baad seamless departure.",
+        },
+      ],
+      onlineBenefits: [
+        "Specialized Placement for Precision CNC, VMC & Tool-Die Artisans",
+        "Direct Superfast Vande Bharat Express (5.5 hrs) to Patna Branch",
+        "European Schengen Work Permit Expertise (Poland, Romania, Croatia)",
+        "Bilingual Legal Employment Contract with Zero Sub-Agent Markups",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Precision Machining & Toolroom",
+        roles: ["CNC Lathe / Milling Operator", "VMC Programmer", "Tool & Die Maker", "Precision Grinder"],
+        monthlySalary: "₹95,000 - ₹1,75,000",
+        countries: "Poland, Germany, Czechia, Romania, UAE",
+        overtime: "Statutory Overtime + Paid Annual Leave",
+      },
+      {
+        category: "Welding & Fabrication",
+        roles: ["6G Pipe Welder (TIG/MIG/SMAW)", "Structural Fabricator", "Pipe Fitter", "Boiler Welder"],
+        monthlySalary: "₹65,000 - ₹1,20,000",
+        countries: "Poland (Shipyards), Romania, Saudi Aramco, Kuwait KNPC",
+        overtime: "1.5x Hourly Rate + Free Accommodation",
+      },
+      {
+        category: "Automotive & Mechanical Maintenance",
+        roles: ["Automobile Mechanic", "Hydraulic Fitter", "Maintenance Electrician", "Diesel Fitter"],
+        monthlySalary: "₹55,000 - ₹95,000",
+        countries: "UAE, Saudi Arabia, Qatar, Oman",
+        overtime: "Overtime + Performance Bonus",
+      },
+      {
+        category: "Civil & Commercial Transport",
+        roles: ["Heavy Trailer Driver", "Rigging Foreman", "Scaffolder", "Steel Fixer"],
+        monthlySalary: "₹50,000 - ₹90,000",
+        countries: "Saudi Arabia (Vision 2030), UAE, Kuwait",
+        overtime: "Free Company Accommodation & Transport",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Matchless Fit for Jamshedpur Industrial Precision",
+        desc: "Tata vendors aur Adityapur cluster ke highly skilled mechanical craftsmen ko European engineering standards ke mutabiq direct high-paying placements.",
+      },
+      {
+        title: "Same-Day Vande Bharat Connection to Patna",
+        desc: "Tatanagar se subah 5:30 baje Vande Bharat se chalkar subah 11 baje Patna office pahunchein, document verify karwayein aur shaam ko wapas lautein.",
+      },
+      {
+        title: "Direct European Single Permits (Directive 2011/98/EU)",
+        desc: "Poland, Romania aur Croatia me direct legal residency aur single work permit without middlemen exploitation.",
+      },
+      {
+        title: "Complete Institutional Transparency",
+        desc: "Fixed government fees, verified demand letters, eMigrate POE stamping aur complete post-arrival candidate assistance.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Gurpreet Singh",
+        cityOrDistrict: "Bistupur / Sakchi, Jamshedpur",
+        jobRole: "CNC VMC Milling Operator",
+        destinationCountry: "Wrocław Automotive Cluster, Poland",
+        monthlySalary: "€1,400 (₹1,27,000/mo)",
+        quote: "Adityapur me 8 saal auto-component workshop me kaam kiya par European visa ka koi authentic rasta nahi milta tha. WorkWise Visa ne direct Polish Voivodeship permit arrange kiya. Vande Bharat se Patna jakar trade verify karwaya. Aaj Poland me MNC me kaam kar raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Manoj Kumar Sharma",
+        cityOrDistrict: "Mango, Jamshedpur",
+        jobRole: "6G TIG/MIG Pipe Welder",
+        destinationCountry: "KNPC Refinery Modernization, Kuwait",
+        monthlySalary: "KWD 280 (₹76,500/mo)",
+        quote: "Tata vendor unit me boiler welding ka experience tha. WorkWise Visa ke zariye Kuwait ka Article 18 direct permit mila. Accommodation, transport aur overtime sab free hai. Bahut honest consultancy hai.",
+        rating: 5,
+      },
+      {
+        name: "Deepak Hansda",
+        cityOrDistrict: "Telco Colony, Jamshedpur",
+        jobRole: "Heavy Commercial Truck Driver",
+        destinationCountry: "Dubai Logistics Park, UAE",
+        monthlySalary: "AED 4,000 (₹90,000/mo)",
+        quote: "Jamshedpur se heavy trailer chalate chalate thak gaya tha. WorkWise ne Dubai me logistics company me direct driver vacancy dilwayi. RTA test first attempt me pass karwaya.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Jamshedpur ke technical workers WorkWise Visa Patna office kaise pahuchein?",
+        a: "Tatanagar Junction se rozana subah 05:30 baje chalne wali Tatanagar - Patna Vande Bharat Express (20893) sirf 5.5 ghante me subah 11:00 baje Patna Junction pahuncha deti hai. Aap same day interview dekar shaam ko wapas laut sakte hain.",
+      },
+      {
+        q: "Kya Adityapur industrial area ke welders aur machinists ke liye Europe me vacancies hain?",
+        a: "Haan! Poland, Romania, Croatia, Germany aur Malta ke manufacturing aur automotive plants me Jamshedpur ke certified CNC machinists, toolmakers, aur 6G welders ki bhari demand hai jahan monthly package ₹1.10 Lakh se ₹1.80 Lakh tak hota hai.",
+      },
+      {
+        q: "Jamshedpur me Passport Seva Kendra kahan sthit hai?",
+        a: "Post Office Passport Seva Kendra (POPSK) Jamshedpur (Bistupur Head Post Office premises) me sthit hai jahan se PCC aur passport verification easily ho jata hai.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // 21. BOKARO CANDIDATE HUB (STEEL CITY)
+  // ==========================================
+  {
+    slug: "bokaro",
+    name: "Bokaro",
+    state: "Jharkhand",
+    type: "service-area",
+    heroBadge: "Steel City Workforce Desk • Fabrication & Industrial Maintenance Hub",
+    metaTitle: "Work Visa Consultancy in Bokaro | WorkWise Visa Jharkhand",
+    metaDescription:
+      "Top work visa consultancy in Bokaro Steel City, Jharkhand. Verified Europe & Gulf jobs for SAIL plant fabrication welders, riggers, electricians & drivers.",
+    keywords: [
+      "work visa consultancy in bokaro",
+      "gulf job consultancy in bokaro",
+      "visa consultancy in bokaro steel city",
+      "overseas recruitment agency bokaro",
+      "sail bokaro plant welders abroad",
+      "chas bokaro visa consultancy",
+      "sector 4 bokaro overseas jobs",
+      "saudi work visa bokaro",
+      "dubai work permit bokaro",
+      "europe work visa bokaro jharkhand",
+      "workwise visa bokaro",
+    ],
+    districtIntro:
+      "Bokaro Steel City aur Chas ke heavy industrial fabrication welders, plant shutdown mechanics, blast furnace fitters, industrial riggers aur crane operators ke liye verified overseas job placement. Sector 4, City Centre, Chas, Bermo aur Chandrapura ke skilled workers ko Gulf refineries (KNPC/KOC, Aramco, ADNOC) aur European industrial hubs me direct legal placements provide kiye jaate hain.",
+    isPhysicalBranch: false,
+    serviceAreaDetails: {
+      nearestBranchName: "Patna Regional Branch (Varma Centre, Boring Road)",
+      nearestBranchSlug: "patna",
+      nearestBranchAddress:
+        "6th Floor Office No 606, Varma Centre, Boring Rd Crossing, Sri Krishna Puri, Patna, Bihar 800001",
+      distanceFromCity: "~310 KM",
+      travelDuration: "5.5 Hours via Jan Shatabdi Express / Palamu Express",
+      recommendedTrains: [
+        "Ranchi - Patna Jan Shatabdi Express (12366) - Stops at Bokaro Steel City at 04:30 PM, Arr Patna: 10:20 PM",
+        "Palamu Express (13347) - Daily Overnight Service",
+        "Hatia - Patna Pataliputra Express (18622) - Convenient Daily Schedule",
+      ],
+      roadRoute:
+        "Bokaro → Chas → Purulia road ya NH-320 & NH-20 se Hazaribagh hokar Patna 6 ghante me accessible hai.",
+      howCandidatesApply: [
+        {
+          step: "01",
+          title: "Online Document Verification via WhatsApp",
+          description:
+            "Bokaro ke industrial technicians aur plant workers (+91 8130161603) par apne trade certificates aur passport bhejkar eligibility audit karwayein.",
+        },
+        {
+          step: "02",
+          title: "Direct Client Trade Evaluation & Interview",
+          description:
+            "Gulf refineries aur European factories ke direct client selection me participate karein.",
+        },
+        {
+          step: "03",
+          title: "Digital Labor Permit Verification",
+          description:
+            "Sponsoring company dwara issued Qiwa digital offer letter, MoHRE permit ya European work approval online verify karein.",
+        },
+        {
+          step: "04",
+          title: "Medical Fitness, POE Clearance & Stamping",
+          description:
+            "Approved GAMCA center se medical examination, PSK Bokaro police verification aur MEA eMigrate clearance ke baad direct departure.",
+        },
+      ],
+      onlineBenefits: [
+        "Specialized Recruitment for Heavy Industrial Fabrication & Rigging Trades",
+        "Direct Jan Shatabdi & Palamu Express Trains to Patna Regional Branch",
+        "Verified GCC Shutdown & Long-Term Industrial Maintenance Demands",
+        "100% Legal eMigrate Stamping & Transparent Government Fee Structure",
+      ],
+    },
+    inDemandTrades: [
+      {
+        category: "Industrial Fabrication & Welding",
+        roles: ["Structural Fabricator", "6G Pipe Welder (TIG/MIG)", "Industrial Rigger", "Gas Cutter"],
+        monthlySalary: "₹55,000 - ₹95,000",
+        countries: "Saudi Arabia (Aramco), Qatar, UAE, Kuwait",
+        overtime: "2-4 Hours Daily Overtime Guaranteed",
+      },
+      {
+        category: "Plant Maintenance & Heavy Machinery",
+        roles: ["Mechanical Fitter (Rolling Mill/Blast Furnace)", "Heavy Crane Operator", "Hydraulic Technician", "Millwright Fitter"],
+        monthlySalary: "₹65,000 - ₹1,15,000",
+        countries: "Saudi Arabia, UAE, Oman, Poland",
+        overtime: "Regular Overtime + Production Incentives",
+      },
+      {
+        category: "Electrical & Instrumentation",
+        roles: ["Industrial Electrician", "Instrumentation Fitter", "Substation Electrician", "PLC Technician"],
+        monthlySalary: "₹60,000 - ₹1,05,000",
+        countries: "UAE, Saudi Arabia, Qatar, Romania",
+        overtime: "Statutory Overtime as per Labor Laws",
+      },
+      {
+        category: "European Manufacturing & Civil",
+        roles: ["CNC Machine Operator", "Steel Fixer", "Shuttering Carpenter", "Warehouse Associate"],
+        monthlySalary: "₹95,000 - ₹1,65,000",
+        countries: "Poland, Romania, Croatia, Germany",
+        overtime: "Full Schengen Worker Protections + Free Camp",
+      },
+    ],
+    whyChoosePoints: [
+      {
+        title: "Tailored for Bokaro Heavy Industry Craftsmen",
+        desc: "SAIL plant vendors, Chas fabrication workshops aur Bermo mining workers ke liye authentic global industrial openings.",
+      },
+      {
+        title: "Fast 5.5-Hour Connectivity to Patna Center",
+        desc: "Bokaro Steel City Station se Jan Shatabdi Express se aaram se Patna branch visit karke face-to-face interaction kiya ja sakta hai.",
+      },
+      {
+        title: "Verified GCC Petrochemical & European Openings",
+        desc: "QatarEnergy, Saudi Aramco, KNPC Kuwait aur European manufacturing clusters ke direct authenticated job demands.",
+      },
+      {
+        title: "Complete Institutional Security",
+        desc: "Pravasi Bharatiya Bima Yojana (₹10 Lakh insurance), direct eMigrate clearance aur transparent zero-exploitation workflow.",
+      },
+    ],
+    testimonials: [
+      {
+        name: "Sanjay Kumar Mahto",
+        cityOrDistrict: "Sector 4, Bokaro Steel City",
+        jobRole: "Structural Steel Fabricator",
+        destinationCountry: "Jubail Petrochemical Complex, Saudi Arabia",
+        monthlySalary: "SAR 3,600 (₹82,000/mo)",
+        quote: "Bokaro Steel Plant ke vendor unit me 9 saal fabrication ka kaam kiya. Local broker ne UAE bolkar 6 mahine ghumaya. WorkWise Visa Patna branch gaya, inhone direct Saudi Qiwa verified visa dilwaya. Aaj wahan plant me safely kaam kar raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Pankaj Pandey",
+        cityOrDistrict: "Chas, Bokaro",
+        jobRole: "6G Pipe Welder",
+        destinationCountry: "Płock Petrochemical Expansion, Poland",
+        monthlySalary: "€1,350 (₹1,22,000/mo)",
+        quote: "Chas me welding shop chalata tha. WorkWise Visa se judne ke baad mera trade test verify hua aur Poland ka Single Work Permit mila. Khana aur rehna company ka hai, har mahine ₹1 Lakh bhej raha hoon.",
+        rating: 5,
+      },
+      {
+        name: "Karan Singh",
+        cityOrDistrict: "Bermo / Phusro, Bokaro",
+        jobRole: "Heavy Mobile Crane Operator",
+        destinationCountry: "NEOM Sindalah Island, Saudi Arabia",
+        monthlySalary: "SAR 4,200 (₹95,000/mo)",
+        quote: "Mining area me 50-tonne crane chalata tha. WorkWise team ne NEOM ke liye direct client selection karwaya. Takamol test aur GAMCA medical sab smooth raha.",
+        rating: 5,
+      },
+    ],
+    faqs: [
+      {
+        q: "Bokaro ke candidates WorkWise Visa service kaise access karein?",
+        a: "Bokaro Steel City aur Chas ke candidate pehle WhatsApp (+91 8130161603) par resume bhejkar pre-verification karwayein. Phir Bokaro Steel City Railway Station se direct Jan Shatabdi Express (12366) lekar sirf 5.5 ghante me Patna office visit kar sakte hain.",
+      },
+      {
+        q: "Bokaro ke heavy fabrication welders ke liye kaunse countries me best salaries hain?",
+        a: "Bokaro ke 6G welders aur structural fabricators ke liye Poland, Romania aur Croatia me monthly salary ₹1.10 Lakh se ₹1.50 Lakh tak hoti hai, jabki Saudi Arabia aur UAE me ₹75,000 se ₹1,05,000 tak free food aur accommodation ke sath milti hai.",
+      },
+      {
+        q: "Bokaro me Passport aur PCC kahan se apply karein?",
+        a: "Post Office Passport Seva Kendra (POPSK) Bokaro (Sector 1 Head Post Office) se online booking ke zariye Police Clearance Certificate (PCC) banwaya ja sakta hai.",
+      },
+    ],
+  },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {
