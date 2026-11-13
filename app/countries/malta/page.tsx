@@ -286,176 +286,233 @@ export default function MaltaCountryPage() {
 
       <Navbar />
 
-      <main className="bg-slate-50 min-h-screen">
-        {/* Hero Section */}
-        <header className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white pt-28 pb-16 sm:pt-32 sm:pb-20 overflow-hidden border-b border-emerald-900/40">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-600/15 via-transparent to-transparent pointer-events-none" />
+      <main className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+        {/* ── Hero Section (Strict Emerald / Teal / Slate UI Continuity) ── */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-emerald-950 text-white pt-24 sm:pt-28 pb-16 md:pb-24">
+          <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Breadcrumb Navigation */}
-            <nav aria-label="Breadcrumb" className="mb-6">
-              <ol className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-300">
-                <li>
-                  <Link href="/" className="hover:text-emerald-400 transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li>/</li>
-                <li>
-                  <Link href="/countries" className="hover:text-emerald-400 transition-colors">
-                    Global Destinations
-                  </Link>
-                </li>
-                <li>/</li>
-                <li className="text-emerald-400 font-bold" aria-current="page">
-                  Malta (Repubblika ta&apos; Malta)
-                </li>
-              </ol>
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Breadcrumb inside Hero */}
+            <nav className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6 sm:mb-8">
+              <Link href="/" className="hover:text-emerald-400 transition-colors">
+                Home
+              </Link>
+              <span className="text-slate-600">/</span>
+              <Link href="/countries" className="hover:text-emerald-400 transition-colors">
+                Countries
+              </Link>
+              <span className="text-slate-600">/</span>
+              <span className="text-emerald-300 font-bold">Republic of Malta (Repubblika ta&apos; Malta - European Schengen Hub)</span>
             </nav>
 
-            <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-              {/* Left Column: Headlines & Badges */}
+            <div className="grid lg:grid-cols-12 gap-12 items-center">
+              {/* Left Column: Headlines & Key Stats */}
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1.5 text-xs font-bold text-emerald-300 backdrop-blur-xs">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                  </span>
-                  Official 2026 Schengen Framework • Identità &amp; Jobsplus Single Permit
+                {/* Government & Authority Badge */}
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 backdrop-blur-md shadow-lg shadow-emerald-950/50">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+                  Official 2026 Malta Identità Single Permit &amp; Type D Gateway
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15]">
                   Malta Work Visa, Skilled Jobs &amp; Schengen Relocation{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">
                     2026
                   </span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
-                  The definitive operational guide for Indian hospitality chefs, certified shipyard welders, civil technicians, and transport drivers relocating to the Republic of Malta. Complete coverage of the Identità Single Permit system, Jobsplus labour clearance, 100% English workplace environment, Euro salary earnings (1 EUR ≈ ₹91 INR), and universal free medical coverage at Mater Dei Hospital.
+                <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+                  The definitive operational manual for Indian hospitality chefs, shipyard certified welders, civil technicians, warehouse drivers, and nurses migrating to the Mediterranean&apos;s English-speaking Schengen hub. Real facts on official{" "}
+                  <strong className="font-bold text-white">Identità Single Permits</strong> under Directive 2011/98/EU, the{" "}
+                  <strong className="font-bold text-emerald-300">€9,100+ statutory tax-free base</strong>, 100% English workplace environment, free Mater Dei healthcare, and European settlement rights.
                 </p>
 
-                {/* Quick Spec Tags */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 text-xs font-semibold text-slate-200">
-                    <FaLanguage className="w-3.5 h-3.5 text-emerald-400" />
-                    100% English Official Language
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 text-xs font-semibold text-slate-200">
-                    <FaCoins className="w-3.5 h-3.5 text-teal-400" />
-                    Currency: Euro (€ / 1 EUR ≈ ₹91 INR)
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 text-xs font-semibold text-slate-200">
-                    <FaHospital className="w-3.5 h-3.5 text-cyan-400" />
-                    Free Healthcare: Mater Dei Hospital
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-800/80 border border-slate-700/80 px-3 py-1.5 text-xs font-semibold text-slate-200">
-                    <FaPassport className="w-3.5 h-3.5 text-amber-400" />
-                    Full 29-Nation Schengen Mobility
-                  </span>
+                {/* Key Benefits Pill Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaLanguage className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">100% English</div>
+                      <div className="text-[10px] text-slate-400">Official State Language</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaMoneyBillWave className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">€1,100–€2,000 Net</div>
+                      <div className="text-[10px] text-slate-400">₹1.00L–₹1.82L In-Hand</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaShieldHalved className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Full Schengen Member</div>
+                      <div className="text-[10px] text-slate-400">29 Nations Travel Rights</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaHospital className="w-4 h-4 text-teal-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Free State Health</div>
+                      <div className="text-[10px] text-slate-400">Mater Dei Hospital Cover</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaClock className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">6–10 Wks Processing</div>
+                      <div className="text-[10px] text-slate-400">Identità Single Permit</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 p-3 backdrop-blur-xs">
+                    <FaAnchor className="w-4 h-4 text-blue-400 shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Top Maritime Hub</div>
+                      <div className="text-[10px] text-slate-400">Palumbo Shipyards &amp; Ports</div>
+                    </div>
+                  </div>
                 </div>
 
-                {/* CTA Action Buttons */}
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <a
-                    href="#consultation-form"
-                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/20 hover:from-emerald-400 hover:to-teal-400 transition-all transform hover:-translate-y-0.5"
+                {/* Direct Action Buttons - Clean 2-CTA Layout */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
+                  <Link
+                    href="/jobs"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-400 hover:scale-[1.02] active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                   >
-                    <span>Apply for Malta Job Demand</span>
-                    <FaArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                    <FaBriefcase className="w-4 h-4 shrink-0" />
+                    <span>Browse Malta Jobs</span>
+                  </Link>
+
                   <a
-                    href="https://wa.me/918130161603?text=Hello%20WorkWise%20Visa%20Team%2C%20I%20am%20interested%20in%20Malta%20Work%20Visa%20and%20Job%20Demands"
+                    href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20interested%20in%20Malta%20Work%20Permit%20(Single%20Permit)%20and%20Jobs%20for%202026."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-slate-800/90 border border-slate-700 px-6 py-3.5 text-sm font-bold text-white hover:bg-slate-800 hover:border-emerald-500/50 transition-all"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-600/50 px-6 py-3 text-sm font-bold text-white transition-all shadow-md text-center w-full sm:w-auto"
                   >
-                    <FaWhatsapp className="w-4 h-4 text-emerald-400" />
-                    <span>WhatsApp Malta Desk</span>
+                    <FaWhatsapp className="w-4 h-4 text-emerald-300 shrink-0" />
+                    <span>WhatsApp Consultation</span>
                   </a>
                 </div>
               </div>
 
-              {/* Right Column: Featured Banner & Metadata Box */}
-              <div className="lg:col-span-5 space-y-4">
-                <div className="relative rounded-2xl overflow-hidden border border-emerald-500/30 shadow-2xl bg-slate-900 group">
-                  <img
-                    src="/images/malta-work-visa-guide.webp"
-                    alt="Malta Work Visa and Mediterranean Jobs Guide 2026"
-                    className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
-                    width={1200}
-                    height={630}
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-xs font-semibold text-slate-200">
-                    <p className="font-display font-bold text-sm text-white flex items-center gap-1.5">
-                      <FaAnchor className="text-emerald-400" />
-                      Republic of Malta (Repubblika ta&apos; Malta)
-                    </p>
-                    <p className="text-slate-300 text-[11px] mt-0.5">
-                      Valletta Grand Harbour • Palumbo Shipyards • St. Julian&apos;s • Msida • Marsaxlokk Freeport
-                    </p>
-                  </div>
-                </div>
-
-                {/* Compliance Card */}
-                <div className="rounded-xl bg-slate-900/80 border border-slate-800 p-4 text-xs text-slate-400 space-y-2">
-                  <div className="flex items-center justify-between text-slate-300 font-bold border-b border-slate-800 pb-2">
-                    <span className="flex items-center gap-1.5 text-emerald-400">
-                      <FaCircleCheck className="w-3.5 h-3.5" /> European Directive 2011/98/EU
+              {/* Right Column: Quick Country Snapshot Card */}
+              <div className="lg:col-span-5">
+                <div className="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3.5">
+                      <img
+                        src="https://flagcdn.com/w160/mt.png"
+                        alt="Malta Flag"
+                        className="h-10 w-14 object-cover rounded-xl shadow-md border border-white/25 shrink-0"
+                      />
+                      <div>
+                        <h2 className="text-xl font-display font-extrabold text-white">Malta (Repubblika ta&apos; Malta)</h2>
+                        <p className="text-xs text-emerald-300 font-medium">Valletta • Birkirkara • Msida • St. Julian&apos;s • Marsaxlokk</p>
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 px-3 py-1 text-xs font-bold text-emerald-300">
+                      <FaShieldHalved className="w-3 h-3 text-emerald-400" />
+                      Schengen State
                     </span>
-                    <span>Last Updated: Nov 2026</span>
                   </div>
-                  <p className="leading-relaxed">
-                    All WorkWise Visa placements in Malta adhere strictly to the Identità Single Permit framework, certified by Jobsplus labour clearance, and stamped via VFS Global with full European Schengen legal standing.
-                  </p>
+
+                  <div className="space-y-3 text-xs sm:text-sm">
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Primary Work Authorization:</span>
+                      <span className="font-bold text-white">Identità Single Permit (Directive 2011/98/EU)</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Consular Visa Category:</span>
+                      <span className="font-bold text-emerald-300">National Type D Employment Visa</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">In-Country Residence Document:</span>
+                      <span className="font-bold text-white">Biometric e-Residence Card</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Statutory Income Tax:</span>
+                      <span className="font-bold text-amber-300">Progressive (0% up to €9,100)</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5 border-b border-white/5">
+                      <span className="text-slate-400 font-medium">Average Monthly In-Hand:</span>
+                      <span className="font-bold text-emerald-300">€1,100 – €1,850 (₹1.00L – ₹1.68L)</span>
+                    </div>
+
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400 font-medium">Permanent Residence Pathway:</span>
+                      <span className="font-bold text-emerald-300">5 Continuous Years (EU Long-Term PR)</span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl bg-emerald-950/50 border border-emerald-500/30 p-3.5 text-center text-xs text-slate-300">
+                    <div className="flex items-center justify-center gap-2 text-emerald-300 font-semibold mb-0.5">
+                      <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Identità &amp; Jobsplus Approved</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      Bilingual Contract • Free Furnished Housing • Zero Hidden Middlemen Charges
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </header>
+        </section>
 
-        {/* Sticky Table of Contents Bar */}
-        <div className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs hidden md:block">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <nav className="flex items-center space-x-6 overflow-x-auto py-3 text-xs font-bold text-slate-600 no-scrollbar">
-              <a href="#overview" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Overview &amp; English Advantage
+        {/* ── Table of Contents & Quick Navigation ────────────── */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/50">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+              <FaMagnifyingGlass className="w-3 h-3 text-emerald-600" />
+              Malta Comprehensive Master Guide Directory:
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-bold">
+              <a href="#overview" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                1. English Advantage &amp; Mediterranean Hub
               </a>
-              <a href="#job-opportunities" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                In-Demand Sectors
+              <a href="#job-opportunities" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                2. High-Demand Trades &amp; Hospitality
               </a>
-              <a href="#government-portals" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Statutory Portals
+              <a href="#government-portals" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                3. Official Identità &amp; Jobsplus Portals
               </a>
-              <a href="#visa-pathways" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Single Permit Pathways
+              <a href="#visa-pathways" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                4. Single Permit &amp; Type D Visa
               </a>
-              <a href="#salary-matrix" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Salary Matrix (EUR vs INR)
+              <a href="#salary-matrix" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                5. 2026 Salary Schedule (EUR vs INR)
               </a>
-              <a href="#culture-and-lifestyle" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Work Culture &amp; Daily Life
+              <a href="#culture-and-lifestyle" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                6. Mediterranean Culture &amp; Daily Life
               </a>
-              <a href="#deployment-pipeline" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Deployment Steps
+              <a href="#deployment-pipeline" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                7. 6-Stage Application Roadmap
               </a>
-              <a href="#document-checklist" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Documents
+              <a href="#document-checklist" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                8. Mandatory Documents &amp; Apostille
               </a>
-              <a href="#faqs" className="hover:text-emerald-700 whitespace-nowrap transition-colors">
-                Forensic FAQs
+              <a href="#faqs" className="rounded-lg bg-slate-100 px-3 py-1.5 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+                9. Frequently Asked Questions (16 FAQs)
               </a>
-              <a href="#consultation-form" className="text-emerald-700 font-extrabold hover:underline whitespace-nowrap">
+              <a href="#consultation-form" className="rounded-lg bg-emerald-600 px-3 py-1.5 text-white hover:bg-emerald-700 transition-colors">
                 Apply Now →
               </a>
-            </nav>
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Content Body Container */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 space-y-20">
           {/* Section 1: Overview & English Language Advantage */}
           <section id="overview" className="scroll-mt-28 space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1 text-xs font-bold text-emerald-800">
