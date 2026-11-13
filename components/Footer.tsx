@@ -244,6 +244,66 @@ export default function Footer() {
               <Link href="/countries/uk" className="hover:text-emerald-700 hover:underline transition-colors">United Kingdom</Link>
               <span className="text-slate-300">•</span>
               <Link href="/countries/canada" className="hover:text-emerald-700 hover:underline transition-colors">Canada</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/albania" className="hover:text-emerald-700 hover:underline transition-colors">Albania</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/georgia" className="hover:text-emerald-700 hover:underline transition-colors">Georgia</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/romania" className="hover:text-emerald-700 hover:underline transition-colors">Romania</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/poland" className="hover:text-emerald-700 hover:underline transition-colors">Poland</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Authoritative Work Visa Guides Row (High PageRank Injection for Search Console Indexing) */}
+        <div className="mt-4 pt-4 border-t border-slate-200/70">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-900 shrink-0">
+              Key Visa Master Guides:
+            </span>
+            <div className="flex flex-wrap items-center gap-x-3.5 gap-y-2 text-xs font-medium text-slate-600">
+              <Link
+                href="/blogs/canada-work-permit-lmia-process-guide-2026-tfwp-jobs-salary-pr"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Canada LMIA &amp; Work Permit 2026
+              </Link>
+              <span className="text-slate-300">•</span>
+              <Link
+                href="/blogs/australia-skills-in-demand-visa-subclass-482-complete-guide-2026-jobs-salary-tra-pr"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Australia Skills in Demand (Subclass 482)
+              </Link>
+              <span className="text-slate-300">•</span>
+              <Link
+                href="/blogs/germany-opportunity-card-chancenkarte-eu-blue-card-complete-guide-2026"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Germany Opportunity Card
+              </Link>
+              <span className="text-slate-300">•</span>
+              <Link
+                href="/blogs/work-visa-check-online-by-passport-number-2026-saudi-dubai-qatar-kuwait-europe"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Visa Check Online by Passport
+              </Link>
+              <span className="text-slate-300">•</span>
+              <Link
+                href="/blogs/croatia-work-visa-complete-guide-2026-mup-crovisa-jobs-salary-pr"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Croatia Work Visa 2026
+              </Link>
+              <span className="text-slate-300">•</span>
+              <Link
+                href="/blogs/europe-schengen-work-visa-complete-guide-2026-germany-poland-croatia-luxembourg-malta-czechia"
+                className="hover:text-emerald-700 hover:underline transition-colors font-semibold text-slate-800"
+              >
+                Europe Schengen Work Visa
+              </Link>
             </div>
           </div>
         </div>
