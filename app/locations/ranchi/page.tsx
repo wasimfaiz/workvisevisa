@@ -37,71 +37,66 @@ import {
   FaGlobe,
   FaFileCircleCheck,
   FaIdCard,
+  FaArrowUpRightFromSquare,
 } from "react-icons/fa6";
 
 // ============================================================================
-// SEO METADATA — STRICT CHARACTER LIMITS & TARGETED RANCHI KEYWORDS
+// IDEAL SEO METADATA (Google SERP Character Limit Optimized)
 // ============================================================================
 export const metadata: Metadata = {
   applicationName: "WorkWise Visa",
-  title: "Work Visa Consultancy in Ranchi | Overseas Jobs & Recruitment",
+  title: "Work Visa Consultancy in Ranchi | WorkWise Visa Jharkhand",
   description:
-    "Top work visa consultancy in Ranchi, Jharkhand. Verified Gulf & Europe jobs, Takamol trade testing, GAMCA medical & eMigrate POE guidance for skilled technicians.",
+    "Premier Gulf & Europe work visa consultancy in Ranchi. Verified Saudi, Dubai & Europe jobs, Takamol testing, GAMCA medical & eMigrate POE clearance.",
   keywords: [
     "work visa consultancy in ranchi",
-    "visa consultancy in ranchi",
-    "gulf job consultancy in ranchi jharkhand",
-    "overseas placement agency ranchi",
-    "saudi work visa ranchi",
-    "dubai jobs ranchi",
-    "europe work permit consultancy jharkhand",
-    "ranchi passport office visa agent",
-    "hec ranchi welder jobs abroad",
-    "iti diploma overseas recruitment ranchi",
+    "gulf job consultancy in ranchi",
+    "visa consultancy in ranchi jharkhand",
+    "saudi work visa agency ranchi",
+    "dubai job agency ranchi",
+    "overseas recruitment agency ranchi",
+    "takamol test guidance ranchi",
+    "gamca medical ranchi jharkhand",
     "workwise visa ranchi",
-    "poland work visa agency ranchi",
-    "croatia work permit jharkhand",
-  ],
+    "best visa consultant ranchi",
+    "ecr passport visa clearance ranchi",
+    "poland work permit consultancy ranchi",
+    "romania work visa agency ranchi",
+    "emigrate registered agency for ranchi",
+    "hec ranchi diploma mechanical gulf jobs"
+],
   alternates: {
     canonical: "https://www.workwisevisa.com/locations/ranchi",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   openGraph: {
-    title: "Work Visa Consultancy in Ranchi | Overseas Jobs & Recruitment",
+    title: "Work Visa Consultancy in Ranchi | WorkWise Visa Jharkhand",
     description:
-      "Premier overseas job consultancy in Ranchi, Jharkhand. Authentic employer contracts for Saudi Arabia, UAE, Qatar & Europe with complete legal protection.",
+      "Premier overseas job placement & work visa assistance for candidates in Ranchi, Jharkhand. 100% verified employer contracts for Saudi Arabia, UAE, Qatar, and Europe.",
     url: "https://www.workwisevisa.com/locations/ranchi",
     siteName: "WorkWise Visa",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "https://www.workwisevisa.com/images/workwise_logo.png",
+        url: "/images/workwise_logo.png",
         width: 1200,
         height: 630,
-        alt: "WorkWise Visa Consultancy for Ranchi & Jharkhand",
+        alt: "WorkWise Visa Overseas Career Guidance for Ranchi Candidates",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Work Visa Consultancy in Ranchi | Overseas Jobs & Recruitment",
+    title: "Work Visa Consultancy in Ranchi | WorkWise Visa Jharkhand",
     description:
-      "Verified overseas job placement and work visa services in Ranchi, Jharkhand. 100% legal eMigrate, POE clearance, and direct employer contracts.",
-    images: ["https://www.workwisevisa.com/images/workwise_logo.png"],
+      "Trusted Gulf & Europe work visa consultancy in Ranchi. Verified company demands, Takamol trade tests, GAMCA medical & direct eMigrate POE clearance.",
+    images: ["/images/workwise_logo.png"],
   },
 };
 
+// ============================================================================
+// RICH STRUCTURED DATA (Schema.org) FOR LOCAL BUSINESS + COMPREHENSIVE FAQS
+// ============================================================================
 export default function RanchiLocationPage() {
   const schemaGraph = {
     "@context": "https://schema.org",
@@ -109,20 +104,22 @@ export default function RanchiLocationPage() {
       {
         "@type": "EmploymentAgency",
         "@id": "https://www.workwisevisa.com/locations/ranchi#agency",
-        name: "WorkWise Visa - Ranchi & Jharkhand Regional Candidate Desk",
+        name: "WorkWise Visa - Ranchi Candidate Guidance Desk",
         url: "https://www.workwisevisa.com/locations/ranchi",
         logo: "https://www.workwisevisa.com/images/workwise_logo.png",
         image: "https://www.workwisevisa.com/images/workwise_logo.png",
         description:
-          "Authoritative overseas employment consultancy for Ranchi and Jharkhand candidates. Specializing in verified GCC and European work visas, eMigrate POE compliance, GAMCA medical advisory, and Takamol trade testing.",
-        telephone: "+918130161603",
+          "Government-approved overseas recruitment consultancy for Ranchi candidates. Specializing in verified employment visas for Saudi Arabia, UAE, Qatar, Poland, Romania, and Germany with eMigrate POE clearance.",
+        telephone: "+91 8130161603",
+        email: "support@workwisevisa.com",
         priceRange: "₹₹",
         address: {
           "@type": "PostalAddress",
+          streetAddress: "Main Road & Ratu Road Commercial Corridor, Ranchi, Jharkhand 834001",
           addressLocality: "Ranchi",
           addressRegion: "Jharkhand",
-          addressCountry: "IN",
           postalCode: "834001",
+          addressCountry: "IN",
         },
         geo: {
           "@type": "GeoCoordinates",
@@ -130,54 +127,48 @@ export default function RanchiLocationPage() {
           longitude: 85.3096,
         },
         areaServed: [
-          { "@type": "AdministrativeArea", name: "Ranchi" },
-          { "@type": "AdministrativeArea", name: "Ratu Road" },
-          { "@type": "AdministrativeArea", name: "Doranda" },
-          { "@type": "AdministrativeArea", name: "Lalpur" },
-          { "@type": "AdministrativeArea", name: "Namkum" },
-          { "@type": "AdministrativeArea", name: "Hatia" },
-          { "@type": "AdministrativeArea", name: "Dhurwa" },
-          { "@type": "AdministrativeArea", name: "Kanke" },
+          { "@type": "City", name: "Ranchi" },
           { "@type": "AdministrativeArea", name: "Jharkhand" },
+          { "@type": "Country", name: "India" },
         ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Overseas Work Visa & Career Services",
+          name: "Overseas Work Visa & Recruitment Services for Ranchi",
           itemListElement: [
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Saudi Arabia Qiwa Verified Employment Visa",
+                name: "Saudi Arabia Work Visa & Takamol SVP Assistance",
                 description:
-                  "Direct corporate visas under Saudi Vision 2030 with authenticated Qiwa digital contracts and Takamol SVP testing.",
+                  "Comprehensive processing for Saudi Arabia corporate work visas, electronic Qiwa contracts, Wafid GAMCA medical, and Takamol trade test certification.",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "UAE Dubai 2-Year Employment Visa",
+                name: "UAE & Dubai Employment Visa Processing",
                 description:
-                  "Pre-approved MoHRE contracts with electronic entry permits and direct WPS salary bank accounts.",
+                  "MOHRE registered job placements, quota approvals, electronic entry permits, and Emirates ID biometric documentation for skilled professionals from Ranchi.",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "European National Type-D Work Permits",
+                name: "Qatar Industrial & Infrastructure Work Visas",
                 description:
-                  "Government work authorizations for Poland, Romania, Croatia, and Malta with long-stay Schengen legal entry.",
+                  "Ministry of Labour approved work permit processing with biometric enrollments at Qatar Visa Centers (QVC) for oil & gas, construction, and engineering trades.",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "HEMM & Mining Equipment Operator Placements",
+                name: "European Work Permits (Poland, Romania, Croatia)",
                 description:
-                  "High-salary recruitment for hydraulic excavator, tower crane, and heavy dumper operators in GCC infrastructure projects.",
+                  "Government-approved European single work permits, provincial labor market clearance (Zezwolenie / Aviz de Munca), and VFS appointment booking.",
               },
             },
           ],
@@ -185,7 +176,7 @@ export default function RanchiLocationPage() {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://www.workwisevisa.com/locations/ranchi#breadcrumb",
+        "@id": "https://www.workwisevisa.com/locations/ranchi#breadcrumbs",
         itemListElement: [
           {
             "@type": "ListItem",
@@ -213,36 +204,124 @@ export default function RanchiLocationPage() {
         mainEntity: [
           {
             "@type": "Question",
-            name: "How can skilled workers from Ranchi apply for Gulf & Europe jobs with WorkWise Visa?",
+            name: "How can candidates from Ranchi verify if a Gulf or Europe work visa is genuine?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Candidates from Ranchi can submit their passport, ITI/diploma, and experience certificates via WhatsApp (+91 8130161603) for an instant, free profile assessment. For trade testing and face-to-face selection, Ranchi candidates can travel to our Patna Regional Branch (Varma Centre, Boring Road) in just 5.5 hours via the Ranchi-Patna Vande Bharat Express (22350).",
+              text: "Candidates from Ranchi must check three official parameters: 1) Verify that the recruiting agency possesses a valid MEA license on the official eMigrate portal (emigrate.gov.in). 2) Confirm that the foreign employment visa is digitally indexed on destination government portals—such as Saudi Qiwa/Muqeem, UAE MoHRE/ICP, or Qatar MOI—using your passport number. 3) Ensure that you hold a legally stamped bilingual employment contract under Pravasi Bharatiya Bima Yojana (PBBY) insurance before paying any fees or handing over your original passport.",
             },
           },
           {
             "@type": "Question",
-            name: "Where do Ranchi applicants get their GAMCA / Wafid medical tests done?",
+            name: "Where do candidates from Ranchi take the mandatory GAMCA / Wafid medical examination?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "GCC medical appointments must be generated on the official portal wafid.com. Candidates from Ranchi are typically allocated to authorized diagnostic clinics in Kolkata or Patna. Both cities are directly connected to Ranchi via superfast daily trains.",
+              text: "Medical slips must be generated online exclusively through wafid.com for a fee of $10 USD. The automated central GCC algorithm randomly allocates an accredited medical center in Patna, Kolkata, or New Delhi. WorkWise Visa provides confidential preliminary health assessments in Ranchi (covering chest digital X-ray scar detection and serology blood screens) prior to official Wafid booking to avoid irreversible UNFIT statuses in the GCC electronic database.",
             },
           },
           {
             "@type": "Question",
-            name: "How can Ranchi candidates obtain a Police Clearance Certificate (PCC)?",
+            name: "What is the Takamol Skill Verification Program (SVP) requirement for Ranchi technicians?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Ranchi candidates book an online appointment at the Regional Passport Office (RPO) Ranchi, located at Galaxia Mall, Ratu Road. After local police verification, the PCC is issued and further apostilled by the Ministry of External Affairs (MEA) for overseas work visa stamping.",
+              text: "Under Saudi Arabia Ministry of Human Resources regulations, 23 professional trades (including electricians, welders, HVAC technicians, plumbers, and mechanics) must clear the Takamol SVP test. Candidates from Ranchi complete a 30-minute computer theoretical exam and a 2-hour practical workshop evaluation at an accredited trade test facility before visa stamping.",
             },
           },
           {
             "@type": "Question",
-            name: "Are there vacancies for ITI diploma holders and welders from Ranchi in Europe?",
+            name: "How does WorkWise Visa support ECR passport holders from Ranchi under the Emigration Act 1983?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. European manufacturing and shipyard companies in Poland, Romania, Croatia, and Malta actively recruit 6G pipe welders, CNC operators, industrial electricians, and mechanical fitters from Ranchi, offering monthly in-hand salaries ranging from ₹95,000 to ₹1,65,000 with company-provided accommodation and medical cover.",
+              text: "If your passport is stamped \"Emigration Check Required\" (non-matriculate), Section 10 of the Indian Emigration Act 1983 mandates POE clearance for 18 notified countries. WorkWise Visa executes 100% digital eMigrate clearance through the Protector of Emigrants (POE) office, linking the foreign employer's approved demand letter, employment contract, and mandatory ₹10 Lakh PBBY insurance directly into your passport system.",
             },
           },
+          {
+            "@type": "Question",
+            name: "What are the average overseas monthly earnings for Ranchi industrial technicians?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Certified industrial technicians, heavy machinery operators, and fabricators from Ranchi earn between ₹45,000 and ₹95,000 per month in GCC destinations (Saudi Arabia, UAE, Qatar) and between ₹1,05,000 and ₹1,85,000 per month in European nations (Poland, Romania, Germany). All contracts include employer-provided bachelor accommodation, site transport, health insurance, and paid annual leave.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How do candidates from Ranchi travel to the WorkWise Visa regional branch?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Candidates can reach our Patna regional branch via the Ranchi - Patna Vande Bharat Express (Train 22350) in 5 hours 50 minutes, or alternatively via Ranchi - Patna Jan Shatabdi Express (Train 12366). For European VFS biometric appointments and Qatar Visa Center biometrics, Birsa Munda Airport (IXR) offers multiple daily non-stop 2-hour flights to New Delhi (DEL) for European Embassy VFS and Qatar Visa Center biometrics, alongside direct express trains like Ranchi Rajdhani and Jharkhand Sampark Kranti.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What documents are required to apply for overseas employment from Ranchi?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Candidates require: 1) Original passport with minimum 8 months validity. 2) 8 white-background passport-size photographs. 3) Technical qualification certificates (ITI, Polytechnic Diploma, or trade test card). 4) Indian or Gulf work experience certificates. 5) Police Clearance Certificate (PCC) issued by Regional Passport Office (RPO) Ranchi located at Galaxia Mall, Ratu Road and the Post Office Passport Seva Kendra (POPSK) at Kokar and Ranchi GPO.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can candidates from Ranchi migrate to European countries like Poland, Romania, and Croatia?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. WorkWise Visa actively recruits heavy engineering assembly, precision foundry and forge technology, mechanical millwright fitting, high-voltage industrial electrical systems, centralized HVAC chilling infrastructure, and logistics warehousing from Ranchi for factory assembly, precision CNC machining, structural welding, and warehouse logistics across Poland (Zezwolenie Typ A), Romania (Aviz de Munca), and Croatia (Dozvola za boravak i rad). Processing takes approximately 90 to 120 days under official European work permits.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How are family remittances handled safely from the Gulf to Ranchi?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Workers remit their earnings legally through authorized banking channels (such as exchange houses operating under the RBI Rupee Drawing Arrangement) directly into their Non-Resident External (NRE) or Non-Resident Ordinary (NRO) bank accounts at local branches of State Bank of India, Bank of India, Punjab National Bank, or Canara Bank across Ranchi. This avoids illicit Hawala networks and ensures 100% tax-free income repatriation under Indian tax law.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is the fee structure and payment timeline for work visa processing through WorkWise Visa?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "WorkWise Visa adheres strictly to Ministry of External Affairs recruitment guidelines. We do not demand arbitrary cash advances. Service charges are transparently scheduled across document registration, verified employer offer letter issuance, medical and trade test clearance, and final visa stamping with POE clearance.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What is the validity period of a Gulf work visa and how is the Iqama or Resident ID renewed?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Standard employment visas in Saudi Arabia, UAE, and Qatar are issued for an initial duration of 2 years, renewable upon mutual consent between employee and employer. Under local labor laws, the sponsoring corporate company is legally responsible for bearing all Iqama / Emirates ID / QID residency renewal fees. Workers never have to pay out-of-pocket for residency cards.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What happens if a candidate from Ranchi fails the GAMCA medical examination?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "If declared UNFIT due to temporary or treatable factors (such as mild hypertension, elevated fasting glucose, or minor ear infections), candidates can undergo clinical management and retake the test after the mandatory waiting period. However, permanent disqualifiers like active Hepatitis B/C or old tuberculosis scars trigger a GCC-wide entry ban for 6 to 12 months. This is why our confidential pre-medical screening in Ranchi is strongly advised.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Are technical trade tests conducted in Ranchi or at specialized centers?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Initial profile screening, mechanical blueprint reading, and resume evaluation are performed locally or digitally. For mandatory practical skill certifications (such as Takamol SVP for Saudi Arabia or client trade test interviews for large EPC contractors), candidates attend accredited technical workshops in Patna, Jamshedpur, or New Delhi where specialized test rigs and welding booths are certified by international inspection agencies.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can candidates apply if they have a gap in their work experience?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. As long as you possess genuine technical capabilities, can demonstrate your craft on a test bench, and provide valid educational credentials (ITI/Diploma), minor employment gaps do not disqualify you. Our placement coordinators help present your career history accurately to overseas human resources departments.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "What emergency legal assistance is available for workers from Ranchi while working abroad?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Workers placed through WorkWise Visa are protected under the MEA MADAD grievances framework and Indian Embassy labor attaches in Riyadh, Dubai, Doha, and European capitals. Additionally, your mandatory Pravasi Bharatiya Bima Yojana (PBBY) policy provides up to ₹45,000 for local legal defense representation and emergency repatriation assistance in the rare event of contractual disputes.",
+            },
+          }
         ],
       },
     ],
@@ -259,7 +338,7 @@ export default function RanchiLocationPage() {
 
       <main className="w-full">
         {/* ==================================================================== */}
-        {/* SECTION 1: HERO                                                      */}
+        {/* SECTION 1: HERO (No top gap, zero left CTAs, high-trust right card) */}
         {/* ==================================================================== */}
         <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-blue-950 pt-24 sm:pt-28 pb-16 sm:pb-24 text-white">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b0a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
@@ -270,11 +349,17 @@ export default function RanchiLocationPage() {
               aria-label="Breadcrumb"
               className="mb-6 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-400"
             >
-              <Link href="/" className="transition-colors hover:text-emerald-400">
+              <Link
+                href="/"
+                className="transition-colors hover:text-emerald-400"
+              >
                 Home
               </Link>
               <span>/</span>
-              <Link href="/locations" className="transition-colors hover:text-emerald-400">
+              <Link
+                href="/locations"
+                className="transition-colors hover:text-emerald-400"
+              >
                 Locations
               </Link>
               <span>/</span>
@@ -286,7 +371,7 @@ export default function RanchiLocationPage() {
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-300">
                   <FaShieldHalved className="text-emerald-400" />
-                  Government-Compliant Overseas Career Pathway for Ranchi &amp; Jharkhand
+                  Government-Compliant Overseas Career Pathway for Ranchi
                 </div>
 
                 <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
@@ -297,7 +382,7 @@ export default function RanchiLocationPage() {
                 </h1>
 
                 <p className="mt-5 text-base sm:text-lg leading-relaxed text-slate-300">
-                  As the capital and premier industrial-educational nerve center of Jharkhand, Ranchi produces a formidable workforce of heavy engineering technicians (HEC Dhurwa), ITI diploma holders, precision 6G welders, hydraulic excavator operators, electrical wiremen, and civil construction supervisors. WorkWise Visa connects Ranchi&apos;s skilled manpower with authentic, verified employment across Saudi Arabia (NEOM &amp; Aramco), the UAE, Qatar, Kuwait, Oman, and European national markets (Poland, Romania, Croatia, and Malta). Experience complete institutional transparency: verified direct employer visas, pre-negotiated salaries, Takamol trade skill testing, GAMCA medical guidance, and 100% legal eMigrate Emigration Clearance (POE).
+                  As Jharkhand State Capital & Heavy Engineering Hub, Ranchi supplies specialized industrial manpower across heavy engineering assembly, precision foundry and forge technology, mechanical millwright fitting, high-voltage industrial electrical systems, centralized HVAC chilling infrastructure, and logistics warehousing to prime engineering and infrastructure projects in Saudi Arabia, the UAE, Qatar, Oman, and European national markets. WorkWise Visa provides Ranchi&apos;s skilled technicians and engineers with complete institutional transparency: verified direct employer visas, government-attested minimum wage contracts, Takamol trade skill testing, GAMCA medical advisory, and 100% legal eMigrate Emigration Clearance (POE).
                 </p>
 
                 {/* Key Legal Trust Metrics */}
@@ -343,43 +428,51 @@ export default function RanchiLocationPage() {
                       <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
                       <div>
                         <strong className="text-white">Active Destinations:</strong>{" "}
-                        Saudi Arabia (NEOM / Red Sea), UAE (Dubai &amp; Abu Dhabi), Qatar, Kuwait, Poland, Romania &amp; Croatia.
+                        Saudi Arabia (Vision 2030 / NEOM), UAE (Dubai &amp; Abu Dhabi), Qatar, Oman, Poland, Romania &amp; Germany.
                       </div>
                     </div>
                     <div className="flex items-start gap-3 text-slate-300">
                       <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
                       <div>
                         <strong className="text-white">Monthly Salary Bands:</strong>{" "}
-                        ₹45,000 to ₹1,75,000/mo with free company accommodation, daily transport, and comprehensive medical cover.
+                        ₹48,000 to ₹1,85,000/mo with free company accommodation, transportation, and medical coverage.
                       </div>
                     </div>
                     <div className="flex items-start gap-3 text-slate-300">
                       <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
                       <div>
                         <strong className="text-white">Processing Turnaround:</strong>{" "}
-                        25 to 45 Days for GCC employment visas; 80 to 110 Days for European Single Work Permits (Type-D).
+                        25 to 45 Days for GCC visas; 90 to 120 Days for European Single Work Permits.
                       </div>
                     </div>
                     <div className="flex items-start gap-3 text-slate-300">
                       <FaCircleCheck className="mt-0.5 text-emerald-400 shrink-0" />
                       <div>
-                        <strong className="text-white">Worker Protection:</strong>{" "}
-                        Authenticated digital contracts registered on foreign labor portals with direct Wage Protection System (WPS) bank accounts.
+                        <strong className="text-white">Verified POE Emigration:</strong>{" "}
+                        100% digital clearance via MEA eMigrate portal under the Emigration Act 1983.
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-6 border-t border-slate-700 pt-5">
+                  <div className="mt-6 flex flex-col gap-3">
                     <a
-                      href="#consultation"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3.5 text-center text-sm font-bold text-white shadow-lg shadow-emerald-600/25 transition-all hover:from-emerald-500 hover:to-teal-500 hover:shadow-emerald-600/40 hover:scale-[1.01]"
+                      href="tel:+918130161603"
+                      className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-900/30 transition"
                     >
-                      Book Free Profile Evaluation in Ranchi
-                      <FaArrowRight className="text-xs" />
+                      <FaPhone className="text-sm" /> Speak to Regional Branch Advisor
                     </a>
-                    <p className="mt-2 text-center text-xs text-slate-400">
-                      Instant response within 2 hours • No registration charges
-                    </p>
+                    <a
+                      href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20from%20Ranchi%20and%20need%20authentic%20work%20visa%20guidance."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 px-5 py-3 text-sm font-bold text-emerald-300 transition"
+                    >
+                      <FaWhatsapp className="text-base text-emerald-400" /> WhatsApp Document Evaluation
+                    </a>
+                  </div>
+
+                  <div className="mt-5 border-t border-slate-700/60 pt-4 text-[11px] text-slate-400 leading-normal">
+                    <strong>Physical Verification Branch:</strong> WorkWise Visa Regional Desk, Boring Road / Bailey Road Corridor, Patna (Transit from Ranchi: 5 hours 50 minutes via Ranchi - Patna Vande Bharat Express (Train 22350)).
                   </div>
                 </div>
               </div>
@@ -388,7 +481,7 @@ export default function RanchiLocationPage() {
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 2: EXECUTIVE SUMMARY & RANCHI'S MIGRATION REALITY            */}
+        {/* SECTION 2: EXECUTIVE SUMMARY & WORKFORCE DEMOGRAPHICS                */}
         {/* ==================================================================== */}
         <section className="border-b border-slate-200 bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -397,451 +490,1193 @@ export default function RanchiLocationPage() {
                 In-Depth Regional Analysis &amp; Workforce Demographics
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Why Ranchi is Jharkhand&apos;s Fastest-Growing Talent Corridor for Overseas Careers
+                Why Ranchi is a Strategic Sourcing Hub for International Industry
               </h2>
             </div>
 
             <div className="mt-8 grid grid-cols-1 gap-8 text-base leading-relaxed text-slate-600 lg:grid-cols-2">
               <div className="space-y-5">
                 <p>
-                  Ranchi serves as the nerve center for administrative governance, higher technical education, and heavy industrial engineering in Jharkhand. Anchored by premier institutions such as the Heavy Engineering Corporation (HEC Dhurwa), Government Polytechnic Ranchi, BIT Mesra, and numerous state industrial training institutes (ITIs), the city trains thousands of skilled craftsmen every year. Localities across Ranchi—including Ratu Road, Doranda, Lalpur, Namkum, Hatia, Dhurwa, Kanke, and Tupudana Industrial Area—house seasoned technicians who possess valuable hands-on experience in metal fabrication, machine overhaul, high-voltage electrical grids, and commercial fleet management.
+                  Ranchi occupies an indispensable position within the industrial architecture of Eastern India. Encompassing key municipal and industrial blocks—including HEC Township Dhurwa, Namkum Industrial Area, Tatisilwai, Kokar Industrial Estate, Tupudana, Ratu Road, Doranda, Lalpur, Harmu, Kanke, Bariatu, Morabadi, Bundu, and Ormanjhi—the region is anchored by world-class technical institutions such as the National Institute of Advanced Manufacturing Technology (NIAMT / formerly NIFFT Hatia), BIT Mesra, Government Polytechnic Ranchi (Church Road), and Government ITI Ranchi (Hehal / Ratu Road). The local educational ecosystem churns out thousands of disciplined, highly skilled diploma holders, ITI technicians, and engineering graduates each year.
                 </p>
                 <p>
-                  Historically, job seekers from Ranchi and nearby districts (Ramgarh, Khunti, Gumla, and Lohardaga) fell prey to unlicensed local sub-agents who charged exorbitant fees for temporary visit visas or false promise letters. WorkWise Visa provides an institutional alternative: direct recruitment tied to pre-approved governmental labor quotas, transparent statutory fees, and verified employment contracts filed directly through the Ministry of External Affairs (MEA) eMigrate framework.
+                  Unlike purely general labor corridors, Ranchi provides specialized industrial competence: heavy engineering assembly, precision foundry and forge technology, mechanical millwright fitting, high-voltage industrial electrical systems, centralized HVAC chilling infrastructure, and logistics warehousing. Technicians trained in this rigorous operational environment readily meet the rigorous international testing benchmarks required by international mega-projects such as Saudi Aramco, NEOM, ADNOC UAE, and European manufacturing consortia.
                 </p>
               </div>
 
               <div className="space-y-5">
                 <p>
-                  With the launch of the superfast Ranchi-Patna Vande Bharat Express (22350), candidates from Ranchi can now reach WorkWise Visa&apos;s flagship Bihar &amp; Jharkhand Regional Branch at Varma Centre, Boring Road, Patna in just 5.5 hours. This rapid connectivity allows workers to attend client selection trade tests, verify corporate documents face-to-face, and return the same day with absolute peace of mind.
+                  However, skilled professionals in Ranchi have repeatedly suffered at the hands of unregulated middlemen operating around Ranchi Railway Station, Overbridge, Ratu Road, and Kantatoli Bus Stand. These predatory middlemen peddle fraudulent &ldquo;Azad Visas&rdquo; or 30-day tourist visit visas under the false guarantee of conversion, charging extortionate fees of ₹1,20,000 to ₹1,80,000. Workers frequently find themselves stranded abroad without residency papers (Iqamas), facing wage theft and deportation.
                 </p>
                 <p>
-                  Whether you are an ITI-certified electrician aiming for high-salary European manufacturing plants in Poland and Romania, or a heavy equipment operator seeking tax-free GCC Dinar earnings in Kuwait or Saudi Vision 2030 megaprojects, WorkWise Visa guides you through every step: from Takamol Skill Verification (SVP) and Wafid GAMCA medicals to final consular visa stamping.
+                  WorkWise Visa eliminates intermediary deception. Working directly with multinational contractors across Saudi Arabia, the UAE, Qatar, Oman, and Europe (Poland, Romania, Germany), we enforce total compliance with the <strong>Emigration Act, 1983</strong>. Every candidate travels with a verifiable electronic work visa, a bilingual labor contract, mandatory ₹10 Lakh Pravasi Bharatiya Bima Yojana (PBBY) insurance, and institutional trade verification.
                 </p>
+                <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
+                  <p className="text-sm font-bold text-emerald-950">
+                    Important Compliance Advisory for Ranchi Candidates:
+                  </p>
+                  <p className="mt-1 text-xs text-emerald-800">
+                    Never deposit money or surrender your original passport to unlicensed brokers. Always verify an agency&apos;s Recruiting Agent (RA) license on the official{" "}
+                    <a
+                      href="https://emigrate.gov.in"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold underline hover:text-emerald-950"
+                    >
+                      MEA eMigrate portal
+                    </a>
+                    . Real corporate employers never issue visas on WhatsApp screenshots or handwritten letterheads.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 3: IN-DEMAND TRADES & SALARY BENCHMARKS                     */}
+        {/* SECTION 3: THE EMIGRATION ACT 1983 & ECR VS ECNR CLEARANCE           */}
         {/* ==================================================================== */}
-        <section className="border-b border-slate-200 bg-slate-50 py-16 sm:py-20">
+        <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
+            <div className="text-center max-w-3xl mx-auto">
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Verified Global Compensation
+                Statutory Compliance &amp; Legal Framework
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Top In-Demand Overseas Trades for Ranchi Technicians in 2026
+                ECR vs. ECNR Passport Regulations for Ranchi Migrants
               </h2>
-              <p className="mt-3 text-slate-600 text-sm sm:text-base">
-                Transparent salary benchmarks negotiated directly with verified foreign employers. All positions include free furnished accommodation, site transportation, and health insurance.
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Understanding your legal status under the Ministry of External Affairs (MEA) is mandatory to guarantee safe passage through international immigration checkpoints.
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {/* Category 1: Heavy Equipment & Mining */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
-                    <FaCarSide className="text-xl" />
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+              {/* ECR Passport Guide */}
+              <div className="rounded-2xl border border-emerald-200 bg-white p-6 sm:p-8 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                    <FaPassport className="text-2xl" />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-slate-900">Heavy Equipment &amp; Mining</h3>
-                    <p className="text-xs text-slate-500">Saudi NEOM, UAE, Kuwait, Oman</p>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      ECR (Emigration Check Required)
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      For candidates without a 10th-grade matriculation certificate
+                    </p>
                   </div>
                 </div>
-                <div className="mt-4 space-y-2 text-sm text-slate-600">
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Hydraulic Excavator Operator:</span>
-                    <span className="font-bold text-emerald-600">₹72,000 – ₹1,10,000</span>
+
+                <div className="mt-6 space-y-4 text-sm text-slate-600">
+                  <p>
+                    If the observation page of your passport notes <strong className="text-slate-800">&ldquo;Emigration Check Required&rdquo;</strong>, Section 10 of the Emigration Act 1983 mandates that you must obtain an official Emigration Clearance (POE) digital clearance prior to boarding flights to 18 notified nations.
+                  </p>
+                  <div className="rounded-lg bg-slate-50 p-4 border border-slate-200">
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-slate-700">
+                      18 Notified ECR Nations:
+                    </h4>
+                    <p className="mt-1 text-xs text-slate-600">
+                      Saudi Arabia, United Arab Emirates, Qatar, Oman, Kuwait, Bahrain, Malaysia, Jordan, Libya, Lebanon, Iraq, Yemen, Sudan, Afghanistan, Indonesia, Syria, Thailand, and South Sudan.
+                    </p>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Heavy Trailer Driver (GCC):</span>
-                    <span className="font-bold text-emerald-600">₹65,000 – ₹95,000</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Tower Crane Operator:</span>
-                    <span className="font-bold text-emerald-600">₹75,000 – ₹1,15,000</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="font-medium text-slate-700">Bulldozer / Grader Operator:</span>
-                    <span className="font-bold text-emerald-600">₹68,000 – ₹1,00,000</span>
-                  </div>
+                  <h4 className="font-bold text-slate-800">
+                    Mandatory POE Emigration Clearance Protocol:
+                  </h4>
+                  <ul className="space-y-2 text-xs">
+                    <li className="flex items-start gap-2">
+                      <FaCircleCheck className="mt-0.5 text-emerald-500 shrink-0" />
+                      <span>The overseas employer uploads approved demand letters and attested contracts directly on the eMigrate portal.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaCircleCheck className="mt-0.5 text-emerald-500 shrink-0" />
+                      <span>WorkWise Visa registers your trade credentials, valid visa ID, and verified medical fitness report.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaCircleCheck className="mt-0.5 text-emerald-500 shrink-0" />
+                      <span>Automated integration of the mandatory Pravasi Bharatiya Bima Yojana (PBBY) insurance policy (₹10 Lakh coverage).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaCircleCheck className="mt-0.5 text-emerald-500 shrink-0" />
+                      <span>The POE office approves and digitally stamps the electronic clearance, ensuring frictionless immigration passage at Indian airports.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              {/* Category 2: Mechanical & 6G Welding */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                    <FaBriefcase className="text-xl" />
+              {/* ECNR Passport Guide */}
+              <div className="rounded-2xl border border-teal-200 bg-white p-6 sm:p-8 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600">
+                    <FaFileContract className="text-2xl" />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-slate-900">Mechanical &amp; 6G Welding</h3>
-                    <p className="text-xs text-slate-500">Poland, Romania, Saudi Aramco, Kuwait</p>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      ECNR (Emigration Check Not Required)
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      Matriculation pass, diploma holders, graduates, nurses &amp; IT taxpayers
+                    </p>
                   </div>
                 </div>
-                <div className="mt-4 space-y-2 text-sm text-slate-600">
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">6G Pipe Welder (TIG/MIG):</span>
-                    <span className="font-bold text-emerald-600">₹85,000 – ₹1,35,000</span>
+
+                <div className="mt-6 space-y-4 text-sm text-slate-600">
+                  <p>
+                    Passports without the ECR notation are classified as ECNR. ECNR holders are legally exempt from obtaining POE clearance before boarding flights to the Gulf, Europe, or Southeast Asia.
+                  </p>
+                  <div className="rounded-lg bg-slate-50 p-4 border border-slate-200">
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-slate-700">
+                      Qualifications for ECNR Status:
+                    </h4>
+                    <ul className="mt-2 space-y-1 text-xs text-slate-600 list-disc list-inside">
+                      <li>All persons holding a Matriculation certificate (10th grade) or higher degrees.</li>
+                      <li>Holders of 2-year or 3-year diplomas from recognized state polytechnic colleges such as the National Institute of Advanced Manufacturing Technology (NIAMT / formerly NIFFT Hatia), BIT Mesra, Government Polytechnic Ranchi (Church Road), and Government ITI Ranchi (Hehal / Ratu Road).</li>
+                      <li>Registered nurses and technical supervisors.</li>
+                      <li>Active income tax payers and individuals who have worked abroad for over 3 years.</li>
+                    </ul>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Structural Fabricator:</span>
-                    <span className="font-bold text-emerald-600">₹58,000 – ₹88,000</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Industrial Millwright Fitter:</span>
-                    <span className="font-bold text-emerald-600">₹62,000 – ₹92,000</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="font-medium text-slate-700">Pipe Fitter / Fabricator:</span>
-                    <span className="font-bold text-emerald-600">₹55,000 – ₹82,000</span>
-                  </div>
+                  <h4 className="font-bold text-slate-800">
+                    WorkWise Safeguards for ECNR Candidates:
+                  </h4>
+                  <p className="text-xs">
+                    Fraudulent agents frequently misuse ECNR status to fly candidates on 30-day visit visas, promising that employers will &ldquo;convert them upon arrival.&rdquo; WorkWise Visa ensures candidates travel exclusively on genuine, pre-approved employment entry permits with direct bank payroll (WPS) guarantees.
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Category 3: MEP & European Logistics */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                    <FaBuildingColumns className="text-xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-slate-900">MEP &amp; European Industry</h3>
-                    <p className="text-xs text-slate-500">Poland, Croatia, Germany, Dubai</p>
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2 text-sm text-slate-600">
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">CNC / VMC Operator:</span>
-                    <span className="font-bold text-emerald-600">₹95,000 – ₹1,55,000</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">Industrial Electrician:</span>
-                    <span className="font-bold text-emerald-600">₹58,000 – ₹90,000</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-50">
-                    <span className="font-medium text-slate-700">HVAC Chiller Technician:</span>
-                    <span className="font-bold text-emerald-600">₹62,000 – ₹95,000</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="font-medium text-slate-700">Warehouse Forklift Operator:</span>
-                    <span className="font-bold text-emerald-600">₹90,000 – ₹1,40,000</span>
-                  </div>
-                </div>
+            {/* In-Depth Legal Protection: PBBY Coverage Table */}
+            <div className="mt-12 rounded-2xl bg-white p-6 sm:p-8 border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-3">
+                <FaScaleBalanced className="text-2xl text-emerald-600" />
+                <h3 className="text-xl font-bold text-slate-900">
+                  Pravasi Bharatiya Bima Yojana (PBBY) Benefits Matrix
+                </h3>
+              </div>
+              <p className="mt-2 text-sm text-slate-600">
+                Under MEA regulations, this compulsory insurance costs under ₹375 for 2 years or ₹525 for 3 years, offering complete financial protection for families back home in Ranchi:
+              </p>
+
+              <div className="mt-6 overflow-x-auto">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead className="bg-slate-100 text-slate-700 uppercase font-semibold">
+                    <tr>
+                      <th className="px-4 py-3">Benefit Category</th>
+                      <th className="px-4 py-3">Statutory Coverage Amount</th>
+                      <th className="px-4 py-3">Eligibility &amp; Claim Conditions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 text-slate-600">
+                    <tr>
+                      <td className="px-4 py-3 font-semibold text-slate-800">Accidental Death / Permanent Disability</td>
+                      <td className="px-4 py-3 font-bold text-emerald-600">₹10,00,000 (10 Lakhs)</td>
+                      <td className="px-4 py-3">Disbursed directly to registered nominees in Ranchi in the event of fatal worksite accidents or permanent loss of limbs/vision.</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-semibold text-slate-800">Emergency Hospitalization Abroad</td>
+                      <td className="px-4 py-3 font-bold text-slate-800">Up to ₹1,00,000</td>
+                      <td className="px-4 py-3">Covers emergency medical treatment, surgeries, and ICU admissions in overseas medical centers.</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-semibold text-slate-800">Medical Repatriation to India</td>
+                      <td className="px-4 py-3 font-bold text-slate-800">Economy Airfare + Medical Escort</td>
+                      <td className="px-4 py-3">Covers air travel back to India if the worker is declared medically unfit due to work injury or serious illness.</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-semibold text-slate-800">Legal Defense Reimbursement</td>
+                      <td className="px-4 py-3 font-bold text-slate-800">Up to ₹45,000</td>
+                      <td className="px-4 py-3">Reimburses advocate and legal consultation expenses in the destination country if the employer breaches the contract.</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-semibold text-slate-800">Family Compassionate Visit</td>
+                      <td className="px-4 py-3 font-bold text-slate-800">Roundtrip Flight for 1 Relative</td>
+                      <td className="px-4 py-3">Funds return air travel for an immediate family member from Ranchi if the worker is hospitalized abroad for over 30 days.</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 4: TRAVEL CONNECTIVITY TO PATNA REGIONAL BRANCH              */}
+        {/* SECTION 4: DESTINATION BLUEPRINTS (SAUDI, UAE, QATAR, EUROPE)       */}
         {/* ==================================================================== */}
-        <section className="border-b border-slate-200 bg-white py-16 sm:py-20">
+        <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-6 space-y-5">
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                  Fast Physical &amp; Digital Access
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-slate-900">
-                  How Ranchi Candidates Connect with WorkWise Visa
-                </h2>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                  You do not need to travel to Delhi or Mumbai for genuine overseas employment opportunities. Our fully-equipped <strong>Patna Regional Branch</strong> at Varma Centre, Boring Road serves as the official recruitment hub for Jharkhand, complete with trade test evaluation facilities and biometric compliance guidance.
-                </p>
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Target Employment Corridors
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Comprehensive Visa &amp; Work Regulations by Destination
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Detailed breakdowns of official labor laws, digital portals, salary protection mechanisms, and mandatory trade qualifications for Ranchi candidates across Gulf and European corridors.
+              </p>
+            </div>
 
-                <div className="space-y-3 pt-2">
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                    <FaTrainSubway className="text-emerald-600 text-lg mt-0.5 shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">Ranchi - Patna Vande Bharat Express (22350)</h4>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Departs Ranchi Junction at 04:15 PM, arrives Patna Junction at 10:05 PM (5 Hours 50 Minutes). Also available: Jan Shatabdi Express (12366) and daily overnight Pataliputra Express (18622).
-                      </p>
-                    </div>
+            <div className="mt-12 space-y-12">
+              {/* Destination 1: Saudi Arabia */}
+              <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">
+                      Destination Focus #1
+                    </span>
+                    <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                      Kingdom of Saudi Arabia (KSA) Work Visa Process
+                    </h3>
+                  </div>
+                  <Link
+                    href="/countries/saudi-arabia"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+                  >
+                    View Complete Saudi Work Visa Guide <FaArrowRight />
+                  </Link>
+                </div>
+
+                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3 text-sm text-slate-600">
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaBuildingUser className="text-emerald-600" />
+                      Qiwa Digital Tripartite Contract
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Under Saudi Ministry of Human Resources rules, paper contracts hold zero legal validity. Every worker receives an authenticated digital contract on the{" "}
+                      <a
+                        href="https://qiwa.sa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-600 underline font-semibold"
+                      >
+                        Qiwa platform
+                      </a>
+                      . The contract specifies basic wage in Saudi Riyals (SAR), standard working hours (max 8 hours + overtime per Article 98), paid vacation entitlements, and medical insurance grade.
+                    </p>
                   </div>
 
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                    <FaRoute className="text-emerald-600 text-lg mt-0.5 shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">Direct Highway Route (NH-33 &amp; NH-20)</h4>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Ranchi → Ramgarh → Hazaribagh → Barhi → Nawada → Bakhtiyarpur → Patna (Approximately 325 KM, 6.5 Hours via smooth 4-lane highway).
-                      </p>
-                    </div>
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaAward className="text-emerald-600" />
+                      Takamol Skill Verification (SVP)
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      For 23 technical occupations (electricians, pipe fitters, welders, HVAC technicians, and automotive mechanics), Takamol SVP certification is compulsory. Candidates from Ranchi undergo a 30-minute computer theory test and a 2-hour practical bench assessment before the Saudi Consulate stamps their work visa.
+                    </p>
                   </div>
 
-                  <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                    <FaWhatsapp className="text-emerald-600 text-lg mt-0.5 shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-sm">100% Online Document Pre-Screening</h4>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        Save travel expenses! Send your resume, trade certificates, and passport copy to our WhatsApp helpline (+91 8130161603) for initial client matching before scheduling a visit.
-                      </p>
-                    </div>
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaMoneyBillTrendUp className="text-emerald-600" />
+                      Wage Protection System (WPS)
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Upon arrival in Saudi Arabia and issuance of the resident ID (Iqama), employers must provide a digital payroll card (e.g., Al Rajhi, SNB, or Mada). Monthly payments are tracked in real-time by the Saudi Central Bank (SAMA). Firms delaying wages face immediate portal suspension and labor ministry fines.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-6">
-                <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/50 via-teal-50/30 to-slate-50 p-6 sm:p-8 shadow-sm">
-                  <h3 className="font-display font-bold text-slate-900 text-lg flex items-center gap-2">
-                    <FaLocationDot className="text-emerald-600" />
-                    Patna Regional Facilitation Center (Bihar &amp; Jharkhand)
-                  </h3>
-                  <div className="mt-4 space-y-3 text-sm text-slate-700">
-                    <p>
-                      <strong>Office Address:</strong> 6th Floor, Office No. 606, Varma Centre, Boring Road Crossing, Sri Krishna Puri, Patna, Bihar 800001
-                    </p>
-                    <p>
-                      <strong>Office Timings:</strong> Monday to Saturday: 09:30 AM – 06:30 PM (Sunday Closed)
-                    </p>
-                    <p>
-                      <strong>Helpline &amp; Appointments:</strong> +91 8130161603 / workwisevisa@gmail.com
-                    </p>
-                    <p>
-                      <strong>From Patna Junction:</strong> Direct shared auto/cab via Dak Bungalow to Boring Road Crossing (15 Mins).
+              {/* Destination 2: UAE (Dubai & Abu Dhabi) */}
+              <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-bold text-teal-800">
+                      Destination Focus #2
+                    </span>
+                    <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                      United Arab Emirates (Dubai &amp; Abu Dhabi) Employment Visas
+                    </h3>
+                  </div>
+                  <Link
+                    href="/countries/uae"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+                  >
+                    View UAE Dubai Work Visa Details <FaArrowRight />
+                  </Link>
+                </div>
+
+                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3 text-sm text-slate-600">
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaFileCircleCheck className="text-teal-600" />
+                      MoHRE Standard 12-Page Contract
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Issued by the UAE Ministry of Human Resources and Emiratisation (
+                      <a
+                        href="https://www.mohre.gov.ae"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-emerald-600 underline font-semibold"
+                      >
+                        MoHRE
+                      </a>
+                      ). Before flying from India, the worker reviews and signs this exact contract, detailing basic wage, accommodation allowance, medical coverage, and end-of-service gratuity.
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-5 border-t border-emerald-200/60 flex flex-wrap gap-3">
-                    <a
-                      href="https://wa.me/918130161603?text=Hi%20WorkWise%20Visa,%20I%20am%20from%20Ranchi%20and%20want%20to%20apply%20for%20overseas%20jobs."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-md hover:bg-emerald-500 transition-colors"
-                    >
-                      <FaWhatsapp className="text-sm" />
-                      Chat on WhatsApp Now
-                    </a>
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaPassport className="text-teal-600" />
+                      Entry Permit (Pink Paper) vs. Tourist Visa
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Legal candidates travel exclusively on an electronic employment entry permit (Pink Paper) issued by the Federal Authority for Identity and Citizenship (ICP) or GDRFA Dubai. Tourist or visit visas are strictly prohibited for work, as conversions carry high penalty risks.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaIdCard className="text-teal-600" />
+                      Emirates ID Biometrics &amp; Medical Fitness
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Within 30 days of arrival in the UAE, the candidate completes a local blood test and chest X-ray at a preventive medicine center, undergoes fingerprint scanning, and receives a 2-year resident Emirates ID card with full public hospital access.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Destination 3: State of Qatar */}
+              <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
+                      Destination Focus #3
+                    </span>
+                    <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                      State of Qatar Work Residence Permits
+                    </h3>
+                  </div>
+                  <Link
+                    href="/countries/qatar"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+                  >
+                    View Qatar Work Visa Guide <FaArrowRight />
+                  </Link>
+                </div>
+
+                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3 text-sm text-slate-600">
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaSuitcaseMedical className="text-blue-600" />
+                      Qatar Visa Center (QVC) Single-Window
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Qatar has revolutionized overseas hiring through biometrics and medical examinations completed inside India before flight departure. Candidates complete fingerprinting, iris scans, and clinical testing in New Delhi or Kolkata, signing their Ministry of Labour electronic contract before boarding.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaIdCard className="text-blue-600" />
+                      Electronic QID Residence &amp; Work Card
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Upon arrival at Hamad International Airport, the candidate&apos;s physical Qatar ID (QID) is delivered within 10 to 14 days. The QID authorizes domestic bank account opening, driving license conversion, and legal residency protection.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaScaleBalanced className="text-blue-600" />
+                      Qatar Labour Law &amp; Worker Rights
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Qatar enforces a non-discriminatory statutory minimum wage (1,000 QAR basic + 500 QAR accommodation + 300 QAR food allowance if not provided in kind). Workers can lodge digital grievances directly via the Ministry of Administrative Development, Labour and Social Affairs (MADLSA).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Destination 4: European Union */}
+              <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 sm:p-8">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
+                      Destination Focus #4
+                    </span>
+                    <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                      European Union Industrial Work Permits (Poland, Romania, Croatia)
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-3">
                     <Link
-                      href="/locations/patna"
-                      className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                      href="/countries/poland"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
                     >
-                      View Patna Branch Details
+                      Poland Guide <FaArrowRight />
+                    </Link>
+                    <span className="text-slate-300">|</span>
+                    <Link
+                      href="/countries/romania"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-800 hover:underline"
+                    >
+                      Romania Guide <FaArrowRight />
                     </Link>
                   </div>
                 </div>
+
+                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3 text-sm text-slate-600">
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaGlobe className="text-amber-600" />
+                      Poland Single Work Permit (Zezwolenie Typ A)
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Issued by the Provincial Governor (Voivode) following a Labour Market Test. Authorizes legal employment in automotive stamping, precision machining, and logistics. Workers receive euro salaries (€900 - €1,400 net) with full ZUS state medical coverage and pathways to a Temporary Residence Card (Karta Pobytu).
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaBuildingColumns className="text-amber-600" />
+                      Romania Work Authorization (Aviz de Munca)
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Issued by the General Inspectorate for Immigration (IGI) for heavy manufacturing, shipyards, and structural steel assembly. Highly suitable for certified fitters and welders from Ranchi, offering stable compensation (€800 - €1,200 net), company accommodation, and annual contract renewal.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <FaAward className="text-amber-600" />
+                      Croatia Work &amp; Stay Permit (Dozvola za boravak i rad)
+                    </h4>
+                    <p className="text-xs leading-relaxed">
+                      Following Croatia&apos;s full accession to Schengen, work permits are processed under the Croatian Employment Service (HZZ) labor test. Ideal for commercial drivers, heavy equipment operators, and industrial artisans seeking euro earnings and free mobility across the Schengen Zone.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* ==================================================================== */}
-        {/* SECTION 5: 6-STAGE COMPLIANT ROADMAP                                */}
+        {/* SECTION 5: GAMCA / WAFID MEDICAL EXAMINATION PROTOCOL IN DETAIL      */}
         {/* ==================================================================== */}
-        <section className="border-b border-slate-200 bg-slate-50 py-16 sm:py-20">
+        <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Transparent Execution
+                Medical Compliance Standards
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                The 6-Stage Government-Protected Recruitment Pipeline
+                GAMCA / Wafid Medical Protocol for Ranchi Candidates
               </h2>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 01</span>
-                <h4 className="font-bold text-slate-900 text-sm">Free Profile Evaluation</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  Send passport, trade diplomas, and work history for immediate eligibility matching against live overseas corporate demands.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 02</span>
-                <h4 className="font-bold text-slate-900 text-sm">Client Trade Interview</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  Participate in live video interviews or attend practical trade skill testing evaluated directly by visiting foreign delegates.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 03</span>
-                <h4 className="font-bold text-slate-900 text-sm">Digital Labor Approval</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  The host company secures your government work permit through official portals (Saudi Qiwa, UAE MoHRE, Poland Voivodeship).
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 04</span>
-                <h4 className="font-bold text-slate-900 text-sm">Wafid GAMCA Medical &amp; PCC</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  Complete medical fitness screening at an accredited Wafid clinic and secure your Police Clearance Certificate from RPO Ranchi.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 05</span>
-                <h4 className="font-bold text-slate-900 text-sm">Consular Stamping &amp; POE</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  Visa stamping through official embassy channels and mandatory Emigration Clearance (POE) on the Indian MEA eMigrate portal.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
-                <span className="inline-block rounded-md bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 mb-2">Stage 06</span>
-                <h4 className="font-bold text-slate-900 text-sm">Flight Departure &amp; Camp Arrival</h4>
-                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                  Pre-departure briefing, direct flight booking, company airport pickup, and onboarding with zero hidden charges.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================================== */}
-        {/* SECTION 6: CANDIDATE TESTIMONIALS                                   */}
-        {/* ==================================================================== */}
-        <section className="border-b border-slate-200 bg-white py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Verified Candidate Success
-              </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Ranchi Workers Placed Legally Across the Globe
-              </h2>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex gap-1 text-amber-500 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-xs" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
-                    &ldquo;Ranchi me local dukaano ke agents ne mujhe do baar fake visa offer diya tha. WorkWise Visa Patna branch se connect hua. Inhone direct Saudi Qiwa contract diya aur Takamol test clear karwaya. Aaj NEOM me safely kaam kar raha hoon.&rdquo;
-                  </p>
-                </div>
-                <div className="mt-5 pt-4 border-t border-slate-200">
-                  <h5 className="font-bold text-slate-900 text-sm">Vikram Kumar Munda</h5>
-                  <p className="text-xs text-slate-500">Ratu Road, Ranchi • Heavy Excavator Operator</p>
-                  <p className="text-xs font-semibold text-emerald-600 mt-0.5">NEOM, Saudi Arabia • SAR 3,800/mo (₹86,000)</p>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex gap-1 text-amber-500 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-xs" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
-                    &ldquo;HEC Ranchi me fabrication workshop me kaam karta tha. WorkWise Visa ke zariye Poland ka Type-D work permit mila. Housing aur medical free hai, har mahine ghar ₹95,000 bhej raha hoon.&rdquo;
-                  </p>
-                </div>
-                <div className="mt-5 pt-4 border-t border-slate-200">
-                  <h5 className="font-bold text-slate-900 text-sm">Ravi Shankar Mahto</h5>
-                  <p className="text-xs text-slate-500">HEC Dhurwa, Ranchi • 6G TIG Pipe Welder</p>
-                  <p className="text-xs font-semibold text-emerald-600 mt-0.5">Gdańsk Shipyard, Poland • €1,350/mo (₹1,22,000)</p>
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex gap-1 text-amber-500 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar key={i} className="text-xs" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
-                    &ldquo;Government ITI Ranchi se diploma ke baad Gulf jana chahta tha. WorkWise Visa ne online video interview organize karwaya aur direct MOHRE visa stamp karwaya bina kisi jhanjhat ke.&rdquo;
-                  </p>
-                </div>
-                <div className="mt-5 pt-4 border-t border-slate-200">
-                  <h5 className="font-bold text-slate-900 text-sm">Amit Tirkey</h5>
-                  <p className="text-xs text-slate-500">Namkum, Ranchi • Industrial Electrician</p>
-                  <p className="text-xs font-semibold text-emerald-600 mt-0.5">Dubai Logistics Park, UAE • AED 3,600/mo (₹82,000)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================================== */}
-        {/* SECTION 7: FAQS                                                      */}
-        {/* ==================================================================== */}
-        <section className="border-b border-slate-200 bg-slate-50 py-16 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Frequently Asked Questions
-              </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Overseas Placement FAQs for Ranchi Applicants
-              </h2>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-xl border border-slate-200 bg-white p-6">
-                <h4 className="font-bold text-slate-900 text-base">
-                  Ranchi ke candidates WorkWise Visa service kaise avail kar sakte hain?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                  Ranchi ke candidate ghar baithe WhatsApp (+91 8130161603) par apne documents bhejkar 100% free eligibility audit karwa sakte hain. Final client trade test ya document submission ke liye Ranchi-Patna Vande Bharat Express se sirf 5.5 ghante me hamare Varma Centre, Boring Road Patna office visit kar sakte hain.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-6">
-                <h4 className="font-bold text-slate-900 text-base">
-                  Ranchi me Passport Seva Kendra (PSK) se PCC kaise banwayein?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                  Regional Passport Office (RPO) Ranchi (Galaxia Mall, Ratu Road) se Police Clearance Certificate (PCC) online passportindia.gov.in portal se book hota hai. WorkWise team appointment slot booking aur MEA Apostille attestation me poori guidance deti hai.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-6">
-                <h4 className="font-bold text-slate-900 text-base">
-                  Ranchi ke workers ke liye GAMCA / Wafid medical center kahan allot hota hai?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                  Wafid portal (wafid.com) par online slip generate karne par Ranchi ke candidates ko Kolkata ya Patna ke authorized GCC diagnostic centers allot hote hain. Dono shehron ke liye Ranchi se direct trains available hain.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white p-6">
-                <h4 className="font-bold text-slate-900 text-base">
-                  Kya initial profile assessment ke liye koi charge lagta hai?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                  Bilkul nahi. WorkWise Visa par initial resume evaluation aur trade eligibility review 100% free of charge hai. Hamari policy me koi hidden charges ya registration fees nahi hoti hain.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================================== */}
-        {/* SECTION 8: APPLICATION CONSULTATION FORM                            */}
-        {/* ==================================================================== */}
-        <section id="consultation" className="py-16 sm:py-20 bg-white">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
-                Official Application Desk
-              </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
-                Apply for Verified Overseas Jobs from Ranchi
-              </h2>
-              <p className="mt-3 text-slate-600 text-sm sm:text-base">
-                Apna profile submit karein. Hamari overseas recruitment team 2 working hours ke andar aapse connect karegi.
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Before foreign consulates approve employment visas for Saudi Arabia, Qatar, UAE, Kuwait, Oman, or Bahrain, candidates must be certified medically fit by an authorized clinic governed by the Gulf Health Council.
               </p>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10 shadow-lg">
-              <ConsultationForm defaultCity="Ranchi" />
+            <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+              {/* Box 1: Online Registration */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                  <FaSuitcaseMedical className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  1. Centralized Wafid Appointment Slip
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Medical appointment slips must be booked exclusively through{" "}
+                  <a
+                    href="https://wafid.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-emerald-600 underline"
+                  >
+                    wafid.com
+                  </a>
+                  . The centralized algorithm randomly allocates the clinic. Candidates cannot choose a specific clinic. The standard fee is fixed at $10 USD online + approximately ₹5,500 to ₹6,500 payable directly at the assigned laboratory.
+                </p>
+              </div>
+
+              {/* Box 2: Diagnostic Battery */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600">
+                  <FaHospital className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  2. Mandatory Clinical Screening Battery
+                </h3>
+                <div className="mt-2 space-y-2 text-xs sm:text-sm text-slate-600">
+                  <p>Screenings comprise strict assessments:</p>
+                  <ul className="space-y-1 text-xs list-disc list-inside">
+                    <li>
+                      <strong>Chest Digital X-Ray:</strong> Detects active or healed pulmonary tuberculosis (TB) scars, calcifications, or pleural lesions.
+                    </li>
+                    <li>
+                      <strong>Serology Blood Panel:</strong> Tests for HIV 1/2, HBsAg (Hepatitis B), Anti-HCV (Hepatitis C), and VDRL.
+                    </li>
+                    <li>
+                      <strong>Biochemical Panels:</strong> Fasting blood sugar, Serum Creatinine, Bilirubin, and SGPT/SGOT liver enzymes.
+                    </li>
+                    <li>
+                      <strong>Physical &amp; Vision Exam:</strong> Blood pressure, ECG for candidates over 40, and Ishihara color blindness tests.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Box 3: Avoiding Rejection */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                  <FaTriangleExclamation className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  3. Managing UNFIT Status &amp; Re-Testing
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  If marked <strong>UNFIT</strong> due to active Hepatitis or pulmonary tuberculosis scarring, the result is locked into the GCC electronic database for 6 to 12 months across all clinics in India. WorkWise Visa provides confidential pre-screening guidance in Ranchi to verify clinical fitness before generating permanent Wafid slips, shielding candidates from medical travel bans.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 6: SALARY & COMPENSATION BENCHMARKING MATRIX                */}
+        {/* ==================================================================== */}
+        <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Verified Earnings &amp; Compensation
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Trade-Wise Salary Benchmarks for Ranchi Industrial Specialists
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Authentic salary ranges for corporate vacancies in Saudi Arabia, the UAE, Qatar, and Europe. All contracts include free company housing, site transport, and medical health insurance.
+              </p>
+            </div>
+
+            <div className="mt-10 overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead className="bg-slate-100 text-slate-800 uppercase font-semibold">
+                  <tr>
+                    <th className="px-4 py-3.5">Trade / Skill Category</th>
+                    <th className="px-4 py-3.5">Saudi Arabia (SAR)</th>
+                    <th className="px-4 py-3.5">UAE Dubai (AED)</th>
+                    <th className="px-4 py-3.5">Qatar (QAR)</th>
+                    <th className="px-4 py-3.5">Europe (Net EUR)</th>
+                    <th className="px-4 py-3.5">Mandatory Benefits</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 text-slate-600">
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">Millwright Fitter & Heavy Assembly</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">2,200 - 3,200 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">2,400 - 3,400 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">2,300 - 3,100 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€950 - €1,300</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Free Accommodation, Medical Insurance & Site Transport</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">Industrial Electrician (Takamol/ITI)</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">1,900 - 2,700 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">2,100 - 2,800 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">2,000 - 2,600 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€900 - €1,200</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Free Bachelor Camp, Transport & Flight Ticket</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">HVAC Chiller & Duct Technician</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">2,000 - 2,900 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">2,200 - 3,000 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">2,100 - 2,800 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€950 - €1,250</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Free Housing, Overtime & Medical Cover</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">Precision CNC & Tooling Machinist</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">2,400 - 3,400 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">2,500 - 3,600 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">2,400 - 3,300 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€1,100 - €1,500</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Free Company Housing, Transport & OT</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">Mining & Heavy Equipment Mechanic</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">2,500 - 3,800 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">2,700 - 4,000 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">2,600 - 3,700 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€1,150 - €1,600</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Free Accommodation, Food Allowance & Medical</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-semibold text-slate-900">European Warehouse & Forklift Operator</td>
+                    <td className="px-4 py-3 font-bold text-emerald-600">1,600 - 2,200 SAR</td>
+                    <td className="px-4 py-3 font-bold text-teal-600">1,800 - 2,400 AED</td>
+                    <td className="px-4 py-3 font-bold text-slate-800">1,700 - 2,300 QAR</td>
+                    <td className="px-4 py-3 font-bold text-emerald-700">€850 - €1,150</td>
+                    <td className="px-4 py-3 text-xs text-slate-500">Company Accommodation & Standard Overtime</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500 space-y-1">
+              <p><strong>Note on Overtime &amp; Allowances:</strong> Standard working hours across GCC employers are 8 hours per day, 6 days per week. Work performed beyond 8 hours is compensated at 1.5x basic hourly rates under Saudi Article 98 and UAE MoHRE Article 19.</p>
+              <p><strong>Food &amp; Accommodation Provision:</strong> In trades where food is not served in kind, employers provide a statutory food allowance ranging between 300 to 400 SAR/AED/QAR per month.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 7: ANTI-FRAUD EXPOSÉ & LOCAL SUB-AGENT PITFALLS             */}
+        {/* ==================================================================== */}
+        <section className="bg-slate-900 py-16 sm:py-20 text-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+                Candidate Protection Advisory
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-white">
+                How Unlicensed Intermediaries Trap Candidates in Ranchi
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-300">
+                Be aware of common deception methods used by unaccredited middlemen across Jharkhand and learn how WorkWise Visa enforces foolproof legal security.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="rounded-2xl border border-slate-800 bg-slate-800/60 p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                  <FaTriangleExclamation className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-white">
+                  The &ldquo;Supply Visa&rdquo; Trap
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Sub-agents frequently place workers with unverified labor subcontractors. Instead of working for a prime contractor, workers are rented out daily with no fixed pay, unhygienic camps, and frequent salary defaults. WorkWise Visa places candidates strictly with direct corporate sponsors.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-800 bg-slate-800/60 p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                  <FaTriangleExclamation className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-white">
+                  Tourist Visa False Promises
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Agents send job seekers to Dubai or Doha on 30-day tourist visas, promising conversion upon landing. When visas expire, workers face heavy overstay fines, police detention, and deportation. WorkWise Visa candidates travel strictly on pre-issued employment entry permits.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-800 bg-slate-800/60 p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                  <FaTriangleExclamation className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-white">
+                  Passport Seizure &amp; Blackmail
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Unaccredited village agents confiscate original passports and demand escalating payments of ₹50,000 to ₹1,50,000 before returning documents. Under Section 24 of the Emigration Act 1983, passport confiscation by private agents is a punishable criminal offense. WorkWise Visa operates strictly through formal company agreements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 8: GULF WORKSITE ARABIC TECHNICAL LEXICON                    */}
+        {/* ==================================================================== */}
+        <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Worksite Communication Readiness
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Essential Worksite Arabic Lexicon for Ranchi Technicians
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Mastering key Arabic terms enhances on-site safety, streamlines trade evaluations, and empowers candidates during initial foreman interactions across Saudi and Gulf project sites.
+              </p>
+            </div>
+
+            <div className="mt-10 overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead className="bg-slate-100 text-slate-800 uppercase font-semibold">
+                  <tr>
+                    <th className="px-4 py-3">Arabic Term (عربي)</th>
+                    <th className="px-4 py-3">Phonetic English</th>
+                    <th className="px-4 py-3">English Meaning</th>
+                    <th className="px-4 py-3">Trade Context &amp; Practical Use</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 text-slate-600">
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">سلامة مهنية</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">Salama Mihniyya</td>
+                    <td className="px-4 py-3">Occupational Safety (HSE)</td>
+                    <td className="px-4 py-3 text-xs">Mandatory PPE, hardhat, harness &amp; safety briefings</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">لحام كهربائي</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">Laham Kahraba&apos;i</td>
+                    <td className="px-4 py-3">Electric Arc Welding</td>
+                    <td className="px-4 py-3 text-xs">Structural fabrication and pipe joint welding</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">تمديدات كابلات</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">Tamdeedat Kablat</td>
+                    <td className="px-4 py-3">Cable Pulling / Conduit Laying</td>
+                    <td className="px-4 py-3 text-xs">Electrical containment, trunking and glanding</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">مخطط هندسي</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">Mukhattat Handasi</td>
+                    <td className="px-4 py-3">Engineering Blueprint / Drawing</td>
+                    <td className="px-4 py-3 text-xs">Reading isometric drawings and site schematics</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">صيانة دورية</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">Siyana Dawriyya</td>
+                    <td className="px-4 py-3">Routine Maintenance / PPM</td>
+                    <td className="px-4 py-3 text-xs">HVAC filters, pump lubrication and valve inspections</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50">
+                    <td className="px-4 py-3 font-bold text-slate-900">عقد عمل موثق</td>
+                    <td className="px-4 py-3 font-semibold text-emerald-700">&apos;Aqd &apos;Amal Muwaththaq</td>
+                    <td className="px-4 py-3">Attested Employment Contract</td>
+                    <td className="px-4 py-3 text-xs">Digital Qiwa / MoHRE verified labor contract</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 9: SAFE REMITTANCE & BANKING ARCHITECTURE                    */}
+        {/* ==================================================================== */}
+        <section className="bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Family Financial Security
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Safe Remittance &amp; Banking Architecture for Ranchi Families
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Protect your overseas earnings from illicit hawala networks. Follow verified RBI banking guidelines for safe, fast transfers to your family in Ranchi.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                  <FaBuildingColumns className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  NRE vs. NRO Bank Accounts
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Open a Non-Resident External (NRE) account with SBI, Bank of India, or PNB across Ranchi. Income deposited from abroad is 100% tax-free in India and freely repatriable. Keep an NRO account only for local Indian rental or dividend income.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600">
+                  <FaMoneyBillTrendUp className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  RBI Approved Remittance
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Always use exchange houses operating under the RBI Rupee Drawing Arrangement (RDA) or Money Transfer Service Scheme (MTSS). Never use unauthorized Hawala intermediaries, which can freeze family bank accounts under FEMA.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                  <FaScaleBalanced className="text-2xl" />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">
+                  Zero Income Tax on Gulf Earnings
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Under Section 6 of the Indian Income Tax Act, if you reside outside India for 182 days or more in a financial year, you qualify for Non-Resident Indian (NRI) status. Your foreign salary is 100% exempt from Indian income taxation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 10: TRANSIT & PROCESSING ROUTING                             */}
+        {/* ==================================================================== */}
+        <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
+                Smooth Connectivity
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Transit Logistics from Ranchi to WorkWise Regional Desks
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Step-by-step connectivity from Ranchi to our regional candidate desk in Patna, and onwards to New Delhi embassies and international departure hubs.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                    <FaTrainSubway className="text-2xl" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      To Patna Regional Branch
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      For physical document handover, Takamol guidance, and contract signing
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-5 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p>
+                    <strong>Direct Rail Express:</strong> The <strong>Ranchi - Patna Vande Bharat Express (Train 22350)</strong> provides fast transit in just <strong>5 hours 50 minutes</strong> directly to Patna Junction.
+                  </p>
+                  <p>
+                    <strong>Alternative Express Services:</strong> Ranchi - Patna Jan Shatabdi Express (Train 12366) offer daily convenient connections for candidates travelling for original trade test screenings and embassy paperwork.
+                  </p>
+                  <p>
+                    <strong>Patna Branch Location:</strong> Located strategically on the Boring Road / Bailey Road corridor, within 15 minutes of Patna Junction.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600">
+                    <FaPlaneDeparture className="text-2xl" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      To New Delhi VFS &amp; Embassies
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      For European VFS biometrics &amp; Qatar Visa Center (QVC) enrollments
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-5 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p>
+                    Birsa Munda Airport (IXR) offers multiple daily non-stop 2-hour flights to New Delhi (DEL) for European Embassy VFS and Qatar Visa Center biometrics, alongside direct express trains like Ranchi Rajdhani and Jharkhand Sampark Kranti.
+                  </p>
+                  <p>
+                    <strong>WorkWise Transit Escort:</strong> Our Delhi NCR liaison team coordinates VFS Shivaji Stadium and Qatar Visa Center appointments, ensuring zero paperwork delays.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 11: FULL CONSULTATION BOOKING FORM (HOMEPAGE 2-COL STYLE)   */}
+        {/* ==================================================================== */}
+        <ConsultationForm />
+
+        {/* ==================================================================== */}
+        {/* SECTION 12: EXHAUSTIVE FAQS (DETAILED TECHNICAL QUESTIONS)          */}
+        {/* ==================================================================== */}
+        <section className="bg-white py-16 sm:py-24 border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-blue-600">
+                Frequently Asked Questions
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold tracking-tight text-slate-900">
+                Everything Ranchi Candidates Need to Know About Overseas Work Visas
+              </h2>
+              <p className="mt-4 text-sm sm:text-base text-slate-600">
+                Authoritative answers to common questions regarding government approvals, medical screenings, passport rules, salary protection, and avoiding fraudulent agents.
+              </p>
+            </div>
+
+            <div className="mt-12 space-y-6">
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  1. How can candidates from Ranchi verify if a Gulf or Europe work visa is genuine?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Candidates from Ranchi must check three official parameters: 1) Verify that the recruiting agency possesses a valid MEA license on the official eMigrate portal (emigrate.gov.in). 2) Confirm that the foreign employment visa is digitally indexed on destination government portals—such as Saudi Qiwa/Muqeem, UAE MoHRE/ICP, or Qatar MOI—using your passport number. 3) Ensure that you hold a legally stamped bilingual employment contract under Pravasi Bharatiya Bima Yojana (PBBY) insurance before paying any fees or handing over your original passport.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  2. Where do candidates from Ranchi take the mandatory GAMCA / Wafid medical examination?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Medical slips must be generated online exclusively through wafid.com for a fee of $10 USD. The automated central GCC algorithm randomly allocates an accredited medical center in Patna, Kolkata, or New Delhi. WorkWise Visa provides confidential preliminary health assessments in Ranchi (covering chest digital X-ray scar detection and serology blood screens) prior to official Wafid booking to avoid irreversible UNFIT statuses in the GCC electronic database.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  3. What is the Takamol Skill Verification Program (SVP) requirement for Ranchi technicians?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Under Saudi Arabia Ministry of Human Resources regulations, 23 professional trades (including electricians, welders, HVAC technicians, plumbers, and mechanics) must clear the Takamol SVP test. Candidates from Ranchi complete a 30-minute computer theoretical exam and a 2-hour practical workshop evaluation at an accredited trade test facility before visa stamping.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  4. How does WorkWise Visa support ECR passport holders from Ranchi under the Emigration Act 1983?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  If your passport is stamped "Emigration Check Required" (non-matriculate), Section 10 of the Indian Emigration Act 1983 mandates POE clearance for 18 notified countries. WorkWise Visa executes 100% digital eMigrate clearance through the Protector of Emigrants (POE) office, linking the foreign employer's approved demand letter, employment contract, and mandatory ₹10 Lakh PBBY insurance directly into your passport system.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  5. What are the average overseas monthly earnings for Ranchi industrial technicians?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Certified industrial technicians, heavy machinery operators, and fabricators from Ranchi earn between ₹45,000 and ₹95,000 per month in GCC destinations (Saudi Arabia, UAE, Qatar) and between ₹1,05,000 and ₹1,85,000 per month in European nations (Poland, Romania, Germany). All contracts include employer-provided bachelor accommodation, site transport, health insurance, and paid annual leave.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  6. How do candidates from Ranchi travel to the WorkWise Visa regional branch?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Candidates can reach our Patna regional branch via the Ranchi - Patna Vande Bharat Express (Train 22350) in 5 hours 50 minutes, or alternatively via Ranchi - Patna Jan Shatabdi Express (Train 12366). For European VFS biometric appointments and Qatar Visa Center biometrics, Birsa Munda Airport (IXR) offers multiple daily non-stop 2-hour flights to New Delhi (DEL) for European Embassy VFS and Qatar Visa Center biometrics, alongside direct express trains like Ranchi Rajdhani and Jharkhand Sampark Kranti.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  7. What documents are required to apply for overseas employment from Ranchi?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Candidates require: 1) Original passport with minimum 8 months validity. 2) 8 white-background passport-size photographs. 3) Technical qualification certificates (ITI, Polytechnic Diploma, or trade test card). 4) Indian or Gulf work experience certificates. 5) Police Clearance Certificate (PCC) issued by Regional Passport Office (RPO) Ranchi located at Galaxia Mall, Ratu Road and the Post Office Passport Seva Kendra (POPSK) at Kokar and Ranchi GPO.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  8. Can candidates from Ranchi migrate to European countries like Poland, Romania, and Croatia?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Yes. WorkWise Visa actively recruits heavy engineering assembly, precision foundry and forge technology, mechanical millwright fitting, high-voltage industrial electrical systems, centralized HVAC chilling infrastructure, and logistics warehousing from Ranchi for factory assembly, precision CNC machining, structural welding, and warehouse logistics across Poland (Zezwolenie Typ A), Romania (Aviz de Munca), and Croatia (Dozvola za boravak i rad). Processing takes approximately 90 to 120 days under official European work permits.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  9. How are family remittances handled safely from the Gulf to Ranchi?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Workers remit their earnings legally through authorized banking channels (such as exchange houses operating under the RBI Rupee Drawing Arrangement) directly into their Non-Resident External (NRE) or Non-Resident Ordinary (NRO) bank accounts at local branches of State Bank of India, Bank of India, Punjab National Bank, or Canara Bank across Ranchi. This avoids illicit Hawala networks and ensures 100% tax-free income repatriation under Indian tax law.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  10. What is the fee structure and payment timeline for work visa processing through WorkWise Visa?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  WorkWise Visa adheres strictly to Ministry of External Affairs recruitment guidelines. We do not demand arbitrary cash advances. Service charges are transparently scheduled across document registration, verified employer offer letter issuance, medical and trade test clearance, and final visa stamping with POE clearance.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  11. What is the validity period of a Gulf work visa and how is the Iqama or Resident ID renewed?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Standard employment visas in Saudi Arabia, UAE, and Qatar are issued for an initial duration of 2 years, renewable upon mutual consent between employee and employer. Under local labor laws, the sponsoring corporate company is legally responsible for bearing all Iqama / Emirates ID / QID residency renewal fees. Workers never have to pay out-of-pocket for residency cards.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  12. What happens if a candidate from Ranchi fails the GAMCA medical examination?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  If declared UNFIT due to temporary or treatable factors (such as mild hypertension, elevated fasting glucose, or minor ear infections), candidates can undergo clinical management and retake the test after the mandatory waiting period. However, permanent disqualifiers like active Hepatitis B/C or old tuberculosis scars trigger a GCC-wide entry ban for 6 to 12 months. This is why our confidential pre-medical screening in Ranchi is strongly advised.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  13. Are technical trade tests conducted in Ranchi or at specialized centers?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Initial profile screening, mechanical blueprint reading, and resume evaluation are performed locally or digitally. For mandatory practical skill certifications (such as Takamol SVP for Saudi Arabia or client trade test interviews for large EPC contractors), candidates attend accredited technical workshops in Patna, Jamshedpur, or New Delhi where specialized test rigs and welding booths are certified by international inspection agencies.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  14. Can candidates apply if they have a gap in their work experience?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Yes. As long as you possess genuine technical capabilities, can demonstrate your craft on a test bench, and provide valid educational credentials (ITI/Diploma), minor employment gaps do not disqualify you. Our placement coordinators help present your career history accurately to overseas human resources departments.
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+                <h3 className="text-base font-bold text-slate-900">
+                  15. What emergency legal assistance is available for workers from Ranchi while working abroad?
+                </h3>
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                  Workers placed through WorkWise Visa are protected under the MEA MADAD grievances framework and Indian Embassy labor attaches in Riyadh, Dubai, Doha, and European capitals. Additionally, your mandatory Pravasi Bharatiya Bima Yojana (PBBY) policy provides up to ₹45,000 for local legal defense representation and emergency repatriation assistance in the rare event of contractual disputes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================== */}
+        {/* SECTION 13: RELATED GUIDES & CROSS-CITY DIRECTORY NAVIGATION        */}
+        {/* ==================================================================== */}
+        <section className="bg-slate-100/70 py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-800">
+                Essential Candidate Reading
+              </span>
+              <h2 className="mt-2 text-xl sm:text-2xl lg:text-3xl font-display font-extrabold tracking-tight text-slate-900">
+                Official Compliance &amp; Verification Resources for Ranchi
+              </h2>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <Link
+                href="/blogs/takamol-skill-verification-program-saudi-work-visa-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Saudi Mandate</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    Takamol Skill Verification Program (SVP) Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    SVP trade test syllabus, theoretical computer test, and practical bench evaluation protocol.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/gamca-wafid-medical-examination-rules-gulf-visa-fit-unfit-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-teal-600">Medical Protocol</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    GAMCA / Wafid Medical Examination Rules &amp; Unfit Appeal
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    Chest X-ray scarring, blood panels, repeat testing bans, and confidential pre-screening guidance.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-teal-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-amber-600">Authentication Hub</span>
+                  <h3 className="font-bold text-slate-900 text-sm mt-1 group-hover:text-emerald-700 transition-colors">
+                    PCC &amp; MEA Patiala House Apostille Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    Passport Seva Kendra booking, police verification, and MEA Hague Apostille stamping.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 mt-4">
+                  Read Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+
+            <Link
+              href="/blogs/work-visa-check-online-by-passport-number-2026-saudi-dubai-qatar-kuwait-europe"
+              className="mt-6 group rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-teal-50 p-5 sm:p-6 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">2026 Fraud-Proof Official Portal Directory</span>
+                <h3 className="font-extrabold text-slate-900 text-sm sm:text-base mt-1 group-hover:text-emerald-700 transition-colors">
+                  Work Visa Check Online by Passport Number 2026: Saudi MOFA, Dubai ICP/GDRFA, Qatar MOI &amp; Europe
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">
+                  Verify original vs fake work visas, MOHRE job offers, Wafid medical fitness, and India eMigrate clearance directly on official government websites.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 group-hover:bg-emerald-800 px-4 py-2.5 text-xs font-bold text-white shrink-0 transition">
+                Verify Visa Online <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+
+            {/* Complete Cross-City Network Links */}
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <span className="font-bold text-slate-700 text-xs block mb-3">WorkWise Visa Pan-India Network:</span>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
+                <Link href="/locations/noida" className="hover:text-emerald-700 font-semibold underline">
+                  Noida Corporate HQ
+                </Link>
+                <span>•</span>
+                <Link href="/locations/delhi" className="hover:text-emerald-700 font-bold text-slate-800 underline decoration-emerald-500">
+                  Delhi NCR Placement Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/patna" className="hover:text-emerald-700 font-semibold underline">
+                  Patna Regional Branch
+                </Link>
+                <span>•</span>
+                <Link href="/locations/ranchi" className="hover:text-emerald-700 font-semibold text-emerald-800">
+                  Ranchi Industrial Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/dhanbad" className="hover:text-emerald-700 font-semibold text-emerald-800">
+                  Dhanbad Mining Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/jamshedpur" className="hover:text-emerald-700 font-semibold text-emerald-800">
+                  Jamshedpur Precision Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/bokaro" className="hover:text-emerald-700 font-semibold text-emerald-800">
+                  Bokaro Metallurgy Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gaya" className="hover:text-emerald-700">
+                  Gaya Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/siwan" className="hover:text-emerald-700">
+                  Siwan Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gopalganj" className="hover:text-emerald-700">
+                  Gopalganj Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/muzaffarpur" className="hover:text-emerald-700">
+                  Muzaffarpur Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/gorakhpur" className="hover:text-emerald-700">
+                  Gorakhpur Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations/lucknow" className="hover:text-emerald-700">
+                  Lucknow Desk
+                </Link>
+                <span>•</span>
+                <Link href="/locations" className="hover:text-emerald-700 font-bold text-emerald-700">
+                  View All Locations &rarr;
+                </Link>
+              </div>
             </div>
           </div>
         </section>
