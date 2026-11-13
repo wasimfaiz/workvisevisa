@@ -70,6 +70,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
+      url: `${BASE_URL}/countries/kuwait`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: `${BASE_URL}/countries/germany`,
       lastModified: now,
       changeFrequency: "weekly",
@@ -101,6 +107,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/countries/poland`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${BASE_URL}/countries/malta`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.95,

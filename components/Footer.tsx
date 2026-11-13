@@ -237,6 +237,10 @@ export default function Footer() {
               <span className="text-slate-300">•</span>
               <Link href="/countries/bahrain" className="hover:text-emerald-700 hover:underline transition-colors">Bahrain</Link>
               <span className="text-slate-300">•</span>
+              <Link href="/countries/kuwait" className="hover:text-emerald-700 hover:underline transition-colors">Kuwait</Link>
+              <span className="text-slate-300">•</span>
+              <Link href="/countries/malta" className="hover:text-emerald-700 hover:underline transition-colors">Malta</Link>
+              <span className="text-slate-300">•</span>
               <Link href="/countries/luxembourg" className="hover:text-emerald-700 hover:underline transition-colors">Luxembourg</Link>
               <span className="text-slate-300">•</span>
               <Link href="/countries/russia" className="hover:text-emerald-700 hover:underline transition-colors">Russia</Link>

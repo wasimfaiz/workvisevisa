@@ -311,6 +311,28 @@ export const countries: Country[] = [
     visaTypes: ["Voivodeship Work Permit (Zezwolenie Typ A)", "National Type D05a/D06 Visa", "Temporary Residence & Work Card (Karta Pobytu)", "EU Blue Card"],
     processingTime: "8–12 weeks",
     popularRoles: ["6G Pipe & Structural Welder", "CNC Operator & Machinist", "Civil Construction Trades", "Warehouse Logistics & Heavy Driver"],
+  },,
+  {
+    name: "Kuwait",
+    code: "KW",
+    flag: "",
+    region: "Gulf",
+    description:
+      "Premier oil & gas, refinery, and civil infrastructure hub in the GCC. 0% personal tax, world's highest-valued currency (KWD), PAM & MOI Article 18 work permits with free company accommodation, utilities, and subsidized food.",
+    visaTypes: ["Article 18 Private Sector Work Visa", "PAM Work Permit (Izn Amal)", "Civil ID (Bitaqa Madaniyah)", "Oil & Gas Contractor Visa"],
+    processingTime: "3–5 weeks",
+    popularRoles: ["6G Pipe Welder & Fitter (KNPC/KOC)", "Heavy Trailer Driver (Kuwait License)", "Civil Trades & MEP Electricians", "Oil & Gas Plant Operators"],
+  },
+  {
+    name: "Malta",
+    code: "MT",
+    flag: "",
+    region: "Schengen",
+    description:
+      "Europe's premier 100% English-speaking Mediterranean Schengen economy. High demand for hospitality chefs, tourism, facility technicians, certified shipyard trades, and delivery drivers with Identità Single Permits and EU residency rights.",
+    visaTypes: ["Identità Single Permit (Work & Residence)", "Jobsplus Labour Market Approval", "Key Employee Initiative (KEI)", "EU Long-Term Residence Pathway"],
+    processingTime: "6–10 weeks",
+    popularRoles: ["Hospitality Head & Sous Chefs", "6G Shipyard Welder & Pipefitter", "Heavy Equipment & Commercial Drivers", "Facility HVAC & Electrical Technicians"],
   },
 ];
 
