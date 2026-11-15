@@ -7099,7 +7099,7 @@ Because recruitment quotas are strictly capped at 460 total openings, applicatio
   "title": "Romania Work Visa for Indians 2026: IGI Aviz de Munca, In-Demand Jobs, RON to INR Salaries, eViza Process & Scam Check",
   "slug": "romania-work-visa-for-indian-workers-2026-aviz-de-munca-jobs-salary-eviza",
   "category": "Work Permits",
-  "date": "Nov 14, 2026",
+  "date": "Nov 15, 2026",
   "readTime": "23 min read",
   "excerpt": "Definitive 2026 field guide to Romania work visas for Indians: IGI Aviz de Munca permits, 100k annual quota, 3,700+ RON minimum wage & real INR take-home savings, PSK PCC apostille, eViza Type D/AM steps, and scam checks.",
   "image": "/images/romania-work-visa-guide.webp",
