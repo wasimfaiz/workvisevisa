@@ -1601,6 +1601,26 @@ export default function BulgariaCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
               <Link
+                href="/blogs/bulgaria-work-visa-for-indian-workers-2026-single-permit-vfs-jobs-salary"
+                className="group rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-50/50 to-white p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full inline-block">
+                    Official 2026 Master Guide
+                  </span>
+                  <h3 className="font-display font-bold text-slate-900 text-base group-hover:text-emerald-700 transition-colors">
+                    Bulgaria Work Visa for Indian Workers 2026
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                    Single Residence &amp; Work Permit (ERPP), 10% flat tax, BGN 1,300–3,200 salaries in INR, VFS Type D booking, MEA Apostille PCC &amp; scam checks.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
                 href="/countries/germany"
                 className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
