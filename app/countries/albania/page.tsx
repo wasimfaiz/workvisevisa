@@ -1536,6 +1536,26 @@ export default function AlbaniaCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
+                href="/blogs/albania-work-visa-for-indian-workers-2026-unique-permit-evisa-jobs-salary"
+                className="group rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-50/60 to-white p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md inline-block">
+                    Official 2026 Master Guide
+                  </span>
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Albania Work Visa Master Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    Unique Permit (Leje Unike), e-Albania filing, in-demand jobs, 50k–110k ALL salaries &amp; anti-scam check.
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-emerald-700 mt-3 inline-flex items-center gap-1">
+                  Read Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
                 href="/countries/croatia"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
