@@ -1520,6 +1520,26 @@ export default function GeorgiaCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
+                href="/blogs/georgia-work-visa-for-indian-workers-2026-d1-visa-jobs-salary-vfs"
+                className="group rounded-2xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-50/60 to-white p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md inline-block">
+                    Official 2026 Master Guide
+                  </span>
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Georgia Work Visa Master Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    D1 Immigration Visa, Work Residence Permit, Batumi jobs, GEL to INR salary &amp; airport scam protection.
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-emerald-700 mt-3 inline-flex items-center gap-1">
+                  Read Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
                 href="/countries/albania"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
