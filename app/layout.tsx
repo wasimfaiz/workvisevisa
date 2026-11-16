@@ -175,14 +175,6 @@ const jsonLdSchema = {
         "@id": "https://www.workwisevisa.com/#organization",
       },
       inLanguage: "en-US",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: "https://www.workwisevisa.com/jobs?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@type": "WebPage",
