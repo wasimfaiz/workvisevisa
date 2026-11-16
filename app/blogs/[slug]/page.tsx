@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { notFound, redirect, permanentRedirect, RedirectType } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,12 +21,35 @@ import {
 
 export const revalidate = 3600;
 
+export const LEGACY_SLUG_TO_ID: Record<string, string> = {
+  "dubai-construction-work-complete-guide-jobs-salaries-visas-recruitment-2026": "blog-22",
+  "saudi-arabia-neom-work-visa-recruitment-guide-2026": "blog-8",
+  "kuwait-work-visa-reopening-degree-attestation-guide-2026": "blog-11",
+  "police-clearance-certificate-pcc-gulf-work-visas-passport-office-guide-2026": "blog-15",
+  "wafid-gamca-medical-test-gulf-visa-complete-guide-2026": "blog-12",
+  "gulf-gcc-work-visa-complete-guide-2026-saudi-uae-qatar-kuwait-oman-bahrain": "blog-26",
+  "dubai-residence-permit-complete-guide-2026-pathways-application-fees-rules": "blog-23",
+  "saudi-arabia-skill-verification-program-takamol-trade-test-guide-2026": "blog-14",
+  "qatar-visa-center-qvc-biometrics-medical-guide-2026": "blog-13",
+  "kuwait-work-visa-article-18-regulations-degree-attestation-2026": "blog-11",
+  "uk-european-caregiver-work-visa-complete-guide-2026": "blog-3",
+  "dubai-construction-work-visa-salary-recruitment-guide-2026": "blog-22",
+  "croatia-work-visa-complete-guide-2026-mup-crovisa-jobs-salary-pr": "blog-42",
+  "gamca-wafid-medical-examination-rules-gulf-visa-fit-unfit-guide-2026": "blog-12",
+  "takamol-skill-verification-program-saudi-work-visa-guide-2026": "blog-14",
+};
+
 export async function generateStaticParams() {
   const slugs = new Set<string>();
 
   fallbackPosts.forEach((post) => {
     if (post.slug) slugs.add(post.slug);
     if (post.id) slugs.add(post.id);
+  });
+
+  // Pre-generate static HTML for all legacy slugs to serve 200 OK directly with canonical
+  Object.keys(LEGACY_SLUG_TO_ID).forEach((legacySlug) => {
+    slugs.add(legacySlug);
   });
 
   try {
@@ -50,7 +73,14 @@ interface PageProps {
 async function getBlog(slug: string) {
   const decodedSlug = decodeURIComponent(slug).trim().toLowerCase();
 
-  // Find exact match first across all static fallback posts
+  // 1. Direct legacy alias lookup
+  const mappedId = LEGACY_SLUG_TO_ID[decodedSlug];
+  if (mappedId) {
+    const post = fallbackPosts.find((p) => p.id === mappedId);
+    if (post) return post;
+  }
+
+  // 2. Find exact match first across all static fallback posts
   const exactStatic = fallbackPosts.find(
     (p) =>
       (p.slug && p.slug.toLowerCase() === decodedSlug) ||
@@ -376,10 +406,8 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // 308/301 Permanent Redirect to canonical slug if accessed via old alias, ID, or variant
-  if (blog.slug && slug !== blog.slug) {
-    permanentRedirect(`/blogs/${blog.slug}`);
-  }
+  // Serve directly with HTTP 200 OK and canonical URL metadata.
+  // We avoid 301/308 redirects so Google Search Console marks these pages as resolved rather than "Page with redirect".
 
   const publishTimestamp = parseBlogDate(blog.date, (blog as any).createdAt);
   const isoPublishedDate = publishTimestamp > 0 ? new Date(publishTimestamp).toISOString() : new Date().toISOString();

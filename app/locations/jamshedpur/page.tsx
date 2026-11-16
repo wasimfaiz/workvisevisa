@@ -1545,7 +1545,7 @@ export default function JamshedpurLocationPage() {
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <Link
-                href="/blogs/takamol-skill-verification-program-saudi-work-visa-guide-2026"
+                href="/blogs/takamol-svp-skill-verification-program-saudi-arabia-trade-test-guide-2026"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
@@ -1563,7 +1563,7 @@ export default function JamshedpurLocationPage() {
               </Link>
 
               <Link
-                href="/blogs/gamca-wafid-medical-examination-rules-gulf-visa-fit-unfit-guide-2026"
+                href="/blogs/wafid-gamca-medical-examination-2026-online-appointment-rules-fit-unfit-criteria"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>

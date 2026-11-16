@@ -158,6 +158,17 @@ export default function JobsPage() {
       }
     }
     fetchJobs();
+
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const countryParam = urlParams.get("country");
+      const qParam = urlParams.get("q");
+      if (countryParam) {
+        setSearchQuery(countryParam);
+      } else if (qParam) {
+        setSearchQuery(qParam);
+      }
+    }
   }, []);
 
   // Filter demands based on search query
