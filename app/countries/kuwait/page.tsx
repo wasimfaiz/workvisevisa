@@ -1233,6 +1233,17 @@ export default function KuwaitCountryPage() {
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Link
+                href="/blogs/kuwait-article-18-work-visa-master-guide-2026-pam-permit-salary-stamping"
+                className="group rounded-xl border-2 border-emerald-500 bg-gradient-to-br from-emerald-50/70 to-white p-4 hover:border-emerald-600 hover:shadow-sm transition-all"
+              >
+                <span className="text-[10px] font-bold text-emerald-800 uppercase bg-emerald-100 px-2 py-0.5 rounded-full inline-block">Official 2026 Master Guide</span>
+                <h3 className="font-bold text-slate-900 text-sm mt-1.5 group-hover:text-emerald-700 transition-colors">
+                  Kuwait Article 18 Work Visa Guide 2026
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">PAM Sahel permits, oil &amp; gas jobs, KD 140–350+ salaries &amp; scam protection.</p>
+              </Link>
+
+              <Link
                 href="/countries/uae"
                 className="group rounded-xl border border-slate-200 bg-white p-4 hover:border-emerald-500 hover:shadow-xs transition-all"
               >
