@@ -179,7 +179,7 @@ const delhiFaqs = [
   },
   {
     q: "18. Can candidates track their visa application milestones online?",
-    a: "Yes. Every candidate registered with WorkWise Visa receives a unique application tracking ID to monitor their file progress 24/7—from trade interview selection to work permit approval, MEA Apostille, VFS submission, and flight dispatch—via our online tracking portal at workwisevisa.com/track-application.",
+    a: "Yes. Every candidate registered with WorkWise Visa receives a unique application tracking ID to monitor their file progress 24/7—from trade interview selection to work permit approval, MEA Apostille, VFS submission, and flight dispatch—via our online tracking portal at workwisevisa.com/track.",
   },
   {
     q: "19. Does WorkWise Visa charge any fee before evaluating my resume?",

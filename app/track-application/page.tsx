@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import TrackPage from "@/app/track/page";
 
-export default function TrackApplicationRedirect() {
-  redirect("/track");
+export default function TrackApplicationPage() {
+  return <TrackPage />;
 }
