@@ -2908,7 +2908,7 @@ WorkWise Visa provides end-to-end recruitment support, document attestation, and
     readTime: "16 min read",
     excerpt:
       "Authoritative 2026 master manual on securing a Qatar Employment Residence Visa and completing the Qatar Visa Center (QVC) process. Step-by-step breakdown of online appointment scheduling, mandatory diagnostic medical tests & X-ray parameters, biometric enrollment, electronic digital contract signing, non-discriminatory minimum wage standards, exit permit rules, and post-arrival Qatar ID (QID) stamping.",
-    image: "https://images.unsplash.com/photo-1548777123-e216912df7d8?auto=format&fit=crop&w=800&q=80",
+    image: "/images/qatar-work-visa-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Qatar Work Visa",
@@ -4111,7 +4111,7 @@ Stop risking your career with unauthorized middlemen and unverified promises. Co
     readTime: "13 min read",
     excerpt:
       "Authoritative 2026 master guide on Oman and Bahrain work visas for Indian trade workers and technicians. Breakdown of Oman Ministry of Labour (MOL) permits, Royal Oman Police (ROP) eVisas, Bahrain LMRA Expatriate Management System (EMS), Duqm & Bapco refinery jobs, Wafid medical fitness, and tax-free OMR/BHD salary benchmarks.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/oman-work-visa-guide.webp",
     author: "Wasim Faiz",
     tags: [
       "Oman Work Visa",
