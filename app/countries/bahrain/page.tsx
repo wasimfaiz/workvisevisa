@@ -1529,20 +1529,20 @@ export default function BahrainCountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
-                href="/blogs/gcc-unified-tourist-visa-grand-tours-2026-rules-cross-border-jobs"
-                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+                href="/blogs/bahrain-work-visa-lmra-permit-complete-guide-2026-wafid-cpr-salary-stamping"
+                className="group rounded-2xl border border-emerald-400 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">GCC Landmark Visa</span>
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full inline-block">2026 Master Guide</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    GCC Unified Tourist Visa (Grand Tours) 2026
+                    Bahrain Work Visa &amp; LMRA Guide 2026
                   </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">
-                    Single-visa access across Bahrain, Saudi, UAE, Qatar, Oman &amp; Kuwait. Rules, fees, and cross-border recruitment impact.
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    EMS application, Wafid medical, NPRA residency stamping, CPR Smart Card &amp; BHD tax-free salary breakdown.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 

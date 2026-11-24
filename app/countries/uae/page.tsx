@@ -2711,20 +2711,20 @@ export default function UAECountryPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
-                href="/blogs/uae-warehouse-jobs-complete-guide-dubai-abu-dhabi-salary-visa-freezone"
-                className="group rounded-2xl border border-emerald-300 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+                href="/blogs/uae-2-year-employment-visa-mohre-work-permit-guide-2026-offer-letter-labor-card-emirates-id"
+                className="group rounded-2xl border border-emerald-400 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">Warehousing &amp; Fulfillment</span>
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full inline-block">2026 Master Guide</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    UAE Warehouse Jobs 2026: Dubai &amp; Abu Dhabi Logistics Guide
+                    UAE 2-Year Employment Visa &amp; MOHRE Guide 2026
                   </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">
-                    Picker-packer, reach truck &amp; forklift salaries (AED 1,400–4,000+), MOHRE/JAFZA permits &amp; free accommodation.
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    Electronic offer letter (MB form), entry permit, DHA/EHS medical fitness, ICP Emirates ID biometrics &amp; WPS payroll.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
