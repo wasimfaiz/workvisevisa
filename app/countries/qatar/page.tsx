@@ -1226,20 +1226,20 @@ export default function QatarCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/qatar-work-visa-qvc-process-guide-2026-medical-biometrics-contract-qid"
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+                href="/blogs/qatar-work-visa-qid-complete-guide-2026-mol-contract-qvc-medical-metrash2"
+                className="group rounded-2xl border border-emerald-400 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-emerald-600">QVC Examination Manual</span>
+                  <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full inline-block">2026 Master Guide</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Qatar Work Visa &amp; QVC Step-by-Step Guide 2026
+                    Qatar Work Visa &amp; QID Master Guide 2026
                   </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2">
-                    Comprehensive manual for QVC appointments, biometrics, Medical Commission sync, and Qatar ID (QID) printing.
+                  <p className="text-xs text-slate-600 line-clamp-2">
+                    MoL electronic contract, QVC biometrics, Metrash2 status check, WPS QAR salary breakdown &amp; QID printing.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
-                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 

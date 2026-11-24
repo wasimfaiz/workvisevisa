@@ -1511,22 +1511,22 @@ export default function FranceCountryPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Card 1: Germany EU Blue Card */}
+              {/* Card 1: France Work Visa Master Guide */}
               <Link
-                href="/blogs/germany-opportunity-card-chancenkarte-eu-blue-card-complete-guide-2026"
+                href="/blogs/france-work-visa-for-indian-workers-2026-vls-ts-salarie-dreets-smic-salary-vfs"
                 className="group rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-white bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block">High-Skilled Germany Masterclass</span>
+                  <span className="text-[10px] font-bold uppercase text-white bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block">2026 France Master Guide</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Germany EU Blue Card &amp; Opportunity Card 2026
+                    France Work Visa &amp; VLS-TS Salarié Complete Guide 2026
                   </h3>
                   <p className="text-xs text-slate-600 line-clamp-2">
-                    €45,300/€41,041 salary thresholds, 6-point scoring calculator, Sperrkonto escrow &amp; fast-track 21-month Permanent Residency.
+                    DREETS online work authorization, SMIC wage rules (€1,766+ gross), 35-hour workweek, OFII validation &amp; VFS India processing.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
-                  Read Full Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Read France Master Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
 
