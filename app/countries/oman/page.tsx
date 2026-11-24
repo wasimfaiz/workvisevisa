@@ -1538,16 +1538,16 @@ export default function OmanCountryPage() {
               </Link>
 
               <Link
-                href="/blogs/oman-bahrain-work-visa-guide-2026-mol-lmra-jobs-wafid-salaries"
+                href="/blogs/oman-2-year-employment-visa-rop-work-permit-guide-2026-mol-sanad-wafid-bataqa"
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-emerald-600">Oman &amp; Bahrain Master Guide</span>
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Oman Work Visa Master Guide 2026</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Oman &amp; Bahrain Work Visa &amp; Labor Law Reforms 2026
+                    Oman 2-Year Employment Visa &amp; ROP Work Permit Guide 2026
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-2">
-                    Comprehensive manual on Oman MOL permits, ROP eVisa, Duqm Refinery jobs, Wafid medicals, and tax-free OMR salary scales.
+                    Complete statutory guide to MoL Sanad clearance, Royal Decree 53/2023, Wafid GAMCA medical, ROP eVisa, and Resident Card (Bataqa).
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">

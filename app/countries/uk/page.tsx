@@ -1612,6 +1612,99 @@ export default function UKCountryPage() {
             </div>
           </section>
 
+          {/* ── Section 12b: Authoritative UK Visa Knowledge Base & Master Guides ── */}
+          <section className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+              <div>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">Official Knowledge Base</span>
+                <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight mt-1">
+                  UK Skilled Immigration Master Guides &amp; Regulatory Deep Dives
+                </h2>
+              </div>
+              <Link
+                href="/blogs"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition"
+              >
+                <span>View All 50+ Visa Guides</span>
+                <FaArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Link
+                href="/blogs/uk-skilled-worker-visa-complete-guide-2026-70-points-defined-cos-salary-list-ilr"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Home Office 2026 Guide</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    UK Skilled Worker Visa 70-Point Master Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Defined CoS allocations, £38,700 threshold rules, Immigration Salary List (ISL), SELT B1, and 5-year ILR settlement.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/police-clearance-certificate-pcc-gulf-european-visas-psk-apostille-guide-2026"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Document Verification</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Police Clearance Certificate (PCC) &amp; MEA Apostille
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Step-by-step passport office appointment booking, criminal background verification, and UK Home Office compliance.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/global-work-visa-pr-rules-overhaul-2026-canada-australia-uk-europe-guide"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">Global Mobility</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    Global Work Visa &amp; PR Rules Overhaul 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Comparative breakdown across the UK, Canada, Australia, and Schengen Europe points thresholds and settlement rules.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+
+              <Link
+                href="/blogs/france-work-visa-for-indian-workers-2026-vls-ts-salarie-dreets-smic-salary-vfs"
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <span className="text-[10px] font-bold uppercase text-emerald-600">European Alternative</span>
+                  <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    France Work Visa &amp; VLS-TS Salarié Guide 2026
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">
+                    Compare UK work sponsorship with French DREETS authorization, Métiers en Tension shortages, and Euro salaries.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
+                  Read Full Guide <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </section>
+
           {/* ── Section 13: Bottom Strategic CTA Banner ── */}
           <section className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white p-8 sm:p-12 shadow-xl border border-emerald-900/50 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
