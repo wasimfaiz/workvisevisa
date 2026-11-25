@@ -1292,18 +1292,18 @@ export default function GermanyCountryPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Card 1: EU Blue Card & Chancenkarte Masterclass */}
+              {/* Card 1: Germany Work Visa & Opportunity Card 2026 Master Guide */}
               <Link
-                href="/blogs/germany-opportunity-card-chancenkarte-eu-blue-card-complete-guide-2026"
+                href="/blogs/germany-work-visa-opportunity-card-chancenkarte-guide-2026-blue-card-sperrkonto-zab"
                 className="group rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-5 shadow-xs hover:border-emerald-600 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase text-white bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block">Featured High-Skilled Guide</span>
+                  <span className="text-[10px] font-bold uppercase text-white bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block">New 2026 Master Guide</span>
                   <h3 className="font-display font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
-                    Germany EU Blue Card &amp; Opportunity Card 2026 Masterclass
+                    Germany Work Visa &amp; Opportunity Card (Chancenkarte) 2026 Guide
                   </h3>
                   <p className="text-xs text-slate-600 line-clamp-2">
-                    €45,300/€41,041 salary thresholds, 6-point scoring calculator, Sperrkonto escrow &amp; fast-track 21-month Permanent Residency.
+                    Updated 2026 EU Blue Card €50,700 / €45,934 thresholds, 6-point scoring, €1,091/mo Sperrkonto, ZAB recognition &amp; 21-month PR.
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 mt-4">
